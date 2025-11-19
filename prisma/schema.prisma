@@ -1,0 +1,126 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(cuid())
+  email     String    @unique
+  name      String?
+  createdAt DateTime  @default(now())
+  attempts  Attempt[]
+}
+
+model Question {
+  id          String        @id @default(cuid())
+  type        QuestionType
+  level       CEFR
+  prompt      String        @unique
+  explanation String?
+  mediaUrl    String?
+  difficulty  Float         @default(0.5)
+  Answer      Answer[]
+  choices     Choice[]
+  tags        QuestionTag[]
+}
+
+model Choice {
+  id         String   @id @default(cuid())
+  questionId String
+  text       String
+  isCorrect  Boolean  @default(false)
+  question   Question @relation(fields: [questionId], references: [id])
+}
+
+model Test {
+  id       String    @id @default(cuid())
+  slug     String    @unique
+  title    String
+  level    CEFR
+  duration Int
+  Attempt  Attempt[]
+  sections Section[]
+}
+
+model Section {
+  id      String @id @default(cuid())
+  testId  String
+  title   String
+  count   Int
+  filters Json
+  test    Test   @relation(fields: [testId], references: [id])
+}
+
+model Attempt {
+  id          String        @id @default(cuid())
+  userId      String?
+  testId      String
+  status      AttemptStatus @default(IN_PROGRESS)
+  startedAt   DateTime      @default(now())
+  submittedAt DateTime?
+  score       Float         @default(0)
+  levelGuess  CEFR?
+  answers     Answer[]
+  test        Test          @relation(fields: [testId], references: [id])
+  user        User?         @relation(fields: [userId], references: [id])
+}
+
+model Answer {
+  id         String   @id @default(cuid())
+  attemptId  String
+  questionId String
+  choiceId   String?
+  textInput  String?
+  correct    Boolean  @default(false)
+  attempt    Attempt  @relation(fields: [attemptId], references: [id])
+  question   Question @relation(fields: [questionId], references: [id])
+}
+
+model Tag {
+  id        String        @id @default(cuid())
+  name      String        @unique
+  questions QuestionTag[]
+}
+
+model QuestionTag {
+  questionId String
+  tagId      String
+  question   Question @relation(fields: [questionId], references: [id])
+  tag        Tag      @relation(fields: [tagId], references: [id])
+
+  @@id([questionId, tagId])
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+enum CEFR {
+  A1
+  A2
+  B1
+  B2
+  C1
+  C2
+}
+
+enum QuestionType {
+  MCQ
+  CLOZE
+  READING
+  LISTENING
+}
+
+enum AttemptStatus {
+  IN_PROGRESS
+  SUBMITTED
+}

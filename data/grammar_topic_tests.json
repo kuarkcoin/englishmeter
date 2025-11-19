@@ -1,0 +1,902 @@
+[
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-perfect-past"],
+    "prompt": "I _____ three emails so far today.",
+    "choices": [{"text": "wrote", "isCorrect": false}, {"text": "have written", "isCorrect": true}, {"text": "was writing", "isCorrect": false}],
+    "explanation": "Present Perfect is used for actions in an unfinished time period like 'today'."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-perfect-past"],
+    "prompt": "Columbus _____ America in 1492.",
+    "choices": [{"text": "has discovered", "isCorrect": false}, {"text": "discovered", "isCorrect": true}, {"text": "had discovered", "isCorrect": false}],
+    "explanation": "We use Past Simple with a finished, specific time in the past."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-perfect-past"],
+    "prompt": "She _____ in London since 2018.",
+    "choices": [{"text": "lived", "isCorrect": false}, {"text": "has lived", "isCorrect": true}, {"text": "lives", "isCorrect": false}],
+    "explanation": "We use Present Perfect for something that started in the past and continues now."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-perfect-past"],
+    "prompt": "We _____ just _____ our homework.",
+    "choices": [{"text": "have / finished", "isCorrect": true}, {"text": "finished", "isCorrect": false}, {"text": "had finished", "isCorrect": false}],
+    "explanation": "We often use 'just' with Present Perfect for very recent actions."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-perfect-past"],
+    "prompt": "When _____ you last _____ Paris?",
+    "choices": [{"text": "did / visit", "isCorrect": true}, {"text": "have / visited", "isCorrect": false}, {"text": "do / visit", "isCorrect": false}],
+    "explanation": "With 'when' and a specific time, we normally use Past Simple."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-perfect-past"],
+    "prompt": "I _____ my keys yesterday morning.",
+    "choices": [{"text": "have lost", "isCorrect": false}, {"text": "lost", "isCorrect": true}, {"text": "had lost", "isCorrect": false}],
+    "explanation": "A finished time in the past (yesterday morning) takes Past Simple."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-perfect-past"],
+    "prompt": "_____ you ever _____ skydiving?",
+    "choices": [{"text": "Did / try", "isCorrect": false}, {"text": "Have / tried", "isCorrect": true}, {"text": "Had / tried", "isCorrect": false}],
+    "explanation": "We use Present Perfect with 'ever' to ask about life experience."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-perfect-past"],
+    "prompt": "They _____ here for three hours already.",
+    "choices": [{"text": "waited", "isCorrect": false}, {"text": "have waited", "isCorrect": true}, {"text": "are waiting", "isCorrect": false}],
+    "explanation": "Present Perfect can show duration up to now."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-perfect-past"],
+    "prompt": "She _____ yet. She’s still at work.",
+    "choices": [{"text": "didn’t arrive", "isCorrect": false}, {"text": "hasn’t arrived", "isCorrect": true}, {"text": "doesn’t arrive", "isCorrect": false}],
+    "explanation": "We use Present Perfect with 'yet' in negative sentences."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-perfect-past"],
+    "prompt": "The train _____ ten minutes ago.",
+    "choices": [{"text": "has left", "isCorrect": false}, {"text": "left", "isCorrect": true}, {"text": "was leaving", "isCorrect": false}],
+    "explanation": "A finished time expression like 'ten minutes ago' takes Past Simple."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-perfect-past"],
+    "prompt": "Shakespeare _____ many famous plays.",
+    "choices": [{"text": "has written", "isCorrect": false}, {"text": "wrote", "isCorrect": true}, {"text": "was writing", "isCorrect": false}],
+    "explanation": "Shakespeare is dead, so the time period is finished -> Past Simple."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-perfect-past"],
+    "prompt": "I _____ to Japan twice in my life.",
+    "choices": [{"text": "went", "isCorrect": false}, {"text": "have been", "isCorrect": true}, {"text": "was", "isCorrect": false}],
+    "explanation": "Life experience (time is not finished) -> Present Perfect."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-perfect-past"],
+    "prompt": "Did you see the news? The King _____ the hospital.",
+    "choices": [{"text": "has visited", "isCorrect": true}, {"text": "visited", "isCorrect": false}, {"text": "visits", "isCorrect": false}],
+    "explanation": "Recent news with relevance to the present -> Present Perfect."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-perfect-past"],
+    "prompt": "My parents _____ in New York for ten years, then they moved to London.",
+    "choices": [{"text": "have lived", "isCorrect": false}, {"text": "lived", "isCorrect": true}, {"text": "live", "isCorrect": false}],
+    "explanation": "The period in New York is finished -> Past Simple."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-perfect-past"],
+    "prompt": "I _____ her since she left school.",
+    "choices": [{"text": "didn't see", "isCorrect": false}, {"text": "haven't seen", "isCorrect": true}, {"text": "don't see", "isCorrect": false}],
+    "explanation": "'Since' usually triggers Present Perfect in the main clause."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-perfect-past"],
+    "prompt": "He _____ his leg skiing last winter.",
+    "choices": [{"text": "has broken", "isCorrect": false}, {"text": "broke", "isCorrect": true}, {"text": "breaks", "isCorrect": false}],
+    "explanation": "'Last winter' is a specific time in the past."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-perfect-past"],
+    "prompt": "_____ you _____ the movie yet?",
+    "choices": [{"text": "Did / see", "isCorrect": false}, {"text": "Have / seen", "isCorrect": true}, {"text": "Do / see", "isCorrect": false}],
+    "explanation": "'Yet' in questions suggests Present Perfect."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-perfect-past"],
+    "prompt": "Look at that! Someone _____ that window.",
+    "choices": [{"text": "broke", "isCorrect": false}, {"text": "has broken", "isCorrect": true}, {"text": "breaks", "isCorrect": false}],
+    "explanation": "We see the result now (broken window) -> Present Perfect."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-perfect-past"],
+    "prompt": "I _____ hungry yesterday, so I didn't eat.",
+    "choices": [{"text": "haven't been", "isCorrect": false}, {"text": "wasn't", "isCorrect": true}, {"text": "am not", "isCorrect": false}],
+    "explanation": "'Yesterday' requires Past Simple."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-perfect-past"],
+    "prompt": "They _____ married for 20 years and they are still very happy.",
+    "choices": [{"text": "were", "isCorrect": false}, {"text": "have been", "isCorrect": true}, {"text": "are", "isCorrect": false}],
+    "explanation": "Action started in past and continues -> Present Perfect."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-perfect-past"],
+    "prompt": "They _____ married for 5 years, but they got divorced in 2010.",
+    "choices": [{"text": "have been", "isCorrect": false}, {"text": "were", "isCorrect": true}, {"text": "are", "isCorrect": false}],
+    "explanation": "The state of being married is finished -> Past Simple."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-perfect-past"],
+    "prompt": "I _____ John this week.",
+    "choices": [{"text": "didn't see", "isCorrect": false}, {"text": "haven't seen", "isCorrect": true}, {"text": "don't see", "isCorrect": false}],
+    "explanation": "'This week' is an unfinished time period -> Present Perfect."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-perfect-past"],
+    "prompt": "I _____ John last week.",
+    "choices": [{"text": "didn't see", "isCorrect": true}, {"text": "haven't seen", "isCorrect": false}, {"text": "wasn't seeing", "isCorrect": false}],
+    "explanation": "'Last week' is a finished time period -> Past Simple."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-perfect-past"],
+    "prompt": "Where's your key? I don't know, I _____ it.",
+    "choices": [{"text": "lost", "isCorrect": false}, {"text": "have lost", "isCorrect": true}, {"text": "lose", "isCorrect": false}],
+    "explanation": "Result is important now (no key) -> Present Perfect."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-perfect-past"],
+    "prompt": "_____ you _____ breakfast this morning?",
+    "choices": [{"text": "Have / had", "isCorrect": true}, {"text": "Did / have", "isCorrect": false}, {"text": "Do / have", "isCorrect": false}],
+    "explanation": "If it is still morning -> Present Perfect. (Context implies unfinished time)."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-perfect-past"],
+    "prompt": "Mozart _____ more than 600 pieces of music.",
+    "choices": [{"text": "has written", "isCorrect": false}, {"text": "wrote", "isCorrect": true}, {"text": "writes", "isCorrect": false}],
+    "explanation": "Mozart is dead -> Past Simple."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-perfect-past"],
+    "prompt": "She _____ to the bank. She should be back soon.",
+    "choices": [{"text": "went", "isCorrect": false}, {"text": "has gone", "isCorrect": true}, {"text": "has been", "isCorrect": false}],
+    "explanation": "'Has gone' means she is there now."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-perfect-past"],
+    "prompt": "I _____ never _____ an octopus.",
+    "choices": [{"text": "did / eat", "isCorrect": false}, {"text": "have / eaten", "isCorrect": true}, {"text": "was / eating", "isCorrect": false}],
+    "explanation": "'Never' with life experience -> Present Perfect."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-perfect-past"],
+    "prompt": "He _____ his finger, so he can't write.",
+    "choices": [{"text": "cut", "isCorrect": false}, {"text": "has cut", "isCorrect": true}, {"text": "cuts", "isCorrect": false}],
+    "explanation": "Recent action with present consequence -> Present Perfect."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-perfect-past"],
+    "prompt": "We _____ a great film last night.",
+    "choices": [{"text": "have watched", "isCorrect": false}, {"text": "watched", "isCorrect": true}, {"text": "watch", "isCorrect": false}],
+    "explanation": "'Last night' -> Past Simple."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-conditionals"],
+    "prompt": "If I _____ rich, I would travel the world.",
+    "choices": [{"text": "am", "isCorrect": false}, {"text": "were", "isCorrect": true}, {"text": "had been", "isCorrect": false}],
+    "explanation": "Second conditional: If + past simple, would + base verb for unreal present."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-conditionals"],
+    "prompt": "If it rains tomorrow, we _____ indoors.",
+    "choices": [{"text": "stay", "isCorrect": false}, {"text": "will stay", "isCorrect": true}, {"text": "would stay", "isCorrect": false}],
+    "explanation": "First conditional: If + present simple, will + verb for real future."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-conditionals"],
+    "prompt": "If she had called me, I _____ her.",
+    "choices": [{"text": "helped", "isCorrect": false}, {"text": "would help", "isCorrect": false}, {"text": "would have helped", "isCorrect": true}],
+    "explanation": "Third conditional: If + past perfect, would have + past participle for unreal past."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-conditionals"],
+    "prompt": "Ice _____ if the temperature drops below 0°C.",
+    "choices": [{"text": "freezes", "isCorrect": true}, {"text": "will freeze", "isCorrect": false}, {"text": "froze", "isCorrect": false}],
+    "explanation": "Zero conditional for general truths: If + present, present."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-conditionals"],
+    "prompt": "I wish I _____ more money.",
+    "choices": [{"text": "have", "isCorrect": false}, {"text": "had", "isCorrect": true}, {"text": "would have", "isCorrect": false}],
+    "explanation": "Wish about the present uses a past form (had) to show unreal present."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-conditionals"],
+    "prompt": "If you _____ earlier, you wouldn’t have missed the bus.",
+    "choices": [{"text": "left", "isCorrect": false}, {"text": "had left", "isCorrect": true}, {"text": "would leave", "isCorrect": false}],
+    "explanation": "Third conditional: the past condition explains a past result."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-conditionals"],
+    "prompt": "She’ll come if you _____ her.",
+    "choices": [{"text": "invite", "isCorrect": true}, {"text": "invited", "isCorrect": false}, {"text": "will invite", "isCorrect": false}],
+    "explanation": "In first conditional, the if-clause uses present simple, not 'will'."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-conditionals"],
+    "prompt": "I wish you _____ stop smoking!",
+    "choices": [{"text": "will", "isCorrect": false}, {"text": "would", "isCorrect": true}, {"text": "can", "isCorrect": false}],
+    "explanation": "'Wish + would' expresses annoyance and desire for someone to change their behavior."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-conditionals"],
+    "prompt": "If I _____ you, I would apologise.",
+    "choices": [{"text": "am", "isCorrect": false}, {"text": "were", "isCorrect": true}, {"text": "had been", "isCorrect": false}],
+    "explanation": "We use 'If I were you' to give advice in second conditional."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-conditionals"],
+    "prompt": "Suppose you _____ the lottery, what would you do?",
+    "choices": [{"text": "win", "isCorrect": false}, {"text": "won", "isCorrect": true}, {"text": "would win", "isCorrect": false}],
+    "explanation": "'Suppose' acts like 'if' for hypotheses; we use past simple with would + verb."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-conditionals"],
+    "prompt": "When water boils, it _____ into steam.",
+    "choices": [{"text": "turns", "isCorrect": true}, {"text": "turned", "isCorrect": false}, {"text": "will turn", "isCorrect": false}],
+    "explanation": "Zero conditional (scientific fact)."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-conditionals"],
+    "prompt": "If he _____ time, he will help us.",
+    "choices": [{"text": "have", "isCorrect": false}, {"text": "has", "isCorrect": true}, {"text": "had", "isCorrect": false}],
+    "explanation": "First conditional: If + present simple."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-conditionals"],
+    "prompt": "If I _____ known the answer, I would have told you.",
+    "choices": [{"text": "have", "isCorrect": false}, {"text": "had", "isCorrect": true}, {"text": "would have", "isCorrect": false}],
+    "explanation": "Third conditional: If + past perfect."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-conditionals"],
+    "prompt": "I wish I _____ fly.",
+    "choices": [{"text": "can", "isCorrect": false}, {"text": "could", "isCorrect": true}, {"text": "will", "isCorrect": false}],
+    "explanation": "Wish for ability: could."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-conditionals"],
+    "prompt": "_____ I you, I would take the job.",
+    "choices": [{"text": "If", "isCorrect": false}, {"text": "Were", "isCorrect": true}, {"text": "Had", "isCorrect": false}],
+    "explanation": "Inversion of second conditional: 'Were I you' = 'If I were you'."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-conditionals"],
+    "prompt": "_____ he arrived on time, we wouldn't have missed the train.",
+    "choices": [{"text": "If", "isCorrect": false}, {"text": "Had", "isCorrect": true}, {"text": "Did", "isCorrect": false}],
+    "explanation": "Inversion of third conditional: 'Had he arrived' = 'If he had arrived'."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-conditionals"],
+    "prompt": "Unless you _____ now, you will be late.",
+    "choices": [{"text": "leave", "isCorrect": true}, {"text": "don't leave", "isCorrect": false}, {"text": "will leave", "isCorrect": false}],
+    "explanation": "'Unless' means 'if not', so the verb is usually positive."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-conditionals"],
+    "prompt": "I'd rather you _____ home now.",
+    "choices": [{"text": "go", "isCorrect": false}, {"text": "went", "isCorrect": true}, {"text": "gone", "isCorrect": false}],
+    "explanation": "'I'd rather you + past simple' for present preference."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-conditionals"],
+    "prompt": "It's time we _____ home.",
+    "choices": [{"text": "go", "isCorrect": false}, {"text": "went", "isCorrect": true}, {"text": "should go", "isCorrect": false}],
+    "explanation": "'It's time + past simple' means it's late."
+  },
+  {
+    "type": "MCQ", "level": "C1", "tags": ["topic-conditionals"],
+    "prompt": "But for your help, I _____ failed.",
+    "choices": [{"text": "would have", "isCorrect": true}, {"text": "will have", "isCorrect": false}, {"text": "had", "isCorrect": false}],
+    "explanation": "'But for' creates a conditional meaning: 'If it hadn't been for...'."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-conditionals"],
+    "prompt": "If I see him, I _____ him the message.",
+    "choices": [{"text": "give", "isCorrect": false}, {"text": "will give", "isCorrect": true}, {"text": "gave", "isCorrect": false}],
+    "explanation": "First conditional: will + base verb."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-conditionals"],
+    "prompt": "If I _____ a millionaire, I would buy an island.",
+    "choices": [{"text": "am", "isCorrect": false}, {"text": "was", "isCorrect": false}, {"text": "were", "isCorrect": true}],
+    "explanation": "Second conditional uses 'were' for all persons."
+  },
+  {
+    "type": "MCQ", "level": "C1", "tags": ["topic-conditionals"],
+    "prompt": "Provided that you _____ the money back, I will lend it to you.",
+    "choices": [{"text": "pay", "isCorrect": true}, {"text": "will pay", "isCorrect": false}, {"text": "paid", "isCorrect": false}],
+    "explanation": "'Provided that' works like 'if'."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-conditionals"],
+    "prompt": "I wish I _____ that expensive phone. Now I'm broke.",
+    "choices": [{"text": "didn't buy", "isCorrect": false}, {"text": "hadn't bought", "isCorrect": true}, {"text": "wouldn't buy", "isCorrect": false}],
+    "explanation": "Regret about past uses Past Perfect."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-conditionals"],
+    "prompt": "What _____ you do if you lost your wallet?",
+    "choices": [{"text": "will", "isCorrect": false}, {"text": "would", "isCorrect": true}, {"text": "did", "isCorrect": false}],
+    "explanation": "Second conditional question form."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-conditionals"],
+    "prompt": "If you mix red and blue, you _____ purple.",
+    "choices": [{"text": "get", "isCorrect": true}, {"text": "got", "isCorrect": false}, {"text": "getting", "isCorrect": false}],
+    "explanation": "Zero conditional (fact)."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-conditionals"],
+    "prompt": "If only I _____ taller!",
+    "choices": [{"text": "am", "isCorrect": false}, {"text": "were", "isCorrect": true}, {"text": "would be", "isCorrect": false}],
+    "explanation": "'If only' expresses a strong wish."
+  },
+  {
+    "type": "MCQ", "level": "C1", "tags": ["topic-conditionals"],
+    "prompt": "Should you _____ any problems, please call me.",
+    "choices": [{"text": "experience", "isCorrect": true}, {"text": "experienced", "isCorrect": false}, {"text": "will experience", "isCorrect": false}],
+    "explanation": "Inversion of 1st conditional: 'Should you...' = 'If you should...'."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-conditionals"],
+    "prompt": "I'll go to the beach unless it _____.",
+    "choices": [{"text": "rains", "isCorrect": true}, {"text": "doesn't rain", "isCorrect": false}, {"text": "will rain", "isCorrect": false}],
+    "explanation": "'Unless' = 'If not'."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-conditionals"],
+    "prompt": "I would have bought the car if it _____ cheaper.",
+    "choices": [{"text": "was", "isCorrect": false}, {"text": "had been", "isCorrect": true}, {"text": "were", "isCorrect": false}],
+    "explanation": "Third conditional."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "The man _____ lives next door is a doctor.",
+    "choices": [{"text": "who", "isCorrect": true}, {"text": "which", "isCorrect": false}, {"text": "whose", "isCorrect": false}],
+    "explanation": "We use 'who' for people as the subject of the relative clause."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "That’s the painting _____ Picasso created.",
+    "choices": [{"text": "who", "isCorrect": false}, {"text": "which", "isCorrect": true}, {"text": "whose", "isCorrect": false}],
+    "explanation": "We use 'which' (or 'that') for things."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "This is the school _____ I studied.",
+    "choices": [{"text": "which", "isCorrect": false}, {"text": "where", "isCorrect": true}, {"text": "that", "isCorrect": false}],
+    "explanation": "We use 'where' with places when the place is a location of an action."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "The girl _____ bag was stolen called the police.",
+    "choices": [{"text": "who", "isCorrect": false}, {"text": "which", "isCorrect": false}, {"text": "whose", "isCorrect": true}],
+    "explanation": "'Whose' shows possession (the bag of the girl)."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "2024, _____ the Olympics took place in Paris, was an exciting year.",
+    "choices": [{"text": "when", "isCorrect": true}, {"text": "which", "isCorrect": false}, {"text": "where", "isCorrect": false}],
+    "explanation": "We use 'when' with time expressions in relative clauses."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "He is the person _____ I admire most.",
+    "choices": [{"text": "who", "isCorrect": true}, {"text": "which", "isCorrect": false}, {"text": "whose", "isCorrect": false}],
+    "explanation": "Object relative pronoun for people."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "Do you know the reason _____ she left early?",
+    "choices": [{"text": "why", "isCorrect": true}, {"text": "which", "isCorrect": false}, {"text": "where", "isCorrect": false}],
+    "explanation": "We use 'why' with 'reason' in relative clauses."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "The car, _____ engine is broken, is in the garage.",
+    "choices": [{"text": "who", "isCorrect": false}, {"text": "which", "isCorrect": false}, {"text": "whose", "isCorrect": true}],
+    "explanation": "'Whose' expresses possession for both people and things."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "That’s the restaurant _____ we had dinner last night.",
+    "choices": [{"text": "who", "isCorrect": false}, {"text": "where", "isCorrect": true}, {"text": "when", "isCorrect": false}],
+    "explanation": "'Where' is used with places where something happens."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "The book _____ I borrowed was really interesting.",
+    "choices": [{"text": "who", "isCorrect": false}, {"text": "which", "isCorrect": true}, {"text": "whose", "isCorrect": false}],
+    "explanation": "'Which' (or 'that') is used for objects or things."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "My brother, _____ lives in Canada, is coming to visit.",
+    "choices": [{"text": "who", "isCorrect": true}, {"text": "that", "isCorrect": false}, {"text": "which", "isCorrect": false}],
+    "explanation": "Non-defining clause for a person uses 'who' (not 'that')."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "The laptop _____ I bought last week is broken.",
+    "choices": [{"text": "who", "isCorrect": false}, {"text": "where", "isCorrect": false}, {"text": "that", "isCorrect": true}],
+    "explanation": "Defining clause for object can use 'that'."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "I met a woman _____ can speak six languages.",
+    "choices": [{"text": "who", "isCorrect": true}, {"text": "which", "isCorrect": false}, {"text": "whose", "isCorrect": false}],
+    "explanation": "Subject relative pronoun for a person."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-relatives"],
+    "prompt": "The hotel, _____ we stayed, was excellent.",
+    "choices": [{"text": "that", "isCorrect": false}, {"text": "at which", "isCorrect": true}, {"text": "what", "isCorrect": false}],
+    "explanation": "'At which' is a formal way of saying 'where'."
+  },
+  {
+    "type": "MCQ", "level": "C1", "tags": ["topic-relatives"],
+    "prompt": "He failed the exam, _____ was a surprise.",
+    "choices": [{"text": "which", "isCorrect": true}, {"text": "that", "isCorrect": false}, {"text": "what", "isCorrect": false}],
+    "explanation": "'Which' refers back to the whole previous sentence."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "Is there anything _____ I can do?",
+    "choices": [{"text": "who", "isCorrect": false}, {"text": "what", "isCorrect": false}, {"text": "that", "isCorrect": true}],
+    "explanation": "We prefer 'that' after indefinite pronouns like 'anything'."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "The boy _____ dog bit me is sorry.",
+    "choices": [{"text": "who", "isCorrect": false}, {"text": "which", "isCorrect": false}, {"text": "whose", "isCorrect": true}],
+    "explanation": "Possession: the dog belonging to the boy."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "I don't like people _____ are rude.",
+    "choices": [{"text": "which", "isCorrect": false}, {"text": "who", "isCorrect": true}, {"text": "where", "isCorrect": false}],
+    "explanation": "Defining clause for people."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "The email _____ you sent never arrived.",
+    "choices": [{"text": "who", "isCorrect": false}, {"text": "whose", "isCorrect": false}, {"text": "which", "isCorrect": true}],
+    "explanation": "Relative pronoun for a thing."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-relatives"],
+    "prompt": "The person to _____ I spoke was very helpful.",
+    "choices": [{"text": "who", "isCorrect": false}, {"text": "whom", "isCorrect": true}, {"text": "that", "isCorrect": false}],
+    "explanation": "After a preposition (to), use 'whom' for people."
+  },
+  {
+    "type": "MCQ", "level": "C1", "tags": ["topic-relatives"],
+    "prompt": "_____ I need is a good holiday.",
+    "choices": [{"text": "That", "isCorrect": false}, {"text": "What", "isCorrect": true}, {"text": "Which", "isCorrect": false}],
+    "explanation": "'What' means 'the thing that' in pseudo-cleft sentences."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "That is the house _____ I was born.",
+    "choices": [ {"text": "which", "isCorrect": false}, {"text": "that", "isCorrect": false}, {"text": "where", "isCorrect": true} ],
+    "explanation": "Place relative adverb."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "Summer is the time _____ most people go on holiday.",
+    "choices": [ {"text": "where", "isCorrect": false}, {"text": "when", "isCorrect": true}, {"text": "which", "isCorrect": false} ],
+    "explanation": "Time relative adverb."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-relatives"],
+    "prompt": "The company for _____ I work is very big.",
+    "choices": [ {"text": "that", "isCorrect": false}, {"text": "whom", "isCorrect": false}, {"text": "which", "isCorrect": true} ],
+    "explanation": "Preposition + which (for things)."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "The man _____ car is red lives here.",
+    "choices": [ {"text": "who", "isCorrect": false}, {"text": "whose", "isCorrect": true}, {"text": "which", "isCorrect": false} ],
+    "explanation": "Possession."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "I lost the pen _____ you gave me.",
+    "choices": [ {"text": "who", "isCorrect": false}, {"text": "where", "isCorrect": false}, {"text": "that", "isCorrect": true} ],
+    "explanation": "Object relative pronoun."
+  },
+  {
+    "type": "MCQ", "level": "C1", "tags": ["topic-relatives"],
+    "prompt": "He has three sons, all of _____ are doctors.",
+    "choices": [ {"text": "who", "isCorrect": false}, {"text": "whom", "isCorrect": true}, {"text": "which", "isCorrect": false} ],
+    "explanation": "Quantifier + of + whom."
+  },
+  {
+    "type": "MCQ", "level": "C1", "tags": ["topic-relatives"],
+    "prompt": "I have two cars, neither of _____ works.",
+    "choices": [ {"text": "them", "isCorrect": false}, {"text": "which", "isCorrect": true}, {"text": "that", "isCorrect": false} ],
+    "explanation": "Quantifier + of + which."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "Is this the book _____ you were looking for?",
+    "choices": [ {"text": "who", "isCorrect": false}, {"text": "-", "isCorrect": true}, {"text": "where", "isCorrect": false} ],
+    "explanation": "We can omit the relative pronoun when it is the object."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-relatives"],
+    "prompt": "The film _____ we watched yesterday was boring.",
+    "choices": [ {"text": "who", "isCorrect": false}, {"text": "which", "isCorrect": true}, {"text": "where", "isCorrect": false} ],
+    "explanation": "Relative pronoun for things."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-articles"],
+    "prompt": "_____ sun rises in the east.",
+    "choices": [{"text": "A", "isCorrect": false}, {"text": "The", "isCorrect": true}, {"text": "-", "isCorrect": false}],
+    "explanation": "We use 'the' for unique things like the sun, the moon, the earth."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-articles"],
+    "prompt": "I have _____ headache.",
+    "choices": [{"text": "a", "isCorrect": true}, {"text": "an", "isCorrect": false}, {"text": "the", "isCorrect": false}],
+    "explanation": "We often use 'a' with illnesses or pains: a headache, a cold, a fever."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-articles"],
+    "prompt": "She plays _____ violin.",
+    "choices": [{"text": "a", "isCorrect": false}, {"text": "the", "isCorrect": true}, {"text": "-", "isCorrect": false}],
+    "explanation": "We normally use 'the' with musical instruments."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-articles"],
+    "prompt": "We had _____ dinner at 8 p.m.",
+    "choices": [{"text": "a", "isCorrect": false}, {"text": "the", "isCorrect": false}, {"text": "-", "isCorrect": true}],
+    "explanation": "We usually use no article before meals: breakfast, lunch, dinner."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-articles"],
+    "prompt": "_____ Mount Fuji is in Japan.",
+    "choices": [{"text": "A", "isCorrect": false}, {"text": "The", "isCorrect": false}, {"text": "-", "isCorrect": true}],
+    "explanation": "We normally use no article with single mountains."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-articles"],
+    "prompt": "He is _____ honest man.",
+    "choices": [{"text": "a", "isCorrect": false}, {"text": "an", "isCorrect": true}, {"text": "the", "isCorrect": false}],
+    "explanation": "We use 'an' before vowel sounds, including silent 'h' (honest)."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-articles"],
+    "prompt": "Can you pass me _____ salt?",
+    "choices": [{"text": "a", "isCorrect": false}, {"text": "the", "isCorrect": true}, {"text": "-", "isCorrect": false}],
+    "explanation": "We use 'the' when both speaker and listener know which object we mean."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-articles"],
+    "prompt": "She wants to be _____ engineer.",
+    "choices": [{"text": "a", "isCorrect": false}, {"text": "an", "isCorrect": true}, {"text": "the", "isCorrect": false}],
+    "explanation": "We use 'an' before words that begin with a vowel sound like 'engineer'."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-articles"],
+    "prompt": "They live in _____ small village near the coast.",
+    "choices": [{"text": "a", "isCorrect": true}, {"text": "an", "isCorrect": false}, {"text": "the", "isCorrect": false}],
+    "explanation": "Use 'a' for a non-specific singular countable noun mentioned for the first time."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-articles"],
+    "prompt": "I usually go to _____ school by bus.",
+    "choices": [{"text": "the", "isCorrect": false}, {"text": "a", "isCorrect": false}, {"text": "-", "isCorrect": true}],
+    "explanation": "We use no article with 'school', 'work', 'church' when we talk about their main purpose."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-articles"],
+    "prompt": "_____ apples are good for you.",
+    "choices": [{"text": "The", "isCorrect": false}, {"text": "A", "isCorrect": false}, {"text": "-", "isCorrect": true}],
+    "explanation": "Zero article for plural nouns used generally."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-articles"],
+    "prompt": "He goes to work by _____ car.",
+    "choices": [{"text": "the", "isCorrect": false}, {"text": "a", "isCorrect": false}, {"text": "-", "isCorrect": true}],
+    "explanation": "By + transport mode (no article)."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-articles"],
+    "prompt": "I visited _____ United Kingdom last year.",
+    "choices": [{"text": "-", "isCorrect": false}, {"text": "the", "isCorrect": true}, {"text": "a", "isCorrect": false}],
+    "explanation": "Countries with 'Kingdom', 'States', 'Republic' take 'the'."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-articles"],
+    "prompt": "_____ Nile is the longest river in Africa.",
+    "choices": [{"text": "-", "isCorrect": false}, {"text": "The", "isCorrect": true}, {"text": "A", "isCorrect": false}],
+    "explanation": "Rivers take 'the'."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-articles"],
+    "prompt": "Have you got _____ car?",
+    "choices": [{"text": "a", "isCorrect": true}, {"text": "an", "isCorrect": false}, {"text": "the", "isCorrect": false}],
+    "explanation": "Indefinite article for possession of a generic object."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-articles"],
+    "prompt": "_____ Pacific Ocean is huge.",
+    "choices": [{"text": "A", "isCorrect": false}, {"text": "-", "isCorrect": false}, {"text": "The", "isCorrect": true}],
+    "explanation": "Oceans take 'the'."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-articles"],
+    "prompt": "_____ rich should help _____ poor.",
+    "choices": [{"text": "The / the", "isCorrect": true}, {"text": "- / -", "isCorrect": false}, {"text": "A / a", "isCorrect": false}],
+    "explanation": "The + adjective refers to a group of people."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-articles"],
+    "prompt": "He is in _____ bed.",
+    "choices": [{"text": "the", "isCorrect": false}, {"text": "a", "isCorrect": false}, {"text": "-", "isCorrect": true}],
+    "explanation": "Idiom 'in bed' (sleeping/resting)."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-articles"],
+    "prompt": "What _____ beautiful day!",
+    "choices": [{"text": "a", "isCorrect": true}, {"text": "the", "isCorrect": false}, {"text": "-", "isCorrect": false}],
+    "explanation": "Exclamations with 'What' + countable singular noun take 'a'."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-articles"],
+    "prompt": "I saw _____ ewe in the field.",
+    "choices": [{"text": "a", "isCorrect": true}, {"text": "an", "isCorrect": false}, {"text": "the", "isCorrect": false}],
+    "explanation": "'Ewe' sounds like 'yew' (consonant sound), so use 'a'."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-articles"],
+    "prompt": "My brother is _____ doctor.",
+    "choices": [{"text": "the", "isCorrect": false}, {"text": "-", "isCorrect": false}, {"text": "a", "isCorrect": true}],
+    "explanation": "Professions take 'a/an'."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-articles"],
+    "prompt": "We arrived at _____ Heathrow Airport.",
+    "choices": [{"text": "the", "isCorrect": false}, {"text": "-", "isCorrect": true}, {"text": "a", "isCorrect": false}],
+    "explanation": "Airports/Stations named after places usually have no article."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-articles"],
+    "prompt": "_____ life is hard sometimes.",
+    "choices": [{"text": "The", "isCorrect": false}, {"text": "A", "isCorrect": false}, {"text": "-", "isCorrect": true}],
+    "explanation": "Abstract nouns used generally take no article."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-articles"],
+    "prompt": "_____ Alps are in Europe.",
+    "choices": [{"text": "The", "isCorrect": true}, {"text": "-", "isCorrect": false}, {"text": "An", "isCorrect": false}],
+    "explanation": "Mountain ranges take 'the'."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-articles"],
+    "prompt": "I need _____ hour to finish this.",
+    "choices": [{"text": "a", "isCorrect": false}, {"text": "an", "isCorrect": true}, {"text": "-", "isCorrect": false}],
+    "explanation": "'Hour' has a silent 'h', so it starts with a vowel sound."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-articles"],
+    "prompt": "Do you like _____ music?",
+    "choices": [{"text": "the", "isCorrect": false}, {"text": "-", "isCorrect": true}, {"text": "a", "isCorrect": false}],
+    "explanation": "General uncountable noun -> Zero article."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-articles"],
+    "prompt": "She is _____ best student in the class.",
+    "choices": [{"text": "a", "isCorrect": false}, {"text": "the", "isCorrect": true}, {"text": "-", "isCorrect": false}],
+    "explanation": "Superlatives take 'the'."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-articles"],
+    "prompt": "He goes to work in _____ morning.",
+    "choices": [{"text": "a", "isCorrect": false}, {"text": "-", "isCorrect": false}, {"text": "the", "isCorrect": true}],
+    "explanation": "Parts of the day: in the morning/afternoon/evening."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-articles"],
+    "prompt": "Look at _____ moon!",
+    "choices": [{"text": "a", "isCorrect": false}, {"text": "the", "isCorrect": true}, {"text": "-", "isCorrect": false}],
+    "explanation": "Unique object."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-articles"],
+    "prompt": "I learnt to play _____ guitar.",
+    "choices": [{"text": "a", "isCorrect": false}, {"text": "-", "isCorrect": false}, {"text": "the", "isCorrect": true}],
+    "explanation": "Instruments take 'the'."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-tenses-mixed"],
+    "prompt": "By 2030, I _____ here for 20 years.",
+    "choices": [{"text": "will work", "isCorrect": false}, {"text": "will have worked", "isCorrect": true}, {"text": "am working", "isCorrect": false}],
+    "explanation": "Future Perfect: action completed by a future time."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-tenses-mixed"],
+    "prompt": "At this time tomorrow, we _____ to Bali.",
+    "choices": [{"text": "will fly", "isCorrect": false}, {"text": "will be flying", "isCorrect": true}, {"text": "fly", "isCorrect": false}],
+    "explanation": "Future Continuous: action in progress at a future time."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "When I woke up, it _____.",
+    "choices": [{"text": "was snowing", "isCorrect": true}, {"text": "snowed", "isCorrect": false}, {"text": "has snowed", "isCorrect": false}],
+    "explanation": "Past Continuous sets the background when something else happened."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "This is the first time I _____ Korean food.",
+    "choices": [{"text": "eat", "isCorrect": false}, {"text": "ate", "isCorrect": false}, {"text": "have eaten", "isCorrect": true}],
+    "explanation": "We use Present Perfect with 'This is the first time ...'."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-tenses-mixed"],
+    "prompt": "She _____ English for 10 years by next June.",
+    "choices": [{"text": "will study", "isCorrect": false}, {"text": "will have been studying", "isCorrect": true}, {"text": "has studied", "isCorrect": false}],
+    "explanation": "Future Perfect Continuous focuses on the duration up to a future point."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "Look! The bus _____.",
+    "choices": [{"text": "comes", "isCorrect": false}, {"text": "is coming", "isCorrect": true}, {"text": "came", "isCorrect": false}],
+    "explanation": "Present Continuous is used for actions happening now or very soon."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "I _____ to the cinema yesterday.",
+    "choices": [{"text": "go", "isCorrect": false}, {"text": "went", "isCorrect": true}, {"text": "have gone", "isCorrect": false}],
+    "explanation": "Past Simple is used with finished time expressions like 'yesterday'."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "While I was reading, the phone _____.",
+    "choices": [{"text": "rings", "isCorrect": false}, {"text": "rang", "isCorrect": true}, {"text": "was ringing", "isCorrect": false}],
+    "explanation": "Past Simple (rang) interrupts a longer Past Continuous action."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-tenses-mixed"],
+    "prompt": "By the time we arrived, the movie _____.",
+    "choices": [{"text": "had started", "isCorrect": true}, {"text": "has started", "isCorrect": false}, {"text": "started", "isCorrect": false}],
+    "explanation": "Past Perfect shows an action that happened before another past action."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "Nowadays, people _____ more time online than before.",
+    "choices": [{"text": "spend", "isCorrect": true}, {"text": "are spending", "isCorrect": false}, {"text": "spent", "isCorrect": false}],
+    "explanation": "Present Simple is used for general facts and habits."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "I _____ him for years.",
+    "choices": [{"text": "know", "isCorrect": false}, {"text": "have known", "isCorrect": true}, {"text": "am knowing", "isCorrect": false}],
+    "explanation": "Stative verbs like 'know' are not used in continuous forms. Use Present Perfect for duration."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "While I _____ to work, I saw an accident.",
+    "choices": [{"text": "drove", "isCorrect": false}, {"text": "was driving", "isCorrect": true}, {"text": "drive", "isCorrect": false}],
+    "explanation": "Past continuous for an action in progress."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-tenses-mixed"],
+    "prompt": "Listen! The baby _____.",
+    "choices": [{"text": "cries", "isCorrect": false}, {"text": "is crying", "isCorrect": true}, {"text": "cried", "isCorrect": false}],
+    "explanation": "Action happening right now -> Present Continuous."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-tenses-mixed"],
+    "prompt": "I _____ when the alarm went off.",
+    "choices": [{"text": "slept", "isCorrect": false}, {"text": "was sleeping", "isCorrect": true}, {"text": "have slept", "isCorrect": false}],
+    "explanation": "Interrupted past action."
+  },
+  {
+    "type": "MCQ", "level": "C1", "tags": ["topic-tenses-mixed"],
+    "prompt": "I _____ for you for an hour! Where were you?",
+    "choices": [{"text": "wait", "isCorrect": false}, {"text": "have been waiting", "isCorrect": true}, {"text": "am waiting", "isCorrect": false}],
+    "explanation": "Present Perfect Continuous emphasises the duration and recent effect."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "We _____ to the zoo next week.",
+    "choices": [{"text": "go", "isCorrect": false}, {"text": "are going", "isCorrect": true}, {"text": "went", "isCorrect": false}],
+    "explanation": "Present Continuous for future arrangements."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "The sun _____ in the east.",
+    "choices": [{"text": "rise", "isCorrect": false}, {"text": "rises", "isCorrect": true}, {"text": "is rising", "isCorrect": false}],
+    "explanation": "General truth -> Present Simple."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "I _____ my keys. Can you help me look for them?",
+    "choices": [{"text": "lost", "isCorrect": false}, {"text": "have lost", "isCorrect": true}, {"text": "lose", "isCorrect": false}],
+    "explanation": "Past action with present result -> Present Perfect."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "They _____ in this house since 2010.",
+    "choices": [{"text": "lived", "isCorrect": false}, {"text": "have lived", "isCorrect": true}, {"text": "live", "isCorrect": false}],
+    "explanation": "'Since' -> Present Perfect."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "When I arrived at the party, everyone _____.",
+    "choices": [{"text": "danced", "isCorrect": false}, {"text": "was dancing", "isCorrect": true}, {"text": "dances", "isCorrect": false}],
+    "explanation": "Background action in the past."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "I promise I _____ you tomorrow.",
+    "choices": [{"text": "help", "isCorrect": false}, {"text": "will help", "isCorrect": true}, {"text": "am helping", "isCorrect": false}],
+    "explanation": "Promises use 'will'."
+  },
+  {
+    "type": "MCQ", "level": "B2", "tags": ["topic-tenses-mixed"],
+    "prompt": "After he _____ his homework, he went to bed.",
+    "choices": [{"text": "finished", "isCorrect": false}, {"text": "had finished", "isCorrect": true}, {"text": "has finished", "isCorrect": false}],
+    "explanation": "First action completed before another past action -> Past Perfect."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "What _____ you doing at 8 o'clock last night?",
+    "choices": [{"text": "are", "isCorrect": false}, {"text": "were", "isCorrect": true}, {"text": "did", "isCorrect": false}],
+    "explanation": "Past Continuous question."
+  },
+  {
+    "type": "MCQ", "level": "A2", "tags": ["topic-tenses-mixed"],
+    "prompt": "She usually _____ coffee, but today she's drinking tea.",
+    "choices": [{"text": "drinks", "isCorrect": true}, {"text": "is drinking", "isCorrect": false}, {"text": "drank", "isCorrect": false}],
+    "explanation": "Habit -> Present Simple."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "The train _____ at 9:00 AM.",
+    "choices": [{"text": "leave", "isCorrect": false}, {"text": "leaves", "isCorrect": true}, {"text": "leaving", "isCorrect": false}],
+    "explanation": "Timetables -> Present Simple."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "I _____ to London next week.",
+    "choices": [{"text": "am going", "isCorrect": true}, {"text": "go", "isCorrect": false}, {"text": "went", "isCorrect": false}],
+    "explanation": "Future arrangement -> Present Continuous."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "Have you _____ seen a ghost?",
+    "choices": [{"text": "ever", "isCorrect": true}, {"text": "never", "isCorrect": false}, {"text": "yet", "isCorrect": false}],
+    "explanation": "Question about life experience -> Ever."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "He _____ reading the book yet.",
+    "choices": [{"text": "didn't finish", "isCorrect": false}, {"text": "hasn't finished", "isCorrect": true}, {"text": "doesn't finish", "isCorrect": false}],
+    "explanation": "Negative with 'yet' -> Present Perfect."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "I _____ TV when the lights went out.",
+    "choices": [{"text": "watched", "isCorrect": false}, {"text": "was watching", "isCorrect": true}, {"text": "am watching", "isCorrect": false}],
+    "explanation": "Past Continuous interrupted by Past Simple."
+  },
+  {
+    "type": "MCQ", "level": "B1", "tags": ["topic-tenses-mixed"],
+    "prompt": "They _____ married in 2015.",
+    "choices": [{"text": "get", "isCorrect": false}, {"text": "got", "isCorrect": true}, {"text": "have got", "isCorrect": false}],
+    "explanation": "Specific past time -> Past Simple."
+  }
+]
