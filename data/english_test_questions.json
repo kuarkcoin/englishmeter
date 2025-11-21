@@ -11,7 +11,7 @@
     "explanation": "With 'I' we use 'am'."
   },
   {
-    "type": "MCQ",
+    "type": "MCQ", 
     "level": "A1",
     "prompt": "She ____ from Spain.",
     "choices": [
@@ -3518,5 +3518,365 @@
     "explanation": "Forget + to + verb = forget to do something.",
     "level": "B1",
     "type": "MCQ"
+  },
+    {
+    "type": "MCQ",
+    "level": "C1",
+    "prompt": "Not until she had left the room ____ how serious the situation was.",
+    "choices": [
+      {"text": "did she realize", "isCorrect": true},
+      {"text": "she realized", "isCorrect": false},
+      {"text": "had she realized", "isCorrect": false},
+      {"text": "she had realized", "isCorrect": false}
+    ],
+    "explanation": "Inversion after 'Not until' + past perfect."
+  },
+  {
+    "type": "MCQ",
+    "level": "C1",
+    "prompt": "____ the weather forecast, we would never have set out on the hike.",
+    "choices": [
+      {"text": "Had we heeded", "isCorrect": true},
+      {"text": "Did we heed", "isCorrect": false},
+      {"text": "We had heeded", "isCorrect": false},
+      {"text": "If we heeded", "isCorrect": false}
+    ],
+    "explanation": "Inverted third conditional."
+  },
+  {
+    "type": "MCQ",
+    "level": "C2",
+    "prompt": "Little ____ that the decision would have such far-reaching consequences.",
+    "choices": [
+      {"text": "did he know", "isCorrect": true},
+      {"text": "he knew", "isCorrect": false},
+      {"text": "knew he", "isCorrect": false},
+      {"text": "he did know", "isCorrect": false}
+    ],
+    "explanation": "Inversion with 'Little'."
+  },
+  {
+    "type": "MCQ",
+    "level": "C2",
+    "prompt": "____ the team had been warned about the risks involved.",
+    "choices": [
+      {"text": "Under no circumstances should", "isCorrect": false},
+      {"text": "On no account should", "isCorrect": false},
+      {"text": "At no time had", "isCorrect": true},
+      {"text": "In no way would", "isCorrect": false}
+    ],
+    "explanation": "Inversion with 'At no time' + past perfect."
+  },
+  {
+    "type": "MCQ",
+    "level": "C2",
+    "prompt": "The professor’s lecture was so convoluted that only a few students ____ what he was getting at.",
+    "choices": [
+      {"text": "could make out", "isCorrect": true},
+      {"text": "were able to make out", "isCorrect": false},
+      {"text": "managed making out", "isCorrect": false},
+      {"text": "succeeded to make out", "isCorrect": false}
+    ],
+    "explanation": "Phrasal verb + bare infinitive after modal."
+  },
+  {
+    "type": "MCQ",
+    "level": "C1",
+    "prompt": "____ the economic climate, the company has outperformed all expectations.",
+    "choices": [
+      {"text": "Given", "isCorrect": true},
+      {"text": "In spite of", "isCorrect": false},
+      {"text": "Despite of", "isCorrect": false},
+      {"text": "With regard to", "isCorrect": false}
+    ],
+    "explanation": "'Given' = considering (formal participle clause)."
+  },
+  {
+    "type": "MCQ",
+    "level": "C2",
+    "prompt": "____ he not been promoted, he would have resigned months ago.",
+    "choices": [
+      {"text": "Had", "isCorrect": true},
+      {"text": "Were", "isCorrect": false},
+      {"text": "Should", "isCorrect": false},
+      {"text": "If", "isCorrect": false}
+    ],
+    "explanation": "Inverted mixed conditional (3rd + 2nd)."
+  },
+  {
+    "type": "MCQ",
+    "level": "C2",
+    "prompt": "The minister ____ to comment on the allegations until the investigation is complete.",
+    "choices": [
+      {"text": "has declined", "isCorrect": false},
+      {"text": "declined", "isCorrect": false},
+      {"text": "has been declining", "isCorrect": false},
+      {"text": "is declining", "isCorrect": true}
+    ],
+    "explanation": "Present continuous for official refusal (more formal)."
+  },
+  {
+    "type": "MCQ",
+    "level": "C1",
+    "prompt": "Rarely ____ such a finely crafted piece of legislation.",
+    "choices": [
+      {"text": "have we seen", "isCorrect": true},
+      {"text": "we have seen", "isCorrect": false},
+      {"text": "we saw", "isCorrect": false},
+      {"text": "did we see", "isCorrect": false}
+    ],
+    "explanation": "Inversion with 'Rarely' + present perfect."
+  },
+  {
+    "type": "MCQ",
+    "level": "C2",
+    "prompt": "No sooner ____ the news than the press began speculating.",
+    "choices": [
+      {"text": "had the story broken", "isCorrect": true},
+      {"text": "the story had broken", "isCorrect": false},
+      {"text": "did the story break", "isCorrect": false},
+      {"text": "the story broke", "isCorrect": false}
+    ],
+    "explanation": "No sooner + past perfect + than + past perfect."
+  },
+    {
+    "type": "MCQ",
+    "level": "C1",
+    "prompt": "____ his criticism be taken seriously, he would need to provide concrete evidence.",
+    "choices": [
+      {"text": "Were", "isCorrect": true},
+      {"text": "Should", "isCorrect": false},
+      {"text": "Had", "isCorrect": false},
+      {"text": "If", "isCorrect": false}
+    ],
+    "explanation": "Inverted subjunctive for hypothetical present/future (formal)."
+  },
+  {
+    "type": "MCQ",
+    "level": "C2",
+    "prompt": "Scarcely ____ the building when the fire alarm went off.",
+    "choices": [
+      {"text": "had they entered", "isCorrect": true},
+      {"text": "they had entered", "isCorrect": false},
+      {"text": "did they enter", "isCorrect": false},
+      {"text": "they entered", "isCorrect": false}
+    ],
+    "explanation": "'Scarcely ... when' + inversion with past perfect."
+  },
+  {
+    "type": "MCQ",
+    "level": "C2",
+    "prompt": "The data ____ been misinterpreted had the researchers not double-checked their sources.",
+    "choices": [
+      {"text": "might well", "isCorrect": true},
+      {"text": "would certainly", "isCorrect": false},
+      {"text": "must have", "isCorrect": false},
+      {"text": "should have", "isCorrect": false}
+    ],
+    "explanation": "'Might well have' = very probable in the past (speculation)."
+  },
+  {
+    "type": "MCQ",
+    "level": "C1",
+    "prompt": "So ____ was the silence that you could have heard a pin drop.",
+    "choices": [
+      {"text": "absolute", "isCorrect": false},
+      {"text": "utter", "isCorrect": false},
+      {"text": "complete", "isCorrect": false},
+      {"text": "profound", "isCorrect": true}
+    ],
+    "explanation": "Collocation: 'profound silence' is the most idiomatic at C1-C2 level."
+  },
+  {
+    "type": "MCQ",
+    "level": "C2",
+    "prompt": "____ I known about the risks, I would never have invested in that venture.",
+    "choices": [
+      {"text": "Had", "isCorrect": true},
+      {"text": "Should", "isCorrect": false},
+      {"text": "Were", "isCorrect": false},
+      {"text": "If", "isCorrect": false}
+    ],
+    "explanation": "Inverted third conditional."
+  },
+  {
+    "type": "MCQ",
+    "level": "C1",
+    "prompt": "The politician’s speech was so ____ that even his supporters struggled to follow his argument.",
+    "choices": [
+      {"text": "obtuse", "isCorrect": false},
+      {"text": "arcane", "isCorrect": false},
+      {"text": "esoteric", "isCorrect": true},
+      {"text": "recondite", "isCorrect": false}
+    ],
+    "explanation": "'Esoteric' = understood by only a small number of people with special knowledge."
+  },
+  {
+    "type": "MCQ",
+    "level": "C2",
+    "prompt": "Not only ____ the deadline, but they also exceeded all expectations.",
+    "choices": [
+      {"text": "did they meet", "isCorrect": true},
+      {"text": "they met", "isCorrect": false},
+      {"text": "they did meet", "isCorrect": false},
+      {"text": "met they", "isCorrect": false}
+    ],
+    "explanation": "'Not only ... but also' triggers inversion in the first clause."
+  },
+  {
+    "type": "MCQ",
+    "level": "C2",
+    "prompt": "____ the outcome, the experiment was deemed a success by the scientific community.",
+    "choices": [
+      {"text": "Regardless of", "isCorrect": false},
+      {"text": "Irrespective of", "isCorrect": false},
+      {"text": "Notwithstanding", "isCorrect": true},
+      {"text": "In spite of", "isCorrect": false}
+    ],
+    "explanation": "'Notwithstanding' = formal equivalent of 'despite' (preposition)."
+  },
+  {
+    "type": "MCQ",
+    "level": "C1",
+    "prompt": "The author’s latest work has been met with ____ reviews from critics.",
+    "choices": [
+      {"text": "polarized", "isCorrect": true},
+      {"text": "divergent", "isCorrect": false},
+      {"text": "disparate", "isCorrect": false},
+      {"text": "contradictory", "isCorrect": false}
+    ],
+    "explanation": "'Polarized reviews' = sharply divided opinions."
+  },
+  {
+    "type": "MCQ",
+    "level": "C2",
+    "prompt": "____ the instructions carefully, there would have been no misunderstanding.",
+    "choices": [
+      {"text": "Were the team to read", "isCorrect": false},
+      {"text": "Had the team read", "isCorrect": true},
+      {"text": "Should the team read", "isCorrect": false},
+      {"text": "If the team had read", "isCorrect": false}
+    ],
+    "explanation": "Inverted mixed conditional (past condition, present result)."
+  },
+  {
+    "type": "MCQ",
+    "level": "C2",
+    "prompt": "His argument was so ____ that it left even the most skeptical listeners convinced.",
+    "choices": [
+      {"text": "cogent", "isCorrect": true},
+      {"text": "plausible", "isCorrect": false},
+      {"text": "tenable", "isCorrect": false},
+      {"text": "credible", "isCorrect": false}
+    ],
+    "explanation": "'Cogent' = clear, logical, and convincing (C2 level)."
+  },
+  {
+    "type": "MCQ",
+    "level": "C1",
+    "prompt": "The company’s decision to downsize was ____ by the sudden drop in demand.",
+    "choices": [
+      {"text": "precipitated", "isCorrect": true},
+      {"text": "instigated", "isCorrect": false},
+      {"text": "provoked", "isCorrect": false},
+      {"text": "induced", "isCorrect": false}
+    ],
+    "explanation": "'Precipitated' = caused to happen suddenly."
+  },
+  {
+    "type": "MCQ",
+    "level": "C2",
+    "prompt": "Only by ____ the underlying assumptions can we hope to resolve the paradox.",
+    "choices": [
+      {"text": "questioning", "isCorrect": false},
+      {"text": "challenging", "isCorrect": false},
+      {"text": "interrogating", "isCorrect": true},
+      {"text": "probing", "isCorrect": false}
+    ],
+    "explanation": "'Interrogating assumptions' = formal academic collocation."
+  },
+  {
+    "type": "MCQ",
+    "level": "C2",
+    "prompt": "The speaker’s ____ use of rhetorical devices captivated the audience.",
+    "choices": [
+      {"text": "judicious", "isCorrect": false},
+      {"text": "consummate", "isCorrect": true},
+      {"text": "proficient", "isCorrect": false},
+      {"text": "adept", "isCorrect": false}
+    ],
+    "explanation": "'Consummate' = showing supreme skill."
+  },
+  {
+    "type": "MCQ",
+    "level": "C1",
+    "prompt": "Far ____ I to criticize your efforts; I merely suggest an alternative approach.",
+    "choices": [
+      {"text": "be it from", "isCorrect": true},
+      {"text": "is it from", "isCorrect": false},
+      {"text": "it is from", "isCorrect": false},
+      {"text": "from it be", "isCorrect": false}
+    ],
+    "explanation": "Fixed expression: 'Far be it from me to...'"
+  },
+  {
+    "type": "MCQ",
+    "level": "C2",
+    "prompt": "The treaty was signed ____ great secrecy to avoid media speculation.",
+    "choices": [
+      {"text": "under", "isCorrect": false},
+      {"text": "in", "isCorrect": false},
+      {"text": "with", "isCorrect": false},
+      {"text": "amid", "isCorrect": true}
+    ],
+    "explanation": "'Amid great secrecy' = formal, slightly literary."
+  },
+  {
+    "type": "MCQ",
+    "level": "C2",
+    "prompt": "____ the hypothesis withstand rigorous testing, it will remain merely conjectural.",
+    "choices": [
+      {"text": "Should", "isCorrect": false},
+      {"text": "Unless", "isCorrect": false},
+      {"text": "Were", "isCorrect": false},
+      {"text": "Ought", "isCorrect": false}
+    ],
+    "explanation": "Inverted 'Should the hypothesis withstand...' = If the hypothesis should withstand..."
+  },
+  {
+    "type": "MCQ",
+    "level": "C2",
+    "prompt": "His ____ of the situation was nothing short of prescient.",
+    "choices": [
+      {"text": "grasp", "isCorrect": false},
+      {"text": "appraisal", "isCorrect": false},
+      {"text": "apprehension", "isCorrect": true},
+      {"text": "perception", "isCorrect": false}
+    ],
+    "explanation": "'Apprehension of the situation' = deep understanding (C2 nuance)."
+  },
+  {
+    "type": "MCQ",
+    "level": "C1",
+    "prompt": "The reforms were introduced ____ the backdrop of widespread public discontent.",
+    "choices": [
+      {"text": "against", "isCorrect": true},
+      {"text": "amid", "isCorrect": false},
+      {"text": "under", "isCorrect": false},
+      {"text": "in", "isCorrect": false}
+    ],
+    "explanation": "'Against the backdrop of' = idiomatic formal expression."
+  },
+  {
+    "type": "MCQ",
+    "level": "C2",
+    "prompt": "Such was the ____ of the performance that even seasoned critics were moved to tears.",
+    "choices": [
+      {"text": "poignancy", "isCorrect": true},
+      {"text": "pathos", "isCorrect": false},
+      {"text": "sentiment", "isCorrect": false},
+      {"text": "melodrama", "isCorrect": false}
+    ],
+    "explanation": "'Poignancy' = deeply affecting quality."
   }
 ]
