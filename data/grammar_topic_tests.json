@@ -898,5 +898,40 @@
     "prompt": "They _____ married in 2015.",
     "choices": [{"text": "get", "isCorrect": false}, {"text": "got", "isCorrect": true}, {"text": "have got", "isCorrect": false}],
     "explanation": "Specific past time -> Past Simple."
+  },
+    {
+    "topic": "Inversion & Advanced Structures",
+    "questions": [
+      {
+        "prompt": "Never ____ such a ridiculous excuse.",
+        "choices": [
+          {"text": "I have heard", "isCorrect": false},
+          {"text": "have I heard", "isCorrect": true},
+          {"text": "I heard", "isCorrect": false},
+          {"text": "heard I", "isCorrect": false}
+        ],
+        "explanation": "Inversion after 'Never' + present perfect."
+      },
+      {
+        "prompt": "Only after the deadline ____ to submit the report.",
+        "choices": [
+          {"text": "did she manage", "isCorrect": true},
+          {"text": "she managed", "isCorrect": false},
+          {"text": "she did manage", "isCorrect": false},
+          {"text": "managed she", "isCorrect": false}
+        ],
+        "explanation": "Inversion after 'Only after'."
+      },
+      {
+        "prompt": "____ the instructions, the device would have worked perfectly.",
+        "choices": [
+          {"text": "Had you followed", "isCorrect": true},
+          {"text": "If you followed", "isCorrect": false},
+          {"text": "You had followed", "isCorrect": false},
+          {"text": "Were you to follow", "isCorrect": false}
+        ],
+        "explanation": "Inverted third conditional."
+      }
+    ]
   }
 ]
