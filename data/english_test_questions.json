@@ -673,7 +673,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "She ____ (read) a book now.",
+    "prompt": "She ____ a book now.",
     "choices": [
       {"text": "reads", "isCorrect": false},
       {"text": "is reading", "isCorrect": true},
@@ -684,7 +684,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "We ____ (not be) tired.",
+    "prompt": "We ____ tired.",
     "choices": [
       {"text": "isn't", "isCorrect": false},
       {"text": "aren't", "isCorrect": true},
@@ -772,7 +772,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "There are ten ____ (man) in the room.",
+    "prompt": "There are ten ____ in the room.",
     "choices": [
       {"text": "mans", "isCorrect": false},
       {"text": "men", "isCorrect": true},
@@ -783,7 +783,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "This is ____ (he) book.",
+    "prompt": "This is ____ book.",
     "choices": [
       {"text": "him", "isCorrect": false},
       {"text": "his", "isCorrect": true},
@@ -794,7 +794,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "Give the book to ____ (she).",
+    "prompt": "Give the book to ____ .",
     "choices": [
       {"text": "her", "isCorrect": true},
       {"text": "she", "isCorrect": false},
@@ -805,7 +805,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "He ____ (not be) a doctor.",
+    "prompt": "He ____ a doctor.",
     "choices": [
       {"text": "don't", "isCorrect": false},
       {"text": "isn't", "isCorrect": true},
@@ -838,7 +838,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "The woman has three ____ (child).",
+    "prompt": "The woman has three ____ .",
     "choices": [
       {"text": "childs", "isCorrect": false},
       {"text": "children", "isCorrect": true},
@@ -860,7 +860,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "She ____ (be) happy.",
+    "prompt": "She ____ happy.",
     "choices": [
       {"text": "is", "isCorrect": true},
       {"text": "are", "isCorrect": false},
@@ -893,7 +893,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "They ____ (go) to the park last week.",
+    "prompt": "They ____ to the park last week.",
     "choices": [
       {"text": "go", "isCorrect": false},
       {"text": "went", "isCorrect": true},
@@ -904,7 +904,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "He ____ (not see) the film.",
+    "prompt": "He ____ the film.",
     "choices": [
       {"text": "didn't see", "isCorrect": true},
       {"text": "doesn't see", "isCorrect": false},
@@ -926,7 +926,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "She ____ (buy) a new dress yesterday.",
+    "prompt": "She ____ a new dress yesterday.",
     "choices": [
       {"text": "buyed", "isCorrect": false},
       {"text": "bought", "isCorrect": true},
@@ -937,7 +937,7 @@
   {
     "type": "MCG",
     "level": "A1",
-    "prompt": "We ____ (not be) at school yesterday.",
+    "prompt": "We ____ at school yesterday.",
     "choices": [
       {"text": "wasn't", "isCorrect": false},
       {"text": "weren't", "isCorrect": true},
@@ -970,7 +970,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "He ____ (eat) breakfast this morning.",
+    "prompt": "He ____ breakfast this morning.",
     "choices": [
       {"text": "ate", "isCorrect": true},
       {"text": "eaten", "isCorrect": false},
@@ -992,7 +992,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "She ____ (can) swim when she was five.",
+    "prompt": "She ____ swim when she was five.",
     "choices": [
       {"text": "can", "isCorrect": false},
       {"text": "could", "isCorrect": true},
@@ -1003,7 +1003,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "My cat is ____ (big) than your cat.",
+    "prompt": "My cat is ____ than your cat.",
     "choices": [
       {"text": "big", "isCorrect": false},
       {"text": "bigger", "isCorrect": true},
@@ -1014,7 +1014,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "This is the ____ (good) restaurant in town.",
+    "prompt": "This is the ____ restaurant in town.",
     "choices": [
       {"text": "goodest", "isCorrect": false},
       {"text": "best", "isCorrect": true},
@@ -1025,7 +1025,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "A lion is ____ (dangerous) than a cat.",
+    "prompt": "A lion is ____ than a cat.",
     "choices": [
       {"text": "dangerouser", "isCorrect": false},
       {"text": "more dangerous", "isCorrect": true},
@@ -1036,7 +1036,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "I think summer is the ____ (hot) season.",
+    "prompt": "I think summer is the ____ season.",
     "choices": [
       {"text": "hotter", "isCorrect": false},
       {"text": "hottest", "isCorrect": true},
@@ -1080,7 +1080,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "She ____ (go) to the doctor tomorrow.",
+    "prompt": "She ____ to the doctor tomorrow.",
     "choices": [
       {"text": "is going", "isCorrect": true},
       {"text": "goes", "isCorrect": false},
@@ -1091,7 +1091,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "I think it ____ (rain) later.",
+    "prompt": "I think it ____ later.",
     "choices": [
       {"text": "will rain", "isCorrect": true},
       {"text": "rains", "isCorrect": false},
@@ -1102,7 +1102,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "We ____ (have) a party next Saturday.",
+    "prompt": "We ____ a party next Saturday.",
     "choices": [
       {"text": "are having", "isCorrect": true},
       {"text": "will have", "isCorrect": false},
@@ -1113,7 +1113,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "I ____ (not hear) you. Can you say that again?",
+    "prompt": "I ____ you. Can you say that again?",
     "choices": [
       {"text": "didn't hear", "isCorrect": true},
       {"text": "don't hear", "isCorrect": false},
@@ -1124,7 +1124,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "She ____ (be) the best student in her class last year.",
+    "prompt": "She ____ the best student in her class last year.",
     "choices": [
       {"text": "is", "isCorrect": false},
       {"text": "was", "isCorrect": true},
@@ -1135,7 +1135,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "____ (you / like) the film?",
+    "prompt": "____ the film?",
     "choices": [
       {"text": "Did you like", "isCorrect": true},
       {"text": "Do you like", "isCorrect": false},
@@ -1146,7 +1146,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "He ran ____ (quick) to catch the bus.",
+    "prompt": "He ran ____ to catch the bus.",
     "choices": [
       {"text": "quick", "isCorrect": false},
       {"text": "quickly", "isCorrect": true},
@@ -1157,7 +1157,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "That was a ____ (terrible) meal.",
+    "prompt": "That was a ____ meal.",
     "choices": [
       {"text": "terrible", "isCorrect": true},
       {"text": "terribly", "isCorrect": false},
@@ -1168,7 +1168,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "I don't have ____ (nothing / anything) to do.",
+    "prompt": "I don't have ____ to do.",
     "choices": [
       {"text": "nothing", "isCorrect": false},
       {"text": "anything", "isCorrect": true},
@@ -1179,7 +1179,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "He saw ____ (somebody / nobody) in the room. It was empty.",
+    "prompt": "He saw ____ in the room. It was empty.",
     "choices": [
       {"text": "somebody", "isCorrect": false},
       {"text": "anybody", "isCorrect": false},
@@ -1201,7 +1201,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "This book is ____ (my / mine).",
+    "prompt": "This book is ____ .",
     "choices": [
       {"text": "my", "isCorrect": false},
       {"text": "mine", "isCorrect": true},
@@ -1212,7 +1212,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "That is not your car. It's ____ (our / ours).",
+    "prompt": "That is not your car. It's ____ .",
     "choices": [
       {"text": "our", "isCorrect": false},
       {"text": "ours", "isCorrect": true},
@@ -1223,7 +1223,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "She ____ (tell) me a story last night.",
+    "prompt": "She ____ me a story last night.",
     "choices": [
       {"text": "telled", "isCorrect": false},
       {"text": "told", "isCorrect": true},
@@ -1234,7 +1234,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "He ____ (say) he was tired.",
+    "prompt": "He ____ he was tired.",
     "choices": [
       {"text": "telled", "isCorrect": false},
       {"text": "said", "isCorrect": true},
@@ -1256,7 +1256,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "The film starts ____ (at / in) 8 PM.",
+    "prompt": "The film starts ____ 8 PM.",
     "choices": [
       {"text": "at", "isCorrect": true},
       {"text": "in", "isCorrect": false},
@@ -1267,7 +1267,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "I'll see you ____ (in / on) the morning.",
+    "prompt": "I'll see you ____ the morning.",
     "choices": [
       {"text": "in", "isCorrect": true},
       {"text": "on", "isCorrect": false},
@@ -1278,7 +1278,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "He always ____ (do) his homework.",
+    "prompt": "He always ____ his homework.",
     "choices": [
       {"text": "do", "isCorrect": false},
       {"text": "does", "isCorrect": true},
@@ -1289,7 +1289,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "I ____ (be) 15 on my next birthday.",
+    "prompt": "I ____ 15 on my next birthday.",
     "choices": [
       {"text": "am", "isCorrect": false},
       {"text": "will be", "isCorrect": true},
@@ -1300,7 +1300,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "I haven't got ____ (some / any) sisters.",
+    "prompt": "I haven't got ____ sisters.",
     "choices": [
       {"text": "some", "isCorrect": false},
       {"text": "any", "isCorrect": true},
@@ -1311,7 +1311,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "There is ____ (a / some) cheese in the kitchen.",
+    "prompt": "There is ____ cheese in the kitchen.",
     "choices": [
       {"text": "a", "isCorrect": false},
       {"text": "some", "isCorrect": true},
@@ -1322,7 +1322,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "She ____ (must / should) see a dentist. Her tooth hurts.",
+    "prompt": "She ____ see a dentist. Her tooth hurts.",
     "choices": [
       {"text": "should", "isCorrect": true},
       {"text": "mustn't", "isCorrect": false},
@@ -1355,7 +1355,7 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "If I ____ (be) rich, I would travel the world.",
+    "prompt": "If I ____ rich, I would travel the world.",
     "choices": [
       {"text": "was", "isCorrect": false},
       {"text": "were", "isCorrect": true},
@@ -1366,7 +1366,7 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "She ____ (tell) me she had already eaten.",
+    "prompt": "She ____ me she had already eaten.",
     "choices": [
       {"text": "said", "isCorrect": false},
       {"text": "told", "isCorrect": true},
@@ -1377,7 +1377,7 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "He asked me ____ (what / my name) was.",
+    "prompt": "He asked me ____ was.",
     "choices": [
       {"text": "what was my name", "isCorrect": false},
       {"text": "what my name was", "isCorrect": true},
@@ -1388,7 +1388,7 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "The car ____ (steal) last night.",
+    "prompt": "The car ____ last night.",
     "choices": [
       {"text": "stole", "isCorrect": false},
       {"text": "was stolen", "isCorrect": true},
@@ -1399,7 +1399,7 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "I'm going to ____ (get / my hair / cut) tomorrow.",
+    "prompt": "I'm going to ____ tomorrow.",
     "choices": [
       {"text": "get cut my hair", "isCorrect": false},
       {"text": "get my hair cut", "isCorrect": true},
@@ -1410,7 +1410,7 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "You ____ (should / not) have shouted at him. It wasn't his fault.",
+    "prompt": "You ____ have shouted at him. It wasn't his fault.",
     "choices": [
       {"text": "shouldn't have", "isCorrect": true},
       {"text": "mustn't have", "isCorrect": false},
@@ -1421,7 +1421,7 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "He ____ (must / be) at home. His lights are on.",
+    "prompt": "He ____ at home. His lights are on.",
     "choices": [
       {"text": "must be", "isCorrect": true},
       {"text": "should be", "isCorrect": false},
@@ -1432,7 +1432,7 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "He ____ (can't / be) at the party. I saw him at the library.",
+    "prompt": "He ____ at the party. I saw him at the library.",
     "choices": [
       {"text": "mustn't be", "isCorrect": false},
       {"text": "can't be", "isCorrect": true},
@@ -1443,7 +1443,7 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "If I ____ (know) you were coming, I would have baked a cake.",
+    "prompt": "If I ____ you were coming, I would have baked a cake.",
     "choices": [
       {"text": "knew", "isCorrect": false},
       {"text": "had known", "isCorrect": true},
@@ -1454,7 +1454,7 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "I wish I ____ (can) fly.",
+    "prompt": "I wish I ____ fly.",
     "choices": [
       {"text": "can", "isCorrect": false},
       {"text": "could", "isCorrect": true},
@@ -1465,7 +1465,7 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "I wish I ____ (not / eat) so much last night.",
+    "prompt": "I wish I ____ so much last night.",
     "choices": [
       {"text": "didn't eat", "isCorrect": false},
       {"text": "hadn't eaten", "isCorrect": true},
@@ -1476,7 +1476,7 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "By the time I ____ (get) to the station, the train had left.",
+    "prompt": "By the time I ____ to the station, the train had left.",
     "choices": [
       {"text": "got", "isCorrect": true},
       {"text": "had got", "isCorrect": false},
@@ -1487,7 +1487,7 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "He ____ (work) as a teacher for five years before he became a writer.",
+    "prompt": "He ____ as a teacher for five years before he became a writer.",
     "choices": [
       {"text": "worked", "isCorrect": true},
       {"text": "had worked", "isCorrect": true},
@@ -1498,7 +1498,7 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "She ____ (be) to Japan, but she wants to go again.",
+    "prompt": "She ____ to Japan, but she wants to go again.",
     "choices": [
       {"text": "has been", "isCorrect": true},
       {"text": "has gone", "isCorrect": false},
@@ -1509,7 +1509,7 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "My brother ____ (be) to America. He is there now.",
+    "prompt": "My brother ____ to America. He is there now.",
     "choices": [
       {"text": "has been", "isCorrect": false},
       {"text": "has gone", "isCorrect": true},
@@ -1520,7 +1520,7 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "I'm not hungry. I've ____ (just / eat) lunch.",
+    "prompt": "I'm not hungry. I've ____ lunch.",
     "choices": [
       {"text": "just ate", "isCorrect": false},
       {"text": "just eaten", "isCorrect": true},
@@ -1531,7 +1531,7 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "She's the woman ____ (who / whose) husband is a famous actor.",
+    "prompt": "She's the woman ____ husband is a famous actor.",
     "choices": [
       {"text": "who", "isCorrect": false},
       {"text": "whose", "isCorrect": true},
@@ -1542,7 +1542,7 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "That's the shop ____ (which / where) I bought my phone.",
+    "prompt": "That's the shop ____ I bought my phone.",
     "choices": [
       {"text": "which", "isCorrect": false},
       {"text": "where", "isCorrect": true},
@@ -1553,7 +1553,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "He ____ (must / steal) the money. He's the only one who had a key.",
+    "prompt": "He ____ the money. He's the only one who had a key.",
     "choices": [
       {"text": "must steal", "isCorrect": false},
       {"text": "must have stolen", "isCorrect": true},
@@ -1564,7 +1564,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "He ____ (can't / steal) the money. He was with me all day.",
+    "prompt": "He ____ the money. He was with me all day.",
     "choices": [
       {"text": "can't have stolen", "isCorrect": true},
       {"text": "mustn't have stolen", "isCorrect": false},
@@ -1575,7 +1575,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "She ____ (might / come) to the party, but I'm not sure.",
+    "prompt": "She ____ to the party, but I'm not sure.",
     "choices": [
       {"text": "might come", "isCorrect": true},
       {"text": "must come", "isCorrect": false},
@@ -1586,7 +1586,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "She ____ (might / be) at home yesterday, but no one answered.",
+    "prompt": "She ____ at home yesterday, but no one answered.",
     "choices": [
       {"text": "might be", "isCorrect": false},
       {"text": "might have been", "isCorrect": true},
@@ -1597,7 +1597,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "You ____ (should / not / say) that to her. She's very upset.",
+    "prompt": "You ____ that to her. She's very upset.",
     "choices": [
       {"text": "shouldn't say", "isCorrect": false},
       {"text": "shouldn't have said", "isCorrect": true},
@@ -1608,7 +1608,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "By the time the police ____ (arrive), the thief had escaped.",
+    "prompt": "By the time the police ____ , the thief had escaped.",
     "choices": [
       {"text": "arrived", "isCorrect": true},
       {"text": "had arrived", "isCorrect": false},
@@ -1619,7 +1619,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "He ____ (know) her for ten years (and still knows her).",
+    "prompt": "He ____ her for ten years (and still knows her).",
     "choices": [
       {"text": "knew", "isCorrect": false},
       {"text": "has known", "isCorrect": true},
@@ -1630,7 +1630,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "I ____ (wait) for 30 minutes when the bus finally arrived.",
+    "prompt": "I ____ for 30 minutes when the bus finally arrived.",
     "choices": [
       {"text": "waited", "isCorrect": false},
       {"text": "had been waiting", "isCorrect": true},
@@ -1641,7 +1641,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "I ____ (rather / you / not / call) me at work.",
+    "prompt": "I ____ me at work.",
     "choices": [
       {"text": "would rather you don't call", "isCorrect": false},
       {"text": "would rather you didn't call", "isCorrect": true},
@@ -1663,7 +1663,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "She ____ (recommend) that I try the new restaurant.",
+    "prompt": "She ____ that I try the new restaurant.",
     "choices": [
       {"text": "recommended me to try", "isCorrect": false},
       {"text": "recommended that I try", "isCorrect": true},
@@ -1674,7 +1674,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "He ____ (deny) knowing anything about the crime.",
+    "prompt": "He ____ knowing anything about the crime.",
     "choices": [
       {"text": "denied knowing", "isCorrect": true},
       {"text": "denied to know", "isCorrect": false},
@@ -1685,7 +1685,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "He ____ (refuse) to answer any questions.",
+    "prompt": "He ____to answer any questions.",
     "choices": [
       {"text": "refused answering", "isCorrect": false},
       {"text": "refused to answer", "isCorrect": true},
@@ -1696,7 +1696,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "____ (spite) the fact that he was tired, he kept working.",
+    "prompt": "____  the fact that he was tired, he kept working.",
     "choices": [
       {"text": "Despite", "isCorrect": true},
       {"text": "In spite", "isCorrect": false},
@@ -1707,7 +1707,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "This computer, ____ (which / whose) screen is broken, is mine.",
+    "prompt": "This computer, ____ screen is broken, is mine.",
     "choices": [
       {"text": "which", "isCorrect": false},
       {"text": "whose", "isCorrect": true},
@@ -1718,7 +1718,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "I'm having my car ____ (service) tomorrow.",
+    "prompt": "I'm having my car ____ tomorrow.",
     "choices": [
       {"text": "service", "isCorrect": false},
       {"text": "serviced", "isCorrect": true},
@@ -1729,7 +1729,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "I can't ____ (help / laugh) when he tells that joke.",
+    "prompt": "I can't ____ when he tells that joke.",
     "choices": [
       {"text": "help laughing", "isCorrect": true},
       {"text": "help to laugh", "isCorrect": false},
@@ -1740,7 +1740,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "She ____ (suppose) to be here 10 minutes ago.",
+    "prompt": "She ____ to be here 10 minutes ago.",
     "choices": [
       {"text": "supposed", "isCorrect": false},
       {"text": "was supposed", "isCorrect": true},
@@ -1751,7 +1751,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "The harder you study, ____ (the / more) you learn.",
+    "prompt": "The harder you study, ____ you learn.",
     "choices": [
       {"text": "more", "isCorrect": false},
       {"text": "the more", "isCorrect": true},
@@ -1762,7 +1762,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "This is ____ (by) far the best solution.",
+    "prompt": "This is ____ far the best solution.",
     "choices": [
       {"text": "by", "isCorrect": true},
       {"text": "at", "isCorrect": false},
@@ -1773,7 +1773,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "Not only ____ (it / be) late, but it was also cold.",
+    "prompt": "Not only ____ late, but it was also cold.",
     "choices": [
       {"text": "it was", "isCorrect": false},
       {"text": "was it", "isCorrect": true},
@@ -1784,7 +1784,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "Rarely ____ (she / see) such a beautiful sight.",
+    "prompt": "Rarely ____ such a beautiful sight.",
     "choices": [
       {"text": "she has seen", "isCorrect": false},
       {"text": "has she seen", "isCorrect": true},
@@ -1795,7 +1795,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "No sooner ____ (he / arrive) than the phone rang.",
+    "prompt": "No sooner ____ than the phone rang.",
     "choices": [
       {"text": "he had arrived", "isCorrect": false},
       {"text": "had he arrived", "isCorrect": true},
@@ -1806,7 +1806,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "____ (Were / If) I you, I would take the job.",
+    "prompt": "____ I you, I would take the job.",
     "choices": [
       {"text": "If", "isCorrect": false},
       {"text": "Were", "isCorrect": true},
@@ -1817,7 +1817,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "____ (Had / If) I known, I would have helped.",
+    "prompt": "____ I known, I would have helped.",
     "choices": [
       {"text": "If", "isCorrect": false},
       {"text": "Had", "isCorrect": true},
@@ -1828,7 +1828,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "It's about time you ____ (clean) your room.",
+    "prompt": "It's about time you ____ your room.",
     "choices": [
       {"text": "clean", "isCorrect": false},
       {"text": "cleaned", "isCorrect": true},
@@ -1839,7 +1839,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "I wish I ____ (can / speak) French.",
+    "prompt": "I wish I ____ French.",
     "choices": [
       {"text": "can speak", "isCorrect": false},
       {"text": "could speak", "isCorrect": true},
@@ -1850,8 +1850,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "I wish I ____ (not / eat) so much chocolate last night.",
-    "choices": [
+    "prompt": "I wish I ____ .",
       {"text": "didn't eat", "isCorrect": false},
       {"text": "hadn't eaten", "isCorrect": true},
       {"text": "wouldn't eat", "isCorrect": false}
@@ -1861,7 +1860,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "He ____ (say) to be a millionaire.",
+    "prompt": "He ____ to be a millionaire.",
     "choices": [
       {"text": "is said", "isCorrect": true},
       {"text": "said", "isCorrect": false},
@@ -1872,7 +1871,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "The car ____ (need / wash).",
+    "prompt": "The car ____ .",
     "choices": [
       {"text": "needs to wash", "isCorrect": false},
       {"text": "needs washing", "isCorrect": true},
@@ -1883,7 +1882,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "I'm having my house ____ (paint) next week.",
+    "prompt": "I'm having my house ____ next week.",
     "choices": [
       {"text": "paint", "isCorrect": false},
       {"text": "painted", "isCorrect": true},
@@ -1894,7 +1893,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "I got my brother ____ (help) me with my homework.",
+    "prompt": "I got my brother ____ me with my homework.",
     "choices": [
       {"text": "help", "isCorrect": false},
       {"text": "to help", "isCorrect": true},
@@ -1905,7 +1904,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "My boss made me ____ (work) late.",
+    "prompt": "My boss made me ____ late.",
     "choices": [
       {"text": "work", "isCorrect": true},
       {"text": "to work", "isCorrect": false},
@@ -1916,7 +1915,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "I ____ (let) my kids watch TV.",
+    "prompt": "I ____ my kids watch TV.",
     "choices": [
       {"text": "let", "isCorrect": true},
       {"text": "allowed", "isCorrect": false},
@@ -1927,7 +1926,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "I ____ (allow) my kids to watch TV.",
+    "prompt": "I ____ my kids to watch TV.",
     "choices": [
       {"text": "let", "isCorrect": false},
       {"text": "allowed", "isCorrect": true},
@@ -1938,7 +1937,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "He ____ (remind) me of my old teacher.",
+    "prompt": "He ____ me of my old teacher.",
     "choices": [
       {"text": "reminds", "isCorrect": true},
       {"text": "remembers", "isCorrect": false},
@@ -1949,7 +1948,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "I ____ (remember) to lock the door.",
+    "prompt": "I ____ to lock the door.",
     "choices": [
       {"text": "remembered", "isCorrect": true},
       {"text": "reminded", "isCorrect": false},
@@ -1960,7 +1959,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "She ____ (advise) me against buying that car.",
+    "prompt": "She ____ me against buying that car.",
     "choices": [
       {"text": "advised", "isCorrect": true},
       {"text": "suggested", "isCorrect": false},
@@ -1971,7 +1970,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "She ____ (warn) me not to touch the hot plate.",
+    "prompt": "She ____ me not to touch the hot plate.",
     "choices": [
       {"text": "warned", "isCorrect": true},
       {"text": "advised", "isCorrect": false},
@@ -1982,7 +1981,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "I am ____ (aware) of the risks involved.",
+    "prompt": "I am ____ of the risks involved.",
     "choices": [
       {"text": "aware", "isCorrect": true},
       {"text": "conscious", "isCorrect": true},
@@ -1993,7 +1992,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "This book is ____ (consist) of three parts.",
+    "prompt": "This book is ____ of three parts.",
     "choices": [
       {"text": "consisted", "isCorrect": false},
       {"text": "comprised", "isCorrect": false},
@@ -2004,7 +2003,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "This book ____ (consist) of three parts.",
+    "prompt": "This book ____ of three parts.",
     "choices": [
       {"text": "consists", "isCorrect": true},
       {"text": "is consisted", "isCorrect": false},
@@ -2015,7 +2014,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "He is capable ____ (do) much better.",
+    "prompt": "He is capable ____ much better.",
     "choices": [
       {"text": "to do", "isCorrect": false},
       {"text": "of doing", "isCorrect": true},
@@ -2026,7 +2025,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "The film didn't ____ (live) up to my expectations.",
+    "prompt": "The film didn't ____ up to my expectations.",
     "choices": [
       {"text": "live", "isCorrect": true},
       {"text": "go", "isCorrect": false},
@@ -2037,7 +2036,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "You need to ____ (brush) up on your French before the trip.",
+    "prompt": "You need to ____ up on your French before the trip.",
     "choices": [
       {"text": "brush up", "isCorrect": true},
       {"text": "brush off", "isCorrect": false},
@@ -2048,7 +2047,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "I ____ (come) across an old friend yesterday.",
+    "prompt": "I ____ across an old friend yesterday.",
     "choices": [
       {"text": "came across", "isCorrect": true},
       {"text": "came into", "isCorrect": false},
@@ -2059,7 +2058,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "It's difficult to ____ (do) without a car in the countryside.",
+    "prompt": "It's difficult to ____ without a car in the countryside.",
     "choices": [
       {"text": "do up", "isCorrect": false},
       {"text": "do without", "isCorrect": true},
@@ -2070,7 +2069,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "I need to ____ (get) rid of these old clothes.",
+    "prompt": "I need to ____ rid of these old clothes.",
     "choices": [
       {"text": "get", "isCorrect": true},
       {"text": "put", "isCorrect": false},
@@ -2081,7 +2080,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "He ____ (look) down on people who are less successful.",
+    "prompt": "He ____ down on people who are less successful.",
     "choices": [
       {"text": "looks down on", "isCorrect": true},
       {"text": "looks up to", "isCorrect": false},
@@ -2092,7 +2091,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "I really ____ (look) up to my grandfather.",
+    "prompt": "I really ____ up to my grandfather.",
     "choices": [
       {"text": "look up to", "isCorrect": true},
       {"text": "look down on", "isCorrect": false},
@@ -2103,7 +2102,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "The negotiations ____ (break) down with no agreement.",
+    "prompt": "The negotiations ____ down with no agreement.",
     "choices": [
       {"text": "broke down", "isCorrect": true},
       {"text": "broke up", "isCorrect": false},
@@ -2114,7 +2113,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "A fire ____ (break) out in the building last night.",
+    "prompt": "A fire ____ out in the building last night.",
     "choices": [
       {"text": "broke out", "isCorrect": true},
       {"text": "broke down", "isCorrect": false},
@@ -2125,7 +2124,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "He ____ (take) up golf when he retired.",
+    "prompt": "He ____ up golf when he retired.",
     "choices": [
       {"text": "took up", "isCorrect": true},
       {"text": "took over", "isCorrect": false},
@@ -2136,7 +2135,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "She ____ (turn) down the job offer.",
+    "prompt": "She ____ down the job offer.",
     "choices": [
       {"text": "turned down", "isCorrect": true},
       {"text": "turned up", "isCorrect": false},
@@ -2147,7 +2146,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "He finally ____ (turn) up at the party at midnight.",
+    "prompt": "He finally ____ up at the party at midnight.",
     "choices": [
       {"text": "turned up", "isCorrect": true},
       {"text": "turned down", "isCorrect": false},
@@ -2158,7 +2157,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "I can't ____ (work) out the solution to this problem.",
+    "prompt": "I can't ____ out the solution to this problem.",
     "choices": [
       {"text": "work out", "isCorrect": true},
       {"text": "work on", "isCorrect": false},
@@ -2169,7 +2168,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "I ____ (be) living here for 10 years by next June.",
+    "prompt": "I ____ living here for 10 years by next June.",
     "choices": [
       {"text": "will be living", "isCorrect": false},
       {"text": "will have been living", "isCorrect": true},
@@ -2180,7 +2179,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "He ____ (advise) that we should leave early.",
+    "prompt": "He ____ that we should leave early.",
     "choices": [
       {"text": "advised", "isCorrect": true},
       {"text": "told", "isCorrect": false},
@@ -2345,7 +2344,7 @@
   {
     "type": "MCQ",
     "level": "C2",
-    "prompt": "He's ____ (adept) at handling difficult customers.",
+    "prompt": "He's ____ at handling difficult customers.",
     "choices": [
       {"text": "adept", "isCorrect": true},
       {"text": "inept", "isCorrect": false},
@@ -2477,7 +2476,7 @@
   {
     "type": "MCQ",
     "level": "C2",
-    "prompt": "He ____ (take) on too much work and is now stressed.",
+    "prompt": "He ____ on too much work and is now stressed.",
     "choices": [
       {"text": "has taken", "isCorrect": true},
       {"text": "took", "isCorrect": false},
@@ -2488,7 +2487,7 @@
   {
     "type": "MCQ",
     "level": "C2",
-    "prompt": "The business finally ____ (take) off after years of struggle.",
+    "prompt": "The business finally ____ off after years of struggle.",
     "choices": [
       {"text": "took", "isCorrect": true},
       {"text": "has taken", "isCorrect": false},
@@ -2499,7 +2498,7 @@
   {
     "type": "MCQ",
     "level": "C2",
-    "prompt": "I can't ____ (figure) out how to solve this puzzle.",
+    "prompt": "I can't ____ out how to solve this puzzle.",
     "choices": [
       {"text": "figure", "isCorrect": true},
       {"text": "work", "isCorrect": false},
