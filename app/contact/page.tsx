@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-// Link yerine <a> etiketi kullanıyoruz çünkü next/link bu ortamda hata verebiliyor
-import { Loader2, CheckCircle2, AlertCircle, Send, ArrowLeft } from 'lucide-react';
+import { Loader2, CheckCircle2, AlertCircle, Send } from 'lucide-react';
 
 export default function Contact() {
   const [name, setName] = useState('');
@@ -57,28 +56,17 @@ export default function Contact() {
   };
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-8 px-4 sm:px-6 lg:px-8 flex flex-col justify-center font-sans text-gray-900">
-      <div className="max-w-3xl mx-auto w-full">
-        
-        {/* Geri Dön Butonu */}
-        <div className="mb-6">
-          <a 
-            href="/" 
-            className="inline-flex items-center text-sm text-gray-500 hover:text-blue-600 transition font-medium group cursor-pointer"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-            Back to Home
-          </a>
-        </div>
-
-        <div className="text-center mb-8 sm:mb-12">
+    <div className="max-w-2xl mx-auto">
+        {/* Başlık Alanı */}
+        <div className="text-center mb-10">
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 tracking-tight">Contact Us</h1>
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Have a question or feedback? We'd love to hear from you!
+          <p className="text-lg text-gray-600 max-w-xl mx-auto">
+            Have a question or feedback? Fill out the form below and we'll get back to you as soon as possible.
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-8 md:p-12">
+        {/* Form Kartı */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8">
           <form onSubmit={handleSubmit} className="space-y-5">
             
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -136,7 +124,7 @@ export default function Contact() {
                 type="submit"
                 disabled={status === 'loading' || status === 'success'}
                 className={`
-                    w-full sm:w-auto flex items-center justify-center px-8 py-3.5 rounded-lg font-semibold text-white transition-all duration-200
+                    w-full flex items-center justify-center px-8 py-3.5 rounded-lg font-semibold text-white transition-all duration-200
                     ${status === 'success' ? 'bg-green-600 hover:bg-green-700' : 'bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-blue-500/30'}
                     disabled:opacity-70 disabled:cursor-not-allowed
                 `}
@@ -149,7 +137,7 @@ export default function Contact() {
                 ) : status === 'success' ? (
                   <>
                     <CheckCircle2 className="w-5 h-5 mr-2" />
-                    Sent!
+                    Message Sent!
                   </>
                 ) : (
                   <>
@@ -177,11 +165,6 @@ export default function Contact() {
             )}
           </form>
         </div>
-        
-        <div className="mt-8 text-center text-sm text-gray-400">
-            &copy; {new Date().getFullYear()} EnglishMeter. All rights reserved.
-        </div>
-      </div>
-    </section>
+    </div>
   );
 }
