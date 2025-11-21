@@ -1851,6 +1851,7 @@
     "type": "MCQ",
     "level": "C1",
     "prompt": "I wish I ____ .",
+    "choices": [
       {"text": "didn't eat", "isCorrect": false},
       {"text": "hadn't eaten", "isCorrect": true},
       {"text": "wouldn't eat", "isCorrect": false}
