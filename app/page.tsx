@@ -1,136 +1,100 @@
-// app/race/[id]/result/page.tsx  ← TEK DOSYA, KESİN ÇALIŞIR
+// app/page.tsx  → ANA SAYFA (kopyala-yapıştır yap, bitti!)
 
-'use client';
-
-import { useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
-import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
-
-const getOrdinal = (n: number) => {
-  const s = ["th", "st", "nd", "rd"];
-  const v = n % 100;
-  return n + (s[(v - 20) % 10] || s[v] || s[0]);
-};
-
-export default function ResultPage({ params }: { params: { id: string } }) {
-  const searchParams = useSearchParams();
-  const raceId = params.id;
-
-  const myScore = Number(searchParams.get('score') || 0);
-  const myUsername = searchParams.get('user') || 'Guest';
-  const myTime = Number(searchParams.get('time') || 999999);
-
-  const [topList, setTopList] = useState<any[]>([]);
-  const [myRank, setMyRank] = useState<number | null>(null);
-  const [totalParticipants, setTotalParticipants] = useState(0);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchResults() {
-      try {
-        const rid = parseInt(raceId);
-
-        const { data: topData } = await supabase
-          .from('race_results')
-          .select('*')
-          .eq('race_id', rid)
-          .order('score', { ascending: false })
-          .order('time_seconds', { ascending: true })
-          .limit(20);
-
-        if (topData) setTopList(topData);
-
-        const { count: better } = await supabase
-          .from('race_results')
-          .select('*', { count: 'exact', head: true })
-          .eq('race_id', rid)
-          .gt('score', myScore);
-
-        const { count: sameFaster } = await supabase
-          .from('race_results')
-          .select('*', { count: 'exact', head: true })
-          .eq('race_id', rid)
-          .eq('score', myScore)
-          .lt('time_seconds', myTime);
-
-        const { count: total } = await supabase
-          .from('race_results')
-          .select('*', { count: 'exact', head: true })
-          .eq('race_id', rid);
-
-        const rank = (better || 0) + (sameFaster || 0) + 1;
-        setMyRank(rank);
-        setTotalParticipants(total || 0);
-      } catch (err) {
-        console.error('Supabase error:', err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchResults();
-  }, [raceId, myScore, myTime]);
-
-  // Parametreler eksikse bile butonları göster
-  if (!searchParams.get('score')) {
-    return (
-      <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center gap-8 text-center px-4">
-        <p className="text-2xl font-bold text-red-600">Sonuç bilgisi eksik!</p>
-        <div className="flex flex-col sm:flex-row gap-6">
-          <Link href="/" className="px-12 py-5 bg-white border-4 border-gray-300 rounded-2xl font-black text-xl shadow-lg">
-            HOME
-          </Link>
-          <Link href={`/race/${raceId}`} className="px-12 py-5 bg-blue-600 text-white rounded-2xl font-black text-xl shadow-2xl">
-            RACE AGAIN
-          </Link>
-        </div>
-      </div>
-    );
-  }
+// ——— RACE BUTONLARI ———
+function RaceSelector() {
+  const races = [
+    { id: 1, title: 'RACE #1', color: 'from-red-500 to-pink-600' },
+    { id: 2, title: 'RACE #2', color: 'from-orange-500 to-yellow-500' },
+    { id: 3, title: 'RACE #3', color: 'from-green-500 to-emerald-600' },
+    { id: 4, title: 'RACE #4', color: 'from-blue-500 to-cyan-500' },
+    { id: 5, title: 'RACE #5', color: 'from-purple-500 to-violet-600' },
+  ];
 
   return (
-    <div className="min-h-screen bg-slate-50 py-10 px-4">
-      <div className="max-w-3xl mx-auto">
+    <div className="w-full py-12 bg-white border-b border-slate-200">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 flex items-center gap-3">
+            GLOBAL ADVANCED LEAGUE
+          </h2>
+          <span className="px-4 py-2 bg-black text-white text-sm font-bold rounded-full uppercase tracking-wider">
+            C1–C2 Level
+          </span>
+        </div>
 
-        {loading ? (
-          <div className="min-h-screen flex items-center justify-center text-3xl font-black text-blue-600 animate-pulse">
-            Calculating Rank...
-          </div>
-        ) : (
-          <>
-            {/* Sonuç kartı ve leaderboard aynı kalacak */}
-            <div className="bg-white rounded-3xl shadow-2xl p-8 text-center mb-8">
-              <h1 className="text-5xl font-black mb-4">
-                {myRank === 1 ? 'LEGENDARY!' : 'RACE COMPLETED'}
-              </h1>
-              <div className="text-6xl font-black text-blue-600">{myScore}/50</div>
-              <div className="text-4xl font-bold text-yellow-400 mt-4">#{myRank}</div>
-              <p className="mt-4 text-lg">
-                You ranked <strong>{getOrdinal(myRank || 0)}</strong> out of <strong>{totalParticipants}</strong>
-              </p>
-            </div>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
+          {races.map((race) => (
+            <Link
+              key={race.id}
+              href={`/race/${race.id}`}
+              className={`group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-gradient-to-br ${race.color}`}
+            >
+              <div className="p-8 text-center text-white">
+                <div className="text-xs md:text-sm uppercase opacity-80 font-bold mb-2">
+                  50 Questions • 50 Minutes
+                </div>
+                <div className="text-3xl md:text-4xl font-black mb-4">
+                  {race.title}
+                </div>
+                <div className="inline-block bg-white/20 backdrop-blur px-6 py-2 rounded-full font-bold text-sm md:text-base group-hover:bg-white group-hover:text-gray-900 transition">
+                  START
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
-            {/* BUTONLAR – HER ZAMAN GÖRÜNÜR */}
-            <div className="flex flex-col sm:flex-row justify-center gap-8 mt-16 pb-20">
-              <Link href="/" className="px-16 py-6 bg-white border-4 border-gray-300 hover:border-gray-500 rounded-3xl font-black text-2xl shadow-xl transition transform hover:-translate-y-2">
-                HOME
-              </Link>
-              <Link 
-                href={`/race/${raceId}`} 
-                className="px-16 py-6 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-3xl font-black text-2xl shadow-2xl transition transform hover:scale-110"
-              >
-                RACE AGAIN
-              </Link>
-            </div>
-          </>
-        )}
+// ——— ANA SAYFA ———
+export default function HomePage() {
+  return (
+    <div className="min-h-screen bg-gray-50">
 
+      {/* 1. RACE BÖLÜMÜ (en üstte) */}
+      <RaceSelector />
+
+      {/* 2. DİĞER TESTLER */}
+      <div className="max-w-7xl mx-auto px-4 py-16 text-center">
+        <h1 className="text-4xl md:text-6xl font-extrabold text-blue-600 mb-6">
+          Find your real English level.
+        </h1>
+        <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+          Quick placement test, mega grammar test, vocabulary challenges and more.
+        </p>
+
+        {/* Ana 3 büyük buton */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <Link
+            href="/start"
+            className="p-8 bg-blue-600 text-white rounded-3xl font-bold text-xl shadow-2xl hover:bg-blue-700 transition transform hover:-translate-y-2"
+          >
+            Quick Placement Test
+          </Link>
+
+          <Link
+            href="/start?testSlug=grammar-mega-test-100"
+            className="p-8 bg-purple-600 text-white rounded-3xl font-bold text-xl shadow-2xl hover:bg-purple-700 transition transform hover:-translate-y-2"
+          >
+            Grammar Mega Test (100Q)
+          </Link>
+
+          <Link
+            href="/start?testSlug=vocab-b1-c1-50"
+            className="p-8 bg-emerald-600 text-white rounded-3xl font-bold text-xl shadow-2xl hover:bg-emerald-700 transition transform hover:-translate-y-2"
+          >
+            Vocabulary B1–C1 (50Q)
+          </Link>
+        </div>
+
+        {/* Alt bilgi */}
+        <p className="text-gray-500">
+          More grammar topics and level tests coming soon…
+        </p>
       </div>
     </div>
   );
