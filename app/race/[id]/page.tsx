@@ -1,75 +1,51 @@
-import { createClient } from '@supabase/supabase-js';
+// app/race/[id]/page.tsx
 import RaceQuiz from '@/components/RaceQuiz';
+import questionsData from '@/data/race-questions.json'; // <-- JSON dosyasından çekiyoruz
 
-export const dynamic = 'force-dynamic';
+// Artık Supabase yok, tamamen statik + hızlı
+export const dynamic = 'force-dynamic'; // cache’i kapatıyoruz (her girişte yeni karıştırma olsun)
 
-export default async function RacePage({ params }: { params: { id: string } }) {
-  
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+export default function RacePage({ params }: { params: { id: string } }) {
+  // 1. JSON’dan tüm soruları al
+  const allQuestions = questionsData as Array<{
+    question: string;
+    options: string[];
+    answer: string;
+  }>;
 
-  // 1. Güvenlik Kontrolü
-  if (!supabaseUrl || !supabaseKey) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-4 text-center bg-gray-50">
-        <h1 className="text-3xl font-bold text-red-600 mb-4">Configuration Error</h1>
-        <p className="text-gray-700 text-lg">Missing Supabase Environment Variables on Vercel.</p>
-      </div>
-    );
-  }
-
-  const supabase = createClient(supabaseUrl, supabaseKey);
-
-  // 2. Veritabanından TÜM soruları çek
-  const { data: allQuestions, error } = await supabase
-    .from('race_questions')
-    .select('*');
-
-  // Hata veya Boş Veri Kontrolü
-  if (error || !allQuestions || allQuestions.length === 0) {
-    console.error("Supabase Error:", error);
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-4 text-center bg-gray-50">
-        <h1 className="text-3xl font-bold text-red-500 mb-4">Questions Not Found</h1>
-        <p className="text-gray-600 text-lg mb-2">Could not load the questions from database.</p>
-        <p className="text-sm text-gray-400">Please check Supabase 'race_questions' table.</p>
-      </div>
-    );
-  }
-
-  // 3. Soruları Karıştır
+  // 2. Soruları karıştır (her girişte farklı olsun)
   const shuffled = [...allQuestions];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
-  
-  // 4. İlk 50 soruyu al
+
+  // 3. İlk 50 soruyu seç
   const examQuestions = shuffled.slice(0, 50);
 
   return (
     <div className="min-h-screen bg-slate-50 py-8 md:py-12">
       <div className="max-w-4xl mx-auto px-4">
-        
         <div className="mb-8 flex justify-between items-end">
-            <div>
-                <div className="text-sm font-bold text-blue-600 tracking-wider uppercase mb-1">Global Advanced League</div>
-                <h1 className="text-4xl font-black text-slate-900">RACE #{params.id}</h1>
+          <div>
+            <div className="text-sm font-bold text-blue-600 tracking-wider uppercase mb-1">
+              Global Advanced League
             </div>
-            <div className="text-right hidden md:block">
-                <div className="bg-white px-4 py-2 rounded-lg border border-gray-200 shadow-sm text-sm font-semibold text-gray-600">
-                    Target: Top 20 🏆
-                </div>
+            <h1 className="text-4xl font-black text-slate-900">RACE #{params.id}</h1>
+          </div>
+          <div className="text-right hidden md:block">
+            <div className="bg-white px-4 py-2 rounded-lg border border-gray-200 shadow-sm text-sm font-semibold text-gray-600">
+              Target: Top 20
             </div>
+          </div>
         </div>
 
-        {/* Quiz Motorunu Başlat */}
-        <RaceQuiz 
-          questions={examQuestions} 
-          raceId={params.id} 
-          totalTime={50 * 60} // 50 Dakika
+        {/* Quiz Başlat */}
+        <RaceQuiz
+          questions={examQuestions}
+          raceId={params.id}
+          totalTime={50 * 60} // 50 dakika
         />
-
       </div>
     </div>
   );
