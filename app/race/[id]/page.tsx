@@ -2,13 +2,13 @@ import questionsData from "@/data/race_questions.json";
 
 type Question = {
   question: string;
-  options: string[]; // [A,B,C,D]
-  answer: string;    // "A" | "B" | "C" | "D"
+  options: string[]; 
+  answer: string;    
 };
 
 export default function RacePage({ params }: { params: { id: string } }) {
-  // DÜZELTME BURADA:
-  // Veriyi olduğu gibi 'as' ile zorlamak yerine, formatını değiştiriyoruz.
+  // HATA ÇÖZÜMÜ BURADA:
+  // Veriyi "map" ile senin istediğin formata çeviriyoruz.
   const allQuestions: Question[] = questionsData.map((q: any) => ({
     question: q.question_text,
     options: [q.option_a, q.option_b, q.option_c, q.option_d],
@@ -37,18 +37,11 @@ export default function RacePage({ params }: { params: { id: string } }) {
         </p>
 
         <div className="space-y-3">
-          <button className="w-full p-3 border rounded bg-gray-100 hover:bg-gray-200 text-left">
-            A) {question.options[0]}
-          </button>
-          <button className="w-full p-3 border rounded bg-gray-100 hover:bg-gray-200 text-left">
-            B) {question.options[1]}
-          </button>
-          <button className="w-full p-3 border rounded bg-gray-100 hover:bg-gray-200 text-left">
-            C) {question.options[2]}
-          </button>
-          <button className="w-full p-3 border rounded bg-gray-100 hover:bg-gray-200 text-left">
-            D) {question.options[3]}
-          </button>
+          {question.options.map((option, i) => (
+             <button key={i} className="w-full p-3 border rounded bg-gray-100 hover:bg-gray-200 text-left">
+               {String.fromCharCode(65 + i)}) {option}
+             </button>
+          ))}
         </div>
       </section>
     </main>
