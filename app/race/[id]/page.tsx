@@ -17,7 +17,7 @@ export default async function RacePage({ params }: { params: { id: string } }) {
       </div>
     );
   }
- 
+
   const supabase = createClient(supabaseUrl, supabaseKey);
 
   // 2. Veritabanından TÜM soruları çek
