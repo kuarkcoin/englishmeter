@@ -1,15 +1,22 @@
 import { createClient } from '@supabase/supabase-js';
 import RaceQuiz from '@/components/RaceQuiz';
 
-// Sayfanın her seferinde sunucuda yeniden oluşturulmasını sağlar (Rastgele sorular için şart)
 export const dynamic = 'force-dynamic';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseKey) {
+  // Bu dosya server component olduğu için burada return edebiliriz
+  // (RacePage içinde de yapabilirsin, ikisi de olur)
+  throw new Error("Missing Supabase env vars on Vercel.");
+}
+
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default async function RacePage({ params }: { params: { id: string } }) {
-  
+  // ...
+}
   // 1. Veritabanından TÜM soruları çek
   const { data: allQuestions, error } = await supabase
     .from('race_questions')
