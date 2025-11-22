@@ -1,135 +1,73 @@
-// app/race/[id]/result/page.tsx  ← TEK DOSYA, KESİN ÇALIŞIR
-
-'use client';
-
-import { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
-import { useSearchParams } from 'next/navigation';
-import Link from 'next/link';
+import RaceQuiz from '@/components/RaceQuiz';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+export const dynamic = 'force-dynamic';
 
-const getOrdinal = (n: number) => {
-  const s = ["th", "st", "nd", "rd"];
-  const v = n % 100;
-  return n + (s[(v - 20) % 10] || s[v] || s[0]);
-};
+export default async function RacePage({ params }: { params: { id: string } }) {
+  
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-export default function ResultPage({ params }: { params: { id: string } }) {
-  const searchParams = useSearchParams();
-  const raceId = params.id;
-
-  const myScore = Number(searchParams.get('score') || 0);
-  const myUsername = searchParams.get('user') || 'Guest';
-  const myTime = Number(searchParams.get('time') || 999999);
-
-  const [topList, setTopList] = useState<any[]>([]);
-  const [myRank, setMyRank] = useState<number | null>(null);
-  const [totalParticipants, setTotalParticipants] = useState(0);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchResults() {
-      try {
-        const rid = parseInt(raceId);
-
-        const { data: topData } = await supabase
-          .from('race_results')
-          .select('*')
-          .eq('race_id', rid)
-          .order('score', { ascending: false })
-          .order('time_seconds', { ascending: true })
-          .limit(20);
-
-        if (topData) setTopList(topData);
-
-        const { count: better } = await supabase
-          .from('race_results')
-          .select('*', { count: 'exact', head: true })
-          .eq('race_id', rid)
-          .gt('score', myScore);
-
-        const { count: sameFaster } = await supabase
-          .from('race_results')
-          .select('*', { count: 'exact', head: true })
-          .eq('race_id', rid)
-          .eq('score', myScore)
-          .lt('time_seconds', myTime);
-
-        const { count: total } = await supabase
-          .from('race_results')
-          .select('*', { count: 'exact', head: true })
-          .eq('race_id', rid);
-
-        const rank = (better || 0) + (sameFaster || 0) + 1;
-        setMyRank(rank);
-        setTotalParticipants(total || 0);
-      } catch (err) {
-        console.error('Supabase error:', err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchResults();
-  }, [raceId, myScore, myTime]);
-
-  // Parametreler eksikse bile butonları göster
-  if (!searchParams.get('score')) {
+  // 1. Güvenlik Kontrolü
+  if (!supabaseUrl || !supabaseKey) {
     return (
-      <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center gap-8 text-center px-4">
-        <p className="text-2xl font-bold text-red-600">Sonuç bilgisi eksik!</p>
-        <div className="flex flex-col sm:flex-row gap-6">
-          <Link href="/" className="px-12 py-5 bg-white border-4 border-gray-300 rounded-2xl font-black text-xl shadow-lg">
-            HOME
-          </Link>
-          <Link href={`/race/${raceId}`} className="px-12 py-5 bg-blue-600 text-white rounded-2xl font-black text-xl shadow-2xl">
-            RACE AGAIN
-          </Link>
-        </div>
+      <div className="min-h-screen flex flex-col items-center justify-center p-4 text-center bg-gray-50">
+        <h1 className="text-3xl font-bold text-red-600 mb-4">Configuration Error</h1>
+        <p className="text-gray-700 text-lg">Missing Supabase Environment Variables on Vercel.</p>
       </div>
     );
   }
 
+  const supabase = createClient(supabaseUrl, supabaseKey);
+
+  // 2. Veritabanından TÜM soruları çek
+  const { data: allQuestions, error } = await supabase
+    .from('race_questions')
+    .select('*');
+
+  // Hata veya Boş Veri Kontrolü
+  if (error || !allQuestions || allQuestions.length === 0) {
+    console.error("Supabase Error:", error);
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center p-4 text-center bg-gray-50">
+        <h1 className="text-3xl font-bold text-red-500 mb-4">Questions Not Found</h1>
+        <p className="text-gray-600 text-lg mb-2">Could not load the questions from database.</p>
+      </div>
+    );
+  }
+
+  // 3. Soruları Karıştır
+  const shuffled = [...allQuestions];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  
+  // 4. İlk 50 soruyu al
+  const examQuestions = shuffled.slice(0, 50);
+
   return (
-    <div className="min-h-screen bg-slate-50 py-10 px-4">
-      <div className="max-w-3xl mx-auto">
-
-        {loading ? (
-          <div className="min-h-screen flex items-center justify-center text-3xl font-black text-blue-600 animate-pulse">
-            Calculating Rank...
-          </div>
-        ) : (
-          <>
-            {/* Sonuç kartı ve leaderboard aynı kalacak */}
-            <div className="bg-white rounded-3xl shadow-2xl p-8 text-center mb-8">
-              <h1 className="text-5xl font-black mb-4">
-                {myRank === 1 ? 'LEGENDARY!' : 'RACE COMPLETED'}
-              </h1>
-              <div className="text-6xl font-black text-blue-600">{myScore}/50</div>
-              <div className="text-4xl font-bold text-yellow-400 mt-4">#{myRank}</div>
-              <p className="mt-4 text-lg">
-                You ranked <strong>{getOrdinal(myRank || 0)}</strong> out of <strong>{totalParticipants}</strong>
-              </p>
+    <div className="min-h-screen bg-slate-50 py-8 md:py-12">
+      <div className="max-w-4xl mx-auto px-4">
+        
+        <div className="mb-8 flex justify-between items-end">
+            <div>
+                <div className="text-sm font-bold text-blue-600 tracking-wider uppercase mb-1">Global Advanced League</div>
+                <h1 className="text-4xl font-black text-slate-900">RACE #{params.id}</h1>
             </div>
-
-            {/* BUTONLAR – HER ZAMAN GÖRÜNÜR */}
-            <div className="flex flex-col sm:flex-row justify-center gap-8 mt-16 pb-20">
-              <Link href="/" className="px-16 py-6 bg-white border-4 border-gray-300 hover:border-gray-500 rounded-3xl font-black text-2xl shadow-xl transition transform hover:-translate-y-2">
-                HOME
-              </Link>
-              <Link 
-                href={`/race/${raceId}`} 
-                className="px-16 py-6 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-3xl font-black text-2xl shadow-2xl transition transform hover:scale-110"
-              >
-                RACE AGAIN
-              </Link>
+            <div className="text-right hidden md:block">
+                <div className="bg-white px-4 py-2 rounded-lg border border-gray-200 shadow-sm text-sm font-semibold text-gray-600">
+                    Target: Top 20 🏆
+                </div>
             </div>
-          </>
-        )}
+        </div>
+
+        {/* Quiz Motorunu Başlat */}
+        <RaceQuiz 
+          questions={examQuestions} 
+          raceId={params.id} 
+          totalTime={50 * 60} // 50 Dakika
+        />
 
       </div>
     </div>
