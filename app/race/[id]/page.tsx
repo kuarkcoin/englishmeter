@@ -1,13 +1,15 @@
 import { createClient } from '@supabase/supabase-js';
 import RaceQuiz from '@/components/RaceQuiz';
 
+// Sayfanın her seferinde sunucuda yeniden oluşturulmasını sağlar (Rastgele sorular için şart)
 export const dynamic = 'force-dynamic';
 
 export default async function RacePage({ params }: { params: { id: string } }) {
-  // ✅ ENV'leri mutlaka fonksiyon içinde al
+  // ✅ ENV'leri fonksiyon içinde al
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
+  // ✅ ENV güvenlik kontrolü (fonksiyon içinde return serbest)
   if (!supabaseUrl || !supabaseKey) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-4 text-center bg-gray-50">
@@ -21,10 +23,12 @@ export default async function RacePage({ params }: { params: { id: string } }) {
 
   const supabase = createClient(supabaseUrl, supabaseKey);
 
+  // ✅ Veritabanından TÜM soruları çek
   const { data: allQuestions, error } = await supabase
     .from('race_questions')
     .select('*');
 
+  // ✅ Hata veya boş veri kontrolü (fonksiyon içinde)
   if (error || !allQuestions || allQuestions.length === 0) {
     console.error("Supabase Error:", error);
     return (
@@ -33,21 +37,27 @@ export default async function RacePage({ params }: { params: { id: string } }) {
         <p className="text-gray-600 text-lg mb-2">
           Could not load the questions from database.
         </p>
+        <p className="text-sm text-gray-400">
+          Please check Supabase 'race_questions' table & policies.
+        </p>
       </div>
     );
   }
 
+  // ✅ Soruları Karıştır (Fisher-Yates Shuffle)
   const shuffled = [...allQuestions];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
 
+  // ✅ İlk 50 soruyu al
   const examQuestions = shuffled.slice(0, 50);
 
   return (
     <div className="min-h-screen bg-slate-50 py-8 md:py-12">
       <div className="max-w-4xl mx-auto px-4">
+
         <div className="mb-8 flex justify-between items-end">
           <div>
             <div className="text-sm font-bold text-blue-600 tracking-wider uppercase mb-1">
@@ -65,11 +75,13 @@ export default async function RacePage({ params }: { params: { id: string } }) {
           </div>
         </div>
 
+        {/* Quiz Motorunu Başlat */}
         <RaceQuiz
           questions={examQuestions}
           raceId={params.id}
-          totalTime={50 * 60}
+          totalTime={50 * 60} // 50 Dakika
         />
+
       </div>
     </div>
   );
