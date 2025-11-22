@@ -1,26 +1,22 @@
 // app/race/[id]/page.tsx
 import RaceQuiz from '@/components/RaceQuiz';
-import questionsData from '@/data/race-questions.json'; // <-- JSON dosyasından çekiyoruz
+import questionsData from '@/data/race-questions.json';
 
-// Artık Supabase yok, tamamen statik + hızlı
-export const dynamic = 'force-dynamic'; // cache’i kapatıyoruz (her girişte yeni karıştırma olsun)
+export const dynamic = 'force-dynamic';
 
 export default function RacePage({ params }: { params: { id: string } }) {
-  // 1. JSON’dan tüm soruları al
   const allQuestions = questionsData as Array<{
     question: string;
     options: string[];
     answer: string;
   }>;
 
-  // 2. Soruları karıştır (her girişte farklı olsun)
   const shuffled = [...allQuestions];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
 
-  // 3. İlk 50 soruyu seç
   const examQuestions = shuffled.slice(0, 50);
 
   return (
@@ -40,11 +36,10 @@ export default function RacePage({ params }: { params: { id: string } }) {
           </div>
         </div>
 
-        {/* Quiz Başlat */}
         <RaceQuiz
           questions={examQuestions}
           raceId={params.id}
-          totalTime={50 * 60} // 50 dakika
+          totalTime={50 * 60}
         />
       </div>
     </div>
