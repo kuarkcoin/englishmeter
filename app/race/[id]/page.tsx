@@ -5,13 +5,15 @@ import questionsData from '@/data/race-questions.json';
 export const dynamic = 'force-dynamic';
 
 export default function RacePage({ params }: { params: { id: string } }) {
-  const allQuestions = questionsData as Array<{
-    question: string;
-    options: string[];
-    answer: string;
-  }>;
+  // JSON yapısını RaceQuiz component'inin beklediği formata dönüştür
+  const transformedQuestions = questionsData.map(q => ({
+    id: q.id,
+    question: q.question_text,
+    options: [q.option_a, q.option_b, q.option_c, q.option_d],
+    answer: q.correct_option
+  }));
 
-  const shuffled = [...allQuestions];
+  const shuffled = [...transformedQuestions];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
@@ -31,7 +33,7 @@ export default function RacePage({ params }: { params: { id: string } }) {
           </div>
           <div className="text-right hidden md:block">
             <div className="bg-white px-4 py-2 rounded-lg border border-gray-200 shadow-sm text-sm font-semibold text-gray-600">
-              Target: Top 20
+              Questions: {examQuestions.length} | Target: Top 20 🏆
             </div>
           </div>
         </div>
