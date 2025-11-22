@@ -1,30 +1,31 @@
-// app/race/[id]/page.tsx
 import RaceQuiz from '@/components/RaceQuiz';
 import questionsData from '@/data/race-questions.json';
 
 export const dynamic = 'force-dynamic';
 
 export default function RacePage({ params }: { params: { id: string } }) {
-  // JSON'daki soruları doğrudan kullan - RaceQuiz zaten doğru formatı bekliyor
-  const allQuestions = questionsData;
+  
+  // 1. Veritabanı yerine oluşturduğumuz JSON dosyasını kullanıyoruz
+  const allQuestions = questionsData || [];
 
-  // Soruları karıştır ve ilk 50'yi al
+  // 2. Soruları karıştır (Shuffle)
   const shuffled = [...allQuestions];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
 
+  // 3. İlk 50 soruyu seç
   const examQuestions = shuffled.slice(0, 50);
 
-  // Hata kontrolü
+  // 4. Eğer soru dosyası boşsa veya okunamazsa hata göster
   if (!examQuestions || examQuestions.length === 0) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-4 text-center bg-gray-50">
         <h1 className="text-3xl font-bold text-red-500 mb-4">Questions Not Found</h1>
-        <p className="text-gray-600 text-lg mb-2">No questions available for this race.</p>
+        <p className="text-gray-600 text-lg mb-2">Could not load questions from local file.</p>
         <p className="text-sm text-gray-400">
-          Please check the questions data file.
+          Please check 'data/race-questions.json'.
         </p>
       </div>
     );
@@ -47,6 +48,7 @@ export default function RacePage({ params }: { params: { id: string } }) {
           </div>
         </div>
 
+        {/* Soruları bileşene gönderiyoruz */}
         <RaceQuiz
           questions={examQuestions}
           raceId={params.id}
