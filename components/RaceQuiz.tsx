@@ -3,12 +3,6 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { createClient } from '@supabase/supabase-js';
-
-// Supabase Client - Component dışında tanımla
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const supabase = createClient(supabaseUrl, supabaseKey);
 
 interface Question {
   id: number;
@@ -91,20 +85,23 @@ export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps
     }
 
     try {
-      // Veritabanına kaydet
-      const { error } = await supabase
-        .from('race_results')
-        .insert({
-          username: nickname.trim(),
-          race_id: parseInt(raceId),
-          score: score,
-          time_seconds: timeSpent
-        });
+      // LOCAL STORAGE'A KAYDET (Supabase yerine)
+      const result = {
+        username: nickname.trim(),
+        race_id: parseInt(raceId),
+        score: score,
+        time_seconds: timeSpent,
+        timestamp: new Date().toISOString()
+      };
 
-      if (error) {
-        console.error('Supabase error:', error);
-        // Hata olsa bile sonuç sayfasına yönlendir
-      }
+      // Mevcut sonuçları al
+      const existingResults = JSON.parse(localStorage.getItem('race_results') || '[]');
+      
+      // Yeni sonucu ekle
+      const updatedResults = [...existingResults, result];
+      
+      // LocalStorage'a kaydet
+      localStorage.setItem('race_results', JSON.stringify(updatedResults));
 
       // Sonuç sayfasına yönlendir
       router.push(
@@ -131,7 +128,7 @@ export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps
     return (
       <div className="bg-white rounded-3xl shadow-xl border border-gray-200 p-8 text-center">
         <h2 className="text-xl font-bold text-red-600 mb-4">No Questions Available</h2>
-        <p className="text-gray-600">Please check the database connection.</p>
+        <p className="text-gray-600">Please check the questions data file.</p>
       </div>
     );
   }
