@@ -8,6 +8,7 @@ export default async function RacePage({ params }: { params: { id: string } }) {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
+  // 1. Güvenlik Kontrolü
   if (!supabaseUrl || !supabaseKey) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-4 text-center bg-gray-50">
@@ -19,12 +20,12 @@ export default async function RacePage({ params }: { params: { id: string } }) {
 
   const supabase = createClient(supabaseUrl, supabaseKey);
 
-  
+  // 2. Veritabanından TÜM soruları çek
   const { data: allQuestions, error } = await supabase
     .from('race_questions')
     .select('*');
 
-  
+  // Hata veya Boş Veri Kontrolü
   if (error || !allQuestions || allQuestions.length === 0) {
     console.error("Supabase Error:", error);
     return (
@@ -36,14 +37,14 @@ export default async function RacePage({ params }: { params: { id: string } }) {
     );
   }
 
- 
+  // 3. Soruları Karıştır
   const shuffled = [...allQuestions];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
   
- 
+  // 4. İlk 50 soruyu al
   const examQuestions = shuffled.slice(0, 50);
 
   return (
