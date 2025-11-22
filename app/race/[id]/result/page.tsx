@@ -149,3 +149,5 @@ export default function ResultPage({ params }: { params: { id: string } }) {
     </div>
   );
 }
+
+// Force Vercel Rebuild - Cache Temizleme 1
