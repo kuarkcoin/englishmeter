@@ -1,14 +1,21 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation'; // Yeni eklenen, Client'ta çalışır
 
-// Supabase Client (Env yoksa boş string ile oluşur, hata vermez)
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const supabase = createClient(supabaseUrl, supabaseKey);
+// ---------------------------------------------------------
+// SAHTE LİDERLİK TABLOSU (MOCK DATA)
+// Veritabanı olmadığı için bu listeyi elle oluşturuyoruz.
+// ---------------------------------------------------------
+const MOCK_LEADERBOARD = [
+  { username: 'EnglishWizard', score: 50, time_seconds: 120 },
+  { username: 'SpeedyLearner', score: 48, time_seconds: 135 },
+  { username: 'ProStudent', score: 47, time_seconds: 140 },
+  { username: 'MasterMind', score: 45, time_seconds: 150 },
+  { username: 'CoffeeLover', score: 42, time_seconds: 160 },
+  { username: 'BookWorm', score: 40, time_seconds: 180 },
+  { username: 'NewbieOne', score: 35, time_seconds: 200 },
+];
 
 // 11, 12, 13 özel durumunu çözen getOrdinal fonksiyonu
 const getOrdinal = (n: number) => {
@@ -30,70 +37,44 @@ interface ResultClientProps {
 
 export default function ResultClient({ raceId, myScore, myUsername, myTime }: ResultClientProps) {
 
-  // Bu verileri Server Component'tan prop olarak alıyoruz.
-  // Bu nedenle useSearchParams'a burada gerek kalmadı.
-  
   const [topList, setTopList] = useState<any[]>([]);
   const [myRank, setMyRank] = useState<number | null>(null);
   const [totalParticipants, setTotalParticipants] = useState<number>(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchResults() {
-      try {
-        const rid = Number(raceId);
-        if (!Number.isFinite(rid)) return; 
+    // Supabase yerine sahte verileri yüklüyoruz
+    // Sanki veritabanından çekiyormuş gibi 1 saniye bekletelim (daha gerçekçi olsun)
+    const timer = setTimeout(() => {
+      
+      // 1. Kendi kullanıcımızı listeye ekleyelim (Eğer listede yoksa)
+      // Gerçekçi olsun diye mevcut listeyi alıp bizim puanı araya sıkıştırıyoruz
+      const allResults = [...MOCK_LEADERBOARD, { username: myUsername, score: myScore, time_seconds: myTime }];
+      
+      // 2. Listeyi Puan (Yüksekten düşüğe) ve Süreye (Düşükten yükseğe) göre sırala
+      allResults.sort((a, b) => {
+        if (b.score !== a.score) return b.score - a.score;
+        return a.time_seconds - b.time_seconds;
+      });
 
-        // 1. TOP 20 Listesini Çek
-        const { data: topData } = await supabase
-          .from('race_results')
-          .select('*')
-          .eq('race_id', rid)
-          .order('score', { ascending: false })
-          .order('time_seconds', { ascending: true })
-          .limit(20);
+      // 3. Sıralamanı Bul
+      const rank = allResults.findIndex(u => u.username === myUsername && u.score === myScore && u.time_seconds === myTime) + 1;
 
-        if (topData) setTopList(topData);
+      // 4. Verileri State'e at
+      setTopList(allResults.slice(0, 20)); // İlk 20 kişiyi göster
+      setMyRank(rank);
+      setTotalParticipants(1452); // Rastgele yüksek bir katılımcı sayısı uyduruyoruz :)
+      setLoading(false);
 
-        // 2. Sıralamanı Hesapla
-        const { count: betterScores } = await supabase
-          .from('race_results')
-          .select('*', { count: 'exact', head: true })
-          .eq('race_id', rid)
-          .gt('score', myScore);
+    }, 1000);
 
-        const { count: sameScoreBetterTime } = await supabase
-          .from('race_results')
-          .select('*', { count: 'exact', head: true })
-          .eq('race_id', rid)
-          .eq('score', myScore)
-          .lt('time_seconds', myTime);
-
-        const { count: totalCount } = await supabase
-          .from('race_results')
-          .select('*', { count: 'exact', head: true })
-          .eq('race_id', rid);
-
-        const rank = (betterScores || 0) + (sameScoreBetterTime || 0) + 1;
-        
-        setMyRank(rank);
-        setTotalParticipants(totalCount || 0);
-
-      } catch (err) {
-        console.error("Supabase Veri Çekme Hatası:", err);
-      } finally {
-        setLoading(false); // Hata olsa da yüklemeyi bitir
-      }
-    }
-
-    fetchResults();
+    return () => clearTimeout(timer);
   }, [raceId, myScore, myTime, myUsername]); 
 
   if (loading) {
-    // page.tsx'in fallback'i bu ekranı gösterir
     return (
-      <div className="min-h-screen flex items-center justify-center text-xl font-bold text-blue-600">
-        Loading...
+      <div className="min-h-screen flex items-center justify-center text-xl font-bold text-blue-600 animate-pulse">
+        Calculating Global Rank...
       </div>
     );
   }
@@ -134,7 +115,7 @@ export default function ResultClient({ raceId, myScore, myUsername, myTime }: Re
           <div className="bg-gray-50 px-6 py-4 border-b font-bold text-gray-700 flex justify-between items-center">
             <span>🏆 TOP 20 LEADERBOARD</span>
             <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full flex items-center gap-1">
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> LIVE
+              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> OFFLINE MODE
             </span>
           </div>
           
