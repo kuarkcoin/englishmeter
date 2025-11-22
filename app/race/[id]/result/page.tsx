@@ -1,37 +1,21 @@
 import { Suspense } from "react";
-import ResultClient from "./ResultClient";
-import { notFound } from 'next/navigation';
+import ResultClient from "./ResultClient"; // DİKKAT: Aynı klasördeki ResultClient'ı çağırır
 
-// Bu ayar, sayfanın statik olarak oluşturulmasını engeller ve canlı veri çeker (Çok Önemli)
 export const dynamic = "force-dynamic";
 
-// Bu dosya Server Component'tur
-export default async function ResultPage({
+export default function ResultPage({
   params,
   searchParams,
 }: {
   params: { id: string };
   searchParams: { score?: string; user?: string; time?: string };
 }) {
-  
-  // URL'den gelen verileri al ve kontrol et
   const raceId = params.id;
   const myScore = parseInt(searchParams.score || '0');
   const myUsername = searchParams.user || 'Guest';
   const myTime = parseInt(searchParams.time || '0');
 
-  // Geçersiz veri kontrolü
-  if (!raceId || isNaN(myScore) || isNaN(myTime)) {
-    // 404 sayfasına yönlendir (veya hata mesajı göster)
-    // notFound(); 
-    return (
-      <div className="min-h-screen flex items-center justify-center font-bold text-xl text-red-600">
-        Invalid race parameters. Please try again.
-      </div>
-    );
-  }
-
-  // ResultClient bileşenine verileri prop olarak gönder
+  // URL'den gelen verileri Server'da okuduk, şimdi Client'a yolluyoruz.
   return (
     <Suspense
       fallback={
