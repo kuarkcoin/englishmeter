@@ -17,7 +17,7 @@ export default function ResultPage({
 
   // URL'den gelen verileri Server'da okuduk, şimdi Client'a yolluyoruz.
   return (
-    <Suspense
+    <Suspense 
       fallback={
         <div className="min-h-screen flex items-center justify-center font-bold text-xl text-blue-600 animate-pulse">
           Calculating Global Rank...
