@@ -1,158 +1,1415 @@
-question_text,option_a,option_b,option_c,option_d,correct_option,level
-"Only after the final variables had been recalibrated ____ a pattern begin to emerge.","did","had","was","would","a","Advanced"
-"Hardly ____ revising the report when the board demanded another rewrite.","had she finished","she finished","she had been finishing","she has finished","a","Advanced"
-"No sooner ____ the new policy announced than tensions rose.","was","had","has been","have","b","Advanced"
-"Under no circumstances ____ the encrypted file shared outside the department.","will be","should be","must be","should","c","Advanced"
-"Were he to have acknowledged the discrepancy earlier, the fallout ____ less damaging.","would be","would have been","is","was","b","Advanced"
-"Scarcely ____ to question the premise when counterarguments appeared.","had they begun","they began","were they beginning","they had begun","a","Advanced"
-"Only by cross-verifying external datasets ____ the anomaly explained.","was","could","has","had been","b","Advanced"
-"Should the negotiations ____ unexpectedly, alternative strategies must be deployed.","collapse","collapsed","be collapsing","have collapsed","a","Advanced"
-"Had the committee acted sooner, the crisis ____ entirely.","would avoid","would have been avoided","was avoided","would be avoided","b","Advanced"
-"Not until the results were reanalyzed ____ how flawed the assumptions were.","the team realized","did the team realize","had the team realized","was the team realizing","b","Advanced"
-"Rarely ____ a correlation as complex as the one identified.","has there appeared","does appear","is appearing","appeared","a","Advanced"
-"Only when combined with qualitative evidence ____ the findings gain significance.","the findings gain","do the findings gain","the findings gained","gained the findings","b","Advanced"
-"Had it not been for her intervention, the project ____ indefinitely.","might stall","might have stalled","might be stalled","should have stalled","b","Advanced"
-"Little ____ that his statement would be cited for years.","he expected","did he expect","he had expected","was he expecting","b","Advanced"
-"At no point ____ the research team aware of the hidden variables.","was","were","had been","are","a","Advanced"
-"Hardly ____ the conference ended when participants began debating online.","had","has","was","have","a","Advanced"
-"Were the experiment to have been replicated, the results ____ more credible.","would become","would have become","will become","become","b","Advanced"
-"Not only ____ the hypothesis flawed, but it also contradicted earlier data.","was","were","has been","had been","a","Advanced"
-"Only with a more rigorous sampling method ____ statistically valid conclusions.","can we draw","we can draw","we draw","we can have drawn","a","Advanced"
-"Were she not so meticulous, the inconsistencies ____ unnoticed.","might go","might have gone","would go","will go","b","Advanced"
-"No sooner ____ the findings published than peers demanded replication.","were","had","have","was","b","Advanced"
-"Should the assumptions ____ incorrect, the entire model collapses.","prove","proved","are proving","have proved","a","Advanced"
-"Only after examining the logs ____ the breach originated earlier.","they realized","did they realize","they had realized","was realized","b","Advanced"
-"Had the auditors looked more carefully, the discrepancies ____ detected sooner.","were","would be","would have been","may be","c","Advanced"
-"Seldom ____ a theory revised so drastically after peer review.","does","has","is","was","a","Advanced"
-"Under no condition ____ external consultants allowed access to raw datasets.","are","should be","must","should","b","Advanced"
-"Little ____ how significantly the policy would reshape the sector.","was anticipated","did they anticipate","they anticipated","they have anticipated","b","Advanced"
-"Only when recontextualized ____ the data reveal underlying biases.","do","did","has","had","a","Advanced"
-"Had the variables been isolated, the causal link ____ confirmed.","would be","would have been","could be","should have been","b","Advanced"
-"Hardly ____ the simulations completed when hardware failures occurred.","were","had","have been","was","b","Advanced"
-"Were he to reassess his stance, the negotiations ____ new momentum.","gain","gained","would gain","would have gained","c","Advanced"
-"No sooner ____ the networks synchronized than latency issues reappeared.","had","was","were","has","a","Advanced"
-"Only by interpreting the data longitudinally ____ meaningful conclusions.","are we deriving","can we derive","we derive","we had derived","b","Advanced"
-"Rarely ____ evidence this compelling in behavioral research.","has there been","there has been","is there","was there","a","Advanced"
-"Had she been fully briefed, she ____ a different recommendation.","would make","would have made","made","would be making","b","Advanced"
-"Not until the metrics were normalized ____ accurate comparisons possible.","were","was","are","have been","a","Advanced"
-"Scarcely ____ the algorithm deployed when anomalies appeared.","was","had","has been","have been","b","Advanced"
-"Only when the context was broadened ____ the trend become visible.","does","did","had","was","b","Advanced"
-"Were the findings to contradict expectations, the model ____ reassessed.","is","will be","would be","would have been","c","Advanced"
-"At no stage ____ the correlation statistically significant.","was","has been","is","had been","a","Advanced"
-"Had conditions been optimal, the results ____ even more robust.","will become","would become","would have become","became","c","Advanced"
-"Hardly ____ verifying the data when contradictory values surfaced.","did they finish","had they finished","they finished","they had been finishing","b","Advanced"
-"Only by triangulating independent sources ____ objectivity established.","can be","can","is","could be","b","Advanced"
-"No sooner ____ the new protocol implemented than compatibility issues emerged.","was","had","has been","were","b","Advanced"
-"Were he not constrained by deadlines, he ____ further refinements.","will attempt","would attempt","would have attempted","is attempting","b","Advanced"
-"Under no circumstances ____ analysts modify the raw figures.","are","should","must be","were","b","Advanced"
-"Scarcely ____ the error corrected when another occurred.","had","was","has","have","a","Advanced"
-"Only after several iterations ____ the output stabilize.","does","did","had","would","b","Advanced"
-"Rarely ____ peer reviewers agree so unanimously.","do","have","are","had","a","Advanced"
-"Had the sample size been larger, the confidence interval ____ narrower.","will be","would be","would have been","was","c","Advanced"
-"Only after revisiting historical datasets ____ the predictive model show improvement.","did","had","was","would","a","Advanced"
-"Had the committee not intervened, the proposal ____ prematurely.","might be withdrawn","might have been withdrawn","was withdrawn","is withdrawn","b","Advanced"
-"Under no circumstances ____ unauthorized personnel be granted temporary access.","shall","should","must","ought","b","Advanced"
-"Hardly ____ the hypothesis formed when contradictory evidence surfaced.","was","had","has been","have been","b","Advanced"
-"No sooner ____ initial success reported than doubts were raised about methodology.","was","had","has been","have","b","Advanced"
-"Were the assumptions to prove accurate, the implications ____ far-reaching.","will be","would be","would have been","are","b","Advanced"
-"Only by assessing longitudinal data ____ subtle patterns emerge.","did","do","can","have","c","Advanced"
-"Seldom ____ researchers encounter variables so resistant to isolation.","are","have","do","did","c","Advanced"
-"Had the early warnings been acknowledged, resources ____ allocated more effectively.","would be","would have been","could be","was","b","Advanced"
-"Not until additional trials were conducted ____ the phenomenon replicable.","was","were","did they deem","had they deemed","c","Advanced"
-"Rarely ____ a peer review process proceed without significant revisions.","does","has","is","did","a","Advanced"
-"Scarcely ____ the algorithm calibrated when new inconsistencies emerged.","was","has","had","have","c","Advanced"
-"Were it not for the unforeseen variables, the outcome ____ predictable.","would be","would have been","was","is","a","Advanced"
-"Only by employing stricter controls ____ margin of error reduced.","was the","could the","had the","has the","b","Advanced"
-"No sooner ____ the abstract published than critiques appeared online.","was","had","is","has been","b","Advanced"
-"Had the correlation been linear, the projection ____ more reliable.","will be","would be","would have been","was","c","Advanced"
-"At no point ____ the analysts deviate from standardized protocols.","do","did","have","had","b","Advanced"
-"Hardly ____ the keynote address concluded when questions poured in.","had","was","has","have","a","Advanced"
-"Only when contextual factors were considered ____ the anomaly explained.","could be","was","could","was being","c","Advanced"
-"Were the department to implement the new framework, efficiency ____ immediately.","would improve","will improve","would have improved","has improved","a","Advanced"
-"Scarcely ____ to evaluate the impact when new variables were introduced.","had we begun","we began","were we beginning","we have begun","a","Advanced"
-"Not until more rigorous criteria were applied ____ the findings validated.","were","did they get","did they become","had been","c","Advanced"
-"Rarely ____ an entire dataset reclassified after publication.","is","has","does","was","a","Advanced"
-"Only by reconstructing the dataset manually ____ the missing entries identified.","they could","could they","can they","they can","b","Advanced"
-"Had he not misinterpreted the trend, he ____ a vastly different conclusion.","would draw","would have drawn","drew","will draw","b","Advanced"
-"No sooner ____ the meeting adjourned than stakeholders demanded clarifications.","had","was","were","has","a","Advanced"
-"Were she to challenge the prevailing theory, her work ____ substantial attention.","will gain","would gain","would have gained","gained","b","Advanced"
-"Hardly ____ the final parameters adjusted when the system crashed.","were","had","have been","has been","b","Advanced"
-"Only after aggregating multiple surveys ____ a consistent pattern visible.","is","was","did they find","had they found","c","Advanced"
-"At no stage ____ the trial considered ethically questionable.","was","is","has been","had","a","Advanced"
-"Had the forecast been accurate, the team ____ alternative actions.","would take","would have taken","might take","was taking","b","Advanced"
-"Rarely ____ interdisciplinary cooperation proceed this smoothly.","has","does","did","is","b","Advanced"
-"Under no circumstances ____ the data interpreted without proper citations.","should","are","must","shall","a","Advanced"
-"Scarcely ____ she present her findings when counterclaims surfaced.","did","had","was","has","b","Advanced"
-"Only by refining the predictive algorithm ____ major inaccuracies avoided.","were","can be","could be","had been","c","Advanced"
-"No sooner ____ the funding approved than the project was expanded.","was","had been","has been","is","b","Advanced"
-"Had the sampling error been detected earlier, the dataset ____ recalibrated.","would be","would have been","was","could be","b","Advanced"
-"Not until the secondary analysis was complete ____ the model stable.","was","did they find","had they found","is","b","Advanced"
-"Seldom ____ researchers confront such contradictory evidence.","have","do","are","did","b","Advanced"
-"Only when contextualized properly ____ meaningful insight.","does the data yield","the data yields","has the data yielded","did yield","a","Advanced"
-"Were it not for his skepticism, critical flaws ____ overlooked.","might be","might have been","would be","are","b","Advanced"
-"Hardly ____ the new framework implemented when unforeseen issues arose.","was","has been","had been","is","c","Advanced"
-"No sooner ____ the simulation restarted than error logs populated.","had","was","has","have","a","Advanced"
-"Only after a revised methodology was proposed ____ renewed interest.","was there","there was","were there","there were","a","Advanced"
-"Were the criteria to shift again, the predictive model ____ significant adaptation.","will require","would require","would have required","requires","b","Advanced"
-"Scarcely ____ the researchers prepare for publication when new data arrived.","did","had","were","have","b","Advanced"
-"Not until independent replication occurred ____ the theory widely accepted.","was","did","had","has been","b","Advanced"
-"Had the preliminary signals been stronger, investors ____ more swiftly.","would act","would have acted","acted","will act","b","Advanced"
-"Under no condition ____ analysts disclose draft reports to the press.","must","are","should","may","c","Advanced"
-"Only by creating a broader comparative framework ____ subtle distinctions detected.","could be","could","were","are","b","Advanced"
-"Only after the external auditors intervened ____ systemic flaws uncovered.","were","did","had","was","b","Advanced"
-"Scarcely ____ the dataset updated when the software generated new warnings.","was","had","has","have","b","Advanced"
-"No sooner ____ the manuscript submitted than the reviewers demanded revisions.","was","had","is","has been","b","Advanced"
-"Under no circumstances ____ researchers base conclusions on unverified sources.","must","should","may","shall","b","Advanced"
-"Were the projections to deviate further, the economic model ____ reconsideration.","will require","would require","would have required","requires","b","Advanced"
-"Only by re-running the simulations ____ the inconsistencies resolved.","were","could","has","had","b","Advanced"
-"Had the previous administration implemented reforms, the crisis ____ mitigated.","would be","would have been","might be","was","b","Advanced"
-"Seldom ____ institutions reverse decisions after public backlash.","do","are","have","did","a","Advanced"
-"Hardly ____ the protocol finalized when regulatory changes arrived.","was","had","has been","have been","b","Advanced"
-"Not until the final audit was completed ____ the budget approved.","did","was","were","has been","a","Advanced"
-"Rarely ____ evidence this fragmented considered admissible.","is","has","was","should be","a","Advanced"
-"Only when benchmarked against global standards ____ measurable progress.","did we observe","we observed","has been observed","was observed","a","Advanced"
-"Were they to broaden the eligibility criteria, applications ____ dramatically.","will increase","would increase","would have increased","are increasing","b","Advanced"
-"No sooner ____ the committee convened than heated debates broke out.","had","was","were","has","a","Advanced"
-"Had the parameters been properly defined, the model ____ significantly more accurate.","would be","would have been","was","is","b","Advanced"
-"Little ____ that his assumptions would later undermine the entire study.","did he realize","he realized","had he realized","was he realizing","a","Advanced"
-"Under no condition ____ staff members alter protocol without authorization.","should","must","are to","may","a","Advanced"
-"Only after reconciling all discrepancies ____ the system declared stable.","has","had","was","were","c","Advanced"
-"Were the research climate less constrained, collaboration ____ easier.","would be","will be","would have been","is","a","Advanced"
-"Not until the manuscript was fully revised ____ acceptance guaranteed.","had","was","did they secure","has","c","Advanced"
-"Scarcely ____ the new criteria announced when the guidelines were updated again.","were","had","was","have been","b","Advanced"
-"Rarely ____ a dataset demand such extensive cleaning.","does","has","did","is","a","Advanced"
-"Only when tested across multiple environments ____ the algorithm reliable.","is","was","did it become","has become","c","Advanced"
-"Had he adhered to the methodology, his conclusions ____ defensible.","would be","would have been","may be","was","b","Advanced"
-"No sooner ____ the platform launched than traffic overwhelmed the servers.","was","had","has been","were","b","Advanced"
-"Were the assumptions less rigid, alternative interpretations ____ plausible.","would be","will be","would have been","are","a","Advanced"
-"Only by adjusting for confounders ____ a legitimate causal link inferred.","is","can","could","was","c","Advanced"
-"Hardly ____ the proposal submitted when funding was reduced.","had","was","has","have","a","Advanced"
-"Seldom ____ scholars revise their frameworks so drastically.","do","have","had","is","a","Advanced"
-"Not until indirect variables were accounted for ____ the model statistically sound.","did they deem","was deemed","had been deemed","is deemed","a","Advanced"
-"Were the trial extended, the long-term effects ____ clearer.","would be","will be","would have been","are","a","Advanced"
-"Only once the anomalies were categorized ____ further analysis possible.","was","is","did they find","had they found","c","Advanced"
-"Had the survey included marginalized groups, the findings ____ more representative.","would be","would have been","could be","was","b","Advanced"
-"Under no circumstances ____ inaccurate data be reported as conclusive.","shall","should","must","may","b","Advanced"
-"Rarely ____ such divergent theories reconciled in a single framework.","are","has","is","were","a","Advanced"
-"Only through continuous calibration ____ the model maintain accuracy.","can","does","will","could","a","Advanced"
-"No sooner ____ the revised draft circulated than new objections surfaced.","was","had","has been","is","b","Advanced"
-"Were he to reconsider his methodology, the outcome ____ radically different.","would be","will be","would have been","is","a","Advanced"
-"Scarcely ____ the constraints relaxed when further limitations emerged.","had","was","have been","has","a","Advanced"
-"Not until alternative hypotheses were evaluated ____ genuine progress made.","was","had","did they make","were","c","Advanced"
-"Had the early indicators been stronger, the downturn ____ predictable.","would be","would have been","might be","was","b","Advanced"
-"Seldom ____ experts agree on the reliability of preliminary data.","do","are","have","did","a","Advanced"
-"Only by employing deeper statistical modeling ____ latent variables detected.","had","could","was","have","b","Advanced"
-"Were the funding to lapse, several long-term studies ____ jeopardized.","will be","would be","would have been","are","b","Advanced"
-"Hardly ____ the framework validated when contradictory findings emerged.","has","had","was","have","b","Advanced"
-"No sooner ____ the database migrated than integrity checks failed.","was","had","has","were","b","Advanced"
-"Only when the transparency protocols improved ____ public trust rise.","did","was","has","would","a","Advanced"
-"Were new ethical guidelines adopted, research standards ____ significantly.","will rise","would rise","would have risen","rise","b","Advanced"
-"Scarcely ____ the publication embargo lifted when excerpts leaked online.","had","was","has","have","a","Advanced"
-"Not until the automated checks were bypassed ____ the breach detected.","was","did","had","is","b","Advanced"
-"Had the organization diversified sooner, market volatility ____ less damaging.","would be","would have been","might be","was","b","Advanced"
-"Under no circumstances ____ internal drafts forwarded to external reviewers.","are","must","should","may","c","Advanced"
-"Only by integrating behavioral data ____ a comprehensive profile constructed.","can","will","could have","was","a","Advanced"
-"Rarely ____ policy shifts occur so abruptly.","do","has","is","will","a","Advanced"
-"Had the redundancy protocols worked, system downtime ____ avoided.","would be","would have been","may be","was","b","Advanced"
-"Only after triangulating all sources ____ the claims considered credible.","were","was","did they find","had been","c","Advanced"
-"No sooner ____ the ethics committee approve the study than public criticism erupted.","was","had","has","were","b","Advanced"
+[
+ {
+   "question_text": "Only after the final variables had been recalibrated ____ a pattern begin to emerge.",
+   "option_a": "did",
+   "option_b": "had",
+   "option_c": "was",
+   "option_d": "would",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Hardly ____ revising the report when the board demanded another rewrite.",
+   "option_a": "had she finished",
+   "option_b": "she finished",
+   "option_c": "she had been finishing",
+   "option_d": "she has finished",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "No sooner ____ the new policy announced than tensions rose.",
+   "option_a": "was",
+   "option_b": "had",
+   "option_c": "has been",
+   "option_d": "have",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Under no circumstances ____ the encrypted file shared outside the department.",
+   "option_a": "will be",
+   "option_b": "should be",
+   "option_c": "must be",
+   "option_d": "should",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Were he to have acknowledged the discrepancy earlier, the fallout ____ less damaging.",
+   "option_a": "would be",
+   "option_b": "would have been",
+   "option_c": "is",
+   "option_d": "was",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Scarcely ____ to question the premise when counterarguments appeared.",
+   "option_a": "had they begun",
+   "option_b": "they began",
+   "option_c": "were they beginning",
+   "option_d": "they had begun",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only by cross-verifying external datasets ____ the anomaly explained.",
+   "option_a": "was",
+   "option_b": "could",
+   "option_c": "has",
+   "option_d": "had been",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Should the negotiations ____ unexpectedly, alternative strategies must be deployed.",
+   "option_a": "collapse",
+   "option_b": "collapsed",
+   "option_c": "be collapsing",
+   "option_d": "have collapsed",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had the committee acted sooner, the crisis ____ entirely.",
+   "option_a": "would avoid",
+   "option_b": "would have been avoided",
+   "option_c": "was avoided",
+   "option_d": "would be avoided",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Not until the results were reanalyzed ____ how flawed the assumptions were.",
+   "option_a": "the team realized",
+   "option_b": "did the team realize",
+   "option_c": "had the team realized",
+   "option_d": "was the team realizing",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Rarely ____ a correlation as complex as the one identified.",
+   "option_a": "has there appeared",
+   "option_b": "does appear",
+   "option_c": "is appearing",
+   "option_d": "appeared",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only when combined with qualitative evidence ____ the findings gain significance.",
+   "option_a": "the findings gain",
+   "option_b": "do the findings gain",
+   "option_c": "the findings gained",
+   "option_d": "gained the findings",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had it not been for her intervention, the project ____ indefinitely.",
+   "option_a": "might stall",
+   "option_b": "might have stalled",
+   "option_c": "might be stalled",
+   "option_d": "should have stalled",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Little ____ that his statement would be cited for years.",
+   "option_a": "he expected",
+   "option_b": "did he expect",
+   "option_c": "he had expected",
+   "option_d": "was he expecting",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "At no point ____ the research team aware of the hidden variables.",
+   "option_a": "was",
+   "option_b": "were",
+   "option_c": "had been",
+   "option_d": "are",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Hardly ____ the conference ended when participants began debating online.",
+   "option_a": "had",
+   "option_b": "has",
+   "option_c": "was",
+   "option_d": "have",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Were the experiment to have been replicated, the results ____ more credible.",
+   "option_a": "would become",
+   "option_b": "would have become",
+   "option_c": "will become",
+   "option_d": "become",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Not only ____ the hypothesis flawed, but it also contradicted earlier data.",
+   "option_a": "was",
+   "option_b": "were",
+   "option_c": "has been",
+   "option_d": "had been",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only with a more rigorous sampling method ____ statistically valid conclusions.",
+   "option_a": "can we draw",
+   "option_b": "we can draw",
+   "option_c": "we draw",
+   "option_d": "we can have drawn",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Were she not so meticulous, the inconsistencies ____ unnoticed.",
+   "option_a": "might go",
+   "option_b": "might have gone",
+   "option_c": "would go",
+   "option_d": "will go",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "No sooner ____ the findings published than peers demanded replication.",
+   "option_a": "were",
+   "option_b": "had",
+   "option_c": "have",
+   "option_d": "was",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Should the assumptions ____ incorrect, the entire model collapses.",
+   "option_a": "prove",
+   "option_b": "proved",
+   "option_c": "are proving",
+   "option_d": "have proved",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only after examining the logs ____ the breach originated earlier.",
+   "option_a": "they realized",
+   "option_b": "did they realize",
+   "option_c": "they had realized",
+   "option_d": "was realized",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had the auditors looked more carefully, the discrepancies ____ detected sooner.",
+   "option_a": "were",
+   "option_b": "would be",
+   "option_c": "would have been",
+   "option_d": "may be",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Seldom ____ a theory revised so drastically after peer review.",
+   "option_a": "does",
+   "option_b": "has",
+   "option_c": "is",
+   "option_d": "was",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Under no condition ____ external consultants allowed access to raw datasets.",
+   "option_a": "are",
+   "option_b": "should be",
+   "option_c": "must",
+   "option_d": "should",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Little ____ how significantly the policy would reshape the sector.",
+   "option_a": "was anticipated",
+   "option_b": "did they anticipate",
+   "option_c": "they anticipated",
+   "option_d": "they have anticipated",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only when recontextualized ____ the data reveal underlying biases.",
+   "option_a": "do",
+   "option_b": "did",
+   "option_c": "has",
+   "option_d": "had",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had the variables been isolated, the causal link ____ confirmed.",
+   "option_a": "would be",
+   "option_b": "would have been",
+   "option_c": "could be",
+   "option_d": "should have been",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Hardly ____ the simulations completed when hardware failures occurred.",
+   "option_a": "were",
+   "option_b": "had",
+   "option_c": "have been",
+   "option_d": "was",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Were he to reassess his stance, the negotiations ____ new momentum.",
+   "option_a": "gain",
+   "option_b": "gained",
+   "option_c": "would gain",
+   "option_d": "would have gained",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "No sooner ____ the networks synchronized than latency issues reappeared.",
+   "option_a": "had",
+   "option_b": "was",
+   "option_c": "were",
+   "option_d": "has",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only by interpreting the data longitudinally ____ meaningful conclusions.",
+   "option_a": "are we deriving",
+   "option_b": "can we derive",
+   "option_c": "we derive",
+   "option_d": "we had derived",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Rarely ____ evidence this compelling in behavioral research.",
+   "option_a": "has there been",
+   "option_b": "there has been",
+   "option_c": "is there",
+   "option_d": "was there",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had she been fully briefed, she ____ a different recommendation.",
+   "option_a": "would make",
+   "option_b": "would have made",
+   "option_c": "made",
+   "option_d": "would be making",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Not until the metrics were normalized ____ accurate comparisons possible.",
+   "option_a": "were",
+   "option_b": "was",
+   "option_c": "are",
+   "option_d": "have been",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Scarcely ____ the algorithm deployed when anomalies appeared.",
+   "option_a": "was",
+   "option_b": "had",
+   "option_c": "has been",
+   "option_d": "have been",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only when the context was broadened ____ the trend become visible.",
+   "option_a": "does",
+   "option_b": "did",
+   "option_c": "had",
+   "option_d": "was",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Were the findings to contradict expectations, the model ____ reassessed.",
+   "option_a": "is",
+   "option_b": "will be",
+   "option_c": "would be",
+   "option_d": "would have been",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "At no stage ____ the correlation statistically significant.",
+   "option_a": "was",
+   "option_b": "has been",
+   "option_c": "is",
+   "option_d": "had been",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had conditions been optimal, the results ____ even more robust.",
+   "option_a": "will become",
+   "option_b": "would become",
+   "option_c": "would have become",
+   "option_d": "became",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Hardly ____ verifying the data when contradictory values surfaced.",
+   "option_a": "did they finish",
+   "option_b": "had they finished",
+   "option_c": "they finished",
+   "option_d": "they had been finishing",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only by triangulating independent sources ____ objectivity established.",
+   "option_a": "can be",
+   "option_b": "can",
+   "option_c": "is",
+   "option_d": "could be",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "No sooner ____ the new protocol implemented than compatibility issues emerged.",
+   "option_a": "was",
+   "option_b": "had",
+   "option_c": "has been",
+   "option_d": "were",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Were he not constrained by deadlines, he ____ further refinements.",
+   "option_a": "will attempt",
+   "option_b": "would attempt",
+   "option_c": "would have attempted",
+   "option_d": "is attempting",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Under no circumstances ____ analysts modify the raw figures.",
+   "option_a": "are",
+   "option_b": "should",
+   "option_c": "must be",
+   "option_d": "were",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Scarcely ____ the error corrected when another occurred.",
+   "option_a": "had",
+   "option_b": "was",
+   "option_c": "has",
+   "option_d": "have",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only after several iterations ____ the output stabilize.",
+   "option_a": "does",
+   "option_b": "did",
+   "option_c": "had",
+   "option_d": "would",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Rarely ____ peer reviewers agree so unanimously.",
+   "option_a": "do",
+   "option_b": "have",
+   "option_c": "are",
+   "option_d": "had",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had the sample size been larger, the confidence interval ____ narrower.",
+   "option_a": "will be",
+   "option_b": "would be",
+   "option_c": "would have been",
+   "option_d": "was",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only after revisiting historical datasets ____ the predictive model show improvement.",
+   "option_a": "did",
+   "option_b": "had",
+   "option_c": "was",
+   "option_d": "would",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had the committee not intervened, the proposal ____ prematurely.",
+   "option_a": "might be withdrawn",
+   "option_b": "might have been withdrawn",
+   "option_c": "was withdrawn",
+   "option_d": "is withdrawn",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Under no circumstances ____ unauthorized personnel be granted temporary access.",
+   "option_a": "shall",
+   "option_b": "should",
+   "option_c": "must",
+   "option_d": "ought",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Hardly ____ the hypothesis formed when contradictory evidence surfaced.",
+   "option_a": "was",
+   "option_b": "had",
+   "option_c": "has been",
+   "option_d": "have been",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "No sooner ____ initial success reported than doubts were raised about methodology.",
+   "option_a": "was",
+   "option_b": "had",
+   "option_c": "has been",
+   "option_d": "have",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Were the assumptions to prove accurate, the implications ____ far-reaching.",
+   "option_a": "will be",
+   "option_b": "would be",
+   "option_c": "would have been",
+   "option_d": "are",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only by assessing longitudinal data ____ subtle patterns emerge.",
+   "option_a": "did",
+   "option_b": "do",
+   "option_c": "can",
+   "option_d": "have",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Seldom ____ researchers encounter variables so resistant to isolation.",
+   "option_a": "are",
+   "option_b": "have",
+   "option_c": "do",
+   "option_d": "did",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had the early warnings been acknowledged, resources ____ allocated more effectively.",
+   "option_a": "would be",
+   "option_b": "would have been",
+   "option_c": "could be",
+   "option_d": "was",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Not until additional trials were conducted ____ the phenomenon replicable.",
+   "option_a": "was",
+   "option_b": "were",
+   "option_c": "did they deem",
+   "option_d": "had they deemed",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Rarely ____ a peer review process proceed without significant revisions.",
+   "option_a": "does",
+   "option_b": "has",
+   "option_c": "is",
+   "option_d": "did",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Scarcely ____ the algorithm calibrated when new inconsistencies emerged.",
+   "option_a": "was",
+   "option_b": "has",
+   "option_c": "had",
+   "option_d": "have",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Were it not for the unforeseen variables, the outcome ____ predictable.",
+   "option_a": "would be",
+   "option_b": "would have been",
+   "option_c": "was",
+   "option_d": "is",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only by employing stricter controls ____ margin of error reduced.",
+   "option_a": "was the",
+   "option_b": "could the",
+   "option_c": "had the",
+   "option_d": "has the",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "No sooner ____ the abstract published than critiques appeared online.",
+   "option_a": "was",
+   "option_b": "had",
+   "option_c": "is",
+   "option_d": "has been",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had the correlation been linear, the projection ____ more reliable.",
+   "option_a": "will be",
+   "option_b": "would be",
+   "option_c": "would have been",
+   "option_d": "was",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "At no point ____ the analysts deviate from standardized protocols.",
+   "option_a": "do",
+   "option_b": "did",
+   "option_c": "have",
+   "option_d": "had",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Hardly ____ the keynote address concluded when questions poured in.",
+   "option_a": "had",
+   "option_b": "was",
+   "option_c": "has",
+   "option_d": "have",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only when contextual factors were considered ____ the anomaly explained.",
+   "option_a": "could be",
+   "option_b": "was",
+   "option_c": "could",
+   "option_d": "was being",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Were the department to implement the new framework, efficiency ____ immediately.",
+   "option_a": "would improve",
+   "option_b": "will improve",
+   "option_c": "would have improved",
+   "option_d": "has improved",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Scarcely ____ to evaluate the impact when new variables were introduced.",
+   "option_a": "had we begun",
+   "option_b": "we began",
+   "option_c": "were we beginning",
+   "option_d": "we have begun",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Not until more rigorous criteria were applied ____ the findings validated.",
+   "option_a": "were",
+   "option_b": "did they get",
+   "option_c": "did they become",
+   "option_d": "had been",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Rarely ____ an entire dataset reclassified after publication.",
+   "option_a": "is",
+   "option_b": "has",
+   "option_c": "does",
+   "option_d": "was",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only by reconstructing the dataset manually ____ the missing entries identified.",
+   "option_a": "they could",
+   "option_b": "could they",
+   "option_c": "can they",
+   "option_d": "they can",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had he not misinterpreted the trend, he ____ a vastly different conclusion.",
+   "option_a": "would draw",
+   "option_b": "would have drawn",
+   "option_c": "drew",
+   "option_d": "will draw",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "No sooner ____ the meeting adjourned than stakeholders demanded clarifications.",
+   "option_a": "had",
+   "option_b": "was",
+   "option_c": "were",
+   "option_d": "has",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Were she to challenge the prevailing theory, her work ____ substantial attention.",
+   "option_a": "will gain",
+   "option_b": "would gain",
+   "option_c": "would have gained",
+   "option_d": "gained",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Hardly ____ the final parameters adjusted when the system crashed.",
+   "option_a": "were",
+   "option_b": "had",
+   "option_c": "have been",
+   "option_d": "has been",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only after aggregating multiple surveys ____ a consistent pattern visible.",
+   "option_a": "is",
+   "option_b": "was",
+   "option_c": "did they find",
+   "option_d": "had they found",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "At no stage ____ the trial considered ethically questionable.",
+   "option_a": "was",
+   "option_b": "is",
+   "option_c": "has been",
+   "option_d": "had",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had the forecast been accurate, the team ____ alternative actions.",
+   "option_a": "would take",
+   "option_b": "would have taken",
+   "option_c": "might take",
+   "option_d": "was taking",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Rarely ____ interdisciplinary cooperation proceed this smoothly.",
+   "option_a": "has",
+   "option_b": "does",
+   "option_c": "did",
+   "option_d": "is",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Under no circumstances ____ the data interpreted without proper citations.",
+   "option_a": "should",
+   "option_b": "are",
+   "option_c": "must",
+   "option_d": "shall",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Scarcely ____ she present her findings when counterclaims surfaced.",
+   "option_a": "did",
+   "option_b": "had",
+   "option_c": "was",
+   "option_d": "has",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only by refining the predictive algorithm ____ major inaccuracies avoided.",
+   "option_a": "were",
+   "option_b": "can be",
+   "option_c": "could be",
+   "option_d": "had been",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "No sooner ____ the funding approved than the project was expanded.",
+   "option_a": "was",
+   "option_b": "had been",
+   "option_c": "has been",
+   "option_d": "is",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had the sampling error been detected earlier, the dataset ____ recalibrated.",
+   "option_a": "would be",
+   "option_b": "would have been",
+   "option_c": "was",
+   "option_d": "could be",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Not until the secondary analysis was complete ____ the model stable.",
+   "option_a": "was",
+   "option_b": "did they find",
+   "option_c": "had they found",
+   "option_d": "is",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Seldom ____ researchers confront such contradictory evidence.",
+   "option_a": "have",
+   "option_b": "do",
+   "option_c": "are",
+   "option_d": "did",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only when contextualized properly ____ meaningful insight.",
+   "option_a": "does the data yield",
+   "option_b": "the data yields",
+   "option_c": "has the data yielded",
+   "option_d": "did yield",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Were it not for his skepticism, critical flaws ____ overlooked.",
+   "option_a": "might be",
+   "option_b": "might have been",
+   "option_c": "would be",
+   "option_d": "are",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Hardly ____ the new framework implemented when unforeseen issues arose.",
+   "option_a": "was",
+   "option_b": "has been",
+   "option_c": "had been",
+   "option_d": "is",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "No sooner ____ the simulation restarted than error logs populated.",
+   "option_a": "had",
+   "option_b": "was",
+   "option_c": "has",
+   "option_d": "have",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only after a revised methodology was proposed ____ renewed interest.",
+   "option_a": "was there",
+   "option_b": "there was",
+   "option_c": "were there",
+   "option_d": "there were",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Were the criteria to shift again, the predictive model ____ significant adaptation.",
+   "option_a": "will require",
+   "option_b": "would require",
+   "option_c": "would have required",
+   "option_d": "requires",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Scarcely ____ the researchers prepare for publication when new data arrived.",
+   "option_a": "did",
+   "option_b": "had",
+   "option_c": "were",
+   "option_d": "have",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Not until independent replication occurred ____ the theory widely accepted.",
+   "option_a": "was",
+   "option_b": "did",
+   "option_c": "had",
+   "option_d": "has been",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had the preliminary signals been stronger, investors ____ more swiftly.",
+   "option_a": "would act",
+   "option_b": "would have acted",
+   "option_c": "acted",
+   "option_d": "will act",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Under no condition ____ analysts disclose draft reports to the press.",
+   "option_a": "must",
+   "option_b": "are",
+   "option_c": "should",
+   "option_d": "may",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only by creating a broader comparative framework ____ subtle distinctions detected.",
+   "option_a": "could be",
+   "option_b": "could",
+   "option_c": "were",
+   "option_d": "are",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only after the external auditors intervened ____ systemic flaws uncovered.",
+   "option_a": "were",
+   "option_b": "did",
+   "option_c": "had",
+   "option_d": "was",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Scarcely ____ the dataset updated when the software generated new warnings.",
+   "option_a": "was",
+   "option_b": "had",
+   "option_c": "has",
+   "option_d": "have",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "No sooner ____ the manuscript submitted than the reviewers demanded revisions.",
+   "option_a": "was",
+   "option_b": "had",
+   "option_c": "is",
+   "option_d": "has been",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Under no circumstances ____ researchers base conclusions on unverified sources.",
+   "option_a": "must",
+   "option_b": "should",
+   "option_c": "may",
+   "option_d": "shall",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Were the projections to deviate further, the economic model ____ reconsideration.",
+   "option_a": "will require",
+   "option_b": "would require",
+   "option_c": "would have required",
+   "option_d": "requires",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only by re-running the simulations ____ the inconsistencies resolved.",
+   "option_a": "were",
+   "option_b": "could",
+   "option_c": "has",
+   "option_d": "had",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had the previous administration implemented reforms, the crisis ____ mitigated.",
+   "option_a": "would be",
+   "option_b": "would have been",
+   "option_c": "might be",
+   "option_d": "was",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Seldom ____ institutions reverse decisions after public backlash.",
+   "option_a": "do",
+   "option_b": "are",
+   "option_c": "have",
+   "option_d": "did",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Hardly ____ the protocol finalized when regulatory changes arrived.",
+   "option_a": "was",
+   "option_b": "had",
+   "option_c": "has been",
+   "option_d": "have been",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Not until the final audit was completed ____ the budget approved.",
+   "option_a": "did",
+   "option_b": "was",
+   "option_c": "were",
+   "option_d": "has been",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Rarely ____ evidence this fragmented considered admissible.",
+   "option_a": "is",
+   "option_b": "has",
+   "option_c": "was",
+   "option_d": "should be",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only when benchmarked against global standards ____ measurable progress.",
+   "option_a": "did we observe",
+   "option_b": "we observed",
+   "option_c": "has been observed",
+   "option_d": "was observed",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Were they to broaden the eligibility criteria, applications ____ dramatically.",
+   "option_a": "will increase",
+   "option_b": "would increase",
+   "option_c": "would have increased",
+   "option_d": "are increasing",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "No sooner ____ the committee convened than heated debates broke out.",
+   "option_a": "had",
+   "option_b": "was",
+   "option_c": "were",
+   "option_d": "has",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had the parameters been properly defined, the model ____ significantly more accurate.",
+   "option_a": "would be",
+   "option_b": "would have been",
+   "option_c": "was",
+   "option_d": "is",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Little ____ that his assumptions would later undermine the entire study.",
+   "option_a": "did he realize",
+   "option_b": "he realized",
+   "option_c": "had he realized",
+   "option_d": "was he realizing",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Under no condition ____ staff members alter protocol without authorization.",
+   "option_a": "should",
+   "option_b": "must",
+   "option_c": "are to",
+   "option_d": "may",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only after reconciling all discrepancies ____ the system declared stable.",
+   "option_a": "has",
+   "option_b": "had",
+   "option_c": "was",
+   "option_d": "were",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Were the research climate less constrained, collaboration ____ easier.",
+   "option_a": "would be",
+   "option_b": "will be",
+   "option_c": "would have been",
+   "option_d": "is",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Not until the manuscript was fully revised ____ acceptance guaranteed.",
+   "option_a": "had",
+   "option_b": "was",
+   "option_c": "did they secure",
+   "option_d": "has",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Scarcely ____ the new criteria announced when the guidelines were updated again.",
+   "option_a": "were",
+   "option_b": "had",
+   "option_c": "was",
+   "option_d": "have been",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Rarely ____ a dataset demand such extensive cleaning.",
+   "option_a": "does",
+   "option_b": "has",
+   "option_c": "did",
+   "option_d": "is",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only when tested across multiple environments ____ the algorithm reliable.",
+   "option_a": "is",
+   "option_b": "was",
+   "option_c": "did it become",
+   "option_d": "has become",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had he adhered to the methodology, his conclusions ____ defensible.",
+   "option_a": "would be",
+   "option_b": "would have been",
+   "option_c": "may be",
+   "option_d": "was",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "No sooner ____ the platform launched than traffic overwhelmed the servers.",
+   "option_a": "was",
+   "option_b": "had",
+   "option_c": "has been",
+   "option_d": "were",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Were the assumptions less rigid, alternative interpretations ____ plausible.",
+   "option_a": "would be",
+   "option_b": "will be",
+   "option_c": "would have been",
+   "option_d": "are",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only by adjusting for confounders ____ a legitimate causal link inferred.",
+   "option_a": "is",
+   "option_b": "can",
+   "option_c": "could",
+   "option_d": "was",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Hardly ____ the proposal submitted when funding was reduced.",
+   "option_a": "had",
+   "option_b": "was",
+   "option_c": "has",
+   "option_d": "have",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Seldom ____ scholars revise their frameworks so drastically.",
+   "option_a": "do",
+   "option_b": "have",
+   "option_c": "had",
+   "option_d": "is",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Not until indirect variables were accounted for ____ the model statistically sound.",
+   "option_a": "did they deem",
+   "option_b": "was deemed",
+   "option_c": "had been deemed",
+   "option_d": "is deemed",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Were the trial extended, the long-term effects ____ clearer.",
+   "option_a": "would be",
+   "option_b": "will be",
+   "option_c": "would have been",
+   "option_d": "are",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only once the anomalies were categorized ____ further analysis possible.",
+   "option_a": "was",
+   "option_b": "is",
+   "option_c": "did they find",
+   "option_d": "had they found",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had the survey included marginalized groups, the findings ____ more representative.",
+   "option_a": "would be",
+   "option_b": "would have been",
+   "option_c": "could be",
+   "option_d": "was",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Under no circumstances ____ inaccurate data be reported as conclusive.",
+   "option_a": "shall",
+   "option_b": "should",
+   "option_c": "must",
+   "option_d": "may",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Rarely ____ such divergent theories reconciled in a single framework.",
+   "option_a": "are",
+   "option_b": "has",
+   "option_c": "is",
+   "option_d": "were",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only through continuous calibration ____ the model maintain accuracy.",
+   "option_a": "can",
+   "option_b": "does",
+   "option_c": "will",
+   "option_d": "could",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "No sooner ____ the revised draft circulated than new objections surfaced.",
+   "option_a": "was",
+   "option_b": "had",
+   "option_c": "has been",
+   "option_d": "is",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Were he to reconsider his methodology, the outcome ____ radically different.",
+   "option_a": "would be",
+   "option_b": "will be",
+   "option_c": "would have been",
+   "option_d": "is",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Scarcely ____ the constraints relaxed when further limitations emerged.",
+   "option_a": "had",
+   "option_b": "was",
+   "option_c": "have been",
+   "option_d": "has",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Not until alternative hypotheses were evaluated ____ genuine progress made.",
+   "option_a": "was",
+   "option_b": "had",
+   "option_c": "did they make",
+   "option_d": "were",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had the early indicators been stronger, the downturn ____ predictable.",
+   "option_a": "would be",
+   "option_b": "would have been",
+   "option_c": "might be",
+   "option_d": "was",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Seldom ____ experts agree on the reliability of preliminary data.",
+   "option_a": "do",
+   "option_b": "are",
+   "option_c": "have",
+   "option_d": "did",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only by employing deeper statistical modeling ____ latent variables detected.",
+   "option_a": "had",
+   "option_b": "could",
+   "option_c": "was",
+   "option_d": "have",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Were the funding to lapse, several long-term studies ____ jeopardized.",
+   "option_a": "will be",
+   "option_b": "would be",
+   "option_c": "would have been",
+   "option_d": "are",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Hardly ____ the framework validated when contradictory findings emerged.",
+   "option_a": "has",
+   "option_b": "had",
+   "option_c": "was",
+   "option_d": "have",
+   "correct_option": "b",
+   "level": "Advanced"
+ }, 
+ {
+   "question_text": "No sooner ____ the database migrated than integrity checks failed.",
+   "option_a": "was",
+   "option_b": "had",
+   "option_c": "has",
+   "option_d": "were",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only when the transparency protocols improved ____ public trust rise.",
+   "option_a": "did",
+   "option_b": "was",
+   "option_c": "has",
+   "option_d": "would",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Were new ethical guidelines adopted, research standards ____ significantly.",
+   "option_a": "will rise",
+   "option_b": "would rise",
+   "option_c": "would have risen",
+   "option_d": "rise",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Scarcely ____ the publication embargo lifted when excerpts leaked online.",
+   "option_a": "had",
+   "option_b": "was",
+   "option_c": "has",
+   "option_d": "have",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Not until the automated checks were bypassed ____ the breach detected.",
+   "option_a": "was",
+   "option_b": "did",
+   "option_c": "had",
+   "option_d": "is",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had the organization diversified sooner, market volatility ____ less damaging.",
+   "option_a": "would be",
+   "option_b": "would have been",
+   "option_c": "might be",
+   "option_d": "was",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Under no circumstances ____ internal drafts forwarded to external reviewers.",
+   "option_a": "are",
+   "option_b": "must",
+   "option_c": "should",
+   "option_d": "may",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only by integrating behavioral data ____ a comprehensive profile constructed.",
+   "option_a": "can",
+   "option_b": "will",
+   "option_c": "could have",
+   "option_d": "was",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Rarely ____ policy shifts occur so abruptly.",
+   "option_a": "do",
+   "option_b": "has",
+   "option_c": "is",
+   "option_d": "will",
+   "correct_option": "a",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Had the redundancy protocols worked, system downtime ____ avoided.",
+   "option_a": "would be",
+   "option_b": "would have been",
+   "option_c": "may be",
+   "option_d": "was",
+   "correct_option": "b",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "Only after triangulating all sources ____ the claims considered credible.",
+   "option_a": "were",
+   "option_b": "was",
+   "option_c": "did they find",
+   "option_d": "had been",
+   "correct_option": "c",
+   "level": "Advanced"
+ },
+ {
+   "question_text": "No sooner ____ the ethics committee approve the study than public criticism erupted.",
+   "option_a": "was",
+   "option_b": "had",
+   "option_c": "has",
+   "option_d": "were",
+   "correct_option": "b",
+   "level": "Advanced"
+ }
+]
