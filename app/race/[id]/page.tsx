@@ -1,36 +1,32 @@
 import questionsData from "@/data/race_questions.json";
 
-// 1. Doğru tip tanımı (JSON’daki gerçek alan isimlerine göre)
+// JSON’daki gerçek yapıyı tanımlıyoruz
 type RawQuestion = {
   question_text: string;
   option_a: string;
   option_b: string;
   option_c: string;
   option_d: string;
-  correct_option: string; // burada "a" | "b" | "c" | "d" gibi harf geliyor
+  correct_option: string;
 };
 
-// 2. Bizim component’te kullanmak istediğimiz temiz tip
+// Bizim kullanmak istediğimiz temiz yapı
 type Question = {
   question: string;
   options: string[];
-  answer: string; // doğru cevabın tam metni olacak (örneğin "Paris is the capital of France.")
+  answer: string;
 };
 
 export default function RacePage({ params }: { params: { id: string } }) {
-  // 3. Veriyi güzelce dönüştürüyoruz → artık TypeScript hiçbir şeye itiraz edemez
+  // BURASI ÇOK ÖNEMLİ → .map ile veriyi gerçekten dönüştürüyoruz!
   const allQuestions: Question[] = questionsData.map((q: RawQuestion) => ({
     question: q.question_text,
     options: [q.option_a, q.option_b, q.option_c, q.option_d],
-    // correct_option "a" ise → option_a’yı, "b" ise option_b’yi alıyor
     answer:
-      q.correct_option === "a"
-        ? q.option_a
-        : q.correct_option === "b"
-        ? q.option_b
-        : q.correct_option === "c"
-        ? q.option_c
-        : q.option_d,
+      q.correct_option === "a" ? q.option_a :
+      q.correct_option === "b" ? q.option_b :
+      q.correct_option === "c" ? q.option_c :
+      q.option_d
   }));
 
   const index = Number(params.id) - 1;
@@ -47,20 +43,20 @@ export default function RacePage({ params }: { params: { id: string } }) {
 
   return (
     <main className="p-8 max-w-3xl mx-auto">
-      <h1 className="text-3xl font-bold mb-8 text-center">
+      <h1 className="text-3xl font-bold mb-8 text-center text-blue-600">
         Advanced Grammar Race
       </h1>
 
-      <section className="border rounded-xl p-8 shadow-lg bg-white">
-        <p className="text-xl font-semibold mb-8">
+      <section className="bg-white border-rounded-xl p-8 shadow-xl">
+        <p className="text-xl font-semibold mb-8 leading-relaxed">
           {params.id}. {question.question}
         </p>
 
-        <div className="grid gap-4">
+        <div className="space-y-4">
           {question.options.map((option, i) => (
             <button
               key={i}
-              className="w-full p-4 text-left text-lg border-2 rounded-lg bg-gray-50 hover:bg-gray-100 transition font-medium"
+              className="w-full p-5 text-left text-lg border-2 rounded-xl bg-gray-50 hover:bg-blue-50 hover:border-blue-400 transition-all font-medium"
             >
               {String.fromCharCode(65 + i)}) {option}
             </button>
