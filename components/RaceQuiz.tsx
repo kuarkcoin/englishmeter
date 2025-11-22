@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@supabase/supabase-js';
 
-// Supabase Client Bağlantısı (Hata almamak için boş string kontrolü ekledik)
+// Supabase Client Bağlantısı
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseKey);
@@ -17,8 +17,7 @@ interface Question {
   option_c: string;
   option_d: string;
   correct_option: string;
-  // TypeScript'in şıklara dinamik erişimine izin ver
-  [key: string]: any;
+  [key: string]: any; // Güvenli dinamik erişim için
 }
 
 interface RaceQuizProps {
@@ -30,7 +29,6 @@ interface RaceQuizProps {
 export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps) {
   const router = useRouter();
   
-  // State Tanımları
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [timeLeft, setTimeLeft] = useState(totalTime);
@@ -39,7 +37,7 @@ export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps
   // Geri Sayım Sayacı
   useEffect(() => {
     if (timeLeft <= 0) {
-      handleFinish(); // Süre biterse otomatik bitir
+      handleFinish(); 
       return;
     }
     const timer = setInterval(() => {
@@ -57,7 +55,6 @@ export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps
   const handleFinish = async () => {
     setIsFinished(true);
     
-    // 1. Puanı Hesapla
     let score = 0;
     questions.forEach((q, index) => {
       if (answers[index] === q.correct_option) {
@@ -65,10 +62,8 @@ export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps
       }
     });
 
-    // 2. Geçen Süre
     const timeSpent = totalTime - timeLeft;
 
-    // 3. Kullanıcıdan İsim İste
     let nickname = '';
     if (typeof window !== 'undefined') {
       nickname = window.prompt(`🏁 TIME'S UP!\nScore: ${score}/50\nEnter your nickname for the Global Leaderboard:`) || '';
@@ -79,7 +74,6 @@ export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps
     }
 
     try {
-      // 4. Kaydet
       const { error } = await supabase
         .from('race_results')
         .insert({
@@ -91,7 +85,6 @@ export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps
 
       if (error) throw error;
 
-      // 5. Sonuç Sayfasına Git
       router.push(`/race/${raceId}/result?score=${score}&time=${timeSpent}&user=${encodeURIComponent(nickname)}`);
 
     } catch (err) {
