@@ -1,10 +1,11 @@
+// components/RaceQuiz.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@supabase/supabase-js';
 
-// Supabase Client Bağlantısı
+// Supabase Client - Component dışında tanımla
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseKey);
@@ -17,7 +18,6 @@ interface Question {
   option_c: string;
   option_d: string;
   correct_option: string;
-  [key: string]: any; // Güvenli dinamik erişim için
 }
 
 interface RaceQuizProps {
@@ -33,28 +33,42 @@ export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [timeLeft, setTimeLeft] = useState(totalTime);
   const [isFinished, setIsFinished] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Geri Sayım Sayacı
   useEffect(() => {
-    if (timeLeft <= 0) {
+    if (timeLeft <= 0 && !isFinished) {
       handleFinish(); 
       return;
     }
+    
     const timer = setInterval(() => {
-      setTimeLeft((prev) => prev - 1);
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          if (!isFinished) handleFinish();
+          return 0;
+        }
+        return prev - 1;
+      });
     }, 1000);
+    
     return () => clearInterval(timer);
-  }, [timeLeft]);
+  }, [timeLeft, isFinished]);
 
   // Şık Seçme
   const handleOptionSelect = (option: string) => {
-    setAnswers({ ...answers, [currentIndex]: option });
+    setAnswers(prev => ({ ...prev, [currentIndex]: option }));
   };
 
   // Sınavı Bitirme
   const handleFinish = async () => {
+    if (isSubmitting || isFinished) return;
+    
+    setIsSubmitting(true);
     setIsFinished(true);
     
+    // Skor hesapla
     let score = 0;
     questions.forEach((q, index) => {
       if (answers[index] === q.correct_option) {
@@ -64,9 +78,12 @@ export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps
 
     const timeSpent = totalTime - timeLeft;
 
+    // Kullanıcı adı al
     let nickname = '';
     if (typeof window !== 'undefined') {
-      nickname = window.prompt(`🏁 TIME'S UP!\nScore: ${score}/50\nEnter your nickname for the Global Leaderboard:`) || '';
+      nickname = window.prompt(
+        `🏁 ${timeLeft <= 0 ? "TIME'S UP!" : "EXAM FINISHED!"}\n\nScore: ${score}/50\nTime: ${Math.floor(timeSpent / 60)}m ${timeSpent % 60}s\n\nEnter your nickname for the Global Leaderboard:`
+      ) || '';
     }
     
     if (!nickname || nickname.trim() === "") {
@@ -74,22 +91,32 @@ export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps
     }
 
     try {
+      // Veritabanına kaydet
       const { error } = await supabase
         .from('race_results')
         .insert({
-          username: nickname,
+          username: nickname.trim(),
           race_id: parseInt(raceId),
           score: score,
           time_seconds: timeSpent
         });
 
-      if (error) throw error;
+      if (error) {
+        console.error('Supabase error:', error);
+        // Hata olsa bile sonuç sayfasına yönlendir
+      }
 
-      router.push(`/race/${raceId}/result?score=${score}&time=${timeSpent}&user=${encodeURIComponent(nickname)}`);
+      // Sonuç sayfasına yönlendir
+      router.push(
+        `/race/${raceId}/result?score=${score}&time=${timeSpent}&user=${encodeURIComponent(nickname.trim())}`
+      );
 
     } catch (err) {
       console.error('Error saving result:', err);
-      router.push(`/race/${raceId}/result?score=${score}&time=${timeSpent}&user=${encodeURIComponent(nickname)}`);
+      // Hata durumunda da sonuç sayfasına yönlendir
+      router.push(
+        `/race/${raceId}/result?score=${score}&time=${timeSpent}&user=${encodeURIComponent(nickname.trim())}`
+      );
     }
   };
 
@@ -99,10 +126,29 @@ export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps
     return `${m}:${s < 10 ? '0' : ''}${s}`;
   };
 
+  // Sorular yüklenmediyse
+  if (!questions || questions.length === 0) {
+    return (
+      <div className="bg-white rounded-3xl shadow-xl border border-gray-200 p-8 text-center">
+        <h2 className="text-xl font-bold text-red-600 mb-4">No Questions Available</h2>
+        <p className="text-gray-600">Please check the database connection.</p>
+      </div>
+    );
+  }
+
   const currentQuestion = questions[currentIndex];
   const progress = ((currentIndex + 1) / questions.length) * 100;
 
-  if (isFinished) return <div className="p-20 text-center text-xl font-bold text-blue-600 animate-pulse">Calculating Results... 🚀</div>;
+  if (isFinished) {
+    return (
+      <div className="bg-white rounded-3xl shadow-xl border border-gray-200 p-8 text-center">
+        <div className="text-xl font-bold text-blue-600 animate-pulse mb-4">
+          Calculating Results... 🚀
+        </div>
+        <p className="text-gray-600">Please wait while we save your score...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white rounded-3xl shadow-xl border border-gray-200 overflow-hidden">
@@ -117,35 +163,42 @@ export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps
 
       {/* İlerleme Çubuğu */}
       <div className="w-full bg-gray-200 h-2">
-        <div className="bg-blue-600 h-2 transition-all duration-300" style={{ width: `${progress}%` }}></div>
+        <div 
+          className="bg-blue-600 h-2 transition-all duration-300" 
+          style={{ width: `${progress}%` }}
+        ></div>
       </div>
 
       {/* Soru Alanı */}
-      <div className="p-6 md:p-10">
+      <div className="p-6 md:p-8">
         <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-8 leading-relaxed">
           {currentQuestion.question_text}
         </h2>
 
-        <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 gap-3">
           {['a', 'b', 'c', 'd'].map((opt) => (
             <button
               key={opt}
               onClick={() => handleOptionSelect(opt)}
+              disabled={isSubmitting}
               className={`
-                text-left p-5 rounded-xl border-2 transition-all duration-200 flex items-center gap-4 group
+                text-left p-4 rounded-xl border-2 transition-all duration-200 flex items-center gap-4
                 ${answers[currentIndex] === opt 
                   ? 'border-blue-600 bg-blue-50 shadow-md' 
                   : 'border-gray-200 hover:border-blue-300 hover:bg-gray-50'}
+                ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}
               `}
             >
               <div className={`
-                w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border
-                ${answers[currentIndex] === opt ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-gray-500 border-gray-300 group-hover:border-blue-400'}
+                w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border flex-shrink-0
+                ${answers[currentIndex] === opt 
+                  ? 'bg-blue-600 text-white border-blue-600' 
+                  : 'bg-white text-gray-500 border-gray-300'}
               `}>
                 {opt.toUpperCase()}
               </div>
-              <div className="text-lg font-medium text-gray-700">
-                {currentQuestion[`option_${opt}`]}
+              <div className="text-lg font-medium text-gray-700 text-left">
+                {currentQuestion[`option_${opt}` as keyof Question] as string}
               </div>
             </button>
           ))}
@@ -156,8 +209,8 @@ export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps
       <div className="p-6 border-t border-gray-100 flex justify-between items-center bg-gray-50">
         <button
           onClick={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
-          disabled={currentIndex === 0}
-          className="px-6 py-2 text-gray-600 font-bold hover:text-gray-900 disabled:opacity-30"
+          disabled={currentIndex === 0 || isSubmitting}
+          className="px-6 py-3 text-gray-600 font-bold hover:text-gray-900 disabled:opacity-30 rounded-lg transition"
         >
           ← Previous
         </button>
@@ -165,14 +218,16 @@ export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps
         {currentIndex === questions.length - 1 ? (
           <button
             onClick={handleFinish}
-            className="px-8 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-bold shadow-lg transform hover:scale-105 transition"
+            disabled={isSubmitting}
+            className="px-8 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-bold shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition"
           >
-            FINISH EXAM ✅
+            {isSubmitting ? 'Submitting...' : 'FINISH EXAM ✅'}
           </button>
         ) : (
           <button
             onClick={() => setCurrentIndex(prev => prev + 1)}
-            className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold shadow-lg hover:translate-x-1 transition"
+            disabled={isSubmitting}
+            className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition"
           >
             Next Question →
           </button>
