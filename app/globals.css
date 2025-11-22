@@ -1,5 +1,5 @@
 @tailwind base;
-@tailwind components;
+@tailwind components; 
 @tailwind utilities;
 :root { --container: 960px; }
 body { @apply bg-slate-50 text-slate-900; }
