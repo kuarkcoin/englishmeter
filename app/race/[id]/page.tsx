@@ -5,21 +5,30 @@ import questionsData from '@/data/race-questions.json';
 export const dynamic = 'force-dynamic';
 
 export default function RacePage({ params }: { params: { id: string } }) {
-  // JSON yapısını RaceQuiz component'inin beklediği formata dönüştür
-  const transformedQuestions = questionsData.map(q => ({
-    id: q.id,
-    question: q.question_text,
-    options: [q.option_a, q.option_b, q.option_c, q.option_d],
-    answer: q.correct_option
-  }));
+  // JSON'daki soruları doğrudan kullan - RaceQuiz zaten doğru formatı bekliyor
+  const allQuestions = questionsData;
 
-  const shuffled = [...transformedQuestions];
+  // Soruları karıştır ve ilk 50'yi al
+  const shuffled = [...allQuestions];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
 
   const examQuestions = shuffled.slice(0, 50);
+
+  // Hata kontrolü
+  if (!examQuestions || examQuestions.length === 0) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center p-4 text-center bg-gray-50">
+        <h1 className="text-3xl font-bold text-red-500 mb-4">Questions Not Found</h1>
+        <p className="text-gray-600 text-lg mb-2">No questions available for this race.</p>
+        <p className="text-sm text-gray-400">
+          Please check the questions data file.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-50 py-8 md:py-12">
