@@ -5,7 +5,7 @@ import { createClient } from '@supabase/supabase-js';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
-// BU SATIR ÇOK ÖNEMLİ: Vercel'in hata vermesini engeller
+// Vercel Build Hatasını Önler (Statik oluşturmaya çalışmaz)
 export const dynamic = 'force-dynamic';
 
 // Supabase Client
