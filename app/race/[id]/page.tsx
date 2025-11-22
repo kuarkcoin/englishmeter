@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import RaceQuiz from '@/components/RaceQuiz';
 
+// Sayfanın her seferinde sunucuda yeniden oluşturulmasını sağlar
 export const dynamic = 'force-dynamic';
 
 export default async function RacePage({ params }: { params: { id: string } }) {
