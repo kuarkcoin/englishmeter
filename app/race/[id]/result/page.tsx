@@ -1,5 +1,4 @@
 'use client';
-// VERCEL_CACHE_BYPASS_2025_NOV22_FORCE_REBUILD
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
