@@ -351,7 +351,7 @@
     "level": "Advanced"
   },
   {
-    "question1_text": "At no stage ____ the correlation statistically significant.",
+    "question_text": "At no stage ____ the correlation statistically significant.",
     "option_a": "was",
     "option_b": "has been",
     "option_c": "is",
