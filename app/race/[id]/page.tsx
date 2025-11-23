@@ -48,12 +48,14 @@ export default function RaceExamPage() {
 
   // --- 1. START EXAM ---
   const startExam = () => {
-    // Format questions
+    // Format questions with Answer Normalization (Fix for 0 score issue)
     const formattedQuestions: Question[] = questionsData.map((q: any) => ({
       id: q.id,
       question: q.question_text,
       options: [q.option_a, q.option_b, q.option_c, q.option_d],
-      answer: q.correct_option.trim()
+      // FIX: Convert to String, remove spaces, make Uppercase ("a" -> "A", "A " -> "A")
+      // BU SATIR ÇOK ÖNEMLİ! PUANIN DOĞRU HESAPLANMASINI SAĞLAR:
+      answer: String(q.correct_option).trim().toUpperCase()
     }));
 
     // Random 50 questions
@@ -92,8 +94,12 @@ export default function RaceExamPage() {
   // --- 3. HANDLE ANSWER ---
   const handleAnswer = (selectedOption: string) => {
     const currentQ = examQuestions[currentQIndex];
+    // selectedOption is always "A", "B", "C" or "D" (Uppercase)
     const isCorrect = selectedOption === currentQ.answer;
     
+    // Debug log to check if answers match (visible in browser console F12)
+    // console.log(`Selected: ${selectedOption}, Correct: ${currentQ.answer}, Match: ${isCorrect}`);
+
     if (isCorrect) {
       setScore((prev) => prev + 1);
     }
