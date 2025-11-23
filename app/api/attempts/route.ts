@@ -6,10 +6,10 @@ export async function POST(request: Request) {
   
   try {
     const body = await request.json();
-    console.log("Test sonucu (Mock):", body); // Gelen veriyi konsola yazar
+    console.log("İletişim Formu (Mock):", body); 
   } catch (error) {
-    // Body okuma hatası olursa görmezden gel
+    // Hata olursa yutuyoruz
   }
 
-  return NextResponse.json({ success: true, message: "Kaydedildi (Mock Modu)" });
+  return NextResponse.json({ success: true, message: "Mesajınız alındı (Mock Modu)" });
 }

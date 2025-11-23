@@ -1,28 +1,15 @@
-// app/api/contact/route.ts
-import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma' 
+import { NextResponse } from 'next/server';
 
-export async function POST(req: NextRequest) {
+export async function POST(request: Request) {
+  // Veritabanı (Prisma) kaldırıldığı için bu kod devre dışı bırakıldı.
+  // Frontend hata almasın diye "Başarılı" cevabı dönüyoruz.
+  
   try {
-    const { name, email, message } = await req.json();
-
-    if (!name || !email || !message) {
-      return NextResponse.json({ error: 'All fields are required.' }, { status: 400 });
-    }
-
-    await prisma.contactMessage.create({
-      data: {
-        name: name,
-        email: email,
-        message: message,
-      },
-    });
-
-    return NextResponse.json({ success: true, message: 'Message sent successfully!' });
-
+    const body = await request.json();
+    console.log("İletişim Formu (Mock):", body); 
   } catch (error) {
-    console.error('Error saving contact message:', error);
-    // HATA DÜZELTİLDİ: "status 500" yerine "status: 500"
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    // Hata olursa yutuyoruz
   }
+
+  return NextResponse.json({ success: true, message: "Mesajınız alındı (Mock Modu)" });
 }
