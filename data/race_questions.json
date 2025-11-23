@@ -380,7 +380,7 @@
   {
     "question_text": "Only by triangulating independent sources ____ objectivity established.",
     "option_a": "can be",
-    "option_b": no",
+    "option_b": "was",
     "option_c": "is",
     "option_d": "could be",
     "correct_option": "b",
@@ -1034,12 +1034,12 @@
     "correct_option": "b",
     "level": "Advanced"
   },
-  {
+ {
     "question_text": "Little ____ that his assumptions would later undermine the entire study.",
     "option_a": "did he realize",
     "option_b": "he realized",
     "option_c": "had he realized",
-    "option_d": ", "was he realizing",
+    "option_d": "was he realizing",
     "correct_option": "a",
     "level": "Advanced"
   },
