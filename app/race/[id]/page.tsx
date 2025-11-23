@@ -1,83 +1,98 @@
-// app/race/[id]/page.tsx
-import questionsData from "../../../data/race_questions.json";
+"use client"; // Bu satır etkileşim (tıklama) için şart!
+
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import questionsData from "@/data/race_questions.json";
+
+type Question = {
+  question: string;
+  options: string[];
+  answer: string;
+};
 
 export default function RacePage({ params }: { params: { id: string } }) {
-  const [selected, setSelected] = useState<string | null>(null);
-  const [showResult, setShowResult] = useState(false);
+  const router = useRouter();
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 
-  const allQuestions = questionsData.map((q: any) => ({
+  // Veriyi dönüştür
+  const allQuestions: Question[] = questionsData.map((q: any) => ({
     question: q.question_text,
     options: [q.option_a, q.option_b, q.option_c, q.option_d],
-    correct: q.correct_option, // "a" | "b" | "c" | "d"
+    answer: q.correct_option
   }));
 
   const currentId = Number(params.id);
-  const question = allQuestions[currentId - 1];
+  const index = currentId - 1;
+  const question = allQuestions[index];
 
   if (!question) {
-    return <div className="p-20 text-center text-3xl">Soru bulunamadı!</div>;
+    return (
+      <main className="p-8 text-center">
+        <h1 className="text-2xl font-bold mb-2">Yarış Bitti!</h1>
+        <button 
+          onClick={() => router.push("/")}
+          className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+        >
+          Ana Sayfaya Dön
+        </button>
+      </main>
+    );
   }
 
-  const handleAnswer = (opt: string) => {
-    setSelected(opt);
-    setShowResult(true);
+  const handleOptionClick = (option: string) => {
+    if (selectedOption) return; // Zaten tıklandıysa tekrar tıklatmayalım
+
+    setSelectedOption(option);
+    
+    // Doğru cevap kontrolü (Sondaki boşlukları temizleyerek kontrol et)
+    const correct = option.trim() === question.answer.trim();
+    setIsCorrect(correct);
+
+    // 1 saniye sonra diğer soruya geç
+    setTimeout(() => {
+      router.push(`/race/${currentId + 1}`);
+      setSelectedOption(null);
+      setIsCorrect(null);
+    }, 1000);
   };
 
-  const isCorrect = selected === question.correct;
+  // Buton rengini belirleyen fonksiyon
+  const getButtonColor = (option: string) => {
+    if (selectedOption === option) {
+      return isCorrect 
+        ? "bg-green-500 text-white border-green-600" // Doğruysa Yeşil
+        : "bg-red-500 text-white border-red-600";    // Yanlışsa Kırmızı
+    }
+    return "bg-gray-100 hover:bg-gray-200 border-gray-300"; // Normal hali
+  };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-5xl font-bold text-center mb-10 text-indigo-800">
-          Advanced Grammar Race
-        </h1>
+    <main className="p-8 max-w-3xl mx-auto mt-10">
+      <h1 className="text-3xl font-bold mb-8 text-center text-blue-600">Advanced Grammar Race</h1>
 
-        <div className="bg-white rounded-3xl shadow-2xl p-10">
-          <div className="text-2xl font-semibold mb-8 text-gray-800">
-            {currentId}. {question.question}
-          </div>
+      <div className="bg-white border rounded-xl p-8 shadow-lg">
+        <h2 className="text-xl font-semibold mb-6">
+          {params.id}. {question.question}
+        </h2>
 
-          <div className="space-y-5">
-            {question.options.map((opt: string, i: number) => {
-              const letter = ["a", "b", "c", "d"][i];
-              return (
-                <button
-                  key={i}
-                  onClick={() => !showResult && handleAnswer(letter)}
-                  disabled={showResult}
-                  className={`w-full p-6 text-left text-xl rounded-2xl border-4 transition-all
-                    ${showResult && letter === question.correct
-                      ? "bg-green-500 text-white border-green-700"
-                      : showResult && selected === letter
-                      ? "bg-red-500 text-white border-red-700"
-                      : "bg-gray-50 hover:bg-indigo-100 border-gray-300 hover:border-indigo-500"
-                    } ${showResult ? "cursor-not-allowed" : "cursor-pointer"}`}
-                >
-                  <span className="font-bold">{String.fromCharCode(65 + i)})</span> {opt}
-                </button>
-              );
-            })}
-          </div>
-
-          {showResult && (
-            <div className="mt-10 text-center">
-              <p className={`text-3xl font-bold mb-6 ${isCorrect ? "text-green-600" : "text-red-600"}`}>
-                {isCorrect ? "DOĞRU! 👏" : `YANLIŞ! Doğru cevap: ${question.correct.toUpperCase()}`}
-              </p>
-              <a
-                href={`/race/${currentId + 1}`}
-                className="inline-block px-10 py-5 bg-indigo-600 text-white text-xl font-bold rounded-full hover:bg-indigo-700 transition"
-              >
-                {currentId === 150 ? "Bitirdin! Tebrikler!" : "Sonraki Soru →"}
-              </a>
-            </div>
-          )}
+        <div className="space-y-4">
+          {question.options.map((option, i) => (
+            <button
+              key={i}
+              onClick={() => handleOptionClick(option)}
+              disabled={!!selectedOption} // Seçim yapıldıysa butonları kilitle
+              className={`w-full p-4 text-left text-lg font-medium border rounded-lg transition-all duration-200 ${getButtonColor(option)}`}
+            >
+              <span className="font-bold mr-2">{String.fromCharCode(65 + i)})</span> 
+              {option}
+            </button>
+          ))}
         </div>
-
-        <div className="text-center mt-8 text-gray-600">
-          Soru {currentId} / 150
-        </div>
+      </div>
+      
+      <div className="mt-4 text-center text-gray-500 text-sm">
+        Soru {currentId} / {allQuestions.length}
       </div>
     </main>
   );
