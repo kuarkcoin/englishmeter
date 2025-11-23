@@ -1,4 +1,4 @@
-import questionsData from "@/data/race_questions.json";
+import questionsData from "../../../data/race_questions.json";
 
 export default function RacePage({ params }: { params: { id: string } }) {
   // VERİYİ DÖNÜŞTÜRÜYORUZ → BURADA "as" YOK!
