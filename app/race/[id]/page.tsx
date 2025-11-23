@@ -1,49 +1,84 @@
+// app/race/[id]/page.tsx
 import questionsData from "../../../data/race_questions.json";
+import { useState } from "react";
 
 export default function RacePage({ params }: { params: { id: string } }) {
-  // VERİYİ DÖNÜŞTÜRÜYORUZ → BURADA "as" YOK!
+  const [selected, setSelected] = useState<string | null>(null);
+  const [showResult, setShowResult] = useState(false);
+
   const allQuestions = questionsData.map((q: any) => ({
     question: q.question_text,
     options: [q.option_a, q.option_b, q.option_c, q.option_d],
-    answer: q.correct_option === "a" ? q.option_a 
-           : q.correct_option === "b" ? q.option_b
-           : q.correct_option === "c" ? q.option_c : q.option_d
+    correct: q.correct_option, // "a" | "b" | "c" | "d"
   }));
 
-  const index = Number(params.id) - 1;
-  const question = allQuestions[index];
+  const currentId = Number(params.id);
+  const question = allQuestions[currentId - 1];
 
   if (!question) {
-    return (
-      <main className="p-8 text-center">
-        <h1 className="text-2xl font-bold mb-2">Soru Bulunamadı</h1>
-        <p>ID: {params.id} için soru yok.</p>
-      </main>
-    );
+    return <div className="p-20 text-center text-3xl">Soru bulunamadı!</div>;
   }
 
+  const handleAnswer = (opt: string) => {
+    setSelected(opt);
+    setShowResult(true);
+  };
+
+  const isCorrect = selected === question.correct;
+
   return (
-    <main className="p-8 max-w-3xl mx-auto">
-      <h1 className="text-3xl font-bold mb-8 text-center text-blue-600">
-        Advanced Grammar Race
-      </h1>
+    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-8">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-5xl font-bold text-center mb-10 text-indigo-800">
+          Advanced Grammar Race
+        </h1>
 
-      <section className="bg-white rounded-xl p-8 shadow-xl border">
-        <p className="text-xl font-semibold mb-8">
-          {params.id}. {question.question}
-        </p>
+        <div className="bg-white rounded-3xl shadow-2xl p-10">
+          <div className="text-2xl font-semibold mb-8 text-gray-800">
+            {currentId}. {question.question}
+          </div>
 
-        <div className="space-y-4">
-          {question.options.map((option: string, i: number) => (
-            <button
-              key={i}
-              className="w-full p-5 text-left text-lg border-2 rounded-xl bg-gray-50 hover:bg-blue-50 transition-all font-medium"
-            >
-              {String.fromCharCode(65 + i)}) {option}
-            </button>
-          ))}
+          <div className="space-y-5">
+            {question.options.map((opt: string, i: number) => {
+              const letter = ["a", "b", "c", "d"][i];
+              return (
+                <button
+                  key={i}
+                  onClick={() => !showResult && handleAnswer(letter)}
+                  disabled={showResult}
+                  className={`w-full p-6 text-left text-xl rounded-2xl border-4 transition-all
+                    ${showResult && letter === question.correct
+                      ? "bg-green-500 text-white border-green-700"
+                      : showResult && selected === letter
+                      ? "bg-red-500 text-white border-red-700"
+                      : "bg-gray-50 hover:bg-indigo-100 border-gray-300 hover:border-indigo-500"
+                    } ${showResult ? "cursor-not-allowed" : "cursor-pointer"}`}
+                >
+                  <span className="font-bold">{String.fromCharCode(65 + i)})</span> {opt}
+                </button>
+              );
+            })}
+          </div>
+
+          {showResult && (
+            <div className="mt-10 text-center">
+              <p className={`text-3xl font-bold mb-6 ${isCorrect ? "text-green-600" : "text-red-600"}`}>
+                {isCorrect ? "DOĞRU! 👏" : `YANLIŞ! Doğru cevap: ${question.correct.toUpperCase()}`}
+              </p>
+              <a
+                href={`/race/${currentId + 1}`}
+                className="inline-block px-10 py-5 bg-indigo-600 text-white text-xl font-bold rounded-full hover:bg-indigo-700 transition"
+              >
+                {currentId === 150 ? "Bitirdin! Tebrikler!" : "Sonraki Soru →"}
+              </a>
+            </div>
+          )}
         </div>
-      </section>
+
+        <div className="text-center mt-8 text-gray-600">
+          Soru {currentId} / 150
+        </div>
+      </div>
     </main>
   );
 }
