@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-// --- RACE SELECTOR BİLEŞENİ (Dokunulmaz, harika çalışıyor) ---
+// --- RACE SELECTOR COMPONENT (Database'siz çalışır) ---
 function RaceSelector() {
   const races = [
     { id: 1, title: 'RACE #1', color: 'from-red-500 to-pink-600' },
@@ -46,8 +46,7 @@ function RaceSelector() {
   );
 }
 
-// GEÇİCİ OLARAK PRISMA KAPATILDI → DATABASE_URL HATASI YOK!
-// Daha sonra tekrar açabilirsin, şimdilik deploy’u kurtarıyoruz
+// --- DİĞER TESTLER (Statik Veri) ---
 const quickTest = { title: "Quick Placement Test", slug: "quick-placement" };
 const megaTest = { title: "Grammar Mega Test (100Q)", slug: "grammar-mega-test-100" };
 const vocabTest = { title: "Vocabulary B1-C1 (50Q)", slug: "vocab-b1-c1-50" };
@@ -68,10 +67,10 @@ const levelTests = [
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* RACE BUTONLARI (Çalışıyor!) */}
+      {/* RACE BUTONLARI */}
       <RaceSelector />
 
-      {/* ESKİ İÇERİKLER (Şimdilik statik, hata vermez) */}
+      {/* DİĞER İÇERİKLER */}
       <div className="flex flex-col items-center justify-center py-8 px-4">
         <div className="w-full max-w-6xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-extrabold text-blue-600 mb-4">

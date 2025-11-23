@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useParams, useRouter } from "next/navigation"; // EKLENDİ: ID ve Yönlendirme için
-import Link from "next/link"; // EKLENDİ: Menüye dönüş için
+import { useParams, useRouter } from "next/navigation";
+import Link from "next/link";
 import questionsData from "@/data/race_questions.json";
 
-// --- TİPLER ---
+// --- TYPES ---
 type Question = {
   id: number;
   question: string;
@@ -20,21 +20,20 @@ type LeaderboardUser = {
   isRealUser: boolean;
 };
 
-// --- SANAL RAKİP İSİMLERİ ---
+// --- GLOBAL FAKE NAMES (No Turkish Characters) ---
 const FAKE_NAMES = [
-  "Zeynep A.", "Burak O.", "Mert H.", "Pelin Su", "Kemal R.", 
-  "Rick G.", "Morty S.", "Seda F.", "Barış M.", "Cemre K.", 
-  "Derya T.", "Caner E.", "Elif S.", "David B.", "Sarah C.",
-  "Oğuzhan K.", "Ayşe Y.", "Fatma N.", "Mustafa C.", "Hasan A."
+  "Jessica M.", "David B.", "Sarah K.", "Michael R.", "Emma W.", 
+  "Daniel P.", "Olivia S.", "James L.", "Sophia C.", "William H.", 
+  "Isabella F.", "Lucas G.", "Mia T.", "Benjamin D.", "Charlotte N.",
+  "Henry A.", "Amelia V.", "Alexander J.", "Harper E.", "Sebastian O."
 ];
 
 export default function RaceExamPage() {
   // --- HOOKS ---
-  const params = useParams(); // URL'den ID'yi çek (race/1 -> id:1)
-  const router = useRouter();
-  const raceId = params?.id || "1"; // ID yoksa 1 varsay
+  const params = useParams();
+  const raceId = params?.id || "1";
 
-  // --- STATE'LER ---
+  // --- STATES ---
   const [gameState, setGameState] = useState<"WELCOME" | "QUIZ" | "NAME_INPUT" | "RESULT">("WELCOME");
   const [userName, setUserName] = useState("");
   const [examQuestions, setExamQuestions] = useState<Question[]>([]);
@@ -42,14 +41,14 @@ export default function RaceExamPage() {
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(50 * 60);
   
-  // Tablo state'leri
+  // Leaderboard States
   const [topLeaderboard, setTopLeaderboard] = useState<LeaderboardUser[]>([]);
   const [userResult, setUserResult] = useState<LeaderboardUser | null>(null);
   const [totalParticipants, setTotalParticipants] = useState(3542);
 
-  // --- 1. SINAVI BAŞLAT ---
+  // --- 1. START EXAM ---
   const startExam = () => {
-    // Soruları formatla
+    // Format questions
     const formattedQuestions: Question[] = questionsData.map((q: any) => ({
       id: q.id,
       question: q.question_text,
@@ -57,7 +56,7 @@ export default function RaceExamPage() {
       answer: q.correct_option.trim()
     }));
 
-    // Rastgele 50 soru seç (Her race için farklı kombinasyon gibi hissettirir)
+    // Random 50 questions
     let selectedQuestions = [];
     if (formattedQuestions.length <= 50) {
       selectedQuestions = formattedQuestions; 
@@ -70,10 +69,10 @@ export default function RaceExamPage() {
     setCurrentQIndex(0);
     setUserName("");
     setGameState("QUIZ");
-    setTimeLeft(50 * 60); // Süreyi sıfırla
+    setTimeLeft(50 * 60);
   };
 
-  // --- 2. SAYAÇ ---
+  // --- 2. TIMER ---
   useEffect(() => {
     let timer: NodeJS.Timeout;
     if (gameState === "QUIZ" && timeLeft > 0) {
@@ -90,7 +89,7 @@ export default function RaceExamPage() {
     return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
   };
 
-  // --- 3. CEVAPLAMA ---
+  // --- 3. HANDLE ANSWER ---
   const handleAnswer = (selectedOption: string) => {
     const currentQ = examQuestions[currentQIndex];
     const isCorrect = selectedOption === currentQ.answer;
@@ -106,25 +105,25 @@ export default function RaceExamPage() {
     }
   };
 
-  // --- 4. SONUÇ HESAPLAMA ---
+  // --- 4. CALCULATE RESULT ---
   const submitNameAndShowResult = () => {
     if (!userName.trim()) {
-      alert("Lütfen bir isim giriniz.");
+      alert("Please enter a name.");
       return;
     }
 
-    // A) Sanal Tablo Oluştur
+    // A) Create Fake Leaderboard
     const topList: LeaderboardUser[] = [];
     
-    // Şampiyonlar
-    topList.push({ name: "Ahmet K. (Şampiyon)", score: 49, rank: 1, isRealUser: false });
-    topList.push({ name: "Selin Y.", score: 48, rank: 2, isRealUser: false });
-    topList.push({ name: "Mehmet T.", score: 47, rank: 3, isRealUser: false });
+    // Champions (Fixed Global Names)
+    topList.push({ name: "Alex K. (Champion)", score: 49, rank: 1, isRealUser: false });
+    topList.push({ name: "Sarah L.", score: 48, rank: 2, isRealUser: false });
+    topList.push({ name: "Mike T.", score: 47, rank: 3, isRealUser: false });
 
-    // Rastgele botlar
+    // Random Bots
     for (let i = 0; i < 17; i++) {
       topList.push({
-        name: FAKE_NAMES[i] || `Yarışmacı ${i}`,
+        name: FAKE_NAMES[i] || `Racer ${i}`,
         score: Math.floor(Math.random() * 7) + 40,
         rank: 0,
         isRealUser: false
@@ -134,7 +133,7 @@ export default function RaceExamPage() {
     topList.sort((a, b) => b.score - a.score);
     topList.forEach((u, i) => u.rank = i + 1);
 
-    // B) Kullanıcıyı Yerleştir
+    // B) Place User
     let calculatedRank = 0;
 
     if (score >= 40) {
@@ -170,9 +169,9 @@ export default function RaceExamPage() {
     setGameState("RESULT");
   };
 
-  // ================= EKRANLAR =================
+  // ================= SCREENS =================
 
-  // 1. HOŞGELDİN EKRANI
+  // 1. WELCOME SCREEN
   if (gameState === "WELCOME") {
     return (
       <main className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
@@ -183,18 +182,18 @@ export default function RaceExamPage() {
           <h1 className="text-5xl font-black text-blue-600 mb-4">English Race</h1>
           <div className="text-6xl mb-6">🏁</div>
           <p className="text-gray-600 mb-8 text-lg">
-            50 Soru • 50 Dakika<br/>
-            <span className="text-sm font-bold text-green-600">Şu an {totalParticipants} kişi yarışıyor...</span>
+            50 Questions • 50 Minutes<br/>
+            <span className="text-sm font-bold text-green-600">Currently {totalParticipants} people racing...</span>
           </p>
           <div className="flex flex-col gap-3">
             <button 
                 onClick={startExam}
                 className="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-2xl hover:bg-blue-700 transition shadow-lg transform hover:scale-105 active:scale-95"
             >
-                YARIŞA BAŞLA
+                START RACE
             </button>
             <Link href="/race" className="text-gray-400 hover:text-gray-600 text-sm font-medium mt-2">
-                ← Başka Bir Yarış Seç
+                ← Select Another Race
             </Link>
           </div>
         </div>
@@ -202,21 +201,21 @@ export default function RaceExamPage() {
     );
   }
 
-  // 2. İSİM GİRME EKRANI
+  // 2. NAME INPUT SCREEN
   if (gameState === "NAME_INPUT") {
     return (
       <main className="min-h-screen flex items-center justify-center bg-blue-50 p-4">
         <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full text-center animate-fade-in">
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">Sınav Bitti! 👏</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-2">Race Finished! 👏</h2>
           <div className="bg-blue-100 p-4 rounded-xl mb-6 mt-4">
-            <span className="block text-sm text-blue-600 font-bold uppercase">Doğru Sayın</span>
+            <span className="block text-sm text-blue-600 font-bold uppercase">Your Score</span>
             <span className="text-5xl font-black text-blue-700">{score} / 50</span>
           </div>
-          <p className="text-left text-sm font-bold text-gray-700 mb-2 ml-1">Sıralamayı görmek için isim gir:</p>
+          <p className="text-left text-sm font-bold text-gray-700 mb-2 ml-1">Enter name to see global ranking:</p>
           <input
             type="text"
             autoFocus
-            placeholder="Adınız Soyadınız..."
+            placeholder="Your Name..."
             className="w-full p-4 border-2 border-gray-300 rounded-xl mb-4 text-lg outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
@@ -226,26 +225,26 @@ export default function RaceExamPage() {
             onClick={submitNameAndShowResult}
             className="w-full bg-green-600 text-white py-4 rounded-xl font-bold text-xl hover:bg-green-700 transition shadow-lg"
           >
-            SONUCU GÖSTER 🏆
+            SHOW RANKING 🏆
           </button>
         </div>
       </main>
     );
   }
 
-  // 3. SONUÇ TABLOSU
+  // 3. RESULT TABLE SCREEN
   if (gameState === "RESULT") {
     return (
       <main className="min-h-screen bg-gray-50 p-4 md:p-8">
         <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
           <div className="bg-blue-600 p-8 text-white text-center relative">
             <span className="absolute top-4 left-4 bg-blue-800 text-xs px-2 py-1 rounded">RACE #{raceId}</span>
-            <h2 className="text-3xl font-bold mb-2">Türkiye Geneli Sıralama</h2>
-            <p className="opacity-90">Katılımcı Sayısı: {totalParticipants}</p>
+            <h2 className="text-3xl font-bold mb-2">Global Ranking</h2>
+            <p className="opacity-90">Total Participants: {totalParticipants}</p>
           </div>
 
           <div className="p-6">            
-            {/* TABLO */}
+            {/* LEADERBOARD LIST */}
             <div className="space-y-2 mb-6">
               {topLeaderboard.map((user, i) => (
                 <div 
@@ -265,29 +264,29 @@ export default function RaceExamPage() {
                       {user.rank}
                     </span>
                     <span className={`font-bold ${user.isRealUser ? "text-black" : "text-gray-600"}`}>
-                      {user.name} {user.isRealUser && "(Sen)"}
+                      {user.name} {user.isRealUser && "(You)"}
                     </span>
                   </div>
-                  <div className="font-bold text-blue-600">{user.score} D</div>
+                  <div className="font-bold text-blue-600">{user.score} P</div>
                 </div>
               ))}
             </div>
 
-            {/* KULLANICI LİSTE DIŞINDAYSA */}
+            {/* USER IF NOT IN TOP 20 */}
             {userResult && (
               <div className="mb-8">
-                 <div className="py-2 text-center text-xs text-gray-400">...</div>
+                 <div className="py-2 text-center text-xs text-gray-400">... {userResult.rank - 21} racers hidden ...</div>
                  <div className="flex items-center justify-between p-4 rounded-xl border-2 border-blue-500 bg-blue-50 shadow-lg transform scale-105">
                   <div className="flex items-center gap-4">
                     <span className="w-12 h-12 flex items-center justify-center rounded-full bg-blue-600 text-white font-bold text-lg shadow-md">
                       {userResult.rank}
                     </span>
                     <div className="flex flex-col">
-                      <span className="font-bold text-black text-lg">{userResult.name} (Sen)</span>
-                      <span className="text-xs text-blue-600 font-semibold">Sıralaman</span>
+                      <span className="font-bold text-black text-lg">{userResult.name} (You)</span>
+                      <span className="text-xs text-blue-600 font-semibold">Your Rank</span>
                     </div>
                   </div>
-                  <div className="text-2xl font-black text-blue-700">{userResult.score} D</div>
+                  <div className="text-2xl font-black text-blue-700">{userResult.score} P</div>
                 </div>
               </div>
             )}
@@ -297,14 +296,14 @@ export default function RaceExamPage() {
                 onClick={() => window.location.reload()}
                 className="w-full bg-gray-800 text-white py-4 rounded-xl font-bold hover:bg-gray-900 transition flex items-center justify-center gap-2"
                 >
-                🔄 Aynı Yarışı Tekrarla
+                🔄 Retry Race
                 </button>
                 
                 <Link 
                 href="/race"
                 className="w-full bg-blue-100 text-blue-700 py-4 rounded-xl font-bold hover:bg-blue-200 transition flex items-center justify-center gap-2"
                 >
-                ⬅️ Yarış Menüsü
+                ⬅️ Race Menu
                 </Link>
             </div>
           </div>
@@ -313,9 +312,9 @@ export default function RaceExamPage() {
     );
   }
 
-  // 4. QUIZ EKRANI
+  // 4. QUIZ SCREEN
   const currentQ = examQuestions[currentQIndex];
-  if(!currentQ) return <div className="min-h-screen flex items-center justify-center">Yükleniyor...</div>;
+  if(!currentQ) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
 
   return (
     <main className="min-h-screen bg-gray-50 flex flex-col items-center p-4">
@@ -327,7 +326,7 @@ export default function RaceExamPage() {
             </span>
         </div>
         <div className="text-right">
-          <span className="text-xs text-gray-400 font-bold uppercase tracking-wider">Soru</span>
+          <span className="text-xs text-gray-400 font-bold uppercase tracking-wider">Question</span>
           <div className="text-xl font-bold text-blue-600">
             {currentQIndex + 1} <span className="text-gray-300 text-base">/ 50</span>
           </div>
@@ -363,4 +362,4 @@ export default function RaceExamPage() {
       </div>
     </main>
   );
-                  }
+}
