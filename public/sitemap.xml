@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://englishmeter.net</loc>
@@ -6,25 +7,28 @@
     <priority>1.0</priority>
   </url>
 
-  <url><loc>https://englishmeter.net/race/1</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://englishmeter.net/race/2</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://englishmeter.net/race/3</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://englishmeter.net/race/4</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://englishmeter.net/race/5</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <!-- Race Pages -->
+  <url><loc>https://englishmeter.net/race/1</loc><lastmod>2025-11-24</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://englishmeter.net/race/2</loc><lastmod>2025-11-24</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://englishmeter.net/race/3</loc><lastmod>2025-11-24</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://englishmeter.net/race/4</loc><lastmod>2025-11-24</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://englishmeter.net/race/5</loc><lastmod>2025-11-24</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 
-  <url><loc>https://englishmeter.net/levels/A1</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://englishmeter.net/levels/A2</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://englishmeter.net/levels/B1</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://englishmeter.net/levels/B2</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://englishmeter.net/levels/C1</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://englishmeter.net/levels/C2</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <!-- Level Pages -->
+  <url><loc>https://englishmeter.net/levels/A1</loc><lastmod>2025-11-24</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://englishmeter.net/levels/A2</loc><lastmod>2025-11-24</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://englishmeter.net/levels/B1</loc><lastmod>2025-11-24</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://englishmeter.net/levels/B2</loc><lastmod>2025-11-24</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://englishmeter.net/levels/C1</loc><lastmod>2025-11-24</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://englishmeter.net/levels/C2</loc><lastmod>2025-11-24</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 
-  <url><loc>https://englishmeter.net/start?testSlug=quick-placement</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://englishmeter.net/start?testSlug=grammar-mega-test-100</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://englishmeter.net/start?testSlug=vocab-b1-c1-50</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://englishmeter.net/start?testSlug=test-perfect-past</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://englishmeter.net/start?testSlug=test-conditionals</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://englishmeter.net/start?testSlug=test-relatives</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://englishmeter.net/start?testSlug=test-articles</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://englishmeter.net/start?testSlug=test-tenses-mixed</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- Özel Testler -->
+  <url><loc>https://englishmeter.net/start?testSlug=quick-placement</loc><lastmod>2025-11-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://englishmeter.net/start?testSlug=grammar-mega-test-100</loc><lastmod>2025-11-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://englishmeter.net/start?testSlug=vocab-b1-c1-50</loc><lastmod>2025-11-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://englishmeter.net/start?testSlug=test-perfect-past</loc><lastmod>2025-11-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://englishmeter.net/start?testSlug=test-conditionals</loc><lastmod>2025-11-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://englishmeter.net/start?testSlug=test-relatives</loc><lastmod>2025-11-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://englishmeter.net/start?testSlug=test-articles</loc><lastmod>2025-11-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://englishmeter.net/start?testSlug=test-tenses-mixed</loc><lastmod>2025-11-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
