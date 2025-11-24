@@ -323,8 +323,8 @@ export default function RaceExamPage() {
   if(!currentQ) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
 
   return (
-    <main className="min-h-screen bg-gray-50 flex flex-col items-center p-4">
-      <div className="w-full max-w-3xl flex justify-between items-center mb-6 bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+    <main className="min-h-screen bg-gray-50 flex flex-col items-center p-3"> {/* Düzeltme 1: Dış padding azaltıldı (p-4 -> p-3) */}
+      <div className="w-full max-w-3xl flex justify-between items-center mb-5 bg-white p-4 rounded-xl shadow-sm border border-gray-200"> {/* Düzeltme: mb-6 -> mb-5 */}
         <div className="flex flex-col">
             <span className="text-xs text-gray-400 font-bold uppercase tracking-wider">Race #{raceId}</span>
             <span className={`text-2xl font-mono font-bold ${timeLeft < 60 ? "text-red-600 animate-pulse" : "text-gray-800"}`}>
@@ -339,19 +339,19 @@ export default function RaceExamPage() {
         </div>
       </div>
 
-      <div className="w-full max-w-3xl bg-white p-6 md:p-10 rounded-2xl shadow-lg border border-gray-100">
-        <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-8 leading-relaxed">
+      <div className="w-full max-w-3xl bg-white p-4 md:p-8 rounded-2xl shadow-lg border border-gray-100"> {/* Düzeltme 2: Mobil kart padding'i azaltıldı (p-6 -> p-4) */}
+        <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-5 leading-relaxed"> {/* Düzeltme 3: Soru altı boşluk azaltıldı (mb-8 -> mb-5) */}
           {currentQ.question}
-        </h2>ac   
+        </h2>
 
-        <div className="grid gap-4">
+        <div className="grid gap-3"> {/* Düzeltme 4: Seçenekler arası boşluk azaltıldı (gap-4 -> gap-3) */}
           {currentQ.options.map((opt, i) => {
             const letter = String.fromCharCode(65 + i);
             return (
               <button
                 key={i}
                 onClick={() => handleAnswer(letter)}
-                className="group relative w-full text-left p-5 border-2 border-gray-100 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-all duration-200 active:scale-[0.99]"
+                className="group relative w-full text-left p-4 border-2 border-gray-100 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-all duration-200 active:scale-[0.99]" {/* Düzeltme 5: Buton padding'i azaltıldı (p-5 -> p-4) */}
               >
                 <div className="flex items-center">
                   <span className="w-10 h-10 flex items-center justify-center bg-gray-100 text-gray-500 font-bold rounded-lg mr-4 group-hover:bg-blue-600 group-hover:text-white transition-colors border">
