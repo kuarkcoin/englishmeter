@@ -3,7 +3,7 @@
 
 import { useState } from 'react';
 import { Loader2, CheckCircle2, AlertCircle, Send, Mail } from 'lucide-react';
-
+ 
 export default function Contact() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
