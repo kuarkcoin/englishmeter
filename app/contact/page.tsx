@@ -1,3 +1,4 @@
+// app/contact/page.tsx
 'use client';
 
 import { useState } from 'react';
@@ -10,161 +11,185 @@ export default function Contact() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [feedback, setFeedback] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Temel validasyon (ekstra güvenlik)
+    if (!name.trim() || !email.trim() || !message.trim()) return;
+
     setStatus('loading');
     setFeedback('');
 
     try {
-      // API isteği simülasyonu
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify({ name: name.trim(), email: email.trim(), message: message.trim() }),
       });
 
-      let data;
-      try {
-         data = await res.json();
-      } catch (err) {
-         // Demo modu: API yoksa (404) başarılıymış gibi davran
-         if (res.status === 404) {
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            setStatus('success');
-            setFeedback('Your message has been sent successfully! (Demo Mode)');
-            setName('');
-            setEmail('');
-            setMessage('');
-            return;
-         }
-         throw err;
+      // API yoksa (404) → Demo modu (geliştirme sırasında çok işine yarar)
+      if (res.status === 404) {
+        await new Promise((resolve) => setTimeout(resolve, 1200));
+        setStatus('success');
+        setFeedback('Your message has been sent successfully! (Demo Mode – API not found)');
+        resetForm();
+        return;
       }
 
+      const data = await res.json();
+
       if (!res.ok) {
-        throw new Error(data.error || 'Something went wrong');
+        throw new Error(data.error || 'Failed to send message');
       }
 
       setStatus('success');
-      setFeedback('Your message has been sent successfully! We will get back to you soon.');
-      setName('');
-      setEmail('');
-      setMessage('');
+      setFeedback('Thank you! Your message has been sent. We’ll reply soon');
+      resetForm();
     } catch (error: any) {
       setStatus('error');
-      setFeedback(error.message || 'Failed to send message. Please try again.');
+      setFeedback(error.message || 'Something went wrong. Please try again later.');
+      console.error('Contact form error:', error);
     }
   };
 
+  const resetForm = () => {
+    setName('');
+    setEmail('');
+    setMessage('');
+  };
+
+  const isSubmitting = status === 'loading';
+  const isSuccess = status === 'success';
+
   return (
-    <div className="max-w-2xl mx-auto">
-        {/* Başlık Alanı */}
+    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-2xl mx-auto">
+        {/* Başlık */}
         <div className="text-center mb-10">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 tracking-tight">Contact Us</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Contact Us</h1>
           <p className="text-lg text-gray-600 max-w-xl mx-auto">
-            Have a question or feedback? Fill out the form below and we'll get back to you as soon as possible.
+            Have a question, suggestion, or just want to say hi? We’d love to hear from you!
           </p>
         </div>
 
         {/* Form Kartı */}
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8">
-          <form onSubmit={handleSubmit} className="space-y-5">
-            
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                <div className="col-span-1">
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1.5">
-                    Name
-                </label>
-                <input
+        <div className="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
+          <div className="p-8 sm:p-10">
+            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {/* Name */}
+                <div>
+                  <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+                    Your Name
+                  </label>
+                  <input
                     type="text"
                     id="name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
-                    disabled={status === 'loading' || status === 'success'}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-gray-50 focus:bg-white disabled:opacity-60"
+                    disabled={isSubmitting || isSuccess}
+                    className="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition disabled:opacity-60 disabled:cursor-not-allowed"
                     placeholder="John Doe"
-                />
+                    aria-label="Your name"
+                  />
                 </div>
 
-                <div className="col-span-1">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">
-                    Email
-                </label>
-                <input
+                {/* Email */}
+                <div>
+                  <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                    Email Address
+                  </label>
+                  <input
                     type="email"
                     id="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    disabled={status === 'loading' || status === 'success'}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-gray-50 focus:bg-white disabled:opacity-60"
+                    disabled={isSubmitting || isSuccess}
+                    className="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition disabled:opacity-60 disabled:cursor-not-allowed"
                     placeholder="john@example.com"
-                />
+                    aria-label="Your email"
+                  />
                 </div>
-            </div>
+              </div>
 
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1.5">
-                Message
-              </label>
-              <textarea
-                id="message"
-                rows={5}
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                required
-                disabled={status === 'loading' || status === 'success'}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-gray-50 focus:bg-white resize-none disabled:opacity-60"
-                placeholder="How can we help you?"
-              />
-            </div>
+              {/* Message */}
+              <div>
+                <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
+                  Your Message
+                </label>
+                <textarea
+                  id="message"
+                  rows={6}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  required
+                  disabled={isSubmitting || isSuccess}
+                  className="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition resize-none disabled:opacity-60 disabled:cursor-not-allowed"
+                  placeholder="Write your message here..."
+                  aria-label="Your message"
+                />
+              </div>
 
-            <div className="pt-2">
+              {/* Submit Button */}
               <button
                 type="submit"
-                disabled={status === 'loading' || status === 'success'}
+                disabled={isSubmitting || isSuccess}
                 className={`
-                    w-full flex items-center justify-center px-8 py-3.5 rounded-lg font-semibold text-white transition-all duration-200
-                    ${status === 'success' ? 'bg-green-600 hover:bg-green-700' : 'bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-blue-500/30'}
-                    disabled:opacity-70 disabled:cursor-not-allowed
+                  w-full flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-white text-lg
+                  transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg
+                  ${
+                    isSuccess
+                      ? 'bg-green-600 hover:bg-green-700 shadow-green-500/30'
+                      : 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-blue-500/30'
+                  }
+                  disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none
                 `}
               >
-                {status === 'loading' ? (
+                {isSubmitting ? (
                   <>
-                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                    <Loader2 className="w-6 h-6 animate-spin" />
                     Sending...
                   </>
-                ) : status === 'success' ? (
+                ) : isSuccess ? (
                   <>
-                    <CheckCircle2 className="w-5 h-5 mr-2" />
-                    Message Sent!
+                    <CheckCircle2 className="w-6 h-6" />
+                    Sent Successfully!
                   </>
                 ) : (
                   <>
-                    <Send className="w-5 h-5 mr-2" />
+                    <Send className="w-5 h-5" />
                     Send Message
                   </>
                 )}
               </button>
-            </div>
 
-            {/* Geri Bildirim Alanı */}
-            {feedback && (
-              <div className={`mt-6 p-4 rounded-lg flex items-start animate-in fade-in slide-in-from-top-2 duration-300 ${
-                status === 'success' 
-                  ? 'bg-green-50 text-green-800 border border-green-100' 
-                  : 'bg-red-50 text-red-800 border border-red-100'
-              }`}>
-                {status === 'success' ? (
-                    <CheckCircle2 className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" />
-                ) : (
-                    <AlertCircle className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" />
-                )}
-                <p className="text-sm font-medium">{feedback}</p>
-              </div>
-            )}
-          </form>
+              {/* Feedback Message */}
+              {feedback && (
+                <div
+                  className={`
+                    mt-6 p-5 rounded-xl border flex items-start gap-3 animate-in fade-in slide-in-from-bottom-4 duration-500
+                    ${status === 'success' ? 'bg-green-50 border-green-200 text-green-800' : 'bg-red-50 border-red-200 text-red-800'}
+                  `}
+                >
+                  {status === 'success' ? (
+                    <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" />
+                  ) : (
+                    <AlertCircle className="w-6 h-6 flex-shrink-0 mt-0.5" />
+                  )}
+                  <p className="font-medium">{feedback}</p>
+                </div>
+              )}
+            </form>
+          </div>
         </div>
+
+        {/* Alt Bilgi */}
+        <p className="text-center text-sm text-gray-500 mt-10">
+          We usually reply within 24 hours
+        </p>
+      </div>
     </div>
   );
 }
