@@ -12,7 +12,7 @@ type Question = {
   options: string[];
   answer: string;
 };
-
+ 
 type LeaderboardUser = {
   name: string;
   score: number;
