@@ -22,19 +22,46 @@ type LeaderboardUser = {
 
 // --- GLOBAL FAKE NAMES (No Turkish Characters) ---
 const FAKE_NAMES = [
-  "Jessica M.", "David B.", "Sarah K.", "Michael R.", "Emma W.",
-  "Daniel P.", "Olivia S.", "James L.", "Sophia C.", "William H.",
-  "Isabella F.", "Lucas G.", "Mia T.", "Benjamin D.", "Charlotte N.",
-  "Henry A.", "Amelia V.", "Alexander J.", "Harper E.", "Sebastian O."
+  "Jessica M.",
+  "David B.",
+  "Sarah K.",
+  "Michael R.",
+  "Emma W.",
+  "Daniel P.",
+  "Olivia S.",
+  "James L.",
+  "Sophia C.",
+  "William H.",
+  "Isabella F.",
+  "Lucas G.",
+  "Mia T.",
+  "Benjamin D.",
+  "Charlotte N.",
+  "Henry A.",
+  "Amelia V.",
+  "Alexander J.",
+  "Harper E.",
+  "Sebastian O.",
 ];
+
+// --- SHUFFLE (Fisher–Yates) ---
+const shuffle = <T,>(array: T[]): T[] => {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+};
 
 export default function RaceExamPage() {
   // --- HOOKS ---
-  const params = useParams();
-  const raceId = (params as { id?: string })?.id || "1";
+  const { id: raceId = "1" } = useParams<{ id: string }>();
 
   // --- STATES ---
-  const [gameState, setGameState] = useState<"WELCOME" | "QUIZ" | "NAME_INPUT" | "RESULT">("WELCOME");
+  const [gameState, setGameState] = useState<
+    "WELCOME" | "QUIZ" | "NAME_INPUT" | "RESULT"
+  >("WELCOME");
   const [userName, setUserName] = useState("");
   const [examQuestions, setExamQuestions] = useState<Question[]>([]);
   const [currentQIndex, setCurrentQIndex] = useState(0);
@@ -57,14 +84,12 @@ export default function RaceExamPage() {
       answer: String(q.correct_option).trim().toUpperCase(),
     }));
 
-    // Random 50 questions
-    let selectedQuestions: Question[] = [];
+    // Random 50 questions (Fisher–Yates)
+    let selectedQuestions: Question[];
     if (formattedQuestions.length <= 50) {
-      selectedQuestions = formattedQuestions;
+      selectedQuestions = shuffle(formattedQuestions);
     } else {
-      selectedQuestions = [...formattedQuestions]
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 50);
+      selectedQuestions = shuffle(formattedQuestions).slice(0, 50);
     }
 
     setExamQuestions(selectedQuestions);
@@ -77,14 +102,25 @@ export default function RaceExamPage() {
 
   // --- 2. TIMER ---
   useEffect(() => {
-    let timer: NodeJS.Timeout;
+    let timer: ReturnType<typeof setInterval>;
+
     if (gameState === "QUIZ" && timeLeft > 0) {
       timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
     } else if (timeLeft === 0 && gameState === "QUIZ") {
       setGameState("NAME_INPUT");
     }
+
     return () => clearInterval(timer);
   }, [gameState, timeLeft]);
+
+  // Katılımcı sayısını biraz “canlı” göster
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTotalParticipants((prev) => prev + Math.floor(Math.random() * 3));
+    }, 8000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const formatTime = (seconds: number) => {
     const m = Math.floor(seconds / 60);
@@ -94,10 +130,16 @@ export default function RaceExamPage() {
 
   // --- 3. HANDLE ANSWER ---
   const handleAnswer = (selectedOption: string) => {
+    // Focus blur (mavi seçili buton diğer soruya taşınmasın diye)
+    if (typeof document !== "undefined") {
+      const active = document.activeElement as HTMLElement | null;
+      if (active && typeof active.blur === "function") {
+        active.blur();
+      }
+    }
+
     const currentQ = examQuestions[currentQIndex];
     const isCorrect = selectedOption === currentQ.answer;
-
-    // console.log(`Selected: ${selectedOption}, Correct: ${currentQ.answer}, Match: ${isCorrect}`);
 
     if (isCorrect) {
       setScore((prev) => prev + 1);
@@ -121,15 +163,30 @@ export default function RaceExamPage() {
     const topList: LeaderboardUser[] = [];
 
     // Champions (Fixed Global Names)
-    topList.push({ name: "Alex K. (Champion)", score: 49, rank: 1, isRealUser: false });
-    topList.push({ name: "Sarah L.", score: 48, rank: 2, isRealUser: false });
-    topList.push({ name: "Mike T.", score: 47, rank: 3, isRealUser: false });
+    topList.push({
+      name: "Alex K. (Champion)",
+      score: 49,
+      rank: 1,
+      isRealUser: false,
+    });
+    topList.push({
+      name: "Sarah L.",
+      score: 48,
+      rank: 2,
+      isRealUser: false,
+    });
+    topList.push({
+      name: "Mike T.",
+      score: 47,
+      rank: 3,
+      isRealUser: false,
+    });
 
     // Random Bots
     for (let i = 0; i < 17; i++) {
       topList.push({
         name: FAKE_NAMES[i] || `Racer ${i}`,
-        score: Math.floor(Math.random() * 7) + 40,
+        score: Math.floor(Math.random() * 7) + 40, // 40–46
         rank: 0,
         isRealUser: false,
       });
@@ -262,9 +319,9 @@ export default function RaceExamPage() {
           <div className="p-6">
             {/* LEADERBOARD LIST */}
             <div className="space-y-2 mb-6">
-              {topLeaderboard.map((user) => (
+              {topLeaderboard.map((user, i) => (
                 <div
-                  key={user.rank}
+                  key={i}
                   className={`flex items-center justify-between p-3 rounded-xl border ${
                     user.isRealUser
                       ? "bg-yellow-50 border-yellow-400 ring-1 ring-yellow-300 scale-[1.02]"
@@ -346,12 +403,13 @@ export default function RaceExamPage() {
 
   // 4. QUIZ SCREEN
   const currentQ = examQuestions[currentQIndex];
-  if (!currentQ)
+  if (!currentQ) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         Loading...
       </div>
     );
+  }
 
   return (
     <main className="min-h-screen bg-gray-50 flex flex-col items-center p-4">
@@ -410,4 +468,4 @@ export default function RaceExamPage() {
       </div>
     </main>
   );
-}
+} 
