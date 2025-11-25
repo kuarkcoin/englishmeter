@@ -42,31 +42,26 @@ const slugToTag: Record<string, string> = {
   'test-prepositions-advanced': 'prepositions_advanced',
 };
 
-// ANA FONKSİYON - API YOK, DOĞRUDAN CLIENT-SIDE
+// ANA FONKSİYON
 async function startTest(testSlug: string) {
-  const attemptId = `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-
-  const payload: any = {
-    attemptId,
-    testSlug,
-    test: { title: 'Practice Test', duration: 30 },
-    questions: [],
-  };
-
-  // Başlık ayarla
-  const grammarTitle = grammarTests.find(t => t.slug === testSlug)?.title;
-  if (grammarTitle) {
-    payload.test.title = `${grammarTitle.toUpperCase()} TEST`;
-  } else if (testSlug === 'quick-placement') {
-    payload.test.title = 'Quick Placement Test';
-  } else if (testSlug === 'grammar-mega-test-100') {
-    payload.test.title = 'Grammar Mega Test (100Q)';
-  } else if (testSlug === 'vocab-b1-c1-50') {
-    payload.test.title = 'Vocabulary B1-C1 (50Q)';
-  }
-
-  // Grammar Focus soruları (JSON → quiz formatına çevir!)
+  // 1) Eğer bu bir "Grammar Focus" testi ise (slugToTag'de varsa)
   if (slugToTag[testSlug]) {
+    const attemptId = `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+
+    const payload: any = {
+      attemptId,
+      testSlug,
+      test: { title: 'Practice Test', duration: 30 },
+      questions: [],
+    };
+
+    // Başlık ayarla
+    const grammarTitle = grammarTests.find(t => t.slug === testSlug)?.title;
+    if (grammarTitle) {
+      payload.test.title = `${grammarTitle.toUpperCase()} TEST`;
+    }
+
+    // Grammar Focus soruları (JSON → quiz formatına çevir)
     const tag = slugToTag[testSlug];
     const raw = (topicQuestions as any[])
       .filter((q: any) => q.tags?.includes(tag))
@@ -87,18 +82,16 @@ async function startTest(testSlug: string) {
     }));
 
     payload.questions = mappedQuestions;
-  }
-  // Diğer testler için fallback (quick, mega, vocab)
-  else if (testSlug === 'quick-placement' || testSlug === 'grammar-mega-test-100' || testSlug === 'vocab-b1-c1-50') {
-    // Bu testler için senin eski sistemin çalışıyorsa dokunma
-    // Şimdilik boş bırak, gerekirse sonra ekleriz
-    alert("Bu test henüz hazırlanmadı. Yakında eklenecek!");
+
+    // Quiz'e yönlendir
+    sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
+    window.location.href = `/quiz/${attemptId}`;
     return;
   }
 
-  // Quiz'e yönlendir
-  sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
-  window.location.href = `/quiz/${attemptId}`;
+  // 2) Grammar Focus DEĞİLSE:
+  // Quick, Mega, Vocab vs. hepsi eski sistemle /start sayfasına gitsin
+  window.location.href = `/start?testSlug=${encodeURIComponent(testSlug)}`;
 }
 
 export default function Home() {
@@ -109,16 +102,28 @@ export default function Home() {
 
           {/* Main Tests + Race */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
-            <button onClick={() => startTest(quickTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-blue-600 text-white text-xl font-bold shadow-xl hover:bg-blue-700 transition-all">
+            <button
+              onClick={() => startTest(quickTest.slug)}
+              className="flex items-center justify-center px-6 py-8 rounded-2xl bg-blue-600 text-white text-xl font-bold shadow-xl hover:bg-blue-700 transition-all"
+            >
               {quickTest.title}
             </button>
-            <button onClick={() => startTest(megaTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-purple-600 text-white text-xl font-bold shadow-xl hover:bg-purple-700 transition-all">
+            <button
+              onClick={() => startTest(megaTest.slug)}
+              className="flex items-center justify-center px-6 py-8 rounded-2xl bg-purple-600 text-white text-xl font-bold shadow-xl hover:bg-purple-700 transition-all"
+            >
               {megaTest.title}
             </button>
-            <button onClick={() => startTest(vocabTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-emerald-600 text-white text-xl font-bold shadow-xl hover:bg-emerald-700 transition-all">
+            <button
+              onClick={() => startTest(vocabTest.slug)}
+              className="flex items-center justify-center px-6 py-8 rounded-2xl bg-emerald-600 text-white text-xl font-bold shadow-xl hover:bg-emerald-700 transition-all"
+            >
               {vocabTest.title}
             </button>
-            <a href={raceTest.href} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-red-600 text-white text-xl font-bold shadow-xl hover:bg-red-700 transition-all">
+            <a
+              href={raceTest.href}
+              className="flex items-center justify-center px-6 py-8 rounded-2xl bg-red-600 text-white text-xl font-bold shadow-xl hover:bg-red-700 transition-all"
+            >
               {raceTest.title}
             </a>
           </div>
@@ -154,7 +159,11 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {levelTests.map((test) => (
-                <a key={test.level} href={`/levels/${test.level}`} className="px-4 py-10 rounded-2xl bg-white text-slate-700 font-black text-3xl border border-slate-200 hover:border-blue-400 hover:text-blue-600 hover:shadow-xl transition-all">
+                <a
+                  key={test.level}
+                  href={`/levels/${test.level}`}
+                  className="px-4 py-10 rounded-2xl bg-white text-slate-700 font-black text-3xl border border-slate-200 hover:border-blue-400 hover:text-blue-600 hover:shadow-xl transition-all"
+                >
                   {test.level}
                 </a>
               ))}
