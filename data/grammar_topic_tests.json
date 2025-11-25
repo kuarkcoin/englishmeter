@@ -1237,4 +1237,4 @@
     { "type": "MCQ", "level": "C1", "tags": ["topic-prepositions-advanced"], "prompt": "He’s disappointed ___ the exam results.", "choices": [{ "text": "with", "isCorrect": true }, { "text": "in", "isCorrect": false }, { "text": "at", "isCorrect": false }, { "text": "for", "isCorrect": false }] },
     { "type": "MCQ", "level": "C1", "tags": ["topic-prepositions-advanced"], "prompt": "She thanked us ___ our help.", "choices": [{ "text": "for", "isCorrect": true }, { "text": "with", "isCorrect": false }, { "text": "at", "isCorrect": false }, { "text": "of", "isCorrect": false }] }
   ]
-}
+}]}]
