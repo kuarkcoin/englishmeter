@@ -12,134 +12,97 @@ export interface StandardQuestion {
 
 type AnyQuestion = any;
 
-// GRAMMAR FOCUS SLUG → TAG EŞLEŞMESİ
-const grammarSlugToTag: Record<string, string> = {
-  'test-perfect-past': 'perfect_tenses',
-  'test-conditionals': 'conditionals',
-  'test-relatives': 'relative_clauses',
-  'test-articles': 'articles',
-  'test-tenses-mixed': 'mixed_tenses',
-  'test-passive-voice': 'passive_voice_adv',
-  'test-reported-speech': 'reported_speech',
-  'test-gerunds-infinitives': 'gerunds_infinitives',
-  'test-clauses-advanced': 'clauses_advanced',
-  'test-modals-advanced': 'modals_advanced',
-  'test-prepositions-advanced': 'prepositions_advanced',
-};
-
-const grammarTitleMap: Record<string, string> = {
-  'test-perfect-past': 'Perfect Tenses',
-  'test-conditionals': 'Conditionals',
-  'test-relatives': 'Relative Clauses',
-  'test-articles': 'Articles',
-  'test-tenses-mixed': 'Mixed Tenses',
-  'test-passive-voice': 'Passive Voice (Adv)',
-  'test-reported-speech': 'Reported Speech (Adv)',
-  'test-gerunds-infinitives': 'Gerunds & Infinitives',
-  'test-clauses-advanced': 'Noun/Adj/Adv Clauses',
-  'test-modals-advanced': 'Modal Verbs (Adv)',
-  'test-prepositions-advanced': 'Prepositions (Adv)',
-};
-
 export const getQuestionsBySlug = (
   slug: string
 ): { title: string; questions: StandardQuestion[] } => {
   let rawQuestions: AnyQuestion[] = [];
   let title = 'Practice Test';
 
-  console.log('QuizManager → Slug:', slug);
+  console.log('QuizManager → Gelen slug:', slug);
 
-  // 1) GRAMMAR FOCUS TESTLERİ
-  if (grammarSlugToTag[slug]) {
-    const tag = grammarSlugToTag[slug];
-    rawQuestions = (grammarTopicTests as AnyQuestion[])
-      .filter((q: any) => q.tags?.includes(tag))
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 20);
+  // 1) GRAMMAR FOCUS – BURAYA EKSTRA DEBUG EKLİYORUZ
+  if (slug.startsWith('test-')) {
+    console.log('Grammar Focus testi algılandı!');
 
-    title = `${grammarTitleMap[slug] || slug.replace('test-', '').replace(/-/g, ' ').toUpperCase()} Test`;
+    // JSON'dan ilk 3 sorunun tag'lerini gösterelim
+    console.log('JSON\'daki ilk 3 sorunun tag\'leri:', 
+      (grammarTopicTests as any[]).slice(0, 3).map(q => ({ prompt: q.prompt, tags: q.tags }))
+    );
 
-    if (rawQuestions.length === 0) {
+    // Mevcut eşleşmeyi göster
+    const expectedTag = slug === 'test-articles' ? 'articles' : 
+                        slug === 'test-perfect-past' ? 'perfect_tenses' :
+                        slug === 'test-conditionals' ? 'conditionals' : 'bilinmiyor';
+    console.log('Aranan tag (bizim eşleşmeye göre):', expectedTag);
+
+    // Gerçek filtreleme
+    const filtered = (grammarTopicTests as AnyQuestion[]).filter((q: any) => 
+      q.tags && q.tags.includes(expectedTag)
+    );
+
+    console.log(`"${expectedTag}" tag'i ile bulunan soru sayısı:`, filtered.length);
+
+    if (filtered.length > 0) {
+      rawQuestions = filtered.sort(() => Math.random() - 0.5).slice(0, 20);
+      title = slug.replace('test-', '').replace(/-/g, ' ').toUpperCase() + ' TEST';
+    } else {
+      console.log('Hiç soru bulunamadı → fallback sorular yükleniyor');
       rawQuestions = (grammarTopicTests as AnyQuestion[]).slice(0, 20);
-      title = 'Grammar Practice';
+      title = 'GRAMMAR PRACTICE';
     }
   }
-  // 2) LEVEL TESTLERİ
+  // 2) Diğer testler (level, quick, mega vs.) – eskisi gibi
   else if (slug.includes('level-')) {
-    const targetLevel = slug.replace('level-', '').toUpperCase();
-    rawQuestions = (levelTests as AnyQuestion[]).filter(
-      (q) => q.level === targetLevel
-    );
-    if (rawQuestions.length > 20) rawQuestions = rawQuestions.slice(0, 20);
-    title = `${targetLevel} LEVEL ASSESSMENT`;
+    const level = slug.replace('level-', '').toUpperCase();
+    rawQuestions = (levelTests as any[]).filter(q => q.level === level).slice(0, 20);
+    title = `${level} LEVEL TEST`;
   }
-  // 3) MEGA TEST
-  else if (slug === 'grammar-mega-test-100') {
-    rawQuestions = (grammarTopicTests as AnyQuestion[])
-      .sort(() => 0.5 - Math.random())
-      .slice(0, 100);
-    title = 'GRAMMAR MEGA TEST (100Q)';
-  }
-  // 4) VOCAB TEST
-  else if (slug.includes('vocab')) {
-    rawQuestions = (vocabTests as AnyQuestion[])
-      .sort(() => 0.5 - Math.random())
-      .slice(0, 50);
-    title = 'VOCABULARY CHALLENGE (B1-C1)';
-  }
-  // 5) QUICK PLACEMENT
   else if (slug === 'quick-placement') {
-    rawQuestions = (levelTests as AnyQuestion[])
-      .sort(() => 0.5 - Math.random())
-      .slice(0, 10);
+    rawQuestions = (levelTests as any[]).slice(0, 10);
     title = 'QUICK PLACEMENT TEST';
   }
-  // Fallback
+  else if (slug === 'grammar-mega-test-100') {
+    rawQuestions = (grammarTopicTests as any[]).slice(0, 100);
+    title = 'MEGA GRAMMAR TEST';
+  }
+  else if (slug.includes('vocab')) {
+    rawQuestions = (vocabTests as any[]).slice(0, 50);
+    title = 'VOCABULARY TEST';
+  }
   else {
-    rawQuestions = (levelTests as AnyQuestion[]).slice(0, 10);
-    title = 'GENERAL PRACTICE';
+    rawQuestions = (levelTests as any[]).slice(0, 10);
+    title = 'PRACTICE TEST';
   }
 
-  // FORMATLAMA – grammar_topic_tests.json formatını StandardQuestion'a çevir
-  const formattedQuestions: StandardQuestion[] = rawQuestions.map((q: AnyQuestion, index: number) => {
-    const id = q.id ? String(q.id) : `${slug}-q${index + 1}`;
-    const prompt = q.prompt || q.question || q.question_text || 'Question missing';
+  // FORMATLAMA – A/B/C/D + correct formatını çevir
+  const formattedQuestions: StandardQuestion[] = rawQuestions.map((q: any, i: number) => {
+    const prompt = q.prompt || q.question || 'No question';
 
     let choices: { id: string; text: string; isCorrect: boolean }[] = [];
 
-    // grammar_topic_tests.json formatı: A, B, C, D + correct
     if (q.A !== undefined && q.correct !== undefined) {
-      const correctLetter = String(q.correct).trim().toUpperCase();
+      const correct = String(q.correct).trim().toUpperCase();
       choices = ['A', 'B', 'C', 'D'].map(letter => ({
         id: letter.toLowerCase(),
-        text: (q as any)[letter] || `Option ${letter}`,
-        isCorrect: correctLetter === letter,
+        text: q[letter] || '-',
+        isCorrect: correct === letter
       }));
-    }
-    // Diğer formatlar (choices array)
-    else if (Array.isArray(q.choices)) {
-      const labels = ['a', 'b', 'c', 'd'];
-      choices = q.choices.slice(0, 4).map((c: any, i: number) => ({
-        id: labels[i],
-        text: c.text || c.option || `Option ${labels[i].toUpperCase()}`,
-        isCorrect: !!c.isCorrect,
-      }));
-    }
-    // En eski fallback
-    else {
+    } else {
       choices = [
-        { id: 'a', text: q.option_a || q.A || 'A', isCorrect: false },
-        { id: 'b', text: q.option_b || q.B || 'B', isCorrect: false },
-        { id: 'c', text: q.option_c || q.C || 'C', isCorrect: false },
-        { id: 'd', text: q.option_d || q.D || 'D', isCorrect: false },
+        { id: 'a', text: 'Option A', isCorrect: false },
+        { id: 'b', text: 'Option B', isCorrect: false },
+        { id: 'c', text: 'Option C', isCorrect: false },
+        { id: 'd', text: 'Option D', isCorrect: false }
       ];
-      const correct = String(q.correct_option || q.correct || 'a').toLowerCase();
-      const correctIdx = ['a', 'b', 'c', 'd'].indexOf(correct);
-      if (correctIdx !== -1) choices[correctIdx].isCorrect = true;
     }
 
-    return { id, prompt, choices };
+    return {
+      id: `${slug}-q${i + 1}`,
+      prompt,
+      choices
+    };
   });
 
+  console.log(`Toplam ${formattedQuestions.length} soru hazırlandı → ${title}`);
   return { title, questions: formattedQuestions };
 };
