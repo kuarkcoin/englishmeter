@@ -1,15 +1,13 @@
 'use client';
 import React from 'react';
-// Next.js projenizde "Link" bileşeni çalışıyorsa aşağıdaki yorumu kaldırıp <a> etiketlerini <Link> ile değiştirebilirsiniz.
-// import Link from 'next/link';
+// import Link from 'next/link'; // Next.js Link kullanıyorsanız açabilirsiniz.
 
 // --- DATA ---
 const quickTest = { title: "Quick Placement Test", slug: "quick-placement" };
 const megaTest = { title: "Grammar Mega Test (100Q)", slug: "grammar-mega-test-100" };
 const vocabTest = { title: "Vocabulary B1-C1 (50Q)", slug: "vocab-b1-c1-50" };
 
-// MEVCUT + YENİ EKLENEN GRAMER KONULARI
-// Not: Buradaki 'slug' değerleri (örn: 'test-passive-voice'), sizin json dosyanızdaki başlıklarla birebir aynı olmalı.
+// GRAMER KONULARI (Mevcut + Yeni Advanced Konular)
 const grammarTests = [
   // Mevcut 5 Konu
   { title: "Perfect Tenses", slug: "test-perfect-past" },
@@ -37,9 +35,7 @@ export default function Home() {
     <div className="min-h-screen bg-slate-50">
       
       {/* --- ÜST KISIM (HEADER / HERO) --- */}
-      {/* Arena kaldırıldı, yerine sade bir karşılama metni bırakıldı */}
       <div className="bg-slate-900 pt-16 pb-20 px-4 text-center rounded-b-[3rem] shadow-2xl mb-12 relative overflow-hidden">
-         {/* Arka plan deseni */}
          <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
 
          <div className="relative z-10 max-w-4xl mx-auto">
@@ -56,7 +52,7 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center px-4 pb-24 -mt-10">
         <div className="w-full max-w-6xl mx-auto text-center">
           
-          {/* 3 ANA BUTON (Quick, Mega, Vocab) */}
+          {/* 3 ANA BUTON */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-16 relative z-20">
             <a href="/start" className="flex items-center justify-center px-6 py-8 rounded-2xl bg-blue-600 text-white text-xl font-bold shadow-xl shadow-blue-900/20 hover:bg-blue-700 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
               🚀 {quickTest.title}
