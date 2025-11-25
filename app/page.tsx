@@ -1,17 +1,30 @@
 'use client';
-import Link from 'next/link';
+import React from 'react';
+// Next.js projenizde "Link" bileşeni çalışıyorsa aşağıdaki yorumu kaldırıp <a> etiketlerini <Link> ile değiştirebilirsiniz.
+// import Link from 'next/link';
 
-// --- DATA (Linkler Aynen Korundu) ---
+// --- DATA ---
 const quickTest = { title: "Quick Placement Test", slug: "quick-placement" };
 const megaTest = { title: "Grammar Mega Test (100Q)", slug: "grammar-mega-test-100" };
 const vocabTest = { title: "Vocabulary B1-C1 (50Q)", slug: "vocab-b1-c1-50" };
 
+// MEVCUT + YENİ EKLENEN GRAMER KONULARI
+// Not: Buradaki 'slug' değerleri (örn: 'test-passive-voice'), sizin json dosyanızdaki başlıklarla birebir aynı olmalı.
 const grammarTests = [
+  // Mevcut 5 Konu
   { title: "Perfect Tenses", slug: "test-perfect-past" },
   { title: "Conditionals", slug: "test-conditionals" },
   { title: "Relative Clauses", slug: "test-relatives" },
   { title: "Articles", slug: "test-articles" },
   { title: "Mixed Tenses", slug: "test-tenses-mixed" },
+  
+  // Yeni Eklenen 6 Advanced Konu
+  { title: "Passive Voice (Adv)", slug: "test-passive-voice" },
+  { title: "Reported Speech (Adv)", slug: "test-reported-speech" },
+  { title: "Gerunds & Infinitives", slug: "test-gerunds-infinitives" },
+  { title: "Noun/Adj/Adv Clauses", slug: "test-clauses-advanced" },
+  { title: "Modal Verbs (Adv)", slug: "test-modals-advanced" },
+  { title: "Prepositions (Adv)", slug: "test-prepositions-advanced" },
 ];
 
 const levelTests = [
@@ -23,90 +36,81 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50">
       
-      {/* --- ARENA BÖLÜMÜ (Sayaç Kaldırıldı) --- */}
-      <div className="bg-slate-900 pt-10 pb-14 px-4 text-center rounded-b-[3rem] shadow-2xl mb-12 relative overflow-hidden">
-         
+      {/* --- ÜST KISIM (HEADER / HERO) --- */}
+      {/* Arena kaldırıldı, yerine sade bir karşılama metni bırakıldı */}
+      <div className="bg-slate-900 pt-16 pb-20 px-4 text-center rounded-b-[3rem] shadow-2xl mb-12 relative overflow-hidden">
+         {/* Arka plan deseni */}
          <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
 
-         <h1 className="text-3xl md:text-5xl font-black text-white mb-3 relative z-10 tracking-tight">
-            GLOBAL ENGLISH ARENA
-         </h1>
-         <p className="text-blue-200 mb-8 relative z-10 text-sm md:text-base font-medium">
-            Compete live with thousands of students worldwide.
-         </p>
-
-         <Link href="/race" className="group relative z-10 inline-flex items-center justify-center gap-3 px-8 py-4 md:px-12 md:py-5 font-bold text-white transition-all duration-200 bg-gradient-to-r from-yellow-500 to-red-600 rounded-2xl hover:scale-105 hover:shadow-[0_0_40px_rgba(234,179,8,0.6)] focus:outline-none ring-offset-2 focus:ring-4 ring-yellow-400">
-            <span className="text-3xl animate-bounce">⚔️</span>
-            <div className="text-left">
-              <span className="block text-[10px] md:text-xs uppercase text-yellow-100 tracking-wider font-bold">Join Live Race</span>
-              <span className="block text-xl md:text-2xl font-black">ENTER THE ARENA</span>
-            </div>
-         </Link>
+         <div className="relative z-10 max-w-4xl mx-auto">
+            <h1 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">
+               GLOBAL ENGLISH TESTS
+            </h1>
+            <p className="text-blue-100 text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
+               Find your real English level with our advanced grammar, vocabulary, and placement tests.
+            </p>
+         </div>
       </div>
 
-
-      {/* --- DİĞER TESTLER --- */}
-      <div className="flex flex-col items-center justify-center py-8 px-4 pb-20">
+      {/* --- TEST BUTONLARI --- */}
+      <div className="flex flex-col items-center justify-center px-4 pb-24 -mt-10">
         <div className="w-full max-w-6xl mx-auto text-center">
           
-          <h1 className="text-3xl md:text-5xl font-extrabold text-blue-600 mb-4">
-            Find your real English level.
-          </h1>
-          <p className="text-lg text-slate-600 mb-10 max-w-2xl mx-auto">
-            Take our quick placement test, check your grammar, or choose a level directly below.
-          </p>
-
-          {/* 3 ANA BUTON */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
-            <Link href="/start" className="flex items-center justify-center px-6 py-6 rounded-2xl bg-blue-600 text-white text-lg font-bold shadow-xl shadow-blue-200 hover:bg-blue-700 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+          {/* 3 ANA BUTON (Quick, Mega, Vocab) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-16 relative z-20">
+            <a href="/start" className="flex items-center justify-center px-6 py-8 rounded-2xl bg-blue-600 text-white text-xl font-bold shadow-xl shadow-blue-900/20 hover:bg-blue-700 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
               🚀 {quickTest.title}
-            </Link>
+            </a>
 
-            <Link href={`/start?testSlug=${megaTest.slug}`} className="flex items-center justify-center px-6 py-6 rounded-2xl bg-purple-600 text-white text-lg font-bold shadow-xl shadow-purple-200 hover:bg-purple-700 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+            <a href={`/start?testSlug=${megaTest.slug}`} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-purple-600 text-white text-xl font-bold shadow-xl shadow-purple-900/20 hover:bg-purple-700 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
               📦 {megaTest.title}
-            </Link>
+            </a>
 
-            <Link href={`/start?testSlug=${vocabTest.slug}`} className="flex items-center justify-center px-6 py-6 rounded-2xl bg-emerald-600 text-white text-lg font-bold shadow-xl shadow-emerald-200 hover:bg-emerald-700 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+            <a href={`/start?testSlug=${vocabTest.slug}`} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-emerald-600 text-white text-xl font-bold shadow-xl shadow-emerald-900/20 hover:bg-emerald-700 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
               📚 {vocabTest.title}
-            </Link>
+            </a>
           </div>
 
-          {/* Grammar Focus */}
-          <div className="mb-16">
+          {/* Grammar Focus Bölümü */}
+          <div className="mb-20">
             <div className="flex items-center justify-center mb-8">
-              <span className="bg-white px-6 py-2 rounded-full text-slate-500 font-bold text-sm border border-slate-200 uppercase tracking-wider shadow-sm">
+              <span className="bg-white px-8 py-3 rounded-full text-slate-500 font-bold text-sm border border-slate-200 uppercase tracking-widest shadow-sm">
                 Grammar Focus
               </span>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+            
+            {/* Grid Yapısı: Mobilde 1, Tablette 2, Masaüstünde 4 sütun */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {grammarTests.map((test) => (
-                <Link
+                <a
                   key={test.slug}
                   href={`/start?testSlug=${test.slug}`}
-                  className="px-4 py-4 rounded-xl bg-white text-indigo-700 font-bold shadow-sm border border-indigo-50 hover:border-indigo-300 hover:shadow-md hover:-translate-y-0.5 transition text-sm flex items-center justify-center h-full"
+                  className="group px-4 py-5 rounded-xl bg-white text-indigo-700 font-bold shadow-sm border border-indigo-50 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 text-sm flex items-center justify-center min-h-[70px]"
                 >
-                  {test.title}
-                </Link>
+                  <span className="group-hover:scale-105 transition-transform">
+                    {test.title}
+                  </span>
+                </a>
               ))}
             </div>
           </div>
 
-          {/* All Levels */}
+          {/* All Levels Bölümü */}
           <div>
             <div className="flex items-center justify-center mb-8">
-              <span className="bg-white px-6 py-2 rounded-full text-slate-500 font-bold text-sm border border-slate-200 uppercase tracking-wider shadow-sm">
+              <span className="bg-white px-8 py-3 rounded-full text-slate-500 font-bold text-sm border border-slate-200 uppercase tracking-widest shadow-sm">
                 All Levels
               </span>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {levelTests.map((test) => (
-                <Link
+                <a
                   key={test.level}
                   href={`/levels/${test.level}`}
-                  className="px-4 py-8 rounded-2xl bg-white text-slate-700 font-black text-2xl shadow-sm border border-slate-200 hover:border-blue-400 hover:text-blue-600 hover:shadow-lg hover:-translate-y-1 transition"
+                  className="px-4 py-10 rounded-2xl bg-white text-slate-700 font-black text-3xl shadow-sm border border-slate-200 hover:border-blue-400 hover:text-blue-600 hover:shadow-xl hover:-translate-y-1 transition-all duration-200"
                 >
                   {test.level}
-                </Link>
+                </a>
               ))}
             </div>
           </div>
