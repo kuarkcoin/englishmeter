@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import topicQuestions from '@/data/grammar_topic_tests.json'; // SENİN JSON DOSYAN
+import topicQuestions from '@/data/grammar_topic_tests.json'; // Grammar topic soruların
 
 // Test tanımlamaları
 const quickTest = { title: "Quick Placement Test", slug: "quick-placement" };
@@ -27,7 +27,7 @@ const levelTests = [
   { level: "B2" }, { level: "C1" }, { level: "C2" },
 ];
 
-// Slug → tag eşleşmesi
+// Grammar Focus slug → JSON içindeki tag
 const slugToTag: Record<string, string> = {
   'test-perfect-past': 'perfect_tenses',
   'test-conditionals': 'conditionals',
@@ -44,7 +44,7 @@ const slugToTag: Record<string, string> = {
 
 // ANA FONKSİYON
 async function startTest(testSlug: string) {
-  // 1) Eğer bu bir "Grammar Focus" testi ise (slugToTag'de varsa)
+  // 1) GRAMMAR FOCUS → DOĞRUDAN JSON'DAN /quiz'E GİTSİN
   if (slugToTag[testSlug]) {
     const attemptId = `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
@@ -61,14 +61,14 @@ async function startTest(testSlug: string) {
       payload.test.title = `${grammarTitle.toUpperCase()} TEST`;
     }
 
-    // Grammar Focus soruları (JSON → quiz formatına çevir)
     const tag = slugToTag[testSlug];
-    const raw = (topicQuestions as any[])
+
+    const rawQuestions = (topicQuestions as any[])
       .filter((q: any) => q.tags?.includes(tag))
       .sort(() => Math.random() - 0.5)
       .slice(0, 20);
 
-    const mappedQuestions = raw.map((q: any, idx: number) => ({
+    const mappedQuestions = rawQuestions.map((q: any, idx: number) => ({
       id: `${testSlug}-q${idx + 1}`,
       prompt: q.prompt,
       choices: [
@@ -89,9 +89,8 @@ async function startTest(testSlug: string) {
     return;
   }
 
-  // 2) Grammar Focus DEĞİLSE:
-  // Quick, Mega, Vocab vs. hepsi eski sistemle /start sayfasına gitsin
-  window.location.href = `/start?testSlug=${encodeURIComponent(testSlug)}`;
+  // 2) DİĞER TESTLER (Quick, Mega, Vocab) → /start ROUTE'U KULLANSIN
+  window.location.href = `/start?testSlug=${testSlug}`;
 }
 
 export default function Home() {
