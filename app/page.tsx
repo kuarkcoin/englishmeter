@@ -6,6 +6,9 @@ const quickTest = { title: "Quick Placement Test", slug: "quick-placement" };
 const megaTest = { title: "Grammar Mega Test (100Q)", slug: "grammar-mega-test-100" };
 const vocabTest = { title: "Vocabulary B1-C1 (50Q)", slug: "vocab-b1-c1-50" };
 
+// Tek Race butonu
+const raceTest = { title: "Global Race Mode", href: "/race" };
+
 // GRAMMAR TESTS (5 eski + 6 yeni)
 const grammarTests = [
   { title: "Perfect Tenses", slug: "test-perfect-past" },
@@ -22,7 +25,7 @@ const grammarTests = [
   { title: "Modal Verbs (Adv)", slug: "test-modals-advanced" },
   { title: "Prepositions (Adv)", slug: "test-prepositions-advanced" },
 ];
- 
+
 const levelTests = [
   { level: "A1" }, { level: "A2" }, { level: "B1" },
   { level: "B2" }, { level: "C1" }, { level: "C2" },
@@ -36,10 +39,10 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center px-4 pb-24 pt-14">
         <div className="w-full max-w-6xl mx-auto text-center">
 
-          {/* 3 büyük test butonu */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-16">
+          {/* 3 büyük test + 1 Race butonu */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
             <a 
-              href="/start" 
+              href="/start"
               className="flex items-center justify-center px-6 py-8 rounded-2xl bg-blue-600 text-white text-xl font-bold shadow-xl hover:bg-blue-700 transition-all"
             >
               🚀 {quickTest.title}
@@ -57,6 +60,14 @@ export default function Home() {
               className="flex items-center justify-center px-6 py-8 rounded-2xl bg-emerald-600 text-white text-xl font-bold shadow-xl hover:bg-emerald-700 transition-all"
             >
               📚 {vocabTest.title}
+            </a>
+
+            {/* Tek Race Butonu */}
+            <a
+              href={raceTest.href}
+              className="flex items-center justify-center px-6 py-8 rounded-2xl bg-red-600 text-white text-xl font-bold shadow-xl hover:bg-red-700 transition-all"
+            >
+              🏁 {raceTest.title}
             </a>
           </div>
 
