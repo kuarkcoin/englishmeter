@@ -1,8 +1,7 @@
-// lib/quizManager.ts
-
 // JSON verilerini içe aktarıyoruz
 import grammarTests from '@/data/grammar_topic_tests.json';
 import levelTests from '@/data/english_test_questions.json';
+import vocabTests from '@/data/vocabulary_b1_c1_test.json'; // YENİ EKLENDİ
 
 // Uygulamanın kullanacağı standart soru tipi
 export interface StandardQuestion {
@@ -18,54 +17,59 @@ export const getQuestionsBySlug = (slug: string): { title: string; questions: St
   console.log("QuizManager çalıştı. Aranan Slug:", slug);
 
   // --- 1. LEVEL TESTLERİ (Örn: level-a1) ---
+  // data/english_test_questions.json dosyasından çeker
   if (slug.includes('level-')) {
     const targetLevel = slug.replace('level-', '').toUpperCase(); // "a1" -> "A1"
     
-    // JSON'da "level" alanı eşleşenleri filtrele
     rawQuestions = (levelTests as any[]).filter((q: any) => q.level === targetLevel);
     
-    // Çok soru varsa 20 tanesini al
     if(rawQuestions.length > 20) rawQuestions = rawQuestions.slice(0, 20);
-    
     title = `${targetLevel} LEVEL ASSESSMENT`;
   }
 
-  // --- 2. GRAMMAR TESTLERİ (Örn: test-perfect-past) ---
+  // --- 2. VOCABULARY TESTLERİ (Örn: vocab-b1-c1-50) ---
+  // data/vocabulary_b1_c1_test.json dosyasından çeker
+  else if (slug.includes('vocab')) {
+    // Tüm kelime sorularını alıp karıştırıyoruz
+    rawQuestions = (vocabTests as any[]).sort(() => 0.5 - Math.random()).slice(0, 50);
+    title = "VOCABULARY CHALLENGE (B1-C1)";
+  }
+
+  // --- 3. GRAMMAR TESTLERİ (Örn: test-perfect-past) ---
+  // data/grammar_topic_tests.json dosyasından çeker
   else if (slug.includes('test-')) {
     const topicRaw = slug.replace('test-', ''); // "perfect-past"
-    // Kelimeleri ayır: "perfect past"
     const searchTerms = topicRaw.split('-'); 
 
-    // Basit bir arama algoritması:
-    // JSON'daki sorunun içinde bu kelimeler geçiyor mu? (Tags veya topic alanı olmadığı için text araması yapıyoruz)
     rawQuestions = (grammarTests as any[]).filter((q: any) => {
       const content = JSON.stringify(q).toLowerCase();
-      // Aranan kelimelerden en az biri geçiyorsa al (daha esnek olması için)
       return searchTerms.some(term => content.includes(term));
     });
 
-    // 15 soruyla sınırla
     if(rawQuestions.length > 15) rawQuestions = rawQuestions.slice(0, 15);
-
     title = topicRaw.replace(/-/g, ' ').toUpperCase() + " TEST";
   }
-
-  // --- 3. HATA ÖNLEME (Hiç soru bulunamazsa) ---
-  if (!rawQuestions || rawQuestions.length === 0) {
-    console.warn(`"${slug}" için soru bulunamadı. Varsayılan sorular yükleniyor.`);
-    // Boş sayfa hatası vermemek için rastgele 5 soru verelim
-    rawQuestions = (levelTests as any[]).slice(0, 5);
-    title = "GENERAL PRACTICE (Fallback)";
+  
+  // --- 4. QUICK PLACEMENT TEST (Örn: quick-placement) ---
+  // Level testinden karma sorular alır
+  else if (slug === 'quick-placement') {
+     rawQuestions = (levelTests as any[]).sort(() => 0.5 - Math.random()).slice(0, 10);
+     title = "QUICK PLACEMENT TEST";
   }
 
-  // --- 4. FORMATLAMA (Uygulamanın beklediği formata çevir) ---
+  // --- HATA ÖNLEME (Yedek) ---
+  if (!rawQuestions || rawQuestions.length === 0) {
+    console.warn(`"${slug}" için soru bulunamadı. Varsayılan sorular yükleniyor.`);
+    rawQuestions = (levelTests as any[]).slice(0, 5);
+    title = "GENERAL PRACTICE";
+  }
+
+  // --- FORMATLAMA ---
   const formattedQuestions: StandardQuestion[] = rawQuestions.map((q: any, index) => {
-    // Doğru şıkkı normalize et (bazen "A", bazen "option_a" olabilir)
     const correctVal = q.correct_option ? String(q.correct_option).toLowerCase().trim() : 'a';
 
     return {
       id: q.id ? String(q.id) : `q-${index}`,
-      // JSON'da soru metni "question_text" veya "question" olabilir
       prompt: q.question_text || q.question || "Question text missing...",
       choices: [
         { id: 'a', text: q.option_a || "Option A", isCorrect: correctVal === 'a' || correctVal.includes('option_a') },
