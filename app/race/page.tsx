@@ -10,7 +10,7 @@ const FAKE_NAMES = [
   "Daniel P.", "Olivia S.", "James L.", "Sophia C.", "William H.",
   "Isabella F.", "Lucas G.", "Mia T.", "Benjamin D.", "Charlotte N."
 ];
- 
+  
 export default function RaceArena() {
   // --- STATE'LER ---
   const [questions, setQuestions] = useState<any[]>([])
