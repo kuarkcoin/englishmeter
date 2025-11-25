@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 
-// --- DATA (Senin çalışan linklerin aynen korundu) ---
+// --- DATA (Linkler Aynen Korundu) ---
 const quickTest = { title: "Quick Placement Test", slug: "quick-placement" };
 const megaTest = { title: "Grammar Mega Test (100Q)", slug: "grammar-mega-test-100" };
 const vocabTest = { title: "Vocabulary B1-C1 (50Q)", slug: "vocab-b1-c1-50" };
@@ -23,11 +23,9 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50">
       
-      {/* --- 1. YENİ ARENA BÖLÜMÜ (EN TEPEDE) --- */}
-      {/* Bu bölüm eski 5'li race butonlarının yerini aldı. Tek buton -> /race sayfasına gider. */}
+      {/* --- ARENA BÖLÜMÜ (Sayaç Kaldırıldı) --- */}
       <div className="bg-slate-900 pt-10 pb-14 px-4 text-center rounded-b-[3rem] shadow-2xl mb-12 relative overflow-hidden">
          
-         {/* Arka plan deseni (Süs) */}
          <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
 
          <h1 className="text-3xl md:text-5xl font-black text-white mb-3 relative z-10 tracking-tight">
@@ -37,7 +35,6 @@ export default function Home() {
             Compete live with thousands of students worldwide.
          </p>
 
-         {/* Tek ve Dev Race Butonu */}
          <Link href="/race" className="group relative z-10 inline-flex items-center justify-center gap-3 px-8 py-4 md:px-12 md:py-5 font-bold text-white transition-all duration-200 bg-gradient-to-r from-yellow-500 to-red-600 rounded-2xl hover:scale-105 hover:shadow-[0_0_40px_rgba(234,179,8,0.6)] focus:outline-none ring-offset-2 focus:ring-4 ring-yellow-400">
             <span className="text-3xl animate-bounce">⚔️</span>
             <div className="text-left">
@@ -45,16 +42,10 @@ export default function Home() {
               <span className="block text-xl md:text-2xl font-black">ENTER THE ARENA</span>
             </div>
          </Link>
-
-         {/* Canlı Sayaç Süsü */}
-         <div className="mt-8 flex justify-center items-center gap-2 text-green-400 text-xs font-mono animate-pulse bg-slate-800/50 inline-block px-4 py-1 rounded-full backdrop-blur-sm">
-            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-            3,421 people are racing now...
-         </div>
       </div>
 
 
-      {/* --- 2. DİĞER TESTLER (SENİN ESKİ KODUNUN AYNISI - ÇALIŞAN KISIM) --- */}
+      {/* --- DİĞER TESTLER --- */}
       <div className="flex flex-col items-center justify-center py-8 px-4 pb-20">
         <div className="w-full max-w-6xl mx-auto text-center">
           
@@ -65,7 +56,7 @@ export default function Home() {
             Take our quick placement test, check your grammar, or choose a level directly below.
           </p>
 
-          {/* 3 ANA BUTON (Quick, Mega, Vocab) */}
+          {/* 3 ANA BUTON */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
             <Link href="/start" className="flex items-center justify-center px-6 py-6 rounded-2xl bg-blue-600 text-white text-lg font-bold shadow-xl shadow-blue-200 hover:bg-blue-700 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
               🚀 {quickTest.title}
