@@ -6,14 +6,14 @@ import { useEffect, useState } from 'react';
 interface Choice {
   id: string;          
   text: string;
-  isCorrect?: boolean; 
+  isCorrect?: boolean; // Veritabanından true/false gelmeli
 }
 
 interface Question {
   id: string;
   prompt: string;
   choices: Choice[];
-  explanation?: string;
+  explanation?: string; // Varsa sonuç ekranında gösterilecek
 }
 
 interface TestInfo {
@@ -28,7 +28,7 @@ interface QuizData {
   error?: string;
 }
 
-// --- HELPER: FORMAT TIME MM:SS ---
+// --- ZAMAN FORMATLAYICI (MM:SS) ---
 function formatTime(seconds: number): string {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
@@ -42,7 +42,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
 
-  // 1) LOAD QUIZ DATA FROM SESSION STORAGE
+  // 1) VERİYİ YÜKLEME VE AYARLAR
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -60,19 +60,18 @@ export default function Quiz({ params }: { params: { id: string } }) {
     try {
       const parsed: QuizData = JSON.parse(raw);
 
+      // ID eşleşmese bile son yüklenen testi aç (Fallback)
       if (parsed.attemptId !== params.id) {
         console.warn('Attempt ID mismatch, using latest payload as fallback.');
       }
 
       setData(parsed);
 
-      // --- ZAMAN AYARLAMASI (DÜZELTİLDİ: 60 Saniye) ---
+      // --- ZAMAN MANTIĞI: HER SORU 1 DAKİKA ---
       const questionCount = parsed.questions?.length || 0;
-      
-      // Her soru 60 saniye (1 dakika)
-      let durationSec = questionCount * 60;
+      let durationSec = questionCount * 60; // 10 soru = 600 sn (10 dk)
 
-      // Eğer soru sayısı 0 ise veya hesaplanamazsa varsayılan 30 dk
+      // Güvenlik: Eğer 0 gelirse varsayılan 30 dk ver
       if (durationSec === 0) {
         durationSec = 30 * 60;
       }
@@ -90,7 +89,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
     }
   }, [params.id]);
 
-  // 2) TIMER LOGIC
+  // 2) GERİ SAYIM SAYACI
   useEffect(() => {
     if (timeLeft === null || timeLeft <= 0 || showResult) return;
 
@@ -98,15 +97,16 @@ export default function Quiz({ params }: { params: { id: string } }) {
       setTimeLeft((prev) => (prev !== null && prev > 0 ? prev - 1 : 0));
     }, 1000);
 
+    // Süre biterse otomatik bitir
     if (timeLeft <= 0) {
       clearInterval(timerId);
-      handleSubmit(); // süre bittiğinde otomatik gönder
+      handleSubmit(); 
     }
 
     return () => clearInterval(timerId);
   }, [timeLeft, showResult]);
 
-  // 3) SUBMIT (DÜZELTİLDİ: String Karşılaştırması)
+  // 3) TESTİ BİTİR VE PUANLA
   const handleSubmit = () => {
     if (!data) return;
 
@@ -115,10 +115,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
     questions.forEach((q) => {
       const userAnswerId = answers[q.id];
-      const correctChoice = q.choices.find((c) => c.isCorrect);
+      // Veri yapısındaki ufak hataları tolere etmek için "String" karşılaştırması
+      const correctChoice = q.choices.find((c) => c.isCorrect === true || String(c.isCorrect) === 'true');
       const correctId = correctChoice?.id;
 
-      // ÖNEMLİ: String() dönüşümü ile sayı/metin hatasını engelliyoruz
       if (
         userAnswerId && 
         correctId && 
@@ -134,7 +134,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
     sessionStorage.removeItem('em_attempt_payload');
   };
 
-  // --- RENDER STATES ---
+  // --- YÜKLENİYOR / HATA EKRANLARI ---
   if (!data) {
     return (
       <div className="p-10 text-center text-slate-500 animate-pulse">
@@ -153,14 +153,14 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
   const { questions, test } = data;
 
-  // --- RESULT SCREEN ---
+  // --- SONUÇ EKRANI (RESULT SCREEN) ---
   if (showResult) {
     const total = questions.length || 1;
     const percentage = Math.round((score / total) * 100);
 
     return (
       <div className="max-w-4xl mx-auto px-4 py-12 space-y-8">
-        {/* SCORE CARD */}
+        {/* SKOR KARTI */}
         <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-200 text-center relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-purple-600" />
           <h1 className="text-3xl font-black text-slate-800 mb-2">
@@ -209,7 +209,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
           </a>
         </div>
 
-        {/* DETAILED ANALYSIS */}
+        {/* DETAYLI ANALİZ (BURASI GRAMMAR DAHİL HEPSİ İÇİN AYNI ÇALIŞIR) */}
         <div className="space-y-6">
           <h2 className="text-xl font-bold text-slate-700 ml-2 border-l-4 border-blue-500 pl-3">
             Detailed Analysis
@@ -217,13 +217,14 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
           {questions.map((q, idx) => {
             const userAnswerId = answers[q.id];
-            const correctChoice = q.choices.find((c) => c.isCorrect);
+            // Doğru şıkkı bul (hem boolean true hem string 'true' kontrolü)
+            const correctChoice = q.choices.find((c) => c.isCorrect === true || String(c.isCorrect) === 'true');
             const correctId = correctChoice?.id;
 
-            // DÜZELTİLDİ: Görsel sonuçlarda da String karşılaştırması
             const isUserAnswered = !!userAnswerId;
             const isCorrect = isUserAnswered && correctId && String(userAnswerId).trim() === String(correctId).trim();
 
+            // Kart Rengi
             let cardBorder = 'border-slate-200';
             let cardBg = 'bg-white';
             if (isCorrect) {
@@ -243,6 +244,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 className={`p-6 rounded-2xl border-2 ${cardBorder} ${cardBg}`}
               >
                 <div className="flex items-start gap-4">
+                  {/* Durum İkonu */}
                   <div
                     className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold shadow-sm ${
                       isCorrect
@@ -272,18 +274,23 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       dangerouslySetInnerHTML={{ __html: q.prompt }}
                     />
 
+                    {/* Şıklar */}
                     <div className="grid gap-2">
                       {q.choices.map((c) => {
                         const isSelected = String(userAnswerId) === String(c.id);
-                        const isTheCorrectAnswer = c.isCorrect === true;
+                        // BU SATIR KRİTİK: Doğru cevap her zaman yeşil yanar
+                        const isTheCorrectAnswer = c.isCorrect === true || String(c.isCorrect) === 'true';
 
                         let optionClass = 'p-3 rounded-lg border flex items-center justify-between ';
 
                         if (isTheCorrectAnswer) {
+                          // DOĞRU CEVAP (Kullanıcı seçmese bile yeşil olur)
                           optionClass += 'bg-green-100 border-green-300 text-green-800 font-bold shadow-sm';
                         } else if (isSelected) {
+                          // KULLANICININ YANLIŞ SEÇİMİ (Kırmızı)
                           optionClass += 'bg-red-100 border-red-300 text-red-800 font-medium';
                         } else {
+                          // SEÇİLMEYEN YANLIŞ ŞIKLAR (Pasif)
                           optionClass += 'bg-white/60 border-slate-200 text-slate-500 opacity-70';
                         }
 
@@ -304,7 +311,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                               <span>{c.text}</span>
                             </div>
                             
-                            {/* Cevap Etiketleri */}
+                            {/* Etiketler */}
                             {isTheCorrectAnswer && (
                               <span className="text-green-700 text-xs uppercase font-bold">
                                 Correct Answer
@@ -320,9 +327,9 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       })}
                     </div>
                     
-                     {/* EXPLANATION */}
+                     {/* EXPLANATION (AÇIKLAMA VARSA GÖSTERİR) */}
                      {q.explanation && (
-                      <div className="mt-5 p-4 bg-blue-50 rounded-xl border border-blue-100 text-sm text-blue-800 flex gap-3 items-start">
+                      <div className="mt-5 p-4 bg-blue-50 rounded-xl border border-blue-100 text-sm text-blue-800 flex gap-3 items-start animate-fadeIn">
                         <span className="text-xl">💡</span>
                         <div>
                           <span className="font-bold block mb-1 text-blue-900">
@@ -345,10 +352,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
     );
   }
 
-  // --- QUIZ (QUESTION SOLVING) SCREEN ---
+  // --- SORU ÇÖZME EKRANI (TEST AŞAMASI) ---
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 space-y-8">
-      {/* TOP BAR */}
+      {/* ÜST BAR (Sticky) */}
       <div className="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-slate-200 sticky top-4 z-20 backdrop-blur-sm bg-white/90">
         <div className="text-sm font-semibold text-slate-700 truncate max-w-[220px]">
           {test?.title || 'Test'}
@@ -364,7 +371,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
         </div>
       </div>
 
-      {/* QUESTIONS */}
+      {/* SORULAR */}
       <div className="space-y-8">
         {questions.map((q, idx) => (
           <div
@@ -425,7 +432,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
         ))}
       </div>
 
-      {/* FINISH BUTTON */}
+      {/* BİTİR BUTONU */}
       <div className="pt-4 pb-12">
         <button
           onClick={handleSubmit}
@@ -436,4 +443,4 @@ export default function Quiz({ params }: { params: { id: string } }) {
       </div>
     </div>
   );
-                            }
+}
