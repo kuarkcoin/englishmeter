@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 
 // --- TYPES ---
 interface Choice {
-  id: string;          // "A" | "B" | "C" | "D" (veya "a"..."d")
+  id: string;          // "A" | "B" | "C" | "D"
   text: string;
-  isCorrect?: boolean; // quizManager'dan geliyor (doğru şık için true)
+  isCorrect?: boolean;
 }
 
 interface Question {
@@ -60,25 +60,36 @@ export default function Quiz({ params }: { params: { id: string } }) {
     try {
       const parsed: QuizData = JSON.parse(raw);
 
-      // If ID does not match, still use the latest payload as a fallback
       if (parsed.attemptId !== params.id) {
         console.warn('Attempt ID mismatch, using latest payload as fallback.');
       }
 
       setData(parsed);
 
-      // TIMER SETUP
+      // ------------ TIMER SETUP (DÜZELTİLMİŞ) ------------
       const questionCount = parsed.questions?.length || 0;
-      let durationSec = 30 * 60; // default: 30 minutes
+      const isPractice = String(parsed.attemptId || '').startsWith('session-');
+      let durationSec: number;
 
-      if (parsed.test?.duration && parsed.test.duration > 0) {
+      if (isPractice) {
+        // Grammar topic / JSON practice testleri:
+        // Tamamen soru sayısına göre süre
+        durationSec = questionCount > 0 ? questionCount * 72 : 20 * 72;
+      } else if (parsed.test?.duration && parsed.test.duration > 0) {
+        // Quick / Mega / Vocab gibi gerçek testler:
+        // Backend'ten gelen süreyi (dakika) kullan
         durationSec = parsed.test.duration * 60;
       } else if (questionCount > 0) {
-        // dynamic: 72 seconds per question
+        // Fallback: soru başı 72 saniye
         durationSec = questionCount * 72;
+      } else {
+        // Son çare: sabit 30 dk
+        durationSec = 30 * 60;
       }
 
       setTimeLeft(durationSec);
+      // ------------ TIMER SETUP SON ------------
+
     } catch (err) {
       console.error('Failed to parse em_attempt_payload:', err);
       setData({
@@ -114,7 +125,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
     let correctCount = 0;
 
     questions.forEach((q) => {
-      // Find correct choice via isCorrect
       const correctChoice = q.choices.find((c) => c.isCorrect);
       const correctId = correctChoice?.id;
 
@@ -388,51 +398,5 @@ export default function Quiz({ params }: { params: { id: string } }) {
                   }`}
                 >
                   <div
-                    className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 transition-colors ${
-                      answers[q.id] === c.id
-                        ? 'border-blue-600'
-                        : 'border-slate-300 group-hover:border-blue-400'
-                    }`}
-                  >
-                    {answers[q.id] === c.id && (
-                      <div className="w-2.5 h-2.5 rounded-full bg-blue-600" />
-                    )}
-                  </div>
-
-                  <input
-                    type="radio"
-                    name={q.id}
-                    className="hidden"
-                    checked={answers[q.id] === c.id}
-                    onChange={() =>
-                      setAnswers((prev) => ({ ...prev, [q.id]: c.id }))
-                    }
-                  />
-                  <span
-                    className={`text-lg ${
-                      answers[q.id] === c.id
-                        ? 'text-blue-700 font-medium'
-                        : 'text-slate-600'
-                    }`}
-                  >
-                    {c.text}
-                  </span>
-                </label>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* FINISH BUTTON */}
-      <div className="pt-4 pb-12">
-        <button
-          onClick={handleSubmit}
-          className="w-full py-4 rounded-xl text-white text-xl font-bold shadow-lg transition-all transform active:scale-[0.98] bg-blue-600 hover:bg-blue-700 hover:shadow-blue-200"
-        >
-          Finish Test
-        </button>
-      </div>
-    </div>
-  );
-} 
+                    className={`w-5 h-5 rounded-full border-2 flex items
+0
