@@ -44,8 +44,8 @@ function StartQuizLogic() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white p-4">
       <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-6"></div>
-      <h1 className="text-2xl font-bold text-slate-800">Sınav Hazırlanıyor...</h1>
-      <p className="text-slate-500 mt-2">Sorular veritabanından çekiliyor.</p>
+     <h1 className="text-2xl font-bold">Preparing your test...</h1>
+<p>Please wait while we load your questions.</p>
     </div>
   )
 }
