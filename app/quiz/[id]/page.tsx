@@ -12,13 +12,13 @@ interface Question {
   id: string;
   prompt: string;
   choices: Choice[];
-  correct?: string; 
+  correct?: string;
   explanation?: string;
 }
 
 interface TestInfo {
   title: string;
-  duration: number;
+  duration: number; // Dakika cinsinden
 }
 
 interface QuizData {
@@ -26,9 +26,12 @@ interface QuizData {
   test: TestInfo;
   questions: Question[];
   error?: string;
+  // Backend'den bazen sadece cevap anahtarı dönebilir diye esneklik:
+  correctAnswers?: Record<string, string>; 
+  explanations?: Record<string, string>;
 }
 
-// --- HELPER ---
+// --- HELPER: TIME FORMATTER ---
 function formatTime(seconds: number): string {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
@@ -51,11 +54,22 @@ export default function Quiz({ params }: { params: { id: string } }) {
     if (raw) {
       try {
         const parsedData: QuizData = JSON.parse(raw);
+        
         if (parsedData.attemptId === params.id || parsedData) {
           setData(parsedData);
-          if (parsedData.test?.duration) {
-            setTimeLeft(parsedData.test.duration * 60);
+          
+          // --- DİNAMİK ZAMANLAYICI AYARI ---
+          // Eğer test.duration varsa onu kullan, yoksa soru başına 72 saniye (1.2 dk) ver.
+          let durationInSeconds = 30 * 60; // Default fallback (30 dk)
+
+          if (parsedData.test?.duration && parsedData.test.duration > 0) {
+             durationInSeconds = parsedData.test.duration * 60;
+          } else if (parsedData.questions && parsedData.questions.length > 0) {
+             // Otomatik Hesaplama: Soru sayısı * 72 saniye
+             durationInSeconds = parsedData.questions.length * 72;
           }
+
+          setTimeLeft(durationInSeconds);
         }
       } catch (e) {
         setData({ attemptId: '', test: { title: 'Error', duration: 0 }, questions: [], error: 'Data corrupted.' });
@@ -65,16 +79,19 @@ export default function Quiz({ params }: { params: { id: string } }) {
     }
   }, [params.id]);
 
-  // 2. TIMER
+  // 2. TIMER LOGIC
   useEffect(() => {
     if (timeLeft === null || timeLeft === 0 || showResult) return;
+
     const timerId = setInterval(() => {
       setTimeLeft((prev) => (prev !== null && prev > 0 ? prev - 1 : 0));
     }, 1000);
+
     if (timeLeft <= 0) {
       clearInterval(timerId);
-      submit(); // Auto submit
+      submit(); // Süre bitince otomatik gönder
     }
+
     return () => clearInterval(timerId);
   }, [timeLeft, showResult]);
 
@@ -86,14 +103,14 @@ export default function Quiz({ params }: { params: { id: string } }) {
     const { questions, attemptId } = data;
     const isPractice = attemptId && String(attemptId).startsWith('session-');
 
-    // Senaryo A: PRATİK MODU (Client-Side)
+    // SENARYO A: PRATİK MODU (Client-Side)
     if (isPractice) {
         calculateAndShow(questions);
         isSubmitting.current = false;
         return;
     }
 
-    // Senaryo B: GERÇEK TEST (Server-Side)
+    // SENARYO B: GERÇEK TEST (Server-Side)
     try {
         const res = await fetch(`/api/attempts/${attemptId}/submit`, {
           method: 'POST',
@@ -103,32 +120,44 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
         if (!res.ok) throw new Error("Server Error");
 
-        const r = await res.json();
+        const r: QuizData = await res.json();
         
-        // ÖNEMLİ: Sunucudan gelen "r" nesnesi, soruların CEVAPLI halini içermeli.
-        // Gelen veriyi state'e yazıyoruz ki doğru şıklar görünsün.
-        if (r && r.questions) {
-            setData(r); // State'i cevap anahtarı olan veriyle güncelle
-            calculateAndShow(r.questions); // Yeni veriye göre puan hesapla
-        } else {
-            // Eğer sunucu soruları geri döndürmüyorsa, eldekiyle devam et (ama doğru şıklar görünmeyebilir)
-            calculateAndShow(questions); 
+        // --- AKILLI VERİ BİRLEŞTİRME (SMART MERGE) ---
+        // Sunucudan gelen veriyi işle:
+        let finalQuestions = [...questions];
+
+        // Durum 1: Sunucu tam soru listesini (cevaplarıyla) geri döndü
+        if (r.questions && r.questions.length > 0) {
+            finalQuestions = r.questions;
+        } 
+        // Durum 2: Sunucu sadece { correctAnswers: {...} } haritası döndü (Yaygın Backend yapısı)
+        else if (r.correctAnswers) {
+            finalQuestions = finalQuestions.map(q => ({
+                ...q,
+                correct: r.correctAnswers?.[q.id],
+                explanation: r.explanations?.[q.id] || q.explanation // Varsa açıklamayı da al
+            }));
         }
+
+        // State'i güncelle ki ekranda yeşil/kırmızı yanabilsin
+        setData({ ...data, questions: finalQuestions });
+        calculateAndShow(finalQuestions);
         
         isSubmitting.current = false;
 
     } catch (error) {
-        alert("Connection error. Showing preliminary results.");
+        // Hata olsa bile kullanıcının testini "bitmiş" gibi göster ve eldeki verilerle puanla
+        alert("Connection error. Showing preliminary results based on available data.");
         calculateAndShow(questions);
         isSubmitting.current = false;
     }
   };
 
-  // Ortak Puanlama ve Gösterme Fonksiyonu
+  // Puanlama ve Ekranı Açma
   const calculateAndShow = (currentQuestions: Question[]) => {
     let correctCount = 0;
     currentQuestions.forEach((q) => {
-      // q.correct sunucudan dolu gelmeli
+      // q.correct sunucudan veya json'dan gelmiş olmalı
       if (answers[q.id] && q.correct && answers[q.id] === q.correct) {
         correctCount++;
       }
@@ -147,7 +176,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
   // --- RESULT SCREEN ---
   if (showResult) {
-    const percentage = Math.round((score / questions.length) * 100);
+    const percentage = Math.round((score / (questions.length || 1)) * 100);
 
     return (
       <div className="max-w-4xl mx-auto px-4 py-12 space-y-8 animate-in fade-in duration-500">
@@ -188,6 +217,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
             const isSkipped = !userAnswer;
             const isCorrect = !isSkipped && userAnswer === q.correct;
 
+            // Kart tasarımı
             let cardBorder = "border-slate-200";
             let cardBg = "bg-white";
             if (isCorrect) { cardBorder = "border-green-200"; cardBg = "bg-green-50/40"; }
@@ -217,12 +247,11 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
                         let itemClass = "p-3 rounded-lg border flex items-center justify-between ";
                         
-                        // DOĞRU CEVAP GÖSTERİM MANTIĞI:
                         if (isTheCorrectAnswer) {
-                          // Doğru şık (kullanıcı seçmese bile) YEŞİL yanar
+                          // Doğru cevap her zaman yeşil yanar
                           itemClass += "bg-green-100 border-green-300 text-green-800 font-bold shadow-sm";
                         } else if (isSelected && !isTheCorrectAnswer) {
-                          // Yanlış seçilen şık KIRMIZI yanar
+                          // Yanlış cevap kırmızı
                           itemClass += "bg-red-100 border-red-300 text-red-800 font-medium";
                         } else {
                           itemClass += "bg-white/60 border-slate-200 text-slate-500 opacity-70";
@@ -245,7 +274,8 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       })}
                     </div>
 
-                    {q.explanation && (
+                    {/* Açıklama Alanı */}
+                    {q.explanation ? (
                       <div className="mt-5 p-4 bg-blue-50 rounded-xl border border-blue-100 text-sm text-blue-800 flex gap-3 items-start">
                         <span className="text-xl">💡</span>
                         <div>
@@ -253,6 +283,9 @@ export default function Quiz({ params }: { params: { id: string } }) {
                             <span className="leading-relaxed opacity-90">{q.explanation}</span>
                         </div>
                       </div>
+                    ) : (
+                        // Geliştirici için uyarı (Sadece correct yoksa görünür)
+                        !q.correct && <div className="mt-2 text-xs text-gray-400 italic">Processing results... (Explanation unavailable)</div>
                     )}
                   </div>
                 </div>
@@ -299,7 +332,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
       <div className="pt-4 pb-12">
         <button onClick={submit} disabled={isSubmitting.current} className={`w-full py-4 rounded-xl text-white text-xl font-bold shadow-lg transition-all transform active:scale-[0.98] ${isSubmitting.current ? 'bg-slate-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 hover:shadow-blue-200'}`}>
-          {isSubmitting.current ? 'Processing...' : 'Finish Test'}
+          {isSubmitting.current ? 'Processing Results...' : 'Finish Test'}
         </button>
       </div>
     </div>
