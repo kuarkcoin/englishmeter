@@ -1,6 +1,7 @@
 // app/layout.tsx
 import type { Metadata } from 'next';
 import './globals.css';
+import Footer from '@/components/Footer'; // ← EKLENDİ
 
 const siteName = 'EnglishMeter';
 const siteUrl = 'https://englishmeter.net';
@@ -61,7 +62,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-slate-50">
+      <body className="bg-slate-50 min-h-screen flex flex-col">
         {/* JSON-LD: Website + Educational Application */}
         <script
           type="application/ld+json"
@@ -89,7 +90,10 @@ export default function RootLayout({
             }),
           }}
         />
-        {children}
+        <div className="flex-1">
+          {children}
+        </div>
+        <Footer />
       </body>
     </html>
   );
