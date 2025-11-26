@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 
-// --- TYPES ---
+// --- TİP TANIMLAMALARI (Hata önlemek için sıkı kurallar) ---
 interface Choice {
   id: string;
   text: string;
@@ -12,13 +12,13 @@ interface Question {
   id: string;
   prompt: string;
   choices: Choice[];
-  correct?: string;     // Doğru şık (Örn: "A")
+  correct?: string;     // Doğru şık ID'si (Örn: "A")
   explanation?: string; // Açıklama metni
 }
 
 interface TestInfo {
   title: string;
-  duration: number;
+  duration?: number; // Opsiyonel olabilir
 }
 
 interface QuizData {
@@ -26,18 +26,16 @@ interface QuizData {
   test: TestInfo;
   questions: Question[];
   error?: string;
-  // Backend'den dönebilecek ek alanlar
+  // Backend'den dönebilecek ek cevap anahtarı alanları
   correctAnswers?: Record<string, string>; 
   explanations?: Record<string, string>;
 }
 
-// --- HELPER: TIME FORMATTER ---
+// --- YARDIMCI: SÜRE FORMATI (MM:SS) ---
 function formatTime(seconds: number): string {
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = seconds % 60;
-  return `${minutes.toString().padStart(2, '0')}:${remainingSeconds
-    .toString()
-    .padStart(2, '0')}`;
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
 }
 
 export default function Quiz({ params }: { params: { id: string } }) {
@@ -46,47 +44,48 @@ export default function Quiz({ params }: { params: { id: string } }) {
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
+  
+  // Çift tıklamayı engellemek için ref
   const isSubmitting = useRef(false);
 
-  // 1. INITIAL DATA LOAD
+  // 1. BAŞLANGIÇ: VERİYİ YÜKLE
   useEffect(() => {
+    // Tarayıcıda çalışıp çalışmadığımızı kontrol edelim
+    if (typeof window === 'undefined') return;
+
     const raw = sessionStorage.getItem('em_attempt_payload');
     if (raw) {
       try {
         const parsedData: QuizData = JSON.parse(raw);
         
-        // ID kontrolü (veya fallback)
-        if (parsedData.attemptId === params.id || parsedData) {
-          setData(parsedData);
+        // ID eşleşmese bile kurtarma modunda veriyi yükle
+        setData(parsedData);
           
-          // --- 🕒 AKILLI SÜRE HESAPLAMA (Smart Timer) ---
-          // Sorun: Home sayfasında "duration: 30" sabit geliyorsa bunu ezmek gerekebilir.
-          
-          const qCount = parsedData.questions?.length || 0;
-          let calculatedDuration = 30 * 60; // Default
+        // --- 🕒 AKILLI SÜRE AYARI ---
+        const qCount = parsedData.questions?.length || 0;
+        let durationSec = 30 * 60; // Varsayılan 30 dk
 
-          // Eğer soru sayısı belli ise: Soru başına 72 saniye (1.2 dk) ver
-          if (qCount > 0) {
-             calculatedDuration = qCount * 72; 
-          }
-          
-          // Eğer verideki süre 30'dan farklı, geçerli ve mantıklıysa (örn: Race modu) onu kullan
-          // Not: Home.tsx'de duration:30 sabitlenmişse bu logic soru sayısını baz alır.
-          if (parsedData.test?.duration && parsedData.test.duration !== 30 && parsedData.test.duration > 0) {
-             calculatedDuration = parsedData.test.duration * 60;
-          }
-
-          setTimeLeft(calculatedDuration);
+        // Eğer veride geçerli bir süre varsa onu kullan
+        if (parsedData.test?.duration && parsedData.test.duration > 0) {
+           durationSec = parsedData.test.duration * 60;
+        } 
+        // Yoksa soru sayısına göre hesapla (Soru başı 72 saniye)
+        else if (qCount > 0) {
+           durationSec = qCount * 72; 
         }
+
+        setTimeLeft(durationSec);
+
       } catch (e) {
-        setData({ attemptId: '', test: { title: 'Error', duration: 0 }, questions: [], error: 'Data corrupted.' });
+        console.error("JSON Parse Error:", e);
+        setData({ attemptId: '', test: { title: 'Error', duration: 0 }, questions: [], error: 'Veri bozuk. Lütfen testi yeniden başlatın.' });
       }
     } else {
-      setData({ attemptId: '', test: { title: 'Error', duration: 0 }, questions: [], error: 'Test data not found.' });
+      setData({ attemptId: '', test: { title: 'Error', duration: 0 }, questions: [], error: 'Test verisi bulunamadı.' });
     }
   }, [params.id]);
 
-  // 2. TIMER LOOP
+  // 2. SAYAÇ MANTIĞI
   useEffect(() => {
     if (timeLeft === null || timeLeft === 0 || showResult) return;
 
@@ -96,13 +95,19 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
     if (timeLeft <= 0) {
       clearInterval(timerId);
-      submit(); // Süre bitince otomatik gönder
+      handleAutoSubmit(); // Süre bitince otomatik gönder
     }
 
     return () => clearInterval(timerId);
   }, [timeLeft, showResult]);
 
-  // --- SUBMIT FUNCTION ---
+  // Otomatik gönderme sarmalayıcısı
+  const handleAutoSubmit = () => {
+    alert("Süre doldu! Test otomatik olarak bitiriliyor...");
+    submit();
+  };
+
+  // --- SUBMIT (BİTİRME) FONKSİYONU ---
   const submit = async () => {
     if (isSubmitting.current || !data) return;
     isSubmitting.current = true;
@@ -110,14 +115,13 @@ export default function Quiz({ params }: { params: { id: string } }) {
     const { questions, attemptId } = data;
     const isPractice = attemptId && String(attemptId).startsWith('session-');
 
-    // SENARYO A: Grammar / Pratik Modu (Zaten elimizde cevaplar var)
+    // SENARYO A: PRATİK MODU (Client-Side)
     if (isPractice) {
-        calculateAndShow(questions);
-        isSubmitting.current = false;
+        finishWithLocalCalculation(questions);
         return;
     }
 
-    // SENARYO B: Gerçek Testler (Quick, Mega vb.)
+    // SENARYO B: GERÇEK TEST (Server-Side)
     try {
         const res = await fetch(`/api/attempts/${attemptId}/submit`, {
           method: 'POST',
@@ -125,44 +129,46 @@ export default function Quiz({ params }: { params: { id: string } }) {
           body: JSON.stringify({ answers }),
         });
 
-        if (!res.ok) throw new Error("Server Error");
+        if (!res.ok) {
+            throw new Error(`Sunucu Hatası: ${res.status}`);
+        }
 
         const r: QuizData = await res.json();
         
-        // --- 🧠 AKILLI SONUÇ BİRLEŞTİRME ---
-        // Sunucudan gelen cevapları mevcut sorularla birleştiriyoruz.
-        let finalQuestions = [...questions];
+        // --- VERİ BİRLEŞTİRME (MERGE) ---
+        // Sunucudan gelen cevap anahtarını mevcut sorulara ekle
+        let updatedQuestions = [...questions];
 
-        // Durum 1: Sunucu soruları cevaplarıyla birlikte geri döndürdü (En iyisi)
+        // 1. İhtimal: Sunucu tam soru listesini geri döndü
         if (r.questions && r.questions.length > 0) {
-            finalQuestions = r.questions;
+            updatedQuestions = r.questions;
         } 
-        // Durum 2: Sunucu sadece "correctAnswers" haritası döndürdü (Yaygın backend yapısı)
+        // 2. İhtimal: Sunucu sadece cevap anahtarı (map) döndü
         else if (r.correctAnswers) {
-            finalQuestions = finalQuestions.map(q => ({
+            updatedQuestions = updatedQuestions.map(q => ({
                 ...q,
-                correct: r.correctAnswers?.[q.id], // Cevabı ekle
-                explanation: r.explanations?.[q.id] || q.explanation // Varsa açıklamayı ekle
+                correct: r.correctAnswers?.[q.id], // Doğru şıkkı ekle
+                explanation: r.explanations?.[q.id] || q.explanation // Açıklamayı ekle
             }));
         }
 
-        // Yeni veriyle ekranı güncelle
-        setData({ ...data, questions: finalQuestions });
-        calculateAndShow(finalQuestions);
-        isSubmitting.current = false;
+        // Ekranı güncelle ve hesapla
+        setData({ ...data, questions: updatedQuestions });
+        finishWithLocalCalculation(updatedQuestions);
 
     } catch (error) {
-        // Hata olsa bile kullanıcıyı yarı yolda bırakma, eldekiyle göster
-        calculateAndShow(questions);
-        isSubmitting.current = false;
+        console.error("Submit Error:", error);
+        alert("Sunucuya bağlanırken hata oluştu. Tahmini sonuçlar gösteriliyor.");
+        // Hata olsa bile kullanıcıyı kilitleme, eldekiyle göster
+        finishWithLocalCalculation(questions);
     }
   };
 
-  // Puan Hesaplama ve Gösterme
-  const calculateAndShow = (currentQuestions: Question[]) => {
+  // Puanı Hesapla ve Sonuç Ekranını Aç
+  const finishWithLocalCalculation = (currentQuestions: Question[]) => {
     let correctCount = 0;
     currentQuestions.forEach((q) => {
-      // Cevap anahtarı (correct) varsa ve kullanıcı doğru bildiyse
+      // q.correct doluysa ve kullanıcı doğru bildiyse
       if (answers[q.id] && q.correct && answers[q.id] === q.correct) {
         correctCount++;
       }
@@ -170,22 +176,24 @@ export default function Quiz({ params }: { params: { id: string } }) {
     setScore(correctCount);
     setShowResult(true);
     window.scrollTo(0, 0);
-    sessionStorage.removeItem('em_attempt_payload');
+    sessionStorage.removeItem('em_attempt_payload'); // Temizlik
+    isSubmitting.current = false;
   };
 
-  // --- RENDER ---
-  if (!data) return <div className="p-10 text-center text-slate-500">Loading...</div>;
-  if (data.error) return <div className="p-10 text-center text-red-600 font-bold">{data.error}</div>;
+  // --- YÜKLENİYOR VEYA HATA ---
+  if (!data) return <div className="p-10 text-center text-slate-500 animate-pulse">Test Yükleniyor...</div>;
+  if (data.error) return <div className="p-10 text-center text-red-600 font-bold bg-red-50 m-4 rounded-xl">{data.error}</div>;
 
   const { questions, test } = data;
 
-  // --- RESULT SCREEN ---
+  // --- SONUÇ EKRANI (KARNE) ---
   if (showResult) {
-    const percentage = Math.round((score / (questions.length || 1)) * 100);
+    const totalQ = questions.length || 1;
+    const percentage = Math.round((score / totalQ) * 100);
 
     return (
       <div className="max-w-4xl mx-auto px-4 py-12 space-y-8 animate-in fade-in duration-500">
-        {/* Score Card */}
+        {/* Özet Kartı */}
         <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-200 text-center relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-purple-600"></div>
           <h1 className="text-3xl font-black text-slate-800 mb-2">Test Completed!</h1>
@@ -214,37 +222,26 @@ export default function Quiz({ params }: { params: { id: string } }) {
           </a>
         </div>
 
-        {/* Detailed Analysis */}
+        {/* Detaylı Analiz */}
         <div className="space-y-6">
           <h2 className="text-xl font-bold text-slate-700 ml-2 border-l-4 border-blue-500 pl-3">Detailed Analysis</h2>
           {questions.map((q, idx) => {
             const userAnswer = answers[q.id];
             const isSkipped = !userAnswer;
-            const isCorrect = !isSkipped && userAnswer === q.correct;
-            
-            // EĞER SUNUCUDAN CEVAP ANAHTARI GELMEDİYSE (q.correct undefined ise)
-            const isKeyMissing = !q.correct; 
+            // Doğru cevap varsa kontrol et, yoksa (API hatası vs) false
+            const isCorrect = q.correct ? (!isSkipped && userAnswer === q.correct) : false;
+            const isKeyMissing = !q.correct; // Cevap anahtarı hiç gelmemişse
 
-            let cardBorder = "border-slate-200";
-            let cardBg = "bg-white";
-            
-            if (isKeyMissing) {
-                cardBorder = "border-slate-200";
-                cardBg = "bg-slate-50"; 
-            } else if (isCorrect) {
-                cardBorder = "border-green-200";
-                cardBg = "bg-green-50/40";
-            } else if (isSkipped) {
-                cardBorder = "border-amber-200";
-                cardBg = "bg-amber-50/40";
-            } else {
-                cardBorder = "border-red-200";
-                cardBg = "bg-red-50/40";
-            }
+            // Kart Rengi
+            let cardClass = "bg-white border-slate-200";
+            if (isCorrect) cardClass = "bg-green-50/50 border-green-200";
+            else if (isSkipped) cardClass = "bg-amber-50/50 border-amber-200";
+            else if (!isKeyMissing) cardClass = "bg-red-50/50 border-red-200";
 
             return (
-              <div key={q.id} className={`p-6 rounded-2xl border-2 ${cardBorder} ${cardBg}`}>
+              <div key={q.id} className={`p-6 rounded-2xl border-2 ${cardClass} transition-all`}>
                 <div className="flex items-start gap-4">
+                  {/* İkon */}
                   <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold shadow-sm 
                     ${isKeyMissing ? 'bg-slate-400' : (isCorrect ? 'bg-green-500' : (isSkipped ? 'bg-amber-400' : 'bg-red-500'))}`}>
                     {isKeyMissing ? '?' : (isCorrect ? '✓' : (isSkipped ? '−' : '✕'))}
@@ -263,22 +260,21 @@ export default function Quiz({ params }: { params: { id: string } }) {
                         const isSelected = userAnswer === c.id;
                         const isTheCorrectAnswer = q.correct === c.id;
 
-                        let itemClass = "p-3 rounded-lg border flex items-center justify-between ";
+                        let optionClass = "p-3 rounded-lg border flex items-center justify-between ";
                         
                         if (isTheCorrectAnswer) {
-                          // Doğru cevap
-                          itemClass += "bg-green-100 border-green-300 text-green-800 font-bold shadow-sm";
-                        } else if (isSelected && !isTheCorrectAnswer) {
-                          // Yanlış
-                          itemClass += isKeyMissing 
-                            ? "bg-blue-100 border-blue-300 text-blue-800 font-medium" 
-                            : "bg-red-100 border-red-300 text-red-800 font-medium";
+                          // Doğru cevap HER ZAMAN YEŞİL (Kullanıcı seçmese bile)
+                          optionClass += "bg-green-100 border-green-300 text-green-800 font-bold shadow-sm";
+                        } else if (isSelected) {
+                          // Kullanıcının seçimi (Eğer doğru değilse veya anahtar yoksa)
+                          if (isKeyMissing) optionClass += "bg-blue-100 border-blue-300 text-blue-800";
+                          else optionClass += "bg-red-100 border-red-300 text-red-800 font-medium";
                         } else {
-                          itemClass += "bg-white/60 border-slate-200 text-slate-500 opacity-70";
+                          optionClass += "bg-white/60 border-slate-200 text-slate-500 opacity-70";
                         }
 
                         return (
-                          <div key={c.id} className={itemClass}>
+                          <div key={c.id} className={optionClass}>
                             <div className="flex items-center gap-3">
                               <div className={`w-6 h-6 rounded-full border flex items-center justify-center text-xs 
                                 ${isTheCorrectAnswer ? 'border-green-500 bg-green-500 text-white' : 
@@ -287,15 +283,16 @@ export default function Quiz({ params }: { params: { id: string } }) {
                               </div>
                               <span>{c.text}</span>
                             </div>
+                            
                             {isTheCorrectAnswer && <span className="text-green-700 text-xs uppercase font-bold">Correct Answer</span>}
                             {isSelected && !isTheCorrectAnswer && !isKeyMissing && <span className="text-red-600 text-xs uppercase font-bold">Your Answer</span>}
-                            {isSelected && isKeyMissing && <span className="text-blue-600 text-xs uppercase font-bold">Your Answer</span>}
                           </div>
                         );
                       })}
                     </div>
 
-                    {q.explanation ? (
+                    {/* Açıklama */}
+                    {q.explanation && (
                       <div className="mt-5 p-4 bg-blue-50 rounded-xl border border-blue-100 text-sm text-blue-800 flex gap-3 items-start">
                         <span className="text-xl">💡</span>
                         <div>
@@ -303,12 +300,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
                             <span className="leading-relaxed opacity-90">{q.explanation}</span>
                         </div>
                       </div>
-                    ) : (
-                        !isPractice && isKeyMissing && (
-                            <div className="mt-2 text-xs text-slate-400 italic">
-                                * Correct answers are hidden for this test mode.
-                            </div>
-                        )
                     )}
                   </div>
                 </div>
@@ -320,9 +311,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
     );
   }
 
-  // --- QUIZ RENDER ---
+  // --- SORU ÇÖZME EKRANI (NORMAL RENDER) ---
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 space-y-8 animate-in fade-in">
+      {/* Üst Bar */}
       <div className="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-slate-200 sticky top-4 z-20 backdrop-blur-sm bg-white/90">
         <div className="text-sm font-semibold text-slate-700 truncate max-w-[200px]">{test?.title || 'Test'}</div>
         <div className={`text-lg font-bold px-4 py-2 rounded-lg border transition-colors
@@ -331,6 +323,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
         </div>
       </div>
 
+      {/* Sorular */}
       <div className="space-y-8">
         {questions.map((q, idx) => (
           <div key={q.id} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
@@ -340,10 +333,12 @@ export default function Quiz({ params }: { params: { id: string } }) {
               {q.choices.map((c) => (
                 <label key={c.id} className={`group cursor-pointer flex items-center p-4 rounded-xl border-2 transition-all duration-200 active:scale-[0.99] 
                   ${answers[q.id] === c.id ? 'border-blue-600 bg-blue-50 shadow-md' : 'border-slate-100 hover:border-blue-300 hover:bg-slate-50'}`}>
+                  
                   <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 transition-colors
                     ${answers[q.id] === c.id ? 'border-blue-600' : 'border-slate-300 group-hover:border-blue-400'}`}>
                     {answers[q.id] === c.id && <div className="w-2.5 h-2.5 rounded-full bg-blue-600" />}
                   </div>
+                  
                   <input type="radio" name={q.id} className="hidden" checked={answers[q.id] === c.id} onChange={() => setAnswers((a) => ({ ...a, [q.id]: c.id }))} />
                   <span className={`text-lg ${answers[q.id] === c.id ? 'text-blue-700 font-medium' : 'text-slate-600'}`}>{c.text}</span>
                 </label>
@@ -353,9 +348,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
         ))}
       </div>
 
+      {/* Buton */}
       <div className="pt-4 pb-12">
         <button onClick={submit} disabled={isSubmitting.current} className={`w-full py-4 rounded-xl text-white text-xl font-bold shadow-lg transition-all transform active:scale-[0.98] ${isSubmitting.current ? 'bg-slate-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 hover:shadow-blue-200'}`}>
-          {isSubmitting.current ? 'Processing...' : 'Finish Test'}
+          {isSubmitting.current ? 'Processing Results...' : 'Finish Test'}
         </button>
       </div>
     </div>
