@@ -4,21 +4,21 @@ import { useEffect, useState } from 'react';
 
 // --- TYPES ---
 interface Choice {
-  id: string;          
+  id: string; // "A" | "B" | "C" | "D" (veya "a"..."d")
   text: string;
-  isCorrect?: boolean; // quizManager'dan true/false olarak gelir
+  isCorrect?: boolean; // quizManager'dan geliyor (doğru şık için true)
 }
 
 interface Question {
   id: string;
   prompt: string;
   choices: Choice[];
-  explanation?: string; // Varsa sonuç ekranında gösterilir
+  explanation?: string;
 }
 
 interface TestInfo {
   title: string;
-  duration?: number; 
+  duration?: number; // minutes (optional)
 }
 
 interface QuizData {
@@ -42,7 +42,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
 
-  // 1) VERİYİ YÜKLE VE ZAMANI AYARLA
+  // 1) LOAD QUIZ DATA FROM SESSION STORAGE
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -60,25 +60,25 @@ export default function Quiz({ params }: { params: { id: string } }) {
     try {
       const parsed: QuizData = JSON.parse(raw);
 
+      // If ID does not match, still use the latest payload as a fallback
       if (parsed.attemptId !== params.id) {
         console.warn('Attempt ID mismatch, using latest payload as fallback.');
       }
 
       setData(parsed);
 
-      // --- ZAMAN AYARLAMASI (GÜNCELLENDİ) ---
+      // TIMER SETUP
       const questionCount = parsed.questions?.length || 0;
-      
-      // KURAL: Her soru tam 60 saniye (1 dakika).
-      let durationSec = questionCount * 60;
+      let durationSec = 30 * 60; // default: 30 minutes
 
-      // Güvenlik: Eğer soru sayısı 0 ise veya hata varsa varsayılan 30 dk ver.
-      if (durationSec === 0) {
-        durationSec = 30 * 60;
+      if (parsed.test?.duration && parsed.test.duration > 0) {
+        durationSec = parsed.test.duration * 60;
+      } else if (questionCount > 0) {
+        // dynamic: 72 seconds per question
+        durationSec = questionCount * 72;
       }
 
       setTimeLeft(durationSec);
-
     } catch (err) {
       console.error('Failed to parse em_attempt_payload:', err);
       setData({
@@ -90,7 +90,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
     }
   }, [params.id]);
 
-  // 2) GERİ SAYIM MANTIĞI
+  // 2) TIMER LOGIC
   useEffect(() => {
     if (timeLeft === null || timeLeft <= 0 || showResult) return;
 
@@ -100,13 +100,13 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
     if (timeLeft <= 0) {
       clearInterval(timerId);
-      handleSubmit(); // süre bitince otomatik bitir
+      handleSubmit(); // auto submit when time is up
     }
 
     return () => clearInterval(timerId);
   }, [timeLeft, showResult]);
 
-  // 3) SONUÇ HESAPLAMA (GÜVENLİ KARŞILAŞTIRMA İLE)
+  // 3) SUBMIT (FULLY CLIENT-SIDE)
   const handleSubmit = () => {
     if (!data) return;
 
@@ -114,17 +114,11 @@ export default function Quiz({ params }: { params: { id: string } }) {
     let correctCount = 0;
 
     questions.forEach((q) => {
-      const userAnswerId = answers[q.id];
-      // isCorrect true olanı veya "true" string olanı bul
-      const correctChoice = q.choices.find((c) => c.isCorrect === true || String(c.isCorrect) === 'true');
+      // Find correct choice via isCorrect
+      const correctChoice = q.choices.find((c) => c.isCorrect);
       const correctId = correctChoice?.id;
 
-      // String çevirimi yaparak (1 === "1") hatasını önlüyoruz
-      if (
-        userAnswerId && 
-        correctId && 
-        String(userAnswerId).trim() === String(correctId).trim()
-      ) {
+      if (correctId && answers[q.id] === correctId) {
         correctCount++;
       }
     });
@@ -135,7 +129,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
     sessionStorage.removeItem('em_attempt_payload');
   };
 
-  // --- YÜKLENİYOR / HATA DURUMLARI ---
+  // --- RENDER STATES ---
   if (!data) {
     return (
       <div className="p-10 text-center text-slate-500 animate-pulse">
@@ -154,14 +148,14 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
   const { questions, test } = data;
 
-  // --- SONUÇ EKRANI ---
+  // --- RESULT SCREEN ---
   if (showResult) {
     const total = questions.length || 1;
     const percentage = Math.round((score / total) * 100);
 
     return (
       <div className="max-w-4xl mx-auto px-4 py-12 space-y-8">
-        {/* SKOR KARTI */}
+        {/* SCORE CARD */}
         <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-200 text-center relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-purple-600" />
           <h1 className="text-3xl font-black text-slate-800 mb-2">
@@ -210,27 +204,26 @@ export default function Quiz({ params }: { params: { id: string } }) {
           </a>
         </div>
 
-        {/* DETAYLI ANALİZ */}
+        {/* DETAILED ANALYSIS */}
         <div className="space-y-6">
           <h2 className="text-xl font-bold text-slate-700 ml-2 border-l-4 border-blue-500 pl-3">
             Detailed Analysis
           </h2>
 
           {questions.map((q, idx) => {
-            const userAnswerId = answers[q.id];
-            const correctChoice = q.choices.find((c) => c.isCorrect === true || String(c.isCorrect) === 'true');
+            const userAnswer = answers[q.id];
+            const correctChoice = q.choices.find((c) => c.isCorrect);
             const correctId = correctChoice?.id;
 
-            // Güvenli Karşılaştırma
-            const isUserAnswered = !!userAnswerId;
-            const isCorrect = isUserAnswered && correctId && String(userAnswerId).trim() === String(correctId).trim();
+            const isSkipped = !userAnswer;
+            const isCorrect = !isSkipped && correctId && userAnswer === correctId;
 
             let cardBorder = 'border-slate-200';
             let cardBg = 'bg-white';
             if (isCorrect) {
               cardBorder = 'border-green-200';
               cardBg = 'bg-green-50/40';
-            } else if (!isUserAnswered) {
+            } else if (isSkipped) {
               cardBorder = 'border-amber-200';
               cardBg = 'bg-amber-50/40';
             } else {
@@ -244,16 +237,17 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 className={`p-6 rounded-2xl border-2 ${cardBorder} ${cardBg}`}
               >
                 <div className="flex items-start gap-4">
+                  {/* ICON */}
                   <div
                     className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold shadow-sm ${
                       isCorrect
                         ? 'bg-green-500'
-                        : !isUserAnswered
+                        : isSkipped
                         ? 'bg-amber-400'
                         : 'bg-red-500'
                     }`}
                   >
-                    {isCorrect ? '✓' : !isUserAnswered ? '−' : '✕'}
+                    {isCorrect ? '✓' : isSkipped ? '−' : '✕'}
                   </div>
 
                   <div className="flex-grow">
@@ -261,7 +255,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       <span className="text-sm text-slate-400 font-bold uppercase">
                         Question {idx + 1}
                       </span>
-                      {!isUserAnswered && (
+                      {isSkipped && (
                         <span className="text-xs font-bold px-2 py-1 bg-amber-100 text-amber-700 rounded-md">
                           SKIPPED
                         </span>
@@ -275,17 +269,23 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
                     <div className="grid gap-2">
                       {q.choices.map((c) => {
-                        const isSelected = String(userAnswerId) === String(c.id);
-                        const isTheCorrectAnswer = c.isCorrect === true || String(c.isCorrect) === 'true';
+                        const isSelected = userAnswer === c.id;
+                        const isTheCorrectAnswer = c.isCorrect === true;
 
-                        let optionClass = 'p-3 rounded-lg border flex items-center justify-between ';
+                        let optionClass =
+                          'p-3 rounded-lg border flex items-center justify-between ';
 
                         if (isTheCorrectAnswer) {
-                          optionClass += 'bg-green-100 border-green-300 text-green-800 font-bold shadow-sm';
+                          // Correct answer always green
+                          optionClass +=
+                            'bg-green-100 border-green-300 text-green-800 font-bold shadow-sm';
                         } else if (isSelected) {
-                          optionClass += 'bg-red-100 border-red-300 text-red-800 font-medium';
+                          // User selection (wrong)
+                          optionClass +=
+                            'bg-red-100 border-red-300 text-red-800 font-medium';
                         } else {
-                          optionClass += 'bg-white/60 border-slate-200 text-slate-500 opacity-70';
+                          optionClass +=
+                            'bg-white/60 border-slate-200 text-slate-500 opacity-70';
                         }
 
                         return (
@@ -304,8 +304,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                               </div>
                               <span>{c.text}</span>
                             </div>
-                            
-                            {/* Etiketler */}
+
                             {isTheCorrectAnswer && (
                               <span className="text-green-700 text-xs uppercase font-bold">
                                 Correct Answer
@@ -320,10 +319,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
                         );
                       })}
                     </div>
-                    
-                     {/* EXPLANATION */}
-                     {q.explanation && (
-                      <div className="mt-5 p-4 bg-blue-50 rounded-xl border border-blue-100 text-sm text-blue-800 flex gap-3 items-start animate-fadeIn">
+
+                    {/* EXPLANATION */}
+                    {q.explanation && (
+                      <div className="mt-5 p-4 bg-blue-50 rounded-xl border border-blue-100 text-sm text-blue-800 flex gap-3 items-start">
                         <span className="text-xl">💡</span>
                         <div>
                           <span className="font-bold block mb-1 text-blue-900">
@@ -335,7 +334,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
                         </div>
                       </div>
                     )}
-
                   </div>
                 </div>
               </div>
@@ -346,10 +344,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
     );
   }
 
-  // --- SORU ÇÖZME EKRANI ---
+  // --- QUIZ (QUESTION SOLVING) SCREEN ---
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 space-y-8">
-      {/* ÜST BAR (Sticky) */}
+      {/* TOP BAR */}
       <div className="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-slate-200 sticky top-4 z-20 backdrop-blur-sm bg-white/90">
         <div className="text-sm font-semibold text-slate-700 truncate max-w-[220px]">
           {test?.title || 'Test'}
@@ -365,7 +363,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
         </div>
       </div>
 
-      {/* SORULAR */}
+      {/* QUESTIONS */}
       <div className="space-y-8">
         {questions.map((q, idx) => (
           <div
@@ -426,7 +424,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
         ))}
       </div>
 
-      {/* BİTİR BUTONU */}
+      {/* FINISH BUTTON */}
       <div className="pt-4 pb-12">
         <button
           onClick={handleSubmit}
@@ -437,4 +435,4 @@ export default function Quiz({ params }: { params: { id: string } }) {
       </div>
     </div>
   );
-}
+} 
