@@ -4,7 +4,7 @@ import React, { Suspense, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { getQuestionsBySlug } from '@/lib/quizManager';
 
-// --- HELPER: SHUFFLE ARRAY (for randomizing correct option position) ---
+// --- HELPER: SHUFFLE ARRAY (for randomizing choices) ---
 function shuffleArray<T>(array: T[]): T[] {
   const copy = [...array];
   for (let i = copy.length - 1; i > 0; i--) {
@@ -14,15 +14,21 @@ function shuffleArray<T>(array: T[]): T[] {
   return copy;
 }
 
-// --- HELPER: GET PROMPT TEXT SAFELY ---
+// --- HELPER: SAFE PROMPT FIELD ---
 function getPrompt(item: any): string {
   return (
     item.prompt ||
-    item.question || // ALL LEVELS JSON'undaki field
+    item.question || // ALL LEVELS format
     item.text ||
     ''
   );
 }
+
+type Choice = {
+  id: string;
+  text: string;
+  isCorrect: boolean;
+};
 
 function StartQuizLogic() {
   const searchParams = useSearchParams();
@@ -30,84 +36,64 @@ function StartQuizLogic() {
 
   useEffect(() => {
     const initQuiz = async () => {
-      // 1. Get which test is requested from the URL
       const slug = searchParams.get('testSlug') || 'quick-placement';
       console.log('STARTING TEST:', slug);
 
-      // 2. FETCH RAW QUESTIONS FROM YOUR JSON / QUIZ MANAGER
       const { title, questions: rawQuestions } = getQuestionsBySlug(slug);
-
       const safeQuestions = (rawQuestions || []) as any[];
 
-      // 3. TRANSFORM DATA INTO A UNIFIED FORMAT FOR <Quiz />
       const formattedQuestions = safeQuestions
         .map((item: any, index: number) => {
           const prompt = getPrompt(item);
 
-          // ------------- CASE 1: QUESTION + OPTIONS + CORRECT_OPTION -------------
-          // Example (ALL LEVELS):
+          let choices: Choice[] | null = null;
+
+          // ------------- CASE 1: question + options + correct_option -------------
           // {
           //   question: "...",
-          //   options: { A: "...", B: "...", C: "...", D: "..." },
+          //   options: { A:"...", B:"...", C:"...", D:"..." },
           //   correct_option: "A"
           // }
           const correctKey =
             item.correct_option ?? item.correct ?? item.answer ?? null;
 
-          if (item.options && correctKey) {
+          if (item.options && typeof item.options === 'object') {
             const optionsObj = item.options as Record<string, string>;
-            const labels = Object.keys(optionsObj).sort(); // ["A","B","C","D"] gibi
+            const labels = Object.keys(optionsObj); // A,B,C,D...
 
-            const choices = labels.map((label) => ({
-              id: label,
+            choices = labels.map((label) => ({
+              id: label, // GEÇİCİ id (sonra override edeceğiz)
               text: optionsObj[label],
               isCorrect:
+                correctKey &&
                 String(label).trim().toUpperCase() ===
-                String(correctKey).trim().toUpperCase(),
+                  String(correctKey).trim().toUpperCase(),
             }));
-
-            return {
-              id: item.id || `opt-${index}`,
-              prompt,
-              explanation: item.explanation,
-              choices,
-            };
           }
 
-          // ------------- CASE 2: GRAMMAR A/B/C/D + correct -------------
-          // Example:
-          // { prompt/question: "...", A:"...", B:"...", C:"...", D:"...", correct:"A" }
-          if ((item.A || item.B || item.C || item.D) && correctKey) {
-            const labels = ['A', 'B', 'C', 'D'] as const;
-
-            const choices = labels
+          // ------------- CASE 2: A/B/C/D alanları olan grammar -------------
+          // { question/prompt: "...", A:"...", B:"...", C:"...", D:"...", correct:"A" }
+          if (!choices && (item.A || item.B || item.C || item.D)) {
+            const labels: string[] = ['A', 'B', 'C', 'D'];
+            choices = labels
               .filter((l) => item[l]) // sadece var olan şıkları al
               .map((label) => ({
                 id: label,
                 text: item[label],
                 isCorrect:
+                  correctKey &&
                   String(label).trim().toUpperCase() ===
-                  String(correctKey).trim().toUpperCase(),
+                    String(correctKey).trim().toUpperCase(),
               }));
-
-            return {
-              id: item.id || `g-${index}`,
-              prompt,
-              explanation: item.explanation,
-              choices,
-            };
           }
 
-          // ------------- CASE 3: WORD / DEFINITION -------------
-          // Example:
-          // { word: "meticulous", definition: "showing great attention to detail" }
-          if (item.word && item.definition) {
-            // 1) Build base options (correct + dummy incorrects)
-            const baseChoices = [
+          // ------------- CASE 3: word + definition seviye soruları -------------
+          if (!choices && item.word && item.definition) {
+            const baseChoices: Choice[] = [
               {
                 id: 'A',
                 text: item.definition,
-                isCorrect: true, // correct definition
+                isCorrect: true,
               },
               {
                 id: 'B',
@@ -120,73 +106,55 @@ function StartQuizLogic() {
                 isCorrect: false,
               },
             ];
+            choices = baseChoices;
+          }
 
-            // 2) Shuffle them so the correct answer is not always A
-            const shuffled = shuffleArray(baseChoices);
-
-            // 3) Reassign IDs as A / B / C according to shuffled order
-            const finalChoices = shuffled.map((choice, idx) => ({
-              ...choice,
-              id: String.fromCharCode(65 + idx), // 65 = 'A'
+          // ------------- CASE 4: zaten choices[] olan MCQ -------------
+          if (!choices && Array.isArray(item.choices)) {
+            choices = item.choices.map((c: any, i: number) => ({
+              id: c.id || String.fromCharCode(65 + i),
+              text: c.text ?? c.label ?? '',
+              isCorrect:
+                c.isCorrect === true ||
+                c.correct === true ||
+                c.is_correct === true,
             }));
-
-            return {
-              id: item.id || `w-${index}`,
-              prompt: `What is the definition of "<strong>${item.word}</strong>"?`,
-              explanation: `${item.word}: ${item.definition}`,
-              choices: finalChoices,
-            };
           }
 
-          // ------------- CASE 4: ALREADY-FORMATTED MCQ (choices[]) -------------
-          // Example:
-          // {
-          //   id: "q1",
-          //   prompt/question: "...",
-          //   explanation: "...",
-          //   choices: [
-          //     { id:"A", text:"...", isCorrect:false },
-          //     { id:"B", text:"...", isCorrect:true }
-          //   ]
-          // }
-          if (item.choices && Array.isArray(item.choices)) {
-            return {
-              id: item.id || `q-${index}`,
-              prompt,
-              explanation: item.explanation,
-              choices: item.choices.map((c: any, i: number) => ({
-                id: c.id || String.fromCharCode(65 + i),
-                text: c.text ?? c.label ?? '',
-                isCorrect:
-                  c.isCorrect === true ||
-                  c.correct === true ||
-                  c.is_correct === true,
-              })),
-            };
+          if (!choices || choices.length === 0) {
+            console.warn('Unknown question format, skipping item:', item);
+            return null;
           }
 
-          // Unknown format -> skip
-          console.warn('Unknown question format, skipping item:', item);
-          return null;
+          // --- ORTAK: TÜM SORULARDA ŞIKLARI KARIŞTIR + ID'LERİ A/B/C/D YAP ---
+          const shuffled = shuffleArray(choices);
+          const normalizedChoices: Choice[] = shuffled.map((c, idx) => ({
+            ...c,
+            id: String.fromCharCode(65 + idx), // 65 = 'A'
+          }));
+
+          return {
+            id: item.id || `q-${index}`,
+            prompt,
+            explanation: item.explanation,
+            choices: normalizedChoices,
+          };
         })
         .filter(Boolean);
 
-      console.log('FORMATTED QUESTIONS:', formattedQuestions);
+      console.log('FORMATTED QUESTIONS (AFTER SHUFFLE):', formattedQuestions);
 
-      // 4. PACKAGE DATA FOR THE QUIZ PAGE
       const attemptData = {
         attemptId: `session-${Date.now()}`,
         test: {
           title: title,
-          duration: 0, // Quiz.tsx will calculate "questionCount x 60s"
+          duration: 0, // Quiz.tsx will use questionCount * 60s
         },
         questions: formattedQuestions,
       };
 
-      // 5. SAVE TO SESSION STORAGE
       sessionStorage.setItem('em_attempt_payload', JSON.stringify(attemptData));
 
-      // 6. REDIRECT TO QUIZ PAGE
       router.push(`/quiz/${attemptData.attemptId}`);
     };
 
