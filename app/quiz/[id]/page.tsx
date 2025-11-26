@@ -41,7 +41,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // 1) LOAD QUIZ DATA FROM SESSION STORAGE
   useEffect(() => {
@@ -61,30 +60,22 @@ export default function Quiz({ params }: { params: { id: string } }) {
     try {
       const parsed: QuizData = JSON.parse(raw);
 
+      // If ID does not match, still use the latest payload as a fallback
       if (parsed.attemptId !== params.id) {
         console.warn('Attempt ID mismatch, using latest payload as fallback.');
       }
 
       setData(parsed);
 
-      // --- SMART TIMER SETUP ---
+      // TIMER SETUP
       const questionCount = parsed.questions?.length || 0;
-      const isPractice = String(parsed.attemptId || '').startsWith('session-');
-      let durationSec: number;
+      let durationSec = 30 * 60; // default: 30 minutes
 
-      if (isPractice) {
-        // Grammar Focus / Practice → question-based timing
-        // e.g. 20 questions * 72s ≈ 24 minutes
-        durationSec = questionCount > 0 ? questionCount * 72 : 20 * 72;
-      } else if (parsed.test?.duration && parsed.test.duration > 0) {
-        // Real tests (Quick, Mega, Vocab) → use given duration (in minutes)
+      if (parsed.test?.duration && parsed.test.duration > 0) {
         durationSec = parsed.test.duration * 60;
       } else if (questionCount > 0) {
-        // Fallback: question-based timing
+        // dynamic: 72 seconds per question
         durationSec = questionCount * 72;
-      } else {
-        // Last fallback: static 30 minutes
-        durationSec = 30 * 60;
       }
 
       setTimeLeft(durationSec);
@@ -99,38 +90,34 @@ export default function Quiz({ params }: { params: { id: string } }) {
     }
   }, [params.id]);
 
-  // 2) TIMER LOGIC (safe, tek sefer submit)
+  // 2) TIMER LOGIC
   useEffect(() => {
-    if (timeLeft === null || showResult) return;
-    if (timeLeft <= 0) return;
+    if (timeLeft === null || timeLeft <= 0 || showResult) return;
 
     const timerId = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev === null) return prev;
-        if (prev <= 1) {
-          clearInterval(timerId);
-          handleSubmit(true); // auto submit
-          return 0;
-        }
-        return prev - 1;
-      });
+      setTimeLeft((prev) => (prev !== null && prev > 0 ? prev - 1 : 0));
     }, 1000);
+
+    if (timeLeft <= 0) {
+      clearInterval(timerId);
+      handleSubmit(); // auto submit when time is up
+    }
 
     return () => clearInterval(timerId);
   }, [timeLeft, showResult]);
 
   // 3) SUBMIT (FULLY CLIENT-SIDE)
-  const handleSubmit = (isAuto = false) => {
-    if (!data || showResult || isSubmitting) return;
-
-    setIsSubmitting(true);
+  const handleSubmit = () => {
+    if (!data) return;
 
     const { questions } = data;
     let correctCount = 0;
 
     questions.forEach((q) => {
+      // Find correct choice via isCorrect
       const correctChoice = q.choices.find((c) => c.isCorrect);
       const correctId = correctChoice?.id;
+
       if (correctId && answers[q.id] === correctId) {
         correctCount++;
       }
@@ -140,12 +127,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
     setShowResult(true);
     window.scrollTo(0, 0);
     sessionStorage.removeItem('em_attempt_payload');
-    setIsSubmitting(false);
-
-    if (isAuto) {
-      // İstersen buraya küçük bir toast / alert de ekleyebilirsin
-      console.log('Auto-submitted due to timer.');
-    }
   };
 
   // --- RENDER STATES ---
@@ -446,17 +427,12 @@ export default function Quiz({ params }: { params: { id: string } }) {
       {/* FINISH BUTTON */}
       <div className="pt-4 pb-12">
         <button
-          onClick={() => handleSubmit(false)}
-          disabled={isSubmitting}
-          className={`w-full py-4 rounded-xl text-white text-xl font-bold shadow-lg transition-all transform active:scale-[0.98] ${
-            isSubmitting
-              ? 'bg-slate-400 cursor-not-allowed'
-              : 'bg-blue-600 hover:bg-blue-700 hover:shadow-blue-200'
-          }`}
+          onClick={handleSubmit}
+          className="w-full py-4 rounded-xl text-white text-xl font-bold shadow-lg transition-all transform active:scale-[0.98] bg-blue-600 hover:bg-blue-700 hover:shadow-blue-200"
         >
-          {isSubmitting ? 'Processing...' : 'Finish Test'}
+          Finish Test
         </button>
       </div>
     </div>
   );
-}
+} 
