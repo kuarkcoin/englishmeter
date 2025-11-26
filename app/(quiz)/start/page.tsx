@@ -12,7 +12,7 @@ function StartQuizLogic() {
     const initQuiz = async () => {
       // 1. URL'den hangi testin istendiğini al
       const slug = searchParams.get('testSlug') || 'quick-placement';
-      console.log('TEST BAŞLATILIYOR:', slug);
+      console.log('Test loading:', slug);
 
       // 2. HAM SORULARI ÇEK
       const { title, questions: rawQuestions } = getQuestionsBySlug(slug);
