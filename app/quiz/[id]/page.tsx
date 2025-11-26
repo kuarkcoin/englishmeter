@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 
 // --- TYPES ---
 interface Choice {
-  id: string;          
+  id: string;          // "A" | "B" | "C" | "D" (veya "a"..."d")
   text: string;
-  isCorrect?: boolean; 
+  isCorrect?: boolean; // quizManager'dan geliyor (doğru şık için true)
 }
 
 interface Question {
@@ -18,7 +18,7 @@ interface Question {
 
 interface TestInfo {
   title: string;
-  duration?: number; 
+  duration?: number; // minutes (optional)
 }
 
 interface QuizData {
@@ -60,27 +60,25 @@ export default function Quiz({ params }: { params: { id: string } }) {
     try {
       const parsed: QuizData = JSON.parse(raw);
 
+      // If ID does not match, still use the latest payload as a fallback
       if (parsed.attemptId !== params.id) {
         console.warn('Attempt ID mismatch, using latest payload as fallback.');
       }
 
       setData(parsed);
 
-      // --- ZAMAN AYARLAMASI (GÜNCELLENDİ) ---
+      // TIMER SETUP
       const questionCount = parsed.questions?.length || 0;
-      
-      // KURAL: Her soru tam 60 saniye (1 dakika).
-      // 100 soru varsa -> 100 dakika.
-      // 30 soru varsa -> 30 dakika.
-      let durationSec = questionCount * 60;
+      let durationSec = 30 * 60; // default: 30 minutes
 
-      // Güvenlik: Eğer soru sayısı 0 ise veya hata varsa varsayılan 30 dk ver.
-      if (durationSec === 0) {
-        durationSec = 30 * 60;
+      if (parsed.test?.duration && parsed.test.duration > 0) {
+        durationSec = parsed.test.duration * 60;
+      } else if (questionCount > 0) {
+        // dynamic: 72 seconds per question
+        durationSec = questionCount * 72;
       }
 
       setTimeLeft(durationSec);
-
     } catch (err) {
       console.error('Failed to parse em_attempt_payload:', err);
       setData({
@@ -102,13 +100,13 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
     if (timeLeft <= 0) {
       clearInterval(timerId);
-      handleSubmit(); // süre bitince otomatik gönder
+      handleSubmit(); // auto submit when time is up
     }
 
     return () => clearInterval(timerId);
   }, [timeLeft, showResult]);
 
-  // 3) SUBMIT (PUANLAMA HATASI GİDERİLMİŞ VERSİYON)
+  // 3) SUBMIT (FULLY CLIENT-SIDE)
   const handleSubmit = () => {
     if (!data) return;
 
@@ -116,16 +114,11 @@ export default function Quiz({ params }: { params: { id: string } }) {
     let correctCount = 0;
 
     questions.forEach((q) => {
-      const userAnswerId = answers[q.id];
+      // Find correct choice via isCorrect
       const correctChoice = q.choices.find((c) => c.isCorrect);
-      const correctChoiceId = correctChoice?.id;
+      const correctId = correctChoice?.id;
 
-      // String çevirimi yaparak (1 === "1") hatasını önlüyoruz
-      if (
-        userAnswerId && 
-        correctChoiceId && 
-        String(userAnswerId).trim() === String(correctChoiceId).trim()
-      ) {
+      if (correctId && answers[q.id] === correctId) {
         correctCount++;
       }
     });
@@ -218,20 +211,19 @@ export default function Quiz({ params }: { params: { id: string } }) {
           </h2>
 
           {questions.map((q, idx) => {
-            const userAnswerId = answers[q.id];
+            const userAnswer = answers[q.id];
             const correctChoice = q.choices.find((c) => c.isCorrect);
             const correctId = correctChoice?.id;
 
-            // Karşılaştırma hatasını önlemek için String() kullanıyoruz
-            const isUserAnswered = !!userAnswerId;
-            const isCorrect = isUserAnswered && correctId && String(userAnswerId) === String(correctId);
+            const isSkipped = !userAnswer;
+            const isCorrect = !isSkipped && correctId && userAnswer === correctId;
 
             let cardBorder = 'border-slate-200';
             let cardBg = 'bg-white';
             if (isCorrect) {
               cardBorder = 'border-green-200';
               cardBg = 'bg-green-50/40';
-            } else if (!isUserAnswered) {
+            } else if (isSkipped) {
               cardBorder = 'border-amber-200';
               cardBg = 'bg-amber-50/40';
             } else {
@@ -245,16 +237,17 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 className={`p-6 rounded-2xl border-2 ${cardBorder} ${cardBg}`}
               >
                 <div className="flex items-start gap-4">
+                  {/* ICON */}
                   <div
                     className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold shadow-sm ${
                       isCorrect
                         ? 'bg-green-500'
-                        : !isUserAnswered
+                        : isSkipped
                         ? 'bg-amber-400'
                         : 'bg-red-500'
                     }`}
                   >
-                    {isCorrect ? '✓' : !isUserAnswered ? '−' : '✕'}
+                    {isCorrect ? '✓' : isSkipped ? '−' : '✕'}
                   </div>
 
                   <div className="flex-grow">
@@ -262,7 +255,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       <span className="text-sm text-slate-400 font-bold uppercase">
                         Question {idx + 1}
                       </span>
-                      {!isUserAnswered && (
+                      {isSkipped && (
                         <span className="text-xs font-bold px-2 py-1 bg-amber-100 text-amber-700 rounded-md">
                           SKIPPED
                         </span>
@@ -276,17 +269,23 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
                     <div className="grid gap-2">
                       {q.choices.map((c) => {
-                        const isSelected = String(userAnswerId) === String(c.id);
+                        const isSelected = userAnswer === c.id;
                         const isTheCorrectAnswer = c.isCorrect === true;
 
-                        let optionClass = 'p-3 rounded-lg border flex items-center justify-between ';
+                        let optionClass =
+                          'p-3 rounded-lg border flex items-center justify-between ';
 
                         if (isTheCorrectAnswer) {
-                          optionClass += 'bg-green-100 border-green-300 text-green-800 font-bold shadow-sm';
+                          // Correct answer always green
+                          optionClass +=
+                            'bg-green-100 border-green-300 text-green-800 font-bold shadow-sm';
                         } else if (isSelected) {
-                          optionClass += 'bg-red-100 border-red-300 text-red-800 font-medium';
+                          // User selection (wrong)
+                          optionClass +=
+                            'bg-red-100 border-red-300 text-red-800 font-medium';
                         } else {
-                          optionClass += 'bg-white/60 border-slate-200 text-slate-500 opacity-70';
+                          optionClass +=
+                            'bg-white/60 border-slate-200 text-slate-500 opacity-70';
                         }
 
                         return (
@@ -305,13 +304,24 @@ export default function Quiz({ params }: { params: { id: string } }) {
                               </div>
                               <span>{c.text}</span>
                             </div>
+
+                            {isTheCorrectAnswer && (
+                              <span className="text-green-700 text-xs uppercase font-bold">
+                                Correct Answer
+                              </span>
+                            )}
+                            {isSelected && !isTheCorrectAnswer && (
+                              <span className="text-red-600 text-xs uppercase font-bold">
+                                Your Answer
+                              </span>
+                            )}
                           </div>
                         );
                       })}
                     </div>
-                    
-                     {/* EXPLANATION */}
-                     {q.explanation && (
+
+                    {/* EXPLANATION */}
+                    {q.explanation && (
                       <div className="mt-5 p-4 bg-blue-50 rounded-xl border border-blue-100 text-sm text-blue-800 flex gap-3 items-start">
                         <span className="text-xl">💡</span>
                         <div>
@@ -324,7 +334,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
                         </div>
                       </div>
                     )}
-
                   </div>
                 </div>
               </div>
@@ -426,4 +435,4 @@ export default function Quiz({ params }: { params: { id: string } }) {
       </div>
     </div>
   );
-}
+} 
