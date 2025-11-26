@@ -1,151 +1,139 @@
 'use client';
+import { useEffect, useState, useRef } from 'react';
 
-import { useEffect, useRef, useState } from 'react';
-
-type Choice = {
-  id: string;          // "a", "b", "c", "d"
-  text: string;
-  isCorrect?: boolean; // quizManager burada true/false veriyor
-  selected?: boolean;
-};
-
-type Question = {
-  id: string;
-  prompt: string;
-  choices: Choice[];
-};
-
-type AttemptPayload = {
-  attemptId: string;
-  test?: { title?: string; duration?: number };
-  questions: Question[];
-};
-
-function formatTime(totalSeconds: number): string {
-  const m = Math.floor(totalSeconds / 60);
-  const s = totalSeconds % 60;
-  return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+// Süre formatlayıcı (Dakika:Saniye)
+function formatTime(seconds: number): string {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return `${minutes.toString().padStart(2, '0')}:${remainingSeconds
+    .toString()
+    .padStart(2, '0')}`;
 }
 
-export default function QuizPage({ params }: { params: { id: string } }) {
-  const [data, setData] = useState<AttemptPayload | null>(null);
+export default function Quiz({ params }: { params: { id: string } }) {
+  const [data, setData] = useState<any>(null);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
   const isSubmitting = useRef(false);
 
-  // 1) Test verisini sessionStorage'dan çek
+  // 1) Veriyi sessionStorage'dan çek
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-
     const raw = sessionStorage.getItem('em_attempt_payload');
+
     if (!raw) {
-      setData(null);
+      setData({
+        error: 'Test verisi bulunamadı. Lütfen anasayfadan testi yeniden başlatın.',
+      });
       return;
     }
 
-    try {
-      const parsed: AttemptPayload = JSON.parse(raw);
+    const parsed = JSON.parse(raw);
 
-      // ID uyuşmasa bile yine de gösterelim (özellikle lokal denemede sorun çıkmasın)
+    // URL'deki id ile attemptId uyuşuyorsa
+    if (parsed.attemptId === params.id) {
       setData(parsed);
-
-      const durationMinutes = parsed.test?.duration ?? 30;
-      setTimeLeft(durationMinutes * 60);
-    } catch (e) {
-      console.error('Quiz: payload parse error', e);
-      setData(null);
+      if (parsed.test?.duration) {
+        setTimeLeft(parsed.test.duration * 60);
+      }
+    } else {
+      // Yine de veriyi kullanalım ama uyarı verebiliriz
+      setData(parsed);
+      if (parsed.test?.duration) {
+        setTimeLeft(parsed.test.duration * 60);
+      }
     }
   }, [params.id]);
 
-  // 2) Timer
+  // 2) Sayaç
   useEffect(() => {
     if (timeLeft === null) return;
     if (timeLeft <= 0) {
-      // süre bittiyse otomatik submit
+      // Süre bittiyse otomatik submit
       submit();
       return;
     }
 
-    const id = setInterval(() => {
-      setTimeLeft((prev) => (prev !== null ? prev - 1 : prev));
+    const timerId = setInterval(() => {
+      setTimeLeft((prev) => (prev !== null && prev > 0 ? prev - 1 : 0));
     }, 1000);
 
-    return () => clearInterval(id);
+    return () => clearInterval(timerId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeLeft]);
 
-  // 3) SUBMIT – sadece client-side, sonuç sessionStorage'a yazılır
-  const submit = () => {
-    if (!data || isSubmitting.current) return;
-    isSubmitting.current = true;
-
-    const { questions, attemptId, test } = data;
-
-    let correctCount = 0;
-
-    const detailedQuestions = questions.map((q) => {
-      const selectedId = answers[q.id];
-
-      const detailedChoices = q.choices.map((c) => {
-        const isSelected = c.id === selectedId;
-        const isCorrect = !!c.isCorrect;
-
-        if (isSelected && isCorrect) {
-          correctCount++;
-        }
-
-        return {
-          ...c,
-          selected: isSelected,
-        };
-      });
-
-      return {
-        ...q,
-        choices: detailedChoices,
-        selectedId,
-      } as any;
-    });
-
-    const totalQuestions = questions.length;
-    const wrongCount = totalQuestions - correctCount;
-    const scorePercent =
-      totalQuestions > 0
-        ? Math.round((correctCount * 100) / totalQuestions)
-        : 0;
-
-    const resultPayload = {
-      attemptId,
-      testTitle: test?.title || 'Practice Test',
-      totalQuestions,
-      correctCount,
-      wrongCount,
-      scorePercent,
-      questions: detailedQuestions,
-    };
-
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem('em_last_result', JSON.stringify(resultPayload));
-      sessionStorage.removeItem('em_attempt_payload');
-      window.location.href = '/result';
-    }
-  };
-
-  // 4) UI durumları
   if (!data) {
+    return <div className="p-10 text-center text-lg">Loading Test...</div>;
+  }
+
+  if (data.error) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-lg">
-        Test data not found. Please start again from the home page.
-      </div>
+      <div className="p-10 text-center text-red-600 font-bold">{data.error}</div>
     );
   }
 
-  const { questions, test } = data;
+  const { questions, attemptId, test } = data;
+
+  // --- ANA SUBMIT FONKSİYONU (GRAMMAR FOCUS → CLIENT SIDE HESAP) ---
+  const submit = async () => {
+    if (isSubmitting.current) return;
+    isSubmitting.current = true;
+
+    // GRAMMAR / PRACTICE TESTLER → attemptId "session-" ile başlıyor
+    if (attemptId && String(attemptId).startsWith('session-')) {
+      let correctCount = 0;
+
+      questions.forEach((q: any) => {
+        const userAnswer = (answers[q.id] || '').toLowerCase(); // 'a'/'b'...
+        const correctChoice = q.choices.find((c: any) => c.isCorrect);
+
+        if (correctChoice && userAnswer === String(correctChoice.id).toLowerCase()) {
+          correctCount++;
+        }
+      });
+
+      const total = questions.length;
+
+      alert(
+        `🏁 PRACTICE TEST COMPLETED!\n\nScore: ${correctCount} / ${total}\n\n` +
+          `Bu testte sonuçlar veritabanına kaydedilmiyor, sadece pratik amaçlıdır.`
+      );
+
+      sessionStorage.removeItem('em_attempt_payload');
+      window.location.href = '/';
+      isSubmitting.current = false;
+      return;
+    }
+
+    // ESKİ SİSTEM: Quick/Mega/Vocab gibi gerçek testler için server'a post (istersen bırak)
+    try {
+      const res = await fetch(`/api/attempts/${attemptId}/submit`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ answers }),
+      });
+
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(`Server Hatası (${res.status}): ${errorText}`);
+      }
+
+      const r = await res.json();
+      sessionStorage.removeItem('em_attempt_payload');
+      window.location.href = `/result?id=${r.attemptId}`;
+    } catch (error: any) {
+      alert(
+        '⚠️ BİR HATA OLUŞTU:\n' +
+          error.message +
+          '\n\nLütfen internet bağlantınızı kontrol edip tekrar deneyin.'
+      );
+      isSubmitting.current = false;
+    }
+  };
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 space-y-8">
-      {/* Üst Bilgi Çubuğu */}
-      <div className="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-slate-200 sticky top-0 z-10">
+      {/* Üst Bar */}
+      <div className="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-slate-200 sticky top-4 z-10">
         <div className="text-sm font-semibold text-slate-700">
           {test?.title || 'Test'}
         </div>
@@ -162,7 +150,7 @@ export default function QuizPage({ params }: { params: { id: string } }) {
 
       {/* Sorular */}
       <div className="space-y-6">
-        {questions.map((q, idx) => (
+        {questions.map((q: any, idx: number) => (
           <div
             key={q.id}
             className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200"
@@ -176,7 +164,7 @@ export default function QuizPage({ params }: { params: { id: string } }) {
             />
 
             <div className="grid gap-3">
-              {q.choices.map((c) => (
+              {q.choices.map((c: any) => (
                 <label
                   key={c.id}
                   className={`group cursor-pointer flex items-center p-4 rounded-xl border-2 transition-all duration-200 ${
@@ -202,7 +190,10 @@ export default function QuizPage({ params }: { params: { id: string } }) {
                     className="hidden"
                     checked={answers[q.id] === c.id}
                     onChange={() =>
-                      setAnswers((prev) => ({ ...prev, [q.id]: c.id }))
+                      setAnswers((a) => ({
+                        ...a,
+                        [q.id]: c.id,
+                      }))
                     }
                   />
                   <span
