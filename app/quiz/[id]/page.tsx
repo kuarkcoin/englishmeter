@@ -6,14 +6,14 @@ import { useEffect, useState } from 'react';
 interface Choice {
   id: string;          
   text: string;
-  isCorrect?: boolean; // Veritabanından true/false gelmeli
+  isCorrect?: boolean; // quizManager'dan true/false olarak gelir
 }
 
 interface Question {
   id: string;
   prompt: string;
   choices: Choice[];
-  explanation?: string; // Varsa sonuç ekranında gösterilecek
+  explanation?: string; // Varsa sonuç ekranında gösterilir
 }
 
 interface TestInfo {
@@ -28,7 +28,7 @@ interface QuizData {
   error?: string;
 }
 
-// --- ZAMAN FORMATLAYICI (MM:SS) ---
+// --- HELPER: FORMAT TIME MM:SS ---
 function formatTime(seconds: number): string {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
@@ -42,7 +42,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
 
-  // 1) VERİYİ YÜKLEME VE AYARLAR
+  // 1) VERİYİ YÜKLE VE ZAMANI AYARLA
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -60,18 +60,19 @@ export default function Quiz({ params }: { params: { id: string } }) {
     try {
       const parsed: QuizData = JSON.parse(raw);
 
-      // ID eşleşmese bile son yüklenen testi aç (Fallback)
       if (parsed.attemptId !== params.id) {
         console.warn('Attempt ID mismatch, using latest payload as fallback.');
       }
 
       setData(parsed);
 
-      // --- ZAMAN MANTIĞI: HER SORU 1 DAKİKA ---
+      // --- ZAMAN AYARLAMASI (GÜNCELLENDİ) ---
       const questionCount = parsed.questions?.length || 0;
-      let durationSec = questionCount * 60; // 10 soru = 600 sn (10 dk)
+      
+      // KURAL: Her soru tam 60 saniye (1 dakika).
+      let durationSec = questionCount * 60;
 
-      // Güvenlik: Eğer 0 gelirse varsayılan 30 dk ver
+      // Güvenlik: Eğer soru sayısı 0 ise veya hata varsa varsayılan 30 dk ver.
       if (durationSec === 0) {
         durationSec = 30 * 60;
       }
@@ -89,7 +90,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
     }
   }, [params.id]);
 
-  // 2) GERİ SAYIM SAYACI
+  // 2) GERİ SAYIM MANTIĞI
   useEffect(() => {
     if (timeLeft === null || timeLeft <= 0 || showResult) return;
 
@@ -97,16 +98,15 @@ export default function Quiz({ params }: { params: { id: string } }) {
       setTimeLeft((prev) => (prev !== null && prev > 0 ? prev - 1 : 0));
     }, 1000);
 
-    // Süre biterse otomatik bitir
     if (timeLeft <= 0) {
       clearInterval(timerId);
-      handleSubmit(); 
+      handleSubmit(); // süre bitince otomatik bitir
     }
 
     return () => clearInterval(timerId);
   }, [timeLeft, showResult]);
 
-  // 3) TESTİ BİTİR VE PUANLA
+  // 3) SONUÇ HESAPLAMA (GÜVENLİ KARŞILAŞTIRMA İLE)
   const handleSubmit = () => {
     if (!data) return;
 
@@ -115,10 +115,11 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
     questions.forEach((q) => {
       const userAnswerId = answers[q.id];
-      // Veri yapısındaki ufak hataları tolere etmek için "String" karşılaştırması
+      // isCorrect true olanı veya "true" string olanı bul
       const correctChoice = q.choices.find((c) => c.isCorrect === true || String(c.isCorrect) === 'true');
       const correctId = correctChoice?.id;
 
+      // String çevirimi yaparak (1 === "1") hatasını önlüyoruz
       if (
         userAnswerId && 
         correctId && 
@@ -134,7 +135,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
     sessionStorage.removeItem('em_attempt_payload');
   };
 
-  // --- YÜKLENİYOR / HATA EKRANLARI ---
+  // --- YÜKLENİYOR / HATA DURUMLARI ---
   if (!data) {
     return (
       <div className="p-10 text-center text-slate-500 animate-pulse">
@@ -153,7 +154,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
   const { questions, test } = data;
 
-  // --- SONUÇ EKRANI (RESULT SCREEN) ---
+  // --- SONUÇ EKRANI ---
   if (showResult) {
     const total = questions.length || 1;
     const percentage = Math.round((score / total) * 100);
@@ -209,7 +210,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
           </a>
         </div>
 
-        {/* DETAYLI ANALİZ (BURASI GRAMMAR DAHİL HEPSİ İÇİN AYNI ÇALIŞIR) */}
+        {/* DETAYLI ANALİZ */}
         <div className="space-y-6">
           <h2 className="text-xl font-bold text-slate-700 ml-2 border-l-4 border-blue-500 pl-3">
             Detailed Analysis
@@ -217,14 +218,13 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
           {questions.map((q, idx) => {
             const userAnswerId = answers[q.id];
-            // Doğru şıkkı bul (hem boolean true hem string 'true' kontrolü)
             const correctChoice = q.choices.find((c) => c.isCorrect === true || String(c.isCorrect) === 'true');
             const correctId = correctChoice?.id;
 
+            // Güvenli Karşılaştırma
             const isUserAnswered = !!userAnswerId;
             const isCorrect = isUserAnswered && correctId && String(userAnswerId).trim() === String(correctId).trim();
 
-            // Kart Rengi
             let cardBorder = 'border-slate-200';
             let cardBg = 'bg-white';
             if (isCorrect) {
@@ -244,7 +244,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 className={`p-6 rounded-2xl border-2 ${cardBorder} ${cardBg}`}
               >
                 <div className="flex items-start gap-4">
-                  {/* Durum İkonu */}
                   <div
                     className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold shadow-sm ${
                       isCorrect
@@ -274,23 +273,18 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       dangerouslySetInnerHTML={{ __html: q.prompt }}
                     />
 
-                    {/* Şıklar */}
                     <div className="grid gap-2">
                       {q.choices.map((c) => {
                         const isSelected = String(userAnswerId) === String(c.id);
-                        // BU SATIR KRİTİK: Doğru cevap her zaman yeşil yanar
                         const isTheCorrectAnswer = c.isCorrect === true || String(c.isCorrect) === 'true';
 
                         let optionClass = 'p-3 rounded-lg border flex items-center justify-between ';
 
                         if (isTheCorrectAnswer) {
-                          // DOĞRU CEVAP (Kullanıcı seçmese bile yeşil olur)
                           optionClass += 'bg-green-100 border-green-300 text-green-800 font-bold shadow-sm';
                         } else if (isSelected) {
-                          // KULLANICININ YANLIŞ SEÇİMİ (Kırmızı)
                           optionClass += 'bg-red-100 border-red-300 text-red-800 font-medium';
                         } else {
-                          // SEÇİLMEYEN YANLIŞ ŞIKLAR (Pasif)
                           optionClass += 'bg-white/60 border-slate-200 text-slate-500 opacity-70';
                         }
 
@@ -327,7 +321,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       })}
                     </div>
                     
-                     {/* EXPLANATION (AÇIKLAMA VARSA GÖSTERİR) */}
+                     {/* EXPLANATION */}
                      {q.explanation && (
                       <div className="mt-5 p-4 bg-blue-50 rounded-xl border border-blue-100 text-sm text-blue-800 flex gap-3 items-start animate-fadeIn">
                         <span className="text-xl">💡</span>
@@ -352,7 +346,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
     );
   }
 
-  // --- SORU ÇÖZME EKRANI (TEST AŞAMASI) ---
+  // --- SORU ÇÖZME EKRANI ---
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 space-y-8">
       {/* ÜST BAR (Sticky) */}
