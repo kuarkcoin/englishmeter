@@ -12,13 +12,13 @@ interface Question {
   id: string;
   prompt: string;
   choices: Choice[];
-  correct?: string;
-  explanation?: string;
+  correct?: string;     // Doğru şık (Örn: "A")
+  explanation?: string; // Açıklama metni
 }
 
 interface TestInfo {
   title: string;
-  duration: number; // Dakika cinsinden
+  duration: number;
 }
 
 interface QuizData {
@@ -26,7 +26,7 @@ interface QuizData {
   test: TestInfo;
   questions: Question[];
   error?: string;
-  // Backend'den bazen sadece cevap anahtarı dönebilir diye esneklik:
+  // Backend'den dönebilecek ek alanlar
   correctAnswers?: Record<string, string>; 
   explanations?: Record<string, string>;
 }
@@ -55,21 +55,28 @@ export default function Quiz({ params }: { params: { id: string } }) {
       try {
         const parsedData: QuizData = JSON.parse(raw);
         
+        // ID kontrolü (veya fallback)
         if (parsedData.attemptId === params.id || parsedData) {
           setData(parsedData);
           
-          // --- DİNAMİK ZAMANLAYICI AYARI ---
-          // Eğer test.duration varsa onu kullan, yoksa soru başına 72 saniye (1.2 dk) ver.
-          let durationInSeconds = 30 * 60; // Default fallback (30 dk)
+          // --- 🕒 AKILLI SÜRE HESAPLAMA (Smart Timer) ---
+          // Sorun: Home sayfasında "duration: 30" sabit geliyorsa bunu ezmek gerekebilir.
+          
+          const qCount = parsedData.questions?.length || 0;
+          let calculatedDuration = 30 * 60; // Default
 
-          if (parsedData.test?.duration && parsedData.test.duration > 0) {
-             durationInSeconds = parsedData.test.duration * 60;
-          } else if (parsedData.questions && parsedData.questions.length > 0) {
-             // Otomatik Hesaplama: Soru sayısı * 72 saniye
-             durationInSeconds = parsedData.questions.length * 72;
+          // Eğer soru sayısı belli ise: Soru başına 72 saniye (1.2 dk) ver
+          if (qCount > 0) {
+             calculatedDuration = qCount * 72; 
+          }
+          
+          // Eğer verideki süre 30'dan farklı, geçerli ve mantıklıysa (örn: Race modu) onu kullan
+          // Not: Home.tsx'de duration:30 sabitlenmişse bu logic soru sayısını baz alır.
+          if (parsedData.test?.duration && parsedData.test.duration !== 30 && parsedData.test.duration > 0) {
+             calculatedDuration = parsedData.test.duration * 60;
           }
 
-          setTimeLeft(durationInSeconds);
+          setTimeLeft(calculatedDuration);
         }
       } catch (e) {
         setData({ attemptId: '', test: { title: 'Error', duration: 0 }, questions: [], error: 'Data corrupted.' });
@@ -79,7 +86,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
     }
   }, [params.id]);
 
-  // 2. TIMER LOGIC
+  // 2. TIMER LOOP
   useEffect(() => {
     if (timeLeft === null || timeLeft === 0 || showResult) return;
 
@@ -103,14 +110,14 @@ export default function Quiz({ params }: { params: { id: string } }) {
     const { questions, attemptId } = data;
     const isPractice = attemptId && String(attemptId).startsWith('session-');
 
-    // SENARYO A: PRATİK MODU (Client-Side)
+    // SENARYO A: Grammar / Pratik Modu (Zaten elimizde cevaplar var)
     if (isPractice) {
         calculateAndShow(questions);
         isSubmitting.current = false;
         return;
     }
 
-    // SENARYO B: GERÇEK TEST (Server-Side)
+    // SENARYO B: Gerçek Testler (Quick, Mega vb.)
     try {
         const res = await fetch(`/api/attempts/${attemptId}/submit`, {
           method: 'POST',
@@ -122,42 +129,40 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
         const r: QuizData = await res.json();
         
-        // --- AKILLI VERİ BİRLEŞTİRME (SMART MERGE) ---
-        // Sunucudan gelen veriyi işle:
+        // --- 🧠 AKILLI SONUÇ BİRLEŞTİRME ---
+        // Sunucudan gelen cevapları mevcut sorularla birleştiriyoruz.
         let finalQuestions = [...questions];
 
-        // Durum 1: Sunucu tam soru listesini (cevaplarıyla) geri döndü
+        // Durum 1: Sunucu soruları cevaplarıyla birlikte geri döndürdü (En iyisi)
         if (r.questions && r.questions.length > 0) {
             finalQuestions = r.questions;
         } 
-        // Durum 2: Sunucu sadece { correctAnswers: {...} } haritası döndü (Yaygın Backend yapısı)
+        // Durum 2: Sunucu sadece "correctAnswers" haritası döndürdü (Yaygın backend yapısı)
         else if (r.correctAnswers) {
             finalQuestions = finalQuestions.map(q => ({
                 ...q,
-                correct: r.correctAnswers?.[q.id],
-                explanation: r.explanations?.[q.id] || q.explanation // Varsa açıklamayı da al
+                correct: r.correctAnswers?.[q.id], // Cevabı ekle
+                explanation: r.explanations?.[q.id] || q.explanation // Varsa açıklamayı ekle
             }));
         }
 
-        // State'i güncelle ki ekranda yeşil/kırmızı yanabilsin
+        // Yeni veriyle ekranı güncelle
         setData({ ...data, questions: finalQuestions });
         calculateAndShow(finalQuestions);
-        
         isSubmitting.current = false;
 
     } catch (error) {
-        // Hata olsa bile kullanıcının testini "bitmiş" gibi göster ve eldeki verilerle puanla
-        alert("Connection error. Showing preliminary results based on available data.");
+        // Hata olsa bile kullanıcıyı yarı yolda bırakma, eldekiyle göster
         calculateAndShow(questions);
         isSubmitting.current = false;
     }
   };
 
-  // Puanlama ve Ekranı Açma
+  // Puan Hesaplama ve Gösterme
   const calculateAndShow = (currentQuestions: Question[]) => {
     let correctCount = 0;
     currentQuestions.forEach((q) => {
-      // q.correct sunucudan veya json'dan gelmiş olmalı
+      // Cevap anahtarı (correct) varsa ve kullanıcı doğru bildiyse
       if (answers[q.id] && q.correct && answers[q.id] === q.correct) {
         correctCount++;
       }
@@ -216,26 +221,39 @@ export default function Quiz({ params }: { params: { id: string } }) {
             const userAnswer = answers[q.id];
             const isSkipped = !userAnswer;
             const isCorrect = !isSkipped && userAnswer === q.correct;
+            
+            // EĞER SUNUCUDAN CEVAP ANAHTARI GELMEDİYSE (q.correct undefined ise)
+            const isKeyMissing = !q.correct; 
 
-            // Kart tasarımı
             let cardBorder = "border-slate-200";
             let cardBg = "bg-white";
-            if (isCorrect) { cardBorder = "border-green-200"; cardBg = "bg-green-50/40"; }
-            else if (isSkipped) { cardBorder = "border-amber-200"; cardBg = "bg-amber-50/40"; }
-            else { cardBorder = "border-red-200"; cardBg = "bg-red-50/40"; }
+            
+            if (isKeyMissing) {
+                cardBorder = "border-slate-200";
+                cardBg = "bg-slate-50"; 
+            } else if (isCorrect) {
+                cardBorder = "border-green-200";
+                cardBg = "bg-green-50/40";
+            } else if (isSkipped) {
+                cardBorder = "border-amber-200";
+                cardBg = "bg-amber-50/40";
+            } else {
+                cardBorder = "border-red-200";
+                cardBg = "bg-red-50/40";
+            }
 
             return (
               <div key={q.id} className={`p-6 rounded-2xl border-2 ${cardBorder} ${cardBg}`}>
                 <div className="flex items-start gap-4">
                   <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold shadow-sm 
-                    ${isCorrect ? 'bg-green-500' : (isSkipped ? 'bg-amber-400' : 'bg-red-500')}`}>
-                    {isCorrect ? '✓' : (isSkipped ? '−' : '✕')}
+                    ${isKeyMissing ? 'bg-slate-400' : (isCorrect ? 'bg-green-500' : (isSkipped ? 'bg-amber-400' : 'bg-red-500'))}`}>
+                    {isKeyMissing ? '?' : (isCorrect ? '✓' : (isSkipped ? '−' : '✕'))}
                   </div>
 
                   <div className="flex-grow">
                     <div className="flex justify-between items-center mb-3">
                         <span className="text-sm text-slate-400 font-bold uppercase">Question {idx + 1}</span>
-                        {isSkipped && <span className="text-xs font-bold px-2 py-1 bg-amber-100 text-amber-700 rounded-md">SKIPPED</span>}
+                        {isSkipped && !isKeyMissing && <span className="text-xs font-bold px-2 py-1 bg-amber-100 text-amber-700 rounded-md">SKIPPED</span>}
                     </div>
                     
                     <div className="text-lg font-medium text-slate-800 mb-5" dangerouslySetInnerHTML={{ __html: q.prompt }} />
@@ -248,11 +266,13 @@ export default function Quiz({ params }: { params: { id: string } }) {
                         let itemClass = "p-3 rounded-lg border flex items-center justify-between ";
                         
                         if (isTheCorrectAnswer) {
-                          // Doğru cevap her zaman yeşil yanar
+                          // Doğru cevap
                           itemClass += "bg-green-100 border-green-300 text-green-800 font-bold shadow-sm";
                         } else if (isSelected && !isTheCorrectAnswer) {
-                          // Yanlış cevap kırmızı
-                          itemClass += "bg-red-100 border-red-300 text-red-800 font-medium";
+                          // Yanlış
+                          itemClass += isKeyMissing 
+                            ? "bg-blue-100 border-blue-300 text-blue-800 font-medium" 
+                            : "bg-red-100 border-red-300 text-red-800 font-medium";
                         } else {
                           itemClass += "bg-white/60 border-slate-200 text-slate-500 opacity-70";
                         }
@@ -262,19 +282,19 @@ export default function Quiz({ params }: { params: { id: string } }) {
                             <div className="flex items-center gap-3">
                               <div className={`w-6 h-6 rounded-full border flex items-center justify-center text-xs 
                                 ${isTheCorrectAnswer ? 'border-green-500 bg-green-500 text-white' : 
-                                (isSelected ? 'border-red-500 bg-red-500 text-white' : 'border-slate-300')}`}>
+                                (isSelected ? (isKeyMissing ? 'border-blue-500 bg-blue-500 text-white' : 'border-red-500 bg-red-500 text-white') : 'border-slate-300')}`}>
                                 {c.id}
                               </div>
                               <span>{c.text}</span>
                             </div>
                             {isTheCorrectAnswer && <span className="text-green-700 text-xs uppercase font-bold">Correct Answer</span>}
-                            {isSelected && !isTheCorrectAnswer && <span className="text-red-600 text-xs uppercase font-bold">Your Answer</span>}
+                            {isSelected && !isTheCorrectAnswer && !isKeyMissing && <span className="text-red-600 text-xs uppercase font-bold">Your Answer</span>}
+                            {isSelected && isKeyMissing && <span className="text-blue-600 text-xs uppercase font-bold">Your Answer</span>}
                           </div>
                         );
                       })}
                     </div>
 
-                    {/* Açıklama Alanı */}
                     {q.explanation ? (
                       <div className="mt-5 p-4 bg-blue-50 rounded-xl border border-blue-100 text-sm text-blue-800 flex gap-3 items-start">
                         <span className="text-xl">💡</span>
@@ -284,8 +304,11 @@ export default function Quiz({ params }: { params: { id: string } }) {
                         </div>
                       </div>
                     ) : (
-                        // Geliştirici için uyarı (Sadece correct yoksa görünür)
-                        !q.correct && <div className="mt-2 text-xs text-gray-400 italic">Processing results... (Explanation unavailable)</div>
+                        !isPractice && isKeyMissing && (
+                            <div className="mt-2 text-xs text-slate-400 italic">
+                                * Correct answers are hidden for this test mode.
+                            </div>
+                        )
                     )}
                   </div>
                 </div>
@@ -332,7 +355,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
       <div className="pt-4 pb-12">
         <button onClick={submit} disabled={isSubmitting.current} className={`w-full py-4 rounded-xl text-white text-xl font-bold shadow-lg transition-all transform active:scale-[0.98] ${isSubmitting.current ? 'bg-slate-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 hover:shadow-blue-200'}`}>
-          {isSubmitting.current ? 'Processing Results...' : 'Finish Test'}
+          {isSubmitting.current ? 'Processing...' : 'Finish Test'}
         </button>
       </div>
     </div>
