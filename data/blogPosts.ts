@@ -17,7 +17,8 @@ export const blogPosts: BlogPost[] = [
       'Think your grammar is advanced? These 10 common mistakes still trap C1–C2 learners. See if you make any of them.',
     date: '2025-11-27',
     readingTime: '7 min read',
-    image: '/images/blog/advanced-grammar-mistakes.jpg',
+    // 🔹 Mor "COMMON GRAMMAR MISTAKES" görseli
+    image: '/images/blog/common-grammar-mistakes.jpg',
     contentHtml: `
       <p>Even advanced learners with years of experience still make surprisingly simple grammar mistakes. These errors often appear in exams like IELTS, TOEFL or Cambridge tests, and they can easily lower your score.</p>
 
@@ -78,7 +79,8 @@ export const blogPosts: BlogPost[] = [
       'Think your English is advanced? Try this C1–C2 grammar challenge. Most learners score between 5 and 7 out of 10.',
     date: '2025-11-27',
     readingTime: '6 min read',
-    image: '/images/blog/c1-c2-grammar-test.jpg',
+    // 🔹 "Advanced Grammar Mistakes Test" görseli
+    image: '/images/blog/advanced-grammar-mistakes-test.jpg',
     contentHtml: `
       <p>Many learners say they are C1 or C2, but when they take a focused grammar test, their score tells a different story. This mini challenge checks some of the most important structures at advanced level.</p>
 
@@ -133,6 +135,7 @@ export const blogPosts: BlogPost[] = [
       'Build a daily habit with quick grammar questions. One short quiz a day can slowly transform your English.',
     date: '2025-11-27',
     readingTime: '5 min read',
+    // 🔹 "Daily Grammar Quiz" görseli
     image: '/images/blog/daily-grammar-quiz.jpg',
     contentHtml: `
       <p>Improving your English does not always require long study sessions. Sometimes, two focused minutes a day are more powerful than one hour once a week.</p>
@@ -182,7 +185,8 @@ export const blogPosts: BlogPost[] = [
       'Small grammar details can make a big difference in your IELTS score. Learn key structures examiners look for.',
     date: '2025-11-27',
     readingTime: '8 min read',
-    image: '/images/blog/ielts-grammar-tricks.jpg',
+    // 🔹 Şimdilik aynı "Advanced Grammar Mistakes Test" görselini kullanalım
+    image: '/images/blog/advanced-grammar-mistakes-test.jpg',
     contentHtml: `
       <p>Many IELTS candidates focus on vocabulary and ideas, but forget that grammar is a separate scoring criterion. A few targeted grammar upgrades can push your band score higher, especially from 5.5–6.0 to 6.5–7.0.</p>
 
@@ -225,7 +229,8 @@ export const blogPosts: BlogPost[] = [
       'Prepositions are small but dangerous. Here are 20 common mistakes and the correct forms for each one.',
     date: '2025-11-27',
     readingTime: '7 min read',
-    image: '/images/blog/advanced-prepositions.jpg',
+    // 🔹 Burada da mor "COMMON GRAMMAR MISTAKES" görselini tekrar kullanıyoruz
+    image: '/images/blog/common-grammar-mistakes.jpg',
     contentHtml: `
       <p>Prepositions are one of the last things even advanced learners fully master. They are short, but they can completely change the meaning of a sentence.</p>
 
@@ -264,4 +269,4 @@ export const blogPosts: BlogPost[] = [
       <p><a href="/quiz/advanced-prepositions" rel="nofollow">👉 Take the Advanced Prepositions Quiz (20 questions)</a></p>
     `,
   },
-]; 
+];
