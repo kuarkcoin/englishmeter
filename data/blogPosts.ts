@@ -264,4 +264,4 @@ export const blogPosts: BlogPost[] = [
       <p><a href="/quiz/advanced-prepositions" rel="nofollow">👉 Take the Advanced Prepositions Quiz (20 questions)</a></p>
     `,
   },
-];
+]; 
