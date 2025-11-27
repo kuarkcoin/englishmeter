@@ -3,6 +3,7 @@
 import grammarTopicTests from '@/data/grammar_topic_tests.json';
 import levelTests from '@/data/english_test_questions.json';
 import vocabTests from '@/data/vocabulary_b1_c1_test.json';
+import ieltsGrammar from '@/data/ielts_grammar.json'; // 🔹 YENİ: IELTS soruları
 
 export interface StandardQuestion {
   id: string;
@@ -11,7 +12,7 @@ export interface StandardQuestion {
 }
 
 type AnyQuestion = any;
- 
+
 // GRAMMAR FOCUS SLUG → TAG EŞLEŞMESİ
 const grammarSlugToTag: Record<string, string> = {
   'test-perfect-past': 'perfect_tenses',
@@ -57,14 +58,16 @@ export const getQuestionsBySlug = (
       .sort(() => Math.random() - 0.5)
       .slice(0, 20);
 
-    title = `${grammarTitleMap[slug] || slug.replace('test-', '').replace(/-/g, ' ').toUpperCase()} TEST`;
+    title =
+      (grammarTitleMap[slug] ||
+        slug.replace('test-', '').replace(/-/g, ' ').toUpperCase()) + ' TEST';
 
     if (rawQuestions.length === 0) {
       rawQuestions = (grammarTopicTests as AnyQuestion[]).slice(0, 20);
       title = 'Grammar Practice';
     }
   }
-  // 2) LEVEL TESTLERİ
+  // 2) LEVEL TESTLERİ (A1–C2)
   else if (slug.includes('level-')) {
     const targetLevel = slug.replace('level-', '').toUpperCase();
     rawQuestions = (levelTests as AnyQuestion[]).filter(
@@ -73,97 +76,124 @@ export const getQuestionsBySlug = (
     if (rawQuestions.length > 20) rawQuestions = rawQuestions.slice(0, 20);
     title = `${targetLevel} LEVEL ASSESSMENT`;
   }
-  // 3) MEGA TEST
+  // 3) IELTS GRAMMAR TEST
+  else if (slug === 'ielts-grammar') {
+    rawQuestions = (ieltsGrammar as AnyQuestion[]);
+    title = 'IELTS GRAMMAR (ADVANCED)';
+  }
+  // 4) MEGA TEST
   else if (slug === 'grammar-mega-test-100') {
     rawQuestions = (grammarTopicTests as AnyQuestion[])
       .sort(() => 0.5 - Math.random())
       .slice(0, 100);
     title = 'GRAMMAR MEGA TEST (100Q)';
   }
-  // 4) VOCAB TEST
+  // 5) VOCAB TEST
   else if (slug.includes('vocab')) {
     rawQuestions = (vocabTests as AnyQuestion[])
       .sort(() => 0.5 - Math.random())
       .slice(0, 50);
     title = 'VOCABULARY CHALLENGE (B1-C1)';
   }
-  // 5) QUICK PLACEMENT
+  // 6) QUICK PLACEMENT
   else if (slug === 'quick-placement') {
     rawQuestions = (levelTests as AnyQuestion[])
       .sort(() => 0.5 - Math.random())
       .slice(0, 10);
     title = 'QUICK PLACEMENT TEST';
   }
-  // Fallback
+  // 7) Fallback
   else {
     rawQuestions = (levelTests as AnyQuestion[]).slice(0, 10);
     title = 'GENERAL PRACTICE';
   }
 
-  // FORMATLAMA – tüm formatları StandardQuestion'a çevir
-  const formattedQuestions: StandardQuestion[] = rawQuestions.map((q: AnyQuestion, index: number) => {
-    const id = q.id ? String(q.id) : `${slug}-q${index + 1}`;
-    const prompt = q.prompt || q.question || q.question_text || 'Question missing';
+  // --- FORMATLAMA: HER ŞEYİ StandardQuestion FORMATINA ÇEVİR ---
+  const formattedQuestions: StandardQuestion[] = rawQuestions.map(
+    (q: AnyQuestion, index: number) => {
+      const id = q.id ? String(q.id) : `${slug}-q${index + 1}`;
+      const prompt =
+        q.prompt || q.question || q.question_text || 'Question missing';
 
-    let choices: { id: string; text: string; isCorrect: boolean }[] = [];
+      let choices: { id: string; text: string; isCorrect: boolean }[] = [];
 
-    // 1) grammar_topic_tests.json → A,B,C,D + correct
-    if (q.A !== undefined && q.correct !== undefined) {
-      const correctLetter = String(q.correct).trim().toUpperCase();
-      choices = ['A', 'B', 'C', 'D'].map(letter => ({
-        id: letter.toLowerCase(),
-        text: (q as any)[letter] || `Option ${letter}`,
-        isCorrect: correctLetter === letter,
-      }));
-    }
-    // 2) vocabulary veya başka JSON → choices array
-    else if (Array.isArray(q.choices)) {
-      const labels = ['a', 'b', 'c', 'd'];
-      choices = q.choices.slice(0, 4).map((c: any, i: number) => ({
-        id: labels[i],
-        text: c.text || c.option || `Option ${labels[i].toUpperCase()}`,
-        isCorrect: !!c.isCorrect,
-      }));
-    }
-    // 3) levelTests → options[] + answer
-    else if (Array.isArray(q.options)) {
-      const labels = ['a', 'b', 'c', 'd'];
-      const opts = q.options.slice(0, 4);
-      const rawAnswer = q.answer ?? q.correct_option ?? q.correct;
+      // 1) grammar_topic_tests.json → A,B,C,D + correct
+      if (q.A !== undefined && q.correct !== undefined) {
+        const correctLetter = String(q.correct).trim().toUpperCase();
+        choices = ['A', 'B', 'C', 'D'].map((letter) => ({
+          id: letter.toLowerCase(),
+          text: (q as any)[letter] || `Option ${letter}`,
+          isCorrect: correctLetter === letter,
+        }));
+      }
+      // 2) vocabulary veya başka JSON → choices array
+      else if (Array.isArray(q.choices)) {
+        const labels = ['a', 'b', 'c', 'd'];
+        choices = q.choices.slice(0, 4).map((c: any, i: number) => ({
+          id: labels[i],
+          text: c.text || c.option || `Option ${labels[i].toUpperCase()}`,
+          isCorrect: !!c.isCorrect,
+        }));
+      }
+      // 3) IELTS tipi: options = { A: '...', B: '...', C: '...', D: '...' }
+      else if (q.options && !Array.isArray(q.options)) {
+        const labelsUpper = ['A', 'B', 'C', 'D'];
+        const labelsLower = ['a', 'b', 'c', 'd'];
+        const rawAnswer = q.correct_option ?? q.correct;
 
-      let correctIndex = -1;
-      if (typeof rawAnswer === 'number') {
-        correctIndex = rawAnswer;
-      } else if (typeof rawAnswer === 'string') {
-        const byLetter = ['A', 'B', 'C', 'D'].indexOf(rawAnswer.toUpperCase());
-        if (byLetter !== -1) {
-          correctIndex = byLetter;
-        } else {
-          correctIndex = opts.findIndex((opt: any) => opt === rawAnswer);
+        const correctIdx =
+          typeof rawAnswer === 'string'
+            ? labelsUpper.indexOf(rawAnswer.toUpperCase())
+            : -1;
+
+        choices = labelsUpper.map((letter, idx) => ({
+          id: labelsLower[idx],
+          text: q.options[letter] || `Option ${letter}`,
+          isCorrect: idx === correctIdx,
+        }));
+      }
+      // 4) levelTests → options[] + answer
+      else if (Array.isArray(q.options)) {
+        const labels = ['a', 'b', 'c', 'd'];
+        const opts = q.options.slice(0, 4);
+        const rawAnswer = q.answer ?? q.correct_option ?? q.correct;
+
+        let correctIndex = -1;
+        if (typeof rawAnswer === 'number') {
+          correctIndex = rawAnswer;
+        } else if (typeof rawAnswer === 'string') {
+          const byLetter = ['A', 'B', 'C', 'D'].indexOf(
+            rawAnswer.toUpperCase()
+          );
+          if (byLetter !== -1) {
+            correctIndex = byLetter;
+          } else {
+            correctIndex = opts.findIndex((opt: any) => opt === rawAnswer);
+          }
         }
+
+        choices = opts.map((opt: any, i: number) => ({
+          id: labels[i],
+          text: opt,
+          isCorrect: i === correctIndex,
+        }));
+      }
+      // 5) En eski fallback
+      else {
+        choices = [
+          { id: 'a', text: q.option_a || q.A || 'A', isCorrect: false },
+          { id: 'b', text: q.option_b || q.B || 'B', isCorrect: false },
+          { id: 'c', text: q.option_c || q.C || 'C', isCorrect: false },
+          { id: 'd', text: q.option_d || q.D || 'D', isCorrect: false },
+        ];
+        const correct = String(q.correct_option || q.correct || 'a').toLowerCase();
+        const correctIdx = ['a', 'b', 'c', 'd'].indexOf(correct);
+        if (correctIdx !== -1) choices[correctIdx].isCorrect = true;
       }
 
-      choices = opts.map((opt: any, i: number) => ({
-        id: labels[i],
-        text: opt,
-        isCorrect: i === correctIndex,
-      }));
+      return { id, prompt, choices };
     }
-    // 4) En eski fallback
-    else {
-      choices = [
-        { id: 'a', text: q.option_a || q.A || 'A', isCorrect: false },
-        { id: 'b', text: q.option_b || q.B || 'B', isCorrect: false },
-        { id: 'c', text: q.option_c || q.C || 'C', isCorrect: false },
-        { id: 'd', text: q.option_d || q.D || 'D', isCorrect: false },
-      ];
-      const correct = String(q.correct_option || q.correct || 'a').toLowerCase();
-      const correctIdx = ['a', 'b', 'c', 'd'].indexOf(correct);
-      if (correctIdx !== -1) choices[correctIdx].isCorrect = true;
-    }
-
-    return { id, prompt, choices };
-  });
+  );
 
   return { title, questions: formattedQuestions };
 };
