@@ -1,4628 +1,2312 @@
 [
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "By the time the CEO arrived, the board members ______ the merging proposal for hours.",
-    "A": "have been discussing",
-    "B": "had been discussing",
-    "C": "discussed",
-    "D": "were discussing",
-    "correct": "B",
-    "explanation": "We use the Past Perfect Continuous to describe an action that had been going on up to a specific moment in the past."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "I ______ three separate emails to the support team, but I haven't received a reply yet.",
-    "A": "have sent",
-    "B": "have been sending",
-    "C": "sent",
-    "D": "had sent",
-    "correct": "A",
-    "explanation": "Present Perfect Simple emphasizes the completion and result (3 emails sent)."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "Next month, we ______ in this house for exactly twenty years.",
-    "A": "are living",
-    "B": "will have been living",
-    "C": "have lived",
-    "D": "will live",
-    "correct": "B",
-    "explanation": "Future Perfect Continuous emphasizes the duration of an action up to a certain time in the future."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "Scarcely ______ the room when the phone started ringing incessantly.",
-    "A": "he had entered",
-    "B": "has he entered",
-    "C": "had he entered",
-    "D": "he entered",
-    "correct": "C",
-    "explanation": "Inversion is required after negative adverbs like 'Scarcely' placed at the beginning."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "The sheer number of tourists ______ significantly since the new airport opened.",
-    "A": "has risen",
-    "B": "have risen",
-    "C": "rose",
-    "D": "had risen",
-    "correct": "A",
-    "explanation": "'Since' indicates a connection from the past to the present, requiring Present Perfect."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "They ______ to finalize the deal by Friday, but unforeseen issues arose.",
-    "A": "have hoped",
-    "B": "had hoped",
-    "C": "are hoping",
-    "D": "hoped",
-    "correct": "B",
-    "explanation": "'Had hoped' implies a past intention that was not fulfilled."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "It is the first time I ______ such a complex flavor profile in a coffee.",
-    "A": "tasted",
-    "B": "have tasted",
-    "C": "had tasted",
-    "D": "am tasting",
-    "correct": "B",
-    "explanation": "After 'It is the first time', we use the Present Perfect tense."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "She won't be able to join us until she ______ her assignment.",
-    "A": "will have finished",
-    "B": "has finished",
-    "C": "will finish",
-    "D": "finished",
-    "correct": "B",
-    "explanation": "In time clauses referring to the future, we use Present Perfect or Present Simple."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "Ever since the scandal broke, the company ______ to regain consumer trust.",
-    "A": "struggled",
-    "B": "had struggled",
-    "C": "has been struggling",
-    "D": "was struggling",
-    "correct": "C",
-    "explanation": "Present Perfect Continuous for an action starting in the past and continuing to now."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "I ______ to tell you the news, but you were in a meeting.",
-    "A": "have meant",
-    "B": "had meant",
-    "C": "meant",
-    "D": "was meaning",
-    "correct": "B",
-    "explanation": "Past Perfect is used for unfulfilled past intentions."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "By 2030, scientists hope they ______ a cure for the disease.",
-    "A": "will have discovered",
-    "B": "have discovered",
-    "C": "will be discovering",
-    "D": "discover",
-    "correct": "A",
-    "explanation": "Future Perfect is used for actions completed before a specific future time."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "Hardly ______ the speech when the audience erupted in applause.",
-    "A": "she had finished",
-    "B": "had she finished",
-    "C": "has she finished",
-    "D": "she finished",
-    "correct": "B",
-    "explanation": "Inversion with 'Hardly' + Past Perfect."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "The team ______ on this project for six months by next Tuesday.",
-    "A": "will work",
-    "B": "will have been working",
-    "C": "have worked",
-    "D": "had been working",
-    "correct": "B",
-    "explanation": "Future Perfect Continuous emphasizes duration up to a future point."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "I felt awful because I ______ properly for days.",
-    "A": "haven't eaten",
-    "B": "hadn't eaten",
-    "C": "didn't eat",
-    "D": "wasn't eating",
-    "correct": "B",
-    "explanation": "Past Perfect places the action before the past feeling."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "This is the third time he ______ to fix the leak.",
-    "A": "tries",
-    "B": "had tried",
-    "C": "has tried",
-    "D": "is trying",
-    "correct": "C",
-    "explanation": "Ordinal numbers (first, second, third time) are followed by Present Perfect."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "I ______ at the report for hours, but I still can't find the error.",
-    "A": "have looked",
-    "B": "have been looking",
-    "C": "look",
-    "D": "had looked",
-    "correct": "B",
-    "explanation": "Present Perfect Continuous emphasizes the duration of an activity that is still relevant or ongoing."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "By the time the guests arrive, we ______ cooking the dinner.",
-    "A": "will finish",
-    "B": "will have finished",
-    "C": "have finished",
-    "D": "are finishing",
-    "correct": "B",
-    "explanation": "Future Perfect is used to express an action that will be completed before a specific time in the future."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "She was out of breath because she ______ for the marathon.",
-    "A": "has been running",
-    "B": "ran",
-    "C": "had been running",
-    "D": "was running",
-    "correct": "C",
-    "explanation": "Past Perfect Continuous explains the cause (running) of a past state (out of breath)."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "This is the second time I ______ my wallet this month.",
-    "A": "lost",
-    "B": "had lost",
-    "C": "have lost",
-    "D": "lose",
-    "correct": "C",
-    "explanation": "After 'This is the first/second time', we strictly use Present Perfect."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "The play ______ by the time we got to the theater.",
-    "A": "has already started",
-    "B": "had already started",
-    "C": "already started",
-    "D": "was already starting",
-    "correct": "B",
-    "explanation": "Past Perfect is used for the earlier of two past actions (play started before we arrived)."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "I ______ him for years; he has always been dependable.",
-    "A": "know",
-    "B": "have been knowing",
-    "C": "have known",
-    "D": "knew",
-    "correct": "C",
-    "explanation": "Stative verbs like 'know' are not used in continuous tenses; use Present Perfect Simple."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "They ______ the construction of the bridge by next winter.",
-    "A": "will have completed",
-    "B": "have completed",
-    "C": "will complete",
-    "D": "are completing",
-    "correct": "A",
-    "explanation": "Future Perfect focuses on the completion of an event relative to a future deadline."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "Recently, the government ______ new policies to combat inflation.",
-    "A": "implemented",
-    "B": "had implemented",
-    "C": "has implemented",
-    "D": "was implementing",
-    "correct": "C",
-    "explanation": "'Recently' is a strong signal keyword for the Present Perfect tense."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "Before the manager walked in, the staff ______ loudly about the new rules.",
-    "A": "argued",
-    "B": "have been arguing",
-    "C": "had been arguing",
-    "D": "were arguing",
-    "correct": "C",
-    "explanation": "Past Perfect Continuous emphasizes the duration of an action occurring before another past event."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "I ______ that movie three times already.",
-    "A": "saw",
-    "B": "have seen",
-    "C": "had seen",
-    "D": "have been seeing",
-    "correct": "B",
-    "explanation": "Present Perfect Simple is used when emphasizing the number of times an action has happened."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "Unless she hurries, the bus ______ before she reaches the station.",
-    "A": "will leave",
-    "B": "will have left",
-    "C": "has left",
-    "D": "leaves",
-    "correct": "B",
-    "explanation": "Future Perfect emphasizes that the action will be 'done' at that future moment."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "No sooner ______ the house than it started to rain.",
-    "A": "I had left",
-    "B": "had I left",
-    "C": "I left",
-    "D": "did I leave",
-    "correct": "B",
-    "explanation": "'No sooner' requires Past Perfect and inversion."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "We ______ for a replacement for weeks before we found one.",
-    "A": "have looked",
-    "B": "were looking",
-    "C": "had been looking",
-    "D": "looked",
-    "correct": "C",
-    "explanation": "Past Perfect Continuous indicates duration leading up to a past event (found)."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "By the end of this course, I ______ English for ten years.",
-    "A": "will learn",
-    "B": "will have been learning",
-    "C": "have learned",
-    "D": "am learning",
-    "correct": "B",
-    "explanation": "Future Perfect Continuous emphasizes the duration of an action at a future point."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "perfect_tenses"
-    ],
-    "prompt": "It's been a long time since we ______ such a good meal.",
-    "A": "have had",
-    "B": "had",
-    "C": "had had",
-    "D": "have",
-    "correct": "B",
-    "explanation": "In 'It has been... since' structures, the verb in the 'since' clause is typically Past Simple."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "If you ______ the map, we wouldn't be lost right now.",
-    "A": "brought",
-    "B": "had brought",
-    "C": "have brought",
-    "D": "would bring",
-    "correct": "B",
-    "explanation": "Mixed Conditional: Past condition (had brought) impacting the present result."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "Should you ______ any difficulties, do not hesitate to call.",
-    "A": "experience",
-    "B": "experienced",
-    "C": "had experienced",
-    "D": "to experience",
-    "correct": "A",
-    "explanation": "Inversion of Type 1 conditional: 'Should you experience' = 'If you should experience'."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "Had I known about the traffic, I ______ earlier.",
-    "A": "would leave",
-    "B": "would have left",
-    "C": "will have left",
-    "D": "had left",
-    "correct": "B",
-    "explanation": "Inversion of Type 3 conditional: 'Had I known' = 'If I had known'."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "But for his help, we ______ the project on time.",
-    "A": "didn't finish",
-    "B": "wouldn't have finished",
-    "C": "hadn't finished",
-    "D": "won't finish",
-    "correct": "B",
-    "explanation": "'But for' implies 'If it hadn't been for', requiring a Type 3 result."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "I would rather you ______ him the truth yesterday.",
-    "A": "told",
-    "B": "had told",
-    "C": "tell",
-    "D": "have told",
-    "correct": "B",
-    "explanation": "'Would rather' referring to the past takes the Past Perfect."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "______ you represent the company, behave professionally.",
-    "A": "Providing",
-    "B": "Unless",
-    "C": "As long as",
-    "D": "Even if",
-    "correct": "C",
-    "explanation": "'As long as' sets a condition for the imperative."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "Were it not for the rain, we ______ a picnic.",
-    "A": "will have",
-    "B": "could have",
-    "C": "had had",
-    "D": "would have",
-    "correct": "B",
-    "explanation": "'Were it not for' is a formal Type 2 inversion (present hypothetical)."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "If I ______ you, I would accept the offer immediately.",
-    "A": "was",
-    "B": "were",
-    "C": "am",
-    "D": "had been",
-    "correct": "B",
-    "explanation": "Type 2 conditional uses 'were' for all subjects in formal grammar."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "You can go to the party ______ you come back before midnight.",
-    "A": "unless",
-    "B": "provided that",
-    "C": "in case",
-    "D": "otherwise",
-    "correct": "B",
-    "explanation": "'Provided that' means 'on the condition that'."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "______ the alarm go off, please evacuate the building.",
-    "A": "If",
-    "B": "Should",
-    "C": "Had",
-    "D": "Were",
-    "correct": "B",
-    "explanation": "Inversion for Type 1 conditional uses 'Should'."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "If he ______ harder, he would be a manager by now.",
-    "A": "worked",
-    "B": "had worked",
-    "C": "has worked",
-    "D": "works",
-    "correct": "B",
-    "explanation": "Mixed conditional: Past action (had worked) affecting present status."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "Take an umbrella ______ it rains.",
-    "A": "if",
-    "B": "in case",
-    "C": "unless",
-    "D": "provided",
-    "correct": "B",
-    "explanation": "'In case' is used for preparation for a possible future event."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "We will have the meeting outside, ______ it rains.",
-    "A": "if",
-    "B": "unless",
-    "C": "provided",
-    "D": "as long as",
-    "correct": "B",
-    "explanation": "'Unless' means 'if not'."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "Suppose you ______ the lottery, what would you do?",
-    "A": "win",
-    "B": "won",
-    "C": "had won",
-    "D": "have won",
-    "correct": "B",
-    "explanation": "'Suppose' introduces a hypothetical situation (Type 2)."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "I wouldn't have called him unless it ______ an emergency.",
-    "A": "was",
-    "B": "had been",
-    "C": "were",
-    "D": "has been",
-    "correct": "B",
-    "explanation": "Type 3 conditional requires Past Perfect after 'unless' for past events."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "If you ______ to the advice given, you wouldn't be in this mess.",
-    "A": "listened",
-    "B": "had listened",
-    "C": "have listened",
-    "D": "listen",
-    "correct": "B",
-    "explanation": "Mixed Conditional: Past unfulfilled condition (Type 3) with a present result (Type 2)."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "______ for your support, I would have given up long ago.",
-    "A": "If it wasn't",
-    "B": "Had it not been",
-    "C": "Unless it was",
-    "D": "Were it not",
-    "correct": "B",
-    "explanation": "'Had it not been for' is the inverted form of 'If it had not been for' (Type 3)."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "I will lend you the money on ______ that you pay it back next week.",
-    "A": "condition",
-    "B": "case",
-    "C": "purpose",
-    "D": "provided",
-    "correct": "A",
-    "explanation": "'On condition that' is a formal phrase introducing a condition."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "If I ______ the consequences, I would never have agreed.",
-    "A": "knew",
-    "B": "had known",
-    "C": "know",
-    "D": "have known",
-    "correct": "B",
-    "explanation": "Type 3 conditional refers to a past regret."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "Even ______ he offers to pay, I will not sell the car.",
-    "A": "if",
-    "B": "when",
-    "C": "so",
-    "D": "as",
-    "correct": "A",
-    "explanation": "'Even if' emphasizes that the condition does not matter; the result is the same."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "Imagine you ______ invisible for a day; what would you do?",
-    "A": "are",
-    "B": "were",
-    "C": "have been",
-    "D": "will be",
-    "correct": "B",
-    "explanation": "'Imagine' introduces a hypothetical situation, requiring the subjunctive/past 'were'."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "We'll go skiing ______ there is enough snow.",
-    "A": "supposing",
-    "B": "assuming",
-    "C": "providing",
-    "D": "unless",
-    "correct": "C",
-    "explanation": "'Providing (that)' means 'if' or 'only if'."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "______ you change your mind, let me know.",
-    "A": "Should",
-    "B": "If",
-    "C": "Had",
-    "D": "Were",
-    "correct": "A",
-    "explanation": "Inversion of Type 1: 'Should you change' = 'If you happen to change'."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "I wish I ______ that rude comment yesterday.",
-    "A": "didn't make",
-    "B": "haven't made",
-    "C": "hadn't made",
-    "D": "wouldn't make",
-    "correct": "C",
-    "explanation": "'Wish' + Past Perfect is used to express regret about the past."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "It's high time you ______ taking your responsibilities seriously.",
-    "A": "start",
-    "B": "started",
-    "C": "have started",
-    "D": "will start",
-    "correct": "B",
-    "explanation": "'It's high time' is followed by the Past Simple to imply 'now' or 'future' urgency."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "If he were a better leader, the team ______ so unhappy right now.",
-    "A": "wouldn't have been",
-    "B": "won't be",
-    "C": "wouldn't be",
-    "D": "hadn't been",
-    "correct": "C",
-    "explanation": "Type 2 conditional: hypothetical present condition and result."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "Suppose the flight ______, how will we get there?",
-    "A": "is cancelled",
-    "B": "was cancelled",
-    "C": "will cancel",
-    "D": "had cancelled",
-    "correct": "A",
-    "explanation": "'Suppose' works like 'if'. In Type 1 scenarios, we use present tense."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "We would have arrived on time if the car ______ down.",
-    "A": "didn't break",
-    "B": "wouldn't break",
-    "C": "hadn't broken",
-    "D": "hasn't broken",
-    "correct": "C",
-    "explanation": "Type 3 conditional: Past condition requires Past Perfect."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "Unless the demand ______, prices will remain high.",
-    "A": "decreases",
-    "B": "will decrease",
-    "C": "decreased",
-    "D": "has decreased",
-    "correct": "A",
-    "explanation": "We use Present Simple after 'Unless' for future meaning."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "conditionals"
-    ],
-    "prompt": "If only I ______ where to find the documents.",
-    "A": "know",
-    "B": "knew",
-    "C": "have known",
-    "D": "would know",
-    "correct": "B",
-    "explanation": "'If only' + Past Simple expresses a wish about a present situation."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "The scientist, ______ theories were initially rejected, won the Nobel Prize.",
-    "A": "who",
-    "B": "whose",
-    "C": "whom",
-    "D": "that",
-    "correct": "B",
-    "explanation": "'Whose' is used to indicate possession."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "He finally visited the village ______ he was born.",
-    "A": "which",
-    "B": "where",
-    "C": "that",
-    "D": "when",
-    "correct": "B",
-    "explanation": "'Where' refers to a place."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "The reason ______ he refused the offer is still unknown.",
-    "A": "why",
-    "B": "which",
-    "C": "how",
-    "D": "where",
-    "correct": "A",
-    "explanation": "'The reason why' is the standard collocation."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "The painting, ______ value is estimated at a million dollars, was stolen.",
-    "A": "which",
-    "B": "whose",
-    "C": "that",
-    "D": "whom",
-    "correct": "B",
-    "explanation": "Possessive relative pronoun."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "This is the student ______ I spoke to you about.",
-    "A": "who",
-    "B": "whom",
-    "C": "whose",
-    "D": "which",
-    "correct": "B",
-    "explanation": "'Whom' is the object relative pronoun (formal), though 'who' is common informally."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "I have three brothers, all of ______ are engineers.",
-    "A": "who",
-    "B": "whom",
-    "C": "which",
-    "D": "that",
-    "correct": "B",
-    "explanation": "After prepositions like 'of', we must use 'whom' for people."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "The company for ______ I work is opening a new branch.",
-    "A": "which",
-    "B": "whom",
-    "C": "that",
-    "D": "where",
-    "correct": "A",
-    "explanation": "'Which' is used for things (company) after a preposition."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "He failed the exam, ______ came as a shock to everyone.",
-    "A": "that",
-    "B": "which",
-    "C": "what",
-    "D": "it",
-    "correct": "B",
-    "explanation": "'Which' refers back to the whole previous clause."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "______ you do, don't press that button.",
-    "A": "Whatever",
-    "B": "However",
-    "C": "Whichever",
-    "D": "Whenever",
-    "correct": "A",
-    "explanation": "'Whatever' means 'anything that'."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "The car ______ by the police was found abandoned.",
-    "A": "chasing",
-    "B": "chased",
-    "C": "which chased",
-    "D": "was chased",
-    "correct": "B",
-    "explanation": "Reduced passive relative clause: 'which was chased' becomes 'chased'."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "Anyone ______ in joining the club should sign up now.",
-    "A": "interested",
-    "B": "interesting",
-    "C": "who interest",
-    "D": "interests",
-    "correct": "A",
-    "explanation": "Reduced relative clause: 'Anyone (who is) interested'."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "The man ______ over there is my professor.",
-    "A": "stand",
-    "B": "standing",
-    "C": "stood",
-    "D": "stands",
-    "correct": "B",
-    "explanation": "Reduced active relative clause: 'who is standing' becomes 'standing'."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "Stratford-upon-Avon is the town ______ Shakespeare was born.",
-    "A": "which",
-    "B": "in where",
-    "C": "in which",
-    "D": "that",
-    "correct": "C",
-    "explanation": "'In which' is the formal equivalent of 'where'."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "She showed me the report, the content of ______ was confidential.",
-    "A": "that",
-    "B": "which",
-    "C": "whom",
-    "D": "whose",
-    "correct": "B",
-    "explanation": "After 'of', we use 'which' for things."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "______ needs to leave early may do so.",
-    "A": "Whoever",
-    "B": "Who",
-    "C": "Anyone",
-    "D": "Whomever",
-    "correct": "A",
-    "explanation": "'Whoever' acts as the subject of the clause 'needs to leave'."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "The manager, to ______ I spoke yesterday, was very helpful.",
-    "A": "who",
-    "B": "whom",
-    "C": "which",
-    "D": "that",
-    "correct": "B",
-    "explanation": "When a relative pronoun follows a preposition referring to a person, 'whom' is required."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "He bought a new laptop, ______ is much faster than his old one.",
-    "A": "that",
-    "B": "which",
-    "C": "what",
-    "D": "it",
-    "correct": "B",
-    "explanation": "Non-defining relative clauses use 'which', never 'that'."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "The student ______ score was the highest received a scholarship.",
-    "A": "who",
-    "B": "that",
-    "C": "whose",
-    "D": "which",
-    "correct": "C",
-    "explanation": "'Whose' indicates possession (the student's score)."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "I didn't understand ______ he said.",
-    "A": "that",
-    "B": "which",
-    "C": "what",
-    "D": "the thing",
-    "correct": "C",
-    "explanation": "'What' acts as 'the thing that'."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "There are several candidates, none of ______ are suitable.",
-    "A": "who",
-    "B": "whom",
-    "C": "which",
-    "D": "that",
-    "correct": "B",
-    "explanation": "Quantifier + of + whom (for people) / which (for things)."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "The stadium ______ the final was played is huge.",
-    "A": "which",
-    "B": "that",
-    "C": "where",
-    "D": "when",
-    "correct": "C",
-    "explanation": "'Where' refers to a location (in which)."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "Is there a reason ______ you are late?",
-    "A": "which",
-    "B": "why",
-    "C": "for",
-    "D": "how",
-    "correct": "B",
-    "explanation": "'The reason why' is the standard relative structure."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "The book, ______ on the table, is mine.",
-    "A": "laying",
-    "B": "lying",
-    "C": "laid",
-    "D": "lain",
-    "correct": "B",
-    "explanation": "Reduced relative clause: 'which is lying' -\u003E 'lying'."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "I can't remember the name of the person ______ car I borrowed.",
-    "A": "who",
-    "B": "whom",
-    "C": "whose",
-    "D": "which",
-    "correct": "C",
-    "explanation": "Possessive relative pronoun."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "______ happens, do not open this door.",
-    "A": "Whichever",
-    "B": "However",
-    "C": "Whatever",
-    "D": "Whenever",
-    "correct": "C",
-    "explanation": "'Whatever' indicates 'no matter what'."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "The evidence ______ to the court was convincing.",
-    "A": "presented",
-    "B": "presenting",
-    "C": "which presented",
-    "D": "was presented",
-    "correct": "A",
-    "explanation": "Reduced passive relative clause: 'which was presented' -\u003E 'presented'."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "He has two sisters, both of ______ are doctors.",
-    "A": "who",
-    "B": "whom",
-    "C": "which",
-    "D": "them",
-    "correct": "B",
-    "explanation": "Quantifier + of + whom."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "That was the year ______ we graduated.",
-    "A": "where",
-    "B": "which",
-    "C": "when",
-    "D": "that",
-    "correct": "C",
-    "explanation": "'When' is used for time references."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "It was John ______ broke the window.",
-    "A": "who",
-    "B": "which",
-    "C": "whom",
-    "D": "whose",
-    "correct": "A",
-    "explanation": "Cleft sentence structure emphasizing the subject 'John'."
-  },
-  {
-    "type": "MCQ",
-    "level": "C1",
-    "tags": [
-      "relative_clauses"
-    ],
-    "prompt": "The tools with ______ he fixed the car were old.",
-    "A": "that",
-    "B": "which",
-    "C": "whom",
-    "D": "what",
-    "correct": "B",
-    "explanation": "Preposition + 'which' for things."
-  },
-  [
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "He is ______ honest man.",
-      "A": "a",
-      "B": "an",
-      "C": "the",
-      "D": "-",
-      "correct": "B",
-      "explanation": "'Honest' starts with a vowel sound, so we use 'an'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "______ Mount Everest is the highest peak in the world.",
-      "A": "The",
-      "B": "A",
-      "C": "-",
-      "D": "An",
-      "correct": "C",
-      "explanation": "We do not use articles with individual mountain names."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "She plays ______ piano beautifully.",
-      "A": "a",
-      "B": "an",
-      "C": "the",
-      "D": "-",
-      "correct": "C",
-      "explanation": "We use 'the' with musical instruments when talking about playing them."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "______ rich should help ______ poor.",
-      "A": "The / the",
-      "B": "A / a",
-      "C": "- / -",
-      "D": "The / -",
-      "correct": "A",
-      "explanation": "'The' + adjective refers to a group of people (The rich = rich people)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "______ Lake Victoria is one of the African Great Lakes.",
-      "A": "The",
-      "B": "-",
-      "C": "A",
-      "D": "An",
-      "correct": "B",
-      "explanation": "Singular lakes (Lake + Name) do not take the definite article."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "We are going to ______ Netherlands next week.",
-      "A": "-",
-      "B": "a",
-      "C": "the",
-      "D": "an",
-      "correct": "C",
-      "explanation": "Country names that are plural (Netherlands, Philippines) take 'the'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "He went to ______ prison for robbery.",
-      "A": "the",
-      "B": "a",
-      "C": "-",
-      "D": "an",
-      "correct": "C",
-      "explanation": "Zero article is used when referring to the primary purpose of the institution (being a prisoner)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "We went to the station to pick him up, but ______ car broke down.",
-      "A": "a",
-      "B": "an",
-      "C": "-",
-      "D": "the",
-      "correct": "D",
-      "explanation": "Specific reference to a known object (our car)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "She has ______ terrible headache.",
-      "A": "the",
-      "B": "a",
-      "C": "-",
-      "D": "an",
-      "correct": "B",
-      "explanation": "Common illnesses like headache, cold, and cough usually take 'a'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "______ French are famous for their cheese.",
-      "A": "-",
-      "B": "A",
-      "C": "The",
-      "D": "An",
-      "correct": "C",
-      "explanation": "'The' + nationality adjective refers to the whole nation."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "I usually have ______ lunch at 1 PM.",
-      "A": "the",
-      "B": "a",
-      "C": "-",
-      "D": "an",
-      "correct": "C",
-      "explanation": "We do not use articles with names of meals unless specific."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "He is ______ Shakespeare of our times.",
-      "A": "a",
-      "B": "an",
-      "C": "the",
-      "D": "-",
-      "correct": "C",
-      "explanation": "Using 'the' before a proper name indicates a comparison to a famous figure."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "Can you turn off ______ light? It's too bright.",
-      "A": "a",
-      "B": "an",
-      "C": "-",
-      "D": "the",
-      "correct": "D",
-      "explanation": "Refers to a specific light in the immediate environment."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "______ life is full of surprises.",
-      "A": "The",
-      "B": "A",
-      "C": "-",
-      "D": "An",
-      "correct": "C",
-      "explanation": "Abstract nouns used in a general sense do not take an article."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "He works as ______ engineer.",
-      "A": "a",
-      "B": "the",
-      "C": "-",
-      "D": "an",
-      "correct": "D",
-      "explanation": "Professions take the indefinite article. 'Engineer' starts with a vowel sound."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "They sailed across ______ Atlantic Ocean.",
-      "A": "-",
-      "B": "an",
-      "C": "the",
-      "D": "a",
-      "correct": "C",
-      "explanation": "Oceans always take the definite article 'the'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "It was ______ unique opportunity.",
-      "A": "an",
-      "B": "a",
-      "C": "the",
-      "D": "-",
-      "correct": "B",
-      "explanation": "'Unique' starts with a consonant sound /j/, so use 'a'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "______ most people believe that honesty is important.",
-      "A": "The",
-      "B": "A",
-      "C": "-",
-      "D": "An",
-      "correct": "C",
-      "explanation": "'Most' meaning 'the majority of' takes zero article."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "We are staying at ______ Hilton Hotel.",
-      "A": "-",
-      "B": "a",
-      "C": "the",
-      "D": "an",
-      "correct": "C",
-      "explanation": "Hotels, theaters, and museums usually take 'the'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "I saw ______ one-legged man.",
-      "A": "an",
-      "B": "the",
-      "C": "a",
-      "D": "-",
-      "correct": "C",
-      "explanation": "'One' starts with a /w/ sound, so use 'a'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "______ Nile is the longest river in Africa.",
-      "A": "A",
-      "B": "-",
-      "C": "The",
-      "D": "An",
-      "correct": "C",
-      "explanation": "Names of rivers always take 'the'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "Generally, ______ tigers are solitary animals.",
-      "A": "the",
-      "B": "a",
-      "C": "-",
-      "D": "an",
-      "correct": "C",
-      "explanation": "Plural countable nouns used generally take zero article."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "She graduated from ______ Harvard University.",
-      "A": "the",
-      "B": "a",
-      "C": "-",
-      "D": "an",
-      "correct": "C",
-      "explanation": "Universities named [Name] + University typically use zero article."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "______ Hyde Park is famous for its Speaker's Corner.",
-      "A": "The",
-      "B": "-",
-      "C": "A",
-      "D": "An",
-      "correct": "B",
-      "explanation": "Most parks and streets take zero article."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "We need ______ information about the flight.",
-      "A": "an",
-      "B": "a",
-      "C": "the",
-      "D": "some",
-      "correct": "D",
-      "explanation": "'Information' is uncountable, so 'a/an' cannot be used. 'Some' is a quantifier."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "It's ______ shame that he couldn't come.",
-      "A": "a",
-      "B": "the",
-      "C": "-",
-      "D": "an",
-      "correct": "A",
-      "explanation": "Idiomatic expression: 'It's a shame'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "______ few people know the truth.",
-      "A": "A",
-      "B": "The",
-      "C": "-",
-      "D": "An",
-      "correct": "A",
-      "explanation": "'A few' means 'some'; 'Few' means 'almost no one'. Both fit grammatically, but 'A few' implies positive quantity."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "He was elected ______ Chairman of the board.",
-      "A": "the",
-      "B": "a",
-      "C": "-",
-      "D": "an",
-      "correct": "C",
-      "explanation": "Titles following verbs like 'elect', 'appoint', 'make' take zero article."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "I love listening to ______ music.",
-      "A": "the",
-      "B": "a",
-      "C": "-",
-      "D": "an",
-      "correct": "C",
-      "explanation": "Uncountable noun used generally."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "articles"
-      ],
-      "prompt": "______ Canary Islands are popular with tourists.",
-      "A": "-",
-      "B": "The",
-      "C": "A",
-      "D": "An",
-      "correct": "B",
-      "explanation": "Island groups (plural) take 'The'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "You ______ have seen him yesterday; he is in another country!",
-      "A": "must",
-      "B": "should",
-      "C": "can't",
-      "D": "needn't",
-      "correct": "C",
-      "explanation": "'Can't have V3' expresses a strong logical impossibility in the past."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "The ground is wet. It ______ have rained last night.",
-      "A": "must",
-      "B": "should",
-      "C": "can't",
-      "D": "mightn't",
-      "correct": "A",
-      "explanation": "'Must have V3' expresses a strong logical certainty about the past."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "You ______ told me earlier! I could have helped you.",
-      "A": "must have",
-      "B": "should have",
-      "C": "may have",
-      "D": "would have",
-      "correct": "B",
-      "explanation": "'Should have V3' expresses a past criticism or regret."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "We ______ run to the station, the train was delayed anyway.",
-      "A": "didn't need to",
-      "B": "needn't have",
-      "C": "mustn't have",
-      "D": "couldn't have",
-      "correct": "B",
-      "explanation": "'Needn't have V3' means we did it, but it was unnecessary."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "You ______ smoke in the hospital. It is strictly prohibited.",
-      "A": "needn't",
-      "B": "don't have to",
-      "C": "mustn't",
-      "D": "shouldn't",
-      "correct": "C",
-      "explanation": "'Mustn't' indicates prohibition."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "He ______ be rich to buy such a car, or maybe he won the lottery.",
-      "A": "must",
-      "B": "can't",
-      "C": "could",
-      "D": "should",
-      "correct": "C",
-      "explanation": "'Could' indicates possibility."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "I ______ swim when I was five years old.",
-      "A": "can",
-      "B": "could",
-      "C": "able to",
-      "D": "might",
-      "correct": "B",
-      "explanation": "'Could' is used for general ability in the past."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "Despite the storm, the pilot ______ land the plane safely.",
-      "A": "could",
-      "B": "was able to",
-      "C": "might",
-      "D": "can",
-      "correct": "B",
-      "explanation": "For a specific achievement in the past, 'was able to' or 'managed to' is used, not 'could'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "You ______ better see a doctor about that cough.",
-      "A": "should",
-      "B": "would",
-      "C": "had",
-      "D": "must",
-      "correct": "C",
-      "explanation": "'Had better' is a strong piece of advice."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "There ______ be a mistake in the bill; we didn't order this.",
-      "A": "must",
-      "B": "can",
-      "C": "shall",
-      "D": "need",
-      "correct": "A",
-      "explanation": "Logical deduction (certainty) in the present."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "I ______ rather stay home tonight than go out.",
-      "A": "would",
-      "B": "should",
-      "C": "had",
-      "D": "could",
-      "correct": "A",
-      "explanation": "'Would rather' expresses preference."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "______ you please pass the salt?",
-      "A": "Might",
-      "B": "Should",
-      "C": "Would",
-      "D": "Must",
-      "correct": "C",
-      "explanation": "'Would' is used for polite requests."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "They ______ be at home; the lights are all out.",
-      "A": "must",
-      "B": "shouldn't",
-      "C": "can't",
-      "D": "might",
-      "correct": "C",
-      "explanation": "Negative deduction (impossible)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "We ______ get up early tomorrow; it's a holiday.",
-      "A": "mustn't",
-      "B": "don't have to",
-      "C": "shouldn't",
-      "D": "can't",
-      "correct": "B",
-      "explanation": "'Don't have to' indicates lack of obligation."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "If I were you, I ______ accept that offer.",
-      "A": "will",
-      "B": "would",
-      "C": "can",
-      "D": "must",
-      "correct": "B",
-      "explanation": "Type 2 Conditional advice."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "She ______ practiced a lot to play that well.",
-      "A": "must have",
-      "B": "should have",
-      "C": "can have",
-      "D": "need have",
-      "correct": "A",
-      "explanation": "Deduction about a past action based on present evidence."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "______ I ask you a personal question?",
-      "A": "May",
-      "B": "Must",
-      "C": "Should",
-      "D": "Will",
-      "correct": "A",
-      "explanation": "'May' is formal permission."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "You ______ finished the report by now; it's past the deadline.",
-      "A": "must have",
-      "B": "ought to have",
-      "C": "might have",
-      "D": "could have",
-      "correct": "B",
-      "explanation": "'Ought to have V3' implies expectation or criticism that something wasn't done."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "I ______ help you with your homework if you like.",
-      "A": "can",
-      "B": "must",
-      "C": "have to",
-      "D": "ought to",
-      "correct": "A",
-      "explanation": "'Can' used for offering help."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "He ______ have forgotten about the meeting; he's usually very punctual.",
-      "A": "shouldn't",
-      "B": "needn't",
-      "C": "mustn't",
-      "D": "couldn't",
-      "correct": "D",
-      "explanation": "'Couldn't have' expresses logical impossibility."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "We ______ to lock the door before we left.",
-      "A": "must",
-      "B": "should",
-      "C": "ought",
-      "D": "could",
-      "correct": "C",
-      "explanation": "'Ought' is the only modal here followed by 'to'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "It's impossible. He ______ have stolen the money.",
-      "A": "can't",
-      "B": "mustn't",
-      "C": "shouldn't",
-      "D": "wouldn't",
-      "correct": "A",
-      "explanation": "Strong negative deduction about the past."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "You ______ worry about the cost; the company pays for it.",
-      "A": "mustn't",
-      "B": "needn't",
-      "C": "couldn't",
-      "D": "mightn't",
-      "correct": "B",
-      "explanation": "'Needn't' means 'it is not necessary'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "I ______ start exercising more; I'm gaining weight.",
-      "A": "must",
-      "B": "can",
-      "C": "may",
-      "D": "might",
-      "correct": "A",
-      "explanation": "'Must' for internal obligation/personal decision."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "They ______ be arriving any minute now.",
-      "A": "should",
-      "B": "can",
-      "C": "ought",
-      "D": "have",
-      "correct": "A",
-      "explanation": "'Should' indicates logical probability/expectation."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "We ______ buy any milk; there's plenty in the fridge.",
-      "A": "mustn't",
-      "B": "don't need to",
-      "C": "shouldn't",
-      "D": "can't",
-      "correct": "B",
-      "explanation": "Lack of necessity."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "You ______ to have double-checked the calculations.",
-      "A": "should",
-      "B": "ought",
-      "C": "must",
-      "D": "could",
-      "correct": "B",
-      "explanation": "'Ought to have V3' is the correct form for past advice/criticism."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "Whatever happens, you ______ give up.",
-      "A": "needn't",
-      "B": "mustn't",
-      "C": "don't have to",
-      "D": "mightn't",
-      "correct": "B",
-      "explanation": "Strong prohibition/advice."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "That ______ be the postman; he usually comes at this time.",
-      "A": "will",
-      "B": "can",
-      "C": "shall",
-      "D": "must",
-      "correct": "A",
-      "explanation": "'Will' is used for prediction/certainty based on routine."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "modals_advanced"
-      ],
-      "prompt": "I ______ have brought my umbrella; it's not raining.",
-      "A": "mustn't",
-      "B": "needn't",
-      "C": "can't",
-      "D": "wouldn't",
-      "correct": "B",
-      "explanation": "'Needn't have' implies I did it, but it wasn't necessary."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "The new policy ______ by the committee next week.",
-      "A": "will announce",
-      "B": "will be announced",
-      "C": "is announced",
-      "D": "has been announced",
-      "correct": "B",
-      "explanation": "Future Passive: will + be + V3."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "My car is being repaired, so I ______ to work by a colleague.",
-      "A": "am taking",
-      "B": "am being taken",
-      "C": "have taken",
-      "D": "take",
-      "correct": "B",
-      "explanation": "Present Continuous Passive: am/is/are + being + V3."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "I need to get my eyes ______.",
-      "A": "check",
-      "B": "to check",
-      "C": "checked",
-      "D": "checking",
-      "correct": "C",
-      "explanation": "Causative: Get + object + V3 (done by someone else)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "He is said ______ a millionaire.",
-      "A": "to be",
-      "B": "being",
-      "C": "that he is",
-      "D": "to being",
-      "correct": "A",
-      "explanation": "Impersonal Passive: Subject + is said + to infinitive."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "The documents ______ sent before the meeting started.",
-      "A": "have been",
-      "B": "had been",
-      "C": "were being",
-      "D": "are",
-      "correct": "B",
-      "explanation": "Past Perfect Passive: had + been + V3."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "She had her hair ______ for the wedding.",
-      "A": "style",
-      "B": "to style",
-      "C": "styling",
-      "D": "styled",
-      "correct": "D",
-      "explanation": "Causative: Have + object + V3."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "We ______ our house painted last month.",
-      "A": "have",
-      "B": "got",
-      "C": "made",
-      "D": "did",
-      "correct": "B",
-      "explanation": "Causative using 'get' in the past tense."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "The criminal is believed ______ the country.",
-      "A": "to have left",
-      "B": "to leave",
-      "C": "leaving",
-      "D": "that he left",
-      "correct": "A",
-      "explanation": "Perfect Infinitive (to have V3) refers to a past action in passive structures."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "I dislike ______ what to do.",
-      "A": "telling",
-      "B": "to tell",
-      "C": "being told",
-      "D": "to be told",
-      "correct": "C",
-      "explanation": "Passive Gerund: 'dislike' takes gerund, passive form is 'being V3'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "The windows need ______.",
-      "A": "cleaning",
-      "B": "to clean",
-      "C": "clean",
-      "D": "to be cleaning",
-      "correct": "A",
-      "explanation": "'Need' + Gerund has a passive meaning (need to be cleaned)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "By next year, the bridge ______.",
-      "A": "will complete",
-      "B": "will be completing",
-      "C": "will have been completed",
-      "D": "has been completed",
-      "correct": "C",
-      "explanation": "Future Perfect Passive."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "Nothing ______ about the missing funds so far.",
-      "A": "has discovered",
-      "B": "has been discovered",
-      "C": "was discovered",
-      "D": "is discovering",
-      "correct": "B",
-      "explanation": "Present Perfect Passive with 'so far'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "He made us ______ the whole exercise again.",
-      "A": "write",
-      "B": "to write",
-      "C": "writing",
-      "D": "written",
-      "correct": "A",
-      "explanation": "Active Causative: Make + person + V1 (base form)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "We were made ______ the whole exercise again.",
-      "A": "write",
-      "B": "to write",
-      "C": "writing",
-      "D": "written",
-      "correct": "B",
-      "explanation": "Passive of 'make' is followed by 'to infinitive'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "The flower pots were blown over ______ the wind.",
-      "A": "with",
-      "B": "from",
-      "C": "by",
-      "D": "of",
-      "correct": "C",
-      "explanation": "Agents in passive voice are introduced by 'by'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "I'll have the secretary ______ the meeting.",
-      "A": "arrange",
-      "B": "to arrange",
-      "C": "arranged",
-      "D": "arranging",
-      "correct": "A",
-      "explanation": "Active Causative: Have + person + V1."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "We got the painter ______ the kitchen.",
-      "A": "paint",
-      "B": "to paint",
-      "C": "painted",
-      "D": "painting",
-      "correct": "B",
-      "explanation": "Active Causative: Get + person + to V1."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "The mystery ______ yet.",
-      "A": "wasn't solved",
-      "B": "hasn't been solved",
-      "C": "isn't solved",
-      "D": "didn't solve",
-      "correct": "B",
-      "explanation": "Present Perfect Passive is used with 'yet'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "This door ______ kept locked at all times.",
-      "A": "must",
-      "B": "is to be",
-      "C": "needs",
-      "D": "has",
-      "correct": "B",
-      "explanation": "'Is to be' implies a strict rule or obligation in passive."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "It ______ that the company is facing bankruptcy.",
-      "A": "is reporting",
-      "B": "has reported",
-      "C": "is reported",
-      "D": "reports",
-      "correct": "C",
-      "explanation": "Impersonal Passive: 'It is reported that...'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "The cake ______ eaten by the children.",
-      "A": "got",
-      "B": "became",
-      "C": "was",
-      "D": "did",
-      "correct": "A",
-      "explanation": "'Get' passive is often used in informal contexts for accidents or events."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "He won't let his car ______ by anyone else.",
-      "A": "drive",
-      "B": "to drive",
-      "C": "be driven",
-      "D": "driving",
-      "correct": "C",
-      "explanation": "Passive after 'let': let + object + be V3."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "I remember ______ this story before.",
-      "A": "telling",
-      "B": "being told",
-      "C": "to tell",
-      "D": "to be told",
-      "correct": "B",
-      "explanation": "Passive Gerund: remember being told (someone told me)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "The road ______ repaired right now.",
-      "A": "is",
-      "B": "has been",
-      "C": "is being",
-      "D": "was",
-      "correct": "C",
-      "explanation": "Present Continuous Passive."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "The decision ______ to the staff tomorrow.",
-      "A": "will communicate",
-      "B": "will be communicated",
-      "C": "is communicated",
-      "D": "communicates",
-      "correct": "B",
-      "explanation": "Future Passive."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "She claims ______ by the manager.",
-      "A": "to have been insulted",
-      "B": "to insult",
-      "C": "having insulted",
-      "D": "being insulted",
-      "correct": "A",
-      "explanation": "Perfect Passive Infinitive: Claim + to have been V3."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "The parcel ______ arrived by now.",
-      "A": "should have",
-      "B": "must have",
-      "C": "ought have",
-      "D": "can have",
-      "correct": "A",
-      "explanation": "Prediction/Expectation about the past (it was sent, so it should be there)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "Were you ______ invited to the party?",
-      "A": "getting",
-      "B": "-",
-      "C": "being",
-      "D": "have",
-      "correct": "B",
-      "explanation": "Simple Past Passive: Were + V3 (invited). No extra word needed."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "All the tickets ______ before we arrived.",
-      "A": "had been sold",
-      "B": "have been sold",
-      "C": "were sold",
-      "D": "are sold",
-      "correct": "A",
-      "explanation": "Past Perfect Passive."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "passive_voice_adv"
-      ],
-      "prompt": "I want this work ______ by 5 PM.",
-      "A": "finish",
-      "B": "finished",
-      "C": "finishing",
-      "D": "to finish",
-      "correct": "B",
-      "explanation": "Causative-like structure: Want + object + V3 (passive meaning)."
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "perfect_tenses"
+        ],
+        "prompt": "By the time the CEO arrived, the board members ______ the merging proposal for hours.",
+        "A": "have been discussing",
+        "B": "had been discussing",
+        "C": "discussed",
+        "D": "were discussing",
+        "correct": "B",
+        "explanation": "We use the Past Perfect Continuous to describe an action that had been going on up to a specific moment in the past."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "perfect_tenses"
+        ],
+        "prompt": "I ______ three separate emails to the support team, but I haven't received a reply yet.",
+        "A": "have sent",
+        "B": "have been sending",
+        "C": "sent",
+        "D": "had sent",
+        "correct": "A",
+        "explanation": "Present Perfect Simple emphasizes the completion and result (3 emails sent)."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "perfect_tenses"
+        ],
+        "prompt": "Next month, we ______ in this house for exactly twenty years.",
+        "A": "are living",
+        "B": "will have been living",
+        "C": "have lived",
+        "D": "will live",
+        "correct": "B",
+        "explanation": "Future Perfect Continuous emphasizes the duration of an action up to a certain time in the future."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "perfect_tenses"
+        ],
+        "prompt": "Scarcely ______ the room when the phone started ringing incessantly.",
+        "A": "he had entered",
+        "B": "has he entered",
+        "C": "had he entered",
+        "D": "he entered",
+        "correct": "C",
+        "explanation": "Inversion is required after negative adverbs like 'Scarcely' placed at the beginning."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "perfect_tenses"
+        ],
+        "prompt": "The sheer number of tourists ______ significantly since the new airport opened.",
+        "A": "has risen",
+        "B": "have risen",
+        "C": "rose",
+        "D": "had risen",
+        "correct": "A",
+        "explanation": "'Since' indicates a connection from the past to the present, requiring Present Perfect."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "perfect_tenses"
+        ],
+        "prompt": "They ______ to finalize the deal by Friday, but unforeseen issues arose.",
+        "A": "have hoped",
+        "B": "had hoped",
+        "C": "are hoping",
+        "D": "hoped",
+        "correct": "B",
+        "explanation": "'Had hoped' implies a past intention that was not fulfilled."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "perfect_tenses"
+        ],
+        "prompt": "It is the first time I ______ such a complex flavor profile in a coffee.",
+        "A": "tasted",
+        "B": "have tasted",
+        "C": "had tasted",
+        "D": "am tasting",
+        "correct": "B",
+        "explanation": "After 'It is the first time', we use the Present Perfect tense."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "perfect_tenses"
+        ],
+        "prompt": "She won't be able to join us until she ______ her assignment.",
+        "A": "will have finished",
+        "B": "has finished",
+        "C": "will finish",
+        "D": "finished",
+        "correct": "B",
+        "explanation": "In time clauses referring to the future, we use Present Perfect or Present Simple."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "perfect_tenses"
+        ],
+        "prompt": "Ever since the scandal broke, the company ______ to regain consumer trust.",
+        "A": "struggled",
+        "B": "had struggled",
+        "C": "has been struggling",
+        "D": "was struggling",
+        "correct": "C",
+        "explanation": "Present Perfect Continuous for an action starting in the past and continuing to now."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "perfect_tenses"
+        ],
+        "prompt": "I ______ to tell you the news, but you were in a meeting.",
+        "A": "have meant",
+        "B": "had meant",
+        "C": "meant",
+        "D": "was meaning",
+        "correct": "B",
+        "explanation": "Past Perfect is used for unfulfilled past intentions."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "perfect_tenses"
+        ],
+        "prompt": "By 2030, scientists hope they ______ a cure for the disease.",
+        "A": "will have discovered",
+        "B": "have discovered",
+        "C": "will be discovering",
+        "D": "discover",
+        "correct": "A",
+        "explanation": "Future Perfect is used for actions completed before a specific future time."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "perfect_tenses"
+        ],
+        "prompt": "Hardly ______ the speech when the audience erupted in applause.",
+        "A": "she had finished",
+        "B": "had she finished",
+        "C": "has she finished",
+        "D": "she finished",
+        "correct": "B",
+        "explanation": "Inversion with 'Hardly' + Past Perfect."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "perfect_tenses"
+        ],
+        "prompt": "The team ______ on this project for six months by next Tuesday.",
+        "A": "will work",
+        "B": "will have been working",
+        "C": "have worked",
+        "D": "had been working",
+        "correct": "B",
+        "explanation": "Future Perfect Continuous emphasizes duration up to a future point."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "perfect_tenses"
+        ],
+        "prompt": "I felt awful because I ______ properly for days.",
+        "A": "haven't eaten",
+        "B": "hadn't eaten",
+        "C": "didn't eat",
+        "D": "wasn't eating",
+        "correct": "B",
+        "explanation": "Past Perfect places the action before the past feeling."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "perfect_tenses"
+        ],
+        "prompt": "This is the third time he ______ to fix the leak.",
+        "A": "tries",
+        "B": "had tried",
+        "C": "has tried",
+        "D": "is trying",
+        "correct": "C",
+        "explanation": "Ordinal numbers (first, second, third time) are followed by Present Perfect."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "conditionals"
+        ],
+        "prompt": "If you ______ the map, we wouldn't be lost right now.",
+        "A": "brought",
+        "B": "had brought",
+        "C": "have brought",
+        "D": "would bring",
+        "correct": "B",
+        "explanation": "Mixed Conditional: Past condition (had brought) impacting the present result."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "conditionals"
+        ],
+        "prompt": "Should you ______ any difficulties, do not hesitate to call.",
+        "A": "experience",
+        "B": "experienced",
+        "C": "had experienced",
+        "D": "to experience",
+        "correct": "A",
+        "explanation": "Inversion of Type 1 conditional: 'Should you experience' = 'If you should experience'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "conditionals"
+        ],
+        "prompt": "Had I known about the traffic, I ______ earlier.",
+        "A": "would leave",
+        "B": "would have left",
+        "C": "will have left",
+        "D": "had left",
+        "correct": "B",
+        "explanation": "Inversion of Type 3 conditional: 'Had I known' = 'If I had known'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "conditionals"
+        ],
+        "prompt": "But for his help, we ______ the project on time.",
+        "A": "didn't finish",
+        "B": "wouldn't have finished",
+        "C": "hadn't finished",
+        "D": "won't finish",
+        "correct": "B",
+        "explanation": "'But for' implies 'If it hadn't been for', requiring a Type 3 result."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "conditionals"
+        ],
+        "prompt": "I would rather you ______ him the truth yesterday.",
+        "A": "told",
+        "B": "had told",
+        "C": "tell",
+        "D": "have told",
+        "correct": "B",
+        "explanation": "'Would rather' referring to the past takes the Past Perfect."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "conditionals"
+        ],
+        "prompt": "______ you represent the company, behave professionally.",
+        "A": "Providing",
+        "B": "Unless",
+        "C": "As long as",
+        "D": "Even if",
+        "correct": "C",
+        "explanation": "'As long as' sets a condition for the imperative."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "conditionals"
+        ],
+        "prompt": "Were it not for the rain, we ______ a picnic.",
+        "A": "will have",
+        "B": "could have",
+        "C": "had had",
+        "D": "would have",
+        "correct": "B",
+        "explanation": "'Were it not for' is a formal Type 2 inversion (present hypothetical)."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "conditionals"
+        ],
+        "prompt": "If I ______ you, I would accept the offer immediately.",
+        "A": "was",
+        "B": "were",
+        "C": "am",
+        "D": "had been",
+        "correct": "B",
+        "explanation": "Type 2 conditional uses 'were' for all subjects in formal grammar."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "conditionals"
+        ],
+        "prompt": "You can go to the party ______ you come back before midnight.",
+        "A": "unless",
+        "B": "provided that",
+        "C": "in case",
+        "D": "otherwise",
+        "correct": "B",
+        "explanation": "'Provided that' means 'on the condition that'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "conditionals"
+        ],
+        "prompt": "______ the alarm go off, please evacuate the building.",
+        "A": "If",
+        "B": "Should",
+        "C": "Had",
+        "D": "Were",
+        "correct": "B",
+        "explanation": "Inversion for Type 1 conditional uses 'Should'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "conditionals"
+        ],
+        "prompt": "If he ______ harder, he would be a manager by now.",
+        "A": "worked",
+        "B": "had worked",
+        "C": "has worked",
+        "D": "works",
+        "correct": "B",
+        "explanation": "Mixed conditional: Past action (had worked) affecting present status."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "conditionals"
+        ],
+        "prompt": "Take an umbrella ______ it rains.",
+        "A": "if",
+        "B": "in case",
+        "C": "unless",
+        "D": "provided",
+        "correct": "B",
+        "explanation": "'In case' is used for preparation for a possible future event."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "conditionals"
+        ],
+        "prompt": "We will have the meeting outside, ______ it rains.",
+        "A": "if",
+        "B": "unless",
+        "C": "provided",
+        "D": "as long as",
+        "correct": "B",
+        "explanation": "'Unless' means 'if not'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "conditionals"
+        ],
+        "prompt": "Suppose you ______ the lottery, what would you do?",
+        "A": "win",
+        "B": "won",
+        "C": "had won",
+        "D": "have won",
+        "correct": "B",
+        "explanation": "'Suppose' introduces a hypothetical situation (Type 2)."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "conditionals"
+        ],
+        "prompt": "I wouldn't have called him unless it ______ an emergency.",
+        "A": "was",
+        "B": "had been",
+        "C": "were",
+        "D": "has been",
+        "correct": "B",
+        "explanation": "Type 3 conditional requires Past Perfect after 'unless' for past events."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "relative_clauses"
+        ],
+        "prompt": "The scientist, ______ theories were initially rejected, won the Nobel Prize.",
+        "A": "who",
+        "B": "whose",
+        "C": "whom",
+        "D": "that",
+        "correct": "B",
+        "explanation": "'Whose' is used to indicate possession."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "relative_clauses"
+        ],
+        "prompt": "He finally visited the village ______ he was born.",
+        "A": "which",
+        "B": "where",
+        "C": "that",
+        "D": "when",
+        "correct": "B",
+        "explanation": "'Where' refers to a place."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "relative_clauses"
+        ],
+        "prompt": "The reason ______ he refused the offer is still unknown.",
+        "A": "why",
+        "B": "which",
+        "C": "how",
+        "D": "where",
+        "correct": "A",
+        "explanation": "'The reason why' is the standard collocation."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "relative_clauses"
+        ],
+        "prompt": "The painting, ______ value is estimated at a million dollars, was stolen.",
+        "A": "which",
+        "B": "whose",
+        "C": "that",
+        "D": "whom",
+        "correct": "B",
+        "explanation": "Possessive relative pronoun."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "relative_clauses"
+        ],
+        "prompt": "This is the student ______ I spoke to you about.",
+        "A": "who",
+        "B": "whom",
+        "C": "whose",
+        "D": "which",
+        "correct": "B",
+        "explanation": "'Whom' is the object relative pronoun (formal), though 'who' is common informally."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "relative_clauses"
+        ],
+        "prompt": "I have three brothers, all of ______ are engineers.",
+        "A": "who",
+        "B": "whom",
+        "C": "which",
+        "D": "that",
+        "correct": "B",
+        "explanation": "After prepositions like 'of', we must use 'whom' for people."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "relative_clauses"
+        ],
+        "prompt": "The company for ______ I work is opening a new branch.",
+        "A": "which",
+        "B": "whom",
+        "C": "that",
+        "D": "where",
+        "correct": "A",
+        "explanation": "'Which' is used for things (company) after a preposition."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "relative_clauses"
+        ],
+        "prompt": "He failed the exam, ______ came as a shock to everyone.",
+        "A": "that",
+        "B": "which",
+        "C": "what",
+        "D": "it",
+        "correct": "B",
+        "explanation": "'Which' refers back to the whole previous clause."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "relative_clauses"
+        ],
+        "prompt": "______ you do, don't press that button.",
+        "A": "Whatever",
+        "B": "However",
+        "C": "Whichever",
+        "D": "Whenever",
+        "correct": "A",
+        "explanation": "'Whatever' means 'anything that'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "relative_clauses"
+        ],
+        "prompt": "The car ______ by the police was found abandoned.",
+        "A": "chasing",
+        "B": "chased",
+        "C": "which chased",
+        "D": "was chased",
+        "correct": "B",
+        "explanation": "Reduced passive relative clause: 'which was chased' becomes 'chased'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "relative_clauses"
+        ],
+        "prompt": "Anyone ______ in joining the club should sign up now.",
+        "A": "interested",
+        "B": "interesting",
+        "C": "who interest",
+        "D": "interests",
+        "correct": "A",
+        "explanation": "Reduced relative clause: 'Anyone (who is) interested'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "relative_clauses"
+        ],
+        "prompt": "The man ______ over there is my professor.",
+        "A": "stand",
+        "B": "standing",
+        "C": "stood",
+        "D": "stands",
+        "correct": "B",
+        "explanation": "Reduced active relative clause: 'who is standing' becomes 'standing'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "relative_clauses"
+        ],
+        "prompt": "Stratford-upon-Avon is the town ______ Shakespeare was born.",
+        "A": "which",
+        "B": "in where",
+        "C": "in which",
+        "D": "that",
+        "correct": "C",
+        "explanation": "'In which' is the formal equivalent of 'where'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "relative_clauses"
+        ],
+        "prompt": "She showed me the report, the content of ______ was confidential.",
+        "A": "that",
+        "B": "which",
+        "C": "whom",
+        "D": "whose",
+        "correct": "B",
+        "explanation": "After 'of', we use 'which' for things."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "relative_clauses"
+        ],
+        "prompt": "______ needs to leave early may do so.",
+        "A": "Whoever",
+        "B": "Who",
+        "C": "Anyone",
+        "D": "Whomever",
+        "correct": "A",
+        "explanation": "'Whoever' acts as the subject of the clause 'needs to leave'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "articles"
+        ],
+        "prompt": "He is ______ honest man.",
+        "A": "a",
+        "B": "an",
+        "C": "the",
+        "D": "-",
+        "correct": "B",
+        "explanation": "'Honest' starts with a vowel sound, so we use 'an'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "articles"
+        ],
+        "prompt": "______ Mount Everest is the highest peak in the world.",
+        "A": "The",
+        "B": "A",
+        "C": "-",
+        "D": "An",
+        "correct": "C",
+        "explanation": "We do not use articles with individual mountain names."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "articles"
+        ],
+        "prompt": "She plays ______ piano beautifully.",
+        "A": "a",
+        "B": "an",
+        "C": "the",
+        "D": "-",
+        "correct": "C",
+        "explanation": "We use 'the' with musical instruments when talking about playing them."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "articles"
+        ],
+        "prompt": "______ rich should help ______ poor.",
+        "A": "The / the",
+        "B": "A / a",
+        "C": "- / -",
+        "D": "The / -",
+        "correct": "A",
+        "explanation": "'The' + adjective refers to a group of people (The rich = rich people)."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "articles"
+        ],
+        "prompt": "I usually go to work by ______ bus.",
+        "A": "the",
+        "B": "a",
+        "C": "-",
+        "D": "an",
+        "correct": "C",
+        "explanation": "No article is used with modes of transport after 'by'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "articles"
+        ],
+        "prompt": "He was sent to ______ prison for robbery.",
+        "A": "the",
+        "B": "a",
+        "C": "-",
+        "D": "an",
+        "correct": "C",
+        "explanation": "No article when referring to the institution's primary purpose (as a prisoner)."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "articles"
+        ],
+        "prompt": "Have you ever visited ______ Netherlands?",
+        "A": "the",
+        "B": "a",
+        "C": "-",
+        "D": "an",
+        "correct": "A",
+        "explanation": "Country names that are plural or indicate a group/union take 'the'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "articles"
+        ],
+        "prompt": "______ life is full of surprises.",
+        "A": "The",
+        "B": "A",
+        "C": "-",
+        "D": "An",
+        "correct": "C",
+        "explanation": "Abstract nouns like 'life' used generally do not take an article."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "articles"
+        ],
+        "prompt": "We stayed at ______ Hilton Hotel.",
+        "A": "the",
+        "B": "a",
+        "C": "-",
+        "D": "an",
+        "correct": "A",
+        "explanation": "Names of hotels usually take 'the'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "articles"
+        ],
+        "prompt": "She has ______ terrible headache.",
+        "A": "the",
+        "B": "a",
+        "C": "-",
+        "D": "an",
+        "correct": "B",
+        "explanation": "In expressions like 'have a headache', 'a' is standard."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "articles"
+        ],
+        "prompt": "______ Pacific Ocean is the largest in the world.",
+        "A": "The",
+        "B": "A",
+        "C": "-",
+        "D": "An",
+        "correct": "A",
+        "explanation": "Names of oceans take 'the'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "articles"
+        ],
+        "prompt": "Most ______ people enjoy music.",
+        "A": "of",
+        "B": "the",
+        "C": "-",
+        "D": "of the",
+        "correct": "C",
+        "explanation": "'Most people' (general) takes no article. 'Most of the people' refers to a specific group."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "articles"
+        ],
+        "prompt": "He is ______ CEO of the company.",
+        "A": "a",
+        "B": "an",
+        "C": "the",
+        "D": "-",
+        "correct": "C",
+        "explanation": "When a title is unique (only one CEO), we use 'the'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "articles"
+        ],
+        "prompt": "We walked along ______ River Thames.",
+        "A": "the",
+        "B": "a",
+        "C": "-",
+        "D": "an",
+        "correct": "A",
+        "explanation": "Names of rivers take 'the'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "articles"
+        ],
+        "prompt": "______ Lake Superior is in North America.",
+        "A": "The",
+        "B": "A",
+        "C": "-",
+        "D": "An",
+        "correct": "C",
+        "explanation": "Lake names usually do not take 'the'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "mixed_tenses"
+        ],
+        "prompt": "By the time you get here, I ______ my work.",
+        "A": "finish",
+        "B": "will finish",
+        "C": "will have finished",
+        "D": "have finished",
+        "correct": "C",
+        "explanation": "Future Perfect for actions completed before a future deadline."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "mixed_tenses"
+        ],
+        "prompt": "While I ______ down the street, I saw an old friend.",
+        "A": "walked",
+        "B": "was walking",
+        "C": "am walking",
+        "D": "had walked",
+        "correct": "B",
+        "explanation": "Past Continuous for an action in progress interrupted by a short action."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "mixed_tenses"
+        ],
+        "prompt": "I ______ him since we met at university.",
+        "A": "know",
+        "B": "knew",
+        "C": "have known",
+        "D": "had known",
+        "correct": "C",
+        "explanation": "Present Perfect for states starting in the past and continuing to now."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "mixed_tenses"
+        ],
+        "prompt": "The train ______ at 9:00 AM tomorrow.",
+        "A": "leaves",
+        "B": "will leave",
+        "C": "is leaving",
+        "D": "left",
+        "correct": "A",
+        "explanation": "Present Simple is used for timetables and schedules."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "mixed_tenses"
+        ],
+        "prompt": "He admitted that he ______ the money.",
+        "A": "stole",
+        "B": "has stolen",
+        "C": "had stolen",
+        "D": "steals",
+        "correct": "C",
+        "explanation": "Past Perfect to show the theft happened before the admission."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "mixed_tenses"
+        ],
+        "prompt": "Look at those clouds! It ______ rain.",
+        "A": "will",
+        "B": "is going to",
+        "C": "might",
+        "D": "shall",
+        "correct": "B",
+        "explanation": "'Is going to' is used for predictions based on present evidence."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "mixed_tenses"
+        ],
+        "prompt": "I ______ supper when the phone rang.",
+        "A": "cooked",
+        "B": "was cooking",
+        "C": "have cooked",
+        "D": "had cooked",
+        "correct": "B",
+        "explanation": "Past Continuous interrupted by a past simple event."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "mixed_tenses"
+        ],
+        "prompt": "They ______ married for twenty years next month.",
+        "A": "are",
+        "B": "will have been",
+        "C": "have been",
+        "D": "will be",
+        "correct": "B",
+        "explanation": "Future Perfect is used for duration up to a future point."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "mixed_tenses"
+        ],
+        "prompt": "Unless he ______, we will leave without him.",
+        "A": "arrives",
+        "B": "will arrive",
+        "C": "arrived",
+        "D": "is arriving",
+        "correct": "A",
+        "explanation": "Present Simple is used in conditional clauses referring to the future."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "mixed_tenses"
+        ],
+        "prompt": "When I arrived at the station, the train ______.",
+        "A": "left",
+        "B": "has left",
+        "C": "had left",
+        "D": "leaves",
+        "correct": "C",
+        "explanation": "Past Perfect indicates the train left before the arrival."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "mixed_tenses"
+        ],
+        "prompt": "This time next week, I ______ on a beach in Bali.",
+        "A": "will lie",
+        "B": "will be lying",
+        "C": "am lying",
+        "D": "lie",
+        "correct": "B",
+        "explanation": "Future Continuous for an action in progress at a specific future time."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "mixed_tenses"
+        ],
+        "prompt": "I ______ of changing my job recently.",
+        "A": "think",
+        "B": "am thinking",
+        "C": "have been thinking",
+        "D": "thought",
+        "correct": "C",
+        "explanation": "Present Perfect Continuous for recent ongoing thoughts."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "mixed_tenses"
+        ],
+        "prompt": "The phone ______ for five minutes. Why doesn't someone answer it?",
+        "A": "rings",
+        "B": "is ringing",
+        "C": "has been ringing",
+        "D": "rang",
+        "correct": "C",
+        "explanation": "Present Perfect Continuous for an action that started in the past and is still continuing."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "mixed_tenses"
+        ],
+        "prompt": "After he ______ his homework, he went to bed.",
+        "A": "finishes",
+        "B": "finished",
+        "C": "had finished",
+        "D": "has finished",
+        "correct": "C",
+        "explanation": "Past Perfect emphasizes completion before another past action."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "mixed_tenses"
+        ],
+        "prompt": "I ______ to the cinema three times this week.",
+        "A": "go",
+        "B": "have gone",
+        "C": "went",
+        "D": "am going",
+        "correct": "B",
+        "explanation": "Present Perfect for repeated actions in an unfinished time period."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "passive_voice_adv"
+        ],
+        "prompt": "The decision ______ by the committee tomorrow.",
+        "A": "is made",
+        "B": "will be made",
+        "C": "has been made",
+        "D": "was made",
+        "correct": "B",
+        "explanation": "Future Passive."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "passive_voice_adv"
+        ],
+        "prompt": "It is ______ that the company is in financial trouble.",
+        "A": "saying",
+        "B": "said",
+        "C": "says",
+        "D": "say",
+        "correct": "B",
+        "explanation": "Impersonal passive structure 'It is said that...'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "passive_voice_adv"
+        ],
+        "prompt": "The criminal is believed ______ the country.",
+        "A": "to leave",
+        "B": "to have left",
+        "C": "leaving",
+        "D": "that he left",
+        "correct": "B",
+        "explanation": "Personal passive construction referring to a past action ('to have V3')."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "passive_voice_adv"
+        ],
+        "prompt": "I don't like ______ what to do.",
+        "A": "telling",
+        "B": "being told",
+        "C": "to tell",
+        "D": "having told",
+        "correct": "B",
+        "explanation": "Passive Gerund ('being V3')."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "passive_voice_adv"
+        ],
+        "prompt": "The car needs ______.",
+        "A": "washing",
+        "B": "to wash",
+        "C": "be washed",
+        "D": "wash",
+        "correct": "A",
+        "explanation": "Need + Gerund has a passive meaning (needs to be washed)."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "passive_voice_adv"
+        ],
+        "prompt": "She got her hair ______ yesterday.",
+        "A": "cut",
+        "B": "to cut",
+        "C": "cutting",
+        "D": "cuts",
+        "correct": "A",
+        "explanation": "Causative structure: get/have something done (V3)."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "passive_voice_adv"
+        ],
+        "prompt": "By next year, the bridge ______.",
+        "A": "will build",
+        "B": "will have been built",
+        "C": "is built",
+        "D": "will be building",
+        "correct": "B",
+        "explanation": "Future Perfect Passive."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "passive_voice_adv"
+        ],
+        "prompt": "Nothing ______ since I left.",
+        "A": "was done",
+        "B": "has been done",
+        "C": "is done",
+        "D": "did",
+        "correct": "B",
+        "explanation": "Present Perfect Passive with 'since'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "passive_voice_adv"
+        ],
+        "prompt": "He was made ______ the truth.",
+        "A": "confess",
+        "B": "to confess",
+        "C": "confessing",
+        "D": "confessed",
+        "correct": "B",
+        "explanation": "In the passive, 'make' is followed by 'to infinitive'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "passive_voice_adv"
+        ],
+        "prompt": "The room looks clean. It must ______.",
+        "A": "have cleaned",
+        "B": "have been cleaned",
+        "C": "be cleaned",
+        "D": "clean",
+        "correct": "B",
+        "explanation": "Perfect Modal Passive deduction about the past."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "passive_voice_adv"
+        ],
+        "prompt": "We had the house ______ last summer.",
+        "A": "paint",
+        "B": "painted",
+        "C": "painting",
+        "D": "to paint",
+        "correct": "B",
+        "explanation": "Causative structure: have something done."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "passive_voice_adv"
+        ],
+        "prompt": "This mystery remains ______.",
+        "A": "to solve",
+        "B": "to be solved",
+        "C": "solving",
+        "D": "solved",
+        "correct": "B",
+        "explanation": "Passive infinitive after 'remains'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "passive_voice_adv"
+        ],
+        "prompt": "The documents are supposed ______ signed by the director.",
+        "A": "to be",
+        "B": "being",
+        "C": "been",
+        "D": "be",
+        "correct": "A",
+        "explanation": "Passive Infinitive structure."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "passive_voice_adv"
+        ],
+        "prompt": "Being ______ for the job was a great disappointment.",
+        "A": "reject",
+        "B": "rejected",
+        "C": "rejecting",
+        "D": "rejects",
+        "correct": "B",
+        "explanation": "Passive Gerund."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "passive_voice_adv"
+        ],
+        "prompt": "The new policy ______ implemented next month.",
+        "A": "is being",
+        "B": "will be",
+        "C": "has been",
+        "D": "was",
+        "correct": "B",
+        "explanation": "Future Simple Passive."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "reported_speech"
+        ],
+        "prompt": "He asked me ______ I was going.",
+        "A": "that",
+        "B": "where",
+        "C": "if",
+        "D": "which",
+        "correct": "B",
+        "explanation": "Reported questions retain the question word."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "reported_speech"
+        ],
+        "prompt": "She said she ______ busy that day.",
+        "A": "is",
+        "B": "was",
+        "C": "has been",
+        "D": "will be",
+        "correct": "B",
+        "explanation": "Backshift of tenses: present simple becomes past simple."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "reported_speech"
+        ],
+        "prompt": "He told me that he ______ the film before.",
+        "A": "saw",
+        "B": "has seen",
+        "C": "had seen",
+        "D": "sees",
+        "correct": "C",
+        "explanation": "Backshift: past simple/present perfect becomes past perfect."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "reported_speech"
+        ],
+        "prompt": "The teacher told the students ______ quiet.",
+        "A": "be",
+        "B": "to be",
+        "C": "being",
+        "D": "were",
+        "correct": "B",
+        "explanation": "Reported commands use the infinitive structure."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "reported_speech"
+        ],
+        "prompt": "She asked if I ______ help her.",
+        "A": "can",
+        "B": "could",
+        "C": "may",
+        "D": "will",
+        "correct": "B",
+        "explanation": "Modal backshift: 'can' becomes 'could'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "reported_speech"
+        ],
+        "prompt": "He suggested ______ to the cinema.",
+        "A": "to go",
+        "B": "going",
+        "C": "go",
+        "D": "that we go",
+        "correct": "B",
+        "explanation": "'Suggest' is followed by a gerund or 'that' clause, never an infinitive."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "reported_speech"
+        ],
+        "prompt": "They announced that the flight ______ delayed.",
+        "A": "has been",
+        "B": "had been",
+        "C": "is",
+        "D": "was being",
+        "correct": "B",
+        "explanation": "Backshift: Present Perfect becomes Past Perfect."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "reported_speech"
+        ],
+        "prompt": "He denied ______ the money.",
+        "A": "to steal",
+        "B": "stealing",
+        "C": "steal",
+        "D": "stolen",
+        "correct": "B",
+        "explanation": "'Deny' is followed by a gerund."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "reported_speech"
+        ],
+        "prompt": "She warned us ______ near the edge.",
+        "A": "not going",
+        "B": "not to go",
+        "C": "don't go",
+        "D": "didn't go",
+        "correct": "B",
+        "explanation": "Reported negative commands use 'not to infinitive'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "reported_speech"
+        ],
+        "prompt": "I wondered ______ he would arrive on time.",
+        "A": "that",
+        "B": "whether",
+        "C": "did",
+        "D": "what",
+        "correct": "B",
+        "explanation": "'Whether' is used for Yes/No reported questions."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "reported_speech"
+        ],
+        "prompt": "He admitted ______ a mistake.",
+        "A": "make",
+        "B": "making",
+        "C": "to make",
+        "D": "made",
+        "correct": "B",
+        "explanation": "'Admit' takes a gerund (admitted making)."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "reported_speech"
+        ],
+        "prompt": "She claimed ______ the answer.",
+        "A": "knowing",
+        "B": "to know",
+        "C": "know",
+        "D": "known",
+        "correct": "B",
+        "explanation": "'Claim' is followed by a full infinitive."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "reported_speech"
+        ],
+        "prompt": "He insisted on ______ for the meal.",
+        "A": "pay",
+        "B": "paying",
+        "C": "to pay",
+        "D": "paid",
+        "correct": "B",
+        "explanation": "Preposition 'on' is followed by a gerund."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "reported_speech"
+        ],
+        "prompt": "She promised that she ______ write soon.",
+        "A": "will",
+        "B": "would",
+        "C": "can",
+        "D": "may",
+        "correct": "B",
+        "explanation": "Backshift: 'will' becomes 'would'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "reported_speech"
+        ],
+        "prompt": "They asked me where I ______.",
+        "A": "live",
+        "B": "lived",
+        "C": "do live",
+        "D": "did live",
+        "correct": "B",
+        "explanation": "Reported speech backshift and word order (subject + verb)."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "gerunds_infinitives"
+        ],
+        "prompt": "I remember ______ the door, but now it's open.",
+        "A": "to lock",
+        "B": "locking",
+        "C": "lock",
+        "D": "locked",
+        "correct": "B",
+        "explanation": "'Remember' + gerund means recalling a past action."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "gerunds_infinitives"
+        ],
+        "prompt": "She stopped ______ a coffee on her way to work.",
+        "A": "buying",
+        "B": "to buy",
+        "C": "buy",
+        "D": "bought",
+        "correct": "B",
+        "explanation": "'Stop' + infinitive of purpose means stopping one action to do another."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "gerunds_infinitives"
+        ],
+        "prompt": "I regret ______ you that your application was rejected.",
+        "A": "telling",
+        "B": "to tell",
+        "C": "tell",
+        "D": "told",
+        "correct": "B",
+        "explanation": "'Regret' + infinitive is used for bad news (formal)."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "gerunds_infinitives"
+        ],
+        "prompt": "He isn't used to ______ up so early.",
+        "A": "get",
+        "B": "getting",
+        "C": "got",
+        "D": "to get",
+        "correct": "B",
+        "explanation": "'Be used to' is followed by a gerund."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "gerunds_infinitives"
+        ],
+        "prompt": "They suggested ______ a break.",
+        "A": "take",
+        "B": "taking",
+        "C": "to take",
+        "D": "took",
+        "correct": "B",
+        "explanation": "'Suggest' is always followed by a gerund."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "gerunds_infinitives"
+        ],
+        "prompt": "I'd rather ______ at home tonight.",
+        "A": "stay",
+        "B": "staying",
+        "C": "to stay",
+        "D": "stayed",
+        "correct": "A",
+        "explanation": "'Would rather' is followed by the bare infinitive."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "gerunds_infinitives"
+        ],
+        "prompt": "It's no use ______ to persuade him.",
+        "A": "try",
+        "B": "trying",
+        "C": "to try",
+        "D": "tried",
+        "correct": "B",
+        "explanation": "'It's no use' takes a gerund."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "gerunds_infinitives"
+        ],
+        "prompt": "She forgot ______ the letter, so it's still on the table.",
+        "A": "posting",
+        "B": "to post",
+        "C": "post",
+        "D": "posted",
+        "correct": "B",
+        "explanation": "'Forget' + infinitive means failing to perform a duty."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "gerunds_infinitives"
+        ],
+        "prompt": "I look forward to ______ from you.",
+        "A": "hear",
+        "B": "hearing",
+        "C": "heard",
+        "D": "be heard",
+        "correct": "B",
+        "explanation": "'Look forward to' is a phrasal verb where 'to' is a preposition, taking a gerund."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "gerunds_infinitives"
+        ],
+        "prompt": "He made me ______ the contract.",
+        "A": "sign",
+        "B": "signing",
+        "C": "to sign",
+        "D": "signed",
+        "correct": "A",
+        "explanation": "'Make' (active) is followed by bare infinitive."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "gerunds_infinitives"
+        ],
+        "prompt": "Do you mind ______ the window?",
+        "A": "open",
+        "B": "opening",
+        "C": "to open",
+        "D": "opened",
+        "correct": "B",
+        "explanation": "'Mind' is followed by a gerund."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "gerunds_infinitives"
+        ],
+        "prompt": "We can't afford ______ on holiday this year.",
+        "A": "go",
+        "B": "to go",
+        "C": "going",
+        "D": "gone",
+        "correct": "B",
+        "explanation": "'Afford' takes a full infinitive."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "gerunds_infinitives"
+        ],
+        "prompt": "Try ______ this medicine; it might help.",
+        "A": "take",
+        "B": "taking",
+        "C": "to take",
+        "D": "taken",
+        "correct": "B",
+        "explanation": "'Try' + gerund means experimenting to see the result."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "gerunds_infinitives"
+        ],
+        "prompt": "He was heard ______ the room.",
+        "A": "leave",
+        "B": "leaving",
+        "C": "to leave",
+        "D": "left",
+        "correct": "B",
+        "explanation": "Verbs of perception in passive can take gerund for part of action."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "gerunds_infinitives"
+        ],
+        "prompt": "I prefer reading ______ TV.",
+        "A": "to watch",
+        "B": "to watching",
+        "C": "than watch",
+        "D": "watching",
+        "correct": "B",
+        "explanation": "'Prefer' X 'to' Y (gerunds)."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "clauses_advanced"
+        ],
+        "prompt": "What I need ______ a long holiday.",
+        "A": "is",
+        "B": "are",
+        "C": "be",
+        "D": "to be",
+        "correct": "A",
+        "explanation": "Pseudo-cleft sentence with singular complement uses 'is'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "clauses_advanced"
+        ],
+        "prompt": "It was John ______ broke the window.",
+        "A": "which",
+        "B": "who",
+        "C": "what",
+        "D": "whom",
+        "correct": "B",
+        "explanation": "Cleft sentence emphasizing a person uses 'who' or 'that'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "clauses_advanced"
+        ],
+        "prompt": "______ he is rich, he is not happy.",
+        "A": "Despite",
+        "B": "Although",
+        "C": "However",
+        "D": "In spite",
+        "correct": "B",
+        "explanation": "'Although' is followed by a full clause (subject + verb)."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "clauses_advanced"
+        ],
+        "prompt": "I'll take an umbrella in case it ______.",
+        "A": "rains",
+        "B": "will rain",
+        "C": "rained",
+        "D": "raining",
+        "correct": "A",
+        "explanation": "'In case' is followed by present tense for future meaning."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "clauses_advanced"
+        ],
+        "prompt": "No sooner had I arrived ______ the phone rang.",
+        "A": "when",
+        "B": "than",
+        "C": "that",
+        "D": "then",
+        "correct": "B",
+        "explanation": "'No sooner' is always followed by 'than'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "clauses_advanced"
+        ],
+        "prompt": "______ tired, he went to bed early.",
+        "A": "Being",
+        "B": "Been",
+        "C": "To be",
+        "D": "He was",
+        "correct": "A",
+        "explanation": "Participle clause expressing reason (Because he was tired)."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "clauses_advanced"
+        ],
+        "prompt": "Expensive ______ it is, I will buy it.",
+        "A": "although",
+        "B": "though",
+        "C": "however",
+        "D": "despite",
+        "correct": "B",
+        "explanation": "Adjective + 'though' + subject + verb is an emphatic concession form."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "clauses_advanced"
+        ],
+        "prompt": "______ hard he tries, he can't succeed.",
+        "A": "Whatever",
+        "B": "However",
+        "C": "Although",
+        "D": "Even",
+        "correct": "B",
+        "explanation": "'However' + adjective/adverb means 'no matter how'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "clauses_advanced"
+        ],
+        "prompt": "Do you know ______?",
+        "A": "where is the station",
+        "B": "where the station is",
+        "C": "where station is",
+        "D": "is where the station",
+        "correct": "B",
+        "explanation": "Noun clauses use statement word order, not question word order."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "clauses_advanced"
+        ],
+        "prompt": "Everything depends on ______ we finish on time.",
+        "A": "that",
+        "B": "whether",
+        "C": "if",
+        "D": "which",
+        "correct": "B",
+        "explanation": "After prepositions, we use 'whether', not 'if'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "clauses_advanced"
+        ],
+        "prompt": "Not only ______ the car, but he also fixed the bike.",
+        "A": "he washed",
+        "B": "did he wash",
+        "C": "he did wash",
+        "D": "washed he",
+        "correct": "B",
+        "explanation": "Inversion is required after 'Not only' at the start of a sentence."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "clauses_advanced"
+        ],
+        "prompt": "______ for the traffic, we would have been on time.",
+        "A": "If it wasn't",
+        "B": "Had it not been",
+        "C": "Were it not",
+        "D": "But",
+        "correct": "B",
+        "explanation": "Inversion of 'If it had not been for' (Type 3)."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "clauses_advanced"
+        ],
+        "prompt": "I don't know the reason ______ he left.",
+        "A": "why",
+        "B": "which",
+        "C": "because",
+        "D": "that",
+        "correct": "A",
+        "explanation": "'The reason why' introduces a relative/noun clause."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "clauses_advanced"
+        ],
+        "prompt": "She speaks ______ quietly that I can't hear her.",
+        "A": "so",
+        "B": "such",
+        "C": "very",
+        "D": "too",
+        "correct": "A",
+        "explanation": "'So' + adjective/adverb + 'that'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "clauses_advanced"
+        ],
+        "prompt": "It is vital that he ______ informed immediately.",
+        "A": "is",
+        "B": "be",
+        "C": "will be",
+        "D": "was",
+        "correct": "B",
+        "explanation": "Subjunctive mood used after 'vital' (that he be)."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "modals_advanced"
+        ],
+        "prompt": "He ______ have arrived by now; the train was on time.",
+        "A": "should",
+        "B": "can",
+        "C": "mustn't",
+        "D": "needn't",
+        "correct": "A",
+        "explanation": "'Should have V3' indicates expectation."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "modals_advanced"
+        ],
+        "prompt": "You ______ smoke here; it's prohibited.",
+        "A": "mustn't",
+        "B": "needn't",
+        "C": "don't have to",
+        "D": "won't",
+        "correct": "A",
+        "explanation": "'Mustn't' expresses prohibition."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "modals_advanced"
+        ],
+        "prompt": "The lights are out. They ______ be sleeping.",
+        "A": "can",
+        "B": "must",
+        "C": "should",
+        "D": "need",
+        "correct": "B",
+        "explanation": "'Must' is used for strong logical deduction."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "modals_advanced"
+        ],
+        "prompt": "She ______ played the piano so well at that age.",
+        "A": "could have",
+        "B": "could",
+        "C": "can",
+        "D": "may",
+        "correct": "B",
+        "explanation": "'Could' expresses general ability in the past."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "modals_advanced"
+        ],
+        "prompt": "I ______ rather stay home than go out.",
+        "A": "would",
+        "B": "should",
+        "C": "had",
+        "D": "could",
+        "correct": "A",
+        "explanation": "'Would rather' indicates preference."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "modals_advanced"
+        ],
+        "prompt": "You ______ have watered the plants; it rained afterwards.",
+        "A": "needn't",
+        "B": "didn't need to",
+        "C": "mustn't",
+        "D": "can't",
+        "correct": "A",
+        "explanation": "'Needn't have V3' means an action was done but was unnecessary."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "modals_advanced"
+        ],
+        "prompt": "He ______ be the thief! He was with me all night.",
+        "A": "mustn't",
+        "B": "can't",
+        "C": "shouldn't",
+        "D": "might not",
+        "correct": "B",
+        "explanation": "'Can't' is used for negative logical deduction (impossibility)."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "modals_advanced"
+        ],
+        "prompt": "We ______ better leave now before it gets dark.",
+        "A": "should",
+        "B": "had",
+        "C": "would",
+        "D": "could",
+        "correct": "B",
+        "explanation": "'Had better' is a strong piece of advice."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "modals_advanced"
+        ],
+        "prompt": "It ______ be rain later, take an umbrella.",
+        "A": "can",
+        "B": "might",
+        "C": "must",
+        "D": "should",
+        "correct": "B",
+        "explanation": "'Might' expresses possibility."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "modals_advanced"
+        ],
+        "prompt": "She ______ have studied harder for the exam; she failed.",
+        "A": "must",
+        "B": "should",
+        "C": "may",
+        "D": "can",
+        "correct": "B",
+        "explanation": "'Should have V3' expresses criticism or regret about a past event."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "modals_advanced"
+        ],
+        "prompt": "You ______ to tell the truth.",
+        "A": "ought",
+        "B": "should",
+        "C": "must",
+        "D": "had better",
+        "correct": "A",
+        "explanation": "'Ought' is the only modal in the list followed by 'to'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "modals_advanced"
+        ],
+        "prompt": "I ______ run 10km when I was younger.",
+        "A": "could",
+        "B": "can",
+        "C": "may",
+        "D": "might",
+        "correct": "A",
+        "explanation": "Past general ability."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "modals_advanced"
+        ],
+        "prompt": "That ______ have been true, but I doubt it.",
+        "A": "may",
+        "B": "should",
+        "C": "must",
+        "D": "will",
+        "correct": "A",
+        "explanation": "'May have V3' expresses past possibility."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "modals_advanced"
+        ],
+        "prompt": "I ______ help you with your homework if you like.",
+        "A": "will",
+        "B": "must",
+        "C": "have to",
+        "D": "need",
+        "correct": "A",
+        "explanation": "'Will' is used for offers."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "modals_advanced"
+        ],
+        "prompt": "You ______ touch that wire! It's live.",
+        "A": "mustn't",
+        "B": "don't have to",
+        "C": "needn't",
+        "D": "won't",
+        "correct": "A",
+        "explanation": "Strong prohibition."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "prepositions_advanced"
+        ],
+        "prompt": "He is capable ______ doing it alone.",
+        "A": "of",
+        "B": "to",
+        "C": "in",
+        "D": "at",
+        "correct": "A",
+        "explanation": "'Capable of' is the correct collocation."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "prepositions_advanced"
+        ],
+        "prompt": "She was accused ______ stealing the money.",
+        "A": "with",
+        "B": "of",
+        "C": "for",
+        "D": "about",
+        "correct": "B",
+        "explanation": "'Accuse' is followed by 'of'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "prepositions_advanced"
+        ],
+        "prompt": "I am not accustomed ______ hot weather.",
+        "A": "with",
+        "B": "to",
+        "C": "for",
+        "D": "in",
+        "correct": "B",
+        "explanation": "'Accustomed to' something."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "prepositions_advanced"
+        ],
+        "prompt": "This book is dedicated ______ my parents.",
+        "A": "for",
+        "B": "to",
+        "C": "with",
+        "D": "at",
+        "correct": "B",
+        "explanation": "'Dedicate to'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "prepositions_advanced"
+        ],
+        "prompt": "He insisted ______ paying the bill.",
+        "A": "in",
+        "B": "on",
+        "C": "to",
+        "D": "for",
+        "correct": "B",
+        "explanation": "'Insist on' doing something."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "prepositions_advanced"
+        ],
+        "prompt": "I apologize ______ being late.",
+        "A": "for",
+        "B": "about",
+        "C": "to",
+        "D": "on",
+        "correct": "A",
+        "explanation": "'Apologize for' an action."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "prepositions_advanced"
+        ],
+        "prompt": "We were prevented ______ entering the building.",
+        "A": "to",
+        "B": "from",
+        "C": "of",
+        "D": "by",
+        "correct": "B",
+        "explanation": "'Prevent from'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "prepositions_advanced"
+        ],
+        "prompt": "She is good ______ playing the piano.",
+        "A": "in",
+        "B": "at",
+        "C": "on",
+        "D": "with",
+        "correct": "B",
+        "explanation": "'Good at' an activity."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "prepositions_advanced"
+        ],
+        "prompt": "They congratulated him ______ his success.",
+        "A": "for",
+        "B": "on",
+        "C": "with",
+        "D": "to",
+        "correct": "B",
+        "explanation": "'Congratulate on'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "prepositions_advanced"
+        ],
+        "prompt": "He is suspicious ______ strangers.",
+        "A": "of",
+        "B": "about",
+        "C": "with",
+        "D": "to",
+        "correct": "A",
+        "explanation": "'Suspicious of'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "prepositions_advanced"
+        ],
+        "prompt": "This summary is based ______ the original text.",
+        "A": "in",
+        "B": "on",
+        "C": "from",
+        "D": "to",
+        "correct": "B",
+        "explanation": "'Based on'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "prepositions_advanced"
+        ],
+        "prompt": "I am fed up ______ this weather.",
+        "A": "of",
+        "B": "with",
+        "C": "from",
+        "D": "by",
+        "correct": "B",
+        "explanation": "'Fed up with'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "prepositions_advanced"
+        ],
+        "prompt": "Who is responsible ______ this mess?",
+        "A": "of",
+        "B": "for",
+        "C": "with",
+        "D": "to",
+        "correct": "B",
+        "explanation": "'Responsible for'."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "prepositions_advanced"
+        ],
+        "prompt": "He reminds me ______ my brother.",
+        "A": "about",
+        "B": "of",
+        "C": "to",
+        "D": "with",
+        "correct": "B",
+        "explanation": "'Remind of' implies resemblance or bringing to mind."
+    },
+    {
+        "type": "MCQ",
+        "level": "C1",
+        "tags": [
+            "prepositions_advanced"
+        ],
+        "prompt": "We are looking forward ______ seeing you.",
+        "A": "for",
+        "B": "to",
+        "C": "at",
+        "D": "about",
+        "correct": "B",
+        "explanation": "'Look forward to' (to is a preposition here)."
     }
-  ],
-  [
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "Not until the sun set ______ back to the hotel.",
-      "A": "did we go",
-      "B": "we went",
-      "C": "we did go",
-      "D": "went we",
-      "correct": "A",
-      "explanation": "'Not until' phrases placed at the beginning require inversion in the main clause."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "Hardly ______ the phone down when it rang again.",
-      "A": "did I put",
-      "B": "I had put",
-      "C": "had I put",
-      "D": "I put",
-      "correct": "C",
-      "explanation": "'Hardly' is followed by Past Perfect inversion and 'when'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "______ my father who taught me how to drive.",
-      "A": "It was",
-      "B": "There was",
-      "C": "It is",
-      "D": "What was",
-      "correct": "A",
-      "explanation": "Cleft sentence for emphasis: 'It was [person] who...'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "Under no circumstances ______ this button be pressed.",
-      "A": "should",
-      "B": "you should",
-      "C": "mustn't",
-      "D": "it should",
-      "correct": "A",
-      "explanation": "Negative expression at the start requires inversion."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "______ do I watch television during the week.",
-      "A": "Rarely",
-      "B": "Always",
-      "C": "Sometimes",
-      "D": "Usually",
-      "correct": "A",
-      "explanation": "Only negative or restrictive adverbs (Rarely, Seldom, Never) trigger inversion here."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "Only by working extra hours ______ to finish on time.",
-      "A": "we managed",
-      "B": "did we manage",
-      "C": "we did manage",
-      "D": "managed we",
-      "correct": "B",
-      "explanation": "'Only by' phrase triggers inversion in the main clause."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "Were ______ to resign, the company would collapse.",
-      "A": "he",
-      "B": "if he",
-      "C": "he was",
-      "D": "that he",
-      "correct": "A",
-      "explanation": "Inverted Conditional Type 2: 'Were he to resign' = 'If he were to resign'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "So exhausted ______ that she fell asleep immediately.",
-      "A": "she was",
-      "B": "was she",
-      "C": "did she",
-      "D": "she did",
-      "correct": "B",
-      "explanation": "'So + adjective' at the beginning triggers inversion."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "Little ______ that the police were already watching him.",
-      "A": "he knew",
-      "B": "did he know",
-      "C": "he did know",
-      "D": "knew he",
-      "correct": "B",
-      "explanation": "'Little' as a negative adverb triggers inversion."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "What I really need ______ a long vacation.",
-      "A": "is",
-      "B": "are",
-      "C": "were",
-      "D": "be",
-      "correct": "A",
-      "explanation": "Pseudo-cleft sentence: 'What I need is...' (singular verb for the clause)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "Had we arrived sooner, we ______ the train.",
-      "A": "caught",
-      "B": "would catch",
-      "C": "would have caught",
-      "D": "had caught",
-      "correct": "C",
-      "explanation": "Inverted Conditional Type 3 result clause."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "______ happens, I will support you.",
-      "A": "Whatever",
-      "B": "What",
-      "C": "Which",
-      "D": "That",
-      "correct": "A",
-      "explanation": "Emphasis on 'anything that happens'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "Scarcely had the game started ______ it began to rain.",
-      "A": "than",
-      "B": "then",
-      "C": "when",
-      "D": "that",
-      "correct": "C",
-      "explanation": "'Scarcely' is paired with 'when' (unlike 'no sooner... than')."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "Down the street ______ the parade.",
-      "A": "came",
-      "B": "did come",
-      "C": "coming",
-      "D": "it came",
-      "correct": "A",
-      "explanation": "Locative inversion (adverb of place + verb + subject)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "No sooner had I closed my eyes ______ the alarm went off.",
-      "A": "when",
-      "B": "than",
-      "C": "that",
-      "D": "then",
-      "correct": "B",
-      "explanation": "'No sooner' is always paired with 'than'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "Only when the dust settled ______ the extent of the damage.",
-      "A": "did we realize",
-      "B": "we realized",
-      "C": "we did realize",
-      "D": "realized we",
-      "correct": "A",
-      "explanation": "'Only when' triggers inversion in the main clause."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "Should you ______ to contact me, here is my card.",
-      "A": "wish",
-      "B": "wished",
-      "C": "wishing",
-      "D": "will wish",
-      "correct": "A",
-      "explanation": "Inverted Conditional Type 1: 'Should you wish' = 'If you wish'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "Not only ______ the championship, but he also broke the world record.",
-      "A": "he won",
-      "B": "did he win",
-      "C": "he did win",
-      "D": "won he",
-      "correct": "B",
-      "explanation": "'Not only' requires inversion."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "All ______ is a little respect.",
-      "A": "I ask",
-      "B": "do I ask",
-      "C": "what I ask",
-      "D": "I ask for",
-      "correct": "D",
-      "explanation": "Cleft structure: 'All (that) I ask for is...'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "On no account ______ be revealed to the public.",
-      "A": "must the details",
-      "B": "the details must",
-      "C": "mustn't the details",
-      "D": "the details mustn't",
-      "correct": "A",
-      "explanation": "'On no account' is negative, requires positive inversion (must subject)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "Seldom ______ such a display of talent.",
-      "A": "one sees",
-      "B": "does one see",
-      "C": "one does see",
-      "D": "sees one",
-      "correct": "B",
-      "explanation": "'Seldom' triggers inversion."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "Such ______ the popularity of the film that tickets sold out in minutes.",
-      "A": "was",
-      "B": "is",
-      "C": "were",
-      "D": "has been",
-      "correct": "A",
-      "explanation": "Inverted result clause: 'Such was... that...'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "Nowhere ______ find a more dedicated team.",
-      "A": "you will",
-      "B": "will you",
-      "C": "you can",
-      "D": "can you to",
-      "correct": "B",
-      "explanation": "'Nowhere' triggers inversion."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "The person ______ is the manager.",
-      "A": "who you need to talk to",
-      "B": "you need to talk to",
-      "C": "that you need to talk",
-      "D": "to who you need to talk",
-      "correct": "B",
-      "explanation": "Identifying clause, object relative pronoun 'who/that' omitted for flow."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "In no way ______ responsible for the error.",
-      "A": "I am",
-      "B": "am I",
-      "C": "I was",
-      "D": "was I to",
-      "correct": "B",
-      "explanation": "'In no way' triggers inversion."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "______ after the investigation did they discover the truth.",
-      "A": "Only",
-      "B": "Just",
-      "C": "Simply",
-      "D": "Hardly",
-      "correct": "A",
-      "explanation": "'Only after' is the standard restrictive phrase triggering the inversion 'did they'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "It was ______ who suggested the new plan.",
-      "A": "she",
-      "B": "her",
-      "C": "hers",
-      "D": "herself",
-      "correct": "A",
-      "explanation": "Formal cleft sentence: 'It was + subject pronoun (she)'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "Never before ______ seen such a tragedy.",
-      "A": "have we",
-      "B": "we have",
-      "C": "did we",
-      "D": "had we",
-      "correct": "A",
-      "explanation": "'Never before' triggers inversion. Present perfect fits 'before' better generally, or past perfect if context implies."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "Barely ______ the news when she fainted.",
-      "A": "she had heard",
-      "B": "had she heard",
-      "C": "did she hear",
-      "D": "she heard",
-      "correct": "B",
-      "explanation": "'Barely' triggers Past Perfect inversion."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "inversion"
-      ],
-      "prompt": "______ allow this to happen again.",
-      "A": "Under no circumstances will we",
-      "B": "We will under no circumstances",
-      "C": "No way will we",
-      "D": "Not until will we",
-      "correct": "A",
-      "explanation": "Standard emphatic negative opening."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "I deeply regret ______ you that your application was unsuccessful.",
-      "A": "to inform",
-      "B": "informing",
-      "C": "inform",
-      "D": "having informed",
-      "correct": "A",
-      "explanation": "'Regret to + verb' is used for bad news in the present/future. 'Regret + -ing' is for past regrets."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "He stopped ______ a cigarette on his way to the office.",
-      "A": "smoking",
-      "B": "to smoke",
-      "C": "smoke",
-      "D": "having smoked",
-      "correct": "B",
-      "explanation": "'Stop to + verb' means to pause an action in order to do something else."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "I remember ______ the door, but I can't find the key now.",
-      "A": "to lock",
-      "B": "locking",
-      "C": "lock",
-      "D": "being locked",
-      "correct": "B",
-      "explanation": "'Remember + -ing' refers to a memory of a past action."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "The thief admitted ______ the jewelry.",
-      "A": "to steal",
-      "B": "stealing",
-      "C": "steal",
-      "D": "on stealing",
-      "correct": "B",
-      "explanation": "'Admit' is followed by the gerund (-ing)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "We are looking forward ______ you again soon.",
-      "A": "to see",
-      "B": "to seeing",
-      "C": "seeing",
-      "D": "see",
-      "correct": "B",
-      "explanation": "'Look forward to' is a phrasal verb where 'to' is a preposition, requiring the gerund."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "It's no use ______ to persuade him; his mind is made up.",
-      "A": "trying",
-      "B": "to try",
-      "C": "try",
-      "D": "in trying",
-      "correct": "A",
-      "explanation": "'It's no use' is a fixed expression followed by -ing."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "She suggested ______ for a walk.",
-      "A": "to go",
-      "B": "go",
-      "C": "going",
-      "D": "that we going",
-      "correct": "C",
-      "explanation": "'Suggest' is followed by gerund (-ing), never 'to infinitive'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "I would rather ______ home tonight.",
-      "A": "stay",
-      "B": "to stay",
-      "C": "staying",
-      "D": "stayed",
-      "correct": "A",
-      "explanation": "'Would rather' is followed by the bare infinitive (base form)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "The manager made the staff ______ late.",
-      "A": "working",
-      "B": "to work",
-      "C": "work",
-      "D": "worked",
-      "correct": "C",
-      "explanation": "'Make' (active voice) is followed by bare infinitive."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "I object ______ treated like a child.",
-      "A": "to be",
-      "B": "being",
-      "C": "to being",
-      "D": "be",
-      "correct": "C",
-      "explanation": "'Object to' requires a gerund."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "She was busy ______ the report.",
-      "A": "to write",
-      "B": "writing",
-      "C": "write",
-      "D": "in writing",
-      "correct": "B",
-      "explanation": "'Busy' is followed directly by -ing."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "I can't help ______ that something is wrong.",
-      "A": "feeling",
-      "B": "to feel",
-      "C": "feel",
-      "D": "but feeling",
-      "correct": "A",
-      "explanation": "'Can't help' (meaning cannot stop) is followed by -ing."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "Don't forget ______ the lights when you leave.",
-      "A": "turning off",
-      "B": "turn off",
-      "C": "to turn off",
-      "D": "having turned off",
-      "correct": "C",
-      "explanation": "'Forget to + verb' refers to a task you need to do (future/present obligation)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "He denied ______ any involvement in the scandal.",
-      "A": "to have",
-      "B": "having",
-      "C": "have",
-      "D": "to having",
-      "correct": "B",
-      "explanation": "'Deny' is followed by gerund."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "It was difficult ______ him to change his mind.",
-      "A": "persuading",
-      "B": "for persuading",
-      "C": "to persuade",
-      "D": "persuade",
-      "correct": "C",
-      "explanation": "Adjective + to infinitive (difficult to persuade)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "I'd prefer ______ rather than go out.",
-      "A": "staying in",
-      "B": "to stay in",
-      "C": "stay in",
-      "D": "to staying in",
-      "correct": "B",
-      "explanation": "'Prefer to do A rather than do B'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "He isn't used ______ up so early.",
-      "A": "to get",
-      "B": "getting",
-      "C": "to getting",
-      "D": "get",
-      "correct": "C",
-      "explanation": "'Be used to' (accustomed to) is followed by -ing."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "We regret ______ you that the flight has been cancelled.",
-      "A": "informing",
-      "B": "to inform",
-      "C": "inform",
-      "D": "having informed",
-      "correct": "B",
-      "explanation": "Formal announcement of bad news uses 'regret to'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "Let him ______ what he wants.",
-      "A": "say",
-      "B": "to say",
-      "C": "saying",
-      "D": "said",
-      "correct": "A",
-      "explanation": "'Let' takes the bare infinitive."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "She was heard ______ the building shortly after midnight.",
-      "A": "leave",
-      "B": "to leave",
-      "C": "leaving",
-      "D": "left",
-      "correct": "C",
-      "explanation": "In passive perception verbs, -ing implies the action was in progress or observed partly; 'to leave' implies the completed action. 'Leaving' emphasizes the act."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "There's no point ______ about it now.",
-      "A": "to worry",
-      "B": "in worrying",
-      "C": "worrying",
-      "D": "worry",
-      "correct": "C",
-      "explanation": "'There's no point' is followed by -ing (often without 'in', but 'in worrying' is also possible, C is the most natural standard)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "He was the first person ______ the finish line.",
-      "A": "crossing",
-      "B": "to cross",
-      "C": "cross",
-      "D": "crossed",
-      "correct": "B",
-      "explanation": "After ordinal numbers (first, second, last), use the infinitive."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "The car needs ______.",
-      "A": "to wash",
-      "B": "washing",
-      "C": "wash",
-      "D": "washed",
-      "correct": "B",
-      "explanation": "'Need' + -ing has a passive meaning (needs to be washed)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "I tried ______ the window, but it was stuck.",
-      "A": "to open",
-      "B": "opening",
-      "C": "open",
-      "D": "opened",
-      "correct": "A",
-      "explanation": "'Try to + verb' implies an attempt that failed or was difficult."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "Why don't you try ______ salt? It might taste better.",
-      "A": "to add",
-      "B": "adding",
-      "C": "add",
-      "D": "added",
-      "correct": "B",
-      "explanation": "'Try + -ing' implies an experiment to see the result."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "It's worth ______ the museum while you're here.",
-      "A": "to visit",
-      "B": "visiting",
-      "C": "visit",
-      "D": "visited",
-      "correct": "B",
-      "explanation": "'It's worth' is always followed by -ing."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "He successfully managed ______ the contract.",
-      "A": "securing",
-      "B": "secure",
-      "C": "to secure",
-      "D": "in securing",
-      "correct": "C",
-      "explanation": "'Manage' is followed by 'to infinitive'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "I saw him ______ the money from the drawer.",
-      "A": "take",
-      "B": "to take",
-      "C": "taken",
-      "D": "took",
-      "correct": "A",
-      "explanation": "Perception verb (saw) + object + bare infinitive implies watching the complete action."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "She inspired me ______ a writer.",
-      "A": "becoming",
-      "B": "to become",
-      "C": "become",
-      "D": "became",
-      "correct": "B",
-      "explanation": "Inspire + person + to infinitive."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "gerunds_infinitives"
-      ],
-      "prompt": "Despite ______ tired, he continued working.",
-      "A": "he was",
-      "B": "being",
-      "C": "to be",
-      "D": "of being",
-      "correct": "B",
-      "explanation": "Prepositions (Despite) are followed by -ing."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "'I will do it tomorrow,' she said. -\u003E She said that she ______ it the following day.",
-      "A": "will do",
-      "B": "would do",
-      "C": "would have done",
-      "D": "did",
-      "correct": "B",
-      "explanation": "Future 'will' backshifts to 'would' in reported speech."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "'Did you see the accident?' he asked. -\u003E He asked if I ______ the accident.",
-      "A": "saw",
-      "B": "had seen",
-      "C": "have seen",
-      "D": "would see",
-      "correct": "B",
-      "explanation": "Past Simple backshifts to Past Perfect in reported speech."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "He accused me ______ the vase.",
-      "A": "to break",
-      "B": "of breaking",
-      "C": "breaking",
-      "D": "for breaking",
-      "correct": "B",
-      "explanation": "Reporting verb pattern: Accuse someone OF doing something."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "She apologized ______ late.",
-      "A": "to be",
-      "B": "for being",
-      "C": "being",
-      "D": "that she was",
-      "correct": "B",
-      "explanation": "Apologize FOR doing something."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "'You must study harder,' the teacher said. -\u003E The teacher said I ______ harder.",
-      "A": "must",
-      "B": "had to study",
-      "C": "have to study",
-      "D": "should have studied",
-      "correct": "B",
-      "explanation": "'Must' (obligation) usually changes to 'had to' in past reported speech."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "He suggested ______ to the cinema.",
-      "A": "to go",
-      "B": "that we going",
-      "C": "going",
-      "D": "we to go",
-      "correct": "C",
-      "explanation": "'Suggest' is followed by gerund."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "'Don't touch the wire!' he shouted. -\u003E He warned me ______ the wire.",
-      "A": "not touch",
-      "B": "not to touch",
-      "C": "to not touch",
-      "D": "touching",
-      "correct": "B",
-      "explanation": "Imperatives change to 'not to infinitive' with reporting verbs like warn/tell."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "She asked me where ______.",
-      "A": "was I going",
-      "B": "I was going",
-      "C": "did I go",
-      "D": "I am going",
-      "correct": "B",
-      "explanation": "Indirect questions have standard sentence word order (Subject + Verb), not question order."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "He insisted ______ for the meal.",
-      "A": "to pay",
-      "B": "on paying",
-      "C": "paying",
-      "D": "that he pay",
-      "correct": "B",
-      "explanation": "Insist ON doing something."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "'I have finished the report,' he said. -\u003E He said he ______ the report.",
-      "A": "has finished",
-      "B": "had finished",
-      "C": "finished",
-      "D": "would finish",
-      "correct": "B",
-      "explanation": "Present Perfect backshifts to Past Perfect."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "She denied ______ the money.",
-      "A": "stolen",
-      "B": "to steal",
-      "C": "having stolen",
-      "D": "steal",
-      "correct": "C",
-      "explanation": "Deny + gerund (Perfect gerund 'having stolen' emphasizes the past action)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "They complained that they ______ waiting for hours.",
-      "A": "have been",
-      "B": "had been",
-      "C": "were",
-      "D": "are",
-      "correct": "B",
-      "explanation": "Backshift of 'have been waiting' (Present Perfect Continuous) to Past Perfect Continuous."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "He reminded me ______ the letter.",
-      "A": "posting",
-      "B": "to post",
-      "C": "post",
-      "D": "that I post",
-      "correct": "B",
-      "explanation": "Remind + person + to infinitive."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "'If I were you, I would leave,' he said. -\u003E He advised me ______.",
-      "A": "leave",
-      "B": "to leave",
-      "C": "that I leave",
-      "D": "leaving",
-      "correct": "B",
-      "explanation": "Advice structure: Advise + person + to infinitive."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "She admitted that she ______ a mistake.",
-      "A": "has made",
-      "B": "had made",
-      "C": "made",
-      "D": "was making",
-      "correct": "B",
-      "explanation": "Past action reported in the past requires Past Perfect."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "He asked ______ I needed any help.",
-      "A": "that",
-      "B": "whether",
-      "C": "weather",
-      "D": "did",
-      "correct": "B",
-      "explanation": "Yes/No questions are reported using 'if' or 'whether'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "'I am playing tennis now,' she said. -\u003E She said she ______ tennis then.",
-      "A": "is playing",
-      "B": "was playing",
-      "C": "played",
-      "D": "had played",
-      "correct": "B",
-      "explanation": "Present Continuous backshifts to Past Continuous."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "The doctor told him ______ smoking.",
-      "A": "stop",
-      "B": "to stop",
-      "C": "stopping",
-      "D": "that he stop",
-      "correct": "B",
-      "explanation": "Tell + person + to infinitive (command/instruction)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "'Why did you do that?' he asked. -\u003E He wanted to know why ______ that.",
-      "A": "I had done",
-      "B": "did I do",
-      "C": "I did",
-      "D": "had I done",
-      "correct": "A",
-      "explanation": "Wh- question backshift: Past Simple -\u003E Past Perfect + Statement Order."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "He threatened ______ the police.",
-      "A": "calling",
-      "B": "to call",
-      "C": "call",
-      "D": "that he calls",
-      "correct": "B",
-      "explanation": "Threaten + to infinitive."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "She claimed ______ the answer.",
-      "A": "knowing",
-      "B": "to know",
-      "C": "know",
-      "D": "that she know",
-      "correct": "B",
-      "explanation": "Claim + to infinitive."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "'I can swim,' he said. -\u003E He said he ______ swim.",
-      "A": "can",
-      "B": "could",
-      "C": "be able to",
-      "D": "might",
-      "correct": "B",
-      "explanation": "'Can' changes to 'could'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "They promised they ______ on time.",
-      "A": "will be",
-      "B": "would be",
-      "C": "are",
-      "D": "have been",
-      "correct": "B",
-      "explanation": "Promise refers to future, 'will' becomes 'would'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "She encouraged me ______ for the job.",
-      "A": "applying",
-      "B": "to apply",
-      "C": "apply",
-      "D": "application",
-      "correct": "B",
-      "explanation": "Encourage + person + to infinitive."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "He wondered ______ she would arrive.",
-      "A": "when",
-      "B": "that",
-      "C": "what",
-      "D": "which",
-      "correct": "A",
-      "explanation": "Wonder + question word (when)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "'Let's meet at the cafe,' he said. -\u003E He suggested ______ at the cafe.",
-      "A": "meeting",
-      "B": "to meet",
-      "C": "meet",
-      "D": "that we meeting",
-      "correct": "A",
-      "explanation": "Suggest + gerund."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "She blamed him ______ the project.",
-      "A": "to ruin",
-      "B": "for ruining",
-      "C": "ruining",
-      "D": "of ruining",
-      "correct": "B",
-      "explanation": "Blame + person + FOR + gerund."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "'I haven't seen her,' he remarked. -\u003E He remarked that he ______ her.",
-      "A": "hasn't seen",
-      "B": "hadn't seen",
-      "C": "didn't see",
-      "D": "wouldn't see",
-      "correct": "B",
-      "explanation": "Present Perfect negative -\u003E Past Perfect negative."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "He persuaded me ______ the car.",
-      "A": "buying",
-      "B": "to buy",
-      "C": "buy",
-      "D": "bought",
-      "correct": "B",
-      "explanation": "Persuade + person + to infinitive."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "reported_speech"
-      ],
-      "prompt": "'The earth orbits the sun,' the teacher said. -\u003E The teacher said that the earth ______ the sun.",
-      "A": "orbits",
-      "B": "orbited",
-      "C": "had orbited",
-      "D": "orbiting",
-      "correct": "A",
-      "explanation": "General truths/scientific facts often do NOT change tense in reported speech."
-    }
-  ],
-  [
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "______ tired he was, he continued to work until the deadline.",
-      "A": "However",
-      "B": "Although",
-      "C": "Despite",
-      "D": "Whereas",
-      "correct": "A",
-      "explanation": "'However' + adjective/adverb means 'no matter how'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "The project was a success, ______ the initial difficulties.",
-      "A": "although",
-      "B": "despite",
-      "C": "even though",
-      "D": "whereas",
-      "correct": "B",
-      "explanation": "'Despite' is a preposition followed by a noun phrase."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "He is a brilliant mathematician; ______, he lacks social skills.",
-      "A": "furthermore",
-      "B": "consequently",
-      "C": "nevertheless",
-      "D": "therefore",
-      "correct": "C",
-      "explanation": "'Nevertheless' introduces a contrast/concession."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "We should leave early ______ miss the flight.",
-      "A": "so that",
-      "B": "in case",
-      "C": "lest",
-      "D": "unless",
-      "correct": "C",
-      "explanation": "'Lest' means 'for fear that' or 'in order to avoid'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "______ much I respect him, I cannot agree with this decision.",
-      "A": "As",
-      "B": "Even",
-      "C": "However",
-      "D": "Much as",
-      "correct": "D",
-      "explanation": "'Much as' is a formal way to say 'Although'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "The economy is booming, ______ the unemployment rate remains high.",
-      "A": "yet",
-      "B": "so",
-      "C": "thus",
-      "D": "hence",
-      "correct": "A",
-      "explanation": "'Yet' introduces a surprising contrast."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "He accepted the job ______ the low salary.",
-      "A": "in spite",
-      "B": "despite of",
-      "C": "notwithstanding",
-      "D": "although",
-      "correct": "C",
-      "explanation": "'Notwithstanding' means 'despite' (formal)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "She speaks French fluently, ______ her brother knows only a few words.",
-      "A": "likewise",
-      "B": "similarly",
-      "C": "whereas",
-      "D": "consequently",
-      "correct": "C",
-      "explanation": "'Whereas' compares two contrasting facts."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "The match was cancelled ______ the heavy rain.",
-      "A": "due to",
-      "B": "because",
-      "C": "since",
-      "D": "as",
-      "correct": "A",
-      "explanation": "'Due to' is followed by a noun phrase."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "Take a map ______ you get lost.",
-      "A": "so that",
-      "B": "in case",
-      "C": "if",
-      "D": "unless",
-      "correct": "B",
-      "explanation": "'In case' is used for precaution against a possible future event."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "______ he is rich, he is not happy.",
-      "A": "Despite",
-      "B": "In spite of",
-      "C": "Albeit",
-      "D": "Though",
-      "correct": "D",
-      "explanation": "'Though' connects two clauses."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "The car is small. ______, it is very powerful.",
-      "A": "Furthermore",
-      "B": "Nonetheless",
-      "C": "Therefore",
-      "D": "Moreover",
-      "correct": "B",
-      "explanation": "'Nonetheless' introduces a contrast."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "______ the fact that he was late, he was admitted to the exam.",
-      "A": "Despite",
-      "B": "Although",
-      "C": "However",
-      "D": "Unless",
-      "correct": "A",
-      "explanation": "'Despite the fact that' is a standard linker structure."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "He didn't study. ______, he failed the test.",
-      "A": "However",
-      "B": "Consequently",
-      "C": "Although",
-      "D": "Whereas",
-      "correct": "B",
-      "explanation": "'Consequently' introduces a result."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "I will go ______ you come with me or not.",
-      "A": "if",
-      "B": "whether",
-      "C": "either",
-      "D": "neither",
-      "correct": "B",
-      "explanation": "'Whether... or' indicates alternatives where the result is the same."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "Smartphones are useful; ______, they can be distracting.",
-      "A": "on the other hand",
-      "B": "in addition",
-      "C": "therefore",
-      "D": "likewise",
-      "correct": "A",
-      "explanation": "Introduces an opposing viewpoint."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "He was chosen ______ his experience.",
-      "A": "because",
-      "B": "since",
-      "C": "on account of",
-      "D": "as",
-      "correct": "C",
-      "explanation": "'On account of' acts as a preposition meaning 'because of'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "She studied hard ______ she could pass the exam.",
-      "A": "so as to",
-      "B": "in order to",
-      "C": "so that",
-      "D": "for",
-      "correct": "C",
-      "explanation": "'So that' is followed by a clause (subject + verb)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "______ I admit that the idea is good, I think it's too expensive.",
-      "A": "While",
-      "B": "Since",
-      "C": "As",
-      "D": "Because",
-      "correct": "A",
-      "explanation": "'While' can mean 'Although' at the beginning of a sentence."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "Not only did he lose his wallet, ______ he also lost his keys.",
-      "A": "and",
-      "B": "but",
-      "C": "so",
-      "D": "or",
-      "correct": "B",
-      "explanation": "Correlative conjunction: 'Not only... but also'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "He bought the house ______ its poor condition.",
-      "A": "even though",
-      "B": "in spite of",
-      "C": "although",
-      "D": "unless",
-      "correct": "B",
-      "explanation": "'In spite of' + noun phrase."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "______ it rains, we will cancel the picnic.",
-      "A": "Supposing",
-      "B": "As long as",
-      "C": "In the event that",
-      "D": "Provided",
-      "correct": "C",
-      "explanation": "'In the event that' is a formal way of saying 'if'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "He looks ______ he hasn't slept in days.",
-      "A": "as if",
-      "B": "so that",
-      "C": "although",
-      "D": "unless",
-      "correct": "A",
-      "explanation": "'As if' introduces a manner clause (often hypothetical)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "I'll help you ______ you promise to keep it a secret.",
-      "A": "unless",
-      "B": "on condition that",
-      "C": "otherwise",
-      "D": "supposing",
-      "correct": "B",
-      "explanation": "Formal condition."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "Difficult ______ the task was, he managed to complete it.",
-      "A": "although",
-      "B": "though",
-      "C": "despite",
-      "D": "as",
-      "correct": "B",
-      "explanation": "Adjective + though + subject + verb (Emphasis)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "______ the rain stopped, we went out.",
-      "A": "Once",
-      "B": "Unless",
-      "C": "Although",
-      "D": "Despite",
-      "correct": "A",
-      "explanation": "'Once' meaning 'as soon as'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "He is very old; ______, he is still quite active.",
-      "A": "therefore",
-      "B": "moreover",
-      "C": "however",
-      "D": "consequently",
-      "correct": "C",
-      "explanation": "Contrast connector."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "We recognized him at once, ______ we hadn't seen him for years.",
-      "A": "although",
-      "B": "in spite",
-      "C": "despite",
-      "D": "however",
-      "correct": "A",
-      "explanation": "'Although' connects two clauses."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "______ he has a good job, he always complains about money.",
-      "A": "Despite",
-      "B": "Even though",
-      "C": "However",
-      "D": "Nevertheless",
-      "correct": "B",
-      "explanation": "'Even though' is a strong concessive conjunction."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "conjunctions"
-      ],
-      "prompt": "He refused to answer ______ fear of incriminating himself.",
-      "A": "for",
-      "B": "from",
-      "C": "due",
-      "D": "lest",
-      "correct": "A",
-      "explanation": "'For fear of' is a fixed phrase indicating purpose/avoidance."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "It is essential that he ______ informed immediately.",
-      "A": "is",
-      "B": "be",
-      "C": "will be",
-      "D": "was",
-      "correct": "B",
-      "explanation": "Subjunctive mood: 'It is essential that' + subject + base verb."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "I demand that she ______ the room at once.",
-      "A": "leaves",
-      "B": "leave",
-      "C": "left",
-      "D": "leaving",
-      "correct": "B",
-      "explanation": "Subjunctive after 'demand'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "______ he became so successful is a mystery.",
-      "A": "That",
-      "B": "How",
-      "C": "Which",
-      "D": "Who",
-      "correct": "B",
-      "explanation": "Noun clause as subject: 'The way (How) he became...'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "The question is ______ we should accept the offer.",
-      "A": "weather",
-      "B": "whether",
-      "C": "if",
-      "D": "that",
-      "correct": "B",
-      "explanation": "Noun clause as subject complement. 'Whether' is preferred over 'if' after 'be'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "It is suggested that the meeting ______ postponed.",
-      "A": "is",
-      "B": "be",
-      "C": "was",
-      "D": "to be",
-      "correct": "B",
-      "explanation": "Passive Subjunctive: 'be + V3'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "I don't know ______ or not he will come.",
-      "A": "if",
-      "B": "whether",
-      "C": "that",
-      "D": "how",
-      "correct": "B",
-      "explanation": "Only 'whether' can be followed immediately by 'or not'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "______ you believe it or not is irrelevant.",
-      "A": "If",
-      "B": "Whether",
-      "C": "That",
-      "D": "What",
-      "correct": "B",
-      "explanation": "'Whether' is required when the clause is the subject of the sentence."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "The doctor recommended that he ______ smoking.",
-      "A": "stops",
-      "B": "stop",
-      "C": "stopped",
-      "D": "stopping",
-      "correct": "B",
-      "explanation": "Subjunctive after 'recommend'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "What he said ______ true.",
-      "A": "was",
-      "B": "were",
-      "C": "being",
-      "D": "be",
-      "correct": "A",
-      "explanation": "Noun clause subject 'What he said' takes a singular verb."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "I suggest that we ______ dinner now.",
-      "A": "have",
-      "B": "having",
-      "C": "to have",
-      "D": "had",
-      "correct": "A",
-      "explanation": "Subjunctive: suggest + that + we + base verb."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "It is important that everyone ______ on time.",
-      "A": "is",
-      "B": "are",
-      "C": "be",
-      "D": "will be",
-      "correct": "C",
-      "explanation": "Subjunctive after 'important'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "______ she is innocent is obvious.",
-      "A": "What",
-      "B": "That",
-      "C": "Which",
-      "D": "If",
-      "correct": "B",
-      "explanation": "'That' introduces a noun clause stating a fact (subject of the sentence)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "The truth is ______ I forgot about the appointment.",
-      "A": "what",
-      "B": "that",
-      "C": "which",
-      "D": "if",
-      "correct": "B",
-      "explanation": "Noun clause as subject complement explaining the 'truth'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "He insisted that the contract ______ signed immediately.",
-      "A": "was",
-      "B": "be",
-      "C": "is",
-      "D": "to be",
-      "correct": "B",
-      "explanation": "Passive Subjunctive after 'insisted'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "It is a pity ______ you can't come.",
-      "A": "which",
-      "B": "that",
-      "C": "what",
-      "D": "how",
-      "correct": "B",
-      "explanation": "Extraposition with 'It': 'It is [adjective/noun] that...'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "I wonder ______ he lives.",
-      "A": "where",
-      "B": "that",
-      "C": "what",
-      "D": "which",
-      "correct": "A",
-      "explanation": "Wh- noun clause as object."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "It is necessary that he ______ the exam.",
-      "A": "passes",
-      "B": "pass",
-      "C": "passed",
-      "D": "passing",
-      "correct": "B",
-      "explanation": "Subjunctive after 'necessary'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "Do you know ______ time it is?",
-      "A": "what",
-      "B": "that",
-      "C": "if",
-      "D": "how",
-      "correct": "A",
-      "explanation": "Embedded question."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "______ they will arrive remains uncertain.",
-      "A": "When",
-      "B": "That",
-      "C": "Which",
-      "D": "Who",
-      "correct": "A",
-      "explanation": "Wh- clause as subject."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "I propose that the budget ______ increased.",
-      "A": "is",
-      "B": "be",
-      "C": "was",
-      "D": "to be",
-      "correct": "B",
-      "explanation": "Passive Subjunctive after 'propose'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "Whatever ______ is acceptable.",
-      "A": "you decide",
-      "B": "do you decide",
-      "C": "did you decide",
-      "D": "decide you",
-      "correct": "A",
-      "explanation": "Noun clause with 'Whatever' + subject + verb."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "It is crucial that the evidence ______ preserved.",
-      "A": "is",
-      "B": "be",
-      "C": "was",
-      "D": "will be",
-      "correct": "B",
-      "explanation": "Passive Subjunctive after 'crucial'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "______ makes him happy is none of my business.",
-      "A": "That",
-      "B": "What",
-      "C": "Which",
-      "D": "How",
-      "correct": "B",
-      "explanation": "'What makes him happy' is the subject of the sentence."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "The requirement is that all students ______ uniforms.",
-      "A": "wear",
-      "B": "wears",
-      "C": "wearing",
-      "D": "to wear",
-      "correct": "A",
-      "explanation": "Subjunctive after noun 'requirement'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "I asked him ______ he wanted to go.",
-      "A": "that",
-      "B": "where",
-      "C": "which",
-      "D": "what",
-      "correct": "B",
-      "explanation": "Reported question word."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "It is high time (that) we ______ home.",
-      "A": "go",
-      "B": "went",
-      "C": "have gone",
-      "D": "will go",
-      "correct": "B",
-      "explanation": "'It is high time' triggers the Unreal Past (Past Simple)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "I was surprised ______ he passed the exam.",
-      "A": "what",
-      "B": "that",
-      "C": "which",
-      "D": "if",
-      "correct": "B",
-      "explanation": "Adjective + that clause."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "God ______ the Queen!",
-      "A": "save",
-      "B": "saves",
-      "C": "saved",
-      "D": "saving",
-      "correct": "A",
-      "explanation": "Formulaic Subjunctive (fixed expression)."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "We requested that the information ______ confidential.",
-      "A": "kept",
-      "B": "be kept",
-      "C": "is kept",
-      "D": "keeps",
-      "correct": "B",
-      "explanation": "Passive Subjunctive after 'request'."
-    },
-    {
-      "type": "MCQ",
-      "level": "C1",
-      "tags": [
-        "noun_clauses"
-      ],
-      "prompt": "______ you win or lose, it matters how you play.",
-      "A": "If",
-      "B": "Whether",
-      "C": "That",
-      "D": "What",
-      "correct": "B",
-      "explanation": "Concessive clause 'Whether... or'."
-    }
-  ]
 ]
