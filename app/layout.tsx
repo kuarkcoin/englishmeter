@@ -5,52 +5,64 @@ import Footer from '@/components/Footer';
 
 const siteName = 'EnglishMeter';
 const siteUrl = 'https://englishmeter.net';
+
+// GÜNCELLEME: Tıklama odaklı, harekete geçirici ana açıklama metni
 const siteDescription =
-  'Free online English grammar tests and placement exams. Improve your grammar with topic-based quizzes, level tests (A1–C2), IELTS grammar practice, and quick placement tests.';
+  'Take our free English level test and get your CEFR score (A1–C2) in 15 minutes. Test your grammar and vocabulary instantly with no sign-up required.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  
   title: {
-    default: `${siteName} – Free English Grammar & Level Tests (A1–C2, IELTS)`,
+    // STRATEJİ: Hız (15 Mins) ve Sonuç (CEFR Score) vaadi ön planda
+    default: 'Free English Level Test: Get Your CEFR Score in 15 Mins',
     template: `%s | ${siteName}`,
   },
+  
   description: siteDescription,
+  
   applicationName: siteName,
+  
   keywords: [
-    'english grammar test',
-    'online grammar quiz',
-    'english placement test',
-    'A1 A2 B1 B2 C1 C2 test',
-    'advanced grammar exercises',
-    'IELTS grammar practice',
-    'grammar practice',
     'english level test',
+    'english placement test',
+    'CEFR test',
+    'online english quiz',
+    'english grammar test',
+    'ESL testing',
+    'check english level',
+    'A1 A2 B1 B2 C1 C2 test',
+    'IELTS grammar practice',
     'free english test',
   ],
+  
   alternates: {
     canonical: siteUrl,
   },
+  
   openGraph: {
     type: 'website',
     url: siteUrl,
-    title: `${siteName} – Free English Grammar & Level Tests (A1–C2, IELTS)`,
+    // Sosyal medya için daha merak uyandırıcı başlık
+    title: 'Test Your English Level Online – Fast & Free',
     siteName,
     description: siteDescription,
-    // İstersen /public/og-image.png oluşturup buraya koyarsın
     images: [
       {
-        url: '/og-image.png',
+        url: '/og-image.png', // public klasörüne bu isimde bir resim eklemeyi unutmayın
         width: 1200,
         height: 630,
-        alt: 'EnglishMeter – Free English Grammar & Level Tests',
+        alt: 'EnglishMeter – Free English Placement Test',
       },
     ],
   },
+  
   twitter: {
     card: 'summary_large_image',
-    title: `${siteName} – English Grammar Tests`,
-    description: siteDescription,
+    title: 'How Good is Your English? Take the Free Test',
+    description: 'Get your CEFR level (A1-C2) in just 15 minutes.',
   },
+  
   robots: {
     index: true,
     follow: true,
@@ -71,7 +83,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const jsonLd = [
-    // 1) WebSite şeması (site kimliği)
+    // 1) WebSite şeması
     {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
@@ -85,11 +97,11 @@ export default function RootLayout({
         'query-input': 'required name=search_term_string',
       },
     },
-    // 2) EducationalApplication şeması (eğitim uygulaması kimliği)
+    // 2) EducationalApplication şeması (Bunu koruduk, çok değerli)
     {
       '@context': 'https://schema.org',
       '@type': 'EducationalApplication',
-      name: siteName,
+      name: 'EnglishMeter Level Test',
       url: siteUrl,
       applicationCategory: 'EducationalApplication',
       description: siteDescription,
@@ -100,24 +112,26 @@ export default function RootLayout({
         priceCurrency: 'USD',
       },
       about: [
-        'English grammar tests',
-        'online placement exams',
-        'CEFR level tests A1–C2',
-        'IELTS grammar practice',
-        'advanced grammar practice',
+        'English placement test',
+        'CEFR level assessment',
+        'Grammar quizzes',
+        'Vocabulary testing'
       ],
+      // Google'ın uygulamayı anlaması için işletim sistemi gereksinimi
+      operatingSystem: 'Any', 
     },
   ];
 
   return (
     <html lang="en">
       <body className="bg-slate-50 min-h-screen flex flex-col">
-        {/* JSON-LD: WebSite + EducationalApplication */}
+        {/* JSON-LD Scripts */}
         <script
           type="application/ld+json"
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        
         <div className="flex-1">{children}</div>
         <Footer />
       </body>
