@@ -7,9 +7,11 @@ import Link from 'next/link';
 import { a1Topics } from '@/data/levels/a1_topics';
 import { a2Topics } from '@/data/levels/a2_topics';
 import { b1Topics } from '@/data/levels/b1_topics';
+import { b2Topics } from '@/data/levels/b2_topics';
 import { a1Questions } from '@/data/levels/a1_questions';
 import { a2Questions } from '@/data/levels/a2_questions';
 import { b1Questions } from '@/data/levels/b1_questions';
+import { b2Questions } from '@/data/levels/b2_questions';
 
 type RouteParams = {
   level?: string | string[];
@@ -23,32 +25,32 @@ export default function LevelTopicPage() {
   const levelParam = Array.isArray(params.level) ? params.level[0] : params.level || '';
   const topicParam = Array.isArray(params.topic) ? params.topic[0] : params.topic || '';
 
-  const levelKey = levelParam.toLowerCase(); // 'a1', 'a2', 'b1'
-  const levelLabel = levelKey.toUpperCase(); // 'A1', 'A2', 'B1'
+  const levelKey = levelParam.toLowerCase(); // 'a1', 'a2', 'b1', 'b2'
+  const levelLabel = levelKey.toUpperCase(); // 'A1', 'A2', 'B1', 'B2'
 
-  // Seviye bazlı topic ve soru listeleri
   const topicsByLevel: Record<string, any[]> = {
     a1: a1Topics,
     a2: a2Topics,
     b1: b1Topics,
+    b2: b2Topics,
   };
 
   const questionsByLevel: Record<string, any[]> = {
     a1: a1Questions,
     a2: a2Questions,
     b1: b1Questions,
+    b2: b2Questions,
   };
 
   const topics = topicsByLevel[levelKey];
   const allQuestions = questionsByLevel[levelKey];
 
-  // Şimdilik sadece A1, A2 ve B1 destekleniyor
   if (!topics || !allQuestions) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <p className="mb-4">
-            Topic quizzes are only available for A1, A2 and B1 for now.
+            Topic quizzes are only available for A1, A2, B1 and B2 for now.
           </p>
           <button
             className="px-4 py-2 rounded bg-slate-800 text-white"
