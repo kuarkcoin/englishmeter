@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import { a1Topics } from '@/data/levels/a1_topics';
 import { a2Topics } from '@/data/levels/a2_topics';
 import { b1Topics } from '@/data/levels/b1_topics';
+import { b2Topics } from '@/data/levels/b2_topics';
 
 type RouteParams = {
   level?: string | string[];
@@ -18,16 +19,16 @@ export default function LevelPage() {
   const isA1 = level === 'A1';
   const isA2 = level === 'A2';
   const isB1 = level === 'B1';
+  const isB2 = level === 'B2';
 
-  // A1 ve A2 için topic listeleri
   const topics =
     isA1 ? a1Topics :
     isA2 ? a2Topics :
     isB1 ? b1Topics :
+    isB2 ? b2Topics :
     [];
 
   const hasTopics = topics.length > 0;
-
   const mixedTestSlug = `level-${level.toLowerCase()}`;
 
   return (
@@ -42,25 +43,30 @@ export default function LevelPage() {
           or choose a specific topic.
         </p>
 
-        {/* Mixed Test butonu (tüm seviyeler için) */}
         <div className="mb-8">
           <Link
             href={`/start?testSlug=${mixedTestSlug}`}
             className="block w-full text-center bg-slate-900 text-white font-semibold py-4 rounded-2xl shadow-lg hover:bg-slate-800"
           >
-            {isA1 ? '⭐ Start A1 Mixed Test': isA2 ? '⭐ Start A2 Mixed Test': isB1 ? '⭐ Start B1 Mixed Test': `Start ${level} Mixed Test`}
-            
+            {isA1
+              ? '⭐ Start A1 Mixed Test'
+              : isA2
+              ? '⭐ Start A2 Mixed Test'
+              : isB1
+              ? '⭐ Start B1 Mixed Test'
+              : isB2
+              ? '⭐ Start B2 Mixed Test'
+              : `Start ${level} Mixed Test`}
           </Link>
         </div>
 
-        {/* A1 ve A2 için topic-based tests */}
         {hasTopics && (
           <>
             <h2 className="text-xl font-bold text-slate-900 mb-3">
               Topic-Based Tests ({level})
             </h2>
             <div className="space-y-3 mb-8">
-              {topics.map((topic) => (
+              {topics.map((topic: any) => (
                 <Link
                   key={topic.slug}
                   href={`/levels/${level.toLowerCase()}/${topic.slug}`}
