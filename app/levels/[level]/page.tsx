@@ -1,91 +1,78 @@
-'use client'
-import React from 'react'
-import Link from 'next/link'
-import { useParams } from 'next/navigation'
-
-const A1_TOPICS = [
-  { slug: 'present-simple', label: 'Present Simple (daily routines)' },
-  { slug: 'verb-to-be', label: 'Verb “to be” (am / is / are)' },
-  { slug: 'a-an', label: 'Articles: a / an' },
-  { slug: 'this-that-these-those', label: 'This / That / These / Those' },
-  { slug: 'prepositions-of-place', label: 'Prepositions of place' },
-  { slug: 'possessive-adjectives', label: 'Possessive adjectives (my/your/our)' },
-]
+'use client';
+import React from 'react';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 export default function LevelPage() {
-  const params = useParams()
-  const rawLevel = typeof params?.level === 'string' ? params.level : ''
-  const level = rawLevel.toUpperCase() || 'UNKNOWN'
-  const testSlug = `level-${level.toLowerCase()}`
-  const isA1 = level === 'A1'
+  const params = useParams();
+  const level = typeof params?.level === 'string' ? params.level.toUpperCase() : 'UNKNOWN';
+
+  // Sadece A1 için konuları gösteriyoruz (diğer seviyeler eklenebilir)
+  const topics =
+    level === 'A1'
+      ? [
+          { slug: 'present-simple', title: 'Present Simple', color: 'bg-blue-100 text-blue-800 border-blue-300' },
+          { slug: 'prepositions', title: 'Prepositions', color: 'bg-green-100 text-green-800 border-green-300' },
+          { slug: 'articles', title: 'Articles (a/an/the)', color: 'bg-yellow-100 text-yellow-800 border-yellow-300' },
+          { slug: 'pronouns', title: 'Pronouns', color: 'bg-purple-100 text-purple-800 border-purple-300' },
+          { slug: 'adjectives', title: 'Adjectives', color: 'bg-pink-100 text-pink-800 border-pink-300' },
+          { slug: 'adverbs', title: 'Adverbs', color: 'bg-orange-100 text-orange-800 border-orange-300' },
+        ]
+      : [];
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
-      <div className="max-w-2xl w-full bg-white rounded-2xl shadow-xl p-8 text-center border border-gray-100">
-        <div className="bg-blue-100 text-blue-700 font-bold text-xl w-20 h-20 flex items-center justify-center rounded-full mx-auto mb-6">
+    <div className="min-h-screen bg-gray-50 px-4 py-10 flex flex-col items-center">
+      <div className="w-full max-w-3xl bg-white shadow-xl rounded-2xl p-8 border border-gray-100">
+
+        {/* Level Badge */}
+        <div className="w-24 h-24 mx-auto rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-3xl font-bold mb-6 shadow-inner">
           {level}
         </div>
 
-        <h1 className="text-3xl font-extrabold text-slate-800 mb-4">
-          {isA1 ? 'A1 Mixed Test' : `${level} Level Assessment`}
+        {/* Title */}
+        <h1 className="text-3xl font-extrabold text-center text-slate-800 mb-4">
+          {level} Level Grammar Tests
         </h1>
 
-        <p className="text-slate-600 mb-8 text-lg">
-          {isA1 ? (
-            <>
-              You are about to start the main <strong>A1 mixed grammar test</strong>{' '}
-              with 20 questions. After this, you can practise each topic separately
-              with short quizzes.
-            </>
-          ) : (
-            <>
-              You are about to start the English assessment specifically designed for
-              <strong> {level}</strong> level. This test consists of grammar and
-              vocabulary questions suitable for this difficulty.
-            </>
-          )}
+        <p className="text-center text-slate-600 mb-8 text-lg">
+          Improve your English skills with topic-based grammar quizzes and a complete mixed test for level {level}.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
-          <Link
-            href={`/start?testSlug=${testSlug}`}
-            className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg transition transform hover:-translate-y-1"
-          >
-            {isA1 ? 'Start A1 Mixed Test' : `Start ${level} Test`}
-          </Link>
+        {/* Mixed Test Button */}
+        <Link
+          href={`/start?testSlug=level-${level.toLowerCase()}`}
+          className="block w-full text-center px-6 py-4 rounded-xl bg-slate-800 text-white font-bold text-lg shadow hover:bg-slate-900 transition mb-10"
+        >
+          ⭐ Start {level} Mixed Test
+        </Link>
 
-          <Link
-            href="/"
-            className="px-8 py-4 bg-gray-100 hover:bg-gray-200 text-slate-700 font-bold rounded-xl transition"
-          >
-            Back to Home
-          </Link>
-        </div>
+        {/* Topic Buttons */}
+        {topics.length > 0 && (
+          <>
+            <h2 className="text-xl font-bold text-slate-700 mb-4">Topic-Based Tests</h2>
 
-        {/* SADECE A1 İÇİN ALTTA KONU BUTONLARI */}
-        {isA1 && (
-          <div className="mt-6 pt-5 border-t border-slate-200 text-left">
-            <h2 className="text-xl font-semibold mb-2 text-slate-800 text-center sm:text-left">
-              Practise A1 topics after the mixed test
-            </h2>
-            <p className="text-sm text-slate-600 mb-4 text-center sm:text-left">
-              Each topic has a short 10-question quiz so you can fix your weak areas.
-            </p>
-
-            <div className="grid gap-3 md:grid-cols-2">
-              {A1_TOPICS.map((t) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {topics.map((t) => (
                 <Link
                   key={t.slug}
-                  href={`/levels/a1/${t.slug}`}
-                  className="block rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 shadow-sm hover:shadow-md transition-shadow"
+                  href={`/levels/${level.toLowerCase()}/${t.slug}`}
+                  className={`border rounded-xl p-5 font-semibold text-center shadow-sm hover:shadow-md transition ${t.color}`}
                 >
-                  {t.label}
+                  {t.title}
                 </Link>
               ))}
             </div>
-          </div>
+          </>
         )}
+
+        {/* Back Home */}
+        <Link
+          href="/"
+          className="block text-center mt-10 text-slate-600 hover:text-slate-900 underline"
+        >
+          ← Back to Home
+        </Link>
       </div>
     </div>
-  )
+  );
 }
