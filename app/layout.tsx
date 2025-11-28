@@ -1,12 +1,11 @@
-// app/layout.tsx
 import type { Metadata } from 'next';
 import './globals.css';
 import Footer from '@/components/Footer';
+import Script from 'next/script'; // Google Analytics için eklendi
 
 const siteName = 'EnglishMeter';
 const siteUrl = 'https://englishmeter.net';
 
-// STRATEJİK ANA AÇIKLAMA
 const siteDescription =
   'Take our free English level test and get your CEFR score (A1–C2) in 15 minutes. Test your grammar and vocabulary instantly with no sign-up required.';
 
@@ -19,7 +18,6 @@ export const metadata: Metadata = {
   },
 
   description: siteDescription,
-
   applicationName: siteName,
 
   keywords: [
@@ -74,7 +72,6 @@ export const metadata: Metadata = {
     },
   },
 
-  // ⭐ Pinterest doğrulaması – en önemli kısım
   other: {
     'p:domain_verify': '8accc375f9f53d17f51629c58c9f6be2',
   },
@@ -86,7 +83,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const jsonLd = [
-    // 1) WebSite Schema
     {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
@@ -100,8 +96,6 @@ export default function RootLayout({
         'query-input': 'required name=search_term_string',
       },
     },
-
-    // 2) EducationalApplication Schema
     {
       '@context': 'https://schema.org',
       '@type': 'EducationalApplication',
@@ -128,7 +122,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-slate-50 min-h-screen flex flex-col">
-        {/* JSON-LD structured data */}
+        
+        {/* --- GOOGLE ANALYTICS KODU --- */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-Z4658W17W5"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-Z4658W17W5');
+          `}
+        </Script>
+        {/* ----------------------------- */}
+
         <script
           type="application/ld+json"
           suppressHydrationWarning
