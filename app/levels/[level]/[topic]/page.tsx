@@ -17,7 +17,17 @@ type RouteParams = {
 };
 
 export default function LevelTopicPage() {
-    const topicsByLevel: Record<string, any[]> = {
+  const params = useParams() as RouteParams;
+  const router = useRouter();
+
+  const levelParam = Array.isArray(params.level) ? params.level[0] : params.level || '';
+  const topicParam = Array.isArray(params.topic) ? params.topic[0] : params.topic || '';
+
+  const levelKey = levelParam.toLowerCase(); // 'a1', 'a2', 'b1'
+  const levelLabel = levelKey.toUpperCase(); // 'A1', 'A2', 'B1'
+
+  // Seviye bazlı topic ve soru listeleri
+  const topicsByLevel: Record<string, any[]> = {
     a1: a1Topics,
     a2: a2Topics,
     b1: b1Topics,
@@ -29,27 +39,17 @@ export default function LevelTopicPage() {
     b1: b1Questions,
   };
 
-
-  // Seviye bazlı topic ve soru listeleri
-  const topicsByLevel: Record<string, any[]> = {
-    a1: a1Topics,
-    a2: a2Topics,
-  };
-
-  const questionsByLevel: Record<string, any[]> = {
-    a1: a1Questions,
-    a2: a2Questions,
-  };
-
   const topics = topicsByLevel[levelKey];
   const allQuestions = questionsByLevel[levelKey];
 
-  // Şimdilik sadece A1 ve A2 destekleniyor
+  // Şimdilik sadece A1, A2 ve B1 destekleniyor
   if (!topics || !allQuestions) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <p className="mb-4">Topic quizzes are only available for A1 and A2 for now.</p>
+          <p className="mb-4">
+            Topic quizzes are only available for A1, A2 and B1 for now.
+          </p>
           <button
             className="px-4 py-2 rounded bg-slate-800 text-white"
             onClick={() => router.push('/levels/a1')}
