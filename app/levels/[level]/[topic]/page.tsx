@@ -8,10 +8,12 @@ import { a1Topics } from '@/data/levels/a1_topics';
 import { a2Topics } from '@/data/levels/a2_topics';
 import { b1Topics } from '@/data/levels/b1_topics';
 import { b2Topics } from '@/data/levels/b2_topics';
+import { c1Topics } from '@/data/levels/c1_topics';
 import { a1Questions } from '@/data/levels/a1_questions';
 import { a2Questions } from '@/data/levels/a2_questions';
 import { b1Questions } from '@/data/levels/b1_questions';
 import { b2Questions } from '@/data/levels/b2_questions';
+import { c1Questions } from '@/data/levels/c1_questions';
 
 type RouteParams = {
   level?: string | string[];
@@ -25,14 +27,15 @@ export default function LevelTopicPage() {
   const levelParam = Array.isArray(params.level) ? params.level[0] : params.level || '';
   const topicParam = Array.isArray(params.topic) ? params.topic[0] : params.topic || '';
 
-  const levelKey = levelParam.toLowerCase(); // 'a1', 'a2', 'b1', 'b2'
-  const levelLabel = levelKey.toUpperCase(); // 'A1', 'A2', 'B1', 'B2'
+  const levelKey = levelParam.toLowerCase(); // 'a1', 'a2', 'b1', 'b2', 'c1'
+  const levelLabel = levelKey.toUpperCase(); // 'A1', 'A2', 'B1', 'B2', 'C1'
 
   const topicsByLevel: Record<string, any[]> = {
     a1: a1Topics,
     a2: a2Topics,
     b1: b1Topics,
     b2: b2Topics,
+    c1: c1Topics,
   };
 
   const questionsByLevel: Record<string, any[]> = {
@@ -40,6 +43,7 @@ export default function LevelTopicPage() {
     a2: a2Questions,
     b1: b1Questions,
     b2: b2Questions,
+    c1: c1Questions,
   };
 
   const topics = topicsByLevel[levelKey];
@@ -50,7 +54,7 @@ export default function LevelTopicPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <p className="mb-4">
-            Topic quizzes are only available for A1, A2, B1 and B2 for now.
+            Topic quizzes are only available for A1, A2, B1, B2 and C1 for now.
           </p>
           <button
             className="px-4 py-2 rounded bg-slate-800 text-white"
