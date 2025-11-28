@@ -3,8 +3,11 @@
 import React, { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { a1Topics, type A1TopicSlug } from '@/data/levels/a1_topics';
+
+import { a1Topics } from '@/data/levels/a1_topics';
+import { a2Topics } from '@/data/levels/a2_topics';
 import { a1Questions } from '@/data/levels/a1_questions';
+import { a2Questions } from '@/data/levels/a2_questions';
 
 type RouteParams = {
   level?: string | string[];
@@ -18,14 +21,29 @@ export default function LevelTopicPage() {
   const levelParam = Array.isArray(params.level) ? params.level[0] : params.level || '';
   const topicParam = Array.isArray(params.topic) ? params.topic[0] : params.topic || '';
 
-  const level = levelParam.toLowerCase();
+  const levelKey = levelParam.toLowerCase(); // 'a1', 'a2'...
+  const levelLabel = levelKey.toUpperCase(); // 'A1', 'A2'
 
-  // Şimdilik sadece A1 için topic quiz çalışsın
-  if (level !== 'a1') {
+  // Seviye bazlı topic ve soru listeleri
+  const topicsByLevel: Record<string, any[]> = {
+    a1: a1Topics,
+    a2: a2Topics,
+  };
+
+  const questionsByLevel: Record<string, any[]> = {
+    a1: a1Questions,
+    a2: a2Questions,
+  };
+
+  const topics = topicsByLevel[levelKey];
+  const allQuestions = questionsByLevel[levelKey];
+
+  // Şimdilik sadece A1 ve A2 destekleniyor
+  if (!topics || !allQuestions) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <p className="mb-4">Topic quizzes are only available for A1 for now.</p>
+          <p className="mb-4">Topic quizzes are only available for A1 and A2 for now.</p>
           <button
             className="px-4 py-2 rounded bg-slate-800 text-white"
             onClick={() => router.push('/levels/a1')}
@@ -37,26 +55,25 @@ export default function LevelTopicPage() {
     );
   }
 
-  const topicSlug = topicParam as A1TopicSlug;
-  const topic = a1Topics.find((t) => t.slug === topicSlug);
+  const topic = topics.find((t) => t.slug === topicParam);
 
   if (!topic) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <p className="mb-4">This A1 topic does not exist.</p>
+          <p className="mb-4">This topic does not exist for level {levelLabel}.</p>
           <button
             className="px-4 py-2 rounded bg-slate-800 text-white"
-            onClick={() => router.push('/levels/a1')}
+            onClick={() => router.push(`/levels/${levelKey}`)}
           >
-            Back to A1 topics
+            Back to {levelLabel} topics
           </button>
         </div>
       </div>
     );
   }
 
-  const questions = a1Questions.filter((q) => q.topic === topicSlug);
+  const questions = allQuestions.filter((q) => q.topic === topicParam);
 
   const [answers, setAnswers] = useState<(number | null)[]>(
     Array(questions.length).fill(null)
@@ -78,20 +95,24 @@ export default function LevelTopicPage() {
     return acc;
   }, 0);
 
+  const backHref = `/levels/${levelKey}`;
+
   return (
     <div className="min-h-screen bg-slate-50 py-8 px-4">
       <div className="max-w-3xl mx-auto">
         <Link
-          href="/levels/a1"
+          href={backHref}
           className="text-sm text-slate-600 mb-4 inline-flex items-center hover:underline"
         >
-          ← Back to A1 Mixed Test & Topics
+          ← Back to {levelLabel} Mixed Test & Topics
         </Link>
 
-        <h1 className="text-2xl md:text-3xl font-bold mb-2">{topic.title}</h1>
+        <h1 className="text-2xl md:text-3xl font-bold mb-2">
+          {topic.title}
+        </h1>
         <p className="text-slate-600 mb-4">{topic.description}</p>
         <p className="text-xs text-slate-500 mb-6">
-          Level A1 • {questions.length} questions
+          Level {levelLabel} • {questions.length} questions
         </p>
 
         <div className="space-y-6 mb-6">
@@ -104,7 +125,7 @@ export default function LevelTopicPage() {
                 {qIndex + 1}. {q.question}
               </p>
               <div className="space-y-2">
-                {q.options.map((opt, optIndex) => {
+                {q.options.map((opt: string, optIndex: number) => {
                   const isSelected = answers[qIndex] === optIndex;
                   const isCorrect = showResult && optIndex === q.correctIndex;
                   const isWrongSelected =
@@ -156,4 +177,3 @@ export default function LevelTopicPage() {
     </div>
   );
 }
-
