@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -48,9 +47,7 @@ export default function LevelPage() {
                 <Link
                   key={topic.slug}
                   href={`/levels/a1/${topic.slug}`}
-                  className={`block w-full text-center py-4 rounded-2xl border font-semibold
-                    ${topic.colorClass ?? 'bg-blue-50 border-blue-100 text-blue-800'}
-                  `}
+                  className="block w-full text-center py-4 rounded-2xl border font-semibold bg-blue-50 border-blue-100 text-blue-800"
                 >
                   {topic.title}
                 </Link>
