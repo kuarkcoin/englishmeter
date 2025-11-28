@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+
 import { a1Topics } from '@/data/levels/a1_topics';
 import { a2Topics } from '@/data/levels/a2_topics';
 import { b1Topics } from '@/data/levels/b1_topics';
@@ -16,24 +17,28 @@ type RouteParams = {
 export default function LevelPage() {
   const params = useParams() as RouteParams;
   const levelParam = Array.isArray(params.level) ? params.level[0] : params.level || '';
-  const level = levelParam.toUpperCase();
+  const level = levelParam.toUpperCase(); // "A1", "A2", ..., "C2"
 
   const isA1 = level === 'A1';
   const isA2 = level === 'A2';
   const isB1 = level === 'B1';
   const isB2 = level === 'B2';
   const isC1 = level === 'C1';
+  const isC2 = level === 'C2';
 
+  // hangi levele hangi topic listesi
   const topics =
     isA1 ? a1Topics :
     isA2 ? a2Topics :
     isB1 ? b1Topics :
     isB2 ? b2Topics :
     isC1 ? c1Topics :
+    isC2 ? c2Topics :
     [];
 
   const hasTopics = topics.length > 0;
-  const mixedTestSlug = `level-${level.toLowerCase()}`;
+
+  const mixedTestSlug = `level-${level.toLowerCase()}`; // level-a1, level-c2 vs.
 
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-4">
@@ -47,32 +52,30 @@ export default function LevelPage() {
           or choose a specific topic.
         </p>
 
+        {/* Mixed Test butonu */}
         <div className="mb-8">
           <Link
             href={`/start?testSlug=${mixedTestSlug}`}
             className="block w-full text-center bg-slate-900 text-white font-semibold py-4 rounded-2xl shadow-lg hover:bg-slate-800"
           >
-            {isA1
-              ? '⭐ Start A1 Mixed Test'
-              : isA2
-              ? '⭐ Start A2 Mixed Test'
-              : isB1
-              ? '⭐ Start B1 Mixed Test'
-              : isB2
-              ? '⭐ Start B2 Mixed Test'
-              : isC1
-              ? '⭐ Start C1 Mixed Test'
-              : `Start ${level} Mixed Test`}
+            {isA1 && '⭐ Start A1 Mixed Test'}
+            {isA2 && '⭐ Start A2 Mixed Test'}
+            {isB1 && '⭐ Start B1 Mixed Test'}
+            {isB2 && '⭐ Start B2 Mixed Test'}
+            {isC1 && '⭐ Start C1 Mixed Test'}
+            {isC2 && '⭐ Start C2 Mixed Test'}
+            {!isA1 && !isA2 && !isB1 && !isB2 && !isC1 && !isC2 && `Start ${level} Mixed Test`}
           </Link>
         </div>
 
+        {/* Topic-based tests */}
         {hasTopics && (
           <>
             <h2 className="text-xl font-bold text-slate-900 mb-3">
               Topic-Based Tests ({level})
             </h2>
             <div className="space-y-3 mb-8">
-              {topics.map((topic: any) => (
+              {topics.map((topic) => (
                 <Link
                   key={topic.slug}
                   href={`/levels/${level.toLowerCase()}/${topic.slug}`}
