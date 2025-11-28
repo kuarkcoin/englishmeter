@@ -9,11 +9,13 @@ import { a2Topics } from '@/data/levels/a2_topics';
 import { b1Topics } from '@/data/levels/b1_topics';
 import { b2Topics } from '@/data/levels/b2_topics';
 import { c1Topics } from '@/data/levels/c1_topics';
+import { c2Topics } from '@/data/levels/c2_topics';
 import { a1Questions } from '@/data/levels/a1_questions';
 import { a2Questions } from '@/data/levels/a2_questions';
 import { b1Questions } from '@/data/levels/b1_questions';
 import { b2Questions } from '@/data/levels/b2_questions';
 import { c1Questions } from '@/data/levels/c1_questions';
+import { c2Questions } from '@/data/levels/c2_questions';
 
 type RouteParams = {
   level?: string | string[];
