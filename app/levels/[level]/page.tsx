@@ -6,6 +6,7 @@ import { a1Topics } from '@/data/levels/a1_topics';
 import { a2Topics } from '@/data/levels/a2_topics';
 import { b1Topics } from '@/data/levels/b1_topics';
 import { b2Topics } from '@/data/levels/b2_topics';
+import { c1Topics } from '@/data/levels/c1_topics';
 
 type RouteParams = {
   level?: string | string[];
@@ -20,12 +21,14 @@ export default function LevelPage() {
   const isA2 = level === 'A2';
   const isB1 = level === 'B1';
   const isB2 = level === 'B2';
+  const isC1 = level === 'C1';
 
   const topics =
     isA1 ? a1Topics :
     isA2 ? a2Topics :
     isB1 ? b1Topics :
     isB2 ? b2Topics :
+    isC1 ? c1Topics :
     [];
 
   const hasTopics = topics.length > 0;
@@ -56,6 +59,8 @@ export default function LevelPage() {
               ? '⭐ Start B1 Mixed Test'
               : isB2
               ? '⭐ Start B2 Mixed Test'
+              : isC1
+              ? '⭐ Start C1 Mixed Test'
               : `Start ${level} Mixed Test`}
           </Link>
         </div>
