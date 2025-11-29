@@ -1,0 +1,40 @@
+export default function AboutPage() {
+  return (
+    <div className="min-h-screen bg-gray-50 py-16 px-6">
+      <div className="max-w-4xl mx-auto bg-white shadow-md p-10 rounded-3xl">
+        <h1 className="text-4xl font-bold text-slate-900 mb-6">About EnglishMeter</h1>
+
+        <p className="text-slate-700 leading-7 mb-4">
+          EnglishMeter is a modern online English-learning platform designed to provide
+          free, high-quality grammar tests for all levels—from A1 beginners to C2 experts.
+          Our mission is simple: make advanced English practice accessible to everyone.
+        </p>
+
+        <p className="text-slate-700 leading-7 mb-4">
+          We focus on clear explanations, smart question design, and intuitive interfaces.
+          Every test is carefully created to help learners understand patterns, avoid
+          common mistakes, and improve faster.
+        </p>
+
+        <p className="text-slate-700 leading-7 mb-4">
+          Whether you're preparing for IELTS, TOEFL, Cambridge exams, or simply improving 
+          your everyday English, EnglishMeter gives you the tools to practise effectively.
+        </p>
+
+        <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-3">Our Vision</h2>
+        <p className="text-slate-700 leading-7 mb-4">
+          To become the world's most trusted English grammar practice platform by offering
+          high-quality tests, personalised learning, and daily challenges that make learning
+          simple and enjoyable.
+        </p>
+
+        <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-3">Contact</h2>
+        <p className="text-slate-700 leading-7">
+          For support or collaboration, feel free to contact us at:  
+          <br />
+          <strong className="text-slate-900">support@englishmeter.net</strong>
+        </p>
+      </div>
+    </div>
+  );
+}
