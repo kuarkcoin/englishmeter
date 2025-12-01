@@ -268,6 +268,186 @@
     "D": "will start",
     "correct": "B",
     "explanation": "The phrase 'It's high time' is followed by the Past Simple to express present necessity/urgency."
+  },
+  {
+    "prompt": "The expansion of the internet has enabled people to access information instantly, ___ it has also led to the spread of misinformation.",
+    "A": "thus",
+    "B": "yet",
+    "C": "similarly",
+    "D": "in case",
+    "correct": "B",
+    "explanation": "'Yet' is a coordinating conjunction used to introduce a contrasting idea (access vs. misinformation), similar to 'but' or 'however'."
+  },
+  {
+    "prompt": "Many scientists argue that we need to find alternative energy sources ___ fossil fuels will eventually run out.",
+    "A": "so that",
+    "B": "unless",
+    "C": "since",
+    "D": "even if",
+    "correct": "C",
+    "explanation": "'Since' here means 'because'. It introduces the reason (fossil fuels running out) for the action."
+  },
+  {
+    "prompt": "___ the severe weather warnings, the expedition team decided to proceed with their journey up the mountain.",
+    "A": "Regardless of",
+    "B": "Although",
+    "C": "Because",
+    "D": "As a result of",
+    "correct": "A",
+    "explanation": "'Regardless of' is a prepositional phrase meaning 'without being affected by'. It fits the context of ignoring warnings."
+  },
+  {
+    "prompt": "The World Health Organization has warned that sedentary lifestyles act ___ a major risk factor ___ cardiovascular diseases.",
+    "A": "like / at",
+    "B": "as / for",
+    "C": "from / to",
+    "D": "by / in",
+    "correct": "B",
+    "explanation": "We say 'act AS' (function as) and 'risk factor FOR' a disease."
+  },
+  {
+    "prompt": "Had the rescue team arrived ten minutes later, the trapped miners ___.",
+    "A": "could not survive",
+    "B": "would not be surviving",
+    "C": "might not have survived",
+    "D": "didn't survive",
+    "correct": "C",
+    "explanation": "Type 3 Conditional Inversion (Had + Subject + V3). The result clause refers to the past: 'might have V3'."
+  },
+  {
+    "prompt": "The ancient city of Petra, ___ is famous for its rock-cut architecture, attracts millions of tourists annually.",
+    "A": "where",
+    "B": "that",
+    "C": "whose",
+    "D": "which",
+    "correct": "D",
+    "explanation": "Non-defining relative clause. We use 'which' after a comma to give extra information about a thing/place (Petra)."
+  },
+  {
+    "prompt": "Children who are encouraged to read at an early age tend to perform better academically ___ those who are not.",
+    "A": "than",
+    "B": "as",
+    "C": "so",
+    "D": "like",
+    "correct": "A",
+    "explanation": "Comparative structure: 'perform BETTER ... THAN'."
+  },
+  {
+    "prompt": "___ established in 1945, the United Nations has worked to maintain international peace and security.",
+    "A": "When",
+    "B": "Since",
+    "C": "Until",
+    "D": "While",
+    "correct": "B",
+    "explanation": "'Since' + Past Participle (Since established...) creates a reduced clause meaning 'Since it was established'."
+  },
+  {
+    "prompt": "You ___ brought your umbrella; the forecast predicts clear skies all day.",
+    "A": "mustn't have",
+    "B": "can't have",
+    "C": "needn't have",
+    "D": "shouldn't have",
+    "correct": "C",
+    "explanation": "'Needn't have V3' means you did something (brought umbrella), but it wasn't necessary."
+  },
+  {
+    "prompt": "The novel was ___ compelling that I finished it in a single sitting.",
+    "A": "so",
+    "B": "such",
+    "C": "too",
+    "D": "very",
+    "correct": "A",
+    "explanation": "'So + adjective + that' structure. (So compelling that...)."
+  },
+  {
+    "prompt": "___ being one of the most expensive cities in the world, Tokyo remains a popular destination for travelers.",
+    "A": "Due to",
+    "B": "In spite of",
+    "C": "Whatever",
+    "D": "Unless",
+    "correct": "B",
+    "explanation": "'In spite of' + gerund (being) shows contrast between high cost and popularity."
+  },
+  {
+    "prompt": "The manager suggested that the meeting ___ until next Monday due to the absence of key members.",
+    "A": "postpones",
+    "B": "to be postponed",
+    "C": "be postponed",
+    "D": "is postponed",
+    "correct": "C",
+    "explanation": "Subjunctive Passive. After 'suggest', 'recommend', etc., we use 'that + subject + be + V3' (or base form)."
+  },
+  {
+    "prompt": "Little ___ that he was being watched by the private investigator.",
+    "A": "he suspected",
+    "B": "did he suspect",
+    "C": "he did suspect",
+    "D": "suspected he",
+    "correct": "B",
+    "explanation": "Inversion with negative adverbs. 'Little' at the start requires the auxiliary verb before the subject."
+  },
+  {
+    "prompt": "The committee is responsible ___ evaluating the project proposals and allocating funds ___ accordingly.",
+    "A": "with / to",
+    "B": "for / -",
+    "C": "of / for",
+    "D": "at / with",
+    "correct": "B",
+    "explanation": "'Responsible FOR' doing something. 'Allocating funds' does not necessarily need a preposition immediately after in this context, or 'accordingly' modifies the verb."
+  },
+  {
+    "prompt": "By the time the ambulance arrived, the injured man ___ consciousness.",
+    "A": "lost",
+    "B": "has lost",
+    "C": "had lost",
+    "D": "was losing",
+    "correct": "C",
+    "explanation": "Past Perfect. The action (losing consciousness) happened *before* another past action (ambulance arriving)."
+  },
+  {
+    "prompt": "This painting is thought ___ by Picasso during his Blue Period.",
+    "A": "to be painted",
+    "B": "having been painted",
+    "C": "to have been painted",
+    "D": "being painted",
+    "correct": "C",
+    "explanation": "Passive reporting structure referring to the past: 'is thought' + 'to have V3' (perfect infinitive)."
+  },
+  {
+    "prompt": "___ the heavy rain, the football match was not cancelled.",
+    "A": "Although",
+    "B": "Despite",
+    "C": "However",
+    "D": "Whereas",
+    "correct": "B",
+    "explanation": "'Despite' takes a noun phrase ('the heavy rain'). 'Although' would require a full clause (Although it rained heavily)."
+  },
+  {
+    "prompt": "It is estimated that ___ 8 million tons of plastic enter our oceans every year.",
+    "A": "some",
+    "B": "any",
+    "C": "plenty",
+    "D": "much",
+    "correct": "A",
+    "explanation": "'Some' is used before numbers to mean 'approximately' or 'about' (e.g., some 8 million tons)."
+  },
+  {
+    "prompt": "___ rich you are, you cannot buy health or happiness.",
+    "A": "However",
+    "B": "Although",
+    "C": "Even if",
+    "D": "Whatever",
+    "correct": "A",
+    "explanation": "'However' + adjective + subject + verb (However rich you are) means 'No matter how rich you are'."
+  },
+  {
+    "prompt": "The government has implemented new measures ___ curb inflation and stabilize the economy.",
+    "A": "with a view to",
+    "B": "in order to",
+    "C": "because of",
+    "D": "so that",
+    "correct": "B",
+    "explanation": "'In order to' + base verb indicates purpose. ('With a view to' would require 'curbing')."
   }
 
 ]
