@@ -1,10 +1,12 @@
 'use client';
 
 import React from 'react';
-// Mevcut gramer sorularınız
+// 1. Gramer konuları
 import topicQuestions from '@/data/grammar_topic_tests.json';
-// Yeni oluşturduğumuz YDS kelime listesi
+// 2. YDS Kelime Listesi
 import ydsVocabulary from '@/data/yds_vocabulary.json';
+// 3. YENİ: YDS Gramer Soruları
+import ydsGrammarQuestions from '@/data/yds_grammar.json';
 
 // --- TEST TANIMLARI ---
 const quickTest = { title: 'Quick Placement Test', slug: 'quick-placement' };
@@ -12,8 +14,10 @@ const megaTest = { title: 'Grammar Mega Test (100Q)', slug: 'grammar-mega-test-1
 const vocabTest = { title: 'Vocabulary B1-C1 (50Q)', slug: 'vocab-b1-c1-50' };
 const raceTest = { title: 'Global Race Mode', href: '/race' };
 const ieltsTest = { title: 'IELTS Grammar (50Q)', slug: 'ielts-grammar' };
-// YENİ YDS TESTİ (Turuncu Buton İçin)
-const ydsTest = { title: 'YDS 1000 Words (50Q)', slug: 'yds-1000-vocab' };
+
+// --- YDS GRUBU ---
+const ydsVocabTest = { title: 'YDS 1000 Words (Vocab)', slug: 'yds-1000-vocab' };
+const ydsGrammarTest = { title: 'YDS Grammar Practice', slug: 'yds-grammar-practice' }; // YENİ
 
 // Grammar Focus testleri
 const grammarTests = [
@@ -30,12 +34,10 @@ const grammarTests = [
   { title: 'Prepositions (Adv)', slug: 'test-prepositions-advanced' },
 ];
 
-// Seviye Testleri
 const levelTests = [
   { level: 'A1' }, { level: 'A2' }, { level: 'B1' }, { level: 'B2' }, { level: 'C1' }, { level: 'C2' },
 ];
 
-// Slug -> JSON Tag Eşleşmesi
 const slugToTag: Record<string, string> = {
   'test-perfect-past': 'perfect_tenses',
   'test-conditionals': 'conditionals',
@@ -54,55 +56,115 @@ const slugToTag: Record<string, string> = {
 function startTest(testSlug: string) {
   const attemptId = `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
-  // 1. YDS KELİME TESTİ MANTIĞI (YENİ EKLENDİ)
+  // 1. YDS KELİME TESTİ
   if (testSlug === 'yds-1000-vocab') {
-    // a. Listeyi karıştır (Typescript hatasını önlemek için 'as any[]' kullandık)
     const shuffledList = [...(ydsVocabulary as any[])].sort(() => 0.5 - Math.random());
-    
-    // b. İlk 50 kelimeyi seç
     const selectedWords = shuffledList.slice(0, 50);
 
-    // c. Soruları ve Şıkları Oluştur
     const questions = selectedWords.map((item, idx) => {
       const correctAnswer = item.meaning;
-      
-      // Yanlış cevap havuzu: Doğru cevap hariç diğerlerinin anlamları
       const distractors = (ydsVocabulary as any[])
         .filter((w) => w.meaning !== correctAnswer)
         .map((w) => w.meaning)
-        .sort(() => 0.5 - Math.random()) // Havuzu karıştır
-        .slice(0, 3); // Rastgele 3 yanlış cevap al
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 3);
       
-      // Şıkları birleştir ve karıştır (1 Doğru + 3 Yanlış = 4 Seçenek)
       const allOptions = [...distractors, correctAnswer].sort(() => 0.5 - Math.random());
-      
       const idsLower = ['a', 'b', 'c', 'd'];
 
       return {
-        id: `yds-q${idx + 1}`,
-        prompt: `What is the Turkish meaning of **"${item.word}"**?`, // Soru İngilizce, Kelime Bold
+        id: `yds-vocab-q${idx + 1}`,
+        prompt: `What is the Turkish meaning of **"${item.word}"**?`,
         choices: allOptions.map((optText, i) => ({
           id: idsLower[i],
-          text: optText, // Şıklar Türkçe
+          text: optText,
           isCorrect: optText === correctAnswer
         })),
-        explanation: `**${item.word}**: ${correctAnswer}` // Cevap açıklaması
+        explanation: `**${item.word}**: ${correctAnswer}`
       };
     });
 
     const payload = {
       attemptId,
       testSlug,
-      test: { title: 'YDS ESSENTIAL 1000 WORDS', duration: 40 }, // Süre 40 dk
+      test: { title: 'YDS 1000 WORDS (VOCABULARY)', duration: 40 },
       questions: questions,
     };
-
     sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
     window.location.href = `/quiz/${attemptId}`;
     return;
   }
 
-  // 2. GRAMMAR FOCUS MANTIĞI (MEVCUT KOD)
+  // 2. YDS GRAMMAR TESTİ (YENİ EKLENEN KISIM)
+  if (testSlug === 'yds-grammar-practice') {
+    // JSON'dan soruları al ve karıştır
+    const shuffledQuestions = [...(ydsGrammarQuestions as any[])].sort(() => 0.5 - Math.random());
+    // İlk 20 soruyu seç (Şimdilik havuz küçükse hepsini alır)
+    const selectedQuestions = shuffledQuestions.slice(0, 20);
+
+    const mappedQuestions = selectedQuestions.map((q: any, idx: number) => {
+      const correctLetter = String(q.correct || 'A').trim().toUpperCase();
+      const letters = ['A', 'B', 'C', 'D'];
+      const idsLower = ['a', 'b', 'c', 'd'];
+
+      return {
+        id: `yds-grammar-q${idx + 1}`,
+        prompt: q.prompt,
+        choices: letters.map((L, i) => ({
+          id: idsLower[i],
+          text: q[L] || `Option ${L}`,
+          isCorrect: correctLetter === L,
+        })),
+        explanation: q.explanation || '',
+      };
+    });
+
+    const payload = {
+      attemptId,
+      testSlug,
+      test: { title: 'YDS GRAMMAR PRACTICE', duration: 25 },
+      questions: mappedQuestions,
+    };
+    sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
+    window.location.href = `/quiz/${attemptId}`;
+    return;
+  }
+
+  // 3. QUICK PLACEMENT TEST
+  if (testSlug === 'quick-placement') {
+    const allQuestions = [...(topicQuestions as any[])];
+    const shuffledQuestions = allQuestions.sort(() => 0.5 - Math.random());
+    const selectedQuestions = shuffledQuestions.slice(0, 25);
+
+    const mappedQuestions = selectedQuestions.map((q: any, idx: number) => {
+      const correctLetter = String(q.correct || 'A').trim().toUpperCase();
+      const letters = ['A', 'B', 'C', 'D'];
+      const idsLower = ['a', 'b', 'c', 'd'];
+
+      return {
+        id: `quick-q${idx + 1}`,
+        prompt: q.prompt,
+        choices: letters.map((L, i) => ({
+          id: idsLower[i],
+          text: q[L] || `Option ${L}`,
+          isCorrect: correctLetter === L,
+        })),
+        explanation: q.explanation || '',
+      };
+    });
+
+    const payload = {
+      attemptId,
+      testSlug,
+      test: { title: 'COMPREHENSIVE PLACEMENT TEST', duration: 25 },
+      questions: mappedQuestions,
+    };
+    sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
+    window.location.href = `/quiz/${attemptId}`;
+    return;
+  }
+
+  // 4. GRAMMAR FOCUS MANTIĞI
   if (slugToTag[testSlug]) {
     const payload: any = {
       attemptId,
@@ -110,23 +172,14 @@ function startTest(testSlug: string) {
       test: { title: 'Practice Test', duration: 30 },
       questions: [],
     };
-
     const grammarTitle = grammarTests.find((t) => t.slug === testSlug)?.title;
-    if (grammarTitle) {
-      payload.test.title = `${grammarTitle.toUpperCase()} TEST`;
-    }
-
+    if (grammarTitle) { payload.test.title = `${grammarTitle.toUpperCase()} TEST`; }
     const tag = slugToTag[testSlug];
-    const rawQuestions = (topicQuestions as any[])
-      .filter((q: any) => q.tags?.includes(tag))
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 20);
-
+    const rawQuestions = (topicQuestions as any[]).filter((q: any) => q.tags?.includes(tag)).sort(() => Math.random() - 0.5).slice(0, 20);
     const mappedQuestions = rawQuestions.map((q: any, idx: number) => {
       const correctLetter = String(q.correct || 'A').trim().toUpperCase();
       const letters = ['A', 'B', 'C', 'D'];
       const idsLower = ['a', 'b', 'c', 'd'];
-
       return {
         id: `${testSlug}-q${idx + 1}`,
         prompt: q.prompt,
@@ -138,14 +191,13 @@ function startTest(testSlug: string) {
         explanation: q.explanation || '',
       };
     });
-
     payload.questions = mappedQuestions;
     sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
     window.location.href = `/quiz/${attemptId}`;
     return;
   }
 
-  // 3. DİĞER STANDART TESTLER
+  // DİĞER
   window.location.href = `/start?testSlug=${testSlug}`;
 }
 
@@ -176,7 +228,6 @@ export default function Home() {
               </a>
             </div>
           </div>
-          
           <div className="hidden md:block">
             <div className="relative mx-auto max-w-sm">
               <div className="rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-500 p-6 shadow-2xl text-white">
@@ -210,9 +261,14 @@ export default function Home() {
               {megaTest.title}
             </button>
 
-            {/* YDS TEST (YENİ EKLENEN TURUNCU BUTON) */}
-            <button onClick={() => startTest(ydsTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-orange-500 text-white text-xl font-bold shadow-xl hover:bg-orange-600 transition-all">
-              {ydsTest.title}
+            {/* YDS VOCABULARY (TURUNCU) */}
+            <button onClick={() => startTest(ydsVocabTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-orange-500 text-white text-xl font-bold shadow-xl hover:bg-orange-600 transition-all">
+              {ydsVocabTest.title}
+            </button>
+
+            {/* YDS GRAMMAR (YENİ - KOYU MAVİ) */}
+            <button onClick={() => startTest(ydsGrammarTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-indigo-600 text-white text-xl font-bold shadow-xl hover:bg-indigo-700 transition-all">
+              {ydsGrammarTest.title}
             </button>
 
             {/* Vocab B1-C1 */}
@@ -225,11 +281,13 @@ export default function Home() {
               {ieltsTest.title}
             </button>
             
-            {/* Race Mode */}
-            <a href={raceTest.href} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-red-600 text-white text-xl font-bold shadow-xl hover:bg-red-700 transition-all">
-              {raceTest.title}
-            </a>
+          </div>
 
+          {/* Race Mode Banner */}
+          <div className="mb-16">
+             <a href={raceTest.href} className="block w-full max-w-2xl mx-auto px-6 py-6 rounded-2xl bg-red-600 text-white text-xl font-bold shadow-xl hover:bg-red-700 transition-all">
+              🏁 {raceTest.title}
+            </a>
           </div>
 
           {/* Grammar Focus Section */}
@@ -262,75 +320,29 @@ export default function Home() {
             </div>
           </div>
 
-          {/* SEO SECTION (TÜM TESTLERİ KAPSAYAN GENİŞLETİLMİŞ VERSİYON) */}
+          {/* SEO SECTION */}
           <section className="text-left w-full border-t border-slate-200 pt-16 mt-16 pb-8">
             <div className="grid md:grid-cols-2 gap-12">
-              
-              {/* BLOK 1: YDS & YÖKDİL (Türkiye Odaklı SEO) */}
               <div>
                 <h2 className="text-xl font-bold text-slate-900 mb-3 flex items-center">
                   <span className="bg-orange-100 text-orange-600 p-2 rounded-lg mr-3 text-sm">🇹🇷</span>
-                  YDS & YÖKDİL Vocabulary Practice
+                  YDS & YÖKDİL Practice
                 </h2>
                 <p className="text-slate-600 mb-4 text-sm leading-relaxed">
-                  Preparing for Turkish national exams like <strong>YDS (Yabancı Dil Bilgisi Seviye Tespit Sınavı)</strong> or <strong>YÖKDİL</strong>? 
-                  Our specialized <strong>"YDS 1000 Words"</strong> test focuses on high-frequency academic vocabulary essential for reading comprehension sections.
+                  Master the Turkish national exams with our specialized tests.
+                  We offer both a <strong>1000 Word Vocabulary Builder</strong> and a new <strong>Grammar Practice</strong> module that simulates real exam questions (Tenses, Modals, Connectors).
                 </p>
-                <ul className="list-disc pl-4 text-sm text-slate-500 space-y-1">
-                  <li>Features 1000+ academic words selected from past exams.</li>
-                  <li>Questions ask for Turkish meanings to simulate exam translation.</li>
-                  <li>Randomized questions ensure you never solve the same test twice.</li>
-                </ul>
               </div>
-
-              {/* BLOK 2: Placement & CEFR (Genel İngilizce SEO) */}
               <div>
                 <h2 className="text-xl font-bold text-slate-900 mb-3 flex items-center">
                   <span className="bg-blue-100 text-blue-600 p-2 rounded-lg mr-3 text-sm">🌍</span>
-                  English Placement Test (CEFR)
+                  Global English Exams
                 </h2>
                 <p className="text-slate-600 mb-4 text-sm leading-relaxed">
-                  Not sure if you are A1, B1, or C2? Our <strong>Quick Placement Test</strong> follows the Common European Framework of Reference for Languages (CEFR). 
-                  In just 15 minutes, get an estimated score based on your grammar and vocabulary proficiency.
+                  Whether it's IELTS, TOEFL or CEFR placement, our tests are designed to push your limits.
+                  Try the <strong>Quick Placement Test</strong> for a fast assessment or the <strong>Grammar Mega Test</strong> for deep practice.
                 </p>
-                <ul className="list-disc pl-4 text-sm text-slate-500 space-y-1">
-                  <li>Covers A1 (Beginner) to C2 (Proficiency) levels.</li>
-                  <li>Instant results with no sign-up required.</li>
-                  <li>Detailed explanation for every mistake.</li>
-                </ul>
               </div>
-
-              {/* BLOK 3: Grammar & IELTS (Akademik SEO) */}
-              <div>
-                <h2 className="text-xl font-bold text-slate-900 mb-3 flex items-center">
-                  <span className="bg-purple-100 text-purple-600 p-2 rounded-lg mr-3 text-sm">📚</span>
-                  Advanced Grammar & IELTS
-                </h2>
-                <p className="text-slate-600 mb-4 text-sm leading-relaxed">
-                  Need to master complex structures? Try our <strong>Grammar Mega Test (100 Questions)</strong> or specialized <strong>IELTS Grammar</strong> quizzes. 
-                  Perfect for students looking to improve their writing and speaking accuracy for international exams.
-                </p>
-                <ul className="list-disc pl-4 text-sm text-slate-500 space-y-1">
-                  <li>Topic-based tests: Tenses, Conditionals, Passive Voice.</li>
-                  <li>Challenge yourself with "Global Race Mode".</li>
-                  <li>Ideal for TOEFL, IELTS, and Cambridge exam prep.</li>
-                </ul>
-              </div>
-
-              {/* BLOK 4: Güven Sinyalleri */}
-              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                <h3 className="text-lg font-bold text-slate-800 mb-2">Why EnglishMeter?</h3>
-                <p className="text-slate-600 text-sm mb-4">
-                  Unlike static PDF tests, our dynamic quiz engine pulls questions from a database of over 5,000 items. 
-                  This means you get a fresh challenge every time you click "Start".
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-semibold text-slate-600">Free Forever</span>
-                  <span className="px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-semibold text-slate-600">Mobile Friendly</span>
-                  <span className="px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-semibold text-slate-600">Instant Score</span>
-                </div>
-              </div>
-
             </div>
           </section>
 
