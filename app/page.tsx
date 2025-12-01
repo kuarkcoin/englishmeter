@@ -100,7 +100,7 @@ function startTest(testSlug: string) {
     // JSON'dan soruları al ve karıştır
     const shuffledQuestions = [...(ydsGrammarQuestions as any[])].sort(() => 0.5 - Math.random());
     // İlk 20 soruyu seç (Şimdilik havuz küçükse hepsini alır)
-    const selectedQuestions = shuffledQuestions.slice(0, 20);
+    const selectedQuestions = shuffledQuestions.slice(0, 50);
 
     const mappedQuestions = selectedQuestions.map((q: any, idx: number) => {
       const correctLetter = String(q.correct || 'A').trim().toUpperCase();
@@ -122,7 +122,7 @@ function startTest(testSlug: string) {
     const payload = {
       attemptId,
       testSlug,
-      test: { title: 'YDS GRAMMAR PRACTICE', duration: 25 },
+      test: { title: 'YDS GRAMMAR PRACTICE', duration: 60 },
       questions: mappedQuestions,
     };
     sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
