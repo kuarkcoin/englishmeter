@@ -122,7 +122,7 @@ function startTest(testSlug: string) {
     const payload = {
       attemptId,
       testSlug,
-      test: { title: 'YDS GRAMMAR PRACTICE', duration: 60 },
+      test: { title: 'YDS GRAMMAR PRACTICE', duration: 50 },
       questions: mappedQuestions,
     };
     sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
