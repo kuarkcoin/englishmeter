@@ -106,5 +106,168 @@
     "D": "reading",
     "correct": "A",
     "explanation": "Subjunctive mood: After adjectives like 'vital', 'essential', we use the base form of the verb."
+  },
+    {
+    "prompt": "The archaeological site, ___ excavation began over a century ago, continues to yield artifacts ___ shed light on the region's history.",
+    "A": "whose / that",
+    "B": "which / where",
+    "C": "where / whom",
+    "D": "that / whose",
+    "correct": "A",
+    "explanation": "'Whose' indicates possession (excavation of the site), and 'that' refers to the artifacts (defining relative clause)."
+  },
+  {
+    "prompt": "___ the overwhelming evidence against him, the defendant continued to claim his innocence throughout the trial.",
+    "A": "In terms of",
+    "B": "Due to",
+    "C": "Despite",
+    "D": "As regards",
+    "correct": "C",
+    "explanation": "'Despite' is a preposition used to show contrast. It is followed by a noun phrase (the overwhelming evidence)."
+  },
+  {
+    "prompt": "If you ___ the manual carefully, you ___ how to operate the machine properly.",
+    "A": "read / would have known",
+    "B": "had read / would know",
+    "C": "have read / knew",
+    "D": "were reading / will know",
+    "correct": "B",
+    "explanation": "Mixed Conditional. Past condition (Type 3: had read) with a present result (Type 2: would know)."
+  },
+  {
+    "prompt": "It is generally agreed that the internet has transformed the way we communicate; ___, it has also raised concerns about privacy.",
+    "A": "consequently",
+    "B": "likewise",
+    "C": "however",
+    "D": "for instance",
+    "correct": "C",
+    "explanation": "'However' introduces a contrasting idea. The first part is positive (transformation), the second is negative (privacy concerns)."
+  },
+  {
+    "prompt": "The new policy is aimed ___ reducing the company's carbon footprint ___ 20% by next year.",
+    "A": "at / by",
+    "B": "to / with",
+    "C": "for / at",
+    "D": "on / in",
+    "correct": "A",
+    "explanation": "'Aimed AT' + gerund is the correct collocation. 'By' is used to indicate the margin or amount of change."
+  },
+  {
+    "prompt": "___ into the atmosphere, greenhouse gases trap heat and contribute to global warming.",
+    "A": "Releasing",
+    "B": "Having released",
+    "C": "To release",
+    "D": "Released",
+    "correct": "D",
+    "explanation": "Passive Participle Clause. '(When they are) Released into the atmosphere...' -> 'Released...'."
+  },
+  {
+    "prompt": "No sooner ___ the hotel room ___ the fire alarm went off.",
+    "A": "we had entered / when",
+    "B": "had we entered / than",
+    "C": "did we enter / that",
+    "D": "we entered / then",
+    "correct": "B",
+    "explanation": "'No sooner... than' requires inversion (had we entered) to describe one event happening immediately after another."
+  },
+  {
+    "prompt": "The professor insisted that the assignment ___ by the end of the week, regardless of the circumstances.",
+    "A": "was submitted",
+    "B": "be submitted",
+    "C": "is submitted",
+    "D": "must be submitted",
+    "correct": "B",
+    "explanation": "Subjunctive Passive. After 'insist', we use the base form (be) for the passive voice."
+  },
+  {
+    "prompt": "___ effectively, time management can significantly reduce stress levels in high-pressure jobs.",
+    "A": "Using",
+    "B": "To use",
+    "C": "Used",
+    "D": "Having used",
+    "correct": "C",
+    "explanation": "Passive Participle. '(If it is) Used effectively...' The subject (time management) receives the action."
+  },
+  {
+    "prompt": "Many species are currently ___ the brink of extinction due to habitat loss and climate change.",
+    "A": "at",
+    "B": "on",
+    "C": "in",
+    "D": "with",
+    "correct": "B",
+    "explanation": "The correct idiom is 'ON the brink of' (or on the verge of) something."
+  },
+  {
+    "prompt": "We prefer to communicate via email ___ having to attend endless meetings.",
+    "A": "rather than",
+    "B": "instead",
+    "C": "in spite of",
+    "D": "other than",
+    "correct": "A",
+    "explanation": "'Prefer X rather than Y' (or prefer X to Y). Since 'having' is a gerund, 'rather than' fits best here."
+  },
+  {
+    "prompt": "___ the expansive nature of the universe, it is mathematically probable that other life forms exist.",
+    "A": "Given",
+    "B": "Provided",
+    "C": "Supposing",
+    "D": "Even though",
+    "correct": "A",
+    "explanation": "'Given' (meaning 'taking into account') is a preposition used here with a noun phrase."
+  },
+  {
+    "prompt": "He is the only candidate ___ for the position, so he will likely get the job.",
+    "A": "applying",
+    "B": "to apply",
+    "C": "applied",
+    "D": "having applied",
+    "correct": "B",
+    "explanation": "After 'the only', 'the first', 'the last', we usually use the to-infinitive (to apply)."
+  },
+  {
+    "prompt": "By the end of this century, scientists predict that sea levels ___ by more than a meter.",
+    "A": "will rise",
+    "B": "are rising",
+    "C": "will have risen",
+    "D": "have risen",
+    "correct": "C",
+    "explanation": "Future Perfect tense is used with 'By + future time' to indicate an action completed before that time."
+  },
+  {
+    "prompt": "The more you practice speaking English, ___ fluent you will become.",
+    "A": "the most",
+    "B": "more",
+    "C": "the more",
+    "D": "as more",
+    "correct": "C",
+    "explanation": "The comparative structure 'The + comparative ..., the + comparative ...' (The more..., the more...)."
+  },
+  {
+    "prompt": "She wouldn't have been late for the interview if her alarm clock ___.",
+    "A": "went off",
+    "B": "had gone off",
+    "C": "has gone off",
+    "D": "would go off",
+    "correct": "B",
+    "explanation": "Type 3 Conditional. If + Past Perfect (had gone off), would have + V3."
+  },
+  {
+    "prompt": "The CEO, ___ leadership the company flourished, announced his retirement yesterday.",
+    "A": "whom",
+    "B": "which",
+    "C": "under whose",
+    "D": "that",
+    "correct": "C",
+    "explanation": "Relative clause of possession with a preposition. 'Under whose leadership' refers to the CEO."
+  },
+  {
+    "prompt": "It's high time you ___ taking your responsibilities seriously.",
+    "A": "start",
+    "B": "started",
+    "C": "have started",
+    "D": "will start",
+    "correct": "B",
+    "explanation": "The phrase 'It's high time' is followed by the Past Simple to express present necessity/urgency."
   }
+
 ]
