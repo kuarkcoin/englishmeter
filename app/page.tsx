@@ -5,8 +5,10 @@ import React from 'react';
 import topicQuestions from '@/data/grammar_topic_tests.json';
 // 2. YDS Kelime Listesi
 import ydsVocabulary from '@/data/yds_vocabulary.json';
-// 3. YENİ: YDS Gramer Soruları
+// 3. YDS Gramer Soruları
 import ydsGrammarQuestions from '@/data/yds_grammar.json';
+// 4. YDS Phrasal Verbs (YENİ)
+import ydsPhrasals from '@/data/yds_phrasal_verbs.json';
 
 // --- TEST TANIMLARI ---
 const quickTest = { title: 'Quick Placement Test', slug: 'quick-placement' };
@@ -17,7 +19,8 @@ const ieltsTest = { title: 'IELTS Grammar (50Q)', slug: 'ielts-grammar' };
 
 // --- YDS GRUBU ---
 const ydsVocabTest = { title: 'YDS 1000 Words (Vocab)', slug: 'yds-1000-vocab' };
-const ydsGrammarTest = { title: 'YDS Grammar Practice', slug: 'yds-grammar-practice' }; // YENİ
+const ydsGrammarTest = { title: 'YDS Grammar Practice', slug: 'yds-grammar-practice' };
+const ydsPhrasalTest = { title: 'YDS Phrasal Verbs', slug: 'yds-phrasal-verbs' }; // YENİ
 
 // Grammar Focus testleri
 const grammarTests = [
@@ -56,7 +59,7 @@ const slugToTag: Record<string, string> = {
 function startTest(testSlug: string) {
   const attemptId = `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
-  // 1. YDS KELİME TESTİ
+  // 1. YDS KELİME TESTİ (VOCAB)
   if (testSlug === 'yds-1000-vocab') {
     const shuffledList = [...(ydsVocabulary as any[])].sort(() => 0.5 - Math.random());
     const selectedWords = shuffledList.slice(0, 50);
@@ -95,12 +98,10 @@ function startTest(testSlug: string) {
     return;
   }
 
-  // 2. YDS GRAMMAR TESTİ (YENİ EKLENEN KISIM)
+  // 2. YDS GRAMMAR TESTİ
   if (testSlug === 'yds-grammar-practice') {
-    // JSON'dan soruları al ve karıştır
     const shuffledQuestions = [...(ydsGrammarQuestions as any[])].sort(() => 0.5 - Math.random());
-    // İlk 20 soruyu seç (Şimdilik havuz küçükse hepsini alır)
-    const selectedQuestions = shuffledQuestions.slice(0, 50);
+    const selectedQuestions = shuffledQuestions.slice(0, 50); 
 
     const mappedQuestions = selectedQuestions.map((q: any, idx: number) => {
       const correctLetter = String(q.correct || 'A').trim().toUpperCase();
@@ -122,7 +123,7 @@ function startTest(testSlug: string) {
     const payload = {
       attemptId,
       testSlug,
-      test: { title: 'YDS GRAMMAR PRACTICE', duration: 50 },
+      test: { title: 'YDS GRAMMAR PRACTICE (50 Questions)', duration: 60 }, 
       questions: mappedQuestions,
     };
     sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
@@ -130,7 +131,47 @@ function startTest(testSlug: string) {
     return;
   }
 
-  // 3. QUICK PLACEMENT TEST
+  // 3. YDS PHRASAL VERBS (YENİ)
+  if (testSlug === 'yds-phrasal-verbs') {
+    const shuffledList = [...(ydsPhrasals as any[])].sort(() => 0.5 - Math.random());
+    const selectedWords = shuffledList.slice(0, 50);
+
+    const questions = selectedWords.map((item, idx) => {
+      const correctAnswer = item.meaning;
+      // Yanlış cevapları havuzdan seç
+      const distractors = (ydsPhrasals as any[])
+        .filter((w) => w.meaning !== correctAnswer)
+        .map((w) => w.meaning)
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 3);
+      
+      const allOptions = [...distractors, correctAnswer].sort(() => 0.5 - Math.random());
+      const idsLower = ['a', 'b', 'c', 'd'];
+
+      return {
+        id: `yds-phrasal-q${idx + 1}`,
+        prompt: `What is the meaning of the phrasal verb **"${item.word}"**?`,
+        choices: allOptions.map((optText, i) => ({
+          id: idsLower[i],
+          text: optText,
+          isCorrect: optText === correctAnswer
+        })),
+        explanation: `**${item.word}**: ${correctAnswer}`
+      };
+    });
+
+    const payload = {
+      attemptId,
+      testSlug,
+      test: { title: 'YDS PHRASAL VERBS TEST', duration: 40 },
+      questions: questions,
+    };
+    sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
+    window.location.href = `/quiz/${attemptId}`;
+    return;
+  }
+
+  // 4. QUICK PLACEMENT TEST
   if (testSlug === 'quick-placement') {
     const allQuestions = [...(topicQuestions as any[])];
     const shuffledQuestions = allQuestions.sort(() => 0.5 - Math.random());
@@ -164,7 +205,7 @@ function startTest(testSlug: string) {
     return;
   }
 
-  // 4. GRAMMAR FOCUS MANTIĞI
+  // 5. GRAMMAR FOCUS MANTIĞI
   if (slugToTag[testSlug]) {
     const payload: any = {
       attemptId,
@@ -266,19 +307,24 @@ export default function Home() {
               {ydsVocabTest.title}
             </button>
 
-            {/* YDS GRAMMAR (YENİ - KOYU MAVİ) */}
+            {/* YDS GRAMMAR (KOYU MAVİ) */}
             <button onClick={() => startTest(ydsGrammarTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-indigo-600 text-white text-xl font-bold shadow-xl hover:bg-indigo-700 transition-all">
               {ydsGrammarTest.title}
             </button>
 
-            {/* Vocab B1-C1 */}
-            <button onClick={() => startTest(vocabTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-emerald-600 text-white text-xl font-bold shadow-xl hover:bg-emerald-700 transition-all">
-              {vocabTest.title}
+            {/* YDS PHRASAL VERBS (TEAL/TURKUAZ - YENİ) */}
+            <button onClick={() => startTest(ydsPhrasalTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-teal-600 text-white text-xl font-bold shadow-xl hover:bg-teal-700 transition-all">
+              {ydsPhrasalTest.title}
             </button>
 
             {/* IELTS */}
             <button onClick={() => startTest(ieltsTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-sky-400 text-white text-xl font-bold shadow-xl hover:bg-sky-500 transition-all">
               {ieltsTest.title}
+            </button>
+
+            {/* Vocab B1-C1 */}
+             <button onClick={() => startTest(vocabTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-emerald-600 text-white text-xl font-bold shadow-xl hover:bg-emerald-700 transition-all">
+              {vocabTest.title}
             </button>
             
           </div>
@@ -330,8 +376,13 @@ export default function Home() {
                 </h2>
                 <p className="text-slate-600 mb-4 text-sm leading-relaxed">
                   Master the Turkish national exams with our specialized tests.
-                  We offer both a <strong>1000 Word Vocabulary Builder</strong> and a new <strong>Grammar Practice</strong> module that simulates real exam questions (Tenses, Modals, Connectors).
+                  We offer a <strong>1000 Word Vocabulary Builder</strong>, extensive <strong>Phrasal Verbs</strong> exercises, and <strong>Grammar Practice</strong> that simulates real exam questions.
                 </p>
+                <ul className="list-disc pl-4 text-sm text-slate-500 space-y-1">
+                  <li>YDS Phrasal Verbs (Essential for high scores).</li>
+                  <li>Academic vocabulary with Turkish meanings.</li>
+                  <li>Advanced grammar structures (Inversion, Participles).</li>
+                </ul>
               </div>
               <div>
                 <h2 className="text-xl font-bold text-slate-900 mb-3 flex items-center">
