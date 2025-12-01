@@ -1,25 +1,28 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Footer from '@/components/Footer';
-import Script from 'next/script'; // Google Analytics için eklendi
+import Script from 'next/script'; 
 
 const siteName = 'EnglishMeter';
 const siteUrl = 'https://englishmeter.net';
 
+// 1. GÜNCELLEME: Açıklamayı YDS ve Kelime Testini kapsayacak şekilde genişlettik
 const siteDescription =
-  'Take our free English level test and get your CEFR score (A1–C2) in 15 minutes. Test your grammar and vocabulary instantly with no sign-up required.';
+  'Take our free English level test (A1–C2) and practice for YDS/YÖKDİL with our 1000 essential vocabulary words. Instant grammar & vocab results, no sign-up required.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default: 'Free English Level Test: Get Your CEFR Score in 15 Mins',
+    // Başlık şablonu gayet iyi, koruyoruz
+    default: 'Free English Level Test & YDS Vocabulary Quiz', // Hafif bir ekleme yaptık
     template: `%s | ${siteName}`,
   },
 
   description: siteDescription,
   applicationName: siteName,
 
+  // 2. GÜNCELLEME: YDS ve Türkçe anahtar kelimeler eklendi
   keywords: [
     'english level test',
     'english placement test',
@@ -31,6 +34,12 @@ export const metadata: Metadata = {
     'A1 A2 B1 B2 C1 C2 test',
     'IELTS grammar practice',
     'free english test',
+    // --- Yeni Eklenenler ---
+    'YDS kelime testi',
+    'YDS vocabulary list',
+    'YÖKDİL kelime çalışması',
+    'YDS 1000 words',
+    'online vocabulary quiz',
   ],
 
   alternates: {
@@ -40,7 +49,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: siteUrl,
-    title: 'Test Your English Level Online – Fast & Free',
+    title: 'Test Your English Level & YDS Vocabulary Online', // Sosyal medya başlığını güncelledik
     siteName,
     description: siteDescription,
     images: [
@@ -48,7 +57,7 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'EnglishMeter – Free English Placement Test',
+        alt: 'EnglishMeter – Free English Level & Vocabulary Test',
       },
     ],
   },
@@ -56,7 +65,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'How Good is Your English? Take the Free Test',
-    description: 'Get your CEFR level (A1-C2) in just 15 minutes.',
+    description: 'Get your CEFR level and test your YDS vocabulary in minutes.', // Twitter açıklamasını güncelledik
   },
 
   robots: {
@@ -82,6 +91,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // 3. GÜNCELLEME: Schema (Yapısal Veri) içine YDS bilgisini ekledik
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -99,7 +109,7 @@ export default function RootLayout({
     {
       '@context': 'https://schema.org',
       '@type': 'EducationalApplication',
-      name: 'EnglishMeter Level Test',
+      name: 'EnglishMeter Level & Vocabulary Test',
       url: siteUrl,
       applicationCategory: 'EducationalApplication',
       description: siteDescription,
@@ -114,6 +124,8 @@ export default function RootLayout({
         'CEFR level assessment',
         'Grammar quizzes',
         'Vocabulary testing',
+        'YDS Exam Preparation',    // <--- YENİ
+        'YÖKDİL Vocabulary List', // <--- YENİ
       ],
       operatingSystem: 'Any',
     },
@@ -122,8 +134,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-slate-50 min-h-screen flex flex-col">
-        
-        {/* --- GOOGLE ANALYTICS KODU --- */}
+
+        {/* --- GOOGLE ANALYTICS KODU (Aynen korundu) --- */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-Z4658W17W5"
           strategy="afterInteractive"
