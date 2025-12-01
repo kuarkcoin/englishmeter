@@ -1,0 +1,110 @@
+[
+  {
+    "prompt": "___ the elaborate architectural designs of the ancient Romans, many of their concrete structures are still standing today.",
+    "A": "In addition to",
+    "B": "Thanks to",
+    "C": "In spite of",
+    "D": "Contrary to",
+    "correct": "B",
+    "explanation": "'Thanks to' expresses a positive cause-and-effect relationship, fitting the context of structures still standing due to designs."
+  },
+  {
+    "prompt": "If the government ___ stricter regulations on carbon emissions years ago, the current climate crisis ___ so severe.",
+    "A": "imposed / wouldn't be",
+    "B": "had imposed / wouldn't be",
+    "C": "imposed / wouldn't have been",
+    "D": "has imposed / isn't",
+    "correct": "B",
+    "explanation": "This is a Mixed Conditional. The first part refers to the past (Type 3: had imposed), and the second part refers to the present result (Type 2: wouldn't be)."
+  },
+  {
+    "prompt": "The psychology professor suggests that early childhood experiences have a profound impact ___ personality development ___ adulthood.",
+    "A": "on / in",
+    "B": "at / for",
+    "C": "with / to",
+    "D": "about / at",
+    "correct": "A",
+    "explanation": "We say 'impact ON something' and 'IN adulthood' (time period)."
+  },
+  {
+    "prompt": "___ solar energy is a renewable resource, the initial cost of installing panels can be prohibitively high for some households.",
+    "A": "Because",
+    "B": "Unless",
+    "C": "Although",
+    "D": "Provided that",
+    "correct": "C",
+    "explanation": "'Although' introduces a concession/contrast clause, contrasting the renewable nature with the high cost."
+  },
+  {
+    "prompt": "Scientists have recently discovered a new species of bacteria that is capable ___ plastic.",
+    "A": "to consume",
+    "B": "of consuming",
+    "C": "consuming",
+    "D": "for consuming",
+    "correct": "B",
+    "explanation": "The adjective 'capable' is always followed by the preposition 'of' and a gerund (-ing)."
+  },
+  {
+    "prompt": "Before the invention of the printing press, books ___ by hand, which made them extremely expensive.",
+    "A": "were being written",
+    "B": "had been written",
+    "C": "have been written",
+    "D": "were written",
+    "correct": "D",
+    "explanation": "Simple Past Passive (were written) is best here to describe a general fact in the past before a specific event."
+  },
+  {
+    "prompt": "The medication should not be discontinued ___ the patient feels better, as the symptoms may return.",
+    "A": "even if",
+    "B": "so that",
+    "C": "in case",
+    "D": "because",
+    "correct": "A",
+    "explanation": "'Even if' suggests that the action (not stopping meds) should apply despite the condition (feeling better)."
+  },
+  {
+    "prompt": "Many developing countries are struggling to cope ___ the rapid urbanization that puts pressure ___ infrastructure.",
+    "A": "with / on",
+    "B": "for / at",
+    "C": "about / in",
+    "D": "from / to",
+    "correct": "A",
+    "explanation": "Phrasal verb 'cope WITH' and noun phrase 'pressure ON'."
+  },
+  {
+    "prompt": "___ there is ample evidence supporting the benefits of a Mediterranean diet, some people still prefer processed foods.",
+    "A": "Given that",
+    "B": "While",
+    "C": "As long as",
+    "D": "In case",
+    "correct": "B",
+    "explanation": "'While' is used here to show contrast between the evidence and people's actual behavior."
+  },
+  {
+    "prompt": "The ancient library of Alexandria is believed ___ thousands of scrolls from various civilizations.",
+    "A": "containing",
+    "B": "to contain",
+    "C": "to have contained",
+    "D": "having contained",
+    "correct": "C",
+    "explanation": "Passive reporting verb 'is believed' + perfect infinitive 'to have contained' to refer to a past state."
+  },
+  {
+    "prompt": "Not only ___ the project on time, but he also managed to save a significant amount of the budget.",
+    "A": "he completed",
+    "B": "did he complete",
+    "C": "he did complete",
+    "D": "complete he",
+    "correct": "B",
+    "explanation": "Inversion is required after 'Not only' at the beginning of the sentence."
+  },
+  {
+    "prompt": "It is vital that every participant ___ the safety guidelines before entering the laboratory.",
+    "A": "read",
+    "B": "reads",
+    "C": "must read",
+    "D": "reading",
+    "correct": "A",
+    "explanation": "Subjunctive mood: After adjectives like 'vital', 'essential', we use the base form of the verb."
+  }
+]
