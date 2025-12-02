@@ -898,5 +898,205 @@
         "D": "on",
         "correct": "A",
         "explanation": "The adjective 'consistent' takes the preposition 'with'."
+    },
+    {
+        "prompt": "The ancient ruins appear ___ by a massive earthquake thousands of years ago, considering the specific pattern of the structural damage.",
+        "A": "to be destroyed",
+        "B": "having been destroyed",
+        "C": "to have been destroyed",
+        "D": "being destroyed",
+        "E": "to have destroyed",
+        "correct": "C",
+        "explanation": "Perfect Passive Infinitive. The verb 'appear' takes a to-infinitive. Since the event happened in the past (thousands of years ago) and is passive, 'to have been V3' is the correct form."
+    },
+    {
+        "prompt": "___ the overwhelming consensus among scientists regarding climate change, some policymakers remain skeptical about the urgency of the issue.",
+        "A": "In terms of",
+        "B": "Thanks to",
+        "C": "Despite",
+        "D": "Similar to",
+        "E": "As a result of",
+        "correct": "C",
+        "explanation": "'Despite' is a preposition of contrast. It fits the context: scientific consensus vs. skepticism."
+    },
+    {
+        "prompt": "By the time the new space telescope ___ fully operational next year, astronomers ___ for decades to observe these distant galaxies.",
+        "A": "becomes / will have been waiting",
+        "B": "will become / have waited",
+        "C": "became / had waited",
+        "D": "has become / are waiting",
+        "E": "is becoming / will wait",
+        "correct": "A",
+        "explanation": "Future Perfect Continuous. 'By the time + Simple Present (future meaning)' requires 'will have been Ving' in the main clause to emphasize duration."
+    },
+    {
+        "prompt": "The psychology study was designed to determine ___ certain personality traits are hereditary or shaped by the environment.",
+        "A": "neither",
+        "B": "whether",
+        "C": "so that",
+        "D": "in case",
+        "E": "unless",
+        "correct": "B",
+        "explanation": "Noun Clause. 'Determine whether... or...' is the standard structure for presenting alternatives."
+    },
+    {
+        "prompt": "___ located in a seismically active zone, Japan has invested heavily in earthquake-resistant infrastructure.",
+        "A": "Being",
+        "B": "To be",
+        "C": "Having",
+        "D": "To have been",
+        "E": "Been",
+        "correct": "A",
+        "explanation": "Participle Clause (Reason). 'Being located...' is a reduction of 'Because it is located...'."
+    },
+    {
+        "prompt": "Many historians argue that the invention of the printing press was a pivotal moment ___ allowed knowledge to spread rapidly across Europe.",
+        "A": "where",
+        "B": "whose",
+        "C": "in which",
+        "D": "that",
+        "E": "when",
+        "correct": "D",
+        "explanation": "Relative Clause. 'That' defines 'pivotal moment' (or the situation) and acts as the subject of the verb 'allowed'."
+    },
+    {
+        "prompt": "The CEO is believed ___ millions of dollars into offshore accounts before the company declared bankruptcy.",
+        "A": "to transfer",
+        "B": "transferring",
+        "C": "to have transferred",
+        "D": "having transferred",
+        "E": "to be transferred",
+        "correct": "C",
+        "explanation": "Passive Reporting Verb. 'Is believed' + 'to have V3' refers to an action that happened before the time of reporting."
+    },
+    {
+        "prompt": "No sooner had the government announced the new tax regulations ___ widespread protests erupted in the capital.",
+        "A": "when",
+        "B": "that",
+        "C": "than",
+        "D": "then",
+        "E": "as",
+        "correct": "C",
+        "explanation": "Inversion Structure. 'No sooner... than' is a fixed correlative conjunction used for immediate sequence of events."
+    },
+    {
+        "prompt": "It is vital that every employee ___ the safety protocols before entering the laboratory.",
+        "A": "memorizes",
+        "B": "memorize",
+        "C": "memorized",
+        "D": "has memorized",
+        "E": "must memorize",
+        "correct": "B",
+        "explanation": "Subjunctive Mood. After adjectives of necessity like 'vital', we use the base form of the verb (memorize)."
+    },
+    {
+        "prompt": "___ strictly forbidden, some tourists still attempt to climb the sacred pyramid.",
+        "A": "Although",
+        "B": "Despite",
+        "C": "Since",
+        "D": "Unless",
+        "E": "Given",
+        "correct": "A",
+        "explanation": "Reduction of Adverbial Clause. 'Although (it is) strictly forbidden...'. 'Despite' would require a noun phrase or gerund."
+    },
+    {
+        "prompt": "The widespread use of antibiotics in agriculture has contributed ___ the emergence of drug-resistant bacteria.",
+        "A": "for",
+        "B": "on",
+        "C": "with",
+        "D": "to",
+        "E": "at",
+        "correct": "D",
+        "explanation": "Collocation. The verb 'contribute' is always followed by the preposition 'to'."
+    },
+    {
+        "prompt": "If the rescue team ___ earlier, the victims might have been saved.",
+        "A": "arrives",
+        "B": "has arrived",
+        "C": "would arrive",
+        "D": "had arrived",
+        "E": "was arriving",
+        "correct": "D",
+        "explanation": "Type 3 Conditional. Describes an unreal past situation. If + Past Perfect, would/might have + V3."
+    },
+    {
+        "prompt": "___ advancements in artificial intelligence, many traditional jobs are expected to become automated in the near future.",
+        "A": "In spite of",
+        "B": "Contrary to",
+        "C": "Due to",
+        "D": "Rather than",
+        "E": "Instead of",
+        "correct": "C",
+        "explanation": "Cause and Effect. 'Due to' (meaning 'because of') fits the context of AI advancements causing automation."
+    },
+    {
+        "prompt": "The novel, ___ characters are based on real historical figures, provides a fascinating glimpse into 18th-century life.",
+        "A": "which",
+        "B": "whose",
+        "C": "that",
+        "D": "where",
+        "E": "whom",
+        "correct": "B",
+        "explanation": "Possessive Relative Clause. 'Whose' refers to the characters OF the novel."
+    },
+    {
+        "prompt": "Hardly anyone believed that the project would succeed, ___?",
+        "A": "did they",
+        "B": "didn't they",
+        "C": "would it",
+        "D": "wouldn't it",
+        "E": "do they",
+        "correct": "A",
+        "explanation": "Question Tag. 'Hardly anyone' is negative, so the tag must be positive. 'Believed' is past tense -> 'did'."
+    },
+    {
+        "prompt": "We prefer to conduct the survey online ___ distributing paper forms to save both time and resources.",
+        "A": "rather than",
+        "B": "instead",
+        "C": "other than",
+        "D": "in terms of",
+        "E": "apart from",
+        "correct": "A",
+        "explanation": "Preference. 'Prefer to do X rather than (do) Y' is the correct structure."
+    },
+    {
+        "prompt": "___ rich the country may be in natural resources, it still faces significant economic challenges.",
+        "A": "Whatever",
+        "B": "Although",
+        "C": "However",
+        "D": "Even if",
+        "E": "Much as",
+        "correct": "C",
+        "explanation": "Adverbial Clause of Concession. 'However + Adjective + Subject + Verb' means 'No matter how rich...'."
+    },
+    {
+        "prompt": "It is generally agreed that language acquisition is most effective when learners are exposed ___ the target language in authentic contexts.",
+        "A": "with",
+        "B": "by",
+        "C": "on",
+        "D": "to",
+        "E": "at",
+        "correct": "D",
+        "explanation": "Collocation. 'Exposed TO' something is the correct usage."
+    },
+    {
+        "prompt": "Not only ___ the championship, but she also broke the world record.",
+        "A": "she won",
+        "B": "did she win",
+        "C": "she did win",
+        "D": "won she",
+        "E": "she has won",
+        "correct": "B",
+        "explanation": "Inversion. When a sentence starts with 'Not only', the subject and auxiliary verb are inverted."
+    },
+    {
+        "prompt": "The discovery of the ancient tomb shed new light on the civilization, ___ previously unknown burial customs.",
+        "A": "reveal",
+        "B": "revealed",
+        "C": "revealing",
+        "D": "to reveal",
+        "E": "having been revealed",
+        "correct": "C",
+        "explanation": "Participle Phrase. 'Revealing...' modifies the whole previous clause, indicating the result of the discovery."
     }
 ]
