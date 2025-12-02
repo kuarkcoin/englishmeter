@@ -1098,5 +1098,505 @@
         "E": "having been revealed",
         "correct": "C",
         "explanation": "Participle Phrase. 'Revealing...' modifies the whole previous clause, indicating the result of the discovery."
+    },
+    {
+        "prompt": "___, the global economy is expected to recover slowly over the next decade.",
+        "A": "Unless the government implements new tax reforms",
+        "B": "Although there are still significant uncertainties regarding inflation",
+        "C": "Since the unemployment rate has reached its peak last year",
+        "D": "Provided that the technology sector continues to shrink",
+        "E": "In case the stock market crashes unexpectedly",
+        "correct": "B",
+        "explanation": "'Although' introduces a contrast. Despite the uncertainties (negative), the economy is expected to recover (positive)."
+    },
+    {
+        "prompt": "Unless strict measures are taken to curb carbon emissions, ___.",
+        "A": "global temperatures will continue to rise at an alarming rate",
+        "B": "renewable energy sources have become more popular",
+        "C": "governments had already signed the Paris Agreement",
+        "D": "the ozone layer was healing faster than expected",
+        "E": "biodiversity in the rainforests is flourishing",
+        "correct": "A",
+        "explanation": "'Unless' (if not) sets a condition. If measures aren't taken, a negative result (rising temperatures) will follow."
+    },
+    {
+        "prompt": "Genetic engineering has the potential to eradicate hereditary diseases; ___.",
+        "A": "therefore, scientists are abandoning the research entirely",
+        "B": "moreover, it raises profound ethical questions about altering human DNA",
+        "C": "otherwise, hospitals would be empty within a year",
+        "D": "because traditional medicine is far more effective",
+        "E": "so that patients can recover from the flu quickly",
+        "correct": "B",
+        "explanation": "'Moreover' adds extra information. It mentions a benefit first, then adds a related serious issue (ethical questions)."
+    },
+    {
+        "prompt": "___ as long as they are properly maintained and serviced regularly.",
+        "A": "Electric cars can last for many years",
+        "B": "The old bridge collapsed last winter",
+        "C": "Computers were originally designed for calculation",
+        "D": "The building which was demolished yesterday",
+        "E": "Nobody knows how to operate the machine",
+        "correct": "A",
+        "explanation": "'As long as' sets a condition for the future/present capability. Electric cars can last (result) if maintained (condition)."
+    },
+    {
+        "prompt": "Even though the archaeological site was discovered a century ago, ___.",
+        "A": "archaeologists have lost interest in the region",
+        "B": "it still yields new artifacts that shed light on the ancient civilization",
+        "C": "the museum was closed to the public for renovations",
+        "D": "nobody knew about its existence until yesterday",
+        "E": "the excavation team had finished their work early",
+        "correct": "B",
+        "explanation": "'Even though' indicates contrast. Old discovery vs. still finding new things."
+    },
+    {
+        "prompt": "In order to remain competitive in the digital market, companies must ___.",
+        "A": "ignore the latest technological trends",
+        "B": "adapt to changing consumer behaviors and innovate constantly",
+        "C": "rely solely on traditional advertising methods",
+        "D": "reduce their online presence significantly",
+        "E": "stop hiring skilled software developers",
+        "correct": "B",
+        "explanation": "Purpose clause (In order to...). To stay competitive, one must adapt and innovate."
+    },
+    {
+        "prompt": "___ that the migration patterns of birds are affected by climate change.",
+        "A": "It is a well-known fact",
+        "B": "Scientists who argue",
+        "C": "Despite the evidence",
+        "D": "However true it may be",
+        "E": "Whatever the reason is",
+        "correct": "A",
+        "explanation": "'It is a well-known fact THAT...' is a standard noun clause structure."
+    },
+    {
+        "prompt": "Just as the Industrial Revolution transformed the 19th century, ___.",
+        "A": "the steam engine was invented by James Watt",
+        "B": "agriculture remained the primary source of income",
+        "C": "the Digital Revolution is reshaping the 21st century",
+        "D": "people stopped working in factories",
+        "E": "history repeats itself in mysterious ways",
+        "correct": "C",
+        "explanation": "'Just as... so...' (analogy structure). Comparing the Industrial Revolution to the Digital Revolution."
+    },
+    {
+        "prompt": "Patients are advised to complete the full course of antibiotics ___.",
+        "A": "because they feel better after a few days",
+        "B": "even if their symptoms disappear",
+        "C": "unless the doctor tells them to continue",
+        "D": "so that the bacteria becomes resistant",
+        "E": "when the pharmacy runs out of stock",
+        "correct": "B",
+        "explanation": "'Even if' covers the concessive condition. Finish the meds even if you feel good."
+    },
+    {
+        "prompt": "___, Einstein is best known for his theory of relativity.",
+        "A": "Since he was a poor student in math",
+        "B": "While he contributed to many areas of physics",
+        "C": "Because he won the Nobel Prize for the photoelectric effect",
+        "D": "Unless he published his papers in 1905",
+        "E": "Despite being a famous musician",
+        "correct": "B",
+        "explanation": "'While' establishes a contrast/concession. He did many things, BUT is best known for relativity."
+    },
+    {
+        "prompt": "No sooner had the peace treaty been signed ___.",
+        "A": "when the soldiers returned home",
+        "B": "than fresh fighting broke out on the border",
+        "C": "that the leaders shook hands",
+        "D": "after the negotiations ended",
+        "E": "then the war was officially over",
+        "correct": "B",
+        "explanation": "'No sooner... than' structure. It indicates immediate succession of events, often with a negative twist."
+    },
+    {
+        "prompt": "The more autonomy employees are given in their work, ___.",
+        "A": "the less productive they tend to become",
+        "B": "more satisfied they are with their jobs",
+        "C": "the higher their job satisfaction and creativity",
+        "D": "as much as they want to leave the company",
+        "E": "the least amount of effort they exert",
+        "correct": "C",
+        "explanation": "Double comparative structure: 'The more..., the higher...'."
+    },
+    {
+        "prompt": "___ largely due to the widespread use of vaccines.",
+        "A": "Smallpox has been eradicated",
+        "B": "The flu season is getting worse",
+        "C": "Doctors are struggling to find cures",
+        "D": "Many diseases are becoming resistant",
+        "E": "Hospitals are overcrowded",
+        "correct": "A",
+        "explanation": "Cause and effect. Eradication of smallpox is the result of vaccines."
+    },
+    {
+        "prompt": "Whatever the outcome of the negotiation might be, ___.",
+        "A": "we have already signed the contract",
+        "B": "the company is prepared to adapt to the new situation",
+        "C": "it was a complete failure from the start",
+        "D": "nobody knows what will happen yesterday",
+        "E": "the profit margins are increasing",
+        "correct": "B",
+        "explanation": "'Whatever...' introduces a condition that doesn't change the main action. The company is prepared regardless."
+    },
+    {
+        "prompt": "Much as I admire his artistic talent, ___.",
+        "A": "I think his paintings are overpriced",
+        "B": "he is a wonderful painter",
+        "C": "I bought all of his works",
+        "D": "he has no skill whatsoever",
+        "E": "everyone loves his art",
+        "correct": "A",
+        "explanation": "'Much as' means 'Although'. I admire him, BUT I think he is overpriced."
+    },
+    {
+        "prompt": "It is vital that the instructions ___ carefully before operating the machinery.",
+        "A": "read",
+        "B": "be read",
+        "C": "are reading",
+        "D": "have read",
+        "E": "to be read",
+        "correct": "B",
+        "explanation": "Subjunctive Passive. 'It is vital that... be read'."
+    },
+    {
+        "prompt": "___, or the entire system will collapse.",
+        "A": "The software must be updated immediately",
+        "B": "Unless we find a solution",
+        "C": "If the error persists",
+        "D": "Because the server is down",
+        "E": "Providing that the backup is ready",
+        "correct": "A",
+        "explanation": "'Or' implies a warning/consequence. (Do this) OR (that bad thing happens)."
+    },
+    {
+        "prompt": "Not until the invention of the telescope ___.",
+        "A": "we knew about the moons of Jupiter",
+        "B": "did humanity realize the vastness of the cosmos",
+        "C": "astronomers have observed distant stars",
+        "D": "the earth was believed to be the center",
+        "E": "Galileo has published his findings",
+        "correct": "B",
+        "explanation": "Inversion after 'Not until'. Auxiliary 'did' comes before subject 'humanity'."
+    },
+    {
+        "prompt": "___, she still managed to finish the marathon.",
+        "A": "Since she trained for months",
+        "B": "Despite having a severe leg cramp",
+        "C": "Because she was very tired",
+        "D": "As long as she kept running",
+        "E": "Even if she stops now",
+        "correct": "B",
+        "explanation": "Contrast. An obstacle (cramp) vs. success (finishing)."
+    },
+    {
+        "prompt": "Given the complexity of the human brain, ___.",
+        "A": "it is easy to understand how memory works",
+        "B": "scientists still have much to learn about its functions",
+        "C": "computers are already smarter than humans",
+        "D": "neuroscience is a dying field",
+        "E": "we have solved all mental health issues",
+        "correct": "B",
+        "explanation": "'Given' means 'considering'. Considering it's complex, we still have a lot to learn."
+    },
+    {
+        "prompt": "___ it was raining heavily, we decided to go for a walk.",
+        "A": "Despite",
+        "B": "Although",
+        "C": "Because",
+        "D": "Since",
+        "E": "However",
+        "correct": "B",
+        "explanation": "'Although' is followed by a clause (subject + verb), while 'Despite' takes a noun phrase."
+    },
+    {
+        "prompt": "He is ___ a talented musician ___ he can play five instruments.",
+        "A": "so / that",
+        "B": "such / that",
+        "C": "more / than",
+        "D": "as / as",
+        "E": "too / to",
+        "correct": "B",
+        "explanation": "'Such a (adjective) noun that...' structure. (Such a talented musician that...)."
+    },
+    {
+        "prompt": "However hard he tried, ___.",
+        "A": "he couldn't lift the heavy rock",
+        "B": "he succeeds in everything he does",
+        "C": "the exam was very easy",
+        "D": "he has managed to open the door",
+        "E": "nobody helped him",
+        "correct": "A",
+        "explanation": "'However hard' means 'No matter how hard'. It implies a failure despite effort."
+    },
+    {
+        "prompt": "___ the fact that he had no experience, he got the job.",
+        "A": "Despite",
+        "B": "Although",
+        "C": "Even if",
+        "D": "Unless",
+        "E": "Whereas",
+        "correct": "A",
+        "explanation": "'Despite the fact that' is a fixed phrase introducing a concession."
+    },
+    {
+        "prompt": "The library will remain open ___ renovation works are completed.",
+        "A": "by the time",
+        "B": "until",
+        "C": "during",
+        "D": "as soon as",
+        "E": "while",
+        "correct": "B",
+        "explanation": "'Until' indicates a situation continuing up to a specific point in time."
+    },
+    {
+        "prompt": "___ we had prepared well, the presentation did not go as planned.",
+        "A": "Since",
+        "B": "Even though",
+        "C": "As long as",
+        "D": "In case",
+        "E": "Given that",
+        "correct": "B",
+        "explanation": "Contrast between good preparation and bad outcome requires 'Even though'."
+    },
+    {
+        "prompt": "She saved a lot of money ___ she could buy a new house.",
+        "A": "so that",
+        "B": "in case",
+        "C": "because",
+        "D": "although",
+        "E": "unless",
+        "correct": "A",
+        "explanation": "'So that' introduces a purpose (buying a house)."
+    },
+    {
+        "prompt": "Take your umbrella with you ___ it rains later.",
+        "A": "so that",
+        "B": "in case",
+        "C": "unless",
+        "D": "even if",
+        "E": "provided that",
+        "correct": "B",
+        "explanation": "'In case' is used for precautions against possible future events."
+    },
+    {
+        "prompt": "___ you promise to be careful, I will lend you my car.",
+        "A": "Unless",
+        "B": "Provided that",
+        "C": "Even if",
+        "D": "Although",
+        "E": "Whereas",
+        "correct": "B",
+        "explanation": "'Provided that' (meaning 'If/Only if') sets a condition for lending the car."
+    },
+    {
+        "prompt": "The company went bankrupt ___ poor management and high debts.",
+        "A": "because",
+        "B": "due to",
+        "C": "since",
+        "D": "despite",
+        "E": "although",
+        "correct": "B",
+        "explanation": "'Due to' is followed by a noun phrase (poor management) to show cause."
+    },
+    {
+        "prompt": "While some people enjoy living in the city, ___.",
+        "A": "others prefer the quietness of the countryside",
+        "B": "traffic is a major problem",
+        "C": "they also like shopping malls",
+        "D": "it is very expensive",
+        "E": "pollution is increasing",
+        "correct": "A",
+        "explanation": "'While' introduces a contrast between two groups of people (some vs. others)."
+    },
+    {
+        "prompt": "___ had I entered the room ___ the phone started ringing.",
+        "A": "Hardly / when",
+        "B": "No sooner / when",
+        "C": "Scarcely / than",
+        "D": "Hardly / than",
+        "E": "Barely / that",
+        "correct": "A",
+        "explanation": "'Hardly... when' is the correct correlative conjunction structure."
+    },
+    {
+        "prompt": "It is crucial that the evidence ___ untouched until the police arrive.",
+        "A": "remains",
+        "B": "remain",
+        "C": "remained",
+        "D": "has remained",
+        "E": "will remain",
+        "correct": "B",
+        "explanation": "Subjunctive mood after 'crucial'. Base form 'remain' is used."
+    },
+    {
+        "prompt": "___ of the danger, he jumped into the river to save the child.",
+        "A": "Regardless",
+        "B": "Although",
+        "C": "Despite",
+        "D": "Because",
+        "E": "However",
+        "correct": "A",
+        "explanation": "'Regardless OF' means without considering or worrying about."
+    },
+    {
+        "prompt": "The more you study, ___.",
+        "A": "you will learn more",
+        "B": "the more you will learn",
+        "C": "most you learn",
+        "D": "more learning you get",
+        "E": "you learn better",
+        "correct": "B",
+        "explanation": "Double comparative: 'The more..., the more...'."
+    },
+    {
+        "prompt": "___ he is a brilliant scientist, he lacks social skills.",
+        "A": "Despite",
+        "B": "Although",
+        "C": "Because",
+        "D": "Since",
+        "E": "Therefore",
+        "correct": "B",
+        "explanation": "'Although' is followed by a full clause (subject + verb) to show contrast."
+    },
+    {
+        "prompt": "We must reduce plastic waste ___ protect marine life.",
+        "A": "so that",
+        "B": "in order to",
+        "C": "because of",
+        "D": "for",
+        "E": "due to",
+        "correct": "B",
+        "explanation": "'In order to' + base verb expresses purpose."
+    },
+    {
+        "prompt": "Had you told me the truth, I ___ you.",
+        "A": "would forgive",
+        "B": "would have forgiven",
+        "C": "will forgive",
+        "D": "forgave",
+        "E": "had forgiven",
+        "correct": "B",
+        "explanation": "Type 3 Conditional (Inverted). 'Had you told' -> 'would have forgiven'."
+    },
+    {
+        "prompt": "___ the heavy traffic, we arrived on time.",
+        "A": "Although",
+        "B": "In spite of",
+        "C": "Because of",
+        "D": "Since",
+        "E": "Unless",
+        "correct": "B",
+        "explanation": "'In spite of' takes a noun phrase (the heavy traffic) to show contrast."
+    },
+    {
+        "prompt": "Neither the teacher nor the students ___ happy with the new schedule.",
+        "A": "was",
+        "B": "were",
+        "C": "has been",
+        "D": "is",
+        "E": "to be",
+        "correct": "B",
+        "explanation": "With 'Neither... nor', verb agrees with the closer subject (students -> were)."
+    },
+    {
+        "prompt": "It is widely believed ___ the Pyramids were built as tombs for pharaohs.",
+        "A": "which",
+        "B": "that",
+        "C": "what",
+        "D": "if",
+        "E": "when",
+        "correct": "B",
+        "explanation": "Standard noun clause structure: 'It is believed THAT...'."
+    },
+    {
+        "prompt": "I wish I ___ that expensive car; now I am broke.",
+        "A": "didn't buy",
+        "B": "hadn't bought",
+        "C": "haven't bought",
+        "D": "wouldn't buy",
+        "E": "don't buy",
+        "correct": "B",
+        "explanation": "Wish about the past uses Past Perfect (hadn't bought)."
+    },
+    {
+        "prompt": "___ rich cultural heritage, Turkey attracts millions of tourists.",
+        "A": "Because",
+        "B": "Due to its",
+        "C": "Although",
+        "D": "Despite",
+        "E": "Unless",
+        "correct": "B",
+        "explanation": "Reason. 'Due to' + noun phrase (its rich cultural heritage)."
+    },
+    {
+        "prompt": "The building ___ renovated next year is over 100 years old.",
+        "A": "to be",
+        "B": "being",
+        "C": "been",
+        "D": "having",
+        "E": "was",
+        "correct": "A",
+        "explanation": "Future passive infinitive used as an adjective: 'The building (which is) to be renovated...'."
+    },
+    {
+        "prompt": "___ you finish your homework, you can watch TV.",
+        "A": "Unless",
+        "B": "Once",
+        "C": "Although",
+        "D": "Even if",
+        "E": "Whatever",
+        "correct": "B",
+        "explanation": "'Once' means 'as soon as' or 'after'. It sets a condition for watching TV."
+    },
+    {
+        "prompt": "She speaks ___ French ___ German fluently.",
+        "A": "neither / or",
+        "B": "both / and",
+        "C": "either / nor",
+        "D": "not only / but",
+        "E": "whether / or",
+        "correct": "B",
+        "explanation": "Correlative conjunction 'both... and' connects two positive items."
+    },
+    {
+        "prompt": "___ interesting the book is, I don't have time to read it.",
+        "A": "However",
+        "B": "Although",
+        "C": "Whatever",
+        "D": "Even if",
+        "E": "Despite",
+        "correct": "A",
+        "explanation": "'However' + adjective (interesting) means 'No matter how interesting'."
+    },
+    {
+        "prompt": "The harder you work, ___ successful you will be.",
+        "A": "most",
+        "B": "the more",
+        "C": "more",
+        "D": "as",
+        "E": "so",
+        "correct": "B",
+        "explanation": "Double comparative: 'The harder..., the more...'."
+    },
+    {
+        "prompt": "___ we didn't have a map, we managed to find our way.",
+        "A": "Despite",
+        "B": "Although",
+        "C": "Because",
+        "D": "In case",
+        "E": "Provided that",
+        "correct": "B",
+        "explanation": "'Although' is followed by a clause (we didn't have a map)."
+    },
+    {
+        "prompt": "The manager asked ___ anyone had seen the missing file.",
+        "A": "that",
+        "B": "if",
+        "C": "which",
+        "D": "what",
+        "E": "who",
+        "correct": "B",
+        "explanation": "Reported speech question. 'Asked IF (whether) anyone had seen...'"
     }
 ]
