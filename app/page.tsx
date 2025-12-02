@@ -7,8 +7,10 @@ import topicQuestions from '@/data/grammar_topic_tests.json';
 import ydsVocabulary from '@/data/yds_vocabulary.json';
 // 3. YDS Gramer Soruları
 import ydsGrammarQuestions from '@/data/yds_grammar.json';
-// 4. YDS Phrasal Verbs (YENİ)
+// 4. YDS Phrasal Verbs
 import ydsPhrasals from '@/data/yds_phrasal_verbs.json';
+// 5. YDS Reading
+import ydsReadingPassages from '@/data/yds_reading.json';
 
 // --- TEST TANIMLARI ---
 const quickTest = { title: 'Quick Placement Test', slug: 'quick-placement' };
@@ -19,8 +21,9 @@ const ieltsTest = { title: 'IELTS Grammar (50Q)', slug: 'ielts-grammar' };
 
 // --- YDS GRUBU ---
 const ydsVocabTest = { title: 'YDS 1000 Words (Vocab)', slug: 'yds-1000-vocab' };
-const ydsGrammarTest = { title: 'YDS Grammar Practice', slug: 'yds-grammar-practice' };
-const ydsPhrasalTest = { title: 'YDS Phrasal Verbs', slug: 'yds-phrasal-verbs' }; // YENİ
+const ydsGrammarTest = { title: 'YDS Grammar Practice (100Q)', slug: 'yds-grammar-practice' };
+const ydsPhrasalTest = { title: 'YDS Phrasal Verbs (340Q)', slug: 'yds-phrasal-verbs' };
+const ydsReadingTest = { title: 'YDS Reading (40Q)', slug: 'yds-reading' };
 
 // Grammar Focus testleri
 const grammarTests = [
@@ -59,7 +62,131 @@ const slugToTag: Record<string, string> = {
 function startTest(testSlug: string) {
   const attemptId = `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
-  // 1. YDS KELİME TESTİ (VOCAB)
+  // 1. YDS READING (10 PARÇA - 40 SORU - 80 DAKİKA)
+  if (testSlug === 'yds-reading') {
+    // Parçaları karıştır
+    const shuffledPassages = [...(ydsReadingPassages as any[])].sort(() => 0.5 - Math.random());
+    
+    // GÜNCEL: 10 parçanın hepsini seç
+    const selectedPassages = shuffledPassages.slice(0, 10);
+
+    const questions: any[] = [];
+
+    selectedPassages.forEach((passage, pIndex) => {
+      passage.questions.forEach((q: any, qIndex: number) => {
+        
+        const letters = ['A', 'B', 'C', 'D', 'E'];
+        const idsLower = ['a', 'b', 'c', 'd', 'e'];
+        
+        const choices = letters.map((L, i) => ({
+          id: idsLower[i],
+          text: q[L],
+          isCorrect: L === q.correct
+        }));
+
+        questions.push({
+          id: `yds-read-p${passage.passageId}-q${qIndex + 1}`,
+          prompt: `
+            <div class="mb-4 p-4 bg-slate-50 border border-slate-200 rounded-lg text-sm leading-relaxed text-slate-700">
+              <strong>Passage ${pIndex + 1}:</strong><br/>
+              ${passage.text}
+            </div>
+            <div class="font-bold text-slate-900">
+              ${q.prompt}
+            </div>
+          `,
+          choices: choices,
+          explanation: q.explanation
+        });
+      });
+    });
+
+    const payload = {
+      attemptId,
+      testSlug,
+      test: { title: 'YDS READING COMPREHENSION (40 Questions)', duration: 80 }, 
+      questions: questions,
+    };
+    sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
+    window.location.href = `/quiz/${attemptId}`;
+    return;
+  }
+
+  // 2. YDS GRAMMAR PRACTICE (100 SORU - 90 DAKİKA)
+  if (testSlug === 'yds-grammar-practice') {
+    const shuffledQuestions = [...(ydsGrammarQuestions as any[])].sort(() => 0.5 - Math.random());
+    
+    const selectedQuestions = shuffledQuestions.slice(0, 100); 
+
+    const mappedQuestions = selectedQuestions.map((q: any, idx: number) => {
+      const correctLetter = String(q.correct || 'A').trim().toUpperCase();
+      const letters = ['A', 'B', 'C', 'D'];
+      const idsLower = ['a', 'b', 'c', 'd'];
+
+      return {
+        id: `yds-grammar-q${idx + 1}`,
+        prompt: q.prompt,
+        choices: letters.map((L, i) => ({
+          id: idsLower[i],
+          text: q[L] || `Option ${L}`,
+          isCorrect: correctLetter === L,
+        })),
+        explanation: q.explanation || '',
+      };
+    });
+
+    const payload = {
+      attemptId,
+      testSlug,
+      test: { title: 'YDS GRAMMAR PRACTICE (100 Questions)', duration: 90 }, 
+      questions: mappedQuestions,
+    };
+    sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
+    window.location.href = `/quiz/${attemptId}`;
+    return;
+  }
+
+  // 3. YDS PHRASAL VERBS (100 SORU - 75 DAKİKA)
+  if (testSlug === 'yds-phrasal-verbs') {
+    const shuffledList = [...(ydsPhrasals as any[])].sort(() => 0.5 - Math.random());
+    
+    const selectedWords = shuffledList.slice(0, 100);
+
+    const questions = selectedWords.map((item, idx) => {
+      const correctAnswer = item.meaning;
+      const distractors = (ydsPhrasals as any[])
+        .filter((w) => w.meaning !== correctAnswer)
+        .map((w) => w.meaning)
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 3);
+      
+      const allOptions = [...distractors, correctAnswer].sort(() => 0.5 - Math.random());
+      const idsLower = ['a', 'b', 'c', 'd'];
+
+      return {
+        id: `yds-phrasal-q${idx + 1}`,
+        prompt: `What is the meaning of the phrasal verb **"${item.word}"**?`,
+        choices: allOptions.map((optText, i) => ({
+          id: idsLower[i],
+          text: optText,
+          isCorrect: optText === correctAnswer
+        })),
+        explanation: `**${item.word}**: ${correctAnswer}`
+      };
+    });
+
+    const payload = {
+      attemptId,
+      testSlug,
+      test: { title: 'YDS PHRASAL VERBS (100 Questions)', duration: 75 },
+      questions: questions,
+    };
+    sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
+    window.location.href = `/quiz/${attemptId}`;
+    return;
+  }
+
+  // 4. YDS KELİME TESTİ (VOCAB - 50 SORU - 40 DAKİKA)
   if (testSlug === 'yds-1000-vocab') {
     const shuffledList = [...(ydsVocabulary as any[])].sort(() => 0.5 - Math.random());
     const selectedWords = shuffledList.slice(0, 50);
@@ -98,80 +225,7 @@ function startTest(testSlug: string) {
     return;
   }
 
-  // 2. YDS GRAMMAR TESTİ
-  if (testSlug === 'yds-grammar-practice') {
-    const shuffledQuestions = [...(ydsGrammarQuestions as any[])].sort(() => 0.5 - Math.random());
-    const selectedQuestions = shuffledQuestions.slice(0, 50); 
-
-    const mappedQuestions = selectedQuestions.map((q: any, idx: number) => {
-      const correctLetter = String(q.correct || 'A').trim().toUpperCase();
-      const letters = ['A', 'B', 'C', 'D'];
-      const idsLower = ['a', 'b', 'c', 'd'];
-
-      return {
-        id: `yds-grammar-q${idx + 1}`,
-        prompt: q.prompt,
-        choices: letters.map((L, i) => ({
-          id: idsLower[i],
-          text: q[L] || `Option ${L}`,
-          isCorrect: correctLetter === L,
-        })),
-        explanation: q.explanation || '',
-      };
-    });
-
-    const payload = {
-      attemptId,
-      testSlug,
-      test: { title: 'YDS GRAMMAR PRACTICE (50 Questions)', duration: 60 }, 
-      questions: mappedQuestions,
-    };
-    sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
-    window.location.href = `/quiz/${attemptId}`;
-    return;
-  }
-
-  // 3. YDS PHRASAL VERBS (YENİ)
-  if (testSlug === 'yds-phrasal-verbs') {
-    const shuffledList = [...(ydsPhrasals as any[])].sort(() => 0.5 - Math.random());
-    const selectedWords = shuffledList.slice(0, 50);
-
-    const questions = selectedWords.map((item, idx) => {
-      const correctAnswer = item.meaning;
-      // Yanlış cevapları havuzdan seç
-      const distractors = (ydsPhrasals as any[])
-        .filter((w) => w.meaning !== correctAnswer)
-        .map((w) => w.meaning)
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 3);
-      
-      const allOptions = [...distractors, correctAnswer].sort(() => 0.5 - Math.random());
-      const idsLower = ['a', 'b', 'c', 'd'];
-
-      return {
-        id: `yds-phrasal-q${idx + 1}`,
-        prompt: `What is the meaning of the phrasal verb **"${item.word}"**?`,
-        choices: allOptions.map((optText, i) => ({
-          id: idsLower[i],
-          text: optText,
-          isCorrect: optText === correctAnswer
-        })),
-        explanation: `**${item.word}**: ${correctAnswer}`
-      };
-    });
-
-    const payload = {
-      attemptId,
-      testSlug,
-      test: { title: 'YDS PHRASAL VERBS TEST', duration: 40 },
-      questions: questions,
-    };
-    sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
-    window.location.href = `/quiz/${attemptId}`;
-    return;
-  }
-
-  // 4. QUICK PLACEMENT TEST
+  // 5. QUICK PLACEMENT TEST (25 SORU - 25 DAKİKA)
   if (testSlug === 'quick-placement') {
     const allQuestions = [...(topicQuestions as any[])];
     const shuffledQuestions = allQuestions.sort(() => 0.5 - Math.random());
@@ -205,7 +259,7 @@ function startTest(testSlug: string) {
     return;
   }
 
-  // 5. GRAMMAR FOCUS MANTIĞI
+  // 6. GRAMMAR FOCUS MANTIĞI
   if (slugToTag[testSlug]) {
     const payload: any = {
       attemptId,
@@ -312,7 +366,12 @@ export default function Home() {
               {ydsGrammarTest.title}
             </button>
 
-            {/* YDS PHRASAL VERBS (TEAL/TURKUAZ - YENİ) */}
+            {/* YDS READING (YEŞİL) */}
+            <button onClick={() => startTest(ydsReadingTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-green-600 text-white text-xl font-bold shadow-xl hover:bg-green-700 transition-all">
+              {ydsReadingTest.title}
+            </button>
+
+            {/* YDS PHRASAL VERBS (TEAL) */}
             <button onClick={() => startTest(ydsPhrasalTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-teal-600 text-white text-xl font-bold shadow-xl hover:bg-teal-700 transition-all">
               {ydsPhrasalTest.title}
             </button>
@@ -376,10 +435,10 @@ export default function Home() {
                 </h2>
                 <p className="text-slate-600 mb-4 text-sm leading-relaxed">
                   Master the Turkish national exams with our specialized tests.
-                  We offer a <strong>1000 Word Vocabulary Builder</strong>, extensive <strong>Phrasal Verbs</strong> exercises, and <strong>Grammar Practice</strong> that simulates real exam questions.
+                  We offer a <strong>1000 Word Vocabulary Builder</strong>, extensive <strong>Phrasal Verbs</strong> exercises, <strong>Reading Comprehension</strong>, and <strong>Grammar Practice</strong> that simulates real exam questions.
                 </p>
                 <ul className="list-disc pl-4 text-sm text-slate-500 space-y-1">
-                  <li>YDS Phrasal Verbs (Essential for high scores).</li>
+                  <li>YDS Reading Passages (With 5 options A-E).</li>
                   <li>Academic vocabulary with Turkish meanings.</li>
                   <li>Advanced grammar structures (Inversion, Participles).</li>
                 </ul>
