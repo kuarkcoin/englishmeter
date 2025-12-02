@@ -1598,5 +1598,255 @@
         "E": "who",
         "correct": "B",
         "explanation": "Reported speech question. 'Asked IF (whether) anyone had seen...'"
+    },
+    {
+        "prompt": "___ the massive investments in renewable energy, the country still relies heavily on fossil fuels for its industrial needs.",
+        "A": "In terms of",
+        "B": "Thanks to",
+        "C": "Notwithstanding",
+        "D": "Similar to",
+        "E": "By means of",
+        "correct": "C",
+        "explanation": "'Notwithstanding' is a preposition meaning 'despite' or 'in spite of', fitting the contrast between investments and fossil fuel reliance."
+    },
+    {
+        "prompt": "It is predicted that by 2050, the global population ___ 9.7 billion, which ___ immense pressure on food resources.",
+        "A": "reached / is putting",
+        "B": "will have reached / will put",
+        "C": "has reached / puts",
+        "D": "is reaching / put",
+        "E": "reaches / had put",
+        "correct": "B",
+        "explanation": "Future Perfect ('will have reached') is used with 'by 2050'. The result 'will put' describes the future consequence."
+    },
+    {
+        "prompt": "The ancient manuscript was found ___ in a cave near the Dead Sea, ___ untouched for centuries.",
+        "A": "hiding / having remained",
+        "B": "hidden / remaining",
+        "C": "to hide / to remain",
+        "D": "hidden / having remained",
+        "E": "hide / remain",
+        "correct": "D",
+        "explanation": "Passive participle 'hidden' describes the manuscript. 'Having remained' (Perfect Participle) emphasizes the duration before discovery."
+    },
+    {
+        "prompt": "___ students struggle with time management, educators suggest implementing specific planning strategies.",
+        "A": "Seeing that",
+        "B": "In case",
+        "C": "Unless",
+        "D": "Even if",
+        "E": "Suppose that",
+        "correct": "A",
+        "explanation": "'Seeing that' means 'Because' or 'Since'. It introduces the reason for educators' suggestion."
+    },
+    {
+        "prompt": "The devastating earthquake is estimated ___ thousands of people homeless.",
+        "A": "leaving",
+        "B": "to leave",
+        "C": "to have left",
+        "D": "having left",
+        "E": "leave",
+        "correct": "C",
+        "explanation": "Passive reporting verb 'is estimated' is followed by 'to have V3' (to have left) when referring to a past event."
+    },
+    {
+        "prompt": "We must finish the project by Friday; ___, we will face severe penalties from the client.",
+        "A": "furthermore",
+        "B": "otherwise",
+        "C": "likewise",
+        "D": "therefore",
+        "E": "conversely",
+        "correct": "B",
+        "explanation": "'Otherwise' implies a negative condition/consequence (if we don't finish, then...)."
+    },
+    {
+        "prompt": "___ interested in the job position, the candidate did not attend the interview.",
+        "A": "However",
+        "B": "Although",
+        "C": "Despite",
+        "D": "Though",
+        "E": "Much as",
+        "correct": "D",
+        "explanation": "Reduced concession clause: 'Though (he was) interested...'. 'Although' is also possible but 'Though' is common in this reduced adjective structure."
+    },
+    {
+        "prompt": "The new software update is compatible ___ most older devices, but users might experience some lag.",
+        "A": "for",
+        "B": "on",
+        "C": "with",
+        "D": "to",
+        "E": "at",
+        "correct": "C",
+        "explanation": "The adjective 'compatible' takes the preposition 'with'."
+    },
+    {
+        "prompt": "Hardly ___ speaking when the audience erupted in applause.",
+        "A": "he had started",
+        "B": "did he start",
+        "C": "had he started",
+        "D": "he started",
+        "E": "has he started",
+        "correct": "C",
+        "explanation": "'Hardly + had + subject + V3 ... when ...' is the standard inversion structure for immediate succession."
+    },
+    {
+        "prompt": "The museum ___ currently ___ allows visitors to experience life in the 19th century.",
+        "A": "being renovated / which",
+        "B": "renovating / where",
+        "C": "having renovated / whose",
+        "D": "being renovated / -",
+        "E": "to be renovated / that",
+        "correct": "D",
+        "explanation": "Reduced relative clause: 'The museum (which is) being renovated currently...' allows visitors. No extra relative pronoun is needed for the second part as 'allows' is the main verb."
+    },
+    {
+        "prompt": "___ scientific advances, we still haven't found a complete cure for the common cold.",
+        "A": "For all",
+        "B": "Due to",
+        "C": "Because of",
+        "D": "In terms of",
+        "E": "Prior to",
+        "correct": "A",
+        "explanation": "'For all' means 'Despite'. (Despite scientific advances...)."
+    },
+    {
+        "prompt": "It is high time the government ___ action to address the housing crisis.",
+        "A": "take",
+        "B": "took",
+        "C": "has taken",
+        "D": "will take",
+        "E": "is taking",
+        "correct": "B",
+        "explanation": "'It is high time' is followed by the Past Simple to indicate present urgency."
+    },
+    {
+        "prompt": "The professor demanded that the student ___ his thesis by the end of the month.",
+        "A": "submits",
+        "B": "submit",
+        "C": "submitted",
+        "D": "has submitted",
+        "E": "will submit",
+        "correct": "B",
+        "explanation": "Subjunctive mood after 'demand'. The base form 'submit' is used."
+    },
+    {
+        "prompt": "___ the traffic was heavy, we managed to get to the airport just in time.",
+        "A": "Despite",
+        "B": "In spite of",
+        "C": "Even though",
+        "D": "However",
+        "E": "Nevertheless",
+        "correct": "C",
+        "explanation": "'Even though' is followed by a full clause (the traffic was heavy). 'Despite/In spite of' need a noun phrase."
+    },
+    {
+        "prompt": "The more you exposure yourself to the language, ___ it becomes to understand native speakers.",
+        "A": "the easier",
+        "B": "easiest",
+        "C": "as easy",
+        "D": "so easy",
+        "E": "more easy",
+        "correct": "A",
+        "explanation": "Double comparative: 'The more..., the easier...'."
+    },
+    {
+        "prompt": "He acts ___ nothing had happened, even though he caused a major accident.",
+        "A": "so that",
+        "B": "as though",
+        "C": "in case",
+        "D": "providing",
+        "E": "unless",
+        "correct": "B",
+        "explanation": "'As though' (or 'as if') is used to describe an unreal situation or manner."
+    },
+    {
+        "prompt": "___ from the team, the player decided to sue the club for unfair dismissal.",
+        "A": "Expelling",
+        "B": "To expel",
+        "C": "Having expelled",
+        "D": "Having been expelled",
+        "E": "To be expelled",
+        "correct": "D",
+        "explanation": "Passive Perfect Participle. 'Because he had been expelled...' -> 'Having been expelled...'."
+    },
+    {
+        "prompt": "There is a growing concern ___ the impact of social media ___ teenagers' mental health.",
+        "A": "about / on",
+        "B": "for / with",
+        "C": "of / in",
+        "D": "in / at",
+        "E": "with / to",
+        "correct": "A",
+        "explanation": "Collocations: 'Concern ABOUT' something and 'Impact ON' something."
+    },
+    {
+        "prompt": "Only after the data was analyzed ___ the true extent of the problem.",
+        "A": "we realized",
+        "B": "did we realize",
+        "C": "we have realized",
+        "D": "realized we",
+        "E": "we did realize",
+        "correct": "B",
+        "explanation": "Inversion after 'Only after'. Auxiliary 'did' comes before the subject."
+    },
+    {
+        "prompt": "___ you to change your mind, please let us know immediately.",
+        "A": "If",
+        "B": "Should",
+        "C": "Had",
+        "D": "Were",
+        "E": "Unless",
+        "correct": "B",
+        "explanation": "Inverted Conditional Type 1. 'If you should change...' -> 'Should you change...'."
+    },
+    {
+        "prompt": "The factory is equipped ___ state-of-the-art machinery to maximize production.",
+        "A": "for",
+        "B": "about",
+        "C": "with",
+        "D": "by",
+        "E": "on",
+        "correct": "C",
+        "explanation": "Collocation: 'Equipped WITH'."
+    },
+    {
+        "prompt": "Whatever arguments he ___ against the proposal, the board voted in favor of it.",
+        "A": "raised",
+        "B": "has raised",
+        "C": "will raise",
+        "D": "raises",
+        "E": "raising",
+        "correct": "A",
+        "explanation": "Past tense consistency. The board 'voted' (past), so he 'raised' (past) arguments."
+    },
+    {
+        "prompt": "Scarcely was the food served ___ the guests began to complain about the taste.",
+        "A": "than",
+        "B": "when",
+        "C": "then",
+        "D": "that",
+        "E": "as",
+        "correct": "B",
+        "explanation": "'Scarcely... when' structure."
+    },
+    {
+        "prompt": "It is essential that these endangered species ___ from poachers.",
+        "A": "protected",
+        "B": "are protected",
+        "C": "be protected",
+        "D": "to be protected",
+        "E": "protecting",
+        "correct": "C",
+        "explanation": "Subjunctive Passive. After 'essential', use 'be + V3'."
+    },
+    {
+        "prompt": "___ the fact that she was unqualified, she was given the job due to her connections.",
+        "A": "Because",
+        "B": "Although",
+        "C": "Despite",
+        "D": "Unless",
+        "E": "Since",
+        "correct": "C",
+        "explanation": "'Despite the fact that' is the correct phrase for concession."
     }
 ]
