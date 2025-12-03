@@ -9,20 +9,24 @@ import ydsGrammarQuestions from '@/data/yds_grammar.json';
 import ydsPhrasals from '@/data/yds_phrasal_verbs.json';
 import ydsReadingPassages from '@/data/yds_reading.json';
 
-// --- YDS EXAM DENEMELERİ (1, 2, 3, 4) ---
-import ydsExamQuestions1 from '@/data/yds_exam_questions.json';     // Test 1 (Mevcut)
-import ydsExamQuestions2 from '@/data/yds_exam_questions_2.json';   // Yeni Test 2
-import ydsExamQuestions3 from '@/data/yds_exam_questions_3.json';   // Yeni Test 3
-import ydsExamQuestions4 from '@/data/yds_exam_questions_4.json';   // Yeni Test 4
+// --- YDS EXAM DENEMELERİ (1, 2, 3, 4, 5, 6) ---
+import ydsExamQuestions1 from '@/data/yds_exam_questions.json';     // Test 1
+import ydsExamQuestions2 from '@/data/yds_exam_questions_2.json';   // Test 2
+import ydsExamQuestions3 from '@/data/yds_exam_questions_3.json';   // Test 3
+import ydsExamQuestions4 from '@/data/yds_exam_questions_4.json';   // Test 4
+import ydsExamQuestions5 from '@/data/yds_exam_questions_5.json';   // Test 5 (YENİ)
+import ydsExamQuestions6 from '@/data/yds_exam_questions_6.json';   // Test 6 (YENİ)
 
 // --- TEST DATA MAP ---
-// Yeni test ekledikçe buraya eklemeniz yeterli olacak.
 const YDS_EXAM_MAP: Record<string, any[]> = {
   '1': ydsExamQuestions1,
   '2': ydsExamQuestions2,
   '3': ydsExamQuestions3,
   '4': ydsExamQuestions4,
-  // '5': ydsExamQuestions5, // İleride dosya oluşturup burayı açabilirsiniz.
+  '5': ydsExamQuestions5, // YENİ EKLENDİ
+  '6': ydsExamQuestions6, // YENİ EKLENDİ
+  // '7': ydsExamQuestions7, // İleride eklenecek
+  // '8': ydsExamQuestions8, // İleride eklenecek
 };
 
 // --- TEST TANIMLARI ---
@@ -74,10 +78,9 @@ const slugToTag: Record<string, string> = {
 function startTest(testSlug: string) {
   const attemptId = `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
-  // --- YENİ MANTIK: YDS EXAM PACK (1, 2, 3, 4...) ---
-  // Tek tek if-else yazmak yerine MAP üzerinden dinamik çekiyoruz.
+  // --- YDS EXAM PACK MANTIĞI ---
   if (testSlug.startsWith('yds-exam-test-')) {
-    const testNumber = testSlug.split('-').pop() || '1'; // '1', '2' vb.
+    const testNumber = testSlug.split('-').pop() || '1'; // '1', '2', ... '6'
     const selectedQuestions = YDS_EXAM_MAP[testNumber]; // Haritadan soruları çek
 
     if (selectedQuestions) {
@@ -109,7 +112,7 @@ function startTest(testSlug: string) {
       window.location.href = `/quiz/${attemptId}`;
       return;
     } else {
-      // Eğer MAP içinde yoksa (örn: Test 5'e tıklandıysa)
+      // Eğer MAP içinde yoksa (örn: Test 7'ye tıklandıysa)
       alert(`Test ${testNumber} is coming soon! Please complete existing tests first.`);
       return;
     }
@@ -342,8 +345,8 @@ function startTest(testSlug: string) {
 }
 
 export default function Home() {
-  // Aktif olan test numaraları (1, 2, 3, 4)
-  const availableTests = [1, 2, 3, 4];
+  // Aktif olan test numaraları (1, 2, 3, 4, 5, 6) -> 5 ve 6'yı ekledik.
+  const availableTests = [1, 2, 3, 4, 5, 6];
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -422,7 +425,7 @@ export default function Home() {
                   </span>
                </div>
 
-               {/* 8 TANE TEST BUTONU (1-4 AKTİF) */}
+               {/* 8 TANE TEST BUTONU (1-6 AKTİF) */}
                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                   {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => {
                     const isActive = availableTests.includes(num);
