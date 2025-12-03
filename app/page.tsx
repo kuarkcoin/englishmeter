@@ -11,6 +11,8 @@ import ydsGrammarQuestions from '@/data/yds_grammar.json';
 import ydsPhrasals from '@/data/yds_phrasal_verbs.json';
 // 5. YDS Reading
 import ydsReadingPassages from '@/data/yds_reading.json';
+// 6. YDS EXAM (FULL DENEMELER) - Yeni eklediğiniz dosya
+import ydsExamQuestions1 from '@/data/yds_exam_questions.json';
 
 // --- TEST TANIMLARI ---
 const quickTest = { title: 'Quick Placement Test', slug: 'quick-placement' };
@@ -62,22 +64,64 @@ const slugToTag: Record<string, string> = {
 function startTest(testSlug: string) {
   const attemptId = `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
+  // --- YENİ: YDS EXAM PACK (TEST 1..8) ---
+  if (testSlug.startsWith('yds-exam-test-')) {
+    const testNumber = testSlug.split('-').pop(); // '1', '2' vb.
+
+    if (testNumber === '1') {
+      // SADECE TEST 1 (Mevcut 80 soruluk dosya)
+      const allQuestions = [...(ydsExamQuestions1 as any[])];
+      
+      const mappedQuestions = allQuestions.map((q: any, idx: number) => {
+        const correctLetter = String(q.correct || 'A').trim().toUpperCase();
+        const letters = ['A', 'B', 'C', 'D', 'E']; 
+        const idsLower = ['a', 'b', 'c', 'd', 'e'];
+  
+        return {
+          id: `yds-exam1-q${idx + 1}`,
+          prompt: q.prompt,
+          choices: letters.map((L, i) => ({
+            id: idsLower[i],
+            text: q[L] || `Option ${L}`,
+            isCorrect: correctLetter === L,
+          })).filter(c => c.text && c.text !== `Option ${letters[i]}`), // Boş şıkları temizle
+          explanation: q.explanation || '',
+        };
+      });
+  
+      const payload = {
+        attemptId,
+        testSlug,
+        test: { title: `YDS REAL EXAM - PRACTICE TEST ${testNumber}`, duration: 150 }, // 150 dk standart YDS süresi
+        questions: mappedQuestions,
+      };
+      
+      sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
+      window.location.href = `/quiz/${attemptId}`;
+      return;
+    } 
+    // GELECEKTE TEST 2'Yİ BURAYA EKLEYECEKSİNİZ:
+    /*
+    else if (testNumber === '2') {
+       // ... Test 2 mantığı (import ydsExamQuestions2 from...)
+    }
+    */
+    else {
+      alert(`Test ${testNumber} is coming soon! Please complete Test 1 first.`);
+      return;
+    }
+  }
+
   // 1. YDS READING (10 PARÇA - 40 SORU - 80 DAKİKA)
   if (testSlug === 'yds-reading') {
-    // Parçaları karıştır
     const shuffledPassages = [...(ydsReadingPassages as any[])].sort(() => 0.5 - Math.random());
-    
-    // GÜNCEL: 10 parçanın hepsini seç
     const selectedPassages = shuffledPassages.slice(0, 10);
-
     const questions: any[] = [];
 
     selectedPassages.forEach((passage, pIndex) => {
       passage.questions.forEach((q: any, qIndex: number) => {
-        
         const letters = ['A', 'B', 'C', 'D', 'E'];
         const idsLower = ['a', 'b', 'c', 'd', 'e'];
-        
         const choices = letters.map((L, i) => ({
           id: idsLower[i],
           text: q[L],
@@ -115,7 +159,6 @@ function startTest(testSlug: string) {
   // 2. YDS GRAMMAR PRACTICE (100 SORU - 90 DAKİKA)
   if (testSlug === 'yds-grammar-practice') {
     const shuffledQuestions = [...(ydsGrammarQuestions as any[])].sort(() => 0.5 - Math.random());
-    
     const selectedQuestions = shuffledQuestions.slice(0, 100); 
 
     const mappedQuestions = selectedQuestions.map((q: any, idx: number) => {
@@ -149,7 +192,6 @@ function startTest(testSlug: string) {
   // 3. YDS PHRASAL VERBS (100 SORU - 75 DAKİKA)
   if (testSlug === 'yds-phrasal-verbs') {
     const shuffledList = [...(ydsPhrasals as any[])].sort(() => 0.5 - Math.random());
-    
     const selectedWords = shuffledList.slice(0, 100);
 
     const questions = selectedWords.map((item, idx) => {
@@ -361,6 +403,39 @@ export default function Home() {
               {ydsVocabTest.title}
             </button>
 
+            {/* --- YDS EXAM PACK (PEMBE ALAN - YENİ) --- */}
+            <div className="col-span-1 md:col-span-2 lg:col-span-3 bg-pink-50 rounded-3xl p-6 border-2 border-pink-200 shadow-xl relative overflow-hidden group">
+               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-pink-400 to-rose-500"></div>
+               
+               <div className="flex flex-col md:flex-row items-center justify-between mb-6">
+                  <h3 className="text-2xl font-black text-pink-600 flex items-center gap-2">
+                     <span className="text-3xl">🇹🇷</span> YDS EXAM PACK
+                  </h3>
+                  <span className="text-pink-400 text-sm font-bold bg-white px-3 py-1 rounded-full border border-pink-100">
+                    Real Exam Mode (80 Questions)
+                  </span>
+               </div>
+
+               {/* 8 TANE TEST BUTONU */}
+               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+                    <button
+                      key={num}
+                      onClick={() => startTest(`yds-exam-test-${num}`)}
+                      className={`py-4 rounded-xl font-bold text-lg shadow-sm transition-all transform hover:scale-105 active:scale-95
+                        ${num === 1 
+                           ? 'bg-pink-500 text-white hover:bg-pink-600 shadow-pink-200 ring-2 ring-pink-300 ring-offset-2' 
+                           : 'bg-white text-pink-300 border border-pink-100 hover:border-pink-300 hover:text-pink-500'
+                        }`}
+                    >
+                      Test {num}
+                      {num === 1 && <span className="block text-xs font-normal opacity-90 mt-1">Start Now</span>}
+                      {num !== 1 && <span className="block text-[10px] opacity-60 mt-1">Locked</span>}
+                    </button>
+                  ))}
+               </div>
+            </div>
+
             {/* YDS GRAMMAR (KOYU MAVİ) */}
             <button onClick={() => startTest(ydsGrammarTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-indigo-600 text-white text-xl font-bold shadow-xl hover:bg-indigo-700 transition-all">
               {ydsGrammarTest.title}
@@ -425,34 +500,59 @@ export default function Home() {
             </div>
           </div>
 
-          {/* SEO SECTION */}
-          <section className="text-left w-full border-t border-slate-200 pt-16 mt-16 pb-8">
-            <div className="grid md:grid-cols-2 gap-12">
-              <div>
-                <h2 className="text-xl font-bold text-slate-900 mb-3 flex items-center">
-                  <span className="bg-orange-100 text-orange-600 p-2 rounded-lg mr-3 text-sm">🇹🇷</span>
-                  YDS & YÖKDİL Practice
-                </h2>
-                <p className="text-slate-600 mb-4 text-sm leading-relaxed">
-                  Master the Turkish national exams with our specialized tests.
-                  We offer a <strong>1000 Word Vocabulary Builder</strong>, extensive <strong>Phrasal Verbs</strong> exercises, <strong>Reading Comprehension</strong>, and <strong>Grammar Practice</strong> that simulates real exam questions.
-                </p>
-                <ul className="list-disc pl-4 text-sm text-slate-500 space-y-1">
-                  <li>YDS Reading Passages (With 5 options A-E).</li>
-                  <li>Academic vocabulary with Turkish meanings.</li>
-                  <li>Advanced grammar structures (Inversion, Participles).</li>
-                </ul>
+          {/* SEO SECTION - FOOTER */}
+          <section className="text-left w-full border-t border-slate-200 pt-16 mt-16 pb-12 bg-slate-50">
+            <div className="max-w-5xl mx-auto space-y-12">
+              
+              <div className="grid md:grid-cols-2 gap-12">
+                <div>
+                  <h2 className="text-xl font-bold text-slate-900 mb-3 flex items-center">
+                    <span className="bg-orange-100 text-orange-600 p-2 rounded-lg mr-3 text-sm">🇹🇷</span>
+                    YDS & YÖKDİL Exam Preparation
+                  </h2>
+                  <p className="text-slate-600 mb-4 text-sm leading-relaxed">
+                    Preparing for the <strong>Foreign Language Exam (YDS)</strong> or <strong>YÖKDİL</strong> in Turkey? EnglishMeter offers comprehensive online practice tests designed to simulate the real exam experience. 
+                    Our <strong>YDS Exam Pack</strong> includes full-length practice tests with 80 questions covering reading comprehension, vocabulary, grammar, and translation skills.
+                  </p>
+                  <ul className="list-disc pl-4 text-sm text-slate-500 space-y-1">
+                    <li><strong>YDS Vocabulary:</strong> Master the most common 1000 academic words.</li>
+                    <li><strong>Reading Comprehension:</strong> Analyze complex paragraphs with detailed explanations.</li>
+                    <li><strong>Grammar Practice:</strong> Focus on tenses, prepositions, and sentence completion.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-slate-900 mb-3 flex items-center">
+                    <span className="bg-blue-100 text-blue-600 p-2 rounded-lg mr-3 text-sm">🌍</span>
+                    Global English Placement Tests
+                  </h2>
+                  <p className="text-slate-600 mb-4 text-sm leading-relaxed">
+                    Test your English proficiency level with our free online placement tests. Based on the <strong>Common European Framework of Reference (CEFR)</strong>, our quizzes determine whether you are A1 (Beginner), B2 (Upper-Intermediate), or C2 (Advanced).
+                    Whether you are preparing for IELTS, TOEFL, or just want to know your level, our <strong>Quick Placement Test</strong> gives you an instant score in under 20 minutes.
+                  </p>
+                  <p className="text-sm text-slate-500">
+                     Join thousands of users improving their English daily with our grammar focus tests and vocabulary builders.
+                  </p>
+                </div>
               </div>
-              <div>
-                <h2 className="text-xl font-bold text-slate-900 mb-3 flex items-center">
-                  <span className="bg-blue-100 text-blue-600 p-2 rounded-lg mr-3 text-sm">🌍</span>
-                  Global English Exams
-                </h2>
-                <p className="text-slate-600 mb-4 text-sm leading-relaxed">
-                  Whether it's IELTS, TOEFL or CEFR placement, our tests are designed to push your limits.
-                  Try the <strong>Quick Placement Test</strong> for a fast assessment or the <strong>Grammar Mega Test</strong> for deep practice.
-                </p>
+
+              <div className="border-t border-slate-200 pt-8">
+                 <h3 className="text-lg font-bold text-slate-800 mb-4">Why use EnglishMeter?</h3>
+                 <div className="grid sm:grid-cols-3 gap-6 text-sm text-slate-600">
+                    <div>
+                       <h4 className="font-semibold text-slate-900 mb-1">Instant Results</h4>
+                       <p>No waiting. Get your score, CEFR level, and detailed answer explanations immediately after finishing a test.</p>
+                    </div>
+                    <div>
+                       <h4 className="font-semibold text-slate-900 mb-1">Mobile Friendly</h4>
+                       <p>Practice on the go. Our tests are optimized for phones, tablets, and desktops so you can study anywhere.</p>
+                    </div>
+                    <div>
+                       <h4 className="font-semibold text-slate-900 mb-1">Completely Free</h4>
+                       <p>Access high-quality YDS, YÖKDİL, and general English grammar tests without any subscription fees.</p>
+                    </div>
+                 </div>
               </div>
+
             </div>
           </section>
 
