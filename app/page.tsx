@@ -11,7 +11,7 @@ import ydsGrammarQuestions from '@/data/yds_grammar.json';
 import ydsPhrasals from '@/data/yds_phrasal_verbs.json';
 // 5. YDS Reading
 import ydsReadingPassages from '@/data/yds_reading.json';
-// 6. YDS EXAM (FULL DENEMELER) - Yeni eklediğiniz dosya
+// 6. YDS EXAM (FULL DENEMELER)
 import ydsExamQuestions1 from '@/data/yds_exam_questions.json';
 
 // --- TEST TANIMLARI ---
@@ -77,14 +77,16 @@ function startTest(testSlug: string) {
         const letters = ['A', 'B', 'C', 'D', 'E']; 
         const idsLower = ['a', 'b', 'c', 'd', 'e'];
   
+        // HATA DÜZELTME: filter içindeki 'i' hatası giderildi.
+        // Önce map yapıp veriyi alıyoruz, sonra metni olmayanları (undefined) temizliyoruz.
         return {
           id: `yds-exam1-q${idx + 1}`,
           prompt: q.prompt,
           choices: letters.map((L, i) => ({
             id: idsLower[i],
-            text: q[L] || `Option ${L}`,
+            text: q[L], // Eğer JSON'da bu şık yoksa undefined döner
             isCorrect: correctLetter === L,
-          })).filter(c => c.text && c.text !== `Option ${letters[i]}`), // Boş şıkları temizle
+          })).filter((c: any) => c.text), // Sadece metni olan şıkları tutuyoruz
           explanation: q.explanation || '',
         };
       });
