@@ -1,18 +1,29 @@
 'use client';
 
 import React from 'react';
-// 1. Gramer konuları
+
+// --- DATA IMPORTS ---
 import topicQuestions from '@/data/grammar_topic_tests.json';
-// 2. YDS Kelime Listesi
 import ydsVocabulary from '@/data/yds_vocabulary.json';
-// 3. YDS Gramer Soruları
 import ydsGrammarQuestions from '@/data/yds_grammar.json';
-// 4. YDS Phrasal Verbs
 import ydsPhrasals from '@/data/yds_phrasal_verbs.json';
-// 5. YDS Reading
 import ydsReadingPassages from '@/data/yds_reading.json';
-// 6. YDS EXAM (FULL DENEMELER)
-import ydsExamQuestions1 from '@/data/yds_exam_questions.json';
+
+// --- YDS EXAM DENEMELERİ (1, 2, 3, 4) ---
+import ydsExamQuestions1 from '@/data/yds_exam_questions.json';     // Test 1 (Mevcut)
+import ydsExamQuestions2 from '@/data/yds_exam_questions_2.json';   // Yeni Test 2
+import ydsExamQuestions3 from '@/data/yds_exam_questions_3.json';   // Yeni Test 3
+import ydsExamQuestions4 from '@/data/yds_exam_questions_4.json';   // Yeni Test 4
+
+// --- TEST DATA MAP ---
+// Yeni test ekledikçe buraya eklemeniz yeterli olacak.
+const YDS_EXAM_MAP: Record<string, any[]> = {
+  '1': ydsExamQuestions1,
+  '2': ydsExamQuestions2,
+  '3': ydsExamQuestions3,
+  '4': ydsExamQuestions4,
+  // '5': ydsExamQuestions5, // İleride dosya oluşturup burayı açabilirsiniz.
+};
 
 // --- TEST TANIMLARI ---
 const quickTest = { title: 'Quick Placement Test', slug: 'quick-placement' };
@@ -21,7 +32,6 @@ const vocabTest = { title: 'Vocabulary B1-C1 (50Q)', slug: 'vocab-b1-c1-50' };
 const raceTest = { title: 'Global Race Mode', href: '/race' };
 const ieltsTest = { title: 'IELTS Grammar (50Q)', slug: 'ielts-grammar' };
 
-// --- YDS GRUBU ---
 const ydsVocabTest = { title: 'YDS 1000 Words (Vocab)', slug: 'yds-1000-vocab' };
 const ydsGrammarTest = { title: 'YDS Grammar Practice (100Q)', slug: 'yds-grammar-practice' };
 const ydsPhrasalTest = { title: 'YDS Phrasal Verbs (340Q)', slug: 'yds-phrasal-verbs' };
@@ -64,29 +74,26 @@ const slugToTag: Record<string, string> = {
 function startTest(testSlug: string) {
   const attemptId = `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
-  // --- YENİ: YDS EXAM PACK (TEST 1..8) ---
+  // --- YENİ MANTIK: YDS EXAM PACK (1, 2, 3, 4...) ---
+  // Tek tek if-else yazmak yerine MAP üzerinden dinamik çekiyoruz.
   if (testSlug.startsWith('yds-exam-test-')) {
-    const testNumber = testSlug.split('-').pop(); // '1', '2' vb.
+    const testNumber = testSlug.split('-').pop() || '1'; // '1', '2' vb.
+    const selectedQuestions = YDS_EXAM_MAP[testNumber]; // Haritadan soruları çek
 
-    if (testNumber === '1') {
-      // SADECE TEST 1 (Mevcut 80 soruluk dosya)
-      const allQuestions = [...(ydsExamQuestions1 as any[])];
-      
-      const mappedQuestions = allQuestions.map((q: any, idx: number) => {
+    if (selectedQuestions) {
+      const mappedQuestions = [...selectedQuestions].map((q: any, idx: number) => {
         const correctLetter = String(q.correct || 'A').trim().toUpperCase();
         const letters = ['A', 'B', 'C', 'D', 'E']; 
         const idsLower = ['a', 'b', 'c', 'd', 'e'];
   
-        // HATA DÜZELTME: filter içindeki 'i' hatası giderildi.
-        // Önce map yapıp veriyi alıyoruz, sonra metni olmayanları (undefined) temizliyoruz.
         return {
-          id: `yds-exam1-q${idx + 1}`,
+          id: `yds-exam${testNumber}-q${idx + 1}`,
           prompt: q.prompt,
           choices: letters.map((L, i) => ({
             id: idsLower[i],
-            text: q[L], // Eğer JSON'da bu şık yoksa undefined döner
+            text: q[L], 
             isCorrect: correctLetter === L,
-          })).filter((c: any) => c.text), // Sadece metni olan şıkları tutuyoruz
+          })).filter((c: any) => c.text), // Metni olmayan şıkları temizle
           explanation: q.explanation || '',
         };
       });
@@ -94,27 +101,21 @@ function startTest(testSlug: string) {
       const payload = {
         attemptId,
         testSlug,
-        test: { title: `YDS REAL EXAM - PRACTICE TEST ${testNumber}`, duration: 150 }, // 150 dk standart YDS süresi
+        test: { title: `YDS REAL EXAM - TEST ${testNumber} (80 Questions)`, duration: 150 }, // 150 dk
         questions: mappedQuestions,
       };
       
       sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
       window.location.href = `/quiz/${attemptId}`;
       return;
-    } 
-    // GELECEKTE TEST 2'Yİ BURAYA EKLEYECEKSİNİZ:
-    /*
-    else if (testNumber === '2') {
-       // ... Test 2 mantığı (import ydsExamQuestions2 from...)
-    }
-    */
-    else {
-      alert(`Test ${testNumber} is coming soon! Please complete Test 1 first.`);
+    } else {
+      // Eğer MAP içinde yoksa (örn: Test 5'e tıklandıysa)
+      alert(`Test ${testNumber} is coming soon! Please complete existing tests first.`);
       return;
     }
   }
 
-  // 1. YDS READING (10 PARÇA - 40 SORU - 80 DAKİKA)
+  // 1. YDS READING
   if (testSlug === 'yds-reading') {
     const shuffledPassages = [...(ydsReadingPassages as any[])].sort(() => 0.5 - Math.random());
     const selectedPassages = shuffledPassages.slice(0, 10);
@@ -158,7 +159,7 @@ function startTest(testSlug: string) {
     return;
   }
 
-  // 2. YDS GRAMMAR PRACTICE (100 SORU - 90 DAKİKA)
+  // 2. YDS GRAMMAR
   if (testSlug === 'yds-grammar-practice') {
     const shuffledQuestions = [...(ydsGrammarQuestions as any[])].sort(() => 0.5 - Math.random());
     const selectedQuestions = shuffledQuestions.slice(0, 100); 
@@ -191,7 +192,7 @@ function startTest(testSlug: string) {
     return;
   }
 
-  // 3. YDS PHRASAL VERBS (100 SORU - 75 DAKİKA)
+  // 3. YDS PHRASAL VERBS
   if (testSlug === 'yds-phrasal-verbs') {
     const shuffledList = [...(ydsPhrasals as any[])].sort(() => 0.5 - Math.random());
     const selectedWords = shuffledList.slice(0, 100);
@@ -230,7 +231,7 @@ function startTest(testSlug: string) {
     return;
   }
 
-  // 4. YDS KELİME TESTİ (VOCAB - 50 SORU - 40 DAKİKA)
+  // 4. YDS KELİME TESTİ
   if (testSlug === 'yds-1000-vocab') {
     const shuffledList = [...(ydsVocabulary as any[])].sort(() => 0.5 - Math.random());
     const selectedWords = shuffledList.slice(0, 50);
@@ -269,7 +270,7 @@ function startTest(testSlug: string) {
     return;
   }
 
-  // 5. QUICK PLACEMENT TEST (25 SORU - 25 DAKİKA)
+  // 5. QUICK PLACEMENT TEST
   if (testSlug === 'quick-placement') {
     const allQuestions = [...(topicQuestions as any[])];
     const shuffledQuestions = allQuestions.sort(() => 0.5 - Math.random());
@@ -303,7 +304,7 @@ function startTest(testSlug: string) {
     return;
   }
 
-  // 6. GRAMMAR FOCUS MANTIĞI
+  // 6. GRAMMAR FOCUS
   if (slugToTag[testSlug]) {
     const payload: any = {
       attemptId,
@@ -341,6 +342,9 @@ function startTest(testSlug: string) {
 }
 
 export default function Home() {
+  // Aktif olan test numaraları (1, 2, 3, 4)
+  const availableTests = [1, 2, 3, 4];
+
   return (
     <div className="min-h-screen bg-slate-50">
       {/* HERO SECTION */}
@@ -405,7 +409,7 @@ export default function Home() {
               {ydsVocabTest.title}
             </button>
 
-            {/* --- YDS EXAM PACK (PEMBE ALAN - YENİ) --- */}
+            {/* --- YDS EXAM PACK (PEMBE ALAN) --- */}
             <div className="col-span-1 md:col-span-2 lg:col-span-3 bg-pink-50 rounded-3xl p-6 border-2 border-pink-200 shadow-xl relative overflow-hidden group">
                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-pink-400 to-rose-500"></div>
                
@@ -418,23 +422,27 @@ export default function Home() {
                   </span>
                </div>
 
-               {/* 8 TANE TEST BUTONU */}
+               {/* 8 TANE TEST BUTONU (1-4 AKTİF) */}
                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                  {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
-                    <button
-                      key={num}
-                      onClick={() => startTest(`yds-exam-test-${num}`)}
-                      className={`py-4 rounded-xl font-bold text-lg shadow-sm transition-all transform hover:scale-105 active:scale-95
-                        ${num === 1 
-                           ? 'bg-pink-500 text-white hover:bg-pink-600 shadow-pink-200 ring-2 ring-pink-300 ring-offset-2' 
-                           : 'bg-white text-pink-300 border border-pink-100 hover:border-pink-300 hover:text-pink-500'
-                        }`}
-                    >
-                      Test {num}
-                      {num === 1 && <span className="block text-xs font-normal opacity-90 mt-1">Start Now</span>}
-                      {num !== 1 && <span className="block text-[10px] opacity-60 mt-1">Locked</span>}
-                    </button>
-                  ))}
+                  {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => {
+                    const isActive = availableTests.includes(num);
+
+                    return (
+                      <button
+                        key={num}
+                        onClick={() => startTest(`yds-exam-test-${num}`)}
+                        className={`py-4 rounded-xl font-bold text-lg shadow-sm transition-all transform hover:scale-105 active:scale-95
+                          ${isActive 
+                             ? 'bg-pink-500 text-white hover:bg-pink-600 shadow-pink-200 ring-2 ring-pink-300 ring-offset-2' 
+                             : 'bg-white text-pink-300 border border-pink-100 hover:border-pink-300 hover:text-pink-500 cursor-not-allowed opacity-60'
+                          }`}
+                      >
+                        Test {num}
+                        {isActive && <span className="block text-xs font-normal opacity-90 mt-1">Start Now</span>}
+                        {!isActive && <span className="block text-[10px] opacity-60 mt-1">Locked</span>}
+                      </button>
+                    )
+                  })}
                </div>
             </div>
 
