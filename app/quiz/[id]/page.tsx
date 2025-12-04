@@ -127,44 +127,54 @@ export default function Quiz({ params }: { params: { id: string } }) {
     return () => clearInterval(timerId);
   }, [timeLeft, showResult]);
 
-  // 3) SUBMIT & SAVE MISTAKES
+  // 3) SUBMIT & SAVE MISTAKES (DÜZELTİLMİŞ MANTIK)
   const handleSubmit = () => {
     if (!data) return;
 
     const { questions } = data;
     let correctCount = 0;
-    const mistakesToSave: any[] = [];
+
+    // Önce mevcut hataları çekelim
+    const existingMistakesRaw = localStorage.getItem('my_mistakes');
+    let mistakeList: any[] = existingMistakesRaw ? JSON.parse(existingMistakesRaw) : [];
 
     questions.forEach((q) => {
       const userAnswerId = answers[q.id];
       const correctChoiceId = getCorrectChoiceId(q);
+      const isCorrect = idsEqual(userAnswerId, correctChoiceId);
 
-      if (idsEqual(userAnswerId, correctChoiceId)) {
+      // Skoru hesapla (Boş da olsa yanlış da olsa skor artmaz)
+      if (isCorrect) {
         correctCount++;
-      } else {
-        // Yanlış cevaplanan soruyu kaydet
-        mistakesToSave.push({
-          ...q,
-          myWrongAnswer: userAnswerId,
-          savedAt: new Date().toISOString(),
-          testTitle: data.test.title
-        });
       }
+
+      // --- HATA KAYIT MANTIĞI ---
+      
+      // Sadece cevap verilmişse işlem yap (Boşları atla)
+      if (userAnswerId) {
+        if (isCorrect) {
+          // DOĞRU CEVAP:
+          // Eğer bu soru daha önce hata listesinde varsa, artık öğrenildiği için SİL.
+          mistakeList = mistakeList.filter((m) => m.id !== q.id);
+        } else {
+          // YANLIŞ CEVAP:
+          // Listeye ekle (Eğer zaten yoksa)
+          const alreadyExists = mistakeList.find((m) => m.id === q.id);
+          if (!alreadyExists) {
+            mistakeList.push({
+              ...q,
+              myWrongAnswer: userAnswerId,
+              savedAt: new Date().toISOString(),
+              testTitle: data.test.title
+            });
+          }
+        }
+      }
+      // Eğer userAnswerId yoksa (boşsa), mistakeList'e dokunma.
     });
 
-    // LocalStorage'a kaydetme mantığı
-    const existingMistakesRaw = localStorage.getItem('my_mistakes');
-    const existingMistakes = existingMistakesRaw ? JSON.parse(existingMistakesRaw) : [];
-    const newMistakes = [...existingMistakes];
-    
-    mistakesToSave.forEach(newItem => {
-      // Çift kaydı engelle
-      if (!newMistakes.find((item: any) => item.id === newItem.id)) {
-        newMistakes.push(newItem);
-      }
-    });
-
-    localStorage.setItem('my_mistakes', JSON.stringify(newMistakes));
+    // Güncellenmiş listeyi kaydet
+    localStorage.setItem('my_mistakes', JSON.stringify(mistakeList));
 
     setScore(correctCount);
     setShowResult(true);
@@ -198,7 +208,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
             
             <div className="w-px h-12 bg-slate-200" />
 
-            {/* TOTAL (GERİ GELDİ) */}
+            {/* TOTAL */}
             <div className="flex flex-col">
               <span className="text-4xl font-black text-slate-700">{questions.length}</span>
               <span className="text-xs font-bold text-slate-400 uppercase">Total</span>
@@ -225,7 +235,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
           </div>
         </div>
 
-        {/* DETAILED ANALYSIS (TAM KOD) */}
+        {/* DETAILED ANALYSIS */}
         <div className="space-y-6">
           <h2 className="text-xl font-bold text-slate-700 ml-2 border-l-4 border-blue-500 pl-3">Detailed Analysis</h2>
           
