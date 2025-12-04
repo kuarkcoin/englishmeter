@@ -67,6 +67,30 @@ function idsEqual(a?: string | null, b?: string | null): boolean {
   return String(a).trim().toUpperCase() === String(b).trim().toUpperCase();
 }
 
+// --- HELPER: TEXT FORMATTER (BOLD TO BADGE) ---
+// Bu fonksiyon **kelime** yapısını mavi kutucuğa çevirir
+function formatText(text: string) {
+  if (!text) return null;
+  // Metni ** işaretlerine göre böler (regex yakalama grubuyla)
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+  
+  return parts.map((part, index) => {
+    // Eğer parça ** ile başlıyıp bitiyorsa (Vurgulanacak kelime)
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return (
+        <span 
+          key={index} 
+          className="bg-blue-100 text-blue-700 font-extrabold px-2 py-1 rounded-md mx-1 border border-blue-200 shadow-sm inline-block transform -translate-y-0.5"
+        >
+          {part.slice(2, -2)} {/* ** işaretlerini temizle */}
+        </span>
+      );
+    }
+    // Normal metin (HTML etiketi varsa korumak için dangerouslySet kullanıyoruz)
+    return <span key={index} dangerouslySetInnerHTML={{ __html: part }} />;
+  });
+}
+
 export default function Quiz({ params }: { params: { id: string } }) {
   const [data, setData] = useState<QuizData | null>(null);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -287,10 +311,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       )}
                     </div>
 
-                    <div
-                      className="text-lg font-medium text-slate-800 mb-5 leading-relaxed"
-                      dangerouslySetInnerHTML={{ __html: q.prompt }}
-                    />
+                    {/* UPDATED: BADGE STYLING HERE */}
+                    <div className="text-lg font-medium text-slate-800 mb-5 leading-loose">
+                       {formatText(q.prompt)}
+                    </div>
 
                     <div className="grid gap-2">
                       {(q.choices || []).map((c) => {
@@ -385,10 +409,12 @@ export default function Quiz({ params }: { params: { id: string } }) {
             <div className="text-sm text-slate-400 font-bold mb-3 uppercase tracking-wide">
               Question {idx + 1}
             </div>
-            <div
-              className="text-xl font-medium text-slate-800 mb-6 leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: q.prompt }}
-            />
+            
+            {/* UPDATED: BADGE STYLING HERE */}
+            <div className="text-xl font-medium text-slate-800 mb-6 leading-loose">
+              {formatText(q.prompt)}
+            </div>
+
             <div className="grid gap-3">
               {(q.choices || []).map((c) => (
                 <label
