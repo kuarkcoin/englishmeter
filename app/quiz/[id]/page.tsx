@@ -67,22 +67,29 @@ function idsEqual(a?: string | null, b?: string | null): boolean {
   return String(a).trim().toUpperCase() === String(b).trim().toUpperCase();
 }
 
-// --- HELPER: TEXT FORMATTER (BOLD TO BADGE) ---
-// Bu fonksiyon **kelime** yapısını mavi kutucuğa çevirir
+// --- HELPER: TEXT FORMATTER (BOLD & QUOTES TO BADGE) ---
+// Bu fonksiyon **"kelime"** yapısını temizleyip şık mavi kutucuğa çevirir
 function formatText(text: string) {
   if (!text) return null;
-  // Metni ** işaretlerine göre böler (regex yakalama grubuyla)
+  
+  // Metni ** işaretlerine göre böler
   const parts = text.split(/(\*\*.*?\*\*)/g);
   
   return parts.map((part, index) => {
     // Eğer parça ** ile başlıyıp bitiyorsa (Vurgulanacak kelime)
     if (part.startsWith('**') && part.endsWith('**')) {
+      // 1. Önce ** işaretlerini kaldır
+      let content = part.slice(2, -2);
+      
+      // 2. Sonra kelimenin başındaki veya sonundaki tırnakları (", ') temizle
+      content = content.replace(/^['"]+|['"]+$/g, '');
+
       return (
         <span 
           key={index} 
-          className="bg-blue-100 text-blue-700 font-extrabold px-2 py-1 rounded-md mx-1 border border-blue-200 shadow-sm inline-block transform -translate-y-0.5"
+          className="bg-blue-100 text-blue-700 font-extrabold px-3 py-1 rounded-lg mx-1 border border-blue-200 shadow-sm inline-block transform -translate-y-0.5 tracking-wide"
         >
-          {part.slice(2, -2)} {/* ** işaretlerini temizle */}
+          {content}
         </span>
       );
     }
