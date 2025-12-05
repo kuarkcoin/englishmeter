@@ -6918,5 +6918,3413 @@
     {
         "word": "Zone",
         "meaning": "Bölge"
+    }, 
+    {
+        "word": "Abate",
+        "meaning": "Azalmak, dinmek (fırtına, ağrı vb.)"
+    },
+    {
+        "word": "Abject",
+        "meaning": "Sefil, aşağılık (durum)"
+    },
+    {
+        "word": "Abridge",
+        "meaning": "Kısaltmak (metin, kitap)"
+    },
+    {
+        "word": "Absolve",
+        "meaning": "Temize çıkarmak, affetmek"
+    },
+    {
+        "word": "Abstain",
+        "meaning": "Sakınmak, uzak durmak (oy kullanmamak)"
+    },
+    {
+        "word": "Abstruse",
+        "meaning": "Anlaşılması güç, derin"
+    },
+    {
+        "word": "Accolade",
+        "meaning": "Övgü, ödül"
+    },
+    {
+        "word": "Acquiesce",
+        "meaning": "İstemeye istemeye razı olmak"
+    },
+    {
+        "word": "Acrimony",
+        "meaning": "Hırçınlık, sertlik (tartışma)"
+    },
+    {
+        "word": "Acumen",
+        "meaning": "Sezgi, keskin zeka"
+    },
+    {
+        "word": "Adamant",
+        "meaning": "İnatçı, kararlı"
+    },
+    {
+        "word": "Admonish",
+        "meaning": "Uyarmak, azarlamak"
+    },
+    {
+        "word": "Adroit",
+        "meaning": "Becerikli, usta"
+    },
+    {
+        "word": "Adulation",
+        "meaning": "Aşırı övgü, dalkavukluk"
+    },
+    {
+        "word": "Adversary",
+        "meaning": "Rakip, düşman"
+    },
+    {
+        "word": "Aesthetic",
+        "meaning": "Estetik, göze hoş gelen"
+    },
+    {
+        "word": "Affable",
+        "meaning": "Nazik, sokulgan"
+    },
+    {
+        "word": "Affinity",
+        "meaning": "Yakınlık, benzerlik"
+    },
+    {
+        "word": "Aggrandize",
+        "meaning": "Büyütmek, yüceltmek (güç/statü)"
+    },
+    {
+        "word": "Alacrity",
+        "meaning": "Canlılık, şevk"
+    },
+    {
+        "word": "Allude",
+        "meaning": "İma etmek, kastetmek"
+    },
+    {
+        "word": "Altruism",
+        "meaning": "Fedakarlık, diğerkamlık"
+    },
+    {
+        "word": "Amalgamate",
+        "meaning": "Birleşmek, karışmak"
+    },
+    {
+        "word": "Ambivalent",
+        "meaning": "Kararsız, karmaşık duygular içinde"
+    },
+    {
+        "word": "Ameliorate",
+        "meaning": "İyileştirmek, düzeltmek"
+    },
+    {
+        "word": "Amenable",
+        "meaning": "Uysal, laftan anlayan"
+    },
+    {
+        "word": "Amiable",
+        "meaning": "Sevimli, tatlı huylu"
+    },
+    {
+        "word": "Amnesty",
+        "meaning": "Genel af"
+    },
+    {
+        "word": "Amorphous",
+        "meaning": "Biçimsiz, şekilsiz"
+    },
+    {
+        "word": "Anachronism",
+        "meaning": "Tarih hatası, çağ dışı kalmış"
+    },
+    {
+        "word": "Analogous",
+        "meaning": "Benzer, andıran"
+    },
+    {
+        "word": "Anathema",
+        "meaning": "Lanet, nefret edilen şey"
+    },
+    {
+        "word": "Animosity",
+        "meaning": "Düşmanlık, kin"
+    },
+    {
+        "word": "Annihilate",
+        "meaning": "Yok etmek"
+    },
+    {
+        "word": "Anomaly",
+        "meaning": "Anormallik, sapma"
+    },
+    {
+        "word": "Antecedent",
+        "meaning": "Öncel, geçmiş, ata"
+    },
+    {
+        "word": "Antipathy",
+        "meaning": "Antipati, iticilik"
+    },
+    {
+        "word": "Antithesis",
+        "meaning": "Karşıt tez, tam zıt"
+    },
+    {
+        "word": "Apathy",
+        "meaning": "İlgisizlik, duygusuzluk"
+    },
+    {
+        "word": "Appease",
+        "meaning": "Yatıştırmak, taviz vermek"
+    },
+    {
+        "word": "Apprehend",
+        "meaning": "Yakalamak (suçlu); Kavramak"
+    },
+    {
+        "word": "Approbation",
+        "meaning": "Onay, rıza, beğeni"
+    },
+    {
+        "word": "Arbitrate",
+        "meaning": "Hakemlik etmek"
+    },
+    {
+        "word": "Archaic",
+        "meaning": "Eski, modası geçmiş"
+    },
+    {
+        "word": "Arduous",
+        "meaning": "Güç, çetin, gayret gerektiren"
+    },
+    {
+        "word": "Articulate",
+        "meaning": "Açıkça ifade etmek"
+    },
+    {
+        "word": "Ascertain",
+        "meaning": "Aslını öğrenmek, saptamak"
+    },
+    {
+        "word": "Ascribe",
+        "meaning": "Atfetmek, yüklemek"
+    },
+    {
+        "word": "Aspersion",
+        "meaning": "İftira, kara çalma"
+    },
+    {
+        "word": "Assiduous",
+        "meaning": "Dikkatli, çalışkan, özverili"
+    },
+    {
+        "word": "Assimilate",
+        "meaning": "Özümsemek, asimile etmek"
+    },
+    {
+        "word": "Assuage",
+        "meaning": "Yatıştırmak, hafifletmek"
+    },
+    {
+        "word": "Astute",
+        "meaning": "Akıllı, ferasetli, kurnaz"
+    },
+    {
+        "word": "Atrophy",
+        "meaning": "Körelmek (organ/yetenek)"
+    },
+    {
+        "word": "Attenuate",
+        "meaning": "İnceltmek, zayıflatmak"
+    },
+    {
+        "word": "Audacious",
+        "meaning": "Cüretkar, atılgan"
+    },
+    {
+        "word": "Augment",
+        "meaning": "Çoğaltmak, artırmak"
+    },
+    {
+        "word": "Auspicious",
+        "meaning": "Hayırlı, uğurlu"
+    },
+    {
+        "word": "Austere",
+        "meaning": "Sert, ciddi; Gösterişsiz"
+    },
+    {
+        "word": "Autonomy",
+        "meaning": "Özerklik"
+    },
+    {
+        "word": "Avarice",
+        "meaning": "Para hırsı, açgözlülük"
+    },
+    {
+        "word": "Axiom",
+        "meaning": "Aksiyom, genel kabul görmüş gerçek"
+    },
+    {
+        "word": "Banal",
+        "meaning": "Sıradan, bayağı"
+    },
+    {
+        "word": "Bane",
+        "meaning": "Yıkım/bela nedeni"
+    },
+    {
+        "word": "Barrage",
+        "meaning": "Yaylım ateşi; Engel"
+    },
+    {
+        "word": "Belie",
+        "meaning": "Yalanlamak, aksini göstermek"
+    },
+    {
+        "word": "Belligerent",
+        "meaning": "Saldırgan, kavgacı"
+    },
+    {
+        "word": "Benevolent",
+        "meaning": "Hayırsever, iyilikçi"
+    },
+    {
+        "word": "Benign",
+        "meaning": "İyi huylu (tıp); Zararsız"
+    },
+    {
+        "word": "Bequeath",
+        "meaning": "Miras bırakmak"
+    },
+    {
+        "word": "Berate",
+        "meaning": "Fırçalamak, azarlamak"
+    },
+    {
+        "word": "Bereft",
+        "meaning": "Mahrum, yoksun"
+    },
+    {
+        "word": "Bifurcate",
+        "meaning": "İkiye ayrılmak/çatallanmak"
+    },
+    {
+        "word": "Bilateral",
+        "meaning": "İki taraflı"
+    },
+    {
+        "word": "Bland",
+        "meaning": "Yavan, tatsız"
+    },
+    {
+        "word": "Blatant",
+        "meaning": "Bariz, göze batan (kötü anlamda)"
+    },
+    {
+        "word": "Bleak",
+        "meaning": "Kasvetli, umutsuz"
+    },
+    {
+        "word": "Blight",
+        "meaning": "Hastalık (bitki); Mahveden şey"
+    },
+    {
+        "word": "Blunder",
+        "meaning": "Pot kırmak, gaf yapmak"
+    },
+    {
+        "word": "Boisterous",
+        "meaning": "Gürültülü, şamatacı"
+    },
+    {
+        "word": "Bolster",
+        "meaning": "Desteklemek, güçlendirmek"
+    },
+    {
+        "word": "Bombastic",
+        "meaning": "Süslü, abartılı (konuşma)"
+    },
+    {
+        "word": "Boorish",
+        "meaning": "Kaba saba, yontulmamış"
+    },
+    {
+        "word": "Breach",
+        "meaning": "İhlal etmek (yasa/sözleşme)"
+    },
+    {
+        "word": "Brevity",
+        "meaning": "Kısalık, özlülük"
+    },
+    {
+        "word": "Broach",
+        "meaning": "Konuyu açmak (zor bir konuyu)"
+    },
+    {
+        "word": "Brusque",
+        "meaning": "Sert, kaba (tavır)"
+    },
+    {
+        "word": "Bulwark",
+        "meaning": "Siper, savunma duvarı"
+    },
+    {
+        "word": "Buoyant",
+        "meaning": "Yüzen; Neşeli"
+    },
+    {
+        "word": "Burgeon",
+        "meaning": "Filizlenmek, hızla gelişmek"
+    },
+    {
+        "word": "Buttress",
+        "meaning": "Desteklemek, payanda"
+    },
+    {
+        "word": "Cacophony",
+        "meaning": "Ses uyumsuzluğu, gürültü"
+    },
+    {
+        "word": "Cajole",
+        "meaning": "Tatlı sözle kandırmak"
+    },
+    {
+        "word": "Caliber",
+        "meaning": "Çap; Yetenek derecesi"
+    },
+    {
+        "word": "Callous",
+        "meaning": "Duygusuz, katı yürekli"
+    },
+    {
+        "word": "Candid",
+        "meaning": "İçten, samimi, açık sözlü"
+    },
+    {
+        "word": "Candor",
+        "meaning": "Açık sözlülük, dürüstlük"
+    },
+    {
+        "word": "Capitulate",
+        "meaning": "Teslim olmak (şartlı)"
+    },
+    {
+        "word": "Capricious",
+        "meaning": "Maymun iştahlı, değişken"
+    },
+    {
+        "word": "Captivate",
+        "meaning": "Büyülemek, esir etmek"
+    },
+    {
+        "word": "Catalyst",
+        "meaning": "Katalizör, hızlandırıcı"
+    },
+    {
+        "word": "Categorical",
+        "meaning": "Kesin, kategorik"
+    },
+    {
+        "word": "Catharsis",
+        "meaning": "Arınma, rahatlama"
+    },
+    {
+        "word": "Caustic",
+        "meaning": "Yakıcı; İğneleyici (söz)"
+    },
+    {
+        "word": "Caveat",
+        "meaning": "Uyarı, ikaz (hukuki)"
+    },
+    {
+        "word": "Censure",
+        "meaning": "Kınamak, eleştirmek"
+    },
+    {
+        "word": "Cerebral",
+        "meaning": "Beyinsel; Entelektüel"
+    },
+    {
+        "word": "Cessation",
+        "meaning": "Durma, kesilme"
+    },
+    {
+        "word": "Chagrin",
+        "meaning": "Hayal kırıklığı, utanç"
+    },
+    {
+        "word": "Charlatan",
+        "meaning": "Şarlatan, sahtekar"
+    },
+    {
+        "word": "Chasm",
+        "meaning": "Uçurum, derin yarık"
+    },
+    {
+        "word": "Chastise",
+        "meaning": "Cezalandırmak, dövmek"
+    },
+    {
+        "word": "Chicanery",
+        "meaning": "Hilebazlık, düzenbazlık"
+    },
+    {
+        "word": "Circuitous",
+        "meaning": "Dolambaçlı (yol/söz)"
+    },
+    {
+        "word": "Circumscribe",
+        "meaning": "Sınırlamak, çevrelemek"
+    },
+    {
+        "word": "Circumspect",
+        "meaning": "Tedbirli, sakıngan"
+    },
+    {
+        "word": "Circumvent",
+        "meaning": "Etrafından dolaşmak, atlatmak"
+    },
+    {
+        "word": "Clandestine",
+        "meaning": "Gizli, el altından yapılan"
+    },
+    {
+        "word": "Clemency",
+        "meaning": "Merhamet, hoşgörü"
+    },
+    {
+        "word": "Coalesce",
+        "meaning": "Birleşmek, bütünleşmek"
+    },
+    {
+        "word": "Coerce",
+        "meaning": "Zorlamak, baskı yapmak"
+    },
+    {
+        "word": "Cogent",
+        "meaning": "İkna edici, kuvvetli (delil)"
+    },
+    {
+        "word": "Cognizant",
+        "meaning": "Haberdar, bilincinde"
+    },
+    {
+        "word": "Cohesion",
+        "meaning": "Uyum, yapışma"
+    },
+    {
+        "word": "Colloquial",
+        "meaning": "Konuşma diline ait"
+    },
+    {
+        "word": "Collusion",
+        "meaning": "Gizli anlaşma (yasa dışı)"
+    },
+    {
+        "word": "Commensurate",
+        "meaning": "Orantılı, denk"
+    },
+    {
+        "word": "Complacent",
+        "meaning": "Halinden memnun (aşırı rahat)"
+    },
+    {
+        "word": "Complement",
+        "meaning": "Tamamlamak (birbirini)"
+    },
+    {
+        "word": "Compliant",
+        "meaning": "Uysal, itaatkar"
+    },
+    {
+        "word": "Complicity",
+        "meaning": "Suç ortaklığı"
+    },
+    {
+        "word": "Comprehensive",
+        "meaning": "Kapsamlı"
+    },
+    {
+        "word": "Conciliatory",
+        "meaning": "Gönül alıcı, yatıştırıcı"
+    },
+    {
+        "word": "Concise",
+        "meaning": "Özlü, kısa ve net"
+    },
+    {
+        "word": "Concur",
+        "meaning": "Aynı fikirde olmak"
+    },
+    {
+        "word": "Condone",
+        "meaning": "Göz yummak, hoş görmek"
+    },
+    {
+        "word": "Conducive",
+        "meaning": "Olanak sağlayan, yardımcı olan"
+    },
+    {
+        "word": "Confidant",
+        "meaning": "Sırdaş"
+    },
+    {
+        "word": "Confiscate",
+        "meaning": "Müsadere etmek, el koymak"
+    },
+    {
+        "word": "Confluence",
+        "meaning": "Kavşak, birleşme noktası"
+    },
+    {
+        "word": "Confound",
+        "meaning": "Kafasını karıştırmak, şaşırtmak"
+    },
+    {
+        "word": "Congenial",
+        "meaning": "Cana yakın, kafa dengi"
+    },
+    {
+        "word": "Congenital",
+        "meaning": "Doğuştan gelen"
+    },
+    {
+        "word": "Conjecture",
+        "meaning": "Varsayım, tahmin"
+    },
+    {
+        "word": "Conjure",
+        "meaning": "Büyüyle çağırmak, hokkabazlık"
+    },
+    {
+        "word": "Connoisseur",
+        "meaning": "Uzman, erbabı (sanat/yemek)"
+    },
+    {
+        "word": "Consecrate",
+        "meaning": "Kutsamak"
+    },
+    {
+        "word": "Conspicuous",
+        "meaning": "Göze çarpan, belirgin"
+    },
+    {
+        "word": "Conspire",
+        "meaning": "Komplo kurmak"
+    },
+    {
+        "word": "Consternation",
+        "meaning": "Dehşet, şaşkınlık"
+    },
+    {
+        "word": "Constituent",
+        "meaning": "Bileşen; Seçmen"
+    },
+    {
+        "word": "Construe",
+        "meaning": "Yorumlamak, manalandırmak"
+    },
+    {
+        "word": "Consummate",
+        "meaning": "Dört dörtlük, mükemmel"
+    },
+    {
+        "word": "Contemplate",
+        "meaning": "Düşünüp taşınmak"
+    },
+    {
+        "word": "Contentious",
+        "meaning": "Tartışmalı, kavgacı"
+    },
+    {
+        "word": "Contingent",
+        "meaning": "Bağlı, olası, tesadüfi"
+    },
+    {
+        "word": "Contraband",
+        "meaning": "Kaçak mal"
+    },
+    {
+        "word": "Contrive",
+        "meaning": "Planlamak, kurmak (dolap)"
+    },
+    {
+        "word": "Conundrum",
+        "meaning": "Muamma, çözülmesi zor sorun"
+    },
+    {
+        "word": "Converge",
+        "meaning": "Bir noktada birleşmek"
+    },
+    {
+        "word": "Conversant",
+        "meaning": "Aşina, vakıf (konuya)"
+    },
+    {
+        "word": "Convivial",
+        "meaning": "Şen, neşeli (ortam)"
+    },
+    {
+        "word": "Convoluted",
+        "meaning": "Karmaşık, kıvrımlı"
+    },
+    {
+        "word": "Copious",
+        "meaning": "Bol, bereketli"
+    },
+    {
+        "word": "Corroborate",
+        "meaning": "Doğrulamak, teyit etmek"
+    },
+    {
+        "word": "Cosmopolitan",
+        "meaning": "Evrensel, çok uluslu"
+    },
+    {
+        "word": "Countenance",
+        "meaning": "Yüz ifadesi; Onaylamak"
+    },
+    {
+        "word": "Countermand",
+        "meaning": "Emri iptal etmek/geri almak"
+    },
+    {
+        "word": "Covert",
+        "meaning": "Gizli, örtülü"
+    },
+    {
+        "word": "Covet",
+        "meaning": "Gıpta etmek, çok istemek"
+    },
+    {
+        "word": "Credence",
+        "meaning": "İnanma, güven"
+    },
+    {
+        "word": "Credulous",
+        "meaning": "Saf, her şeye inanan"
+    },
+    {
+        "word": "Criterion",
+        "meaning": "Kriter, ölçüt"
+    },
+    {
+        "word": "Cryptic",
+        "meaning": "Gizemli, esrarengiz"
+    },
+    {
+        "word": "Culpable",
+        "meaning": "Suçlu, kabahatli"
+    },
+    {
+        "word": "Cumbersome",
+        "meaning": "Hantal, ağır"
+    },
+    {
+        "word": "Cumulative",
+        "meaning": "Birikimli, kümülatif"
+    },
+    {
+        "word": "Curb",
+        "meaning": "Zapt etmek, frenlemek"
+    },
+    {
+        "word": "Cursory",
+        "meaning": "Üstünkörü, acele"
+    },
+    {
+        "word": "Curtail",
+        "meaning": "Kısaltmak, kesmek (harcama vb.)"
+    },
+    {
+        "word": "Cynical",
+        "meaning": "Alaycı, iyiliğe inanmayan"
+    },
+    {
+        "word": "Dearth",
+        "meaning": "Kıtlık, eksiklik"
+    },
+    {
+        "word": "Debacle",
+        "meaning": "Fiyasko, çöküş"
+    },
+    {
+        "word": "Debilitate",
+        "meaning": "Güçten düşürmek"
+    },
+    {
+        "word": "Decorum",
+        "meaning": "Edep, görgü kuralları"
+    },
+    {
+        "word": "Deference",
+        "meaning": "Hürmet, saygı"
+    },
+    {
+        "word": "Deleterious",
+        "meaning": "Zararlı, sağlığa aykırı"
+    },
+    {
+        "word": "Delineate",
+        "meaning": "Tasvir etmek, çizmek"
+    },
+    {
+        "word": "Demagogue",
+        "meaning": "Halk avcısı, demagog"
+    },
+    {
+        "word": "Demur",
+        "meaning": "İtiraz etmek (nazikçe)"
+    },
+    {
+        "word": "Denigrate",
+        "meaning": "Karalamak, iftira atmak"
+    },
+    {
+        "word": "Deride",
+        "meaning": "Alay etmek, küçümsemek"
+    },
+    {
+        "word": "Derivative",
+        "meaning": "Türev, taklit"
+    },
+    {
+        "word": "Desiccate",
+        "meaning": "Kurutmak, nemini almak"
+    },
+    {
+        "word": "Despondent",
+        "meaning": "Umutsuz, meyus"
+    },
+    {
+        "word": "Despot",
+        "meaning": "Zorba hükümdar"
+    },
+    {
+        "word": "Destitute",
+        "meaning": "Muhtaç, yoksul"
+    },
+    {
+        "word": "Deterrent",
+        "meaning": "Caydırıcı şey"
+    },
+    {
+        "word": "Detrimental",
+        "meaning": "Zararlı, hasar veren"
+    },
+    {
+        "word": "Deviate",
+        "meaning": "Sapmak (yoldan/konudan)"
+    },
+    {
+        "word": "Devoid",
+        "meaning": "Yoksun, boş"
+    },
+    {
+        "word": "Dexterous",
+        "meaning": "El çabukluğu olan, becerikli"
+    },
+    {
+        "word": "Diatribe",
+        "meaning": "Sert eleştiri, yergi"
+    },
+    {
+        "word": "Dichotomy",
+        "meaning": "İkiye bölünmüşlük, ikilem"
+    },
+    {
+        "word": "Diffident",
+        "meaning": "Çekingen, kendine güvensiz"
+    },
+    {
+        "word": "Dilapidated",
+        "meaning": "Harap, döküntü (bina)"
+    },
+    {
+        "word": "Dilate",
+        "meaning": "Genişlemek (göz bebeği vb.)"
+    },
+    {
+        "word": "Dilettante",
+        "meaning": "Sanat heveslisi, amatör"
+    },
+    {
+        "word": "Discern",
+        "meaning": "Seçmek, fark etmek"
+    },
+    {
+        "word": "Discord",
+        "meaning": "Uyuşmazlık, nifak"
+    },
+    {
+        "word": "Discrepancy",
+        "meaning": "Tutarsızlık, farklılık"
+    },
+    {
+        "word": "Disdain",
+        "meaning": "Küçümseme, hor görme"
+    },
+    {
+        "word": "Disingenuous",
+        "meaning": "Samimiyetsiz, sinsi"
+    },
+    {
+        "word": "Disparage",
+        "meaning": "Kötülemek, aşağılamak"
+    },
+    {
+        "word": "Disparate",
+        "meaning": "Bambaşka, uyumsuz"
+    },
+    {
+        "word": "Dispel",
+        "meaning": "Defetmek, dağıtmak (korkuyu)"
+    },
+    {
+        "word": "Disseminate",
+        "meaning": "Yaymak (haber/bilgi)"
+    },
+    {
+        "word": "Dissident",
+        "meaning": "Muhalif (rejim karşıtı)"
+    },
+    {
+        "word": "Dissonance",
+        "meaning": "Ahenksizlik, uyumsuzluk"
+    },
+    {
+        "word": "Diverge",
+        "meaning": "Farklılaşmak, ayrılmak"
+    },
+    {
+        "word": "Divulge",
+        "meaning": "İfşa etmek (sırrı)"
+    },
+    {
+        "word": "Dogmatic",
+        "meaning": "Dedim dedik, dogmatik"
+    },
+    {
+        "word": "Dormant",
+        "meaning": "Uykuda, faal olmayan"
+    },
+    {
+        "word": "Dubious",
+        "meaning": "Şüpheli, kuşkulu"
+    },
+    {
+        "word": "Duplicity",
+        "meaning": "İkiyüzlülük"
+    },
+    {
+        "word": "Dwindle",
+        "meaning": "Giderek azalmak, küçülmek"
+    },
+    {
+        "word": "Ebullient",
+        "meaning": "Neşeli, içi içine sığmayan"
+    },
+    {
+        "word": "Eclectic",
+        "meaning": "Seçmeci, farklı kaynaklardan derlenmiş"
+    },
+    {
+        "word": "Eclipse",
+        "meaning": "Gölgede bırakmak (önemini azaltmak)"
+    },
+    {
+        "word": "Edify",
+        "meaning": "Eğitmek, manevi olarak geliştirmek"
+    },
+    {
+        "word": "Efface",
+        "meaning": "Silmek, yok etmek (hafızadan)"
+    },
+    {
+        "word": "Efficacious",
+        "meaning": "Tesirli, istenen sonucu veren (ilaç/yöntem)"
+    },
+    {
+        "word": "Egregious",
+        "meaning": "Vahim, çok kötü (hata)"
+    },
+    {
+        "word": "Elaborate",
+        "meaning": "Detaylandırmak; Ayrıntılı"
+    },
+    {
+        "word": "Elicit",
+        "meaning": "Ortaya çıkarmak, temin etmek (bilgi/tepki)"
+    },
+    {
+        "word": "Elucidate",
+        "meaning": "Açıklığa kavuşturmak, izah etmek"
+    },
+    {
+        "word": "Elusive",
+        "meaning": "Yakalanması/anlaşılması zor"
+    },
+    {
+        "word": "Emancipate",
+        "meaning": "Özgürleştirmek, azat etmek"
+    },
+    {
+        "word": "Embellish",
+        "meaning": "Süslemek; Abartmak (hikayeyi)"
+    },
+    {
+        "word": "Emulate",
+        "meaning": "Özenmek, taklit ederek yarışmak"
+    },
+    {
+        "word": "Encroach",
+        "meaning": "Tecavüz etmek (hakka/araziye), yayılmak"
+    },
+    {
+        "word": "Endemic",
+        "meaning": "Yöresel, bir yere özgü (hastalık/bitki)"
+    },
+    {
+        "word": "Enervate",
+        "meaning": "Gücünü kırmak, zayıflatmak"
+    },
+    {
+        "word": "Engender",
+        "meaning": "Neden olmak, doğurmak (durum)"
+    },
+    {
+        "word": "Enigma",
+        "meaning": "Muamma, gizem"
+    },
+    {
+        "word": "Enmity",
+        "meaning": "Düşmanlık, husumet"
+    },
+    {
+        "word": "Entail",
+        "meaning": "Gerektirmek, kapsamak"
+    },
+    {
+        "word": "Entrench",
+        "meaning": "Sağlamlaştırmak, yerleştirmek (fikir)"
+    },
+    {
+        "word": "Ephemeral",
+        "meaning": "Geçici, kısa ömürlü"
+    },
+    {
+        "word": "Epitome",
+        "meaning": "Örnek, timsal, özet"
+    },
+    {
+        "word": "Equanimity",
+        "meaning": "Uysallık, temkin, soğukkanlılık"
+    },
+    {
+        "word": "Equivocal",
+        "meaning": "İki anlamlı, belirsiz, kaçamak"
+    },
+    {
+        "word": "Erode",
+        "meaning": "Aşındırmak, sarsmak (güven/toprak)"
+    },
+    {
+        "word": "Erratic",
+        "meaning": "Düzensiz, değişken"
+    },
+    {
+        "word": "Erroneous",
+        "meaning": "Hatalı, yanlış"
+    },
+    {
+        "word": "Esoteric",
+        "meaning": "Sadece belli bir grubun anladığı, gizli"
+    },
+    {
+        "word": "Espouse",
+        "meaning": "Benimsemek, savunmak (fikri)"
+    },
+    {
+        "word": "Euphemism",
+        "meaning": "Örtmece, kibarlaştırma (kelimeyi)"
+    },
+    {
+        "word": "Evanescent",
+        "meaning": "Gözden kaybolan, sönüp giden"
+    },
+    {
+        "word": "Exacerbate",
+        "meaning": "Kötüleştirmek, şiddetlendirmek"
+    },
+    {
+        "word": "Exalt",
+        "meaning": "Yüceltmek, övmek"
+    },
+    {
+        "word": "Exasperate",
+        "meaning": "Çileden çıkarmak"
+    },
+    {
+        "word": "Exculpate",
+        "meaning": "Suçsuzluğunu kanıtlamak, aklamak"
+    },
+    {
+        "word": "Exemplary",
+        "meaning": "Örnek niteliğinde, mükemmel"
+    },
+    {
+        "word": "Exhaustive",
+        "meaning": "Kapsamlı, her şeyi içeren (yorgun değil!)"
+    },
+    {
+        "word": "Exhilarating",
+        "meaning": "Canlandırıcı, neşelendirici"
+    },
+    {
+        "word": "Exonerate",
+        "meaning": "Temize çıkarmak, muaf tutmak"
+    },
+    {
+        "word": "Exorbitant",
+        "meaning": "Fahiş, aşırı (fiyat)"
+    },
+    {
+        "word": "Expedite",
+        "meaning": "Hızlandırmak"
+    },
+    {
+        "word": "Explicit",
+        "meaning": "Açık, net, sarih"
+    },
+    {
+        "word": "Extant",
+        "meaning": "Hala var olan (nesli tükenmemiş)"
+    },
+    {
+        "word": "Extol",
+        "meaning": "Övmek, methetmek"
+    },
+    {
+        "word": "Extraneous",
+        "meaning": "Konu dışı, ilgisiz"
+    },
+    {
+        "word": "Extricate",
+        "meaning": "Kurtarmak, ayıklamak (zor durumdan)"
+    },
+    {
+        "word": "Exuberant",
+        "meaning": "Coşkulu, hayat dolu"
+    },
+    {
+        "word": "Facetious",
+        "meaning": "Şakacı, ciddiyetsiz (yerli yersiz)"
+    },
+    {
+        "word": "Fallacious",
+        "meaning": "Yanıltıcı, mantıksız"
+    },
+    {
+        "word": "Falter",
+        "meaning": "Bocalama, tereddüt etme"
+    },
+    {
+        "word": "Fastidious",
+        "meaning": "Titiz, zor beğenen"
+    },
+    {
+        "word": "Fathom",
+        "meaning": "Kavramak, iç yüzünü anlamak"
+    },
+    {
+        "word": "Fervent",
+        "meaning": "Ateşli, coşkulu, hararetli"
+    },
+    {
+        "word": "Fickle",
+        "meaning": "Kararsız, dönek (insan/hava)"
+    },
+    {
+        "word": "Flagrant",
+        "meaning": "Bariz, göze batan (suç/hata)"
+    },
+    {
+        "word": "Fleeting",
+        "meaning": "Gelip geçici"
+    },
+    {
+        "word": "Flippant",
+        "meaning": "Laubali, ciddiyetsiz"
+    },
+    {
+        "word": "Flout",
+        "meaning": "Hiçe saymak, takmamak (yasa)"
+    },
+    {
+        "word": "Foment",
+        "meaning": "Kışkırtmak, körüklemek"
+    },
+    {
+        "word": "Foreboding",
+        "meaning": "Kötü his, içine doğma"
+    },
+    {
+        "word": "Forestall",
+        "meaning": "Önceden davranıp önlemek"
+    },
+    {
+        "word": "Forsake",
+        "meaning": "Terk etmek, vazgeçmek"
+    },
+    {
+        "word": "Fortitude",
+        "meaning": "Metanet, dayanma gücü"
+    },
+    {
+        "word": "Fortuitous",
+        "meaning": "Tesadüfi (şans eseri iyi olan)"
+    },
+    {
+        "word": "Foster",
+        "meaning": "Teşvik etmek, büyütmek"
+    },
+    {
+        "word": "Fraught",
+        "meaning": "Dolu, yüklü (tehlike/gerginlik)"
+    },
+    {
+        "word": "Frivolous",
+        "meaning": "Havai, boş, önemsiz"
+    },
+    {
+        "word": "Frugal",
+        "meaning": "Tutumlu, idareli"
+    },
+    {
+        "word": "Furtive",
+        "meaning": "Sinsi, kaçamak"
+    },
+    {
+        "word": "Futile",
+        "meaning": "Nafile, beyhude"
+    },
+    {
+        "word": "Galvanize",
+        "meaning": "Harekete geçirmek, canlandırmak"
+    },
+    {
+        "word": "Garner",
+        "meaning": "Toplamak, biriktirmek (bilgi/destek)"
+    },
+    {
+        "word": "Garrulous",
+        "meaning": "Geveze, çenebaz"
+    },
+    {
+        "word": "Generic",
+        "meaning": "Kapsamlı, genel; Markasız"
+    },
+    {
+        "word": "Germane",
+        "meaning": "Konuyla ilgili, uygun"
+    },
+    {
+        "word": "Glean",
+        "meaning": "Toplamak (bilgi kırıntılarını)"
+    },
+    {
+        "word": "Glut",
+        "meaning": "Bolluk, aşırı arz"
+    },
+    {
+        "word": "Grandiose",
+        "meaning": "Görkemli; Kendini büyük görme"
+    },
+    {
+        "word": "Gratuitous",
+        "meaning": "Sebepsiz, gereksiz"
+    },
+    {
+        "word": "Gregarious",
+        "meaning": "Sokulgan, topluluğu seven"
+    },
+    {
+        "word": "Grievous",
+        "meaning": "Acı veren, ağır (hata/yara)"
+    },
+    {
+        "word": "Guile",
+        "meaning": "Kurnazlık, hile"
+    },
+    {
+        "word": "Gullible",
+        "meaning": "Saf, kolay kandırılan"
+    },
+    {
+        "word": "Hackneyed",
+        "meaning": "Bayağılaşmış, klişe"
+    },
+    {
+        "word": "Haphazard",
+        "meaning": "Rasgele, gelişigüzel"
+    },
+    {
+        "word": "Harbinger",
+        "meaning": "Haberci, müjdeci"
+    },
+    {
+        "word": "Haughty",
+        "meaning": "Kibirli, burnu havada"
+    },
+    {
+        "word": "Heinous",
+        "meaning": "Menfur, iğrenç (suç)"
+    },
+    {
+        "word": "Heresy",
+        "meaning": "Sapkınlık, aykırı görüş"
+    },
+    {
+        "word": "Heterogeneous",
+        "meaning": "Çoktürlü, heterojen"
+    },
+    {
+        "word": "Hiatus",
+        "meaning": "Aralık, boşluk, kesinti"
+    },
+    {
+        "word": "Hierarchy",
+        "meaning": "Hiyerarşi"
+    },
+    {
+        "word": "Hinder",
+        "meaning": "Engel olmak, aksatmak"
+    },
+    {
+        "word": "Histrionic",
+        "meaning": "Tiyatral, yapmacık davranış"
+    },
+    {
+        "word": "Homogeneous",
+        "meaning": "Bütünleşik, homojen"
+    },
+    {
+        "word": "Hubris",
+        "meaning": "Kibir, aşırı gurur"
+    },
+    {
+        "word": "Hyperbole",
+        "meaning": "Mübalağa, abartı"
+    },
+    {
+        "word": "Hypocrisy",
+        "meaning": "İkiyüzlülük"
+    },
+    {
+        "word": "Hypothetical",
+        "meaning": "Varsayımsal"
+    },
+    {
+        "word": "Iconoclast",
+        "meaning": "Yerleşik inançlara karşı çıkan"
+    },
+    {
+        "word": "Idiosyncrasy",
+        "meaning": "Kişiye özgü özellik/tuhaflık"
+    },
+    {
+        "word": "Ignominy",
+        "meaning": "Rezillik, yüz karası"
+    },
+    {
+        "word": "Illicit",
+        "meaning": "Yasa dışı, haram"
+    },
+    {
+        "word": "Illuminate",
+        "meaning": "Aydınlatmak; Açıklamak"
+    },
+    {
+        "word": "Illustrious",
+        "meaning": "Ünlü, şanlı"
+    },
+    {
+        "word": "Imbibe",
+        "meaning": "İçmek; Özümsemek (fikri)"
+    },
+    {
+        "word": "Immaculate",
+        "meaning": "Lekesiz, tertemiz, kusursuz"
+    },
+    {
+        "word": "Immerse",
+        "meaning": "Daldırmak; Kendini kaptırmak"
+    },
+    {
+        "word": "Imminent",
+        "meaning": "Eli kulağında, olması yakın"
+    },
+    {
+        "word": "Immutable",
+        "meaning": "Değişmez, sabit"
+    },
+    {
+        "word": "Impair",
+        "meaning": "Bozmak, zayıflatmak, zarar vermek"
+    },
+    {
+        "word": "Impartial",
+        "meaning": "Tarafsız, yansız"
+    },
+    {
+        "word": "Impeccable",
+        "meaning": "Kusursuz, hatasız"
+    },
+    {
+        "word": "Impede",
+        "meaning": "Engellemek, geciktirmek"
+    },
+    {
+        "word": "Imperative",
+        "meaning": "Mecburi, çok önemli"
+    },
+    {
+        "word": "Imperious",
+        "meaning": "Otoriter, emreden"
+    },
+    {
+        "word": "Impetuous",
+        "meaning": "Dürtüsel, aceleci"
+    },
+    {
+        "word": "Implacable",
+        "meaning": "Yatıştırılamaz, amansız"
+    },
+    {
+        "word": "Implement",
+        "meaning": "Uygulamak, yerine getirmek"
+    },
+    {
+        "word": "Implicit",
+        "meaning": "İma edilen, örtülü"
+    },
+    {
+        "word": "Impoverish",
+        "meaning": "Fakirleştirmek, verimsizleştirmek"
+    },
+    {
+        "word": "Impregnable",
+        "meaning": "Ele geçirilemez, sarsılmaz"
+    },
+    {
+        "word": "Impudent",
+        "meaning": "Küstah, terbiyesiz"
+    },
+    {
+        "word": "Impugn",
+        "meaning": "Sorgulamak, şüphe düşürmek"
+    },
+    {
+        "word": "Inadvertent",
+        "meaning": "Kasıtsız, yanlışlıkla olan"
+    },
+    {
+        "word": "Inane",
+        "meaning": "Anlamsız, aptalca"
+    },
+    {
+        "word": "Inaugurate",
+        "meaning": "Törenle açmak, göreve başlatmak"
+    },
+    {
+        "word": "Incapacitate",
+        "meaning": "Yetersiz bırakmak, aciz bırakmak"
+    },
+    {
+        "word": "Incarcerate",
+        "meaning": "Hapse atmak"
+    },
+    {
+        "word": "Incessant",
+        "meaning": "Aralıksız, sürekli"
+    },
+    {
+        "word": "Inchoate",
+        "meaning": "Henüz gelişmemiş, başlangıçta"
+    },
+    {
+        "word": "Incisive",
+        "meaning": "Keskin, iğneleyici, isabetli"
+    },
+    {
+        "word": "Incongruous",
+        "meaning": "Uyumsuz, yersiz"
+    },
+    {
+        "word": "Inconsequential",
+        "meaning": "Önemsiz"
+    },
+    {
+        "word": "Incorrigible",
+        "meaning": "Islah olmaz, düzelmez"
+    },
+    {
+        "word": "Incredulous",
+        "meaning": "Kuşkulu, inanmayan"
+    },
+    {
+        "word": "Indefatigable",
+        "meaning": "Yorulmak bilmez"
+    },
+    {
+        "word": "Indigent",
+        "meaning": "Muhtaç, yoksul"
+    },
+    {
+        "word": "Indignant",
+        "meaning": "İçerlemiş, öfkeli (haksızlığa)"
+    },
+    {
+        "word": "Indolent",
+        "meaning": "Tembel, uyuşuk"
+    },
+    {
+        "word": "Indomitable",
+        "meaning": "Boyun eğmez, yılmaz"
+    },
+    {
+        "word": "Ineffable",
+        "meaning": "Tarif edilemez (güzellik/duygu)"
+    },
+    {
+        "word": "Inept",
+        "meaning": "Beceriksiz"
+    },
+    {
+        "word": "Inert",
+        "meaning": "Hareketsiz, eylemsiz"
+    },
+    {
+        "word": "Inevitable",
+        "meaning": "Kaçınılmaz"
+    },
+    {
+        "word": "Inexorable",
+        "meaning": "Durdurulamaz, amansız"
+    },
+    {
+        "word": "Infallible",
+        "meaning": "Hata yapmaz, şaşmaz"
+    },
+    {
+        "word": "Infamous",
+        "meaning": "Kötü şöhretli"
+    },
+    {
+        "word": "Infer",
+        "meaning": "Sonuç çıkarmak"
+    },
+    {
+        "word": "Infinitesimal",
+        "meaning": "Sonsuz küçük, zerre kadar"
+    },
+    {
+        "word": "Influx",
+        "meaning": "Akın etme (insan/su)"
+    },
+    {
+        "word": "Infringe",
+        "meaning": "İhlal etmek, çiğnemek"
+    },
+    {
+        "word": "Ingenious",
+        "meaning": "Dahice, yaratıcı"
+    },
+    {
+        "word": "Ingenuous",
+        "meaning": "Saf, temiz kalpli"
+    },
+    {
+        "word": "Ingrained",
+        "meaning": "Kökleşmiş, yerleşmiş"
+    },
+    {
+        "word": "Inherent",
+        "meaning": "Doğasında olan, özünde var olan"
+    },
+    {
+        "word": "Inhibit",
+        "meaning": "Engel olmak, ket vurmak"
+    },
+    {
+        "word": "Inimical",
+        "meaning": "Düşmanca, zararlı"
+    },
+    {
+        "word": "Iniquity",
+        "meaning": "Haksızlık, adaletsizlik"
+    },
+    {
+        "word": "Innate",
+        "meaning": "Doğuştan gelen"
+    },
+    {
+        "word": "Innocuous",
+        "meaning": "Zararsız"
+    },
+    {
+        "word": "Inordinate",
+        "meaning": "Aşırı, ölçüsüz"
+    },
+    {
+        "word": "Insatiable",
+        "meaning": "Doyumsuz, kanmak bilmeyen"
+    },
+    {
+        "word": "Inscrutable",
+        "meaning": "Esrarlı, anlaşılmaz (yüz ifadesi)"
+    },
+    {
+        "word": "Insidious",
+        "meaning": "Sinsi, gizlice ilerleyen"
+    },
+    {
+        "word": "Insinuate",
+        "meaning": "İma etmek; Sinsice sokulmak"
+    },
+    {
+        "word": "Insipid",
+        "meaning": "Tatsız, yavan (yemek/sohbet)"
+    },
+    {
+        "word": "Insolent",
+        "meaning": "Küstah, saygısız"
+    },
+    {
+        "word": "Instigate",
+        "meaning": "Kışkırtmak, başlatmak (olay)"
+    },
+    {
+        "word": "Insular",
+        "meaning": "Ada ile ilgili; Dar görüşlü"
+    },
+    {
+        "word": "Insurgent",
+        "meaning": "İsyancı, başkaldıran"
+    },
+    {
+        "word": "Integral",
+        "meaning": "Tamamlayıcı, ana parça"
+    },
+    {
+        "word": "Integrity",
+        "meaning": "Dürüstlük, bütünlük"
+    },
+    {
+        "word": "Intermittent",
+        "meaning": "Kesik kesik, aralıklı"
+    },
+    {
+        "word": "Intimidate",
+        "meaning": "Gözdağı vermek, korkutmak"
+    },
+    {
+        "word": "Intransigent",
+        "meaning": "Uzlaşmaz, inatçı"
+    },
+    {
+        "word": "Intrepid",
+        "meaning": "Cesur, korkusuz"
+    },
+    {
+        "word": "Intrinsic",
+        "meaning": "Asıl, hakiki, içsel"
+    },
+    {
+        "word": "Inundate",
+        "meaning": "Su basmak; Yağdırmak (mesaj)"
+    },
+    {
+        "word": "Inure",
+        "meaning": "Alıştırmak (zorluğa)"
+    },
+    {
+        "word": "Invalidate",
+        "meaning": "Geçersiz kılmak"
+    },
+    {
+        "word": "Invective",
+        "meaning": "Hakaret, sövüp sayma"
+    },
+    {
+        "word": "Inveterate",
+        "meaning": "Tiryaki, kökleşmiş (alışkanlık)"
+    },
+    {
+        "word": "Invidious",
+        "meaning": "Kıskandıran, garez uyandıran"
+    },
+    {
+        "word": "Irascible",
+        "meaning": "Çabuk parlayan, asabi"
+    },
+    {
+        "word": "Irksome",
+        "meaning": "Bıktırıcı, can sıkıcı"
+    },
+    {
+        "word": "Irony",
+        "meaning": "İroni, alay"
+    },
+    {
+        "word": "Irrefutable",
+        "meaning": "Çürütülemez, kesin"
+    },
+    {
+        "word": "Irrevocable",
+        "meaning": "Geri döndürülemez"
+    },
+    {
+        "word": "Itinerant",
+        "meaning": "Gezgin, seyyar"
+    },
+    {
+        "word": "Jaded",
+        "meaning": "Bıkkın, yorgun (tecrübeden dolayı)"
+    },
+    {
+        "word": "Jargon",
+        "meaning": "Mesleki dil, jargon"
+    },
+    {
+        "word": "Jocular",
+        "meaning": "Şakacı, neşeli"
+    },
+    {
+        "word": "Jubilant",
+        "meaning": "Coşkulu, sevinçli (zafer sonrası)"
+    },
+    {
+        "word": "Judicious",
+        "meaning": "Makul, mantıklı, sağduyulu"
+    },
+    {
+        "word": "Juxtapose",
+        "meaning": "Yan yana koymak (karşılaştırmak için)"
+    },
+    {
+        "word": "Kindle",
+        "meaning": "Yakmak, ateşlemek (duyguyu/ateşi)"
+    },
+    {
+        "word": "Kinetic",
+        "meaning": "Hareketli, kinetik"
+    },
+    {
+        "word": "Knack",
+        "meaning": "Yetenek, püf noktası"
+    },
+    {
+        "word": "Kudos",
+        "meaning": "Övgü, şeref"
+    },
+    {
+        "word": "Lament",
+        "meaning": "Yas tutmak, hayıflanmak"
+    },
+    {
+        "word": "Languish",
+        "meaning": "Çürümek (hapiste), zayıflamak"
+    },
+    {
+        "word": "Latent",
+        "meaning": "Gizli, örtük (potansiyel/hastalık)"
+    },
+    {
+        "word": "Laud",
+        "meaning": "Övmek, methetmek"
+    },
+    {
+        "word": "Lavish",
+        "meaning": "Müsrif, bol keseden; Cömert"
+    },
+    {
+        "word": "Lax",
+        "meaning": "Gevşek, disiplinsiz"
+    },
+    {
+        "word": "Legacy",
+        "meaning": "Miras"
+    },
+    {
+        "word": "Legible",
+        "meaning": "Okunaklı"
+    },
+    {
+        "word": "Lethargic",
+        "meaning": "Uyuşuk, enerjisiz"
+    },
+    {
+        "word": "Levity",
+        "meaning": "Ciddiyetsizlik, hafiflik"
+    },
+    {
+        "word": "Liaison",
+        "meaning": "İrtibat, bağlantı"
+    },
+    {
+        "word": "Lithe",
+        "meaning": "Kıvrak, esnek (vücut)"
+    },
+    {
+        "word": "Litigation",
+        "meaning": "Dava süreci, hukuki ihtilaf"
+    },
+    {
+        "word": "Loath",
+        "meaning": "İsteksiz, gönülsüz"
+    },
+    {
+        "word": "Lofty",
+        "meaning": "Yüce, yüksek; Kibirli"
+    },
+    {
+        "word": "Longevity",
+        "meaning": "Uzun ömürlülük"
+    },
+    {
+        "word": "Lucid",
+        "meaning": "Berrak, anlaşılır (zihin/ifade)"
+    },
+    {
+        "word": "Lucrative",
+        "meaning": "Karlı, kazançlı"
+    },
+    {
+        "word": "Ludicrous",
+        "meaning": "Gülünç, saçma"
+    },
+    {
+        "word": "Lull",
+        "meaning": "Yatıştırmak; Geçici sakinlik"
+    },
+    {
+        "word": "Luminous",
+        "meaning": "Işıltılı, parlak"
+    },
+    {
+        "word": "Magnanimous",
+        "meaning": "Yüce gönüllü, bağışlayıcı"
+    },
+    {
+        "word": "Malady",
+        "meaning": "Hastalık, illet"
+    },
+    {
+        "word": "Malevolent",
+        "meaning": "Kötü niyetli, hain"
+    },
+    {
+        "word": "Malleable",
+        "meaning": "Şekil verilebilir, uysal"
+    },
+    {
+        "word": "Mandate",
+        "meaning": "Yetki vermek; Zorunlu kılmak"
+    },
+    {
+        "word": "Maneuver",
+        "meaning": "Manevra yapmak, kurnazca yönetmek"
+    },
+    {
+        "word": "Manifesto",
+        "meaning": "Bildiri, manifesto"
+    },
+    {
+        "word": "Mar",
+        "meaning": "Bozmak, hasar vermek"
+    },
+    {
+        "word": "Marginal",
+        "meaning": "Sınırda, önemsiz"
+    },
+    {
+        "word": "Maritime",
+        "meaning": "Denizcilikle ilgili"
+    },
+    {
+        "word": "Martial",
+        "meaning": "Savaşla ilgili, askeri"
+    },
+    {
+        "word": "Materialize",
+        "meaning": "Gerçekleşmek, somutlaşmak"
+    },
+    {
+        "word": "Maverick",
+        "meaning": "Başına buyruk, bağımsız"
+    },
+    {
+        "word": "Meager",
+        "meaning": "Kıt, yetersiz (miktar)"
+    },
+    {
+        "word": "Meander",
+        "meaning": "Kıvrılarak akmak; Amaçsız dolaşmak"
+    },
+    {
+        "word": "Medley",
+        "meaning": "Karışım, potpuri"
+    },
+    {
+        "word": "Melancholy",
+        "meaning": "Hüzün, keder"
+    },
+    {
+        "word": "Memoir",
+        "meaning": "Hatırat, anı yazısı"
+    },
+    {
+        "word": "Menace",
+        "meaning": "Tehdit, tehlike"
+    },
+    {
+        "word": "Mentor",
+        "meaning": "Akıl hocası"
+    },
+    {
+        "word": "Mercenary",
+        "meaning": "Paralı asker; Çıkarcı"
+    },
+    {
+        "word": "Mercurial",
+        "meaning": "Değişken, sağı solu belli olmayan"
+    },
+    {
+        "word": "Meritocracy",
+        "meaning": "Liyakat sistemi"
+    },
+    {
+        "word": "Metamorphosis",
+        "meaning": "Başkalaşım, değişim"
+    },
+    {
+        "word": "Meticulous",
+        "meaning": "Kılı kırk yaran, titiz"
+    },
+    {
+        "word": "Milestone",
+        "meaning": "Dönüm noktası"
+    },
+    {
+        "word": "Milieu",
+        "meaning": "Çevre, ortam (sosyal)"
+    },
+    {
+        "word": "Mirth",
+        "meaning": "Neşe, kahkaha"
+    },
+    {
+        "word": "Misanthrope",
+        "meaning": "İnsanlardan nefret eden"
+    },
+    {
+        "word": "Misconstrue",
+        "meaning": "Yanlış yorumlamak"
+    },
+    {
+        "word": "Mishap",
+        "meaning": "Aksilik, ufak kaza"
+    },
+    {
+        "word": "Mitigate",
+        "meaning": "Hafifletmek, yatıştırmak"
+    },
+    {
+        "word": "Modicum",
+        "meaning": "Az miktar, zerre"
+    },
+    {
+        "word": "Mollify",
+        "meaning": "Yatıştırmak, yumuşatmak"
+    },
+    {
+        "word": "Momentous",
+        "meaning": "Çok önemli, tarihi (an/olay)"
+    },
+    {
+        "word": "Monetary",
+        "meaning": "Parasal"
+    },
+    {
+        "word": "Monotony",
+        "meaning": "Tekdüzelik"
+    },
+    {
+        "word": "Monumental",
+        "meaning": "Muazzam, abidevi"
+    },
+    {
+        "word": "Morale",
+        "meaning": "Moral, maneviyat"
+    },
+    {
+        "word": "Moratorium",
+        "meaning": "Erteleme, durdurma (borç/eylem)"
+    },
+    {
+        "word": "Morbid",
+        "meaning": "Hastalıklı, ölümle ilgili"
+    },
+    {
+        "word": "Mores",
+        "meaning": "Örf ve adetler, toplumsal kurallar"
+    },
+    {
+        "word": "Morose",
+        "meaning": "Somurtkan, asık yüzlü"
+    },
+    {
+        "word": "Mortify",
+        "meaning": "Küçük düşürmek, utandırmak"
+    },
+    {
+        "word": "Mosaic",
+        "meaning": "Mozaik"
+    },
+    {
+        "word": "Motif",
+        "meaning": "Tema, motif"
+    },
+    {
+        "word": "Mundane",
+        "meaning": "Sıradan, dünyevi"
+    },
+    {
+        "word": "Munificent",
+        "meaning": "Eli açık, cömert"
+    },
+    {
+        "word": "Myriad",
+        "meaning": "Sayısız, on binlerce"
+    },
+    {
+        "word": "Nadir",
+        "meaning": "En dip nokta (kariyerde vb.)"
+    },
+    {
+        "word": "Naive",
+        "meaning": "Toy, saf"
+    },
+    {
+        "word": "Nascent",
+        "meaning": "Yeni doğan, filizlenen"
+    },
+    {
+        "word": "Nebulous",
+        "meaning": "Bulanık, belirsiz (fikir)"
+    },
+    {
+        "word": "Nefarious",
+        "meaning": "Meşum, alçakça (plan)"
+    },
+    {
+        "word": "Negate",
+        "meaning": "Etkisiz kılmak, çürütmek"
+    },
+    {
+        "word": "Negligence",
+        "meaning": "İhmalkarlık"
+    },
+    {
+        "word": "Nemesis",
+        "meaning": "Ezeli düşman; Kaçınılmaz ceza"
+    },
+    {
+        "word": "Neophyte",
+        "meaning": "Acemi, yeni başlayan"
+    },
+    {
+        "word": "Nepotism",
+        "meaning": "Adam kayırma, akraba kayırma"
+    },
+    {
+        "word": "Nexus",
+        "meaning": "Bağlantı noktası, bağ"
+    },
+    {
+        "word": "Nihilism",
+        "meaning": "Hiççilik"
+    },
+    {
+        "word": "Nominal",
+        "meaning": "İsmen var olan; Cüzi (ücret)"
+    },
+    {
+        "word": "Nonchalant",
+        "meaning": "Umursamaz, soğukkanlı"
+    },
+    {
+        "word": "Nondescript",
+        "meaning": "Sıradan, özelliği olmayan"
+    },
+    {
+        "word": "Nostalgia",
+        "meaning": "Geçmişe özlem"
+    },
+    {
+        "word": "Novice",
+        "meaning": "Acemi, çaylak"
+    },
+    {
+        "word": "Noxious",
+        "meaning": "Zararlı, zehirli (gaz/duman)"
+    },
+    {
+        "word": "Nuance",
+        "meaning": "Nüans, ince fark"
+    },
+    {
+        "word": "Null",
+        "meaning": "Geçersiz, hükümsüz"
+    },
+    {
+        "word": "Obdurate",
+        "meaning": "İnatçı, katı yürekli"
+    },
+    {
+        "word": "Obfuscate",
+        "meaning": "Kafa karıştırmak, gizlemek"
+    },
+    {
+        "word": "Oblivious",
+        "meaning": "Habersiz, ilgisiz"
+    },
+    {
+        "word": "Obnoxious",
+        "meaning": "Tiksindirici, itici"
+    },
+    {
+        "word": "Obsequious",
+        "meaning": "Dalkavuk, yaltakçı"
+    },
+    {
+        "word": "Obsolescence",
+        "meaning": "Eskime, modası geçme"
+    },
+    {
+        "word": "Obstinate",
+        "meaning": "İnatçı, dik başlı"
+    },
+    {
+        "word": "Obstreperous",
+        "meaning": "Yaygaracı, kontrolsüz"
+    },
+    {
+        "word": "Obtuse",
+        "meaning": "Anlayışı kıt; Geniş açı"
+    },
+    {
+        "word": "Obviate",
+        "meaning": "Gereksiz kılmak, önlemek"
+    },
+    {
+        "word": "Odious",
+        "meaning": "İğrenç, menfur"
+    },
+    {
+        "word": "Ominous",
+        "meaning": "Uğursuz, kötüye işaret"
+    },
+    {
+        "word": "Omnipotent",
+        "meaning": "Her şeye gücü yeten"
+    },
+    {
+        "word": "Omnipresent",
+        "meaning": "Her yerde bulunan"
+    },
+    {
+        "word": "Omniscient",
+        "meaning": "Her şeyi bilen"
+    },
+    {
+        "word": "Onus",
+        "meaning": "Yükümlülük, sorumluluk"
+    },
+    {
+        "word": "Opaque",
+        "meaning": "Opak, anlaşılmaz"
+    },
+    {
+        "word": "Opprobrium",
+        "meaning": "Aşağılama, yüz karası"
+    },
+    {
+        "word": "Optimum",
+        "meaning": "En uygun, ideal"
+    },
+    {
+        "word": "Opulent",
+        "meaning": "Zengin, şatafatlı"
+    },
+    {
+        "word": "Orator",
+        "meaning": "Hatip, konuşmacı"
+    },
+    {
+        "word": "Ordinance",
+        "meaning": "Yönetmelik, kararname"
+    },
+    {
+        "word": "Ostensible",
+        "meaning": "Görünürdeki, sözde"
+    },
+    {
+        "word": "Ostentatious",
+        "meaning": "Gösterişli, havalı"
+    },
+    {
+        "word": "Oust",
+        "meaning": "Devirmek, yerinden etmek"
+    },
+    {
+        "word": "Overture",
+        "meaning": "Girişim, teklif; Uvertür"
+    },
+    {
+        "word": "Painstaking",
+        "meaning": "Özenli, titiz"
+    },
+    {
+        "word": "Palatable",
+        "meaning": "Lezzetli; Kabul edilebilir"
+    },
+    {
+        "word": "Palliate",
+        "meaning": "Hafifletmek (geçici olarak)"
+    },
+    {
+        "word": "Palpable",
+        "meaning": "Elle tutulur, somut"
+    },
+    {
+        "word": "Paltry",
+        "meaning": "Değersiz, önemsiz (miktar)"
+    },
+    {
+        "word": "Panacea",
+        "meaning": "Her derde deva"
+    },
+    {
+        "word": "Paradigm",
+        "meaning": "Örnek, model, paradigma"
+    },
+    {
+        "word": "Paragon",
+        "meaning": "Mükemmellik örneği"
+    },
+    {
+        "word": "Paramount",
+        "meaning": "En önemli, üstün"
+    },
+    {
+        "word": "Pariah",
+        "meaning": "Toplumdan dışlanmış kişi"
+    },
+    {
+        "word": "Parity",
+        "meaning": "Eşitlik, denklik"
+    },
+    {
+        "word": "Parody",
+        "meaning": "Parodi, taklit"
+    },
+    {
+        "word": "Parsimony",
+        "meaning": "Cimrilik, aşırı tutumluluk"
+    },
+    {
+        "word": "Partisan",
+        "meaning": "Taraflı, partizan"
+    },
+    {
+        "word": "Pastoral",
+        "meaning": "Kırsal, çobanlıkla ilgili"
+    },
+    {
+        "word": "Pathos",
+        "meaning": "Acıma duygusu uyandıran nitelik"
+    },
+    {
+        "word": "Patronize",
+        "meaning": "Taslamak (büyüklük); Desteklemek"
+    },
+    {
+        "word": "Paucity",
+        "meaning": "Azlık, kıtlık"
+    },
+    {
+        "word": "Pedantic",
+        "meaning": "Bilgiçlik taslayan, detaycı"
+    },
+    {
+        "word": "Pedestrian",
+        "meaning": "Yaya; Sıradan, heyecansız"
+    },
+    {
+        "word": "Peerless",
+        "meaning": "Eşsiz, emsalsiz"
+    },
+    {
+        "word": "Penchant",
+        "meaning": "Eğilim, meyil"
+    },
+    {
+        "word": "Pending",
+        "meaning": "Askıda, eli kulağında"
+    },
+    {
+        "word": "Penitent",
+        "meaning": "Pişman, tövbekar"
+    },
+    {
+        "word": "Pensive",
+        "meaning": "Dalgın, düşünceli"
+    },
+    {
+        "word": "Penury",
+        "meaning": "Yoksulluk, sefalet"
+    },
+    {
+        "word": "Perceptible",
+        "meaning": "Algılanabilir, fark edilebilir"
+    },
+    {
+        "word": "Perennial",
+        "meaning": "Yıllarca süren, kalıcı"
+    },
+    {
+        "word": "Perfidy",
+        "meaning": "Hainlik, sadakatsizlik"
+    },
+    {
+        "word": "Perfunctory",
+        "meaning": "Yarım yamalak, baştan savma"
+    },
+    {
+        "word": "Peripheral",
+        "meaning": "Çevresel, ikincil"
+    },
+    {
+        "word": "Perjury",
+        "meaning": "Yalancı şahitlik"
+    },
+    {
+        "word": "Permeate",
+        "meaning": "Nüfuz etmek, yayılmak"
+    },
+    {
+        "word": "Pernicious",
+        "meaning": "Zararlı, öldürücü"
+    },
+    {
+        "word": "Perpetrate",
+        "meaning": "Suç işlemek, yapmak"
+    },
+    {
+        "word": "Persevere",
+        "meaning": "Sebat etmek, yılmamak"
+    },
+    {
+        "word": "Personify",
+        "meaning": "Cisimleştirmek, canlandırmak"
+    },
+    {
+        "word": "Perspicacious",
+        "meaning": "Ferasetli, zeki"
+    },
+    {
+        "word": "Pertinent",
+        "meaning": "İlgili, yerinde"
+    },
+    {
+        "word": "Perturb",
+        "meaning": "Rahatsız etmek, huzursuz etmek"
+    },
+    {
+        "word": "Peruse",
+        "meaning": "Dikkatle okumak/incelemek"
+    },
+    {
+        "word": "Pervasive",
+        "meaning": "Yaygın, her yere sinen"
+    },
+    {
+        "word": "Petrify",
+        "meaning": "Taşlaşmak; Dehşete düşmek"
+    },
+    {
+        "word": "Petty",
+        "meaning": "Küçük, önemsiz (ayrıntı)"
+    },
+    {
+        "word": "Philanthropy",
+        "meaning": "Hayırseverlik"
+    },
+    {
+        "word": "Phlegmatic",
+        "meaning": "Soğukkanlı, tepkisiz"
+    },
+    {
+        "word": "Pious",
+        "meaning": "Dindar"
+    },
+    {
+        "word": "Pique",
+        "meaning": "İncitmek (gururu); Uyandırmak (ilgi)"
+    },
+    {
+        "word": "Pitfall",
+        "meaning": "Gizli tehlike, tuzak"
+    },
+    {
+        "word": "Pithy",
+        "meaning": "Özlü, kısa ve etkili"
+    },
+    {
+        "word": "Pivotal",
+        "meaning": "Çok önemli, kilit"
+    },
+    {
+        "word": "Placate",
+        "meaning": "Yatıştırmak, sakinleştirmek"
+    },
+    {
+        "word": "Placid",
+        "meaning": "Sakin, durgun"
+    },
+    {
+        "word": "Plaintiff",
+        "meaning": "Davacı"
+    },
+    {
+        "word": "Platitude",
+        "meaning": "Basmakalıp söz, klişe"
+    },
+    {
+        "word": "Plethora",
+        "meaning": "Aşırı bolluk, fazlalık"
+    },
+    {
+        "word": "Pliable",
+        "meaning": "Bükülebilir, esnek"
+    },
+    {
+        "word": "Plight",
+        "meaning": "Zor durum, çile"
+    },
+    {
+        "word": "Plummet",
+        "meaning": "Dikine düşmek, çakılmak"
+    },
+    {
+        "word": "Polarize",
+        "meaning": "Kutuplaştırmak"
+    },
+    {
+        "word": "Polemic",
+        "meaning": "Polemik, sert tartışma"
+    },
+    {
+        "word": "Pompous",
+        "meaning": "Böbürlenen, şatafatlı"
+    },
+    {
+        "word": "Ponderous",
+        "meaning": "Hantal, ağır; Sıkıcı"
+    },
+    {
+        "word": "Portent",
+        "meaning": "İşaret, alamet (genelde kötü)"
+    },
+    {
+        "word": "Posterity",
+        "meaning": "Gelecek nesiller"
+    },
+    {
+        "word": "Postulate",
+        "meaning": "Varsaymak, şart koşmak"
+    },
+    {
+        "word": "Potency",
+        "meaning": "Güç, etki"
+    },
+    {
+        "word": "Pragmatic",
+        "meaning": "Faydacı, uygulamaya dönük"
+    },
+    {
+        "word": "Precarious",
+        "meaning": "İstikrarsız, sallantıda"
+    },
+    {
+        "word": "Precedent",
+        "meaning": "Emsal, örnek vaka"
+    },
+    {
+        "word": "Precept",
+        "meaning": "İlke, kural"
+    },
+    {
+        "word": "Precipitate",
+        "meaning": "Hızlandırmak; Çökelti"
+    },
+    {
+        "word": "Preclude",
+        "meaning": "Engellemek, imkansız kılmak"
+    },
+    {
+        "word": "Precursor",
+        "meaning": "Öncü, haberci"
+    },
+    {
+        "word": "Predicament",
+        "meaning": "Zor durum, badire"
+    },
+    {
+        "word": "Preeminent",
+        "meaning": "Üstün, seçkin"
+    },
+    {
+        "word": "Preempt",
+        "meaning": "Önceden davranıp engellemek"
+    },
+    {
+        "word": "Premonition",
+        "meaning": "İçine doğma, önsezi"
+    },
+    {
+        "word": "Preponderance",
+        "meaning": "Çoğunluk, ağırlık"
+    },
+    {
+        "word": "Preposterous",
+        "meaning": "Akıl almaz, saçma"
+    },
+    {
+        "word": "Prerogative",
+        "meaning": "Ayrıcalık, imtiyaz"
+    },
+    {
+        "word": "Presage",
+        "meaning": "Kehanette bulunmak, içine doğmak"
+    },
+    {
+        "word": "Prescient",
+        "meaning": "İleri görüşlü, kahin gibi"
+    },
+    {
+        "word": "Pretext",
+        "meaning": "Bahane"
+    },
+    {
+        "word": "Prevalent",
+        "meaning": "Yaygın, hakim"
+    },
+    {
+        "word": "Prevaricate",
+        "meaning": "Lafı gevelemek, kaçamak konuşmak"
+    },
+    {
+        "word": "Pristine",
+        "meaning": "Bozulmamış, saf, tertemiz"
+    },
+    {
+        "word": "Probity",
+        "meaning": "Dürüstlük, doğruluk"
+    },
+    {
+        "word": "Proclivity",
+        "meaning": "Eğilim, meyil"
+    },
+    {
+        "word": "Procrastinate",
+        "meaning": "Ertelemek, savsaklamak"
+    },
+    {
+        "word": "Prodigal",
+        "meaning": "Müsrif, savurgan"
+    },
+    {
+        "word": "Prodigious",
+        "meaning": "Olağanüstü, devasa"
+    },
+    {
+        "word": "Profane",
+        "meaning": "Dinsiz, saygısız; Küfürlü"
+    },
+    {
+        "word": "Profligate",
+        "meaning": "Hovarda, çok savurgan"
+    },
+    {
+        "word": "Profuse",
+        "meaning": "Bol, çok miktarda"
+    },
+    {
+        "word": "Progeny",
+        "meaning": "Döl, soy, çocuklar"
+    },
+    {
+        "word": "Prognosis",
+        "meaning": "Öngörü, hastalık seyri tahmini"
+    },
+    {
+        "word": "Prolific",
+        "meaning": "Üretken, verimli"
+    },
+    {
+        "word": "Promulgate",
+        "meaning": "Yayımlamak (yasa), ilan etmek"
+    },
+    {
+        "word": "Propensity",
+        "meaning": "Eğilim, meyil"
+    },
+    {
+        "word": "Proponent",
+        "meaning": "Taraftar, destekçi"
+    },
+    {
+        "word": "Propriety",
+        "meaning": "Görgü, uygunluk"
+    },
+    {
+        "word": "Prosaic",
+        "meaning": "Sıradan, yavan, düzyazı gibi"
+    },
+    {
+        "word": "Proscribe",
+        "meaning": "Yasaklamak, sürgün etmek"
+    },
+    {
+        "word": "Proselytize",
+        "meaning": "Din/inanç yaymaya çalışmak"
+    },
+    {
+        "word": "Prostrate",
+        "meaning": "Yere kapanmış; Bitkin"
+    },
+    {
+        "word": "Protagonist",
+        "meaning": "Baş kahraman"
+    },
+    {
+        "word": "Protege",
+        "meaning": "Korunan kimse, çırak"
+    },
+    {
+        "word": "Protocol",
+        "meaning": "Protokol, kural"
+    },
+    {
+        "word": "Providential",
+        "meaning": "İlahi takdir, şanslı"
+    },
+    {
+        "word": "Provincial",
+        "meaning": "Taşralı, dar görüşlü"
+    },
+    {
+        "word": "Provisional",
+        "meaning": "Geçici"
+    },
+    {
+        "word": "Prowess",
+        "meaning": "Kahramanlık, üstün yetenek"
+    },
+    {
+        "word": "Pseudonym",
+        "meaning": "Takma ad"
+    },
+    {
+        "word": "Punctilious",
+        "meaning": "Kılı kırk yaran, çok titiz"
+    },
+    {
+        "word": "Pungent",
+        "meaning": "Keskin kokulu/tatlı"
+    },
+    {
+        "word": "Punitive",
+        "meaning": "Cezalandırıcı"
+    },
+    {
+        "word": "Purge",
+        "meaning": "Temizlemek, tasfiye etmek"
+    },
+    {
+        "word": "Purport",
+        "meaning": "İddia etmek; Anlam"
+    },
+    {
+        "word": "Putative",
+        "meaning": "Varsayılan, sözde"
+    },
+    {
+        "word": "Quaint",
+        "meaning": "Eski moda ama çekici/hoş"
+    },
+    {
+        "word": "Qualm",
+        "meaning": "Vicdan azabı, tereddüt, endişe"
+    },
+    {
+        "word": "Quandary",
+        "meaning": "İkilem, çıkmaz"
+    },
+    {
+        "word": "Quell",
+        "meaning": "Bastırmak (isyanı/duyguyu)"
+    },
+    {
+        "word": "Querulous",
+        "meaning": "Sızlanan, sürekli şikayet eden"
+    },
+    {
+        "word": "Quiescent",
+        "meaning": "Hareketsiz, durgun"
+    },
+    {
+        "word": "Quintessential",
+        "meaning": "Mükemmel örnek, tam tipik"
+    },
+    {
+        "word": "Quixotic",
+        "meaning": "Hayalperest, olmayacak duaya amin diyen"
+    },
+    {
+        "word": "Quorum",
+        "meaning": "Yeter sayı (toplantı için)"
+    },
+    {
+        "word": "Ramification",
+        "meaning": "Muhtemel sonuç/etki (karmaşık)"
+    },
+    {
+        "word": "Rancor",
+        "meaning": "Kin, hınç"
+    },
+    {
+        "word": "Rapport",
+        "meaning": "Uyum, ahenkli ilişki"
+    },
+    {
+        "word": "Ratify",
+        "meaning": "Onaylamak (antlaşmayı/yasayı)"
+    },
+    {
+        "word": "Raucous",
+        "meaning": "Gürültülü, kulak tırmalayıcı"
+    },
+    {
+        "word": "Ravenous",
+        "meaning": "Kurt gibi aç, gözü dönmüş"
+    },
+    {
+        "word": "Raze",
+        "meaning": "Yerle bir etmek (binayı)"
+    },
+    {
+        "word": "Rebut",
+        "meaning": "Aksini ispat etmek, çürütmek"
+    },
+    {
+        "word": "Recant",
+        "meaning": "Sözünü geri almak (resmi olarak)"
+    },
+    {
+        "word": "Reciprocate",
+        "meaning": "Karşılık vermek"
+    },
+    {
+        "word": "Recluse",
+        "meaning": "İnzivaya çekilmiş kişi"
+    },
+    {
+        "word": "Redundant",
+        "meaning": "Gereksiz, fazlalık"
+    },
+    {
+        "word": "Refute",
+        "meaning": "Çürütmek, yalanlamak"
+    },
+    {
+        "word": "Relegate",
+        "meaning": "Düşürmek (küme/makam), sürgün etmek"
+    },
+    {
+        "word": "Remiss",
+        "meaning": "İhmalkar, savsaklayan"
+    },
+    {
+        "word": "Remonstrate",
+        "meaning": "İtiraz etmek, sitem etmek"
+    },
+    {
+        "word": "Renounce",
+        "meaning": "Feragat etmek, vazgeçmek"
+    },
+    {
+        "word": "Reparation",
+        "meaning": "Tazminat, onarım"
+    },
+    {
+        "word": "Repercussion",
+        "meaning": "Yankı, (kötü) sonuç"
+    },
+    {
+        "word": "Replete",
+        "meaning": "Dolu, tıklım tıklım"
+    },
+    {
+        "word": "Reprehensible",
+        "meaning": "Kınanası, ayıplanacak"
+    },
+    {
+        "word": "Reprimand",
+        "meaning": "Azarlamak, kınamak"
+    },
+    {
+        "word": "Reprisal",
+        "meaning": "Misilleme"
+    },
+    {
+        "word": "Reproach",
+        "meaning": "Sitem etmek, kınamak"
+    },
+    {
+        "word": "Repudiate",
+        "meaning": "Reddetmek, tanımamak"
+    },
+    {
+        "word": "Repugnant",
+        "meaning": "İğrenç, tiksindirici"
+    },
+    {
+        "word": "Rescind",
+        "meaning": "İptal etmek, yürürlükten kaldırmak"
+    },
+    {
+        "word": "Resilient",
+        "meaning": "Dirençli, çabuk toparlanan"
+    },
+    {
+        "word": "Resplendent",
+        "meaning": "Göz kamaştırıcı, pırıl pırıl"
+    },
+    {
+        "word": "Restitution",
+        "meaning": "İade etme, eski haklarını verme"
+    },
+    {
+        "word": "Resurgent",
+        "meaning": "Yeniden dirilen/yükselen"
+    },
+    {
+        "word": "Reticent",
+        "meaning": "Suskun, ağzı sıkı"
+    },
+    {
+        "word": "Retract",
+        "meaning": "Geri çekmek (sözü/pençeyi)"
+    },
+    {
+        "word": "Reverence",
+        "meaning": "Büyük saygı, hürmet"
+    },
+    {
+        "word": "Rhetoric",
+        "meaning": "Hitabet; Boş/süslü laf"
+    },
+    {
+        "word": "Rife",
+        "meaning": "Yaygın, (kötü şeyle) dolu"
+    },
+    {
+        "word": "Rift",
+        "meaning": "Çatlak, anlaşmazlık"
+    },
+    {
+        "word": "Rudimentary",
+        "meaning": "İlkel, temel düzeyde"
+    },
+    {
+        "word": "Ruminate",
+        "meaning": "Uzun uzun düşünmek; Geviş getirmek"
+    },
+    {
+        "word": "Sagacious",
+        "meaning": "Görgülü, bilge, ferasetli"
+    },
+    {
+        "word": "Salient",
+        "meaning": "Göze çarpan, belirgin"
+    },
+    {
+        "word": "Salutary",
+        "meaning": "Yararlı (ders verici anlamda)"
+    },
+    {
+        "word": "Sanctimonious",
+        "meaning": "Dindar geçinen, iki yüzlü"
+    },
+    {
+        "word": "Sanguine",
+        "meaning": "İyimser, umutlu"
+    },
+    {
+        "word": "Satiate",
+        "meaning": "Doyurmak, tatmin etmek"
+    },
+    {
+        "word": "Satire",
+        "meaning": "Hiciv, taşlama"
+    },
+    {
+        "word": "Scathing",
+        "meaning": "Sert, yakıcı (eleştiri)"
+    },
+    {
+        "word": "Scrupulous",
+        "meaning": "Vicdanlı; Çok titiz"
+    },
+    {
+        "word": "Sedition",
+        "meaning": "İsyan, kışkırtıcılık"
+    },
+    {
+        "word": "Sedulous",
+        "meaning": "Gayretli, sebatlı"
+    },
+    {
+        "word": "Segregate",
+        "meaning": "Ayırmak (ırk/grup)"
+    },
+    {
+        "word": "Seminal",
+        "meaning": "Çığır açan, çok etkili (fikir)"
+    },
+    {
+        "word": "Serendipity",
+        "meaning": "Mutlu tesadüf"
+    },
+    {
+        "word": "Serene",
+        "meaning": "Huzurlu, sakin"
+    },
+    {
+        "word": "Servile",
+        "meaning": "Köle gibi, yaltakçı"
+    },
+    {
+        "word": "Shrewd",
+        "meaning": "Açıkgöz, zeki"
+    },
+    {
+        "word": "Slander",
+        "meaning": "İftira atmak"
+    },
+    {
+        "word": "Solicit",
+        "meaning": "Talep etmek, ısrarla istemek"
+    },
+    {
+        "word": "Solicitous",
+        "meaning": "Endişeli, üzerine titreyen"
+    },
+    {
+        "word": "Solvent",
+        "meaning": "Borcunu ödeyebilen; Çözücü"
+    },
+    {
+        "word": "Somber",
+        "meaning": "Kasvetli, karanlık"
+    },
+    {
+        "word": "Sordid",
+        "meaning": "Aşağılık, pis (ahlaki)"
+    },
+    {
+        "word": "Sporadic",
+        "meaning": "Ara sıra olan, tek tük"
+    },
+    {
+        "word": "Spurious",
+        "meaning": "Sahte, uydurma"
+    },
+    {
+        "word": "Squalid",
+        "meaning": "Bakımsız, pis (yer)"
+    },
+    {
+        "word": "Squander",
+        "meaning": "Çarçur etmek, israf etmek"
+    },
+    {
+        "word": "Stagnant",
+        "meaning": "Durgun (su/ekonomi)"
+    },
+    {
+        "word": "Staunch",
+        "meaning": "Sadık, güvenilir"
+    },
+    {
+        "word": "Steadfast",
+        "meaning": "Sarsılmaz, kararlı"
+    },
+    {
+        "word": "Stigma",
+        "meaning": "Damga, yüz karası"
+    },
+    {
+        "word": "Stoic",
+        "meaning": "Acıya/zorluğa aldırmayan"
+    },
+    {
+        "word": "Stratagem",
+        "meaning": "Hile, savaş hilesi"
+    },
+    {
+        "word": "Strident",
+        "meaning": "Kulağı tırmalayan, tiz"
+    },
+    {
+        "word": "Stupefy",
+        "meaning": "Sersemletmek, şoke etmek"
+    },
+    {
+        "word": "Sublime",
+        "meaning": "Yüce, muhteşem"
+    },
+    {
+        "word": "Submissive",
+        "meaning": "İtaatkar, boyun eğen"
+    },
+    {
+        "word": "Subordinate",
+        "meaning": "Ast, ikincil"
+    },
+    {
+        "word": "Subsist",
+        "meaning": "Hayatta kalmak (kıt kanaat)"
+    },
+    {
+        "word": "Substantive",
+        "meaning": "Önemli, tözsel"
+    },
+    {
+        "word": "Subversive",
+        "meaning": "Yıkıcı, düzeni bozan"
+    },
+    {
+        "word": "Succinct",
+        "meaning": "Kısa ve öz"
+    },
+    {
+        "word": "Suffrage",
+        "meaning": "Oy kullanma hakkı"
+    },
+    {
+        "word": "Sullen",
+        "meaning": "Suratsız, somurtkan"
+    },
+    {
+        "word": "Supercilious",
+        "meaning": "Kibirli, tepeden bakan"
+    },
+    {
+        "word": "Supersede",
+        "meaning": "Yerini almak (eskiyi geçersiz kılmak)"
+    },
+    {
+        "word": "Supplicate",
+        "meaning": "Yalvarmak, niyaz etmek"
+    },
+    {
+        "word": "Surmount",
+        "meaning": "Üstesinden gelmek, aşmak"
+    },
+    {
+        "word": "Surreptitious",
+        "meaning": "Gizli, el altından"
+    },
+    {
+        "word": "Surrogate",
+        "meaning": "Vekil, yerini tutan"
+    },
+    {
+        "word": "Sycophant",
+        "meaning": "Dalkavuk"
+    },
+    {
+        "word": "Symmetry",
+        "meaning": "Simetri"
+    },
+    {
+        "word": "Synthesis",
+        "meaning": "Sentez, birleşim"
+    },
+    {
+        "word": "Tacit",
+        "meaning": "Zımni, sözsüz anlaşılan"
+    },
+    {
+        "word": "Taciturn",
+        "meaning": "Suskun, az konuşan"
+    },
+    {
+        "word": "Tangential",
+        "meaning": "Teğet geçen, konuyla az ilgili"
+    },
+    {
+        "word": "Tantamount",
+        "meaning": "Eş değer, aynı anlama gelen"
+    },
+    {
+        "word": "Temerity",
+        "meaning": "Cüret, haddini bilmezlik"
+    },
+    {
+        "word": "Temperance",
+        "meaning": "Ölçülülük (özellikle içkide)"
+    },
+    {
+        "word": "Tenable",
+        "meaning": "Savunulabilir (fikir/tez)"
+    },
+    {
+        "word": "Tenacious",
+        "meaning": "Azimli, vazgeçmeyen"
+    },
+    {
+        "word": "Tenuous",
+        "meaning": "Zayıf, ince, dayanıksız (bağlantı)"
+    },
+    {
+        "word": "Terse",
+        "meaning": "Kısa, öz (bazen kaba kaçan)"
+    },
+    {
+        "word": "Thwart",
+        "meaning": "Engel olmak, bozmak (planı)"
+    },
+    {
+        "word": "Timorous",
+        "meaning": "Ürkek, çekingen"
+    },
+    {
+        "word": "Tirade",
+        "meaning": "Uzun ve öfkeli konuşma"
+    },
+    {
+        "word": "Torpor",
+        "meaning": "Uyuşukluk, rehavet"
+    },
+    {
+        "word": "Torrid",
+        "meaning": "Çok sıcak; Ateşli (aşk)"
+    },
+    {
+        "word": "Tortuous",
+        "meaning": "Dolambaçlı, karışık"
+    },
+    {
+        "word": "Tractable",
+        "meaning": "Uysal, kolay yönetilebilir"
+    },
+    {
+        "word": "Transgress",
+        "meaning": "Haddi aşmak, günah işlemek"
+    },
+    {
+        "word": "Transitory",
+        "meaning": "Geçici, fani"
+    },
+    {
+        "word": "Translucent",
+        "meaning": "Yarı saydam"
+    },
+    {
+        "word": "Travesty",
+        "meaning": "Karikatürize hal, rezalet (adalet vb.)"
+    },
+    {
+        "word": "Trepidation",
+        "meaning": "Ürperti, korku"
+    },
+    {
+        "word": "Trite",
+        "meaning": "Basmakalıp, eskimiş"
+    },
+    {
+        "word": "Truculent",
+        "meaning": "Kavgacı, vahşi"
+    },
+    {
+        "word": "Truncate",
+        "meaning": "Budamak, ucundan kesmek"
+    },
+    {
+        "word": "Tumult",
+        "meaning": "Kargaşa, velvele"
+    },
+    {
+        "word": "Turmoil",
+        "meaning": "Karışıklık, kaos"
+    },
+    {
+        "word": "Turpitude",
+        "meaning": "Alçaklık, ahlaksızlık"
+    },
+    {
+        "word": "Tyro",
+        "meaning": "Acemi, yeni yetme"
+    },
+    {
+        "word": "Ubiquitous",
+        "meaning": "Her yerde bulunan"
+    },
+    {
+        "word": "Ulterior",
+        "meaning": "Gizli, art (niyet)"
+    },
+    {
+        "word": "Umbrage",
+        "meaning": "Gücenme, alınma"
+    },
+    {
+        "word": "Unbridled",
+        "meaning": "Dizginlenemez, gem vurulamaz"
+    },
+    {
+        "word": "Uncanny",
+        "meaning": "Esrarengiz, tekinsiz"
+    },
+    {
+        "word": "Uncouth",
+        "meaning": "Kaba saba, görgüsüz"
+    },
+    {
+        "word": "Undulate",
+        "meaning": "Dalgalanmak"
+    },
+    {
+        "word": "Unequivocal",
+        "meaning": "Net, şüpheye yer bırakmayan"
+    },
+    {
+        "word": "Ungainly",
+        "meaning": "Hantal, sakar"
+    },
+    {
+        "word": "Unilateral",
+        "meaning": "Tek taraflı"
+    },
+    {
+        "word": "Unimpeachable",
+        "meaning": "Şüphe edilemez, kusursuz"
+    },
+    {
+        "word": "Unkempt",
+        "meaning": "Dağınık, paspal (saç/kılık)"
+    },
+    {
+        "word": "Unmitigated",
+        "meaning": "Tam, eksiksiz (felaket)"
+    },
+    {
+        "word": "Unruly",
+        "meaning": "Ele avuca sığmaz, asi"
+    },
+    {
+        "word": "Unscathed",
+        "meaning": "Yara almadan, sapasağlam"
+    },
+    {
+        "word": "Unseemly",
+        "meaning": "Yakışıksız, uygunsuz"
+    },
+    {
+        "word": "Untenable",
+        "meaning": "Savunulamaz (tez/durum)"
+    },
+    {
+        "word": "Unwieldy",
+        "meaning": "Hantal, kullanışsız"
+    },
+    {
+        "word": "Unwitting",
+        "meaning": "Farkında olmayan, kasıtsız"
+    },
+    {
+        "word": "Upbraid",
+        "meaning": "Azarlamak, çıkışmak"
+    },
+    {
+        "word": "Usurp",
+        "meaning": "Gasp etmek (iktidarı)"
+    },
+    {
+        "word": "Utilitarian",
+        "meaning": "Faydacı, işlevsel"
+    },
+    {
+        "word": "Vacillate",
+        "meaning": "Bocalama, kararsız kalma"
+    },
+    {
+        "word": "Vacuous",
+        "meaning": "Boş, anlamsız (bakış/fikir)"
+    },
+    {
+        "word": "Vagary",
+        "meaning": "Kapris, gariplik"
+    },
+    {
+        "word": "Vapid",
+        "meaning": "Yavan, ruhsuz"
+    },
+    {
+        "word": "Variegated",
+        "meaning": "Alacalı, çok renkli"
+    },
+    {
+        "word": "Vehement",
+        "meaning": "Şiddetli, coşkulu (duygu)"
+    },
+    {
+        "word": "Venerate",
+        "meaning": "Hürmet etmek, kutsal saymak"
+    },
+    {
+        "word": "Veracity",
+        "meaning": "Doğruluk, dürüstlük"
+    },
+    {
+        "word": "Verbose",
+        "meaning": "Laf kalabalığı yapan"
+    },
+    {
+        "word": "Verdant",
+        "meaning": "Yemyeşil (arazi); Toy"
+    },
+    {
+        "word": "Vestige",
+        "meaning": "Kal, iz, eser"
+    },
+    {
+        "word": "Vicarious",
+        "meaning": "Başkası yerine hissedilen"
+    },
+    {
+        "word": "Vicissitude",
+        "meaning": "Değişim, iniş çıkış (hayat)"
+    },
+    {
+        "word": "Vigilant",
+        "meaning": "Uyanık, tetikte"
+    },
+    {
+        "word": "Vilify",
+        "meaning": "Kötülemek, kara çalmak"
+    },
+    {
+        "word": "Vindicate",
+        "meaning": "Haklı çıkarmak, aklamak"
+    },
+    {
+        "word": "Vindictive",
+        "meaning": "Kin güden, intikamcı"
+    },
+    {
+        "word": "Virulent",
+        "meaning": "Çok zehirli, ölümcül"
+    },
+    {
+        "word": "Viscous",
+        "meaning": "Ağdalı, yapışkan"
+    },
+    {
+        "word": "Vitiate",
+        "meaning": "Bozmak, sakatlamak (etkisini)"
+    },
+    {
+        "word": "Vitriolic",
+        "meaning": "Zehiroemberek, çok sert (söz)"
+    },
+    {
+        "word": "Vivacious",
+        "meaning": "Hayat dolu, cıvıl cıvıl"
+    },
+    {
+        "word": "Vociferous",
+        "meaning": "Bağıran çağıran, gürültülü"
+    },
+    {
+        "word": "Volatile",
+        "meaning": "Uçucu; İstikrarsız"
+    },
+    {
+        "word": "Volition",
+        "meaning": "İrade, istem"
+    },
+    {
+        "word": "Voracious",
+        "meaning": "Obur; Doyumsuz (okuma vb.)"
+    },
+    {
+        "word": "Wane",
+        "meaning": "Azalmak, küçülmek (ay/güç)"
+    },
+    {
+        "word": "Wanton",
+        "meaning": "Sebepsiz, keyfi (kötülük)"
+    },
+    {
+        "word": "Waver",
+        "meaning": "Tereddüt etmek, sallanmak"
+    },
+    {
+        "word": "Wayward",
+        "meaning": "İnatçı, söz dinlemez"
+    },
+    {
+        "word": "Whet",
+        "meaning": "Bilemek; İştah kabartmak"
+    },
+    {
+        "word": "Whimsical",
+        "meaning": "Garip, kaprisli, düşsel"
+    },
+    {
+        "word": "Wistful",
+        "meaning": "Hasret dolu, efkarlı"
+    },
+    {
+        "word": "Wrath",
+        "meaning": "Gazap, büyük öfke"
+    },
+    {
+        "word": "Wry",
+        "meaning": "Alaycı, iğneleyici; Çarpık"
+    },
+    {
+        "word": "Zealot",
+        "meaning": "Fanatik, yobaz"
     }
 ]
