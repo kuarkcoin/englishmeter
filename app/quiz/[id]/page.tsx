@@ -472,4 +472,314 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
 
 
-       
+        {/* DETAILED ANALYSIS */}
+
+        <div className="space-y-6">
+
+          <h2 className="text-xl font-bold text-slate-700 ml-2 border-l-4 border-blue-500 pl-3">Detailed Analysis</h2>
+
+          
+
+          {questions.map((q, idx) => {
+
+            const userAnswerId = answers[q.id];
+
+            const correctId = getCorrectChoiceId(q);
+
+            const isUserAnswered = !!userAnswerId;
+
+            const isCorrect = idsEqual(userAnswerId, correctId);
+
+
+
+            // Renk ve Stil Ayarları
+
+            let cardBorder = 'border-slate-200';
+
+            let cardBg = 'bg-white';
+
+            if (isCorrect) {
+
+              cardBorder = 'border-green-200';
+
+              cardBg = 'bg-green-50/40';
+
+            } else if (!isUserAnswered) {
+
+              cardBorder = 'border-amber-200';
+
+              cardBg = 'bg-amber-50/40';
+
+            } else {
+
+              cardBorder = 'border-red-200';
+
+              cardBg = 'bg-red-50/40';
+
+            }
+
+
+
+            return (
+
+              <div key={q.id} className={`p-6 rounded-2xl border-2 ${cardBorder} ${cardBg}`}>
+
+                <div className="flex items-start gap-4">
+
+                  <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold shadow-sm ${
+
+                    isCorrect ? 'bg-green-500' : !isUserAnswered ? 'bg-amber-400' : 'bg-red-500'
+
+                  }`}>
+
+                    {isCorrect ? '✓' : !isUserAnswered ? '−' : '✕'}
+
+                  </div>
+
+
+
+                  <div className="flex-grow">
+
+                    <div className="flex justify-between items-center mb-3">
+
+                      <span className="text-sm text-slate-400 font-bold uppercase">Question {idx + 1}</span>
+
+                      {!isUserAnswered && (
+
+                        <span className="text-xs font-bold px-2 py-1 bg-amber-100 text-amber-700 rounded-md">SKIPPED</span>
+
+                      )}
+
+                    </div>
+
+
+
+                    {/* Soru Metni */}
+
+                    <div className="text-lg font-medium text-slate-800 mb-5 leading-loose">
+
+                       {formatText(q.prompt)}
+
+                    </div>
+
+
+
+                    {/* Şıklar */}
+
+                    <div className="grid gap-2">
+
+                      {(q.choices || []).map((c) => {
+
+                        const isSelected = idsEqual(userAnswerId, c.id);
+
+                        const isTheCorrectAnswer = idsEqual(c.id, correctId);
+
+
+
+                        let optionClass = 'p-3 rounded-lg border flex items-center justify-between ';
+
+                        if (isTheCorrectAnswer) {
+
+                          optionClass += 'bg-green-100 border-green-300 text-green-800 font-bold shadow-sm';
+
+                        } else if (isSelected) {
+
+                          optionClass += 'bg-red-100 border-red-300 text-red-800 font-medium';
+
+                        } else {
+
+                          optionClass += 'bg-white/60 border-slate-200 text-slate-500 opacity-70';
+
+                        }
+
+
+
+                        return (
+
+                          <div key={c.id} className={optionClass}>
+
+                            <div className="flex items-center gap-3">
+
+                              <div className={`w-6 h-6 rounded-full border flex items-center justify-center text-xs ${
+
+                                isTheCorrectAnswer ? 'border-green-500 bg-green-500 text-white' : 
+
+                                isSelected ? 'border-red-500 bg-red-500 text-white' : 'border-slate-300'
+
+                              }`}>
+
+                                {c.id}
+
+                              </div>
+
+                              <span>{c.text}</span>
+
+                            </div>
+
+                          </div>
+
+                        );
+
+                      })}
+
+                    </div>
+
+
+
+                    {/* Açıklama */}
+
+                    {q.explanation && (
+
+                      <div className="mt-5 p-4 bg-blue-50 rounded-xl border border-blue-100 text-sm text-blue-800 flex gap-3 items-start">
+
+                        <span className="text-xl">💡</span>
+
+                        <div>
+
+                          <span className="font-bold block mb-1 text-blue-900">Explanation:</span>
+
+                          <span className="leading-relaxed opacity-90">{q.explanation}</span>
+
+                        </div>
+
+                      </div>
+
+                    )}
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            );
+
+          })}
+
+        </div>
+
+      </div>
+
+    );
+
+  }
+
+
+
+  // --- QUIZ SOLVING SCREEN ---
+
+  return (
+
+    <div className="max-w-3xl mx-auto px-4 py-8 space-y-8">
+
+      {/* Top Bar */}
+
+      <div className="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-slate-200 sticky top-4 z-20 backdrop-blur-sm bg-white/90">
+
+        <div className="text-sm font-semibold text-slate-700 truncate max-w-[220px]">
+
+          {test?.title || 'Test'}
+
+        </div>
+
+        <div className={`text-lg font-bold px-4 py-2 rounded-lg border transition-colors ${
+
+          timeLeft !== null && timeLeft < 60 
+
+            ? 'text-red-600 bg-red-50 border-red-200 animate-pulse' 
+
+            : 'text-blue-600 bg-blue-50 border-blue-200'
+
+        }`}>
+
+          {timeLeft !== null ? formatTime(timeLeft) : '∞'}
+
+        </div>
+
+      </div>
+
+
+
+      {/* Questions Loop */}
+
+      <div className="space-y-8">
+
+        {questions.map((q, idx) => (
+
+          <div key={q.id} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+
+            <div className="text-sm text-slate-400 font-bold mb-3 uppercase tracking-wide">
+
+              Question {idx + 1}
+
+            </div>
+
+            
+
+            <div className="text-xl font-medium text-slate-800 mb-6 leading-loose">
+
+              {formatText(q.prompt)}
+
+            </div>
+
+
+
+            <div className="grid gap-3">
+
+              {(q.choices || []).map((c) => (
+
+                <label key={c.id} className={`group cursor-pointer flex items-center p-4 rounded-xl border-2 transition-all duration-200 active:scale-[0.99] ${
+
+                  answers[q.id] === c.id ? 'border-blue-600 bg-blue-50 shadow-md' : 'border-slate-100 hover:border-blue-300 hover:bg-slate-50'
+
+                }`}>
+
+                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 transition-colors ${
+
+                    answers[q.id] === c.id ? 'border-blue-600' : 'border-slate-300 group-hover:border-blue-400'
+
+                  }`}>
+
+                    {answers[q.id] === c.id && <div className="w-2.5 h-2.5 rounded-full bg-blue-600" />}
+
+                  </div>
+
+
+
+                  <input type="radio" name={q.id} className="hidden" checked={answers[q.id] === c.id} onChange={() => setAnswers((prev) => ({ ...prev, [q.id]: c.id }))} />
+
+                  <span className={`text-lg ${answers[q.id] === c.id ? 'text-blue-700 font-medium' : 'text-slate-600'}`}>
+
+                    {c.text}
+
+                  </span>
+
+                </label>
+
+              ))}
+
+            </div>
+
+          </div>
+
+        ))}
+
+      </div>
+
+
+
+      <div className="pt-4 pb-12">
+
+        <button onClick={handleSubmit} className="w-full py-4 rounded-xl text-white text-xl font-bold shadow-lg transition-all transform active:scale-[0.98] bg-blue-600 hover:bg-blue-700 hover:shadow-blue-200">
+
+          Finish Test
+
+        </button>
+
+      </div>
+
+    </div>
+
+  );
+
+}
