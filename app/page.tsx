@@ -36,7 +36,7 @@ const vocabTest = { title: 'Vocabulary B1-C1 (50Q)', slug: 'vocab-b1-c1-50' };
 const raceTest = { title: 'Global Race Mode', href: '/race' };
 const ieltsTest = { title: 'IELTS Grammar (50Q)', slug: 'ielts-grammar' };
 
-const ydsVocabTest = { title: 'YDS 1000 Words (Vocab)', slug: 'yds-1000-vocab' };
+const ydsVocabTest = { title: 'YDS 3000 Words (Vocab)', slug: 'yds-3000-vocab' };
 const ydsGrammarTest = { title: 'YDS Grammar Practice (100Q)', slug: 'yds-grammar-practice' };
 const ydsPhrasalTest = { title: 'YDS Phrasal Verbs (340Q)', slug: 'yds-phrasal-verbs' };
 const ydsReadingTest = { title: 'YDS Reading (40Q)', slug: 'yds-reading' };
@@ -265,7 +265,7 @@ function startTest(testSlug: string) {
     const payload = {
       attemptId,
       testSlug,
-      test: { title: 'YDS 1000 WORDS (VOCABULARY)', duration: 40 },
+      test: { title: 'YDS 3000 WORDS (VOCABULARY)', duration: 40 },
       questions: questions,
     };
     sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
@@ -528,7 +528,7 @@ export default function Home() {
                     Our <strong>YDS Exam Pack</strong> includes full-length practice tests with 80 questions covering reading comprehension, vocabulary, grammar, and translation skills.
                   </p>
                   <ul className="list-disc pl-4 text-sm text-slate-500 space-y-1">
-                    <li><strong>YDS Vocabulary:</strong> Master the most common 1000 academic words.</li>
+                    <li><strong>YDS Vocabulary:</strong> Master the most common 3000 academic words.</li>
                     <li><strong>Reading Comprehension:</strong> Analyze complex paragraphs with detailed explanations.</li>
                     <li><strong>Grammar Practice:</strong> Focus on tenses, prepositions, and sentence completion.</li>
                   </ul>
