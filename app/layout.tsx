@@ -6,7 +6,6 @@ import Script from 'next/script';
 const siteName = 'EnglishMeter';
 const siteUrl = 'https://englishmeter.net';
 
-// 1. GÜNCELLEME: Açıklamayı YDS ve Kelime Testini kapsayacak şekilde genişlettik
 const siteDescription =
   'Take our free English level test (A1–C2) and practice for YDS/YÖKDİL with our 1000 essential vocabulary words. Instant grammar & vocab results, no sign-up required.';
 
@@ -14,15 +13,13 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    // Başlık şablonu gayet iyi, koruyoruz
-    default: 'Free English Level Test & YDS Vocabulary Quiz', // Hafif bir ekleme yaptık
+    default: 'Free English Level Test & YDS Vocabulary Quiz',
     template: `%s | ${siteName}`,
   },
 
   description: siteDescription,
   applicationName: siteName,
 
-  // 2. GÜNCELLEME: YDS ve Türkçe anahtar kelimeler eklendi
   keywords: [
     'english level test',
     'english placement test',
@@ -34,7 +31,6 @@ export const metadata: Metadata = {
     'A1 A2 B1 B2 C1 C2 test',
     'IELTS grammar practice',
     'free english test',
-    // --- Yeni Eklenenler ---
     'YDS kelime testi',
     'YDS vocabulary list',
     'YÖKDİL kelime çalışması',
@@ -49,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: siteUrl,
-    title: 'Test Your English Level & YDS Vocabulary Online', // Sosyal medya başlığını güncelledik
+    title: 'Test Your English Level & YDS Vocabulary Online',
     siteName,
     description: siteDescription,
     images: [
@@ -65,7 +61,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'How Good is Your English? Take the Free Test',
-    description: 'Get your CEFR level and test your YDS vocabulary in minutes.', // Twitter açıklamasını güncelledik
+    description: 'Get your CEFR level and test your YDS vocabulary in minutes.',
   },
 
   robots: {
@@ -91,7 +87,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // 3. GÜNCELLEME: Schema (Yapısal Veri) içine YDS bilgisini ekledik
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -124,8 +119,8 @@ export default function RootLayout({
         'CEFR level assessment',
         'Grammar quizzes',
         'Vocabulary testing',
-        'YDS Exam Preparation',    // <--- YENİ
-        'YÖKDİL Vocabulary List', // <--- YENİ
+        'YDS Exam Preparation',
+        'YÖKDİL Vocabulary List',
       ],
       operatingSystem: 'Any',
     },
@@ -135,7 +130,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-slate-50 min-h-screen flex flex-col">
 
-        {/* --- GOOGLE ANALYTICS KODU (Aynen korundu) --- */}
+        {/* --- GOOGLE ANALYTICS KODU --- */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-Z4658W17W5"
           strategy="afterInteractive"
@@ -149,7 +144,16 @@ export default function RootLayout({
             gtag('config', 'G-Z4658W17W5');
           `}
         </Script>
-        {/* ----------------------------- */}
+
+        {/* --- GOOGLE ADSENSE KODU (EKLENDİ) --- */}
+        {/* Not: ID'nizi 'ca-pub-...' formatına uygun hale getirdim */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1700979325865596"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+        {/* ------------------------------------- */}
 
         <script
           type="application/ld+json"
