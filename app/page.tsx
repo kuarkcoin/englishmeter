@@ -235,7 +235,7 @@ function startTest(testSlug: string) {
   }
 
   // 4. YDS KELİME TESTİ
-  if (testSlug === 'yds-1000-vocab') {
+  if (testSlug === 'yds-3000-vocab') {
     const shuffledList = [...(ydsVocabulary as any[])].sort(() => 0.5 - Math.random());
     const selectedWords = shuffledList.slice(0, 50);
 
