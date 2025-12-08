@@ -8,14 +8,15 @@ import ydsVocabulary from '@/data/yds_vocabulary.json';
 import ydsGrammarQuestions from '@/data/yds_grammar.json';
 import ydsPhrasals from '@/data/yds_phrasal_verbs.json';
 import ydsReadingPassages from '@/data/yds_reading.json';
+import ydsSynonyms from '@/data/yds_synonyms.json'; // YENİ EKLENDİ
 
 // --- YDS EXAM DENEMELERİ (1, 2, 3, 4, 5, 6) ---
-import ydsExamQuestions1 from '@/data/yds_exam_questions.json';     // Test 1
-import ydsExamQuestions2 from '@/data/yds_exam_questions_2.json';   // Test 2
-import ydsExamQuestions3 from '@/data/yds_exam_questions_3.json';   // Test 3
-import ydsExamQuestions4 from '@/data/yds_exam_questions_4.json';   // Test 4
-import ydsExamQuestions5 from '@/data/yds_exam_questions_5.json';   // Test 5 (YENİ)
-import ydsExamQuestions6 from '@/data/yds_exam_questions_6.json';   // Test 6 (YENİ)
+import ydsExamQuestions1 from '@/data/yds_exam_questions.json';      // Test 1
+import ydsExamQuestions2 from '@/data/yds_exam_questions_2.json';    // Test 2
+import ydsExamQuestions3 from '@/data/yds_exam_questions_3.json';    // Test 3
+import ydsExamQuestions4 from '@/data/yds_exam_questions_4.json';    // Test 4
+import ydsExamQuestions5 from '@/data/yds_exam_questions_5.json';    // Test 5 
+import ydsExamQuestions6 from '@/data/yds_exam_questions_6.json';    // Test 6 
 
 // --- TEST DATA MAP ---
 const YDS_EXAM_MAP: Record<string, any[]> = {
@@ -23,10 +24,8 @@ const YDS_EXAM_MAP: Record<string, any[]> = {
   '2': ydsExamQuestions2,
   '3': ydsExamQuestions3,
   '4': ydsExamQuestions4,
-  '5': ydsExamQuestions5, // YENİ EKLENDİ
-  '6': ydsExamQuestions6, // YENİ EKLENDİ
-  // '7': ydsExamQuestions7, // İleride eklenecek
-  // '8': ydsExamQuestions8, // İleride eklenecek
+  '5': ydsExamQuestions5,
+  '6': ydsExamQuestions6,
 };
 
 // --- TEST TANIMLARI ---
@@ -36,10 +35,12 @@ const vocabTest = { title: 'Vocabulary B1-C1 (50Q)', slug: 'vocab-b1-c1-50' };
 const raceTest = { title: 'Global Race Mode', href: '/race' };
 const ieltsTest = { title: 'IELTS Grammar (50Q)', slug: 'ielts-grammar' };
 
+// YDS TESTLERİ
 const ydsVocabTest = { title: 'YDS 3000 Words (Vocab)', slug: 'yds-3000-vocab' };
 const ydsGrammarTest = { title: 'YDS Grammar Practice (100Q)', slug: 'yds-grammar-practice' };
 const ydsPhrasalTest = { title: 'YDS Phrasal Verbs (340Q)', slug: 'yds-phrasal-verbs' };
 const ydsReadingTest = { title: 'YDS Reading (40Q)', slug: 'yds-reading' };
+const ydsSynonymTest = { title: 'YDS Synonyms (Advanced)', slug: 'yds-synonyms' }; // YENİ EKLENDİ
 
 // Grammar Focus testleri
 const grammarTests = [
@@ -80,8 +81,8 @@ function startTest(testSlug: string) {
 
   // --- YDS EXAM PACK MANTIĞI ---
   if (testSlug.startsWith('yds-exam-test-')) {
-    const testNumber = testSlug.split('-').pop() || '1'; // '1', '2', ... '6'
-    const selectedQuestions = YDS_EXAM_MAP[testNumber]; // Haritadan soruları çek
+    const testNumber = testSlug.split('-').pop() || '1';
+    const selectedQuestions = YDS_EXAM_MAP[testNumber];
 
     if (selectedQuestions) {
       const mappedQuestions = [...selectedQuestions].map((q: any, idx: number) => {
@@ -96,7 +97,7 @@ function startTest(testSlug: string) {
             id: idsLower[i],
             text: q[L], 
             isCorrect: correctLetter === L,
-          })).filter((c: any) => c.text), // Metni olmayan şıkları temizle
+          })).filter((c: any) => c.text),
           explanation: q.explanation || '',
         };
       });
@@ -104,7 +105,7 @@ function startTest(testSlug: string) {
       const payload = {
         attemptId,
         testSlug,
-        test: { title: `YDS REAL EXAM - TEST ${testNumber} (80 Questions)`, duration: 150 }, // 150 dk
+        test: { title: `YDS REAL EXAM - TEST ${testNumber} (80 Questions)`, duration: 150 },
         questions: mappedQuestions,
       };
       
@@ -112,7 +113,6 @@ function startTest(testSlug: string) {
       window.location.href = `/quiz/${attemptId}`;
       return;
     } else {
-      // Eğer MAP içinde yoksa (örn: Test 7'ye tıklandıysa)
       alert(`Test ${testNumber} is coming soon! Please complete existing tests first.`);
       return;
     }
@@ -234,7 +234,7 @@ function startTest(testSlug: string) {
     return;
   }
 
-  // 4. YDS KELİME TESTİ
+  // 4. YDS KELİME TESTİ (3000 Words) - DÜZELTİLDİ
   if (testSlug === 'yds-3000-vocab') {
     const shuffledList = [...(ydsVocabulary as any[])].sort(() => 0.5 - Math.random());
     const selectedWords = shuffledList.slice(0, 50);
@@ -273,7 +273,51 @@ function startTest(testSlug: string) {
     return;
   }
 
-  // 5. QUICK PLACEMENT TEST
+  // 5. YDS SYNONYMS (EŞ ANLAMLILAR) - YENİ EKLENDİ
+  if (testSlug === 'yds-synonyms') {
+    const shuffledList = [...(ydsSynonyms as any[])].sort(() => 0.5 - Math.random());
+    const selectedWords = shuffledList.slice(0, 50); // 50 Soru Sor
+
+    const questions = selectedWords.map((item, idx) => {
+      const correctAnswer = item.synonym;
+      // Eğer JSON'da 'distractors' varsa kullan, yoksa rastgele üret
+      let distractors = item.distractors;
+      if (!distractors || distractors.length === 0) {
+         distractors = (ydsSynonyms as any[])
+          .filter((w) => w.synonym !== correctAnswer)
+          .map((w) => w.synonym)
+          .sort(() => 0.5 - Math.random())
+          .slice(0, 3);
+      }
+
+      const allOptions = [...distractors, correctAnswer].sort(() => 0.5 - Math.random());
+      const letters = ['A', 'B', 'C', 'D'];
+      const idsLower = ['a', 'b', 'c', 'd'];
+
+      return {
+        id: `yds-syn-q${idx + 1}`,
+        prompt: `Select the word that is closest in meaning to: <br/> <strong class="text-xl text-blue-700">"${item.word}"</strong> <span class="text-sm text-gray-500">(${item.meaning})</span>`,
+        choices: letters.map((L, i) => ({
+          id: idsLower[i],
+          text: allOptions[i],
+          isCorrect: allOptions[i] === correctAnswer
+        })),
+        explanation: `**${item.word}** means "${item.meaning}". <br/> Synonym: **${correctAnswer}**.`
+      };
+    });
+
+    const payload = {
+      attemptId,
+      testSlug,
+      test: { title: 'YDS SYNONYMS PRACTICE (50 Questions)', duration: 40 },
+      questions: questions,
+    };
+    sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
+    window.location.href = `/quiz/${attemptId}`;
+    return;
+  }
+
+  // 6. QUICK PLACEMENT TEST
   if (testSlug === 'quick-placement') {
     const allQuestions = [...(topicQuestions as any[])];
     const shuffledQuestions = allQuestions.sort(() => 0.5 - Math.random());
@@ -307,7 +351,7 @@ function startTest(testSlug: string) {
     return;
   }
 
-  // 6. GRAMMAR FOCUS
+  // 7. GRAMMAR FOCUS
   if (slugToTag[testSlug]) {
     const payload: any = {
       attemptId,
@@ -345,7 +389,6 @@ function startTest(testSlug: string) {
 }
 
 export default function Home() {
-  // Aktif olan test numaraları (1, 2, 3, 4, 5, 6) -> 5 ve 6'yı ekledik.
   const availableTests = [1, 2, 3, 4, 5, 6];
 
   return (
@@ -464,6 +507,11 @@ export default function Home() {
               {ydsPhrasalTest.title}
             </button>
 
+            {/* YDS SYNONYMS (MOR) - YENİ EKLENDİ */}
+            <button onClick={() => startTest(ydsSynonymTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-purple-500 text-white text-xl font-bold shadow-xl hover:bg-purple-600 transition-all">
+              {ydsSynonymTest.title}
+            </button>
+
             {/* IELTS */}
             <button onClick={() => startTest(ieltsTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-sky-400 text-white text-xl font-bold shadow-xl hover:bg-sky-500 transition-all">
               {ieltsTest.title}
@@ -529,6 +577,7 @@ export default function Home() {
                   </p>
                   <ul className="list-disc pl-4 text-sm text-slate-500 space-y-1">
                     <li><strong>YDS Vocabulary:</strong> Master the most common 3000 academic words.</li>
+                    <li><strong>Synonyms Practice:</strong> Learn crucial synonyms and distractors for paraphrasing questions.</li>
                     <li><strong>Reading Comprehension:</strong> Analyze complex paragraphs with detailed explanations.</li>
                     <li><strong>Grammar Practice:</strong> Focus on tenses, prepositions, and sentence completion.</li>
                   </ul>
@@ -543,7 +592,7 @@ export default function Home() {
                     Whether you are preparing for IELTS, TOEFL, or just want to know your level, our <strong>Quick Placement Test</strong> gives you an instant score in under 20 minutes.
                   </p>
                   <p className="text-sm text-slate-500">
-                     Join thousands of users improving their English daily with our grammar focus tests and vocabulary builders.
+                      Join thousands of users improving their English daily with our grammar focus tests and vocabulary builders.
                   </p>
                 </div>
               </div>
