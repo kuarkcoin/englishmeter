@@ -321,7 +321,7 @@ function startTest(testSlug: string) {
   // 6. YDS CONJUNCTIONS (BAĞLAÇLAR) - YENİ EKLENDİ
   if (testSlug === 'yds-conjunctions') {
     const shuffledList = [...(ydsConjunctions as any[])].sort(() => 0.5 - Math.random());
-    const selectedQuestions = shuffledList.slice(0, 25); // 25 Soru Sor
+    const selectedQuestions = shuffledList.slice(0, 50); // 50 Soru Sor
 
     const mappedQuestions = selectedQuestions.map((q: any, idx: number) => {
       const correctLetter = String(q.correct || 'A').trim().toUpperCase();
@@ -355,7 +355,7 @@ function startTest(testSlug: string) {
   if (testSlug === 'quick-placement') {
     const allQuestions = [...(topicQuestions as any[])];
     const shuffledQuestions = allQuestions.sort(() => 0.5 - Math.random());
-    const selectedQuestions = shuffledQuestions.slice(0, 25);
+    const selectedQuestions = shuffledQuestions.slice(0, 50);
 
     const mappedQuestions = selectedQuestions.map((q: any, idx: number) => {
       const correctLetter = String(q.correct || 'A').trim().toUpperCase();
