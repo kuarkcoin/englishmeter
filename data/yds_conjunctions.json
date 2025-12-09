@@ -1,1 +1,253 @@
+[
+  {
+    "prompt": "______ the harsh weather conditions, the rescue team managed to reach the stranded climbers.",
+    "A": "In spite of",
+    "B": "Although",
+    "C": "Because of",
+    "D": "However",
+    "E": "Unless",
+    "correct": "A",
+    "explanation": "Boşluktan sonra bir cümle değil, bir isim tamlaması (the harsh weather conditions) gelmiştir. Anlamca zıtlık (sert havaya *rağmen*) gerektiği için 'In spite of' doğrudur. 'Although' cümle alır."
+  },
+  {
+    "prompt": "The company has invested heavily in new technologies ______ it can stay competitive in the global market.",
+    "A": "so that",
+    "B": "in case",
+    "C": "as long as",
+    "D": "thanks to",
+    "E": "due to",
+    "correct": "A",
+    "explanation": "'So that' (olsun diye / -mesi için) kendisinden sonra genellikle 'can/could/will' içeren bir cümle alır ve amaç bildirir."
+  },
+  {
+    "prompt": "______ you study regularly and systematically, it is almost impossible to get a high score in YDS.",
+    "A": "If",
+    "B": "Provided that",
+    "C": "Unless",
+    "D": "In case",
+    "E": "Once",
+    "correct": "C",
+    "explanation": "'Unless' (-medikçe / -mezse) anlamına gelir. Cümlede 'düzenli çalışmazsan imkansızdır' anlamı olduğu için olumsuz koşul gerekir."
+  },
+  {
+    "prompt": "The internet has transformed the way we communicate; ______, it has created new privacy concerns.",
+    "A": "therefore",
+    "B": "however",
+    "C": "moreover",
+    "D": "likewise",
+    "E": "instead",
+    "correct": "B",
+    "explanation": "İlk cümlede olumlu bir değişimden, ikinci cümlede ise olumsuz bir durumdan (gizlilik endişeleri) bahsediliyor. Bu zıtlığı noktalı virgülden sonra 'however' sağlar."
+  },
+  {
+    "prompt": "______ there is a sudden drop in cabin pressure, oxygen masks will automatically drop from the ceiling.",
+    "A": "So that",
+    "B": "Unless",
+    "C": "In case",
+    "D": "Even if",
+    "E": "Although",
+    "correct": "C",
+    "explanation": "'In case' (olur diye / olması durumunda) ihtimal bildirir. Basıncın düşmesi *ihtimaline karşı* maskeler düşecektir."
+  },
+  {
+    "prompt": "Electric cars are becoming increasingly popular ______ their low operating costs and environmental benefits.",
+    "A": "because",
+    "B": "since",
+    "C": "due to",
+    "D": "in spite of",
+    "E": "although",
+    "correct": "C",
+    "explanation": "Boşluktan sonra isim grubu (low operating costs...) gelmiştir ve sebep bildirilmektedir. 'Due to' (+noun) sebep bildirir. 'Because' cümle alır."
+  },
+  {
+    "prompt": "______ some experts believe that artificial intelligence will create jobs, others argue it will cause mass unemployment.",
+    "A": "Since",
+    "B": "While",
+    "C": "Once",
+    "D": "As long as",
+    "E": "Just as",
+    "correct": "B",
+    "explanation": "'While' (iken / oysa), iki farklı görüşü karşılaştırırken (bazıları şöyle düşünürken, diğerleri böyle düşünür) kullanılır."
+  },
+  {
+    "prompt": "You should take your passport with you ______ the police ask for identification.",
+    "A": "so that",
+    "B": "in order to",
+    "C": "lest",
+    "D": "in case",
+    "E": "unless",
+    "correct": "D",
+    "explanation": "Polisin kimlik sorma *ihtimaline karşı* pasaportunu almalısın. 'In case' burada en uygun yapıdır."
+  },
+  {
+    "prompt": "The project was completed on time ______ the lack of adequate funding.",
+    "A": "despite",
+    "B": "although",
+    "C": "because of",
+    "D": "since",
+    "E": "unless",
+    "correct": "A",
+    "explanation": "Yetersiz fona *rağmen* proje bitti. Boşluktan sonra isim geldiği için 'Despite' kullanılır. 'Although' cümle ister."
+  },
+  {
+    "prompt": "______ strict measures are taken immediately, the epidemic will spread to other regions.",
+    "A": "If",
+    "B": "Unless",
+    "C": "As long as",
+    "D": "Only if",
+    "E": "Providing",
+    "correct": "B",
+    "explanation": "Sıkı önlemler *alınmazsa* (Unless) salgın yayılacak. Anlamı tamamlayan olumsuz koşul yapısıdır."
+  },
+  {
+    "prompt": "______ the demand for organic food increases, farmers are dedicating more land to organic agriculture.",
+    "A": "As",
+    "B": "Although",
+    "C": "Unless",
+    "D": "Even if",
+    "E": "Whether",
+    "correct": "A",
+    "explanation": "'As' burada 'dıkça/dikçe' veya 'için' (paralel değişim veya sebep) anlamındadır. Talep arttıkça/arttığı için, çiftçiler daha fazla yer ayırıyor."
+  },
+  {
+    "prompt": "He has been working as a manager for ten years; ______, he is the most suitable candidate for the position.",
+    "A": "nevertheless",
+    "B": "otherwise",
+    "C": "on the contrary",
+    "D": "therefore",
+    "E": "however",
+    "correct": "D",
+    "explanation": "10 yıldır çalışıyor, *bu yüzden/bu sebeple* (therefore) en uygun aday. Sebep-sonuç ilişkisi var."
+  },
+  {
+    "prompt": "______ they offered him a higher salary, he refused to accept the job offer.",
+    "A": "Despite",
+    "B": "Even though",
+    "C": "As if",
+    "D": "Because",
+    "E": "In case",
+    "correct": "B",
+    "explanation": "Daha yüksek maaş teklif etmelerine *rağmen* (even though + cümle) kabul etmedi. 'Despite' isim alırdı."
+  },
+  {
+    "prompt": "The meeting will be held tomorrow ______ we hear otherwise from the director.",
+    "A": "if",
+    "B": "unless",
+    "C": "provided that",
+    "D": "as long as",
+    "E": "in case",
+    "correct": "B",
+    "explanation": "Müdürden aksi bir haber *gelmedikçe* (unless) toplantı yapılacak."
+  },
+  {
+    "prompt": "Doctors suggest that everyone should exercise regularly ______ stay healthy.",
+    "A": "so that",
+    "B": "in order to",
+    "C": "for",
+    "D": "so as",
+    "E": "with a view to",
+    "correct": "B",
+    "explanation": "Sağlıklı kalmak *amacıyla*. 'In order to' kendisinden sonra yalın fiil (V1) alır. 'So that' cümle alır."
+  },
+  {
+    "prompt": "______ the ancient civilizations in Mesopotamia, the Egyptians built monumental structures.",
+    "A": "Unlike",
+    "B": "While",
+    "C": "Although",
+    "D": "Just as",
+    "E": "Contrary to",
+    "correct": "A",
+    "explanation": "Mısır ve Mezopotamya karşılaştırması var. Ancak cümle yapısına dikkat edilirse, 'Unlike the ancient civilizations...' (Mezopotamya'dakilerin *aksine*) daha mantıklı olsa da, burada benzerlik vurgusu da olabilir. YDS bağlamında 'Unlike' sık kullanılır ama eğer benzerlik varsa 'Like' olurdu. Seçeneklerde 'Unlike' (Aksine) var. Eğer 'Just like' olsaydı o da olurdu. Ancak 'Unlike' gramatik olarak buraya uyar."
+  },
+  {
+    "prompt": "Please read the user manual carefully ______ you do not damage the device during installation.",
+    "A": "so that",
+    "B": "in case",
+    "C": "because",
+    "D": "lest",
+    "E": "unless",
+    "correct": "A",
+    "explanation": "Cihaza zarar vermeyesin *diye* (so that + cümle). 'Lest' de benzer anlamdadır ama kullanımı çok eskidir ve 'not' almaz (lest you damage)."
+  },
+  {
+    "prompt": "______ being one of the most expensive cities in the world, London attracts millions of tourists every year.",
+    "A": "Although",
+    "B": "Despite",
+    "C": "Since",
+    "D": "Because",
+    "E": "However",
+    "correct": "B",
+    "explanation": "Boşluktan sonra 'being' (Gerund/İsimleşmiş fiil) gelmiş. Pahalı olmasına *rağmen* anlamı için 'Despite' gerekir. 'Although' cümle alır."
+  },
+  {
+    "prompt": "The government is planning to increase taxes ______ the budget deficit can be reduced.",
+    "A": "so as to",
+    "B": "in order to",
+    "C": "so that",
+    "D": "because of",
+    "E": "in case",
+    "correct": "C",
+    "explanation": "Bütçe açığı azaltılabilsin *diye* (so that + cümle). A ve B seçenekleri fiil (V1) ister."
+  },
+  {
+    "prompt": "______ I finish this report, I will join you for dinner.",
+    "A": "Until",
+    "B": "By the time",
+    "C": "Once",
+    "D": "While",
+    "E": "During",
+    "correct": "C",
+    "explanation": "Raporu bitirir bitirmez / bitirdiğimde (Once). Zaman uyumu (Finish -> Will join) uygundur."
+  },
+  {
+    "prompt": "______ how hard he tried, he couldn't solve the physics problem.",
+    "A": "Although",
+    "B": "No matter",
+    "C": "Even if",
+    "D": "Whatever",
+    "E": "In spite of",
+    "correct": "B",
+    "explanation": "'No matter how hard...' (Ne kadar denerse denesin). Kalıplaşmış bir yapıdır."
+  },
+  {
+    "prompt": "Some people prefer to work from home, ______ others find it more productive to work in an office.",
+    "A": "likewise",
+    "B": "whereas",
+    "C": "therefore",
+    "D": "because",
+    "E": "so",
+    "correct": "B",
+    "explanation": "'Whereas' (oysa, halbuki), iki grup arasındaki zıtlığı (bazıları evde, *oysa* diğerleri ofiste) belirtir."
+  },
+  {
+    "prompt": "Make sure you save your work periodically ______ a power failure occurs.",
+    "A": "so that",
+    "B": "provided that",
+    "C": "in case",
+    "D": "unless",
+    "E": "if",
+    "correct": "C",
+    "explanation": "Elektrik kesintisi olması *ihtimaline karşı* (in case)."
+  },
+  {
+    "prompt": "______ the fact that he was ill, he insisted on attending the meeting.",
+    "A": "Due to",
+    "B": "Because of",
+    "C": "In spite of",
+    "D": "Unless",
+    "E": "Since",
+    "correct": "C",
+    "explanation": "'In spite of the fact that' kalıbı, 'Although' ile aynı anlama gelir ve '...gerçeğine rağmen' demektir."
+  },
+  {
+    "prompt": "The exam was ______ difficult that most students failed to pass.",
+    "A": "so",
+    "B": "such",
+    "C": "more",
+    "D": "too",
+    "E": "very",
+    "correct": "A",
+    "explanation": "'So ... that' kalıbı (o kadar ... ki). 'So' sıfatla (difficult) kullanılır. 'Such' isim tamlamasıyla kullanılır."
+  }
+]
  
