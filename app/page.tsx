@@ -8,7 +8,8 @@ import ydsVocabulary from '@/data/yds_vocabulary.json';
 import ydsGrammarQuestions from '@/data/yds_grammar.json';
 import ydsPhrasals from '@/data/yds_phrasal_verbs.json';
 import ydsReadingPassages from '@/data/yds_reading.json';
-import ydsSynonyms from '@/data/yds_synonyms.json'; // YENİ EKLENDİ
+import ydsSynonyms from '@/data/yds_synonyms.json';
+import ydsConjunctions from '@/data/yds_conjunctions.json'; // YENİ EKLENDİ
 
 // --- YDS EXAM DENEMELERİ (1, 2, 3, 4, 5, 6) ---
 import ydsExamQuestions1 from '@/data/yds_exam_questions.json';      // Test 1
@@ -38,9 +39,10 @@ const ieltsTest = { title: 'IELTS Grammar (50Q)', slug: 'ielts-grammar' };
 // YDS TESTLERİ
 const ydsVocabTest = { title: 'YDS 3000 Words (Vocab)', slug: 'yds-3000-vocab' };
 const ydsGrammarTest = { title: 'YDS Grammar Practice (100Q)', slug: 'yds-grammar-practice' };
-const ydsPhrasalTest = { title: 'YDS Phrasal Verbs (500Q)', slug: 'yds-phrasal-verbs' };
+const ydsPhrasalTest = { title: 'YDS Phrasal Verbs (500Q)', slug: 'yds-phrasal-verbs' }; // GÜNCELLENDİ (500Q)
 const ydsReadingTest = { title: 'YDS Reading (40Q)', slug: 'yds-reading' };
-const ydsSynonymTest = { title: 'YDS Synonyms (Advanced)', slug: 'yds-synonyms' }; // YENİ EKLENDİ
+const ydsSynonymTest = { title: 'YDS Synonyms (Advanced)', slug: 'yds-synonyms' };
+const ydsConjunctionTest = { title: 'YDS Conjunctions (Bağlaçlar)', slug: 'yds-conjunctions' }; // YENİ EKLENDİ
 
 // Grammar Focus testleri
 const grammarTests = [
@@ -89,7 +91,7 @@ function startTest(testSlug: string) {
         const correctLetter = String(q.correct || 'A').trim().toUpperCase();
         const letters = ['A', 'B', 'C', 'D', 'E']; 
         const idsLower = ['a', 'b', 'c', 'd', 'e'];
-  
+
         return {
           id: `yds-exam${testNumber}-q${idx + 1}`,
           prompt: q.prompt,
@@ -101,14 +103,14 @@ function startTest(testSlug: string) {
           explanation: q.explanation || '',
         };
       });
-  
+
       const payload = {
         attemptId,
         testSlug,
         test: { title: `YDS REAL EXAM - TEST ${testNumber} (80 Questions)`, duration: 150 },
         questions: mappedQuestions,
       };
-      
+
       sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
       window.location.href = `/quiz/${attemptId}`;
       return;
@@ -207,7 +209,7 @@ function startTest(testSlug: string) {
         .map((w) => w.meaning)
         .sort(() => 0.5 - Math.random())
         .slice(0, 3);
-      
+
       const allOptions = [...distractors, correctAnswer].sort(() => 0.5 - Math.random());
       const idsLower = ['a', 'b', 'c', 'd'];
 
@@ -234,7 +236,7 @@ function startTest(testSlug: string) {
     return;
   }
 
-  // 4. YDS KELİME TESTİ (3000 Words) - DÜZELTİLDİ
+  // 4. YDS KELİME TESTİ (3000 Words)
   if (testSlug === 'yds-3000-vocab') {
     const shuffledList = [...(ydsVocabulary as any[])].sort(() => 0.5 - Math.random());
     const selectedWords = shuffledList.slice(0, 50);
@@ -246,7 +248,7 @@ function startTest(testSlug: string) {
         .map((w) => w.meaning)
         .sort(() => 0.5 - Math.random())
         .slice(0, 3);
-      
+
       const allOptions = [...distractors, correctAnswer].sort(() => 0.5 - Math.random());
       const idsLower = ['a', 'b', 'c', 'd'];
 
@@ -273,14 +275,13 @@ function startTest(testSlug: string) {
     return;
   }
 
-  // 5. YDS SYNONYMS (EŞ ANLAMLILAR) - YENİ EKLENDİ
+  // 5. YDS SYNONYMS (EŞ ANLAMLILAR)
   if (testSlug === 'yds-synonyms') {
     const shuffledList = [...(ydsSynonyms as any[])].sort(() => 0.5 - Math.random());
-    const selectedWords = shuffledList.slice(0, 50); // 50 Soru Sor
+    const selectedWords = shuffledList.slice(0, 50); 
 
     const questions = selectedWords.map((item, idx) => {
       const correctAnswer = item.synonym;
-      // Eğer JSON'da 'distractors' varsa kullan, yoksa rastgele üret
       let distractors = item.distractors;
       if (!distractors || distractors.length === 0) {
          distractors = (ydsSynonyms as any[])
@@ -317,7 +318,40 @@ function startTest(testSlug: string) {
     return;
   }
 
-  // 6. QUICK PLACEMENT TEST
+  // 6. YDS CONJUNCTIONS (BAĞLAÇLAR) - YENİ EKLENDİ
+  if (testSlug === 'yds-conjunctions') {
+    const shuffledList = [...(ydsConjunctions as any[])].sort(() => 0.5 - Math.random());
+    const selectedQuestions = shuffledList.slice(0, 25); // 25 Soru Sor
+
+    const mappedQuestions = selectedQuestions.map((q: any, idx: number) => {
+      const correctLetter = String(q.correct || 'A').trim().toUpperCase();
+      const letters = ['A', 'B', 'C', 'D', 'E'];
+      const idsLower = ['a', 'b', 'c', 'd', 'e'];
+
+      return {
+        id: `yds-conj-q${idx + 1}`,
+        prompt: q.prompt,
+        choices: letters.map((L, i) => ({
+          id: idsLower[i],
+          text: q[L],
+          isCorrect: correctLetter === L,
+        })).filter(c => c.text),
+        explanation: q.explanation || '',
+      };
+    });
+
+    const payload = {
+      attemptId,
+      testSlug,
+      test: { title: 'YDS CONJUNCTIONS (Bağlaçlar)', duration: 35 },
+      questions: mappedQuestions,
+    };
+    sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
+    window.location.href = `/quiz/${attemptId}`;
+    return;
+  }
+
+  // 7. QUICK PLACEMENT TEST
   if (testSlug === 'quick-placement') {
     const allQuestions = [...(topicQuestions as any[])];
     const shuffledQuestions = allQuestions.sort(() => 0.5 - Math.random());
@@ -351,7 +385,7 @@ function startTest(testSlug: string) {
     return;
   }
 
-  // 7. GRAMMAR FOCUS
+  // 8. GRAMMAR FOCUS
   if (slugToTag[testSlug]) {
     const payload: any = {
       attemptId,
@@ -436,10 +470,10 @@ export default function Home() {
       {/* MAIN CONTENT */}
       <div className="flex flex-col items-center justify-center px-4 pb-16 pt-4">
         <div id="all-tests" className="w-full max-w-6xl mx-auto text-center">
-          
+
           {/* Main Tests Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
-            
+
             {/* Quick Test */}
             <button onClick={() => startTest(quickTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-blue-600 text-white text-xl font-bold shadow-xl hover:bg-blue-700 transition-all">
               {quickTest.title}
@@ -458,7 +492,7 @@ export default function Home() {
             {/* --- YDS EXAM PACK (PEMBE ALAN) --- */}
             <div className="col-span-1 md:col-span-2 lg:col-span-3 bg-pink-50 rounded-3xl p-6 border-2 border-pink-200 shadow-xl relative overflow-hidden group">
                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-pink-400 to-rose-500"></div>
-               
+
                <div className="flex flex-col md:flex-row items-center justify-between mb-6">
                   <h3 className="text-2xl font-black text-pink-600 flex items-center gap-2">
                      <span className="text-3xl">🇹🇷</span> YDS EXAM PACK
@@ -507,9 +541,14 @@ export default function Home() {
               {ydsPhrasalTest.title}
             </button>
 
-            {/* YDS SYNONYMS (MOR) - YENİ EKLENDİ */}
+            {/* YDS SYNONYMS (MOR) */}
             <button onClick={() => startTest(ydsSynonymTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-purple-500 text-white text-xl font-bold shadow-xl hover:bg-purple-600 transition-all">
               {ydsSynonymTest.title}
+            </button>
+
+             {/* YDS CONJUNCTIONS (GRİ/MAVİ) - YENİ */}
+            <button onClick={() => startTest(ydsConjunctionTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-slate-600 text-white text-xl font-bold shadow-xl hover:bg-slate-700 transition-all">
+              {ydsConjunctionTest.title}
             </button>
 
             {/* IELTS */}
@@ -521,7 +560,7 @@ export default function Home() {
              <button onClick={() => startTest(vocabTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-emerald-600 text-white text-xl font-bold shadow-xl hover:bg-emerald-700 transition-all">
               {vocabTest.title}
             </button>
-            
+
           </div>
 
           {/* Race Mode Banner */}
@@ -564,7 +603,7 @@ export default function Home() {
           {/* SEO SECTION - FOOTER */}
           <section className="text-left w-full border-t border-slate-200 pt-16 mt-16 pb-12 bg-slate-50">
             <div className="max-w-5xl mx-auto space-y-12">
-              
+
               <div className="grid md:grid-cols-2 gap-12">
                 <div>
                   <h2 className="text-xl font-bold text-slate-900 mb-3 flex items-center">
