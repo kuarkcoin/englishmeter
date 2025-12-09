@@ -248,6 +248,355 @@
     "E": "very",
     "correct": "A",
     "explanation": "'So ... that' kalıbı (o kadar ... ki). 'So' sıfatla (difficult) kullanılır. 'Such' isim tamlamasıyla kullanılır."
+  },
+  {
+    "prompt": "______ we have enough data, we can start the analysis immediately.",
+    "A": "Now that",
+    "B": "So that",
+    "C": "Although",
+    "D": "Unless",
+    "E": "While",
+    "correct": "A",
+    "explanation": "'Now that' (mademki, -dığına göre) anlamı verir. Yeterli verimiz olduğuna göre başlayabiliriz."
+  },
+  {
+    "prompt": "The manager resigned from his position ______ health problems.",
+    "A": "because",
+    "B": "on account of",
+    "C": "since",
+    "D": "as",
+    "E": "so that",
+    "correct": "B",
+    "explanation": "'On account of' (-den dolayı) kendisinden sonra isim alır (health problems). A, C, D ve E seçenekleri cümle alır."
+  },
+  {
+    "prompt": "______ had the meeting started ______ the fire alarm went off.",
+    "A": "Hardly / when",
+    "B": "No sooner / then",
+    "C": "Both / and",
+    "D": "Neither / nor",
+    "E": "Not only / but also",
+    "correct": "A",
+    "explanation": "'Hardly ... when' kalıbı (Tam ... olmuştu ki ... oldu). 'No sooner' olsaydı 'than' ile kullanılırdı."
+  },
+  {
+    "prompt": "He spoke clearly ______ everyone in the room could understand him.",
+    "A": "so as to",
+    "B": "lest",
+    "C": "in order to",
+    "D": "so that",
+    "E": "in case",
+    "correct": "D",
+    "explanation": "Herkes anlayabilsin *diye* (so that + cümle). A ve C şıkları fiil (V1) ister."
+  },
+  {
+    "prompt": "______ I know, he has never been to Asia before.",
+    "A": "As far as",
+    "B": "As long as",
+    "C": "Much as",
+    "D": "Just as",
+    "E": "Even if",
+    "correct": "A",
+    "explanation": "'As far as I know' (bildiğim kadarıyla) yaygın bir kalıptır."
+  },
+  {
+    "prompt": "______ interesting the book is, I don't think I will finish it today.",
+    "A": "However",
+    "B": "Although",
+    "C": "Even if",
+    "D": "Whatever",
+    "E": "No matter",
+    "correct": "A",
+    "explanation": "'However + Sıfat/Zarf' yapısı (Ne kadar ilginç olursa olsun) anlamı verir. 'However interesting...' doğru kullanımdır."
+  },
+  {
+    "prompt": "We should buy our tickets early, ______ they sell out quickly.",
+    "A": "or else",
+    "B": "so that",
+    "C": "for",
+    "D": "since",
+    "E": "unless",
+    "correct": "C",
+    "explanation": "'For' bağlacı iki cümle arasında kullanıldığında 'çünkü/zira' anlamı verir. Biletleri erken almalıyız, *zira* çabuk tükeniyorlar."
+  },
+  {
+    "prompt": "______ of the two candidates was suitable for the job, so they re-advertised the position.",
+    "A": "Both",
+    "B": "None",
+    "C": "Neither",
+    "D": "Either",
+    "E": "All",
+    "correct": "C",
+    "explanation": "İki adaydan *hiçbiri* uygun değildi (Neither of the two). 'None' 3 veya daha fazla kişi için kullanılır."
+  },
+  {
+    "prompt": "It looks ______ it is going to rain soon; the sky is very dark.",
+    "A": "as if",
+    "B": "even if",
+    "C": "although",
+    "D": "so that",
+    "E": "in case",
+    "correct": "A",
+    "explanation": "'As if' (sanki ... gibi / ...ecekmiş gibi). Yağmur yağacakmış gibi görünüyor."
+  },
+  {
+    "prompt": "______ you leave immediately, you will miss the last bus.",
+    "A": "Provided that",
+    "B": "If",
+    "C": "Unless",
+    "D": "As long as",
+    "E": "Only if",
+    "correct": "C",
+    "explanation": "Hemen çıkmazsan (Unless) otobüsü kaçıracaksın. 'If you don't leave' ile aynı anlamdadır."
+  },
+  {
+    "prompt": "She accepted the job offer ______ the salary was lower than she expected.",
+    "A": "despite",
+    "B": "even though",
+    "C": "in spite of",
+    "D": "due to",
+    "E": "as",
+    "correct": "B",
+    "explanation": "Maaş düşük olmasına *rağmen* (even though + cümle). A ve C şıkları isim ister."
+  },
+  {
+    "prompt": "______ rich you are, you cannot buy happiness.",
+    "A": "However",
+    "B": "No matter how",
+    "C": "Whatever",
+    "D": "Even if",
+    "E": "Although",
+    "correct": "B",
+    "explanation": "'No matter how + adjective' (Ne kadar zengin olursan ol). 'However' da olabilirdi ama şıklarda 'No matter how' daha güçlü bir çeldirici veya doğru cevap olarak verilir, ikisi de varsa gramer yapısına bakılır (burada ikisi de anlamca uyar ama YDS sorularında genellikle 'No matter how' tercih edilir)."
+  },
+  {
+    "prompt": "I will lend you the money ______ you pay it back by next month.",
+    "A": "in case",
+    "B": "unless",
+    "C": "on condition that",
+    "D": "so that",
+    "E": "even if",
+    "correct": "C",
+    "explanation": "Gelecek ay geri ödemen *şartıyla* (on condition that). 'Provided that' ile eş anlamlıdır."
+  },
+  {
+    "prompt": "______ the traffic was heavy, we arrived at the airport on time.",
+    "A": "Despite the fact that",
+    "B": "In spite of",
+    "C": "Due to",
+    "D": "Because",
+    "E": "As if",
+    "correct": "A",
+    "explanation": "'Despite the fact that' + cümle. Trafiğin yoğun olması gerçeğine rağmen."
+  },
+  {
+    "prompt": "He didn't study for the exam; ______, he passed with a high grade.",
+    "A": "therefore",
+    "B": "consequently",
+    "C": "nevertheless",
+    "D": "moreover",
+    "E": "likewise",
+    "correct": "C",
+    "explanation": "Çalışmadı; *buna rağmen/yine de* (nevertheless) geçti. Zıtlık bağlacı."
+  },
+  {
+    "prompt": "You can take my car ______ you drive carefully.",
+    "A": "as long as",
+    "B": "unless",
+    "C": "in case",
+    "D": "even if",
+    "E": "so that",
+    "correct": "A",
+    "explanation": "Dikkatli sürdüğün *sürece / şartıyla* (as long as)."
+  },
+  {
+    "prompt": "______ inflation continues to rise, the central bank will have to increase interest rates.",
+    "A": "Unlike",
+    "B": "Suppose that",
+    "C": "Even if",
+    "D": "Given that",
+    "E": "So that",
+    "correct": "D",
+    "explanation": "'Given that' (göz önüne alındığında, ...dığı için) anlamı katar. Enflasyonun arttığı göz önüne alınırsa..."
+  },
+  {
+    "prompt": "______ I was walking down the street, I ran into an old friend.",
+    "A": "During",
+    "B": "Just as",
+    "C": "Because",
+    "D": "Although",
+    "E": "Since",
+    "correct": "B",
+    "explanation": "'Just as' (tam ... iken). Eylemin o anda gerçekleştiğini vurgular."
+  },
+  {
+    "prompt": "This software is ______ user-friendly ______ powerful.",
+    "A": "either / or",
+    "B": "neither / nor",
+    "C": "not only / but also",
+    "D": "whether / or",
+    "E": "so / that",
+    "correct": "C",
+    "explanation": "Yazılım *sadece* kullanıcı dostu *değil*, *aynı zamanda* güçlüdür (Not only ... but also)."
+  },
+  {
+    "prompt": "______ we missed the bus, we had to take a taxi.",
+    "A": "Since",
+    "B": "Although",
+    "C": "Unless",
+    "D": "Whatever",
+    "E": "While",
+    "correct": "A",
+    "explanation": "Otobüsü kaçırdığımız *için* (Since). Sebep bildirir."
+  },
+  {
+    "prompt": "You should write down the address ______ you forget it.",
+    "A": "in case",
+    "B": "so that",
+    "C": "provided that",
+    "D": "as long as",
+    "E": "unless",
+    "correct": "A",
+    "explanation": "Unutursun *diye / unutma ihtimaline karşı* (in case)."
+  },
+  {
+    "prompt": "______ scientific advances, life expectancy has increased significantly.",
+    "A": "Thanks to",
+    "B": "In spite of",
+    "C": "Instead of",
+    "D": "But for",
+    "E": "Similar to",
+    "correct": "A",
+    "explanation": "Bilimsel gelişmeler *sayesinde* (Thanks to)."
+  },
+  {
+    "prompt": "______ he is a talented musician, he lacks the discipline to succeed.",
+    "A": "Much as",
+    "B": "Because",
+    "C": "Since",
+    "D": "Only if",
+    "E": "In case",
+    "correct": "A",
+    "explanation": "'Much as' (her ne kadar ... olsa da / ...e rağmen). 'Although' ile benzer anlamdadır."
+  },
+  {
+    "prompt": "______ you like it or not, we have to follow the rules.",
+    "A": "Whether",
+    "B": "If",
+    "C": "Neither",
+    "D": "Either",
+    "E": "Unless",
+    "correct": "A",
+    "explanation": "'Whether ... or not' (istesen de istemesen de / olsun ya da olmasın)."
+  },
+  {
+    "prompt": "I won't go to the party ______ they invite me personally.",
+    "A": "if",
+    "B": "unless",
+    "C": "as long as",
+    "D": "supposing",
+    "E": "in case",
+    "correct": "B",
+    "explanation": "Şahsen davet etmedikleri *sürece / etmezlerse* (unless) gitmeyeceğim."
+  },
+  {
+    "prompt": "______ the noise outside, I couldn't concentrate on my work.",
+    "A": "Because",
+    "B": "Owing to",
+    "C": "Even though",
+    "D": "However",
+    "E": "While",
+    "correct": "B",
+    "explanation": "Gürültüden *dolayı* (Owing to + noun)."
+  },
+  {
+    "prompt": "He checked the report line by line ______ make any mistakes.",
+    "A": "so as not to",
+    "B": "in order to",
+    "C": "so that",
+    "D": "because",
+    "E": "in case",
+    "correct": "A",
+    "explanation": "Hata yapmamak *için* (so as not to + V1). Olumsuz amaç bildirir."
+  },
+  {
+    "prompt": "______ had I entered the room ______ the phone rang.",
+    "A": "No sooner / than",
+    "B": "Hardly / than",
+    "C": "Scarcely / then",
+    "D": "Both / and",
+    "E": "Either / or",
+    "correct": "A",
+    "explanation": "'No sooner ... than' (Tam ... yapmıştım ki ... oldu). Zaman uyumu gerektirir."
+  },
+  {
+    "prompt": "______ we take action now, environmental damage will be irreversible.",
+    "A": "If",
+    "B": "Unless",
+    "C": "Provided that",
+    "D": "In case",
+    "E": "As long as",
+    "correct": "B",
+    "explanation": "Şimdi harekete geçmezsek (Unless) hasar geri dönülemez olacak."
+  },
+  {
+    "prompt": "______ most of the students passed the exam, a few failed.",
+    "A": "While",
+    "B": "Because",
+    "C": "Since",
+    "D": "Once",
+    "E": "As",
+    "correct": "A",
+    "explanation": "'While' (oysa / -e rağmen), bir grup geçerken diğerlerinin kalması zıtlığını anlatır."
+  },
+  {
+    "prompt": "There was ______ a strong wind ______ we couldn't go sailing.",
+    "A": "so / that",
+    "B": "such / that",
+    "C": "more / than",
+    "D": "too / to",
+    "E": "as / as",
+    "correct": "B",
+    "explanation": "'Such a ... that' (Öylesine ... ki). Araya sıfat tamlaması (a strong wind) girdiği için 'such' kullanılır."
+  },
+  {
+    "prompt": "______ he practiced every day, he couldn't win the championship.",
+    "A": "Although",
+    "B": "Since",
+    "C": "Because",
+    "D": "In case",
+    "E": "Providing",
+    "correct": "A",
+    "explanation": "Her gün çalışmasına *rağmen* (Although) kazanamadı."
+  },
+  {
+    "prompt": "______ the rain stops, we can go for a walk.",
+    "A": "Once",
+    "B": "Unless",
+    "C": "Although",
+    "D": "Even if",
+    "E": "Whereas",
+    "correct": "A",
+    "explanation": "Yağmur durduğunda / durur durmaz (Once)."
+  },
+  {
+    "prompt": "The car is reliable; ______, it consumes a lot of fuel.",
+    "A": "moreover",
+    "B": "consequently",
+    "C": "on the other hand",
+    "D": "therefore",
+    "E": "similarly",
+    "correct": "C",
+    "explanation": "Araba güvenilir; *öte yandan* (on the other hand) çok yakıyor."
+  },
+  {
+    "prompt": "______ you are ready, we can start the meeting.",
+    "A": "Unless",
+    "B": "Assuming that",
+    "C": "Even if",
+    "D": "Although",
+    "E": "While",
+    "correct": "B",
+    "explanation": "Hazır olduğunu *varsayarak* (Assuming that) başlayabiliriz."
   }
 ]
- 
