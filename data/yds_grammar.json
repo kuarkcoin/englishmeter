@@ -1848,5 +1848,905 @@
         "E": "Since",
         "correct": "C",
         "explanation": "'Despite the fact that' is the correct phrase for concession."
+    },
+    {
+        "prompt": "___ the heavy workload, she managed to finish the report on time.",
+        "A": "In addition to",
+        "B": "But for",
+        "C": "Notwithstanding",
+        "D": "Owing to",
+        "correct": "C",
+        "explanation": "'Notwithstanding' (buna rağmen), 'despite' anlamındadır. Ağır iş yüküne rağmen işi bitirdi."
+    },
+    {
+        "prompt": "It is high time we ___ serious steps to combat climate change.",
+        "A": "take",
+        "B": "took",
+        "C": "have taken",
+        "D": "will take",
+        "correct": "B",
+        "explanation": "'It is high time' kalıbından sonra Past Simple (took) gelir, ama anlam şimdiki/gelecek zamandaki aciliyettir."
+    },
+    {
+        "prompt": "I would rather you ___ to him right now; he is very angry.",
+        "A": "don't speak",
+        "B": "didn't speak",
+        "C": "not speak",
+        "D": "won't speak",
+        "correct": "B",
+        "explanation": "'Would rather'dan sonra özne gelirse (you), geçmiş zaman (didn't speak) kullanılır."
+    },
+    {
+        "prompt": "The manager, ___ competence was questioned by the board, resigned yesterday.",
+        "A": "who",
+        "B": "whom",
+        "C": "whose",
+        "D": "that",
+        "correct": "C",
+        "explanation": "Sahiplik bildiren Relative Clause. 'Whose competence' (ki onun yetkinliği)."
+    },
+    {
+        "prompt": "Only by investing in education ___ ensuring a prosperous future for the country.",
+        "A": "we can succeed in",
+        "B": "can we succeed in",
+        "C": "we succeeded in",
+        "D": "succeeding we are",
+        "correct": "B",
+        "explanation": "'Only by...' ile başlayan cümlelerde devrik yapı (inversion) kullanılır: 'can we succeed'."
+    },
+    {
+        "prompt": "___ that the plan was risky, they decided to proceed anyway.",
+        "A": "Admitted",
+        "B": "Admitting",
+        "C": "To admit",
+        "D": "Having admitted",
+        "correct": "B",
+        "explanation": "Participle Clause. 'Admitting that...' (Planın riskli olduğunu kabul ederek...)."
+    },
+    {
+        "prompt": "The ancient artifacts are believed ___ from Egypt during the 19th century.",
+        "A": "to be stolen",
+        "B": "having been stolen",
+        "C": "to have been stolen",
+        "D": "stealing",
+        "correct": "C",
+        "explanation": "Passive reporting verb. Geçmişe referans verdiği için 'to have been V3' kullanılır."
+    },
+    {
+        "prompt": "You ___ me about the meeting! I wouldn't have made other plans.",
+        "A": "must have told",
+        "B": "should have told",
+        "C": "could tell",
+        "D": "might tell",
+        "correct": "B",
+        "explanation": "'Should have V3' geçmişe dönük eleştiri/pişmanlık bildirir. (Söylemeliydin ama söylemedin)."
+    },
+    {
+        "prompt": "___ you require further information, please do not hesitate to contact us.",
+        "A": "Should",
+        "B": "If",
+        "C": "Unless",
+        "D": "Had",
+        "correct": "A",
+        "explanation": "Inverted Conditional Type 1. 'If you should require' yerine 'Should you require' kullanılır."
+    },
+    {
+        "prompt": "The bridge ___ currently ___ is expected to reduce traffic congestion significantly.",
+        "A": "constructing / -",
+        "B": "constructed / which",
+        "C": "being constructed / -",
+        "D": "to be constructed / that",
+        "correct": "C",
+        "explanation": "Reduced passive relative clause. 'The bridge (which is) being constructed...'."
+    },
+    {
+        "prompt": "There is no point ___ to persuade him; he has already made up his mind.",
+        "A": "to try",
+        "B": "trying",
+        "C": "try",
+        "D": "in try",
+        "correct": "B",
+        "explanation": "'There is no point (in)' kalıbı gerund (-ing) alır."
+    },
+    {
+        "prompt": "___ the heavy rain, the football match was suspended for an hour.",
+        "A": "Owing to",
+        "B": "In spite of",
+        "C": "Regardless of",
+        "D": "Although",
+        "correct": "A",
+        "explanation": "'Owing to' sebep bildirir (Yağmurdan dolayı). 'In spite of' zıtlık bildirirdi."
+    },
+    {
+        "prompt": "She is the only student ___ full marks in the history exam.",
+        "A": "getting",
+        "B": "to get",
+        "C": "got",
+        "D": "having got",
+        "correct": "B",
+        "explanation": "'The only', 'the first' gibi ifadelerden sonra to-infinitive gelir."
+    },
+    {
+        "prompt": "___, the results of the experiment were inconclusive.",
+        "A": "Carefully as we checked",
+        "B": "As we checked carefully",
+        "C": "Careful as we checked",
+        "D": "However carefully we checked",
+        "correct": "D",
+        "explanation": "'However + adverb' yapısı (Ne kadar dikkatli kontrol edersek edelim) anlamı katar."
+    },
+    {
+        "prompt": "By next month, I ___ for this company for twenty years.",
+        "A": "will work",
+        "B": "am working",
+        "C": "will have been working",
+        "D": "have worked",
+        "correct": "C",
+        "explanation": "Future Perfect Continuous. 'By next month' ve süreç (for 20 years) olduğu için 'will have been Ving'."
+    },
+    {
+        "prompt": "It is essential that the password ___ confidential at all times.",
+        "A": "kept",
+        "B": "is kept",
+        "C": "be kept",
+        "D": "to be kept",
+        "correct": "C",
+        "explanation": "Subjunctive Passive. 'Essential'dan sonra 'that' gelirse fiil yalın (be) olur."
+    },
+    {
+        "prompt": "Not until I left the house ___ that I had forgotten my keys.",
+        "A": "I realized",
+        "B": "did I realize",
+        "C": "I had realized",
+        "D": "that I realized",
+        "correct": "B",
+        "explanation": "'Not until' ile başlayan cümlede ana cümlecik devrik (did I realize) olur."
+    },
+    {
+        "prompt": "The more technology advances, ___ complex ethical dilemmas we face.",
+        "A": "the more",
+        "B": "more",
+        "C": "most",
+        "D": "so much",
+        "correct": "A",
+        "explanation": "Double comparative: 'The more..., the more...' yapısı."
+    },
+    {
+        "prompt": "She objected ___ extra hours without overtime pay.",
+        "A": "to work",
+        "B": "work",
+        "C": "working",
+        "D": "to working",
+        "correct": "D",
+        "explanation": "'Object to' edatlı bir fiildir ve ardından gerund (-ing) gelir."
+    },
+    {
+        "prompt": "___ being extremely wealthy, he lives a very simple life.",
+        "A": "Despite",
+        "B": "Although",
+        "C": "Because",
+        "D": "Since",
+        "correct": "A",
+        "explanation": "'Despite' + Ving (being). Zengin olmasına rağmen basit yaşar."
+    },
+    {
+        "prompt": "Whatever ___, I will always support you.",
+        "A": "happens",
+        "B": "will happen",
+        "C": "is happening",
+        "D": "happened",
+        "correct": "A",
+        "explanation": "'Whatever happens' (ne olursa olsun), geniş zamanla gelecek kastedilir."
+    },
+    {
+        "prompt": "The CEO suggested that the branch manager ___ dismissed immediately.",
+        "A": "is",
+        "B": "be",
+        "C": "was",
+        "D": "were",
+        "correct": "B",
+        "explanation": "Subjunctive Passive. 'Suggested that' yapısında fiil yalın (be) kullanılır."
+    },
+    {
+        "prompt": "___ for the prompt medical attention, the patient would have died.",
+        "A": "But",
+        "B": "If",
+        "C": "Unless",
+        "D": "But for",
+        "correct": "D",
+        "explanation": "'But for' (olmasaydı) anlamındadır. Hızlı müdahale olmasaydı..."
+    },
+    {
+        "prompt": "Scarcely had we started dinner ___ the lights went out.",
+        "A": "than",
+        "B": "when",
+        "C": "then",
+        "D": "that",
+        "correct": "B",
+        "explanation": "'Scarcely... when' kalıbı (Tam başlamıştık ki...)."
+    },
+    {
+        "prompt": "I prefer reading a book ___ watching television in the evening.",
+        "A": "to",
+        "B": "than",
+        "C": "from",
+        "D": "rather",
+        "correct": "A",
+        "explanation": "'Prefer X to Y' kalıbı."
+    },
+    {
+        "prompt": "The report concludes that there is a significant link ___ diet and health.",
+        "A": "among",
+        "B": "in",
+        "C": "between",
+        "D": "with",
+        "correct": "C",
+        "explanation": "'Link between' (arasındaki bağlantı)."
+    },
+    {
+        "prompt": "___ you need any assistance, there is a phone on the desk.",
+        "A": "Would",
+        "B": "Should",
+        "C": "Had",
+        "D": "Were",
+        "correct": "B",
+        "explanation": "Inverted Type 1. 'If you should need' -> 'Should you need'."
+    },
+    {
+        "prompt": "She was ___ tired that she fell asleep on the bus.",
+        "A": "so",
+        "B": "such",
+        "C": "too",
+        "D": "very",
+        "correct": "A",
+        "explanation": "'So + sıfat + that' kalıbı."
+    },
+    {
+        "prompt": "___ of the two candidates was suitable for the job, so they re-advertised the position.",
+        "A": "Neither",
+        "B": "None",
+        "C": "Both",
+        "D": "All",
+        "correct": "A",
+        "explanation": "İki kişi için olumsuzluk 'Neither' ile sağlanır."
+    },
+    {
+        "prompt": "We are looking forward to ___ you at the conference next week.",
+        "A": "see",
+        "B": "seeing",
+        "C": "saw",
+        "D": "have seen",
+        "correct": "B",
+        "explanation": "'Look forward to' + Ving."
+    },
+    {
+        "prompt": "Had I known about the traffic, I ___ earlier.",
+        "A": "would leave",
+        "B": "left",
+        "C": "would have left",
+        "D": "had left",
+        "correct": "C",
+        "explanation": "Type 3 Conditional. 'Had I known' -> 'would have left'."
+    },
+    {
+        "prompt": "___ rich resources, the region suffers from high unemployment.",
+        "A": "Although",
+        "B": "Despite",
+        "C": "Because of",
+        "D": "Due to",
+        "correct": "B",
+        "explanation": "'Despite' + isim tamlaması (rich resources). Zıtlık bildirir."
+    },
+    {
+        "prompt": "He acts as if he ___ the answer, but I know he doesn't.",
+        "A": "knows",
+        "B": "knew",
+        "C": "has known",
+        "D": "had known",
+        "correct": "B",
+        "explanation": "'As if' + Past Simple (knew), şimdiki zamanda gerçek dışı durumu anlatır."
+    },
+    {
+        "prompt": "It is widely believed that the universe ___ expanding.",
+        "A": "is",
+        "B": "be",
+        "C": "was",
+        "D": "to be",
+        "correct": "A",
+        "explanation": "Noun clause. Evrenin genişlediği bilimsel bir gerçektir (is)."
+    },
+    {
+        "prompt": "The car need ___ ; it is very dirty.",
+        "A": "to wash",
+        "B": "washing",
+        "C": "washed",
+        "D": "wash",
+        "correct": "B",
+        "explanation": "'Need' + Ving pasif anlam verir (Yıkanması gerek)."
+    },
+    {
+        "prompt": "Unless you ___ the instructions carefully, you will damage the machine.",
+        "A": "read",
+        "B": "don't read",
+        "C": "didn't read",
+        "D": "won't read",
+        "correct": "A",
+        "explanation": "'Unless' zaten olumsuzluk içerdiği için fiil olumlu (read) olur."
+    },
+    {
+        "prompt": "I can't help ___ why he didn't accept the offer.",
+        "A": "wonder",
+        "B": "wondering",
+        "C": "to wonder",
+        "D": "wondered",
+        "correct": "B",
+        "explanation": "'Can't help' + Ving."
+    },
+    {
+        "prompt": "___ from the university, she decided to travel the world.",
+        "A": "Graduating",
+        "B": "To graduate",
+        "C": "Having graduated",
+        "D": "Graduated",
+        "correct": "C",
+        "explanation": "Perfect Participle. Önce mezun oldu, sonra gezmeye karar verdi (Sıralı eylem)."
+    },
+    {
+        "prompt": "The new policy is aimed ___ improving employee satisfaction.",
+        "A": "at",
+        "B": "to",
+        "C": "for",
+        "D": "on",
+        "correct": "A",
+        "explanation": "'Aimed at' + Ving."
+    },
+    {
+        "prompt": "Never ___ such a beautiful sunset before.",
+        "A": "I have seen",
+        "B": "did I see",
+        "C": "have I seen",
+        "D": "I saw",
+        "correct": "C",
+        "explanation": "'Never' ile başlayan cümle devrik olur (have I seen)."
+    },
+    {
+        "prompt": "If only I ___ to your advice! Now I am in trouble.",
+        "A": "listened",
+        "B": "had listened",
+        "C": "have listened",
+        "D": "was listening",
+        "correct": "B",
+        "explanation": "Geçmişe dair pişmanlık 'had V3' ile anlatılır."
+    },
+    {
+        "prompt": "The harder you train, ___ you become.",
+        "A": "the stronger",
+        "B": "strongest",
+        "C": "as strong",
+        "D": "more strong",
+        "correct": "A",
+        "explanation": "'The harder..., the stronger...'."
+    },
+    {
+        "prompt": "Nobody in the class knew the answer, ___?",
+        "A": "did they",
+        "B": "didn't they",
+        "C": "do they",
+        "D": "don't they",
+        "correct": "A",
+        "explanation": "'Nobody' cümleyi olumsuz yapar, Question Tag olumlu olur (did they)."
+    },
+    {
+        "prompt": "___ the heavy traffic, we would have arrived on time.",
+        "A": "But for",
+        "B": "Unless",
+        "C": "Despite",
+        "D": "In case",
+        "correct": "A",
+        "explanation": "'But for' (olmasaydı). Trafik olmasaydı..."
+    },
+    {
+        "prompt": "The discovery ___ by the scientists was revolutionary.",
+        "A": "making",
+        "B": "made",
+        "C": "to make",
+        "D": "having made",
+        "correct": "B",
+        "explanation": "Reduced passive relative clause. 'The discovery (which was) made...'."
+    },
+    {
+        "prompt": "It was ___ a cold day that we stayed indoors.",
+        "A": "so",
+        "B": "such",
+        "C": "too",
+        "D": "very",
+        "correct": "B",
+        "explanation": "'Such a + adj + noun + that'."
+    },
+    {
+        "prompt": "___ you to start working here, what changes would you make?",
+        "A": "If",
+        "B": "Were",
+        "C": "Had",
+        "D": "Should",
+        "correct": "B",
+        "explanation": "Inverted Type 2. 'If you were to start' -> 'Were you to start'."
+    },
+    {
+        "prompt": "The committee is comprised ___ twelve members.",
+        "A": "from",
+        "B": "by",
+        "C": "of",
+        "D": "with",
+        "correct": "C",
+        "explanation": "'Comprised of' (oluşmak)."
+    },
+    {
+        "prompt": "___ he is the boss, he shouldn't treat employees that way.",
+        "A": "Even if",
+        "B": "Unless",
+        "C": "So that",
+        "D": "In case",
+        "correct": "A",
+        "explanation": "'Even if' (Patron olsa bile...)."
+    },
+    {
+        "prompt": "We stopped ___ some water because we were thirsty.",
+        "A": "buying",
+        "B": "to buy",
+        "C": "buy",
+        "D": "bought",
+        "correct": "B",
+        "explanation": "Su almak *için* durduk (amaç bildiriyor, 'stop to buy')."
+    },
+    {
+        "prompt": "Had it not been for the timely intervention of the firefighters, the entire building ___ down.",
+        "A": "would burn",
+        "B": "would have burned",
+        "C": "was burning",
+        "D": "has burned",
+        "correct": "B",
+        "explanation": "Third conditional with 'Had it not been for...' → past unreal result: 'would have burned'."
+    },
+    {
+        "prompt": "It is essential that every applicant ___ the form in black ink only.",
+        "A": "fills",
+        "B": "fill",
+        "C": "will fill",
+        "D": "has filled",
+        "correct": "B",
+        "explanation": "After 'essential that', subjunctive is used: base form 'fill'."
+    },
+    {
+        "prompt": "Scarcely ___ the announcement made when the stock prices began to fall.",
+        "A": "the minister had",
+        "B": "had the minister",
+        "C": "the minister has",
+        "D": "did the minister",
+        "correct": "B",
+        "explanation": "Inversion after 'Scarcely': 'Scarcely had the minister ... when'."
+    },
+    {
+        "prompt": "The report, ___ conclusions were considered groundbreaking, was published in a leading medical journal.",
+        "A": "that",
+        "B": "which",
+        "C": "whose",
+        "D": "where",
+        "correct": "C",
+        "explanation": "'Whose' expresses possession: the report whose conclusions..."
+    },
+    {
+        "prompt": "By the time the conference starts next week, all the invitations ___.",
+        "A": "will send",
+        "B": "have been sent",
+        "C": "will have been sent",
+        "D": "are being sent",
+        "correct": "C",
+        "explanation": "Future perfect passive for an action completed before a future point."
+    },
+    {
+        "prompt": "The new policy aims ___ reducing unnecessary paperwork in public institutions.",
+        "A": "at",
+        "B": "for",
+        "C": "on",
+        "D": "to",
+        "correct": "A",
+        "explanation": "Correct collocation: 'aim at doing something'."
+    },
+    {
+        "prompt": "Only after the data ___ carefully ___ that the hypothesis was wrong.",
+        "A": "had been analyzed / did we realize",
+        "B": "was analyzed / we realized",
+        "C": "has been analyzed / we have realized",
+        "D": "analyzed / did we realize",
+        "correct": "A",
+        "explanation": "Past perfect passive + inversion after 'Only after': 'did we realize'."
+    },
+    {
+        "prompt": "If he ___ the instructions more carefully, he wouldn't have made so many mistakes.",
+        "A": "reads",
+        "B": "had read",
+        "C": "has read",
+        "D": "would read",
+        "correct": "B",
+        "explanation": "Third conditional: If + past perfect → would have + V3."
+    },
+    {
+        "prompt": "The island, ___ was once a quiet fishing village, is now a popular tourist destination.",
+        "A": "where",
+        "B": "that",
+        "C": "which",
+        "D": "whose",
+        "correct": "C",
+        "explanation": "Non-defining relative clause referring to a thing → 'which'."
+    },
+    {
+        "prompt": "Not until the results were announced ___ how serious the situation was.",
+        "A": "people understood",
+        "B": "did people understand",
+        "C": "people had understood",
+        "D": "have people understood",
+        "correct": "B",
+        "explanation": "Inversion after 'Not until': auxiliary + subject + verb."
+    },
+    {
+        "prompt": "Hardly had I sat down to study ___ the phone started ringing non-stop.",
+        "A": "than",
+        "B": "then",
+        "C": "when",
+        "D": "while",
+        "correct": "C",
+        "explanation": "Fixed structure: 'Hardly ... when ...'."
+    },
+    {
+        "prompt": "The project will be delayed ___ we receive the necessary approval from the ministry.",
+        "A": "as soon as",
+        "B": "unless",
+        "C": "even if",
+        "D": "until",
+        "correct": "D",
+        "explanation": "'Until' shows continuation of a situation up to a point in time."
+    },
+    {
+        "prompt": "No sooner ___ the plane taken off ___ the pilot reported a technical problem.",
+        "A": "had / when",
+        "B": "did / when",
+        "C": "had / than",
+        "D": "has / than",
+        "correct": "C",
+        "explanation": "Correct pairing: 'No sooner had ... than ...'."
+    },
+    {
+        "prompt": "The manager suggested that the meeting ___ to a later date due to the storm.",
+        "A": "postpones",
+        "B": "be postponed",
+        "C": "is postponed",
+        "D": "will be postponed",
+        "correct": "B",
+        "explanation": "Subjunctive passive after 'suggest that': 'be postponed'."
+    },
+    {
+        "prompt": "Despite ___ limited resources, the research team managed to complete the experiment on time.",
+        "A": "to have",
+        "B": "having",
+        "C": "to having",
+        "D": "have",
+        "correct": "B",
+        "explanation": "'Despite' is followed by a noun or gerund; 'having limited resources' is correct."
+    },
+    {
+        "prompt": "The more experience you gain in the field, ___ confident you will feel during presentations.",
+        "A": "most",
+        "B": "more",
+        "C": "the more",
+        "D": "as more",
+        "correct": "C",
+        "explanation": "Double comparative: 'The more..., the more/less...'."
+    },
+    {
+        "prompt": "Had they invested in renewable energy earlier, they ___ so dependent on imported oil now.",
+        "A": "won't be",
+        "B": "wouldn't be",
+        "C": "wouldn't have been",
+        "D": "aren't",
+        "correct": "B",
+        "explanation": "Mixed conditional: past condition → present result: 'wouldn't be'."
+    },
+    {
+        "prompt": "The scientist was accused ___ manipulating the data to support his theory.",
+        "A": "for",
+        "B": "of",
+        "C": "about",
+        "D": "at",
+        "correct": "B",
+        "explanation": "Collocation: 'accuse someone of doing something'."
+    },
+    {
+        "prompt": "___ the complex nature of the problem, a simple solution is unlikely.",
+        "A": "Given",
+        "B": "Even though",
+        "C": "Because",
+        "D": "Whereas",
+        "correct": "A",
+        "explanation": "'Given' (= considering) + noun phrase → 'Given the complex nature...'."
+    },
+    {
+        "prompt": "It was not until the 20th century that scientists fully realized ___ powerful radioactivity could be.",
+        "A": "how",
+        "B": "what",
+        "C": "which",
+        "D": "that",
+        "correct": "A",
+        "explanation": "Indirect question structure: 'realized how powerful ... could be'."
+    },
+    {
+        "prompt": "The more polluted the air becomes, ___ respiratory diseases we observe in children.",
+        "A": "as many",
+        "B": "more",
+        "C": "the more",
+        "D": "so many",
+        "correct": "C",
+        "explanation": "Double comparative again: 'The more..., the more...'."
+    },
+    {
+        "prompt": "If you ___ the manual carefully, you would know how to reset the device.",
+        "A": "read",
+        "B": "had read",
+        "C": "have read",
+        "D": "readed",
+        "correct": "A",
+        "explanation": "Second conditional: If + past simple → would + V1 (unreal present)."
+    },
+    {
+        "prompt": "___ being widely criticized at first, the theory later gained widespread acceptance.",
+        "A": "Although",
+        "B": "Despite",
+        "C": "Because of",
+        "D": "Whereas",
+        "correct": "B",
+        "explanation": "'Despite' + gerund: 'Despite being widely criticized...'."
+    },
+    {
+        "prompt": "The students are supposed to hand in their assignments no later than Friday, ___?",
+        "A": "don't they",
+        "B": "aren't they",
+        "C": "are they",
+        "D": "won't they",
+        "correct": "B",
+        "explanation": "Structure: 'are supposed to' → tag question: 'aren't they?'."
+    },
+    {
+        "prompt": "So widespread ___ that the government had no choice but to resign.",
+        "A": "the protests were",
+        "B": "were the protests",
+        "C": "the protests had been",
+        "D": "had been the protests",
+        "correct": "B",
+        "explanation": "Inversion after 'So + adjective/adverb': 'So widespread were the protests...'."
+    },
+    {
+        "prompt": "The lecturer spoke in such a low voice that hardly ___ at the back of the hall.",
+        "A": "anyone could hear her",
+        "B": "could hear her anyone",
+        "C": "her could anyone hear",
+        "D": "anyone has heard her",
+        "correct": "A",
+        "explanation": "Normal word order after 'that'; no inversion is needed here."
+    },
+    {
+        "prompt": "___ he had all the qualifications, he was not shortlisted for the position.",
+        "A": "Because",
+        "B": "Even though",
+        "C": "As",
+        "D": "Since",
+        "correct": "B",
+        "explanation": "Contrast between qualifications and result → 'Even though'."
+    },
+    {
+        "prompt": "The CEO prefers investing in sustainable projects ___ short-term, high-risk ventures.",
+        "A": "as for",
+        "B": "instead",
+        "C": "rather than",
+        "D": "in spite of",
+        "correct": "C",
+        "explanation": "Structure: 'prefer X rather than Y'."
+    },
+    {
+        "prompt": "The device must not be exposed ___ direct sunlight for long periods.",
+        "A": "in",
+        "B": "to",
+        "C": "on",
+        "D": "at",
+        "correct": "B",
+        "explanation": "Collocation: 'exposed to something'."
+    },
+    {
+        "prompt": "Only if you follow the instructions carefully ___ avoid damaging the equipment.",
+        "A": "you can",
+        "B": "can you",
+        "C": "you will",
+        "D": "will you can",
+        "correct": "B",
+        "explanation": "Inversion after 'Only if': auxiliary + subject ('can you avoid')."
+    },
+    {
+        "prompt": "The more data the researchers collected, ___ patterns emerged.",
+        "A": "most clear",
+        "B": "the clearer",
+        "C": "as clear",
+        "D": "so clearer",
+        "correct": "B",
+        "explanation": "Double comparative: 'the clearer patterns emerged'."
+    },
+    {
+        "prompt": "It is high time governments ___ more decisive action against cybercrime.",
+        "A": "take",
+        "B": "took",
+        "C": "have taken",
+        "D": "would take",
+        "correct": "B",
+        "explanation": "'It's (high) time' → past simple for present necessity: 'took'."
+    },
+    {
+        "prompt": "The ancient map turned out ___ far more accurate than historians had previously thought.",
+        "A": "to be",
+        "B": "being",
+        "C": "to being",
+        "D": "been",
+        "correct": "A",
+        "explanation": "Verb + 'turn out' is followed by 'to be' + adjective/noun."
+    },
+    {
+        "prompt": "Never before ___ such an intense heatwave in this region.",
+        "A": "people experienced",
+        "B": "have people experienced",
+        "C": "people have experienced",
+        "D": "did people experience",
+        "correct": "B",
+        "explanation": "Inversion after 'Never before': auxiliary + subject ('have people experienced')."
+    },
+    {
+        "prompt": "The scientist admitted ___ some of the data to make the results easier to interpret.",
+        "A": "to adjust",
+        "B": "adjust",
+        "C": "having adjusted",
+        "D": "to having adjusted",
+        "correct": "C",
+        "explanation": "'Admit' can be followed by a gerund or perfect gerund: 'admitted having adjusted'."
+    },
+    {
+        "prompt": "No matter how hard you try, there will always be factors beyond your ___ .",
+        "A": "control",
+        "B": "controlling",
+        "C": "to control",
+        "D": "controlled",
+        "correct": "A",
+        "explanation": "Fixed phrase: 'beyond your control'."
+    },
+    {
+        "prompt": "The researcher was not aware ___ a similar study had already been conducted.",
+        "A": "that",
+        "B": "what",
+        "C": "which",
+        "D": "how",
+        "correct": "A",
+        "explanation": "Noun clause after 'be aware': 'aware that a study had been conducted'."
+    },
+    {
+        "prompt": "___ all the evidence pointing in the same direction, some experts still remain unconvinced.",
+        "A": "Because of",
+        "B": "With",
+        "C": "In spite of",
+        "D": "For",
+        "correct": "C",
+        "explanation": "Contrast between evidence and attitude → 'In spite of'."
+    },
+    {
+        "prompt": "The company is committed ___ reducing its carbon footprint over the next decade.",
+        "A": "for",
+        "B": "on",
+        "C": "to",
+        "D": "about",
+        "correct": "C",
+        "explanation": "Collocation: 'be committed to doing something'."
+    },
+    {
+        "prompt": "Rarely ___ such a convincing argument in favor of renewable energy.",
+        "A": "I have heard",
+        "B": "have I heard",
+        "C": "heard I",
+        "D": "I heard",
+        "correct": "B",
+        "explanation": "Inversion after 'Rarely': auxiliary + subject."
+    },
+    {
+        "prompt": "If the new regulations ___ strictly, they might significantly reduce air pollution in big cities.",
+        "A": "were enforcing",
+        "B": "have enforced",
+        "C": "were enforced",
+        "D": "enforced",
+        "correct": "C",
+        "explanation": "Unreal present passive: 'If ... were enforced, they might reduce...'."
+    },
+    {
+        "prompt": "The doctor recommended that the patient ___ regular check-ups for at least a year.",
+        "A": "has",
+        "B": "will have",
+        "C": "have",
+        "D": "had",
+        "correct": "C",
+        "explanation": "Subjunctive after 'recommend': base form 'have'."
+    },
+    {
+        "prompt": "Under no circumstances ___ personal information with unknown callers.",
+        "A": "you should share",
+        "B": "should you share",
+        "C": "you share",
+        "D": "will you sharing",
+        "correct": "B",
+        "explanation": "Inversion after negative adverbial 'Under no circumstances'."
+    },
+    {
+        "prompt": "The results of the experiment were so surprising that the team ___ them several times.",
+        "A": "must repeat",
+        "B": "had to repeat",
+        "C": "should repeat",
+        "D": "would repeat",
+        "correct": "B",
+        "explanation": "'Had to' expresses external obligation in the past."
+    },
+    {
+        "prompt": "The director refused to comment on the issue, claiming that it was ___ his control.",
+        "A": "within",
+        "B": "over",
+        "C": "beyond",
+        "D": "under",
+        "correct": "C",
+        "explanation": "Fixed expression: 'beyond one's control'."
+    },
+    {
+        "prompt": "As long as the necessary precautions ___, the risk of infection can be minimized.",
+        "A": "are taken",
+        "B": "take",
+        "C": "will take",
+        "D": "took",
+        "correct": "A",
+        "explanation": "'As long as' + present simple/passive for real condition: 'are taken'."
+    },
+    {
+        "prompt": "Barely had the lecture begun ___ several students started asking off-topic questions.",
+        "A": "when",
+        "B": "than",
+        "C": "that",
+        "D": "after",
+        "correct": "A",
+        "explanation": "Fixed pair: 'Barely/Hardly/Scarcely ... when ...'."
+    },
+    {
+        "prompt": "The novel is set in a dystopian future ___ technology controls every aspect of human life.",
+        "A": "where",
+        "B": "which",
+        "C": "that",
+        "D": "whose",
+        "correct": "A",
+        "explanation": "'Where' introduces a clause describing a place or situation."
+    },
+    {
+        "prompt": "Had the team analyzed the data more carefully, they ___ a serious error in the model.",
+        "A": "would notice",
+        "B": "would have noticed",
+        "C": "will notice",
+        "D": "noticed",
+        "correct": "B",
+        "explanation": "Third conditional (inverted): Had + past perfect → would have + V3."
+    },
+    {
+        "prompt": "For all the progress we have made in medicine, many diseases still remain ___ cure.",
+        "A": "out of",
+        "B": "away from",
+        "C": "without",
+        "D": "beyond",
+        "correct": "D",
+        "explanation": "Expression: 'beyond cure' → impossible to cure."
     }
 ]
