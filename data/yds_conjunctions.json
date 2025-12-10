@@ -978,5 +978,305 @@
         "E": "even if",
         "correct": "C",
         "explanation": "Rakamlar son verilerle uyuşmadığı *için* raporun yeniden düzenlenmesini istedi: 'because'."
+    },
+    {
+        "prompt": "______ the fact that the experiment was carefully designed, the results were not as conclusive as expected.",
+        "A": "Because of",
+        "B": "In spite of",
+        "C": "Due to",
+        "D": "As a result of",
+        "E": "Instead of",
+        "correct": "B",
+        "explanation": "'In spite of the fact that' kalıbı, 'her ne kadar ... olsa da / ... gerçeğine rağmen' anlamı verir. Deney özenle tasarlanmış olmasına rağmen sonuçlar beklenenden net değildi."
+    },
+    {
+        "prompt": "The new regulations were introduced ______ protect consumers from misleading advertisements.",
+        "A": "so that",
+        "B": "so as to",
+        "C": "in case",
+        "D": "even if",
+        "E": "provided that",
+        "correct": "B",
+        "explanation": "'So as to' + V1 amaç bildirir: Tüketicileri yanıltıcı reklamlardan korumak için yeni düzenlemeler getirildi."
+    },
+    {
+        "prompt": "The conference was cancelled ______ a sudden security threat in the area.",
+        "A": "despite",
+        "B": "although",
+        "C": "because of",
+        "D": "as if",
+        "E": "whereas",
+        "correct": "C",
+        "explanation": "Boşluktan sonra isim grubı (a sudden security threat) geldiği için 'because of' veya 'due to' gibi edat gerekir. Sebep anlamı için 'because of' uygundur."
+    },
+    {
+        "prompt": "______ I had saved the document, the computer crashed and I lost some of my work.",
+        "A": "Until",
+        "B": "As long as",
+        "C": "While",
+        "D": "Just before",
+        "E": "Before",
+        "correct": "D",
+        "explanation": "'Just before' (tam ...dan hemen önce) zamanı vurgular: Tam kaydetmişken bilgisayar çöktü."
+    },
+    {
+        "prompt": "He refused to admit his mistake ______ all the evidence clearly proved he was wrong.",
+        "A": "because",
+        "B": "even though",
+        "C": "as",
+        "D": "since",
+        "E": "now that",
+        "correct": "B",
+        "explanation": "'Even though' (+ cümle) güçlü zıtlık kurar: Tüm kanıtlar yanlış olduğunu açıkça göstermesine rağmen hatasını kabul etmedi."
+    },
+    {
+        "prompt": "______ having a limited budget, the research team managed to carry out a high-quality study.",
+        "A": "Thanks to",
+        "B": "Because of",
+        "C": "In spite of",
+        "D": "Due to",
+        "E": "Instead of",
+        "correct": "C",
+        "explanation": "'In spite of having...' yapısı, kısıtlı bütçeye rağmen anlamını verir; gerund ile uyumludur."
+    },
+    {
+        "prompt": "You can borrow my notes ______ you promise to return them by tomorrow.",
+        "A": "unless",
+        "B": "as long as",
+        "C": "even though",
+        "D": "in case",
+        "E": "so that",
+        "correct": "B",
+        "explanation": "'As long as' (-dığı sürece / şartıyla) koşul bildirir: Yarın geri vereceğine söz verdiğin sürece notlarımı ödünç alabilirsin."
+    },
+    {
+        "prompt": "The new drug will not be available on the market ______ it passes all the clinical trials.",
+        "A": "though",
+        "B": "unless",
+        "C": "as if",
+        "D": "even so",
+        "E": "in case",
+        "correct": "B",
+        "explanation": "Tüm klinik denemeleri geçmediği *sürece* piyasaya çıkmayacak: 'unless'."
+    },
+    {
+        "prompt": "The teacher explained the topic several times; ______, a few students still couldn't understand it.",
+        "A": "therefore",
+        "B": "as a result",
+        "C": "however",
+        "D": "in addition",
+        "E": "likewise",
+        "correct": "C",
+        "explanation": "İki cümle arasında zıtlık var: defalarca anlatmasına *rağmen* bazı öğrenciler anlayamadı. Cümle başında 'however' uygundur."
+    },
+    {
+        "prompt": "______ she had been warned about the risks, she decided to invest all her savings in the project.",
+        "A": "Because",
+        "B": "Even though",
+        "C": "So that",
+        "D": "As long as",
+        "E": "In case",
+        "correct": "B",
+        "explanation": "Riskler konusunda uyarılmış olmasına *rağmen* tüm birikimini yatırmaya karar verdi: 'even though'."
+    },
+    {
+        "prompt": "You should write down the main points ______ you can remember them more easily later.",
+        "A": "unless",
+        "B": "so that",
+        "C": "in case",
+        "D": "even if",
+        "E": "whereas",
+        "correct": "B",
+        "explanation": "'So that' + cümle, amaç bildirir: Sonra daha kolay hatırlayabilesin diye ana noktaları yazmalısın."
+    },
+    {
+        "prompt": "The museum was closed for renovation; ______, the art gallery next door remained open to visitors.",
+        "A": "on the other hand",
+        "B": "for example",
+        "C": "as a result",
+        "D": "otherwise",
+        "E": "consequently",
+        "correct": "A",
+        "explanation": "Müze kapalıyken yanındaki galerinin açık kalması bir karşıtlık/karşılaştırma yaratır; 'on the other hand' uygundur."
+    },
+    {
+        "prompt": "The students listened carefully ______ they wouldn't miss any important details.",
+        "A": "because",
+        "B": "so as to",
+        "C": "so that",
+        "D": "in case",
+        "E": "whereas",
+        "correct": "C",
+        "explanation": "Önemli ayrıntıları kaçırmamak *için* (amaç) 'so that + cümle' kullanılır: so that they wouldn't miss..."
+    },
+    {
+        "prompt": "______ he had a map and a GPS device, he still got lost in the forest.",
+        "A": "Even though",
+        "B": "Because",
+        "C": "Since",
+        "D": "As",
+        "E": "So that",
+        "correct": "A",
+        "explanation": "Hem haritaya hem GPS'e sahip *olmasına rağmen* yine de kayboldu: 'Even though'."
+    },
+    {
+        "prompt": "The train was delayed ______ heavy snowfall in the mountains.",
+        "A": "because",
+        "B": "as",
+        "C": "due to",
+        "D": "although",
+        "E": "whereas",
+        "correct": "C",
+        "explanation": "İsimle kullanılan sebep edatı gerekir: 'due to heavy snowfall'."
+    },
+    {
+        "prompt": "They decided to change the venue at the last minute ______ the hall was too small for the audience.",
+        "A": "although",
+        "B": "because",
+        "C": "even if",
+        "D": "so that",
+        "E": "whereas",
+        "correct": "B",
+        "explanation": "Salon küçük *olduğu için* mekanı değiştirmeye karar verdiler: 'because'."
+    },
+    {
+        "prompt": "The child behaved ______ he had never seen such a big animal before.",
+        "A": "even though",
+        "B": "as if",
+        "C": "so that",
+        "D": "whereas",
+        "E": "in case",
+        "correct": "B",
+        "explanation": "'As if' (sanki ... gibi) yapısı: Sanki daha önce hiç böyle büyük bir hayvan görmemiş gibi davrandı."
+    },
+    {
+        "prompt": "You should take an umbrella with you ______ it starts raining later in the afternoon.",
+        "A": "only if",
+        "B": "so that",
+        "C": "in case",
+        "D": "even if",
+        "E": "as soon as",
+        "correct": "C",
+        "explanation": "Öğleden sonra yağmur yağma ihtimaline *karşı* şemsiye almalısın: 'in case'."
+    },
+    {
+        "prompt": "______ the rise in fuel prices, many people have started to use public transportation more frequently.",
+        "A": "Because",
+        "B": "Due to",
+        "C": "Although",
+        "D": "However",
+        "E": "Whereas",
+        "correct": "B",
+        "explanation": "Yakıt fiyatlarındaki artıştan *dolayı* (due to + noun) toplu taşıma daha sık kullanılmaya başlandı."
+    },
+    {
+        "prompt": "He didn't get the promotion he expected; ______, he began looking for a new job.",
+        "A": "as a result",
+        "B": "in contrast",
+        "C": "nevertheless",
+        "D": "by contrast",
+        "E": "likewise",
+        "correct": "A",
+        "explanation": "Beklediği terfiyi alamadı, *sonuç olarak* yeni iş aramaya başladı: 'as a result'."
+    },
+    {
+        "prompt": "______ the lecture was long and detailed, most of the students stayed until the very end.",
+        "A": "Because",
+        "B": "Even though",
+        "C": "Now that",
+        "D": "As",
+        "E": "Only if",
+        "correct": "B",
+        "explanation": "Ders uzun ve detaylı *olmasına rağmen* öğrencilerin çoğu sonuna kadar kaldı: 'even though'."
+    },
+    {
+        "prompt": "You can’t drive this car ______ you have a valid driving licence.",
+        "A": "if",
+        "B": "as if",
+        "C": "unless",
+        "D": "even though",
+        "E": "because",
+        "correct": "C",
+        "explanation": "'Unless' (-medikçe / -mezsen) olumsuz koşul bildirir: Geçerli ehliyetin olmadığı sürece bu arabayı kullanamazsın."
+    },
+    {
+        "prompt": "The more experienced employees were asked to mentor the newcomers ______ they could adapt to the company culture more quickly.",
+        "A": "so that",
+        "B": "even if",
+        "C": "in case",
+        "D": "whereas",
+        "E": "as though",
+        "correct": "A",
+        "explanation": "Yeni çalışanların daha hızlı uyum sağlayabilmesi *için* (amacıyla) 'so that' + cümle kullanılır."
+    },
+    {
+        "prompt": "______ the manager approves the new schedule, we will start working in shifts next month.",
+        "A": "Even if",
+        "B": "Provided that",
+        "C": "Unless",
+        "D": "As though",
+        "E": "Although",
+        "correct": "B",
+        "explanation": "'Provided that' / 'on condition that' (-mesi şartıyla): Müdür yeni programı onayladığı takdirde vardiyalı çalışmaya başlayacağız."
+    },
+    {
+        "prompt": "He arrived at the station early ______ he would have enough time to buy a ticket and a snack.",
+        "A": "in case",
+        "B": "so that",
+        "C": "although",
+        "D": "even though",
+        "E": "once",
+        "correct": "B",
+        "explanation": "Bilet ve atıştırmalık almak için yeterli zamanı olsun *diye*: 'so that + cümle'."
+    },
+    {
+        "prompt": "______ it was a weekday, the streets were unusually crowded with tourists.",
+        "A": "Even if",
+        "B": "Because",
+        "C": "Although",
+        "D": "Since",
+        "E": "As long as",
+        "correct": "C",
+        "explanation": "Hafta içi *olmasına rağmen* sokaklar alışılmadık derecede kalabalıktı: 'Although'."
+    },
+    {
+        "prompt": "The workers continued their strike ______ the company agreed to improve their working conditions.",
+        "A": "in order that",
+        "B": "so that",
+        "C": "until",
+        "D": "as if",
+        "E": "whereas",
+        "correct": "C",
+        "explanation": "'Until' (-e kadar): Şirket koşulları iyileştirene kadar greve devam ettiler."
+    },
+    {
+        "prompt": "______ the instructions were written in a foreign language, he managed to assemble the furniture correctly.",
+        "A": "Since",
+        "B": "Although",
+        "C": "Because",
+        "D": "Now that",
+        "E": "So that",
+        "correct": "B",
+        "explanation": "Talimatlar yabancı dilde *olmasına rağmen* mobilyayı doğru şekilde monte etmeyi başardı: 'Although'."
+    },
+    {
+        "prompt": "The company decided to reduce its staff ______ the financial losses it had suffered during the pandemic.",
+        "A": "thanks to",
+        "B": "due to",
+        "C": "in spite of",
+        "D": "as if",
+        "E": "whereas",
+        "correct": "B",
+        "explanation": "Pandemi sırasında yaşanan finansal kayıplar *nedeniyle* (due to + noun) personeli azaltma kararı alındı."
+    },
+    {
+        "prompt": "The research findings are impressive; ______, more studies are needed to confirm the results.",
+        "A": "moreover",
+        "B": "in other words",
+        "C": "however",
+        "D": "therefore",
+        "E": "otherwise",
+        "correct": "C",
+        "explanation": "Olumlu bir cümleden sonra sınırlayıcı/zıtlık getirilmiş: Sonuçlar etkileyici; *ancak* teyit için daha fazla çalışma gerekli. 'However' doğru bağlaçtır."
     }
 ]
