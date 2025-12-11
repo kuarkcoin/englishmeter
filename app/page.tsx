@@ -1,6 +1,7 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation'; // YENİ EKLENDİ
 
 // --- DATA IMPORTS ---
 import topicQuestions from '@/data/grammar_topic_tests.json';
@@ -9,7 +10,7 @@ import ydsGrammarQuestions from '@/data/yds_grammar.json';
 import ydsPhrasals from '@/data/yds_phrasal_verbs.json';
 import ydsReadingPassages from '@/data/yds_reading.json';
 import ydsSynonyms from '@/data/yds_synonyms.json';
-import ydsConjunctions from '@/data/yds_conjunctions.json'; // YENİ EKLENDİ
+import ydsConjunctions from '@/data/yds_conjunctions.json'; 
 
 // --- YDS EXAM DENEMELERİ (1, 2, 3, 4, 5, 6) ---
 import ydsExamQuestions1 from '@/data/yds_exam_questions.json';      // Test 1
@@ -39,10 +40,10 @@ const ieltsTest = { title: 'IELTS Grammar (50Q)', slug: 'ielts-grammar' };
 // YDS TESTLERİ
 const ydsVocabTest = { title: 'YDS 3000 Words (Vocab)', slug: 'yds-3000-vocab' };
 const ydsGrammarTest = { title: 'YDS Grammar Practice (100Q)', slug: 'yds-grammar-practice' };
-const ydsPhrasalTest = { title: 'YDS Phrasal Verbs (500Q)', slug: 'yds-phrasal-verbs' }; // GÜNCELLENDİ (500Q)
+const ydsPhrasalTest = { title: 'YDS Phrasal Verbs (500Q)', slug: 'yds-phrasal-verbs' }; 
 const ydsReadingTest = { title: 'YDS Reading (40Q)', slug: 'yds-reading' };
 const ydsSynonymTest = { title: 'YDS Synonyms (Advanced)', slug: 'yds-synonyms' };
-const ydsConjunctionTest = { title: 'YDS Conjunctions (Bağlaçlar)', slug: 'yds-conjunctions' }; // YENİ EKLENDİ
+const ydsConjunctionTest = { title: 'YDS Conjunctions (Bağlaçlar)', slug: 'yds-conjunctions' }; 
 
 // Grammar Focus testleri
 const grammarTests = [
@@ -318,10 +319,10 @@ function startTest(testSlug: string) {
     return;
   }
 
-  // 6. YDS CONJUNCTIONS (BAĞLAÇLAR) - YENİ EKLENDİ
+  // 6. YDS CONJUNCTIONS (BAĞLAÇLAR)
   if (testSlug === 'yds-conjunctions') {
     const shuffledList = [...(ydsConjunctions as any[])].sort(() => 0.5 - Math.random());
-    const selectedQuestions = shuffledList.slice(0, 50); // 50 Soru Sor
+    const selectedQuestions = shuffledList.slice(0, 50);
 
     const mappedQuestions = selectedQuestions.map((q: any, idx: number) => {
       const correctLetter = String(q.correct || 'A').trim().toUpperCase();
@@ -422,9 +423,37 @@ function startTest(testSlug: string) {
   window.location.href = `/start?testSlug=${testSlug}`;
 }
 
-export default function Home() {
+// --- ANA BİLEŞEN İÇERİĞİ ---
+function HomeContent() {
   const availableTests = [1, 2, 3, 4, 5, 6];
+  const searchParams = useSearchParams();
+  const restartSlug = searchParams.get('restart');
+  const [isRestarting, setIsRestarting] = useState(false);
 
+  useEffect(() => {
+    if (restartSlug) {
+      // Eğer URL'de restart parametresi varsa, UI'ı gizle ve testi başlat
+      setIsRestarting(true);
+      const timer = setTimeout(() => {
+        startTest(restartSlug);
+      }, 300); // 300ms gecikme ile loading hissiyatı
+
+      return () => clearTimeout(timer);
+    }
+  }, [restartSlug]);
+
+  // RESTART MODU (Loading Ekranı)
+  if (isRestarting) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50">
+        <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-6"></div>
+        <h2 className="text-2xl font-bold text-slate-800 animate-pulse">Starting New Test...</h2>
+        <p className="text-slate-500 mt-2">Preparing fresh questions from the pool</p>
+      </div>
+    );
+  }
+
+  // NORMAL ANA SAYFA
   return (
     <div className="min-h-screen bg-slate-50">
       {/* HERO SECTION */}
@@ -546,7 +575,7 @@ export default function Home() {
               {ydsSynonymTest.title}
             </button>
 
-             {/* YDS CONJUNCTIONS (GRİ/MAVİ) - YENİ */}
+             {/* YDS CONJUNCTIONS (GRİ/MAVİ) */}
             <button onClick={() => startTest(ydsConjunctionTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-slate-600 text-white text-xl font-bold shadow-xl hover:bg-slate-700 transition-all">
               {ydsConjunctionTest.title}
             </button>
@@ -660,5 +689,14 @@ export default function Home() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Next.js useSearchParams için Suspense Wrapper
+export default function Home() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-slate-50" />}>
+      <HomeContent />
+    </Suspense>
   );
 }
