@@ -19,7 +19,13 @@ import ydsExamQuestions3 from '@/data/yds_exam_questions_3.json';    // Test 3
 import ydsExamQuestions4 from '@/data/yds_exam_questions_4.json';    // Test 4
 import ydsExamQuestions5 from '@/data/yds_exam_questions_5.json';    // Test 5 
 import ydsExamQuestions6 from '@/data/yds_exam_questions_6.json';    // Test 6 
-
+import ydsExamQuestions7 from '@/data/yds_exam_questions_7.json';
+import ydsExamQuestions8 from '@/data/yds_exam_questions_8.json';
+import ydsExamQuestions9 from '@/data/yds_exam_questions_9.json';
+import ydsExamQuestions10 from '@/data/yds_exam_questions_10.json';
+import ydsExamQuestions11 from '@/data/yds_exam_questions_11.json';
+import ydsExamQuestions12 from '@/data/yds_exam_questions_12.json';
+import ydsExamQuestions13 from '@/data/yds_exam_questions_13.json';
 // --- TEST DATA MAP ---
 const YDS_EXAM_MAP: Record<string, any[]> = {
   '1': ydsExamQuestions1,
@@ -28,6 +34,13 @@ const YDS_EXAM_MAP: Record<string, any[]> = {
   '4': ydsExamQuestions4,
   '5': ydsExamQuestions5,
   '6': ydsExamQuestions6,
+  '7': ydsExamQuestions7,
+  '8': ydsExamQuestions8,
+  '9': ydsExamQuestions9,
+  '10': ydsExamQuestions10,
+  '11': ydsExamQuestions11,
+  '12': ydsExamQuestions12,
+  '13': ydsExamQuestions13,
 };
 
 // --- TEST TANIMLARI ---
@@ -425,7 +438,7 @@ function startTest(testSlug: string) {
 
 // --- ANA BİLEŞEN İÇERİĞİ ---
 function HomeContent() {
-  const availableTests = [1, 2, 3, 4, 5, 6];
+  const availableTests = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
   const searchParams = useSearchParams();
   const restartSlug = searchParams.get('restart');
   const [isRestarting, setIsRestarting] = useState(false);
@@ -531,9 +544,9 @@ function HomeContent() {
                   </span>
                </div>
 
-               {/* 8 TANE TEST BUTONU (1-6 AKTİF) */}
+               {/* 13 TANE TEST BUTONU (1-13 AKTİF) */}
                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                  {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => {
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((num) => {
                     const isActive = availableTests.includes(num);
 
                     return (
