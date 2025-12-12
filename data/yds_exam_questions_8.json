@@ -1,0 +1,903 @@
+[
+  {
+    "id": 1,
+    "prompt": "1. The rapid ______ of artificial intelligence has raised ethical concerns worldwide.",
+    "A": "advancement",
+    "B": "resistance",
+    "C": "hesitation",
+    "D": "decline",
+    "E": "interruption",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Yapay zekanın hızlı 'ilerlemesi' (advancement) etik kaygılar doğurmuştur."
+  },
+  {
+    "id": 2,
+    "prompt": "2. The professor’s explanation was so ______ that even complex ideas became easy to understand.",
+    "A": "clear",
+    "B": "random",
+    "C": "fragile",
+    "D": "hesitant",
+    "E": "irrelevant",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Karmaşık fikirleri anlaşılır kılan = clear."
+  },
+  {
+    "id": 3,
+    "prompt": "3. To ______ the negative effects of pollution, strict environmental laws were introduced.",
+    "A": "mitigate",
+    "B": "stimulate",
+    "C": "ignore",
+    "D": "celebrate",
+    "E": "provoke",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Olumsuz etkileri azaltmak = mitigate."
+  },
+  {
+    "id": 4,
+    "prompt": "4. It is widely ______ that exercise contributes to both physical and mental health.",
+    "A": "acknowledged",
+    "B": "avoided",
+    "C": "neglected",
+    "D": "postponed",
+    "E": "distorted",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Yaygın olarak kabul edilmek = acknowledged."
+  },
+  {
+    "id": 5,
+    "prompt": "5. The manager had no choice but to ______ the proposal due to budget limitations.",
+    "A": "reject",
+    "B": "expand",
+    "C": "approve",
+    "D": "emphasize",
+    "E": "summarize",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Bütçe kısıtı nedeniyle reddetmek = reject."
+  },
+
+  {
+    "id": 6,
+    "prompt": "6. If the results ______ earlier, corrective action could have been taken.",
+    "A": "had been announced",
+    "B": "are announced",
+    "C": "announce",
+    "D": "were announcing",
+    "E": "have announced",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Type 3 Conditional (geçmiş şart)."
+  },
+  {
+    "id": 7,
+    "prompt": "7. The ancient manuscript is believed ______ in the 12th century.",
+    "A": "to have been written",
+    "B": "to be writing",
+    "C": "being written",
+    "D": "to write",
+    "E": "having written",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: 'is believed to have been V3'."
+  },
+  {
+    "id": 8,
+    "prompt": "8. ______ the severe weather conditions, the rescue team continued their mission.",
+    "A": "Despite",
+    "B": "Because",
+    "C": "Unless",
+    "D": "Since",
+    "E": "Provided",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Rağmen anlamı → Despite."
+  },
+  {
+    "id": 9,
+    "prompt": "9. The scientist is well known ______ her groundbreaking discoveries.",
+    "A": "for",
+    "B": "to",
+    "C": "with",
+    "D": "at",
+    "E": "by",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Known for."
+  },
+  {
+    "id": 10,
+    "prompt": "10. The lecture was so informative that it left a ______ impression on the audience.",
+    "A": "lasting",
+    "B": "temporary",
+    "C": "random",
+    "D": "fragile",
+    "E": "vague",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Kalıcı etki = lasting impression."
+  },
+
+  {
+    "id": 11,
+    "prompt": "11. It is essential that all documents ______ before submission.",
+    "A": "be checked",
+    "B": "are checked",
+    "C": "checked",
+    "D": "are checking",
+    "E": "have checked",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Subjunctive Passive."
+  },
+  {
+    "id": 12,
+    "prompt": "12. The discovery was considered ______, as it challenged existing theories.",
+    "A": "controversial",
+    "B": "obvious",
+    "C": "harmless",
+    "D": "predictable",
+    "E": "inevitable",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Tartışmalı = controversial."
+  },
+  {
+    "id": 13,
+    "prompt": "13. Scarcely had the experiment begun ______ unexpected results appeared.",
+    "A": "when",
+    "B": "than",
+    "C": "that",
+    "D": "before",
+    "E": "after",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Scarcely... when."
+  },
+  {
+    "id": 14,
+    "prompt": "14. The organization aims to raise public ______ about climate change.",
+    "A": "awareness",
+    "B": "hesitation",
+    "C": "resistance",
+    "D": "ignorance",
+    "E": "confusion",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Farkındalık = awareness."
+  },
+  {
+    "id": 15,
+    "prompt": "15. She insisted ______ completing the project on schedule.",
+    "A": "on",
+    "B": "to",
+    "C": "for",
+    "D": "at",
+    "E": "by",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Insist on."
+  },
+
+  {
+    "id": 16,
+    "prompt": "16. CLOZE: Urbanization has increased rapidly. (16) ______, it has brought about serious environmental problems.",
+    "A": "Consequently",
+    "B": "Nevertheless",
+    "C": "Instead",
+    "D": "Likewise",
+    "E": "Meanwhile",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Sonuç bildirir → Consequently."
+  },
+  {
+    "id": 17,
+    "prompt": "17. (17) ______ many people support the plan, others strongly oppose it.",
+    "A": "While",
+    "B": "Because",
+    "C": "Unless",
+    "D": "If",
+    "E": "So",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Karşıtlık: While."
+  },
+  {
+    "id": 18,
+    "prompt": "18. The study focuses ______ the long-term effects of air pollution.",
+    "A": "on",
+    "B": "to",
+    "C": "by",
+    "D": "with",
+    "E": "at",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Focus on."
+  },
+  {
+    "id": 19,
+    "prompt": "19. The evidence was insufficient to ______ a definite conclusion.",
+    "A": "draw",
+    "B": "produce",
+    "C": "remove",
+    "D": "interrupt",
+    "E": "confuse",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Sonuç çıkarmak = draw a conclusion."
+  },
+  {
+    "id": 20,
+    "prompt": "20. The report provides a ______ overview of recent economic trends.",
+    "A": "comprehensive",
+    "B": "minor",
+    "C": "temporary",
+    "D": "careless",
+    "E": "superficial",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Kapsamlı = comprehensive."
+  },
+
+  {
+    "id": 21,
+    "prompt": "21. Unless immediate action is taken, the situation ______ worse.",
+    "A": "will get",
+    "B": "gets",
+    "C": "got",
+    "D": "has gotten",
+    "E": "would get",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Future conditional."
+  },
+  {
+    "id": 22,
+    "prompt": "22. The artist was praised for his ______ approach to traditional themes.",
+    "A": "innovative",
+    "B": "ordinary",
+    "C": "predictable",
+    "D": "rigid",
+    "E": "conventional",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Yenilikçi = innovative."
+  },
+  {
+    "id": 23,
+    "prompt": "23. The conference aims to bring together experts ______ different disciplines.",
+    "A": "from",
+    "B": "to",
+    "C": "with",
+    "D": "by",
+    "E": "at",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: From different disciplines."
+  },
+  {
+    "id": 24,
+    "prompt": "24. It was not until the final test ______ the defect was discovered.",
+    "A": "that",
+    "B": "when",
+    "C": "which",
+    "D": "what",
+    "E": "how",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: It was not until ... that."
+  },
+  {
+    "id": 25,
+    "prompt": "25. The new policy is expected to have a ______ impact on employment.",
+    "A": "positive",
+    "B": "fragile",
+    "C": "random",
+    "D": "uncertain",
+    "E": "negligible",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Olumlu etki = positive impact."
+  },
+
+  {
+    "id": 26,
+    "prompt": "26. English: 'Scientific research relies heavily on accurate data collection.'",
+    "A": "Bilimsel araştırma, doğru veri toplamaya büyük ölçüde dayanır.",
+    "B": "Bilimsel veriler araştırmadan bağımsızdır.",
+    "C": "Araştırma verileri her zaman yanlıştır.",
+    "D": "Bilimsel çalışmalar veriye ihtiyaç duymaz.",
+    "E": "Veri toplama bilimle ilgisizdir.",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: relies on = dayanır."
+  },
+  {
+    "id": 27,
+    "prompt": "27. English: 'Despite technological advances, some problems remain unsolved.'",
+    "A": "Teknolojik gelişmelere rağmen, bazı sorunlar çözümsüz kalmaktadır.",
+    "B": "Teknoloji tüm sorunları çözmüştür.",
+    "C": "Sorunlar teknolojiyle birlikte artmıştır.",
+    "D": "Teknolojik ilerleme sorunları yok eder.",
+    "E": "Teknoloji sorunları önemsiz kılar.",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Despite = rağmen."
+  },
+
+  {
+    "id": 28,
+    "prompt": "28. READING: Renewable energy sources such as wind and solar power are gaining popularity. They reduce dependence on fossil fuels and help lower greenhouse gas emissions.\n\nAccording to the passage, renewable energy helps to ______.",
+    "A": "reduce reliance on fossil fuels",
+    "B": "increase pollution",
+    "C": "eliminate energy consumption",
+    "D": "raise fuel prices",
+    "E": "prevent technological progress",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Fosil yakıtlara bağımlılığı azaltır."
+  },
+  {
+    "id": 29,
+    "prompt": "29. The passage suggests that renewable energy sources are ______.",
+    "A": "environmentally beneficial",
+    "B": "economically useless",
+    "C": "rarely available",
+    "D": "harmful to nature",
+    "E": "outdated",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Emisyonları düşürür → çevreye faydalı."
+  },
+
+  {
+    "id": 30,
+    "prompt": "30. The committee reached a ______ after lengthy negotiations.",
+    "A": "consensus",
+    "B": "conflict",
+    "C": "delay",
+    "D": "collapse",
+    "E": "dismissal",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Uzlaşma = consensus."
+  },
+
+  {
+    "id": 31,
+    "prompt": "31. The evidence clearly ______ that the theory needs revision.",
+    "A": "indicates",
+    "B": "ignores",
+    "C": "interrupts",
+    "D": "confuses",
+    "E": "resists",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Göstermek/işaret etmek = indicate."
+  },
+  {
+    "id": 32,
+    "prompt": "32. The project was delayed ______ unforeseen technical problems.",
+    "A": "due to",
+    "B": "unless",
+    "C": "whereas",
+    "D": "provided",
+    "E": "although",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Due to + noun."
+  },
+  {
+    "id": 33,
+    "prompt": "33. Only after the data had been analyzed ______ the results published.",
+    "A": "were",
+    "B": "are",
+    "C": "have",
+    "D": "do",
+    "E": "did",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Devrik yapı → were."
+  },
+  {
+    "id": 34,
+    "prompt": "34. The company is committed ______ improving workplace safety.",
+    "A": "to",
+    "B": "for",
+    "C": "with",
+    "D": "at",
+    "E": "by",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Committed to."
+  },
+  {
+    "id": 35,
+    "prompt": "35. The speaker’s comments were taken out of ______.",
+    "A": "context",
+    "B": "control",
+    "C": "balance",
+    "D": "sequence",
+    "E": "condition",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Context dışına çıkarılmak."
+  },
+
+  {
+    "id": 36,
+    "prompt": "36. Turkish: 'Küreselleşme, kültürler arası etkileşimi artırmıştır.'",
+    "A": "Globalization has increased intercultural interaction.",
+    "B": "Globalization prevents cultural exchange.",
+    "C": "Cultures have disappeared due to globalization.",
+    "D": "Globalization has reduced interaction.",
+    "E": "Cultural interaction opposes globalization.",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: increase = artırmak, intercultural interaction = kültürler arası etkileşim."
+  },
+
+  {
+    "id": 37,
+    "prompt": "37. READING: Education plays a crucial role in social development. Access to quality education can reduce inequality and promote economic growth.\n\nAccording to the passage, education helps to ______.",
+    "A": "reduce inequality",
+    "B": "limit economic growth",
+    "C": "increase social division",
+    "D": "replace economic systems",
+    "E": "prevent development",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Eşitsizliği azaltır."
+  },
+  {
+    "id": 38,
+    "prompt": "38. The passage emphasizes the importance of ______ education.",
+    "A": "quality",
+    "B": "expensive",
+    "C": "exclusive",
+    "D": "optional",
+    "E": "temporary",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Quality education."
+  },
+
+  {
+    "id": 39,
+    "prompt": "39. The experiment was designed to ______ the hypothesis.",
+    "A": "test",
+    "B": "ignore",
+    "C": "abandon",
+    "D": "repeat",
+    "E": "replace",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Varsayımı test etmek."
+  },
+  {
+    "id": 40,
+    "prompt": "40. The company’s success can be largely ______ effective leadership.",
+    "A": "attributed to",
+    "B": "isolated from",
+    "C": "confused with",
+    "D": "excluded from",
+    "E": "opposed to",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Attribute to."
+  },
+
+  {
+    "id": 41,
+    "prompt": "41. The survey results were ______ surprising, given the circumstances.",
+    "A": "hardly",
+    "B": "highly",
+    "C": "deeply",
+    "D": "perfectly",
+    "E": "strongly",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: hardly surprising = pek de şaşırtıcı değil."
+  },
+  {
+    "id": 42,
+    "prompt": "42. The author’s writing style is characterized ______ simplicity and clarity.",
+    "A": "by",
+    "B": "with",
+    "C": "to",
+    "D": "for",
+    "E": "on",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Characterized by."
+  },
+  {
+    "id": 43,
+    "prompt": "43. The policy was introduced ______ response to public demand.",
+    "A": "in",
+    "B": "on",
+    "C": "by",
+    "D": "for",
+    "E": "at",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: In response to."
+  },
+  {
+    "id": 44,
+    "prompt": "44. The discovery has opened up new ______ for scientific research.",
+    "A": "possibilities",
+    "B": "obstacles",
+    "C": "delays",
+    "D": "interruptions",
+    "E": "shortages",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Yeni olanaklar = possibilities."
+  },
+  {
+    "id": 45,
+    "prompt": "45. She refused to participate ______ the experiment.",
+    "A": "in",
+    "B": "to",
+    "C": "with",
+    "D": "for",
+    "E": "by",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Participate in."
+  },
+
+  {
+    "id": 46,
+    "prompt": "46. CLOZE: Technological innovation drives economic growth. (46) ______, it also requires careful regulation.",
+    "A": "However",
+    "B": "Therefore",
+    "C": "Similarly",
+    "D": "Meanwhile",
+    "E": "Likewise",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Zıtlık bildirir."
+  },
+  {
+    "id": 47,
+    "prompt": "47. The new system is designed to be ______ to users with little technical knowledge.",
+    "A": "accessible",
+    "B": "fragile",
+    "C": "hostile",
+    "D": "obsolete",
+    "E": "complex",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Erişilebilir = accessible."
+  },
+  {
+    "id": 48,
+    "prompt": "48. The research team worked ______ the clock to meet the deadline.",
+    "A": "around",
+    "B": "against",
+    "C": "behind",
+    "D": "across",
+    "E": "within",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Around the clock = gece gündüz."
+  },
+  {
+    "id": 49,
+    "prompt": "49. The theory was initially rejected, but later gained ______.",
+    "A": "acceptance",
+    "B": "resistance",
+    "C": "ignorance",
+    "D": "confusion",
+    "E": "criticism",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Kabul görmek = acceptance."
+  },
+  {
+    "id": 50,
+    "prompt": "50. The evidence points ______ a significant increase in global temperatures.",
+    "A": "to",
+    "B": "for",
+    "C": "by",
+    "D": "with",
+    "E": "on",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Point to."
+  },
+
+  {
+    "id": 51,
+    "prompt": "51. The decision was made ______ careful consideration of all factors.",
+    "A": "after",
+    "B": "during",
+    "C": "before",
+    "D": "without",
+    "E": "despite",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: After careful consideration."
+  },
+  {
+    "id": 52,
+    "prompt": "52. The scientist emphasized the need ______ further research.",
+    "A": "for",
+    "B": "to",
+    "C": "with",
+    "D": "by",
+    "E": "at",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Need for."
+  },
+  {
+    "id": 53,
+    "prompt": "53. The museum houses a ______ collection of ancient artifacts.",
+    "A": "valuable",
+    "B": "fragile",
+    "C": "temporary",
+    "D": "random",
+    "E": "minor",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Değerli = valuable."
+  },
+  {
+    "id": 54,
+    "prompt": "54. Not until the report was completed ______ the results announced.",
+    "A": "were",
+    "B": "are",
+    "C": "did",
+    "D": "have",
+    "E": "do",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Devrik yapı."
+  },
+  {
+    "id": 55,
+    "prompt": "55. The organization provides assistance ______ those in need.",
+    "A": "to",
+    "B": "for",
+    "C": "with",
+    "D": "by",
+    "E": "at",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Provide assistance to."
+  },
+
+  {
+    "id": 56,
+    "prompt": "56. The experiment yielded results that were ______ consistent with the hypothesis.",
+    "A": "largely",
+    "B": "barely",
+    "C": "randomly",
+    "D": "hardly",
+    "E": "temporarily",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Büyük ölçüde = largely."
+  },
+  {
+    "id": 57,
+    "prompt": "57. The issue has been the subject ______ intense debate.",
+    "A": "of",
+    "B": "to",
+    "C": "with",
+    "D": "by",
+    "E": "at",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Subject of."
+  },
+  {
+    "id": 58,
+    "prompt": "58. The government introduced reforms ______ stimulate economic growth.",
+    "A": "to",
+    "B": "for",
+    "C": "by",
+    "D": "with",
+    "E": "at",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Amaç bildirimi: to."
+  },
+  {
+    "id": 59,
+    "prompt": "59. The findings challenge the traditional ______ of the phenomenon.",
+    "A": "interpretation",
+    "B": "celebration",
+    "C": "instruction",
+    "D": "hesitation",
+    "E": "permission",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Yorum = interpretation."
+  },
+  {
+    "id": 60,
+    "prompt": "60. The city has undergone a ______ transformation over the past decade.",
+    "A": "dramatic",
+    "B": "minor",
+    "C": "temporary",
+    "D": "random",
+    "E": "gradual",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Büyük değişim = dramatic."
+  },
+
+  {
+    "id": 61,
+    "prompt": "61. The research highlights the importance ______ early intervention.",
+    "A": "of",
+    "B": "to",
+    "C": "with",
+    "D": "for",
+    "E": "at",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Importance of."
+  },
+  {
+    "id": 62,
+    "prompt": "62. The proposal was rejected, ______ concerns about its feasibility.",
+    "A": "due to",
+    "B": "unless",
+    "C": "whereas",
+    "D": "provided",
+    "E": "although",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Due to + noun."
+  },
+  {
+    "id": 63,
+    "prompt": "63. The study was conducted ______ a representative sample of the population.",
+    "A": "on",
+    "B": "to",
+    "C": "by",
+    "D": "with",
+    "E": "at",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Conducted on a sample."
+  },
+  {
+    "id": 64,
+    "prompt": "64. The speaker’s argument was persuasive; ______, it failed to convince everyone.",
+    "A": "nevertheless",
+    "B": "therefore",
+    "C": "consequently",
+    "D": "similarly",
+    "E": "otherwise",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Zıtlık: nevertheless."
+  },
+  {
+    "id": 65,
+    "prompt": "65. The company invested heavily ______ renewable energy technologies.",
+    "A": "in",
+    "B": "on",
+    "C": "to",
+    "D": "for",
+    "E": "by",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Invest in."
+  },
+
+  {
+    "id": 66,
+    "prompt": "66. Turkish: 'Araştırmanın sonuçları, önceki bulgularla uyumludur.'",
+    "A": "The results of the research are consistent with previous findings.",
+    "B": "The research results contradict earlier studies.",
+    "C": "Previous findings were ignored.",
+    "D": "The research lacks reliable results.",
+    "E": "Earlier findings were inaccurate.",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Consistent with = uyumlu."
+  },
+
+  {
+    "id": 67,
+    "prompt": "67. READING: Social media platforms have transformed communication by enabling instant information sharing. However, they also raise concerns about privacy and data security.\n\nAccording to the passage, social media ______.",
+    "A": "facilitates rapid information exchange",
+    "B": "eliminates privacy risks",
+    "C": "prevents communication",
+    "D": "reduces data sharing",
+    "E": "solves security problems",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Anında bilgi paylaşımı sağlar."
+  },
+  {
+    "id": 68,
+    "prompt": "68. The passage also mentions concerns related to ______.",
+    "A": "privacy and data security",
+    "B": "economic growth",
+    "C": "environmental damage",
+    "D": "education quality",
+    "E": "healthcare systems",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Gizlilik ve veri güvenliği."
+  },
+
+  {
+    "id": 69,
+    "prompt": "69. The committee decided to postpone the meeting ______ further notice.",
+    "A": "until",
+    "B": "during",
+    "C": "since",
+    "D": "although",
+    "E": "because",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Until further notice."
+  },
+  {
+    "id": 70,
+    "prompt": "70. The experiment produced results that were ______ unexpected.",
+    "A": "highly",
+    "B": "barely",
+    "C": "hardly",
+    "D": "slightly",
+    "E": "rarely",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Son derece = highly."
+  },
+
+  {
+    "id": 71,
+    "prompt": "71. The policy aims to promote equality ______ addressing social disparities.",
+    "A": "by",
+    "B": "to",
+    "C": "for",
+    "D": "with",
+    "E": "at",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: by + V-ing."
+  },
+  {
+    "id": 72,
+    "prompt": "72. The discovery marked a ______ turning point in medical research.",
+    "A": "significant",
+    "B": "temporary",
+    "C": "minor",
+    "D": "random",
+    "E": "negligible",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Önemli = significant."
+  },
+  {
+    "id": 73,
+    "prompt": "73. The scientist refused to comment ______ the preliminary results.",
+    "A": "on",
+    "B": "to",
+    "C": "with",
+    "D": "by",
+    "E": "at",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Comment on."
+  },
+  {
+    "id": 74,
+    "prompt": "74. The city has implemented measures to ______ traffic congestion.",
+    "A": "alleviate",
+    "B": "intensify",
+    "C": "ignore",
+    "D": "prolong",
+    "E": "conceal",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Hafifletmek = alleviate."
+  },
+  {
+    "id": 75,
+    "prompt": "75. The proposal was accepted, ______ some minor revisions.",
+    "A": "subject to",
+    "B": "due to",
+    "C": "in case of",
+    "D": "instead of",
+    "E": "apart from",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Şarta bağlı olarak = subject to."
+  },
+
+  {
+    "id": 76,
+    "prompt": "76. The research team worked tirelessly ______ meet the deadline.",
+    "A": "to",
+    "B": "for",
+    "C": "by",
+    "D": "with",
+    "E": "at",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Amaç bildirimi."
+  },
+  {
+    "id": 77,
+    "prompt": "77. The findings have important ______ for future policy decisions.",
+    "A": "implications",
+    "B": "interruptions",
+    "C": "hesitations",
+    "D": "permissions",
+    "E": "distractions",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Implications = sonuçlar/etkiler."
+  },
+  {
+    "id": 78,
+    "prompt": "78. The speaker’s remarks were intended to ______ awareness of the issue.",
+    "A": "raise",
+    "B": "remove",
+    "C": "conceal",
+    "D": "postpone",
+    "E": "weaken",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Raise awareness."
+  },
+  {
+    "id": 79,
+    "prompt": "79. The study was criticized ______ its limited sample size.",
+    "A": "for",
+    "B": "to",
+    "C": "with",
+    "D": "by",
+    "E": "at",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Criticized for."
+  },
+  {
+    "id": 80,
+    "prompt": "80. The documentary provides insight ______ the challenges facing modern societies.",
+    "A": "into",
+    "B": "to",
+    "C": "with",
+    "D": "by",
+    "E": "at",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Insight into."
+  }
+]
