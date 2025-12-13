@@ -697,7 +697,7 @@
     "correct": "A",
     "explanation": "ÇÖZÜM: Due to + noun."
   },
-  {
+   {
     "id": 63,
     "prompt": "63. The study was conducted ______ a representative sample of the population.",
     "A": "on",
@@ -705,8 +705,8 @@
     "C": "by",
     "D": "with",
     "E": "at",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Conducted on a sample."
+    "correct": "D",
+    "explanation": "ÇÖZÜM: Doğru kalıp 'conducted with a (representative) sample' / 'using a sample' şeklindedir."
   },
   {
     "id": 64,
