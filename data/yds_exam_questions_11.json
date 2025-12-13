@@ -4,11 +4,11 @@
     "prompt": "1. The senator’s statement was intentionally ______, leaving room for later denial.",
     "A": "ambiguous",
     "B": "transparent",
-    "C": "audible",
-    "D": "fragile",
-    "E": "obsolete",
+    "C": "explicit",
+    "D": "categorical",
+    "E": "definitive",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Bilerek muğlak = ambiguous."
+    "explanation": "ÇÖZÜM: İnkar payı bırakmak için 'muğlak' (ambiguous) konuşulur. Diğer şıklar netlik ifade eder."
   },
   {
     "id": 2,
@@ -19,7 +19,7 @@
     "D": "robust",
     "E": "conspicuous",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Temelsiz = unfounded."
+    "explanation": "ÇÖZÜM: Deneysel destek yoksa sonuç 'temelsiz' (unfounded) dir."
   },
   {
     "id": 3,
@@ -27,10 +27,10 @@
     "A": "vague",
     "B": "inevitable",
     "C": "mandatory",
-    "D": "ornamental",
+    "D": "precise",
     "E": "definitive",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Belirsiz = vague."
+    "explanation": "ÇÖZÜM: Çoklu yoruma açık olan madde 'belirsiz' (vague) dir."
   },
   {
     "id": 4,
@@ -41,7 +41,7 @@
     "D": "allocate",
     "E": "retain",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Suçu başka yöne çevirmek = deflect."
+    "explanation": "ÇÖZÜM: Sorumluluğu başkasına atmak/saptırmak = deflect."
   },
   {
     "id": 5,
@@ -52,7 +52,7 @@
     "D": "prolong",
     "E": "conceal",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Kısıtlamak/önünü kesmek = curb."
+    "explanation": "ÇÖZÜM: Tekelleşmeyi 'dizginlemek/kısıtlamak' (curb)."
   },
   {
     "id": 6,
@@ -63,7 +63,7 @@
     "D": "repaired",
     "E": "diminished",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Öyle yorumlamak = construe."
+    "explanation": "ÇÖZÜM: Korelasyon nedensellik olarak 'yorumlanmamalıdır' (construed)."
   },
   {
     "id": 7,
@@ -74,7 +74,7 @@
     "D": "dilute",
     "E": "impede",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Geliştirmek/teşvik etmek = foster."
+    "explanation": "ÇÖZÜM: Dayanıklılığı 'geliştirmek/beslemek' = foster."
   },
   {
     "id": 8,
@@ -85,7 +85,7 @@
     "D": "naivety",
     "E": "volatility",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Şeffaflık = transparency."
+    "explanation": "ÇÖZÜM: Tekrarlanabilirlik için metodun 'şeffaf' (transparency) olması gerekir."
   },
   {
     "id": 9,
@@ -93,10 +93,10 @@
     "A": "imperative",
     "B": "incidental",
     "C": "superfluous",
-    "D": "ornamental",
+    "D": "trivial",
     "E": "peripheral",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Çok gerekli/zorunlu = imperative."
+    "explanation": "ÇÖZÜM: İsteğe bağlı değilse 'zorunlu/hayati' (imperative) dir."
   },
   {
     "id": 10,
@@ -104,12 +104,11 @@
     "A": "untenable",
     "B": "ubiquitous",
     "C": "innocuous",
-    "D": "ornate",
+    "D": "solid",
     "E": "salient",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Mali açıdan sürdürülemez = untenable."
+    "explanation": "ÇÖZÜM: Sürdürülemez olduğu için mali açıdan 'savunulamaz' (untenable) dır."
   },
-
   {
     "id": 11,
     "prompt": "11. No sooner ______ the announcement been made than the media began to speculate wildly.",
@@ -119,7 +118,7 @@
     "D": "was",
     "E": "will",
     "correct": "A",
-    "explanation": "ÇÖZÜM: No sooner + had + S + V3 (devrik)."
+    "explanation": "ÇÖZÜM: 'No sooner... than' kalıbı Past Perfect ve devrik yapı ister: 'No sooner had...'."
   },
   {
     "id": 12,
@@ -130,7 +129,7 @@
     "D": "one sees",
     "E": "was one seeing",
     "correct": "C",
-    "explanation": "ÇÖZÜM: Rarely başta → devrik: does one see."
+    "explanation": "ÇÖZÜM: Olumsuz zarf (Rarely) başta ise cümle devrik olur: 'does one see'."
   },
   {
     "id": 13,
@@ -141,7 +140,7 @@
     "D": "was submitting",
     "E": "has submitted",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Subjunctive passive: be submitted."
+    "explanation": "ÇÖZÜM: Subjunctive yapısı (It is essential that...). Fiil yalın haliyle (be submitted) kullanılır."
   },
   {
     "id": 14,
@@ -152,7 +151,7 @@
     "D": "to be creating",
     "E": "having created",
     "correct": "A",
-    "explanation": "ÇÖZÜM: is believed to have been V3."
+    "explanation": "ÇÖZÜM: Passive çatı (is believed) + geçmiş zaman = 'to have been V3'."
   },
   {
     "id": 15,
@@ -163,7 +162,7 @@
     "D": "has",
     "E": "had",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Findings (çoğul) → were considered."
+    "explanation": "ÇÖZÜM: 'Not until' başta ise ana cümle devrik olur. Findings çoğul ve pasif olduğu için 'were'."
   },
   {
     "id": 16,
@@ -174,7 +173,7 @@
     "D": "apart from",
     "E": "in case of",
     "correct": "A",
-    "explanation": "ÇÖZÜM: subject to = şarta bağlı."
+    "explanation": "ÇÖZÜM: Revizyonlara 'bağlı olarak/tabi tutularak' (subject to) onaylandı."
   },
   {
     "id": 17,
@@ -185,7 +184,7 @@
     "D": "with",
     "E": "by",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Contingent on."
+    "explanation": "ÇÖZÜM: 'Contingent on' = ...e bağlı/şartlı."
   },
   {
     "id": 18,
@@ -196,7 +195,7 @@
     "D": "by",
     "E": "with",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Regarded as."
+    "explanation": "ÇÖZÜM: 'Regarded as' = ... olarak kabul edilmek."
   },
   {
     "id": 19,
@@ -207,7 +206,7 @@
     "D": "at",
     "E": "by",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Insist on + V-ing."
+    "explanation": "ÇÖZÜM: 'Insist on' + V-ing."
   },
   {
     "id": 20,
@@ -218,9 +217,8 @@
     "D": "enforce",
     "E": "sustain",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Gerilimi düşürmek = defuse."
+    "explanation": "ÇÖZÜM: Gerilimi 'yatıştırmak/etkisizleştirmek' (defuse)."
   },
-
   {
     "id": 21,
     "prompt": "21. The apology was seen as a ______ gesture, intended more to appease than to take responsibility.",
@@ -230,7 +228,7 @@
     "D": "robust",
     "E": "contingent",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Göstermelik = token."
+    "explanation": "ÇÖZÜM: Sadece adet yerini bulsun diye yapılan 'göstermelik' (token) jest."
   },
   {
     "id": 22,
@@ -241,7 +239,7 @@
     "D": "fleeting",
     "E": "fractured",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Açık/anlaşılır = lucid."
+    "explanation": "ÇÖZÜM: Karmaşık noktaları açıklayan ifade 'açık/anlaşılır' (lucid) dır."
   },
   {
     "id": 23,
@@ -252,7 +250,7 @@
     "D": "repay",
     "E": "amuse",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Soruşturmak = probe."
+    "explanation": "ÇÖZÜM: İddiaları 'araştırmak/soruşturmak' = probe."
   },
   {
     "id": 24,
@@ -263,7 +261,7 @@
     "D": "invalidate",
     "E": "suppress",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Kaygıyı yatıştırmak = allay."
+    "explanation": "ÇÖZÜM: Korkuları 'yatıştırmak' (allay) amaçlandı."
   },
   {
     "id": 25,
@@ -274,7 +272,7 @@
     "D": "concede",
     "E": "perpetuate",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Söylentileri çürütmek = dispel."
+    "explanation": "ÇÖZÜM: Söylentileri 'dağıtmak/çürütmek' = dispel."
   },
   {
     "id": 26,
@@ -285,7 +283,7 @@
     "D": "cordial",
     "E": "nautical",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Seçmeci = selective."
+    "explanation": "ÇÖZÜM: Etkiyi abartmak için istatistiklerin 'seçmeci' (selective) kullanımı."
   },
   {
     "id": 27,
@@ -296,7 +294,7 @@
     "D": "opaque",
     "E": "futile",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Yapıcı = constructive."
+    "explanation": "ÇÖZÜM: Gelişime odaklanan eleştiri 'yapıcı' (constructive) dır."
   },
   {
     "id": 28,
@@ -307,7 +305,7 @@
     "D": "prolong",
     "E": "compile",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Caydırmak = deter."
+    "explanation": "ÇÖZÜM: Yolsuzluğu 'caydırmak/engellemek' = deter."
   },
   {
     "id": 29,
@@ -318,7 +316,7 @@
     "D": "benign",
     "E": "ornate",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Çok zorlayıcı = formidable."
+    "explanation": "ÇÖZÜM: Plan başarısız olduysa engeller 'aşılması güç/zorlu' (formidable) dur."
   },
   {
     "id": 30,
@@ -327,11 +325,10 @@
     "B": "portable",
     "C": "audible",
     "D": "redundant",
-    "E": "ornamental",
+    "E": "speculative",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Mahkemede kabul edilebilir = admissible."
+    "explanation": "ÇÖZÜM: Mahkemede 'kabul edilebilir' (admissible) kanıt."
   },
-
   {
     "id": 31,
     "prompt": "31. CLOZE: Trust in institutions is fragile. (31) ______ it is lost, restoring it requires consistent action.",
@@ -341,7 +338,7 @@
     "D": "Whereas",
     "E": "Whether",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Bir kez kayboldu mu = Once."
+    "explanation": "ÇÖZÜM: 'Bir kez kaybedildiğinde...' = Once."
   },
   {
     "id": 32,
@@ -352,7 +349,7 @@
     "D": "Since",
     "E": "So",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Zıtlık: Although."
+    "explanation": "ÇÖZÜM: Kampanyalar yardım etse de (zıtlık) reformun yerini tutmaz: 'Although'."
   },
   {
     "id": 33,
@@ -363,7 +360,7 @@
     "D": "Namely",
     "E": "Oddly",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Etki zinciri: In turn."
+    "explanation": "ÇÖZÜM: Reformların bir sonucu/etkisi olarak: 'In turn'."
   },
   {
     "id": 34,
@@ -374,7 +371,7 @@
     "D": "Whereas",
     "E": "Despite",
     "correct": "A",
-    "explanation": "ÇÖZÜM: When = -dığında."
+    "explanation": "ÇÖZÜM: Vatandaşlar görebildiği 'zaman' (when) kabul etme ihtimalleri artar."
   },
   {
     "id": 35,
@@ -385,9 +382,8 @@
     "D": "randomly",
     "E": "silently",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Tutarlı biçimde = consistently."
+    "explanation": "ÇÖZÜM: Kuralların 'tutarlı' (consistently) uygulanması meşruiyet için şarttır."
   },
-
   {
     "id": 36,
     "prompt": "36. English: 'The policy’s unintended consequences undermined its intended benefits.'",
@@ -419,7 +415,7 @@
     "D": "Erken müdahale, riski imkânsız kılar.",
     "E": "Müdahale olmasa da risk kontrol altındadır.",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Had + V3 devrik şart; might have been contained."
+    "explanation": "ÇÖZÜM: 'Had... intervened' (müdahale etseydi - geçmiş şart), 'might have been contained' (kontrol altına alınabilirdi)."
   },
   {
     "id": 39,
@@ -441,453 +437,446 @@
     "D": "Public trust is restored only through secrecy.",
     "E": "Accountability is irrelevant to public trust.",
     "correct": "A",
-    "explanation": "ÇÖZÜM: as much as = ...kadar."
+    "explanation": "ÇÖZÜM: 'as much as' = ...kadar."
   },
-
   {
     "id": 41,
-    "prompt": "41. PARAGRAPH (Hard): In policy debates, \"evidence-based\" decision-making is often praised as an antidote to ideology. Yet evidence rarely speaks for itself: data must be selected, interpreted, and weighted against competing values. Moreover, when evidence is uncertain—as it often is in complex systems—policymakers may selectively cite studies that support their preferred outcomes. This does not mean evidence is useless; rather, it means that transparency about assumptions and trade-offs is essential.\n\nThe main idea of the passage is that evidence-based policymaking ______.",
-    "A": "requires transparency because evidence is interpreted through assumptions and values",
-    "B": "eliminates the influence of ideology in all cases",
-    "C": "is impossible because evidence is always uncertain",
-    "D": "should rely only on the largest datasets available",
-    "E": "is mainly used to hide political motives from the public",
+    "prompt": "41. READING: In scientific publishing, replication is often viewed as a safeguard against false positives. Replication studies test whether findings remain stable when experiments are repeated with new samples or in different contexts. Advocates argue that replication strengthens credibility, whereas critics contend that it may discourage novelty by rewarding confirmatory work over original ideas.\n\nAccording to the passage, replication studies primarily aim to ______.",
+    "A": "check whether results hold under repetition",
+    "B": "replace all original research permanently",
+    "C": "ensure novelty is always prioritized",
+    "D": "prevent the use of new samples",
+    "E": "eliminate the possibility of context effects",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Kanıt yorumlanır; varsayım ve değerler + şeffaflık vurgusu."
+    "explanation": "ÇÖZÜM: Replikasyon, sonuçların tekrar altında (repetition) tutarlı kalıp kalmadığını kontrol eder."
   },
   {
     "id": 42,
-    "prompt": "42. According to the passage, evidence \"rarely speaks for itself\" because it must be ______.",
-    "A": "selected and interpreted within a framework of values",
-    "B": "ignored whenever it conflicts with ideology",
-    "C": "replaced by moral arguments to be meaningful",
-    "D": "kept secret to prevent manipulation",
-    "E": "derived only from controlled laboratory experiments",
+    "prompt": "42. Critics of replication in the passage are mainly concerned that it could ______.",
+    "A": "reduce incentives for innovative research",
+    "B": "increase false positives in journals",
+    "C": "make confirmatory work impossible",
+    "D": "stop peer review altogether",
+    "E": "eliminate the need for credibility",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Seçme-yorumlama-ağırlıklandırma vurgusu."
+    "explanation": "ÇÖZÜM: Eleştirmenler orijinalliği/yeniliği (novelty) caydıracağından endişe ediyor."
   },
   {
     "id": 43,
-    "prompt": "43. The passage implies that uncertainty in evidence can lead policymakers to ______.",
-    "A": "cherry-pick supportive studies",
-    "B": "abandon evidence entirely",
-    "C": "agree on policies more easily",
-    "D": "avoid trade-offs altogether",
-    "E": "prioritize ideology openly over data",
+    "prompt": "43. In the passage, 'safeguard' is closest in meaning to ______.",
+    "A": "protection",
+    "B": "speculation",
+    "C": "distraction",
+    "D": "constraint",
+    "E": "exaggeration",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Seçici alıntılama/çerry-picking."
+    "explanation": "ÇÖZÜM: Safeguard = koruma/güvence (protection)."
   },
   {
     "id": 44,
-    "prompt": "44. The author suggests that the solution is to be transparent about ______.",
-    "A": "assumptions and trade-offs",
-    "B": "ideology and personal beliefs only",
-    "C": "the size of datasets used in studies",
-    "D": "how to remove values from decisions",
-    "E": "why evidence should be replaced by opinions",
+    "prompt": "44. The passage implies that replication tends to ______ compared with novelty.",
+    "A": "reward confirmation more than originality",
+    "B": "reject all confirmatory work",
+    "C": "focus only on new ideas",
+    "D": "remove the need for experiments",
+    "E": "make context irrelevant by default",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Varsayımlar ve bedeller/ödünleşimler."
+    "explanation": "ÇÖZÜM: Metinde 'rewarding confirmatory work over original ideas' ifadesi geçmektedir."
   },
   {
     "id": 45,
-    "prompt": "45. In the passage, the phrase \"antidote to ideology\" most nearly means ______.",
-    "A": "a remedy that reduces ideological influence",
-    "B": "a method that intensifies ideological conflict",
-    "C": "a rule that bans political parties",
-    "D": "a claim that ideology is always beneficial",
-    "E": "an approach that replaces data with slogans",
+    "prompt": "45. Which option best reflects the author’s overall approach?",
+    "A": "Presenting both benefits and drawbacks without taking an extreme stance",
+    "B": "Arguing replication should replace all original studies",
+    "C": "Claiming replication is harmful and should be prohibited",
+    "D": "Rejecting replication as scientifically meaningless",
+    "E": "Defending novelty while denying any value to replication",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Antidote = panzehir/çare."
+    "explanation": "ÇÖZÜM: Yazar hem savunanların hem de eleştirenlerin görüşlerine yer vermiştir."
   },
-
   {
     "id": 46,
-    "prompt": "46. PARAGRAPH (Hard): In corporate governance, independence is often treated as a guarantee of objectivity. However, independence on paper does not necessarily prevent subtle conflicts of interest. Directors may rely on management for information, social ties may shape judgment, and incentives can be misaligned even without direct financial dependence. Effective oversight therefore requires not only formal independence but also institutional mechanisms that encourage dissent and protect whistleblowers.\n\nThe passage argues that independence ______.",
-    "A": "is insufficient unless supported by mechanisms that promote genuine oversight",
-    "B": "always eliminates conflicts of interest",
-    "C": "is irrelevant because incentives do not matter",
-    "D": "depends mainly on directors’ salaries",
-    "E": "prevents management from controlling information",
+    "prompt": "46. READING: Remote work has shifted from a niche arrangement to a mainstream practice. Supporters argue it improves productivity and reduces commuting time, while critics warn it can blur the boundary between work and personal life. Some evidence suggests outcomes depend on organizational culture and the autonomy given to employees.\n\nAccording to the passage, the impact of remote work ______.",
+    "A": "depends on culture and employee autonomy",
+    "B": "is uniformly positive across all sectors",
+    "C": "inevitably lowers productivity",
+    "D": "eliminates the need for management",
+    "E": "is unrelated to commuting time",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Kağıt üzerindeki bağımsızlık yetmez; mekanizma + itiraz kültürü + ihbarcı koruması."
+    "explanation": "ÇÖZÜM: Metnin son cümlesi sonucun kültüre ve özerkliğe bağlı olduğunu belirtiyor."
   },
   {
     "id": 47,
-    "prompt": "47. Which factor is mentioned as a source of subtle conflict even when directors are independent?",
-    "A": "reliance on management for information",
-    "B": "mandatory government ownership",
-    "C": "absence of any incentives",
-    "D": "complete transparency of all decisions",
-    "E": "automatic whistleblower protection laws",
+    "prompt": "47. The critics in the passage mainly worry that remote work may ______.",
+    "A": "erode the separation between work and private life",
+    "B": "increase commuting time dramatically",
+    "C": "make autonomy impossible",
+    "D": "remove cultural influence entirely",
+    "E": "force employees to work fewer hours",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Yönetimden bilgi alma bağımlılığı."
+    "explanation": "ÇÖZÜM: 'Blur the boundary between work and personal life' = İş ve özel hayat ayrımını aşındırmak."
   },
   {
     "id": 48,
-    "prompt": "48. The passage suggests that effective oversight requires institutions that ______.",
-    "A": "encourage dissent and protect whistleblowers",
-    "B": "ban social interaction among directors",
-    "C": "remove management from all meetings",
-    "D": "guarantee unanimity in board votes",
-    "E": "prioritize speed over deliberation",
+    "prompt": "48. The passage suggests autonomy is important because it can ______.",
+    "A": "shape how beneficial remote work becomes",
+    "B": "guarantee negative outcomes",
+    "C": "replace organizational culture",
+    "D": "eliminate productivity gains",
+    "E": "prevent any flexibility in schedules",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Dissent + whistleblower protection."
+    "explanation": "ÇÖZÜM: Sonuçlar özerkliğe bağlıysa, özerklik faydayı şekillendirir."
   },
   {
     "id": 49,
-    "prompt": "49. The author’s tone is best described as ______.",
-    "A": "cautiously critical",
-    "B": "naively optimistic",
-    "C": "openly hostile",
-    "D": "sarcastically humorous",
-    "E": "indifferent and detached",
+    "prompt": "49. The phrase 'niche arrangement' is closest in meaning to ______.",
+    "A": "a limited, specialized option",
+    "B": "a legally mandated rule",
+    "C": "a universal social norm",
+    "D": "a temporary emergency ban",
+    "E": "a widely condemned policy",
     "correct": "A",
-    "explanation": "ÇÖZÜM: İdeali reddetmiyor ama eleştirel/temkinli."
+    "explanation": "ÇÖZÜM: Niche = kısıtlı bir alana hitap eden/özel."
   },
   {
     "id": 50,
-    "prompt": "50. In the passage, \"independence on paper\" most likely refers to ______.",
-    "A": "formal independence that may not translate into real-world objectivity",
-    "B": "illegal independence that violates regulations",
-    "C": "financial independence guaranteed by dividends",
-    "D": "complete ignorance of managerial reports",
-    "E": "independence proven through whistleblowing",
+    "prompt": "50. Which option best summarizes the passage?",
+    "A": "Remote work is widespread, but its outcomes vary by organizational context.",
+    "B": "Remote work is harmful because it always reduces productivity.",
+    "C": "Remote work is beneficial only because it eliminates commuting everywhere.",
+    "D": "Remote work makes culture irrelevant in all workplaces.",
+    "E": "Remote work is a short-lived trend with no lasting impact.",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Resmi/formal ama pratikte etkisiz olabilir."
+    "explanation": "ÇÖZÜM: Pasaj uzaktan çalışmanın yaygınlaştığını ancak sonucun bağlama göre değiştiğini özetler."
   },
-
   {
     "id": 51,
-    "prompt": "51. PARAGRAPH (Hard): Technological \"solutions\" to social problems often fail because they treat symptoms rather than underlying causes. Predictive policing, for example, may appear to allocate resources efficiently, but it can amplify existing biases if historical data reflect unequal enforcement. Similarly, algorithmic hiring may standardize evaluation, yet it can penalize nontraditional career paths. A more responsible approach requires continuous auditing, public accountability, and, crucially, a willingness to redesign systems when harms are detected.\n\nThe passage primarily warns that technological fixes ______.",
-    "A": "can reinforce existing inequalities unless carefully audited and redesigned",
-    "B": "always eliminate human bias in decision-making",
-    "C": "are inherently unethical and should be banned",
-    "D": "work best when they are kept secret from the public",
-    "E": "are effective because historical data are unbiased",
+    "prompt": "51. The investigation was launched to ______ allegations of misconduct within the agency.",
+    "A": "probe",
+    "B": "endorse",
+    "C": "diffuse",
+    "D": "repay",
+    "E": "ignore",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Veri yanlıysa teknoloji yanlılığı büyütür; denetim + hesap verebilirlik."
+    "explanation": "ÇÖZÜM: İddiaları 'araştırmak/derinlemesine incelemek' = probe."
   },
   {
     "id": 52,
-    "prompt": "52. According to the passage, predictive policing may amplify bias because ______.",
-    "A": "historical data may reflect unequal enforcement",
-    "B": "police resources are unlimited",
-    "C": "algorithms do not use data at all",
-    "D": "crime never correlates with location",
-    "E": "auditing is illegal in most countries",
+    "prompt": "52. The company’s profits have been ______ by rising energy costs and weaker demand.",
+    "A": "eroded",
+    "B": "assembled",
+    "C": "rehearsed",
+    "D": "neutralized",
+    "E": "strengthened",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Geçmiş veri adaletsizse çıktı da öyle olur."
+    "explanation": "ÇÖZÜM: Artan maliyetler karları 'aşındırır/azaltır' (eroded)."
   },
   {
     "id": 53,
-    "prompt": "53. The passage suggests algorithmic hiring may disadvantage ______.",
-    "A": "people with nontraditional career paths",
-    "B": "only those with advanced degrees",
-    "C": "only those with perfect résumés",
-    "D": "those who work in traditional industries",
-    "E": "anyone who applies early",
+    "prompt": "53. The memo was intended to ______ employees’ concerns, but it sounded dismissive.",
+    "A": "allay",
+    "B": "provoke",
+    "C": "inflate",
+    "D": "validate",
+    "E": "worsen",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Nontraditional path penalize edilebilir."
+    "explanation": "ÇÖZÜM: Endişeleri 'yatıştırmak/gidermek' = allay."
   },
   {
     "id": 54,
-    "prompt": "54. The author’s recommended approach includes all EXCEPT ______.",
-    "A": "eliminating public accountability to protect privacy",
-    "B": "continuous auditing",
-    "C": "public accountability",
-    "D": "redesigning systems when harms appear",
-    "E": "treating underlying causes rather than symptoms",
+    "prompt": "54. The law was designed to prevent firms from ______ consumers with misleading claims.",
+    "A": "deceiving",
+    "B": "compiling",
+    "C": "conceding",
+    "D": "withdrawing",
+    "E": "rewarding",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Tam tersine kamuya hesap verebilirlik istiyor."
+    "explanation": "ÇÖZÜM: Tüketiciyi 'aldatmak' (deceiving) yasaklanır."
   },
   {
     "id": 55,
-    "prompt": "55. In the passage, the word \"symptoms\" is used to contrast with ______.",
-    "A": "underlying causes",
-    "B": "public audits",
-    "C": "resource allocation",
-    "D": "career paths",
-    "E": "data storage",
+    "prompt": "55. The philosopher argued that moral judgments are ______ by cultural context.",
+    "A": "conditioned",
+    "B": "diverted",
+    "C": "confiscated",
+    "D": "deposited",
+    "E": "ignored",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Symptoms vs underlying causes."
+    "explanation": "ÇÖZÜM: Ahlaki yargılar kültür tarafından 'şekillendirilir/koşullandırılır' (conditioned)."
   },
-
   {
     "id": 56,
-    "prompt": "56. The new framework seeks to ______ the gap between policy intentions and real-world outcomes.",
-    "A": "bridge",
-    "B": "inflame",
-    "C": "abolish",
-    "D": "conceal",
-    "E": "scatter",
+    "prompt": "56. Had it not been for her timely intervention, the project ______ derailed completely.",
+    "A": "might have",
+    "B": "will have",
+    "C": "has",
+    "D": "would",
+    "E": "can",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Arayı kapatmak = bridge."
+    "explanation": "ÇÖZÜM: If Clause Type 3 (Past Unreal). 'Had it not been for' kalıbı 'might have V3' ile tamamlanır."
   },
   {
     "id": 57,
-    "prompt": "57. The scientist’s claim was bold, but it was not entirely ______ given the preliminary evidence.",
-    "A": "implausible",
-    "B": "mandatory",
-    "C": "ornamental",
-    "D": "peripheral",
-    "E": "auditory",
+    "prompt": "57. Rarely ______ a solution that satisfies all parties in a complex dispute.",
+    "A": "does one find",
+    "B": "one finds",
+    "C": "has one found",
+    "D": "one found",
+    "E": "will one finding",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Tamamen akla yatmaz değil = not entirely implausible."
+    "explanation": "ÇÖZÜM: Olumsuz zarf (Rarely) başta ise cümle devrik olur: 'does one find'."
   },
   {
     "id": 58,
-    "prompt": "58. The judge dismissed the testimony as ______, noting several contradictions.",
-    "A": "dubious",
-    "B": "benign",
-    "C": "lavish",
-    "D": "lucid",
-    "E": "robust",
+    "prompt": "58. The board recommended that the CEO ______ from further comment until the inquiry ends.",
+    "A": "refrain",
+    "B": "refrained",
+    "C": "refrains",
+    "D": "is refraining",
+    "E": "has refrained",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Şüpheli = dubious."
+    "explanation": "ÇÖZÜM: Subjunctive (recommended that...) yapısında fiil yalın (refrain) kullanılır."
   },
   {
     "id": 59,
-    "prompt": "59. The reform was intended to ______ the burden on low-income households.",
-    "A": "alleviate",
-    "B": "aggravate",
-    "C": "obscure",
-    "D": "invalidate",
-    "E": "preclude",
+    "prompt": "59. The report, ______ by a panel of experts, identified several systemic flaws.",
+    "A": "compiled",
+    "B": "compiling",
+    "C": "having compile",
+    "D": "to compile",
+    "E": "was compiling",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Yükü hafifletmek = alleviate."
+    "explanation": "ÇÖZÜM: Passive Reduced Clause: 'The report (which was) compiled...' -> 'compiled'."
   },
   {
     "id": 60,
-    "prompt": "60. The policy was criticized for producing ______ effects, benefiting some groups while harming others.",
-    "A": "uneven",
-    "B": "immaculate",
-    "C": "monotonous",
-    "D": "docile",
-    "E": "auditory",
+    "prompt": "60. The proposal was approved, ______ minor adjustments to the budget.",
+    "A": "subject to",
+    "B": "due to",
+    "C": "instead of",
+    "D": "apart from",
+    "E": "in spite of",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Dengesiz/eşit olmayan = uneven."
+    "explanation": "ÇÖZÜM: Küçük ayarlamalara 'bağlı olarak/tabi tutularak' (subject to) onaylandı."
   },
-
   {
     "id": 61,
-    "prompt": "61. The minister’s speech relied heavily on ______, offering few concrete proposals.",
-    "A": "platitudes",
-    "B": "paradoxes",
-    "C": "premises",
-    "D": "protocols",
-    "E": "prototypes",
+    "prompt": "61. CLOZE: The rise of misinformation is often blamed on social media. (61) ______, traditional outlets have also contributed by prioritizing speed over verification.",
+    "A": "Nonetheless",
+    "B": "Consequently",
+    "C": "Similarly",
+    "D": "Hence",
+    "E": "Specifically",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Klişe sözler = platitudes."
+    "explanation": "ÇÖZÜM: Sosyal medya suçlansa da 'buna rağmen' (nonetheless) geleneksel medya da suçludur."
   },
   {
     "id": 62,
-    "prompt": "62. The research team was careful not to ______ the results beyond what the data justified.",
-    "A": "extrapolate",
-    "B": "abolish",
-    "C": "concede",
-    "D": "compile",
-    "E": "repress",
+    "prompt": "62. (62) ______ verification is costly, it is indispensable for maintaining credibility.",
+    "A": "Although",
+    "B": "Because",
+    "C": "Unless",
+    "D": "So",
+    "E": "Before",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Veriden öteye genellemek/uzatmak = extrapolate."
+    "explanation": "ÇÖZÜM: Maliyetli olmasına rağmen vazgeçilmezdir. Zıtlık: 'Although'."
   },
   {
     "id": 63,
-    "prompt": "63. The negotiation succeeded largely because both sides were willing to make ______.",
-    "A": "concessions",
-    "B": "contradictions",
-    "C": "coincidences",
-    "D": "commodities",
-    "E": "conspiracies",
+    "prompt": "63. (63) ______ audiences demand accuracy, they are unlikely to tolerate repeated errors.",
+    "A": "When",
+    "B": "Until",
+    "C": "Unless",
+    "D": "Whereas",
+    "E": "Even if",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Taviz = concession."
+    "explanation": "ÇÖZÜM: Doğruluk talep ettikleri 'zaman/durumda' (when) hataları tolere etmezler."
   },
   {
     "id": 64,
-    "prompt": "64. The committee’s recommendation was adopted ______ strong objections from several members.",
-    "A": "despite",
-    "B": "because",
-    "C": "unless",
-    "D": "since",
-    "E": "provided",
+    "prompt": "64. (64) ______, trust once lost is difficult to regain.",
+    "A": "In general",
+    "B": "At random",
+    "C": "By accident",
+    "D": "On the contrary",
+    "E": "In particular",
     "correct": "A",
-    "explanation": "ÇÖZÜM: -e rağmen = despite."
+    "explanation": "ÇÖZÜM: Genel bir kural/yargı belirtiliyor: 'In general' (genel olarak)."
   },
   {
     "id": 65,
-    "prompt": "65. The scientist warned that small errors can ______ into major distortions over time.",
-    "A": "snowball",
-    "B": "dwindle",
-    "C": "recede",
-    "D": "nullify",
-    "E": "enclose",
+    "prompt": "65. The lesson is that institutions must invest in systems that prevent errors rather than ______ for them afterwards.",
+    "A": "apologize",
+    "B": "authorize",
+    "C": "complicate",
+    "D": "suffocate",
+    "E": "repeat",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Kartopu gibi büyümek = snowball."
+    "explanation": "ÇÖZÜM: Hata sonrası 'özür dilemek' (apologize) yerine önlem almak gerekir."
   },
-
   {
     "id": 66,
-    "prompt": "66. English: 'The findings should be interpreted with caution until further replication confirms them.'",
-    "A": "Bulgular, daha fazla tekrar çalışma onları doğrulayıncaya kadar temkinle yorumlanmalıdır.",
-    "B": "Bulgular kesinleştiği için artık temkine gerek yoktur.",
-    "C": "Tekrar çalışmaları bulguları her zaman çürütür.",
-    "D": "Bulgular yalnızca sezgiyle yorumlanmalıdır.",
-    "E": "Bulgular, dikkatli yorumlanmamalıdır.",
+    "prompt": "66. The contract was deemed ______ because one party had been misled about key terms.",
+    "A": "voidable",
+    "B": "infallible",
+    "C": "portable",
+    "D": "valid",
+    "E": "binding",
     "correct": "A",
-    "explanation": "ÇÖZÜM: interpreted with caution=temkinle yorumlamak."
+    "explanation": "ÇÖZÜM: Yanıltma varsa sözleşme 'iptal edilebilir' (voidable) sayılır."
   },
   {
     "id": 67,
-    "prompt": "67. Turkish: 'Bu düzenleme, kısa vadede maliyeti artırsa da uzun vadede riski azaltabilir.'",
-    "A": "Although this regulation increases costs in the short run, it may reduce risk in the long run.",
-    "B": "This regulation reduces costs immediately and increases risk later.",
-    "C": "The regulation never affects costs or risk.",
-    "D": "Costs decrease because risk decreases in the short run.",
-    "E": "The regulation increases risk despite lowering costs long-term.",
+    "prompt": "67. The committee urged lawmakers to avoid policies that would ______ vulnerable groups disproportionately.",
+    "A": "penalize",
+    "B": "enrich",
+    "C": "sanctify",
+    "D": "assist",
+    "E": "protect",
     "correct": "A",
-    "explanation": "ÇÖZÜM: although=...sa da; may reduce risk=riski azaltabilir."
+    "explanation": "ÇÖZÜM: Savunmasız grupları 'cezalandıracak/mağdur edecek' (penalize) politikalardan kaçınılmalı."
   },
   {
     "id": 68,
-    "prompt": "68. English: 'The committee’s decision was driven less by evidence than by political expediency.'",
-    "A": "Komitenin kararı, kanıttan çok siyasi çıkarcılık/pratiklik tarafından yönlendirildi.",
-    "B": "Komite, yalnızca kanıta dayanarak karar verdi.",
-    "C": "Komitenin kararı siyasetten tamamen bağımsızdı.",
-    "D": "Kanıtlar, siyasi kolaycılığı artırdı.",
-    "E": "Komite, kararı geciktirmek için kanıt topladı.",
+    "prompt": "68. The activist warned that the measures could set a dangerous ______ for future governments.",
+    "A": "precedent",
+    "B": "ornament",
+    "C": "interval",
+    "D": "obstacle",
+    "E": "limit",
     "correct": "A",
-    "explanation": "ÇÖZÜM: expediency=siyasi/pratik çıkar."
+    "explanation": "ÇÖZÜM: Tehlikeli bir 'emsal' (precedent) oluşturmak."
   },
   {
     "id": 69,
-    "prompt": "69. Turkish: 'Veriler yüzeysel görünebilir; ancak doğru yorumlanmadığında yanıltıcı sonuçlar doğurabilir.'",
-    "A": "The data may appear superficial; however, if not interpreted properly, they can lead to misleading conclusions.",
-    "B": "Data are never misleading because they are always objective.",
-    "C": "Superficial data always produce accurate conclusions.",
-    "D": "If data are interpreted properly, they will be ignored.",
-    "E": "Misleading conclusions are impossible when data look superficial.",
+    "prompt": "69. The findings were impressive, but the sample size was too small to be ______.",
+    "A": "conclusive",
+    "B": "peripheral",
+    "C": "ambiguous",
+    "D": "redundant",
+    "E": "insignificant",
     "correct": "A",
-    "explanation": "ÇÖZÜM: however + misleading conclusions."
+    "explanation": "ÇÖZÜM: Örneklem küçükse sonuçlar 'kesin/nihai' (conclusive) olamaz."
   },
   {
     "id": 70,
-    "prompt": "70. English: 'The policy was designed to mitigate risk, yet it inadvertently introduced new vulnerabilities.'",
-    "A": "Politika riski azaltmak için tasarlanmıştı; ancak istemeden yeni zafiyetler ortaya çıkardı.",
-    "B": "Politika yeni zafiyetleri azaltmak için tasarlanmıştı ve başardı.",
-    "C": "Politika riskle ilgisiz olduğu için zafiyet oluşmadı.",
-    "D": "Politika zafiyetleri kasıtlı olarak artırdı.",
-    "E": "Politika, riskleri tamamen ortadan kaldırdığı için eleştirildi.",
+    "prompt": "70. The director was accused of ______ the issue to distract the public from the real problem.",
+    "A": "downplaying",
+    "B": "rectifying",
+    "C": "clarifying",
+    "D": "documenting",
+    "E": "solving",
     "correct": "A",
-    "explanation": "ÇÖZÜM: mitigate risk=riski azaltmak; inadvertently=istemeden."
+    "explanation": "ÇÖZÜM: Dikkat dağıtmak için sorunu 'küçümsemek/önemsiz göstermek' (downplaying)."
   },
-
   {
     "id": 71,
-    "prompt": "71. The committee was accused of acting in a ______ manner, changing criteria without warning.",
-    "A": "capricious",
-    "B": "meticulous",
-    "C": "cordial",
-    "D": "dormant",
-    "E": "benign",
+    "prompt": "71. The scientist argued that correlation should not be ______ as causation.",
+    "A": "construed",
+    "B": "dismantled",
+    "C": "dispersed",
+    "D": "repaired",
+    "E": "rejected",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Keyfi/değişken = capricious."
+    "explanation": "ÇÖZÜM: Korelasyon, nedensellik olarak 'yorumlanmamalıdır' (construed)."
   },
   {
     "id": 72,
-    "prompt": "72. The scientist argued that the theory was ______ because it produced testable predictions.",
-    "A": "falsifiable",
-    "B": "untenable",
-    "C": "obsolete",
-    "D": "ornamental",
-    "E": "dubious",
+    "prompt": "72. The policy is meant to ______ corruption by increasing oversight and transparency.",
+    "A": "deter",
+    "B": "inflate",
+    "C": "conceal",
+    "D": "promote",
+    "E": "ignore",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Yanlışlanabilir = falsifiable."
+    "explanation": "ÇÖZÜM: Yolsuzluğu 'caydırmak/engellemek' (deter)."
   },
   {
     "id": 73,
-    "prompt": "73. The public’s anger was ______ when leaked documents confirmed the allegations.",
-    "A": "intensified",
-    "B": "nullified",
-    "C": "diminished",
-    "D": "relocated",
-    "E": "evaporated",
+    "prompt": "73. The committee’s conclusions were criticized for lacking ______ support.",
+    "A": "empirical",
+    "B": "ornamental",
+    "C": "fictional",
+    "D": "emotional",
+    "E": "hypothetical",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Şiddetlenmek = intensify."
+    "explanation": "ÇÖZÜM: Bilimsel bir sonuç 'deneysel/kanıta dayalı' (empirical) destek gerektirir."
   },
   {
     "id": 74,
-    "prompt": "74. The new rules were intended to ______ loopholes that had been exploited for years.",
-    "A": "close",
-    "B": "decorate",
-    "C": "inflate",
-    "D": "postpone",
-    "E": "scatter",
+    "prompt": "74. The plan was praised as pragmatic, yet some argued it was ethically ______.",
+    "A": "dubious",
+    "B": "salient",
+    "C": "impeccable",
+    "D": "candid",
+    "E": "robust",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Açıkları kapatmak = close loopholes."
+    "explanation": "ÇÖZÜM: Pragmatik ama etik açıdan 'şüpheli' (dubious)."
   },
   {
     "id": 75,
-    "prompt": "75. The committee’s report was praised for its ______ analysis, which examined multiple scenarios.",
-    "A": "comprehensive",
-    "B": "incidental",
-    "C": "peripheral",
-    "D": "auditory",
-    "E": "fragile",
+    "prompt": "75. The organization issued a statement to ______ rumors circulating online.",
+    "A": "dispel",
+    "B": "incite",
+    "C": "prolong",
+    "D": "spread",
+    "E": "confirm",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Kapsamlı = comprehensive."
+    "explanation": "ÇÖZÜM: Söylentileri 'dağıtmak/çürütmek' (dispel)."
   },
   {
     "id": 76,
-    "prompt": "76. The organization pledged to ______ its procedures to prevent future failures.",
-    "A": "overhaul",
-    "B": "cherish",
-    "C": "misplace",
-    "D": "defer",
-    "E": "dwindle",
+    "prompt": "76. The proposal was rejected because it failed to provide a ______ timeline for implementation.",
+    "A": "feasible",
+    "B": "volatile",
+    "C": "abstract",
+    "D": "peripheral",
+    "E": "vague",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Baştan düzenlemek = overhaul."
+    "explanation": "ÇÖZÜM: Uygulama için 'yapılabilir/gerçekçi' (feasible) bir zaman çizelgesi gerekir."
   },
   {
     "id": 77,
-    "prompt": "77. The decision was criticized for prioritizing short-term gains at the ______ of long-term sustainability.",
-    "A": "expense",
-    "B": "mercy",
-    "C": "height",
-    "D": "edge",
-    "E": "benefit",
+    "prompt": "77. The researcher’s method was praised for its clarity and ______, enabling replication.",
+    "A": "transparency",
+    "B": "fragility",
+    "C": "hostility",
+    "D": "secrecy",
+    "E": "complexity",
     "correct": "A",
-    "explanation": "ÇÖZÜM: at the expense of = pahasına."
+    "explanation": "ÇÖZÜM: Tekrarlanabilirlik için metodun 'şeffaf' (transparency) olması gerekir."
   },
   {
     "id": 78,
-    "prompt": "78. The minister’s promise was greeted with ______, as similar pledges had been broken before.",
-    "A": "skepticism",
-    "B": "reverence",
-    "C": "certainty",
-    "D": "serenity",
-    "E": "gratitude",
+    "prompt": "78. The team worked around the clock to ______ the risks before the product launch.",
+    "A": "mitigate",
+    "B": "magnify",
+    "C": "abolish",
+    "D": "ignore",
+    "E": "maintain",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Şüphecilik = skepticism."
+    "explanation": "ÇÖZÜM: Lansman öncesi riskleri 'azaltmak' (mitigate) gerekir."
   },
   {
     "id": 79,
-    "prompt": "79. The scientist’s work was praised for ______ complex ideas without oversimplifying them.",
-    "A": "clarifying",
-    "B": "confining",
-    "C": "concealing",
-    "D": "complicating",
-    "E": "contradicting",
+    "prompt": "79. The author’s critique was harsh but ______, focusing on improvements rather than blame.",
+    "A": "constructive",
+    "B": "vindictive",
+    "C": "arbitrary",
+    "D": "destructive",
+    "E": "pointless",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Açık hale getirmek = clarify."
+    "explanation": "ÇÖZÜM: Gelişime odaklanan eleştiri 'yapıcı' (constructive) dır."
   },
   {
     "id": 80,
-    "prompt": "80. The committee concluded that the benefits were real but ______, and therefore required careful monitoring.",
-    "A": "fragile",
-    "B": "inevitable",
-    "C": "absolute",
-    "D": "permanent",
-    "E": "audible",
+    "prompt": "80. The reforms were described as not merely desirable but ______ to long-term stability.",
+    "A": "imperative",
+    "B": "incidental",
+    "C": "superfluous",
+    "D": "optional",
+    "E": "harmful",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Kırılgan = fragile (kolay bozulabilir)."
+    "explanation": "ÇÖZÜM: Sadece arzu edilir değil, aynı zamanda 'zorunlu/hayati' (imperative)."
   }
 ]
