@@ -3,111 +3,111 @@
         "id": 1,
         "prompt": "1. The proposal was praised for being innovative, yet critics argued it was ______ in its assumptions about human behavior.",
         "A": "naive",
-        "B": "meticulous",
-        "C": "opaque",
-        "D": "audible",
-        "E": "portable",
+        "B": "pragmatic",
+        "C": "sophisticated",
+        "D": "objective",
+        "E": "comprehensive",
         "correct": "A",
-        "explanation": "ÇÖZÜM: İnsan davranışı varsayımlarında saf/çocuksu = naive."
+        "explanation": "ÇÖZÜM: İnsan davranışı konusunda deneyimsiz/safça varsayımlar = naive. Diğer şıklar (pragmatik, sofistike) eleştiriden ziyade övgü olurdu."
     },
     {
         "id": 2,
         "prompt": "2. The committee demanded that the findings be presented in a more ______ manner, with clear definitions and evidence.",
         "A": "systematic",
-        "B": "incidental",
-        "C": "ornamental",
-        "D": "hostile",
-        "E": "fleeting",
+        "B": "ambiguous",
+        "C": "haphazard",
+        "D": "arbitrary",
+        "E": "hostile",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Sistemli/düzenli = systematic."
+        "explanation": "ÇÖZÜM: Net tanımlar ve kanıtlar istendiğine göre düzenli olmalı = systematic. Haphazard (gelişigüzel) zıttıdır."
     },
     {
         "id": 3,
         "prompt": "3. The minister’s speech was criticized for being ______, repeating the same points without adding substance.",
         "A": "repetitive",
-        "B": "lucid",
-        "C": "robust",
-        "D": "benign",
-        "E": "coherent",
+        "B": "insightful",
+        "C": "concise",
+        "D": "innovative",
+        "E": "engaging",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Tekrarlı = repetitive."
+        "explanation": "ÇÖZÜM: Aynı noktaları tekrar etmek = repetitive."
     },
     {
         "id": 4,
         "prompt": "4. The investigation aimed to ______ whether the accusations were supported by credible evidence.",
         "A": "ascertain",
-        "B": "deteriorate",
-        "C": "conceal",
-        "D": "inflate",
-        "E": "discard",
+        "B": "fabricate",
+        "C": "obscure",
+        "D": "suppress",
+        "E": "neglect",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Kesin olarak öğrenmek = ascertain."
+        "explanation": "ÇÖZÜM: Doğruluğunu/aslını öğrenmek, tespit etmek = ascertain."
     },
     {
         "id": 5,
         "prompt": "5. The scientist warned that drawing firm conclusions from such limited data would be ______.",
         "A": "premature",
-        "B": "inevitable",
-        "C": "transparent",
-        "D": "permanent",
-        "E": "uniform",
+        "B": "accurate",
+        "C": "justified",
+        "D": "definitive",
+        "E": "logical",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Erken/acele = premature."
+        "explanation": "ÇÖZÜM: Sınırlı veriden kesin sonuç çıkarmak erkendir = premature."
     },
     {
         "id": 6,
         "prompt": "6. The company’s apology was widely seen as ______, issued only after public pressure intensified.",
         "A": "belated",
-        "B": "spontaneous",
-        "C": "cordial",
-        "D": "meticulous",
-        "E": "lucid",
+        "B": "proactive",
+        "C": "timely",
+        "D": "sincere",
+        "E": "voluntary",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Gecikmiş = belated."
+        "explanation": "ÇÖZÜM: Baskı arttıktan sonra yapıldığı için gecikmiş = belated."
     },
     {
         "id": 7,
         "prompt": "7. The report suggested that the current system is ______ and therefore resistant to meaningful change.",
         "A": "entrenched",
-        "B": "flexible",
-        "C": "fragile",
-        "D": "audible",
-        "E": "portable",
+        "B": "adaptable",
+        "C": "flexible",
+        "D": "innovative",
+        "E": "temporary",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Yerleşmiş/kök salmış = entrenched."
+        "explanation": "ÇÖZÜM: Değişime dirençli ise kök salmış/yerleşmiş demektir = entrenched."
     },
     {
         "id": 8,
         "prompt": "8. The journalist’s account was compelling, but it lacked ______, offering anecdotes instead of evidence.",
         "A": "rigor",
-        "B": "pity",
-        "C": "symmetry",
-        "D": "gravity",
-        "E": "novelty",
+        "B": "bias",
+        "C": "emotion",
+        "D": "speculation",
+        "E": "simplicity",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Bilimsel/ciddi titizlik = rigor."
+        "explanation": "ÇÖZÜM: Kanıt yerine anektod sunuyorsa bilimsel/ciddi titizlik eksiktir = rigor."
     },
     {
         "id": 9,
         "prompt": "9. The committee tried to ______ the dispute by proposing a compromise acceptable to both sides.",
         "A": "mediate",
-        "B": "provoke",
-        "C": "magnify",
-        "D": "invalidate",
-        "E": "neglect",
+        "B": "escalate",
+        "C": "aggravate",
+        "D": "ignite",
+        "E": "prolong",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Arabuluculuk yapmak = mediate."
+        "explanation": "ÇÖZÜM: Uzlaşma önererek tartışmayı çözmek/arabuluculuk yapmak = mediate."
     },
     {
         "id": 10,
         "prompt": "10. The decision was justified as pragmatic, but opponents called it morally ______.",
         "A": "indefensible",
-        "B": "lucid",
-        "C": "redundant",
-        "D": "benign",
-        "E": "uniform",
+        "B": "commendable",
+        "C": "sound",
+        "D": "consistent",
+        "E": "obligatory",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Savunulamaz = indefensible."
+        "explanation": "ÇÖZÜM: Muhalifler ahlaki açıdan savunulamaz buluyor = indefensible."
     },
     {
         "id": 11,
@@ -116,9 +116,9 @@
         "B": "has",
         "C": "did",
         "D": "was",
-        "E": "will",
+        "E": "would",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Hardly + had + S + V3 (devrik)."
+        "explanation": "ÇÖZÜM: 'Hardly... when' yapısı devrik cümle ister ve Past Perfect kullanılır: Hardly had..."
     },
     {
         "id": 12,
@@ -127,9 +127,9 @@
         "B": "does",
         "C": "has",
         "D": "was",
-        "E": "will",
+        "E": "had",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Not until başta → did + S + V1."
+        "explanation": "ÇÖZÜM: 'Not until' cümle başında ise ana cümle devrik olur (did the public learn)."
     },
     {
         "id": 13,
@@ -140,7 +140,7 @@
         "D": "has supported",
         "E": "was supporting",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Subjunctive passive: be supported."
+        "explanation": "ÇÖZÜM: Subjunctive yapısı (It is crucial that...). Fiil yalın haliyle (be) kullanılır."
     },
     {
         "id": 14,
@@ -149,9 +149,9 @@
         "B": "to leak",
         "C": "leaking",
         "D": "to be leaking",
-        "E": "having leak",
+        "E": "having leaked",
         "correct": "A",
-        "explanation": "ÇÖZÜM: is alleged to have V3 (geçmiş)."
+        "explanation": "ÇÖZÜM: 'Alleged' passivedir, 'to' alır. Eylem geçmişte olduğu için 'to have V3' kullanılır."
     },
     {
         "id": 15,
@@ -162,7 +162,7 @@
         "D": "prevents",
         "E": "would prevent",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Type 3 conditional."
+        "explanation": "ÇÖZÜM: If Clause Type 3 devrik yapı (Had...). Sonuç kısmında 'could/would have V3' gerekir."
     },
     {
         "id": 16,
@@ -173,7 +173,7 @@
         "D": "to",
         "E": "by",
         "correct": "A",
-        "explanation": "ÇÖZÜM: on the premise that."
+        "explanation": "ÇÖZÜM: Kalıp: 'on the premise that' (... öncülü/varsayımı üzerine)."
     },
     {
         "id": 17,
@@ -182,9 +182,9 @@
         "B": "to",
         "C": "at",
         "D": "with",
-        "E": "by",
+        "E": "for",
         "correct": "A",
-        "explanation": "ÇÖZÜM: dependent on."
+        "explanation": "ÇÖZÜM: Dependent on (bir şeye bağlı olmak)."
     },
     {
         "id": 18,
@@ -195,7 +195,7 @@
         "D": "there has",
         "E": "there will",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Seldom başta → devrik: is there..."
+        "explanation": "ÇÖZÜM: Olumsuz zarf (Seldom) başta ise cümle devrik olur: 'is there'."
     },
     {
         "id": 19,
@@ -204,9 +204,9 @@
         "B": "to",
         "C": "at",
         "D": "by",
-        "E": "for",
+        "E": "in",
         "correct": "A",
-        "explanation": "ÇÖZÜM: insist on + V-ing."
+        "explanation": "ÇÖZÜM: Insist on + Ving."
     },
     {
         "id": 20,
@@ -217,7 +217,7 @@
         "D": "having devise",
         "E": "was devising",
         "correct": "A",
-        "explanation": "ÇÖZÜM: devised by... (sıfat-fiil)."
+        "explanation": "ÇÖZÜM: Passive reduction (Relative Clause kısaltması). 'which was devised' -> 'devised'."
     },
     {
         "id": 21,
@@ -228,7 +228,7 @@
         "D": "Likewise",
         "E": "Namely",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Zıtlık: However."
+        "explanation": "ÇÖZÜM: İlk cümlede muhalefetin önemi, ikincide ise kötülenmesinin zararı anlatılıyor. Zıtlık bağlacı 'However' gerekir."
     },
     {
         "id": 22,
@@ -239,7 +239,7 @@
         "D": "Despite",
         "E": "Until",
         "correct": "A",
-        "explanation": "ÇÖZÜM: When = -dığında."
+        "explanation": "ÇÖZÜM: Bir durum ve sonucu anlatılıyor. 'When' (dığında/olduğu zaman) anlamca en uygunudur."
     },
     {
         "id": 23,
@@ -250,7 +250,7 @@
         "D": "In silence",
         "E": "By accident",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Sonuç/çıkarım: Consequently."
+        "explanation": "ÇÖZÜM: Önceki sorunlara bir çözüm/sonuç önerisi getiriliyor. 'Consequently' (Sonuç olarak)."
     },
     {
         "id": 24,
@@ -261,18 +261,18 @@
         "D": "unless",
         "E": "as long as",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Zıtlık/ek vurgu: yet."
+        "explanation": "ÇÖZÜM: Zor olması ile gerekli olması arasında bir zıtlık/vurgu ilişkisi var. 'Yet' (yine de/buna rağmen) uygundur."
     },
     {
         "id": 25,
         "prompt": "25. The central challenge is to keep debate vigorous without allowing it to become ______.",
         "A": "toxic",
-        "B": "audible",
-        "C": "portable",
-        "D": "ornamental",
-        "E": "uniform",
+        "B": "constructive",
+        "C": "productive",
+        "D": "meaningful",
+        "E": "rational",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Zehirli/yıkıcı ortam = toxic."
+        "explanation": "ÇÖZÜM: 'Without allowing' yapısı olumsuz bir sıfat gerektirir. Diğer şıklar olumludur."
     },
     {
         "id": 26,
@@ -283,7 +283,7 @@
         "D": "Provided that investors protested",
         "E": "If the merger will happen soon",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Anticipating... = olası hukuki sorunları öngörerek."
+        "explanation": "ÇÖZÜM: Neden-sonuç ilişkisi. Yasal sorunları öngörerek ertelediler."
     },
     {
         "id": 27,
@@ -294,7 +294,7 @@
         "D": "instead",
         "E": "likewise",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Buna rağmen (temkin): nevertheless."
+        "explanation": "ÇÖZÜM: Etkileyici ama yine de (nevertheless) tekrar edilmeli (ihtiyat)."
     },
     {
         "id": 28,
@@ -305,7 +305,7 @@
         "D": "so that",
         "E": "because",
         "correct": "A",
-        "explanation": "ÇÖZÜM: ...olmadıkça = unless."
+        "explanation": "ÇÖZÜM: Bütçe ile desteklenmedikçe teorik kalacaktır. 'Unless' (...medikçe)."
     },
     {
         "id": 29,
@@ -316,7 +316,7 @@
         "D": "having emphasize",
         "E": "was emphasize",
         "correct": "A",
-        "explanation": "ÇÖZÜM: -erek: emphasizing."
+        "explanation": "ÇÖZÜM: Virgül sonrası Ving (present participle) ile eylemin nasıl yapıldığı anlatılıyor."
     },
     {
         "id": 30,
@@ -327,7 +327,7 @@
         "D": "since",
         "E": "because",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Zıtlık: yet."
+        "explanation": "ÇÖZÜM: Şeffaflık sözü verildi AMA kayıtlar saklandı. Zıtlık (yet)."
     },
     {
         "id": 31,
@@ -338,7 +338,7 @@
         "D": "hold on",
         "E": "turn into",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Sert önlem almak = crack down on."
+        "explanation": "ÇÖZÜM: Yasadışı bir şeye karşı sert önlem almak = crack down on."
     },
     {
         "id": 32,
@@ -349,7 +349,7 @@
         "D": "bring about",
         "E": "make out",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Yumuşatmak = tone down."
+        "explanation": "ÇÖZÜM: Gerginliği azaltmak/yumuşatmak = tone down."
     },
     {
         "id": 33,
@@ -360,7 +360,7 @@
         "D": "put on",
         "E": "get over",
         "correct": "A",
-        "explanation": "ÇÖZÜM: İlişkiyi kesmek = cut off."
+        "explanation": "ÇÖZÜM: İlişkiyi kesmek/bağlantıyı koparmak = cut off."
     },
     {
         "id": 34,
@@ -371,7 +371,7 @@
         "D": "dress up",
         "E": "hand over",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Tam yerini tespit etmek = pinpoint."
+        "explanation": "ÇÖZÜM: Tutarsızlıkları tam olarak tespit etmek = pinpoint."
     },
     {
         "id": 35,
@@ -382,62 +382,62 @@
         "D": "look after",
         "E": "make up",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Geri almak/geri sarmak = roll back."
+        "explanation": "ÇÖZÜM: Bir uygulamayı veya kampanyayı geri çekmek/eski haline getirmek = roll back."
     },
     {
         "id": 36,
         "prompt": "36. The report’s tone was ______, implying wrongdoing without stating it directly.",
         "A": "insinuating",
         "B": "transparent",
-        "C": "cordial",
-        "D": "meticulous",
-        "E": "benign",
+        "C": "direct",
+        "D": "factual",
+        "E": "objective",
         "correct": "A",
-        "explanation": "ÇÖZÜM: İma eden = insinuating."
+        "explanation": "ÇÖZÜM: Açıkça söylemeden ima etmek = insinuating. Diğer şıklar (şeffaf, doğrudan) zıttıdır."
     },
     {
         "id": 37,
         "prompt": "37. The committee criticized the plan for lacking ______, arguing it offered no clear timetable or metrics.",
         "A": "specificity",
-        "B": "symmetry",
-        "C": "gravity",
-        "D": "novelty",
-        "E": "pity",
+        "B": "ambiguity",
+        "C": "complexity",
+        "D": "abstraction",
+        "E": "redundancy",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Netlik/özgüllük = specificity."
+        "explanation": "ÇÖZÜM: Net bir takvim yoksa 'belirginlik/özgüllük' (specificity) eksiktir."
     },
     {
         "id": 38,
         "prompt": "38. The scientist’s argument was logically consistent, yet it rested on a ______ assumption.",
         "A": "questionable",
-        "B": "inevitable",
-        "C": "permanent",
-        "D": "uniform",
-        "E": "audible",
+        "B": "proven",
+        "C": "undisputed",
+        "D": "solid",
+        "E": "verified",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Tartışmalı = questionable."
+        "explanation": "ÇÖZÜM: 'Yet' zıtlık bildirir. Mantıklı ama varsayımı şüpheli/tartışmalı = questionable."
     },
     {
         "id": 39,
         "prompt": "39. The study found a correlation, but it did not ______ causation.",
         "A": "establish",
-        "B": "invalidate",
-        "C": "conceal",
-        "D": "dismantle",
-        "E": "disperse",
+        "B": "refute",
+        "C": "deny",
+        "D": "eliminate",
+        "E": "hinder",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Nedenselliği kanıtlamak = establish causation."
+        "explanation": "ÇÖZÜM: Korelasyon var ama nedenselliği 'kanıtlamadı/kurmadı' = establish."
     },
     {
         "id": 40,
         "prompt": "40. The policy produced ______ outcomes: improvements in some sectors, setbacks in others.",
         "A": "mixed",
-        "B": "uniform",
-        "C": "absolute",
+        "B": "consistent",
+        "C": "uniform",
         "D": "identical",
-        "E": "permanent",
+        "E": "flawless",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Karma = mixed."
+        "explanation": "ÇÖZÜM: Bazı yerlerde iyi, bazılarında kötü ise sonuçlar karışıktır = mixed."
     },
     {
         "id": 41,
@@ -448,7 +448,7 @@
         "D": "impossible to counter through communication",
         "E": "driven only by technological algorithms",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Cheap = basit, duygusal tatmin; doğru bilgi daha nüanslı."
+        "explanation": "ÇÖZÜM: Parçada 'cognitively cheap' ve 'emotionally satisfying' ifadeleri geçiyor."
     },
     {
         "id": 42,
@@ -459,7 +459,7 @@
         "D": "silence and secrecy",
         "E": "immediate punishment of sources",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Metinde aynen geçiyor."
+        "explanation": "ÇÖZÜM: Metinde 'accurate accounts often require nuance, probability, and patience' denilmektedir."
     },
     {
         "id": 43,
@@ -470,7 +470,7 @@
         "D": "focusing only on punishing readers",
         "E": "abandoning fact-checking efforts",
         "correct": "A",
-        "explanation": "ÇÖZÜM: İletişim tasarımı vurgusu."
+        "explanation": "ÇÖZÜM: Metnin son cümlesi: 'redesigning how credible information is communicated'."
     },
     {
         "id": 44,
@@ -481,7 +481,7 @@
         "D": "scientifically rigorous",
         "E": "legally admissible",
         "correct": "A",
-        "explanation": "ÇÖZÜM: cognitively cheap = zihinsel olarak kolay."
+        "explanation": "ÇÖZÜM: 'Cognitively cheap' zihinsel olarak işlemeyi kolay kastediyor."
     },
     {
         "id": 45,
@@ -492,7 +492,7 @@
         "D": "Redesigning communication cannot influence belief.",
         "E": "Probability always reduces misunderstanding instantly.",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Nüans ve olasılık iletişimi zorlaştırır."
+        "explanation": "ÇÖZÜM: Gerçeğin nüans gerektirmesi, iletişimini yalanlara göre zorlaştırır."
     },
     {
         "id": 46,
@@ -503,7 +503,7 @@
         "D": "public space is reduced to maximize buildings",
         "E": "car dependence is encouraged through long commutes",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Entegrasyon + tasarım + altyapı şart."
+        "explanation": "ÇÖZÜM: Metnin son cümlesi entegrasyon ve tasarıma vurgu yapıyor."
     },
     {
         "id": 47,
@@ -514,7 +514,7 @@
         "D": "density is paired with accessibility",
         "E": "heat islands are eliminated",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Segregation → uzun commute."
+        "explanation": "ÇÖZÜM: 'geographically segregated' ifadesi uzun yolculuklara neden oluyor."
     },
     {
         "id": 48,
@@ -525,7 +525,7 @@
         "D": "increase accessibility without planning",
         "E": "prevent geographic segregation",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Metinde iki olumsuz etki."
+        "explanation": "ÇÖZÜM: Metinde 'worsen heat islands and reduce public space' açıkça belirtilmiş."
     },
     {
         "id": 49,
@@ -536,7 +536,7 @@
         "D": "uncertain",
         "E": "temporary",
         "correct": "A",
-        "explanation": "ÇÖZÜM: sheer concentration = mere concentration."
+        "explanation": "ÇÖZÜM: 'Sheer concentration' = 'sadece/yalnızca yoğunluk'. Mere en yakın anlamdır."
     },
     {
         "id": 50,
@@ -547,117 +547,117 @@
         "D": "Infrastructure is irrelevant if buildings are close together.",
         "E": "Heat islands are caused only by low density.",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Tek başına çözüm değil."
+        "explanation": "ÇÖZÜM: Yazar yoğunluğun tek başına çözüm olmadığını savunuyor."
     },
     {
         "id": 51,
         "prompt": "51. The committee’s final statement was deliberately ______ to avoid provoking further controversy.",
         "A": "measured",
         "B": "reckless",
-        "C": "volatile",
-        "D": "lavish",
+        "C": "provocative",
+        "D": "aggressive",
         "E": "erratic",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Ölçülü = measured."
+        "explanation": "ÇÖZÜM: Tartışma yaratmamak için ifade 'ölçülü/dikkatli' olmalı = measured."
     },
     {
         "id": 52,
-        "prompt": "52. The study’s conclusions were later ______ by independent replication attempts.",
+        "prompt": "52. The study’s conclusions were later ______ by independent replication attempts that failed to produce the same results.",
         "A": "undermined",
-        "B": "celebrated",
-        "C": "simplified",
-        "D": "endorsed",
-        "E": "assembled",
+        "B": "confirmed",
+        "C": "validated",
+        "D": "strengthened",
+        "E": "celebrated",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Zayıflatıldı/çürütüldü = undermined."
+        "explanation": "ÇÖZÜM: Bağımsız denemeler aynı sonucu vermediyse sonuçlar zayıflar = undermined."
     },
     {
         "id": 53,
         "prompt": "53. The journalist argued that the government’s response was ______, addressing symptoms rather than causes.",
         "A": "piecemeal",
         "B": "comprehensive",
-        "C": "coherent",
-        "D": "benign",
-        "E": "lucid",
+        "C": "thorough",
+        "D": "holistic",
+        "E": "systematic",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Parça parça = piecemeal."
+        "explanation": "ÇÖZÜM: Sadece semptomlara odaklanıp bütüncül olmayan yaklaşım = piecemeal (parça parça)."
     },
     {
         "id": 54,
-        "prompt": "54. The investigation found that the officials had acted ______, making decisions without proper authority.",
+        "prompt": "54. The investigation found that the officials had acted ______, making decisions without proper authority or consultation.",
         "A": "unilaterally",
-        "B": "collectively",
-        "C": "transparently",
-        "D": "cautiously",
-        "E": "sympathetically",
+        "B": "collaboratively",
+        "C": "democratically",
+        "D": "legally",
+        "E": "jointly",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Tek taraflı = unilaterally."
+        "explanation": "ÇÖZÜM: Danışmadan kendi başına hareket etmek = unilaterally."
     },
     {
         "id": 55,
         "prompt": "55. The policy’s success will ultimately ______ on whether public trust can be restored.",
         "A": "hinge",
-        "B": "wander",
-        "C": "scatter",
-        "D": "dissolve",
-        "E": "shrink",
+        "B": "detach",
+        "C": "deviate",
+        "D": "differ",
+        "E": "withdraw",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Hinge on = bağlı olmak."
+        "explanation": "ÇÖZÜM: 'Hinge on' = bir şeye bağlı olmak (depend on)."
     },
     {
         "id": 56,
         "prompt": "56. The committee criticized the report for being overly ______, implying certainty where only probability existed.",
         "A": "categorical",
-        "B": "tentative",
-        "C": "fragile",
-        "D": "flexible",
-        "E": "benign",
+        "B": "cautious",
+        "C": "tentative",
+        "D": "hesitant",
+        "E": "ambiguous",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Kesin hükümlü = categorical."
+        "explanation": "ÇÖZÜM: Olasılık varken kesin konuşmak = categorical (kesin/kategorik)."
     },
     {
         "id": 57,
         "prompt": "57. The witness’s statement was ______ by later evidence, so the court treated it with caution.",
         "A": "contradicted",
-        "B": "clarified",
-        "C": "reinforced",
-        "D": "validated",
-        "E": "exalted",
+        "B": "corroborated",
+        "C": "supported",
+        "D": "verified",
+        "E": "proved",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Çelişmek = contradict."
+        "explanation": "ÇÖZÜM: Mahkeme ihtiyatlı yaklaştıysa ifade kanıtlarla çelişmiştir = contradicted."
     },
     {
         "id": 58,
         "prompt": "58. The new framework seeks to ______ the gap between stated goals and measurable outcomes.",
         "A": "bridge",
-        "B": "fracture",
-        "C": "inflate",
-        "D": "obscure",
-        "E": "scatter",
+        "B": "widen",
+        "C": "expand",
+        "D": "create",
+        "E": "ignore",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Arayı kapatmak = bridge."
+        "explanation": "ÇÖZÜM: Boşluğu/farkı kapatmak = bridge the gap."
     },
     {
         "id": 59,
         "prompt": "59. The reform was hailed as ambitious, but critics feared it would be ______ by bureaucratic delays.",
         "A": "derailed",
-        "B": "enhanced",
-        "C": "clarified",
-        "D": "restored",
-        "E": "secured",
+        "B": "facilitated",
+        "C": "accelerated",
+        "D": "promoted",
+        "E": "completed",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Raydan çıkmak/sekter = derail."
+        "explanation": "ÇÖZÜM: Gecikmeler reformu raydan çıkarabilir/engelleyebilir = derailed."
     },
     {
         "id": 60,
         "prompt": "60. The committee argued that the policy was ______, benefiting a few while burdening the many.",
         "A": "regressive",
-        "B": "equitable",
-        "C": "benign",
-        "D": "coherent",
-        "E": "lucid",
+        "B": "progressive",
+        "C": "fair",
+        "D": "inclusive",
+        "E": "beneficial",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Tersine adaletsiz/alt kesimi daha çok yükleyen = regressive."
+        "explanation": "ÇÖZÜM: Çoğunluğa yük bindirip azınlığa yaraması geriye gidiştir/adaletsizdir = regressive."
     },
     {
         "id": 61,
@@ -668,7 +668,7 @@
         "D": "should replace all other forms of evaluation",
         "E": "benefit everyone equally by definition",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Gizli seçimler/çerçeveleme → tarafsız gerçek gibi görülmemeli."
+        "explanation": "ÇÖZÜM: Testlerin tarafsız gerçekler değil, tasarım tercihleri sonucu olduğu vurgulanıyor."
     },
     {
         "id": 62,
@@ -679,7 +679,7 @@
         "D": "the impossibility of framing questions",
         "E": "unlimited resources for all test-takers",
         "correct": "A",
-        "explanation": "ÇÖZÜM: advantage certain backgrounds and learning styles."
+        "explanation": "ÇÖZÜM: Metinde 'advantage certain backgrounds and learning styles' ifadesi geçmektedir."
     },
     {
         "id": 63,
@@ -688,9 +688,9 @@
         "B": "designed",
         "C": "framed",
         "D": "limited",
-        "E": "influential",
+        "E": "biased",
         "correct": "A",
-        "explanation": "ÇÖZÜM: \"does not mean tests are useless\"."
+        "explanation": "ÇÖZÜM: Yazar 'This does not mean tests are useless' diyerek faydasını reddetmiyor."
     },
     {
         "id": 64,
@@ -699,9 +699,9 @@
         "B": "imagined",
         "C": "denied",
         "D": "ignored",
-        "E": "deleted",
+        "E": "removed",
         "correct": "A",
-        "explanation": "ÇÖZÜM: time limits are imposed = belirlenir/konur."
+        "explanation": "ÇÖZÜM: 'Time limits are imposed' = süre sınırları konulur/belirlenir (set)."
     },
     {
         "id": 65,
@@ -712,7 +712,7 @@
         "D": "Standardized tests should be the only evaluation tool.",
         "E": "Question framing never influences performance.",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Dengeli eleştiri."
+        "explanation": "ÇÖZÜM: Testlerin tamamen tarafsız olmadığı ama işe yarayabileceği fikri."
     },
     {
         "id": 66,
@@ -723,7 +723,7 @@
         "D": "makes inconvenient facts more visible by default",
         "E": "guarantees risk-taking in all organizations",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Selective disclosure + risk almaktan kaçınma."
+        "explanation": "ÇÖZÜM: Metinde şeffaflığın seçici olabileceği ve risk almayı engelleyebileceği belirtiliyor."
     },
     {
         "id": 67,
@@ -734,7 +734,7 @@
         "D": "automatic trust in leadership",
         "E": "a ban on accountability",
         "correct": "A",
-        "explanation": "ÇÖZÜM: appearance of openness."
+        "explanation": "ÇÖZÜM: 'create the appearance of openness'."
     },
     {
         "id": 68,
@@ -745,7 +745,7 @@
         "D": "receive fewer evaluations",
         "E": "stop caring about outcomes",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Fail publicly istemezler."
+        "explanation": "ÇÖZÜM: İnsanlar kamu önünde başarısız olmaktan (fail publicly) kaçındığı için risk almaz."
     },
     {
         "id": 69,
@@ -754,9 +754,9 @@
         "B": "made harmless and irrelevant",
         "C": "expanded into a neutral policy",
         "D": "replaced by secrecy",
-        "E": "ignored by everyone",
+        "E": "forgotten by everyone",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Weaponize = araçsallaştırmak."
+        "explanation": "ÇÖZÜM: Weaponize = silah haline getirmek (kötüye kullanmak)."
     },
     {
         "id": 70,
@@ -767,116 +767,116 @@
         "D": "forces experimentation to stop",
         "E": "eliminates the need for trust",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Accountability vs perform it."
+        "explanation": "ÇÖZÜM: Son cümle: 'whether it enables accountability'."
     },
     {
         "id": 71,
         "prompt": "71. The policy’s unintended consequences were ______, affecting sectors that had not been considered.",
         "A": "far-reaching",
-        "B": "minute",
-        "C": "audible",
-        "D": "ornamental",
-        "E": "domestic",
+        "B": "insignificant",
+        "C": "local",
+        "D": "brief",
+        "E": "negligible",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Geniş kapsamlı = far-reaching."
+        "explanation": "ÇÖZÜM: Hesaba katılmayan sektörleri bile etkilediyse geniş kapsamlıdır = far-reaching."
     },
     {
         "id": 72,
         "prompt": "72. The committee’s reasoning was criticized as ______, since it relied on stereotypes rather than evidence.",
         "A": "prejudicial",
-        "B": "meticulous",
-        "C": "lucid",
-        "D": "robust",
-        "E": "benign",
+        "B": "objective",
+        "C": "impartial",
+        "D": "fact-based",
+        "E": "scientific",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Önyargılı = prejudicial."
+        "explanation": "ÇÖZÜM: Kanıt yerine klişelere dayanıyorsa önyargılıdır = prejudicial."
     },
     {
         "id": 73,
         "prompt": "73. The witness’s memory was ______ by stress, making some details unreliable.",
         "A": "impaired",
-        "B": "enhanced",
-        "C": "validated",
-        "D": "restored",
-        "E": "secured",
+        "B": "improved",
+        "C": "sharpened",
+        "D": "clarified",
+        "E": "protected",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Zayıflamak/bozulmak = impaired."
+        "explanation": "ÇÖZÜM: Stres hafızayı zayıflatır/bozar = impaired."
     },
     {
         "id": 74,
         "prompt": "74. The report urged lawmakers to act promptly, warning that delays would ______ the crisis.",
         "A": "exacerbate",
-        "B": "alleviate",
-        "C": "neutralize",
-        "D": "simplify",
-        "E": "contain",
+        "B": "resolve",
+        "C": "ameliorate",
+        "D": "mitigate",
+        "E": "end",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Kötüleştirmek = exacerbate."
+        "explanation": "ÇÖZÜM: Gecikmeler krizi kötüleştirir = exacerbate."
     },
     {
         "id": 75,
         "prompt": "75. The committee’s recommendations were designed to ______ loopholes that had enabled fraud.",
         "A": "plug",
-        "B": "fabricate",
-        "C": "scatter",
-        "D": "justify",
-        "E": "magnify",
+        "B": "widen",
+        "C": "create",
+        "D": "exploit",
+        "E": "open",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Loopholes kapatmak = plug."
+        "explanation": "ÇÖZÜM: Dolandırıcılığa yol açan açıkları kapatmak = plug loopholes."
     },
     {
         "id": 76,
         "prompt": "76. The scientist’s conclusion was ______, carefully limiting claims to what the evidence supported.",
         "A": "circumspect",
-        "B": "reckless",
-        "C": "extravagant",
-        "D": "categorical",
-        "E": "volatile",
+        "B": "bold",
+        "C": "exaggerated",
+        "D": "baseless",
+        "E": "speculative",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Tedbirli/ölçülü = circumspect."
+        "explanation": "ÇÖZÜM: Sadece kanıta dayanıp dikkatli davranmak = circumspect (tedbirli)."
     },
     {
         "id": 77,
         "prompt": "77. The policy was widely criticized for being ______, creating heavy costs with little benefit.",
         "A": "counterproductive",
-        "B": "constructive",
-        "C": "coherent",
-        "D": "benign",
-        "E": "transparent",
+        "B": "efficient",
+        "C": "beneficial",
+        "D": "economical",
+        "E": "innovative",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Ters tepen = counterproductive."
+        "explanation": "ÇÖZÜM: Yüksek maliyet, az fayda; amaçlananın tersi etki = counterproductive."
     },
     {
         "id": 78,
         "prompt": "78. The committee concluded that the scandal was not an anomaly but a symptom of ______ dysfunction.",
         "A": "institutional",
-        "B": "audible",
-        "C": "portable",
-        "D": "ornamental",
-        "E": "seasonal",
+        "B": "personal",
+        "C": "temporary",
+        "D": "rare",
+        "E": "minor",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Kurumsal = institutional."
+        "explanation": "ÇÖZÜM: Skandal bir istisna değilse, sistemik/kurumsal bir sorundur = institutional."
     },
     {
         "id": 79,
         "prompt": "79. The journalist argued that the official narrative was ______, omitting key events that contradicted it.",
         "A": "selective",
-        "B": "comprehensive",
-        "C": "symmetrical",
-        "D": "lucid",
-        "E": "benign",
+        "B": "complete",
+        "C": "unbiased",
+        "D": "detailed",
+        "E": "honest",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Seçmeci = selective."
+        "explanation": "ÇÖZÜM: İşine gelmeyeni çıkarıyorsa seçmecidir = selective."
     },
     {
         "id": 80,
         "prompt": "80. The committee recommended reforms to ensure decisions are made with greater ______ and less arbitrariness.",
         "A": "accountability",
-        "B": "fragility",
-        "C": "hostility",
-        "D": "opacity",
-        "E": "redundancy",
+        "B": "secrecy",
+        "C": "speed",
+        "D": "complexity",
+        "E": "confusion",
         "correct": "A",
-        "explanation": "ÇÖZÜM: Hesap verebilirlik = accountability."
+        "explanation": "ÇÖZÜM: Keyfiliği azaltmak için hesap verebilirlik gerekir = accountability."
     }
 ]
