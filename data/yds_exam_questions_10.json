@@ -4,11 +4,11 @@
     "prompt": "1. The minister’s remarks were deliberately ______, allowing multiple interpretations.",
     "A": "equivocal",
     "B": "transparent",
-    "C": "contagious",
-    "D": "audible",
-    "E": "obsolete",
+    "C": "unambiguous",
+    "D": "explicit",
+    "E": "concise",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Bilerek muğlak/iki anlamlı = equivocal."
+    "explanation": "ÇÖZÜM: Bilerek 'muğlak/iki anlamlı' (equivocal) konuşmak. Diğer şıklar (şeffaf, net) zıttıdır."
   },
   {
     "id": 2,
@@ -17,9 +17,9 @@
     "B": "meticulous",
     "C": "coherent",
     "D": "impartial",
-    "E": "lucrative",
+    "E": "comprehensive",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Kanıtsız/temelsiz = unsubstantiated."
+    "explanation": "ÇÖZÜM: Veriye dayanmıyorsa 'kanıtsız/temelsiz' (unsubstantiated) dir."
   },
   {
     "id": 3,
@@ -27,10 +27,10 @@
     "A": "generalized",
     "B": "consolidated",
     "C": "fabricated",
-    "D": "dispersed",
+    "D": "suppressed",
     "E": "terminated",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Örneklemin ötesine 'genellemek' = generalize."
+    "explanation": "ÇÖZÜM: Bulguları örneklemin ötesine 'genellemek' (generalize) sakıncalıdır."
   },
   {
     "id": 4,
@@ -41,7 +41,7 @@
     "D": "compliance",
     "E": "diligence",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Sahte çevreci imaj = greenwashing."
+    "explanation": "ÇÖZÜM: Çevreci gibi görünerek göz boyama = greenwashing."
   },
   {
     "id": 5,
@@ -50,11 +50,10 @@
     "B": "ubiquitous",
     "C": "redundant",
     "D": "conspicuous",
-    "E": "benevolent",
+    "E": "solid",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Zayıf/sağlam olmayan = precarious."
+    "explanation": "ÇÖZÜM: Kolayca çürütülebiliyorsa 'zayıf/sağlam olmayan' (precarious) bir zemindedir."
   },
-
   {
     "id": 6,
     "prompt": "6. No sooner ______ the negotiations begun than they collapsed over a minor detail.",
@@ -64,7 +63,7 @@
     "D": "was",
     "E": "will",
     "correct": "A",
-    "explanation": "ÇÖZÜM: No sooner + had + S + V3 (devrik yapı)."
+    "explanation": "ÇÖZÜM: 'No sooner... than' kalıbı Past Perfect ve devrik yapı ister: 'No sooner had...'."
   },
   {
     "id": 7,
@@ -75,7 +74,7 @@
     "D": "was approving",
     "E": "has approving",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Subjunctive passive: be approved."
+    "explanation": "ÇÖZÜM: Subjunctive (It is crucial that...) yapısında fiil yalın (be approved) kullanılır."
   },
   {
     "id": 8,
@@ -86,7 +85,7 @@
     "D": "to be producing",
     "E": "having produced",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'is believed to have been V3' geçmiş eylem."
+    "explanation": "ÇÖZÜM: Passive çatı (is believed) + geçmiş zaman = 'to have been V3'."
   },
   {
     "id": 9,
@@ -97,7 +96,7 @@
     "D": "has",
     "E": "had",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Not until başta → devrik yapı: was the claim taken."
+    "explanation": "ÇÖZÜM: 'Not until' başta ise ana cümle devrik olur. Claim tekil ve pasif olduğu için 'was'."
   },
   {
     "id": 10,
@@ -108,9 +107,8 @@
     "D": "to",
     "E": "by",
     "correct": "A",
-    "explanation": "ÇÖZÜM: On the condition that = şartıyla."
+    "explanation": "ÇÖZÜM: Kalıp ifade: 'On the condition that' (...mesi şartıyla)."
   },
-
   {
     "id": 11,
     "prompt": "11. The committee sought to ______ the dispute rather than intensify it.",
@@ -118,9 +116,9 @@
     "B": "incite",
     "C": "inflate",
     "D": "enforce",
-    "E": "sustain",
+    "E": "prolong",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Gerilimi azaltmak/yatıştırmak = defuse."
+    "explanation": "ÇÖZÜM: Tartışmayı alevlendirmek yerine 'yatıştırmak/etkisizleştirmek' (defuse)."
   },
   {
     "id": 12,
@@ -131,7 +129,7 @@
     "D": "illustrated",
     "E": "accelerated",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Hedefleri zayıflatmak = undermine."
+    "explanation": "ÇÖZÜM: İstenmeyen sonuçlar hedefleri 'zayıflatır/baltalar' (undermined)."
   },
   {
     "id": 13,
@@ -140,9 +138,9 @@
     "B": "commencement",
     "C": "detour",
     "D": "exemption",
-    "E": "postscript",
+    "E": "mitigation",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Birikimin zirve/sonuç noktası = culmination."
+    "explanation": "ÇÖZÜM: Yılların ihmalinin 'zirvesi/sonucu' (culmination)."
   },
   {
     "id": 14,
@@ -150,10 +148,10 @@
     "A": "unreliable",
     "B": "explicit",
     "C": "inevitable",
-    "D": "cordial",
-    "E": "lavish",
+    "D": "credible",
+    "E": "accurate",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Güvenilmez = unreliable."
+    "explanation": "ÇÖZÜM: Kamera kayıtlarıyla çelişiyorsa 'güvenilmez' (unreliable) dir."
   },
   {
     "id": 15,
@@ -162,11 +160,10 @@
     "B": "praise",
     "C": "replicate",
     "D": "prolong",
-    "E": "disguise",
+    "E": "encourage",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Kısıtlamak/önünü kesmek = curb."
+    "explanation": "ÇÖZÜM: Tekelleşmeyi 'dizginlemek/kısıtlamak' (curb)."
   },
-
   {
     "id": 16,
     "prompt": "16. The success of the initiative is contingent ______ sustained funding.",
@@ -176,7 +173,7 @@
     "D": "with",
     "E": "by",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Contingent on = ...e bağlı."
+    "explanation": "ÇÖZÜM: 'Contingent on' = ...e bağlı/şartlı."
   },
   {
     "id": 17,
@@ -187,7 +184,7 @@
     "D": "by",
     "E": "with",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Regarded as."
+    "explanation": "ÇÖZÜM: 'Regarded as' = ... olarak görülmek/kabul edilmek."
   },
   {
     "id": 18,
@@ -198,7 +195,7 @@
     "D": "at",
     "E": "by",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Insist on + V-ing."
+    "explanation": "ÇÖZÜM: 'Insist on' + V-ing."
   },
   {
     "id": 19,
@@ -209,7 +206,7 @@
     "D": "so that",
     "E": "as though",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Şartıyla = provided that."
+    "explanation": "ÇÖZÜM: Varsayımların tutması 'şartıyla' (provided that)."
   },
   {
     "id": 20,
@@ -218,11 +215,10 @@
     "B": "ambiguous",
     "C": "fragile",
     "D": "obsolete",
-    "E": "dormant",
+    "E": "mild",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Keskin/sert eleştiri = trenchant."
+    "explanation": "ÇÖZÜM: Ton sakin olsa da eleştiri 'keskin/sert' (trenchant) olabilir."
   },
-
   {
     "id": 21,
     "prompt": "21. CLOZE: Social trust is difficult to build. (21) ______ it is broken, restoring it requires more than apologies.",
@@ -232,7 +228,7 @@
     "D": "Whereas",
     "E": "Whether",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Bir kez bozulunca = Once."
+    "explanation": "ÇÖZÜM: 'Bir kez kırıldığında...' anlamı için 'Once'."
   },
   {
     "id": 22,
@@ -243,7 +239,7 @@
     "D": "If",
     "E": "So",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Zıtlık: Although."
+    "explanation": "ÇÖZÜM: Sembolik jestler yardım etse de (zıtlık) reformun yerini tutmaz: 'Although'."
   },
   {
     "id": 23,
@@ -252,9 +248,9 @@
     "B": "By contrast",
     "C": "At random",
     "D": "On the whole",
-    "E": "After all",
+    "E": "For fear that",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Etki zinciri: In turn."
+    "explanation": "ÇÖZÜM: Reformların bir sonucu/etkisi olarak: 'In turn' (buna karşılık/sırasıyla)."
   },
   {
     "id": 24,
@@ -265,7 +261,7 @@
     "D": "Whereas",
     "E": "Despite",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Zaman/koşul: When."
+    "explanation": "ÇÖZÜM: Adil algılandığı 'zaman' (when) uyum artar."
   },
   {
     "id": 25,
@@ -274,11 +270,10 @@
     "B": "incidentally",
     "C": "temporarily",
     "D": "randomly",
-    "E": "silently",
+    "E": "partially",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Tutarlı biçimde = consistently."
+    "explanation": "ÇÖZÜM: Kuralların 'tutarlı' (consistently) uygulanması gerekir."
   },
-
   {
     "id": 26,
     "prompt": "26. The journalist’s claims were later ______ by independent fact-checkers.",
@@ -286,9 +281,9 @@
     "B": "detained",
     "C": "depleted",
     "D": "dismantled",
-    "E": "misplaced",
+    "E": "refuted",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Doğrulanmak/teyit edilmek = corroborate."
+    "explanation": "ÇÖZÜM: Bağımsız denetçiler iddiaları 'doğruladı/destekledi' (corroborated)."
   },
   {
     "id": 27,
@@ -296,10 +291,10 @@
     "A": "untenable",
     "B": "ubiquitous",
     "C": "innocuous",
-    "D": "ornate",
-    "E": "salient",
+    "D": "sustainable",
+    "E": "profitable",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Mali açıdan sürdürülemez = untenable."
+    "explanation": "ÇÖZÜM: Kulağa hoş gelse de mali açıdan 'sürdürülemez' (untenable)."
   },
   {
     "id": 28,
@@ -308,9 +303,9 @@
     "B": "euphoria",
     "C": "indifference",
     "D": "certainty",
-    "E": "impatience",
+    "E": "confidence",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Kanıtlanana kadar temkin = caution."
+    "explanation": "ÇÖZÜM: Tekrarlanana kadar 'temkin/dikkat' (caution) ile yaklaşılmalı."
   },
   {
     "id": 29,
@@ -319,9 +314,9 @@
     "B": "compile",
     "C": "endorse",
     "D": "allocate",
-    "E": "retain",
+    "E": "accept",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Suçu başka yöne çevirmek = deflect."
+    "explanation": "ÇÖZÜM: Sorumluluğu başkasına atmak/saptırmak = deflect."
   },
   {
     "id": 30,
@@ -330,11 +325,10 @@
     "B": "confiscate",
     "C": "circumvent",
     "D": "invalidate",
-    "E": "eradicate",
+    "E": "complicate",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Açıklığa kavuşturmak = elucidate."
+    "explanation": "ÇÖZÜM: Karmaşık bir şeyi 'aydınlatmak/izah etmek' = elucidate."
   },
-
   {
     "id": 31,
     "prompt": "31. The argument is compelling, but it hinges ______ a questionable assumption.",
@@ -344,7 +338,7 @@
     "D": "by",
     "E": "in",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Hinge on = dayanmak."
+    "explanation": "ÇÖZÜM: 'Hinge on' = bir şeye dayanmak/bağlı olmak."
   },
   {
     "id": 32,
@@ -353,9 +347,9 @@
     "B": "conclusive",
     "C": "lucid",
     "D": "methodical",
-    "E": "transparent",
+    "E": "factual",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Varsayımsal = speculative."
+    "explanation": "ÇÖZÜM: Kanıt yerine varsayım sunuyorsa 'spekülatif' (speculative) dir."
   },
   {
     "id": 33,
@@ -363,10 +357,10 @@
     "A": "unfounded",
     "B": "mandatory",
     "C": "incidental",
-    "D": "ornamental",
-    "E": "peripheral",
+    "D": "proven",
+    "E": "verified",
     "correct": "A",
-    "explanation": "ÇÖZÜM: unfounded = temelsiz (not entirely unfounded = tamamen temelsiz değil)."
+    "explanation": "ÇÖZÜM: Tamamen 'temelsiz' (unfounded) olmasa da destek gerekiyordu."
   },
   {
     "id": 34,
@@ -374,10 +368,10 @@
     "A": "platitudes",
     "B": "premises",
     "C": "paradoxes",
-    "D": "prototypes",
-    "E": "prohibitions",
+    "D": "solutions",
+    "E": "innovations",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Klişe sözler = platitudes."
+    "explanation": "ÇÖZÜM: Somut plan yoksa konuşma 'klişe/boş laflarla' (platitudes) doludur."
   },
   {
     "id": 35,
@@ -385,12 +379,11 @@
     "A": "narrow",
     "B": "magnify",
     "C": "conceal",
-    "D": "postpone",
-    "E": "disperse",
+    "D": "ignore",
+    "E": "widen",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Farkı daraltmak = narrow."
+    "explanation": "ÇÖZÜM: Eşitsizliği 'daraltmak/azaltmak' = narrow."
   },
-
   {
     "id": 36,
     "prompt": "36. English: 'The accumulation of microplastics in marine ecosystems poses a persistent threat to biodiversity.'",
@@ -411,7 +404,7 @@
     "D": "Erken müdahale, riski imkânsız kılar.",
     "E": "Müdahale olmasa da risk kontrol altındadır.",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Had + V3 devrik şart; might have been contained = kontrol altına alınabilirdi."
+    "explanation": "ÇÖZÜM: 'Had... intervened' (müdahale etseydi - geçmiş şart), 'might have been contained' (kontrol altına alınabilirdi)."
   },
   {
     "id": 38,
@@ -433,7 +426,7 @@
     "D": "Public trust is restored only through secrecy.",
     "E": "Accountability is irrelevant to public trust.",
     "correct": "A",
-    "explanation": "ÇÖZÜM: as much as = ...kadar."
+    "explanation": "ÇÖZÜM: 'as much as' = ...kadar."
   },
   {
     "id": 40,
@@ -444,9 +437,8 @@
     "D": "Politika yalnızca planlanan sonuçlar üretir.",
     "E": "Öngörülmeyen sonuçlar, faydaları tamamen garanti eder.",
     "correct": "A",
-    "explanation": "ÇÖZÜM: unintended consequences=öngörülmeyen sonuçlar, erode=aşındırmak."
+    "explanation": "ÇÖZÜM: eroded=aşındırdı, intended benefits=amaçlanan faydalar."
   },
-
   {
     "id": 41,
     "prompt": "41. READING: In scientific publishing, replication is often viewed as a safeguard against false positives. Replication studies test whether findings remain stable when experiments are repeated with new samples or in different contexts. Advocates argue that replication strengthens credibility, whereas critics contend that it may discourage novelty by rewarding confirmatory work over original ideas.\n\nAccording to the passage, replication studies primarily aim to ______.",
@@ -454,9 +446,9 @@
     "B": "replace all original research permanently",
     "C": "ensure novelty is always prioritized",
     "D": "prevent the use of new samples",
-    "E": "eliminate the role of context entirely",
+    "E": "eliminate the possibility of context effects",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Tekrarlandığında sonuçlar sürüyor mu diye test eder."
+    "explanation": "ÇÖZÜM: Replikasyon, sonuçların tekrar altında (repetition) tutarlı kalıp kalmadığını kontrol eder."
   },
   {
     "id": 42,
@@ -467,7 +459,7 @@
     "D": "stop peer review altogether",
     "E": "eliminate the need for credibility",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Yeniliği caydırabilir deniyor."
+    "explanation": "ÇÖZÜM: Eleştirmenler orijinalliği/yeniliği (novelty) caydıracağından endişe ediyor."
   },
   {
     "id": 43,
@@ -478,7 +470,7 @@
     "D": "constraint",
     "E": "exaggeration",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Safeguard = koruma."
+    "explanation": "ÇÖZÜM: Safeguard = koruma/güvence (protection)."
   },
   {
     "id": 44,
@@ -489,7 +481,7 @@
     "D": "remove the need for experiments",
     "E": "make context irrelevant by default",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Confirmatory work ödüllendirilir vurgusu."
+    "explanation": "ÇÖZÜM: Metinde 'rewarding confirmatory work over original ideas' ifadesi geçmektedir."
   },
   {
     "id": 45,
@@ -500,9 +492,8 @@
     "D": "Rejecting replication as scientifically meaningless",
     "E": "Defending novelty while denying any value to replication",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Dengeli anlatım var."
+    "explanation": "ÇÖZÜM: Yazar hem savunanların hem de eleştirenlerin görüşlerine yer vermiştir."
   },
-
   {
     "id": 46,
     "prompt": "46. READING: Remote work has shifted from a niche arrangement to a mainstream practice. Supporters argue it improves productivity and reduces commuting time, while critics warn it can blur the boundary between work and personal life. Some evidence suggests outcomes depend on organizational culture and the autonomy given to employees.\n\nAccording to the passage, the impact of remote work ______.",
@@ -512,7 +503,7 @@
     "D": "eliminates the need for management",
     "E": "is unrelated to commuting time",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Etki, kültür ve özerkliğe bağlı deniyor."
+    "explanation": "ÇÖZÜM: Metnin son cümlesi sonucun kültüre ve özerkliğe bağlı olduğunu belirtiyor."
   },
   {
     "id": 47,
@@ -523,7 +514,7 @@
     "D": "remove cultural influence entirely",
     "E": "force employees to work fewer hours",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Boundaries blur = sınırlar silikleşir."
+    "explanation": "ÇÖZÜM: 'Blur the boundary between work and personal life' = İş ve özel hayat ayrımını aşındırmak."
   },
   {
     "id": 48,
@@ -534,7 +525,7 @@
     "D": "eliminate productivity gains",
     "E": "prevent any flexibility in schedules",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Fayda bağlama/özerkliğe göre değişir."
+    "explanation": "ÇÖZÜM: Sonuçlar özerkliğe bağlıysa, özerklik faydayı şekillendirir."
   },
   {
     "id": 49,
@@ -545,7 +536,7 @@
     "D": "a temporary emergency ban",
     "E": "a widely condemned policy",
     "correct": "A",
-    "explanation": "ÇÖZÜM: niche = dar/özel."
+    "explanation": "ÇÖZÜM: Niche = kısıtlı bir alana hitap eden/özel."
   },
   {
     "id": 50,
@@ -556,9 +547,8 @@
     "D": "Remote work makes culture irrelevant in all workplaces.",
     "E": "Remote work is a short-lived trend with no lasting impact.",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Ana fikir: yaygınlaştı ama bağlama bağlı."
+    "explanation": "ÇÖZÜM: Pasaj uzaktan çalışmanın yaygınlaştığını ancak sonucun bağlama göre değiştiğini özetler."
   },
-
   {
     "id": 51,
     "prompt": "51. The investigation was launched to ______ allegations of misconduct within the agency.",
@@ -566,9 +556,9 @@
     "B": "endorse",
     "C": "diffuse",
     "D": "repay",
-    "E": "amuse",
+    "E": "ignore",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Araştırmak/soruşturmak = probe."
+    "explanation": "ÇÖZÜM: İddiaları 'araştırmak/derinlemesine incelemek' = probe."
   },
   {
     "id": 52,
@@ -577,9 +567,9 @@
     "B": "assembled",
     "C": "rehearsed",
     "D": "neutralized",
-    "E": "clarified",
+    "E": "strengthened",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Aşındırmak/zayıflatmak = erode."
+    "explanation": "ÇÖZÜM: Artan maliyetler karları 'aşındırır/azaltır' (eroded)."
   },
   {
     "id": 53,
@@ -587,10 +577,10 @@
     "A": "allay",
     "B": "provoke",
     "C": "inflate",
-    "D": "invalidate",
-    "E": "suppress",
+    "D": "validate",
+    "E": "worsen",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Kaygıyı yatıştırmak = allay."
+    "explanation": "ÇÖZÜM: Endişeleri 'yatıştırmak/gidermek' = allay."
   },
   {
     "id": 54,
@@ -599,9 +589,9 @@
     "B": "compiling",
     "C": "conceding",
     "D": "withdrawing",
-    "E": "adoring",
+    "E": "rewarding",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Aldatmak = deceive."
+    "explanation": "ÇÖZÜM: Tüketiciyi 'aldatmak' (deceiving) yasaklanır."
   },
   {
     "id": 55,
@@ -610,11 +600,10 @@
     "B": "diverted",
     "C": "confiscated",
     "D": "deposited",
-    "E": "rescinded",
+    "E": "ignored",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Koşullandırılmak/şekillenmek = conditioned."
+    "explanation": "ÇÖZÜM: Ahlaki yargılar kültür tarafından 'şekillendirilir/koşullandırılır' (conditioned)."
   },
-
   {
     "id": 56,
     "prompt": "56. Had it not been for her timely intervention, the project ______ derailed completely.",
@@ -624,7 +613,7 @@
     "D": "would",
     "E": "can",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Had it not been for... + might have V3 (burada 'might have derailed')."
+    "explanation": "ÇÖZÜM: If Clause Type 3 (Past Unreal). 'Had it not been for' kalıbı 'might have V3' ile tamamlanır."
   },
   {
     "id": 57,
@@ -635,7 +624,7 @@
     "D": "one found",
     "E": "will one finding",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Rarely başta → devrik: does one find."
+    "explanation": "ÇÖZÜM: Olumsuz zarf (Rarely) başta ise cümle devrik olur: 'does one find'."
   },
   {
     "id": 58,
@@ -646,7 +635,7 @@
     "D": "is refraining",
     "E": "has refrained",
     "correct": "A",
-    "explanation": "ÇÖZÜM: recommend that + V1."
+    "explanation": "ÇÖZÜM: Subjunctive (recommended that...) yapısında fiil yalın (refrain) kullanılır."
   },
   {
     "id": 59,
@@ -657,7 +646,7 @@
     "D": "to compile",
     "E": "was compiling",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Sıfat-fiil: report compiled by..."
+    "explanation": "ÇÖZÜM: Passive Reduced Clause: 'The report (which was) compiled...' -> 'compiled'."
   },
   {
     "id": 60,
@@ -666,11 +655,10 @@
     "B": "due to",
     "C": "instead of",
     "D": "apart from",
-    "E": "in case of",
+    "E": "in spite of",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Şarta bağlı = subject to."
+    "explanation": "ÇÖZÜM: Küçük ayarlamalara 'bağlı olarak/tabi tutularak' (subject to) onaylandı."
   },
-
   {
     "id": 61,
     "prompt": "61. CLOZE: The rise of misinformation is often blamed on social media. (61) ______, traditional outlets have also contributed by prioritizing speed over verification.",
@@ -678,9 +666,9 @@
     "B": "Consequently",
     "C": "Similarly",
     "D": "Hence",
-    "E": "Namely",
+    "E": "Specifically",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'Buna rağmen' = Nonetheless."
+    "explanation": "ÇÖZÜM: Sosyal medya suçlansa da 'buna rağmen' (nonetheless) geleneksel medya da suçludur."
   },
   {
     "id": 62,
@@ -689,9 +677,9 @@
     "B": "Because",
     "C": "Unless",
     "D": "So",
-    "E": "Since",
+    "E": "Before",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Zıtlık: Although."
+    "explanation": "ÇÖZÜM: Maliyetli olmasına rağmen vazgeçilmezdir. Zıtlık: 'Although'."
   },
   {
     "id": 63,
@@ -700,9 +688,9 @@
     "B": "Until",
     "C": "Unless",
     "D": "Whereas",
-    "E": "Despite",
+    "E": "Even if",
     "correct": "A",
-    "explanation": "ÇÖZÜM: When = -dığında/-diğinde."
+    "explanation": "ÇÖZÜM: Doğruluk talep ettikleri 'zaman/durumda' (when) hataları tolere etmezler."
   },
   {
     "id": 64,
@@ -711,9 +699,9 @@
     "B": "At random",
     "C": "By accident",
     "D": "On the contrary",
-    "E": "For example",
+    "E": "In particular",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Genel yargı: In general."
+    "explanation": "ÇÖZÜM: Genel bir kural/yargı belirtiliyor: 'In general' (genel olarak)."
   },
   {
     "id": 65,
@@ -722,21 +710,20 @@
     "B": "authorize",
     "C": "complicate",
     "D": "suffocate",
-    "E": "mislead",
+    "E": "repeat",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Hata sonrası özür dilemek = apologize."
+    "explanation": "ÇÖZÜM: Hata sonrası 'özür dilemek' (apologize) yerine önlem almak gerekir."
   },
-
   {
     "id": 66,
     "prompt": "66. The contract was deemed ______ because one party had been misled about key terms.",
     "A": "voidable",
     "B": "infallible",
     "C": "portable",
-    "D": "ornamental",
-    "E": "perennial",
+    "D": "valid",
+    "E": "binding",
     "correct": "A",
-    "explanation": "ÇÖZÜM: İptal edilebilir = voidable."
+    "explanation": "ÇÖZÜM: Yanıltma varsa sözleşme 'iptal edilebilir' (voidable) sayılır."
   },
   {
     "id": 67,
@@ -744,10 +731,10 @@
     "A": "penalize",
     "B": "enrich",
     "C": "sanctify",
-    "D": "neutralize",
-    "E": "narrate",
+    "D": "assist",
+    "E": "protect",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Orantısız cezalandırmak = penalize."
+    "explanation": "ÇÖZÜM: Savunmasız grupları 'cezalandıracak/mağdur edecek' (penalize) politikalardan kaçınılmalı."
   },
   {
     "id": 68,
@@ -755,34 +742,33 @@
     "A": "precedent",
     "B": "ornament",
     "C": "interval",
-    "D": "ingredient",
-    "E": "rehearsal",
+    "D": "obstacle",
+    "E": "limit",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Emsal = precedent."
+    "explanation": "ÇÖZÜM: Tehlikeli bir 'emsal' (precedent) oluşturmak."
   },
   {
     "id": 69,
     "prompt": "69. The findings were impressive, but the sample size was too small to be ______.",
     "A": "conclusive",
     "B": "peripheral",
-    "C": "auditory",
+    "C": "ambiguous",
     "D": "redundant",
-    "E": "ornate",
+    "E": "insignificant",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Kesin/sonuçlayıcı = conclusive."
+    "explanation": "ÇÖZÜM: Örneklem küçükse sonuçlar 'kesin/nihai' (conclusive) olamaz."
   },
   {
     "id": 70,
     "prompt": "70. The director was accused of ______ the issue to distract the public from the real problem.",
     "A": "downplaying",
     "B": "rectifying",
-    "C": "consolidating",
+    "C": "clarifying",
     "D": "documenting",
-    "E": "amplifying",
+    "E": "solving",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Küçümsemek/önemsiz göstermek = downplay."
+    "explanation": "ÇÖZÜM: Dikkat dağıtmak için sorunu 'küçümsemek/önemsiz göstermek' (downplaying)."
   },
-
   {
     "id": 71,
     "prompt": "71. The scientist argued that correlation should not be ______ as causation.",
@@ -790,9 +776,9 @@
     "B": "dismantled",
     "C": "dispersed",
     "D": "repaired",
-    "E": "deferred",
+    "E": "rejected",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Öyle yorumlanmak = construe."
+    "explanation": "ÇÖZÜM: Korelasyon, nedensellik olarak 'yorumlanmamalıdır' (construed)."
   },
   {
     "id": 72,
@@ -800,32 +786,32 @@
     "A": "deter",
     "B": "inflate",
     "C": "conceal",
-    "D": "prolong",
-    "E": "compile",
+    "D": "promote",
+    "E": "ignore",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Caydırmak = deter."
+    "explanation": "ÇÖZÜM: Yolsuzluğu 'caydırmak/engellemek' (deter)."
   },
   {
     "id": 73,
     "prompt": "73. The committee’s conclusions were criticized for lacking ______ support.",
     "A": "empirical",
     "B": "ornamental",
-    "C": "audible",
-    "D": "fictional",
-    "E": "casual",
+    "C": "fictional",
+    "D": "emotional",
+    "E": "hypothetical",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Deneysel/kanıta dayalı = empirical."
+    "explanation": "ÇÖZÜM: Bilimsel bir sonuç 'deneysel/kanıta dayalı' (empirical) destek gerektirir."
   },
   {
     "id": 74,
     "prompt": "74. The plan was praised as pragmatic, yet some argued it was ethically ______.",
     "A": "dubious",
     "B": "salient",
-    "C": "ubiquitous",
+    "C": "impeccable",
     "D": "candid",
     "E": "robust",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Etik açıdan şüpheli = dubious."
+    "explanation": "ÇÖZÜM: Pragmatik ama etik açıdan 'şüpheli' (dubious)."
   },
   {
     "id": 75,
@@ -833,22 +819,21 @@
     "A": "dispel",
     "B": "incite",
     "C": "prolong",
-    "D": "recycle",
-    "E": "fortify",
+    "D": "spread",
+    "E": "confirm",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Söylentileri dağıtmak/çürütmek = dispel."
+    "explanation": "ÇÖZÜM: Söylentileri 'dağıtmak/çürütmek' (dispel)."
   },
-
   {
     "id": 76,
     "prompt": "76. The proposal was rejected because it failed to provide a ______ timeline for implementation.",
     "A": "feasible",
     "B": "volatile",
-    "C": "ornate",
+    "C": "abstract",
     "D": "peripheral",
-    "E": "dormant",
+    "E": "vague",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Uygulanabilir = feasible."
+    "explanation": "ÇÖZÜM: Uygulama için 'yapılabilir/gerçekçi' (feasible) bir zaman çizelgesi gerekir."
   },
   {
     "id": 77,
@@ -856,10 +841,10 @@
     "A": "transparency",
     "B": "fragility",
     "C": "hostility",
-    "D": "scarcity",
-    "E": "naivety",
+    "D": "secrecy",
+    "E": "complexity",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Şeffaflık = transparency (tekrarlanabilirlik için)."
+    "explanation": "ÇÖZÜM: Tekrarlanabilirlik için metodun 'şeffaf' (transparency) olması gerekir."
   },
   {
     "id": 78,
@@ -867,10 +852,10 @@
     "A": "mitigate",
     "B": "magnify",
     "C": "abolish",
-    "D": "divert",
-    "E": "withstand",
+    "D": "ignore",
+    "E": "maintain",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Riski azaltmak = mitigate."
+    "explanation": "ÇÖZÜM: Lansman öncesi riskleri 'azaltmak' (mitigate) gerekir."
   },
   {
     "id": 79,
@@ -878,10 +863,10 @@
     "A": "constructive",
     "B": "vindictive",
     "C": "arbitrary",
-    "D": "opaque",
-    "E": "futile",
+    "D": "destructive",
+    "E": "pointless",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Yapıcı = constructive."
+    "explanation": "ÇÖZÜM: Gelişime odaklanan eleştiri 'yapıcı' (constructive) dır."
   },
   {
     "id": 80,
@@ -889,9 +874,9 @@
     "A": "imperative",
     "B": "incidental",
     "C": "superfluous",
-    "D": "ornamental",
-    "E": "peripheral",
+    "D": "optional",
+    "E": "harmful",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Çok gerekli/zorunlu = imperative."
+    "explanation": "ÇÖZÜM: Sadece arzu edilir değil, aynı zamanda 'zorunlu/hayati' (imperative)."
   }
 ]
