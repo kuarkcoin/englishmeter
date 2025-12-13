@@ -118,7 +118,7 @@
     "D": "for / to",
     "E": "with / from",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'Depend ON' (bağlı olmak). Üyelerin işbirliği 'cooperation OF'."
+    "explanation": "ÇÖZÜM: 'Depend ON' (bağlı olmak) ve 'cooperation OF all members' (tüm üyelerin işbirliği) doğru ve en doğal kullanımdır."
   },
   {
     "id": "m6-q12",
@@ -332,13 +332,13 @@
   {
     "id": "m6-q31",
     "prompt": "31. Even if we run, ______.",
-    "A": "we will miss the bus",
+    "A": "we might miss the bus",
     "B": "we will catch the bus",
     "C": "we are early",
     "D": "the bus is waiting",
     "E": "we can walk",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Koşsak 'bile' (Even if), kaçıracağız. (Olumsuz sonuç beklentisi)."
+    "explanation": "ÇÖZÜM: 'Even if' (–se bile) yapısı olumsuz bir ihtimali vurgular. 'We might miss the bus' daha doğal ve gerçekçi bir sonuçtur."
   },
   {
     "id": "m6-q32",
