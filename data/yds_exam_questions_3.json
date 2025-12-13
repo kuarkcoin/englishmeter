@@ -2,7 +2,7 @@
   {
     "id": "m3-q1",
     "prompt": "1. Governments should take ______ measures to ensure that the economic recovery is sustainable and inclusive for all sectors of society.",
-    "A": "subustantial",
+    "A": "substantial",
     "B": "vague",
     "C": "wasteful",
     "D": "negligible",
@@ -224,7 +224,7 @@
     "prompt": "21. We are now able to see galaxies that are billions of light-years (21) ______.",
     "A": "away",
     "B": "far",
-    "C": "distant",
+    "C": "nearby",
     "D": "long",
     "E": "remote",
     "correct": "A",
