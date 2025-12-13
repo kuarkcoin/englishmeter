@@ -385,15 +385,15 @@
     "explanation": "ÇÖZÜM: Sınavı geçmek 'için' (In order to), çalışmalısın."
   },
   {
-    "id": "m5-q36",
-    "prompt": "36. However hard it rains, ______.",
-    "A": "we will go hiking",
-    "B": "we will stay inside",
-    "C": "the sun is shining",
-    "D": "it is dry",
-    "E": "umbrellas are useful",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Ne kadar yağarsa yağsın (However hard), yürüyüşe gideceğiz."
+  "id": "m5-q36",
+  "prompt": "36. However hard it rains, ______.",
+  "A": "we will go hiking",
+  "B": "we will stay inside",
+  "C": "the sun is shining",
+  "D": "it is dry",
+  "E": "umbrellas are useful",
+  "correct": "B",
+  "explanation": "ÇÖZÜM: 'However hard it rains' = 'Ne kadar şiddetli yağarsa yağsın'. Bu durumda en doğal sonuç 'içeride kalırız' (we will stay inside)."
   },
   {
     "id": "m5-q37",
