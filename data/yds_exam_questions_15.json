@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "prompt": "1. The minister’s assurances sounded confident, but analysts found them ______ because they ignored key economic indicators.",
+    "prompt": "The minister’s assurances sounded confident, but analysts found them ______ because they ignored key economic indicators.",
     "A": "unconvincing",
     "B": "meticulous",
     "C": "transparent",
@@ -12,7 +12,7 @@
   },
   {
     "id": 2,
-    "prompt": "2. The scientist urged caution, arguing that the current evidence is too ______ to justify sweeping claims.",
+    "prompt": "The scientist urged caution, arguing that the current evidence is too ______ to justify sweeping claims.",
     "A": "fragmentary",
     "B": "inevitable",
     "C": "lucid",
@@ -23,7 +23,7 @@
   },
   {
     "id": 3,
-    "prompt": "3. The committee’s report was praised for its ______ tone, avoiding sensationalism while presenting serious concerns.",
+    "prompt": "The committee’s report was praised for its ______ tone, avoiding sensationalism while presenting serious concerns.",
     "A": "measured",
     "B": "volatile",
     "C": "reckless",
@@ -34,7 +34,7 @@
   },
   {
     "id": 4,
-    "prompt": "4. The journalist’s story was compelling, yet it lacked ______, relying on anecdotes rather than verifiable data.",
+    "prompt": "The journalist’s story was compelling, yet it lacked ______, relying on anecdotes rather than verifiable data.",
     "A": "rigor",
     "B": "novelty",
     "C": "pity",
@@ -45,7 +45,7 @@
   },
   {
     "id": 5,
-    "prompt": "5. The reform is intended to ______ entrenched practices that have long resisted change.",
+    "prompt": "The reform is intended to ______ entrenched practices that have long resisted change.",
     "A": "disrupt",
     "B": "fabricate",
     "C": "conceal",
@@ -54,10 +54,9 @@
     "correct": "A",
     "explanation": "ÇÖZÜM: Yerleşmiş düzeni bozmak = disrupt."
   },
-
   {
     "id": 6,
-    "prompt": "6. The organization’s priorities were criticized as ______, because they shifted unpredictably from month to month.",
+    "prompt": "The organization’s priorities were criticized as ______, because they shifted unpredictably from month to month.",
     "A": "erratic",
     "B": "coherent",
     "C": "lucid",
@@ -68,7 +67,7 @@
   },
   {
     "id": 7,
-    "prompt": "7. The proposal promised efficiency; ______, it would centralize too much power in a single office.",
+    "prompt": "The proposal promised efficiency; ______, it would centralize too much power in a single office.",
     "A": "however",
     "B": "therefore",
     "C": "moreover",
@@ -79,7 +78,7 @@
   },
   {
     "id": 8,
-    "prompt": "8. The committee insisted ______ reviewing the raw data before approving the final report.",
+    "prompt": "The committee insisted ______ reviewing the raw data before approving the final report.",
     "A": "on",
     "B": "to",
     "C": "at",
@@ -90,7 +89,7 @@
   },
   {
     "id": 9,
-    "prompt": "9. The policy’s success will ______ on whether long-term funding can be secured.",
+    "prompt": "The policy’s success will ______ on whether long-term funding can be secured.",
     "A": "hinge",
     "B": "wander",
     "C": "shrink",
@@ -101,7 +100,7 @@
   },
   {
     "id": 10,
-    "prompt": "10. The study’s conclusions were later ______ when additional trials produced conflicting results.",
+    "prompt": "The study’s conclusions were later ______ when additional trials produced conflicting results.",
     "A": "called into question",
     "B": "set in stone",
     "C": "ruled out",
@@ -110,10 +109,9 @@
     "correct": "A",
     "explanation": "ÇÖZÜM: Şüpheye düşmek = be called into question."
   },
-
   {
     "id": 11,
-    "prompt": "11. Not until the final interview ______ the investigators identify the missing link.",
+    "prompt": "Not until the final interview ______ the investigators identify the missing link.",
     "A": "did",
     "B": "does",
     "C": "has",
@@ -124,7 +122,7 @@
   },
   {
     "id": 12,
-    "prompt": "12. It is vital that the agreement ______ in clear, unambiguous language.",
+    "prompt": "It is vital that the agreement ______ in clear, unambiguous language.",
     "A": "be drafted",
     "B": "is drafted",
     "C": "was drafted",
@@ -135,7 +133,7 @@
   },
   {
     "id": 13,
-    "prompt": "13. The CEO is believed ______ aware of the risks long before the scandal broke.",
+    "prompt": "The CEO is believed ______ aware of the risks long before the scandal broke.",
     "A": "to have been",
     "B": "to be",
     "C": "being",
@@ -146,7 +144,7 @@
   },
   {
     "id": 14,
-    "prompt": "14. Hardly ______ the new regulations been introduced when firms began searching for loopholes.",
+    "prompt": "Hardly ______ the new regulations been introduced when firms began searching for loopholes.",
     "A": "had",
     "B": "has",
     "C": "did",
@@ -157,7 +155,7 @@
   },
   {
     "id": 15,
-    "prompt": "15. The suspect is alleged ______ confidential documents to a rival company.",
+    "prompt": "The suspect is alleged ______ confidential documents to a rival company.",
     "A": "to have leaked",
     "B": "to leak",
     "C": "leaking",
@@ -166,10 +164,9 @@
     "correct": "A",
     "explanation": "ÇÖZÜM: is alleged to have V3 (geçmiş)."
   },
-
   {
     "id": 16,
-    "prompt": "16. The country’s rapid industrialization has come ______ significant environmental costs.",
+    "prompt": "The country’s rapid industrialization has come ______ significant environmental costs.",
     "A": "with",
     "B": "to",
     "C": "by",
@@ -180,7 +177,7 @@
   },
   {
     "id": 17,
-    "prompt": "17. The ambassador’s statement was deliberately ______, leaving room for multiple interpretations.",
+    "prompt": "The ambassador’s statement was deliberately ______, leaving room for multiple interpretations.",
     "A": "ambiguous",
     "B": "audible",
     "C": "transparent",
@@ -191,7 +188,7 @@
   },
   {
     "id": 18,
-    "prompt": "18. The researcher tried to ______ the limitations of the methodology before presenting the results.",
+    "prompt": "The researcher tried to ______ the limitations of the methodology before presenting the results.",
     "A": "acknowledge",
     "B": "inflate",
     "C": "discard",
@@ -202,7 +199,7 @@
   },
   {
     "id": 19,
-    "prompt": "19. The committee recommended reforms to ______ conflicts of interest in public procurement.",
+    "prompt": "The committee recommended reforms to ______ conflicts of interest in public procurement.",
     "A": "curb",
     "B": "endorse",
     "C": "fabricate",
@@ -213,7 +210,7 @@
   },
   {
     "id": 20,
-    "prompt": "20. The policy was criticized as ______ because it benefited a minority while imposing costs on the majority.",
+    "prompt": "The policy was criticized as ______ because it benefited a minority while imposing costs on the majority.",
     "A": "regressive",
     "B": "equitable",
     "C": "benign",
@@ -222,10 +219,9 @@
     "correct": "A",
     "explanation": "ÇÖZÜM: Regressive = alt kesimi daha çok yükleyen."
   },
-
   {
     "id": 21,
-    "prompt": "21. CLOZE: Technological progress can improve living standards. (21) ______, it can also widen inequality if benefits are unevenly distributed.",
+    "prompt": "Technological progress can improve living standards. (21) ______, it can also widen inequality if benefits are unevenly distributed.",
     "A": "However",
     "B": "Therefore",
     "C": "Likewise",
@@ -236,7 +232,7 @@
   },
   {
     "id": 22,
-    "prompt": "22. (22) ______ regulations remain weak, companies may prioritize profit over safety.",
+    "prompt": "(22) ______ regulations remain weak, companies may prioritize profit over safety.",
     "A": "When",
     "B": "Whether",
     "C": "Despite",
@@ -247,7 +243,7 @@
   },
   {
     "id": 23,
-    "prompt": "23. (23) ______, policymakers must balance innovation with accountability.",
+    "prompt": "(23) ______, policymakers must balance innovation with accountability.",
     "A": "Consequently",
     "B": "By accident",
     "C": "On the contrary",
@@ -258,7 +254,7 @@
   },
   {
     "id": 24,
-    "prompt": "24. This balance is hard to achieve, (24) ______ it is essential for public trust.",
+    "prompt": "This balance is hard to achieve, (24) ______ it is essential for public trust.",
     "A": "yet",
     "B": "so",
     "C": "unless",
@@ -269,7 +265,7 @@
   },
   {
     "id": 25,
-    "prompt": "25. The goal is to encourage debate without allowing it to become ______.",
+    "prompt": "The goal is to encourage debate without allowing it to become ______.",
     "A": "toxic",
     "B": "portable",
     "C": "audible",
@@ -278,10 +274,9 @@
     "correct": "A",
     "explanation": "ÇÖZÜM: Zehirli ortam = toxic."
   },
-
   {
     "id": 26,
-    "prompt": "26. Sentence Completion: ______, the company revised its hiring policy to comply with new regulations.",
+    "prompt": "Choose the best completion for the sentence:\n\n______, the company revised its hiring policy to comply with new regulations.",
     "A": "Anticipating potential legal challenges",
     "B": "Because compliance was unnecessary",
     "C": "Unless the policy had vanished",
@@ -292,7 +287,7 @@
   },
   {
     "id": 27,
-    "prompt": "27. Sentence Completion: The evidence appears strong; ______, further peer review is needed.",
+    "prompt": "Choose the best completion for the sentence:\n\nThe evidence appears strong; ______, further peer review is needed.",
     "A": "nevertheless",
     "B": "thereby",
     "C": "namely",
@@ -303,7 +298,7 @@
   },
   {
     "id": 28,
-    "prompt": "28. Sentence Completion: The plan will remain impractical ______ it is supported by a realistic budget.",
+    "prompt": "Choose the best completion for the sentence:\n\nThe plan will remain impractical ______ it is supported by a realistic budget.",
     "A": "unless",
     "B": "if",
     "C": "when",
@@ -314,7 +309,7 @@
   },
   {
     "id": 29,
-    "prompt": "29. Sentence Completion: The committee issued no dramatic claims, ______ the limits of the available evidence.",
+    "prompt": "Choose the best completion for the sentence:\n\nThe committee issued no dramatic claims, ______ the limits of the available evidence.",
     "A": "emphasizing",
     "B": "to emphasize",
     "C": "emphasize",
@@ -325,7 +320,7 @@
   },
   {
     "id": 30,
-    "prompt": "30. Sentence Completion: The agency promised reforms; ______, its internal procedures remained unchanged.",
+    "prompt": "Choose the best completion for the sentence:\n\nThe agency promised reforms; ______, its internal procedures remained unchanged.",
     "A": "yet",
     "B": "thus",
     "C": "therefore",
@@ -334,10 +329,9 @@
     "correct": "A",
     "explanation": "ÇÖZÜM: Zıtlık: yet."
   },
-
   {
     "id": 31,
-    "prompt": "31. Phrasal Verb: The government pledged to ______ tax evasion more aggressively.",
+    "prompt": "The government pledged to ______ tax evasion more aggressively.",
     "A": "crack down on",
     "B": "come across",
     "C": "get by",
@@ -348,7 +342,7 @@
   },
   {
     "id": 32,
-    "prompt": "32. Phrasal Verb: The spokesperson tried to ______ public anxiety by providing detailed explanations.",
+    "prompt": "The spokesperson tried to ______ public anxiety by providing detailed explanations.",
     "A": "tone down",
     "B": "set off",
     "C": "run into",
@@ -359,7 +353,7 @@
   },
   {
     "id": 33,
-    "prompt": "33. Phrasal Verb: The company decided to ______ several contractors after repeated violations.",
+    "prompt": "The company decided to ______ several contractors after repeated violations.",
     "A": "cut off",
     "B": "look up",
     "C": "take after",
@@ -370,7 +364,7 @@
   },
   {
     "id": 34,
-    "prompt": "34. Phrasal Verb: The auditors were able to ______ the source of the accounting discrepancy.",
+    "prompt": "The auditors were able to ______ the source of the accounting discrepancy.",
     "A": "pinpoint",
     "B": "call off",
     "C": "dress up",
@@ -381,7 +375,7 @@
   },
   {
     "id": 35,
-    "prompt": "35. Phrasal Verb: Facing backlash, the firm agreed to ______ the controversial decision.",
+    "prompt": "Facing backlash, the firm agreed to ______ the controversial decision.",
     "A": "roll back",
     "B": "bring up",
     "C": "run over",
@@ -390,10 +384,9 @@
     "correct": "A",
     "explanation": "ÇÖZÜM: Geri almak = roll back."
   },
-
   {
     "id": 36,
-    "prompt": "36. The report’s language was ______, hinting at misconduct without naming individuals directly.",
+    "prompt": "The report’s language was ______, hinting at misconduct without naming individuals directly.",
     "A": "insinuating",
     "B": "transparent",
     "C": "cordial",
@@ -404,7 +397,7 @@
   },
   {
     "id": 37,
-    "prompt": "37. The plan was rejected for lacking ______, as it offered no timeline or measurable benchmarks.",
+    "prompt": "The plan was rejected for lacking ______, as it offered no timeline or measurable benchmarks.",
     "A": "specificity",
     "B": "novelty",
     "C": "pity",
@@ -415,7 +408,7 @@
   },
   {
     "id": 38,
-    "prompt": "38. The argument appeared coherent, but it depended on a ______ premise that few experts accepted.",
+    "prompt": "The argument appeared coherent, but it depended on a ______ premise that few experts accepted.",
     "A": "questionable",
     "B": "inevitable",
     "C": "permanent",
@@ -426,7 +419,7 @@
   },
   {
     "id": 39,
-    "prompt": "39. The study identified a pattern, but it did not ______ a causal mechanism.",
+    "prompt": "The study identified a pattern, but it did not ______ a causal mechanism.",
     "A": "establish",
     "B": "conceal",
     "C": "invalidate",
@@ -437,7 +430,7 @@
   },
   {
     "id": 40,
-    "prompt": "40. The reform produced ______ outcomes: progress in some areas and setbacks in others.",
+    "prompt": "The reform produced ______ outcomes: progress in some areas and setbacks in others.",
     "A": "mixed",
     "B": "uniform",
     "C": "absolute",
@@ -446,10 +439,9 @@
     "correct": "A",
     "explanation": "ÇÖZÜM: Karma sonuçlar = mixed."
   },
-
   {
     "id": 41,
-    "prompt": "41. PARAGRAPH (Hard): Many assume that scientific consensus emerges simply by accumulating facts. Yet consensus also depends on shared standards: which methods count as reliable, how uncertainty is reported, and what replication thresholds are required. When standards differ across fields, findings may be interpreted in incompatible ways. Thus, consensus is as much about common criteria as it is about data.\n\nThe passage mainly argues that scientific consensus depends heavily on ______.",
+    "prompt": "Read the passage and answer the question:\n\nMany assume that scientific consensus emerges simply by accumulating facts. Yet consensus also depends on shared standards: which methods count as reliable, how uncertainty is reported, and what replication thresholds are required. When standards differ across fields, findings may be interpreted in incompatible ways. Thus, consensus is as much about common criteria as it is about data.\n\nThe passage mainly argues that scientific consensus depends heavily on ______.",
     "A": "shared standards and criteria for evaluating evidence",
     "B": "ignoring uncertainty to accelerate agreement",
     "C": "political bargaining rather than methodology",
@@ -460,7 +452,7 @@
   },
   {
     "id": 42,
-    "prompt": "42. According to the passage, standards affect consensus because they shape ______.",
+    "prompt": "According to the passage, standards affect consensus because they shape ______.",
     "A": "what counts as reliable evidence and how results are interpreted",
     "B": "only the funding level of research",
     "C": "the speed of publication regardless of quality",
@@ -471,7 +463,7 @@
   },
   {
     "id": 43,
-    "prompt": "43. The author implies that when standards vary across fields, conclusions may become ______.",
+    "prompt": "The author implies that when standards vary across fields, conclusions may become ______.",
     "A": "incompatible",
     "B": "inevitable",
     "C": "uniform",
@@ -482,7 +474,7 @@
   },
   {
     "id": 44,
-    "prompt": "44. In the passage, \"thresholds\" most nearly means ______.",
+    "prompt": "In the passage, \"thresholds\" most nearly means ______.",
     "A": "minimum requirements",
     "B": "financial incentives",
     "C": "emotional reactions",
@@ -493,7 +485,7 @@
   },
   {
     "id": 45,
-    "prompt": "45. Which statement best reflects the passage?",
+    "prompt": "Which statement best reflects the passage?",
     "A": "Agreement in science is shaped by both data and agreed-upon rules for judging it.",
     "B": "Consensus forms automatically once enough facts exist.",
     "C": "Replication matters only in non-scientific fields.",
@@ -502,10 +494,9 @@
     "correct": "A",
     "explanation": "ÇÖZÜM: Veri + ortak kriterler."
   },
-
   {
     "id": 46,
-    "prompt": "46. PARAGRAPH (Hard): In public policy, \"efficiency\" is often presented as a neutral goal. Yet efficiency depends on what is measured: time saved, costs reduced, or risks shifted. A policy can be efficient for one group by transferring burdens to another. Therefore, debates about efficiency are inseparable from debates about fairness.\n\nThe passage argues that efficiency in policy is ______.",
+    "prompt": "Read the passage and answer the question:\n\nIn public policy, \"efficiency\" is often presented as a neutral goal. Yet efficiency depends on what is measured: time saved, costs reduced, or risks shifted. A policy can be efficient for one group by transferring burdens to another. Therefore, debates about efficiency are inseparable from debates about fairness.\n\nThe passage argues that efficiency in policy is ______.",
     "A": "value-laden because it depends on measurement choices and burden distribution",
     "B": "purely technical and independent of ethics",
     "C": "always aligned with fairness by definition",
@@ -516,7 +507,7 @@
   },
   {
     "id": 47,
-    "prompt": "47. According to the passage, a policy may appear efficient because it ______.",
+    "prompt": "According to the passage, a policy may appear efficient because it ______.",
     "A": "shifts costs or risks to another group",
     "B": "eliminates all trade-offs automatically",
     "C": "requires no measurement at all",
@@ -527,7 +518,7 @@
   },
   {
     "id": 48,
-    "prompt": "48. The author suggests debates about efficiency cannot be separated from ______.",
+    "prompt": "The author suggests debates about efficiency cannot be separated from ______.",
     "A": "fairness",
     "B": "weather patterns",
     "C": "national identity",
@@ -538,7 +529,7 @@
   },
   {
     "id": 49,
-    "prompt": "49. In the passage, \"neutral\" is used to question the idea that efficiency is ______.",
+    "prompt": "In the passage, \"neutral\" is used to question the idea that efficiency is ______.",
     "A": "free from value judgments",
     "B": "always wasteful",
     "C": "identical to profitability",
@@ -549,7 +540,7 @@
   },
   {
     "id": 50,
-    "prompt": "50. Which option best captures the author’s point?",
+    "prompt": "Which option best captures the author’s point?",
     "A": "What counts as efficient depends on what and whom we count.",
     "B": "Efficiency always guarantees equality.",
     "C": "Efficiency debates are purely mathematical.",
@@ -558,10 +549,9 @@
     "correct": "A",
     "explanation": "ÇÖZÜM: Ölçüm ve dağılım belirleyici."
   },
-
   {
     "id": 51,
-    "prompt": "51. The committee’s decision was widely seen as ______, coming only after months of avoidable delay.",
+    "prompt": "The committee’s decision was widely seen as ______, coming only after months of avoidable delay.",
     "A": "belated",
     "B": "spontaneous",
     "C": "cordial",
@@ -572,7 +562,7 @@
   },
   {
     "id": 52,
-    "prompt": "52. The new rule was intended to ______ discretionary power, reducing arbitrary decisions.",
+    "prompt": "The new rule was intended to ______ discretionary power, reducing arbitrary decisions.",
     "A": "constrain",
     "B": "amplify",
     "C": "inflate",
@@ -583,7 +573,7 @@
   },
   {
     "id": 53,
-    "prompt": "53. The analyst warned that the projected savings were ______, since hidden costs had not been accounted for.",
+    "prompt": "The analyst warned that the projected savings were ______, since hidden costs had not been accounted for.",
     "A": "illusory",
     "B": "inevitable",
     "C": "robust",
@@ -594,7 +584,7 @@
   },
   {
     "id": 54,
-    "prompt": "54. The witness’s account was treated with skepticism because it was internally ______.",
+    "prompt": "The witness’s account was treated with skepticism because it was internally ______.",
     "A": "inconsistent",
     "B": "lucid",
     "C": "benign",
@@ -605,7 +595,7 @@
   },
   {
     "id": 55,
-    "prompt": "55. The reforms were designed to enhance ______, ensuring officials could be held responsible for outcomes.",
+    "prompt": "The reforms were designed to enhance ______, ensuring officials could be held responsible for outcomes.",
     "A": "accountability",
     "B": "opacity",
     "C": "redundancy",
@@ -614,10 +604,9 @@
     "correct": "A",
     "explanation": "ÇÖZÜM: Hesap verebilirlik = accountability."
   },
-
   {
     "id": 56,
-    "prompt": "56. The policy’s critics argued that its benefits were ______, while its costs were immediate and concrete.",
+    "prompt": "The policy’s critics argued that its benefits were ______, while its costs were immediate and concrete.",
     "A": "speculative",
     "B": "tangible",
     "C": "inevitable",
@@ -628,7 +617,7 @@
   },
   {
     "id": 57,
-    "prompt": "57. The prosecutor presented evidence to ______ the claim that the defendant acted alone.",
+    "prompt": "The prosecutor presented evidence to ______ the claim that the defendant acted alone.",
     "A": "refute",
     "B": "endorse",
     "C": "conceal",
@@ -639,7 +628,7 @@
   },
   {
     "id": 58,
-    "prompt": "58. The committee attempted to ______ public anger by offering a transparent timeline of events.",
+    "prompt": "The committee attempted to ______ public anger by offering a transparent timeline of events.",
     "A": "assuage",
     "B": "provoke",
     "C": "magnify",
@@ -650,7 +639,7 @@
   },
   {
     "id": 59,
-    "prompt": "59. The agreement was accepted, ______ minor revisions requested by external auditors.",
+    "prompt": "The agreement was accepted, ______ minor revisions requested by external auditors.",
     "A": "subject to",
     "B": "due to",
     "C": "instead of",
@@ -661,7 +650,7 @@
   },
   {
     "id": 60,
-    "prompt": "60. The study’s sample was too ______ to represent the broader population reliably.",
+    "prompt": "The study’s sample was too ______ to represent the broader population reliably.",
     "A": "narrow",
     "B": "robust",
     "C": "lucid",
@@ -670,10 +659,9 @@
     "correct": "A",
     "explanation": "ÇÖZÜM: Dar/kapsamı küçük = narrow."
   },
-
   {
     "id": 61,
-    "prompt": "61. The government introduced incentives ______ stimulate investment in renewable energy.",
+    "prompt": "The government introduced incentives ______ stimulate investment in renewable energy.",
     "A": "to",
     "B": "for",
     "C": "by",
@@ -684,7 +672,7 @@
   },
   {
     "id": 62,
-    "prompt": "62. The proposal was rejected ______ concerns about its long-term feasibility.",
+    "prompt": "The proposal was rejected ______ concerns about its long-term feasibility.",
     "A": "due to",
     "B": "unless",
     "C": "whereas",
@@ -695,7 +683,7 @@
   },
   {
     "id": 63,
-    "prompt": "63. Only after the evidence had been reviewed ______ the committee authorize further action.",
+    "prompt": "Only after the evidence had been reviewed ______ the committee authorize further action.",
     "A": "did",
     "B": "does",
     "C": "has",
@@ -706,7 +694,7 @@
   },
   {
     "id": 64,
-    "prompt": "64. The institution is committed ______ improving transparency in procurement procedures.",
+    "prompt": "The institution is committed ______ improving transparency in procurement procedures.",
     "A": "to",
     "B": "for",
     "C": "with",
@@ -717,7 +705,7 @@
   },
   {
     "id": 65,
-    "prompt": "65. The speaker’s remarks were taken out of ______, leading to public misunderstanding.",
+    "prompt": "The speaker’s remarks were taken out of ______, leading to public misunderstanding.",
     "A": "context",
     "B": "balance",
     "C": "sequence",
@@ -726,10 +714,9 @@
     "correct": "A",
     "explanation": "ÇÖZÜM: out of context."
   },
-
   {
     "id": 66,
-    "prompt": "66. Turkish: 'Bu yaklaşım, kısa vadeli kazançlar yerine sürdürülebilir büyümeyi hedefler.'",
+    "prompt": "Select the correct English translation for the sentence:\n\n'Bu yaklaşım, kısa vadeli kazançlar yerine sürdürülebilir büyümeyi hedefler.'",
     "A": "This approach aims for sustainable growth rather than short-term gains.",
     "B": "This approach rejects growth in every form.",
     "C": "This approach focuses only on short-term profit.",
@@ -740,7 +727,7 @@
   },
   {
     "id": 67,
-    "prompt": "67. READING: Remote work has expanded rapidly, offering flexibility and reducing commuting time. Yet it may also blur boundaries between work and personal life, leading to burnout.\n\nAccording to the passage, remote work can increase burnout because it ______.",
+    "prompt": "Read the passage and answer the question:\n\nRemote work has expanded rapidly, offering flexibility and reducing commuting time. Yet it may also blur boundaries between work and personal life, leading to burnout.\n\nAccording to the passage, remote work can increase burnout because it ______.",
     "A": "blurs boundaries between work and personal life",
     "B": "eliminates flexibility entirely",
     "C": "requires longer commutes",
@@ -751,7 +738,7 @@
   },
   {
     "id": 68,
-    "prompt": "68. The passage suggests that remote work is beneficial mainly because it ______.",
+    "prompt": "The passage suggests that remote work is beneficial mainly because it ______.",
     "A": "offers flexibility and reduces commuting time",
     "B": "removes the need for any coordination",
     "C": "makes burnout impossible",
@@ -760,10 +747,9 @@
     "correct": "A",
     "explanation": "ÇÖZÜM: Metinde iki fayda var."
   },
-
   {
     "id": 69,
-    "prompt": "69. The committee decided to postpone the decision ______ further evidence became available.",
+    "prompt": "The committee decided to postpone the decision ______ further evidence became available.",
     "A": "until",
     "B": "during",
     "C": "since",
@@ -774,7 +760,7 @@
   },
   {
     "id": 70,
-    "prompt": "70. The implications of the findings were ______, influencing debates far beyond the academic sphere.",
+    "prompt": "The implications of the findings were ______, influencing debates far beyond the academic sphere.",
     "A": "far-reaching",
     "B": "minute",
     "C": "domestic",
@@ -783,10 +769,9 @@
     "correct": "A",
     "explanation": "ÇÖZÜM: Geniş etkili = far-reaching."
   },
-
   {
     "id": 71,
-    "prompt": "71. The policy aims to reduce inequality ______ expanding access to early childhood education.",
+    "prompt": "The policy aims to reduce inequality ______ expanding access to early childhood education.",
     "A": "by",
     "B": "to",
     "C": "for",
@@ -797,7 +782,7 @@
   },
   {
     "id": 72,
-    "prompt": "72. The discovery represented a ______ shift in how scientists understood the disease.",
+    "prompt": "The discovery represented a ______ shift in how scientists understood the disease.",
     "A": "paradigmatic",
     "B": "audible",
     "C": "portable",
@@ -808,7 +793,7 @@
   },
   {
     "id": 73,
-    "prompt": "73. The official refused to comment ______ the allegations while the investigation was ongoing.",
+    "prompt": "The official refused to comment ______ the allegations while the investigation was ongoing.",
     "A": "on",
     "B": "to",
     "C": "with",
@@ -819,7 +804,7 @@
   },
   {
     "id": 74,
-    "prompt": "74. The city introduced policies to ______ housing shortages in rapidly growing districts.",
+    "prompt": "The city introduced policies to ______ housing shortages in rapidly growing districts.",
     "A": "alleviate",
     "B": "exacerbate",
     "C": "neutralize",
@@ -830,7 +815,7 @@
   },
   {
     "id": 75,
-    "prompt": "75. The proposal was accepted, ______ the requirement that progress be monitored quarterly.",
+    "prompt": "The proposal was accepted, ______ the requirement that progress be monitored quarterly.",
     "A": "subject to",
     "B": "due to",
     "C": "apart from",
@@ -839,10 +824,9 @@
     "correct": "A",
     "explanation": "ÇÖZÜM: Şarta bağlı: subject to."
   },
-
   {
     "id": 76,
-    "prompt": "76. The research team worked tirelessly ______ meet the deadline set by the funding agency.",
+    "prompt": "The research team worked tirelessly ______ meet the deadline set by the funding agency.",
     "A": "to",
     "B": "for",
     "C": "by",
@@ -853,7 +837,7 @@
   },
   {
     "id": 77,
-    "prompt": "77. The findings carry significant ______ for how future regulations should be designed.",
+    "prompt": "The findings carry significant ______ for how future regulations should be designed.",
     "A": "implications",
     "B": "hesitations",
     "C": "interruptions",
@@ -864,7 +848,7 @@
   },
   {
     "id": 78,
-    "prompt": "78. The campaign sought to ______ awareness of mental health issues in workplaces.",
+    "prompt": "The campaign sought to ______ awareness of mental health issues in workplaces.",
     "A": "raise",
     "B": "remove",
     "C": "conceal",
@@ -875,7 +859,7 @@
   },
   {
     "id": 79,
-    "prompt": "79. The research was criticized ______ its reliance on self-reported data, which may be biased.",
+    "prompt": "The research was criticized ______ its reliance on self-reported data, which may be biased.",
     "A": "for",
     "B": "to",
     "C": "with",
@@ -886,7 +870,7 @@
   },
   {
     "id": 80,
-    "prompt": "80. The documentary offers insight ______ the ethical dilemmas created by advanced surveillance technologies.",
+    "prompt": "The documentary offers insight ______ the ethical dilemmas created by advanced surveillance technologies.",
     "A": "into",
     "B": "to",
     "C": "with",
@@ -896,4 +880,3 @@
     "explanation": "ÇÖZÜM: insight into."
   }
 ]
-
