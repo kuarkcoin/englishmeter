@@ -26,6 +26,9 @@ import ydsExamQuestions10 from '@/data/yds_exam_questions_10.json';
 import ydsExamQuestions11 from '@/data/yds_exam_questions_11.json';
 import ydsExamQuestions12 from '@/data/yds_exam_questions_12.json';
 import ydsExamQuestions13 from '@/data/yds_exam_questions_13.json';
+import ydsExamQuestions14 from '@/data/yds_exam_questions_14.json';
+import ydsExamQuestions15 from '@/data/yds_exam_questions_15.json';
+
 // --- TEST DATA MAP ---
 const YDS_EXAM_MAP: Record<string, any[]> = {
   '1': ydsExamQuestions1,
@@ -41,6 +44,8 @@ const YDS_EXAM_MAP: Record<string, any[]> = {
   '11': ydsExamQuestions11,
   '12': ydsExamQuestions12,
   '13': ydsExamQuestions13,
+  '14': ydsExamQuestions14,
+  '15': ydsExamQuestions15,
 };
 
 // --- TEST TANIMLARI ---
@@ -438,7 +443,7 @@ function startTest(testSlug: string) {
 
 // --- ANA BİLEŞEN İÇERİĞİ ---
 function HomeContent() {
-  const availableTests = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+  const availableTests = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   const searchParams = useSearchParams();
   const restartSlug = searchParams.get('restart');
   const [isRestarting, setIsRestarting] = useState(false);
@@ -546,7 +551,7 @@ function HomeContent() {
 
                {/* 13 TANE TEST BUTONU (1-13 AKTİF) */}
                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((num) => {
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((num) => {
                     const isActive = availableTests.includes(num);
 
                     return (
