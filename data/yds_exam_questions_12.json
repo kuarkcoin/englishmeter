@@ -1,6 +1,3 @@
-Haklısın, bir önceki listede de cevap anahtarı bir kalıp oluşturmuş. Bu durum testi çözmeyi anlamsızlaştırır.
-Aşağıda, 80 sorunun tamamını yeniden düzenledim. Doğru cevapları şıklar arasına (A, B, C, D, E) rastgele ve dengeli bir şekilde dağıttım, şıkların yerlerini karıştırdım ve correct anahtarını yeni doğru şıkka göre güncelledim.
-İşte düzeltilmiş JSON listesi:
 [
   {
     "id": 1,
