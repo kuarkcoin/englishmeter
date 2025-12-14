@@ -563,6 +563,56 @@ function HomeContent() {
       {/* MAIN CONTENT */}
       <div className="flex flex-col items-center justify-center px-4 pb-16 pt-4">
         <div id="all-tests" className="w-full max-w-6xl mx-auto text-center">
+          {/* --- OYUN MODLARI (GAME MODES) --- */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            
+            {/* 1. SPEED RUN BUTTON */}
+            <a href="/speedrun" className="group relative overflow-hidden bg-gradient-to-br from-indigo-900 to-indigo-950 rounded-3xl p-8 border border-indigo-800 shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left">
+              <div className="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-yellow-500 rounded-full opacity-10 blur-2xl group-hover:opacity-20 transition-opacity"></div>
+              <div className="relative z-10 flex items-start justify-between">
+                <div>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-yellow-500/10 border border-yellow-500/20 rounded-full text-yellow-400 text-xs font-bold uppercase tracking-wider mb-4">
+                    <span className="animate-pulse">⚡</span> New Mode
+                  </div>
+                  <h3 className="text-3xl font-black text-white mb-2 group-hover:text-yellow-400 transition-colors">
+                    Speed<span className="text-yellow-400">Run</span>
+                  </h3>
+                  <p className="text-indigo-200 text-sm font-medium leading-relaxed max-w-xs">
+                    60 seconds. 3000 words. How fast can you translate?
+                  </p>
+                </div>
+                <div className="w-14 h-14 bg-yellow-400 rounded-full flex items-center justify-center text-indigo-950 shadow-lg group-hover:scale-110 transition-transform">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </div>
+              </div>
+            </a>
+
+            {/* 2. GLOBAL RACE BUTTON */}
+            <a href="/race" className="group relative overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 border border-slate-700 shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left">
+              <div className="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-blue-500 rounded-full opacity-10 blur-2xl group-hover:opacity-20 transition-opacity"></div>
+              <div className="relative z-10 flex items-start justify-between">
+                <div>
+                   <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-bold uppercase tracking-wider mb-4">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                    </span>
+                    Live Arena
+                  </div>
+                  <h3 className="text-3xl font-black text-white mb-2 group-hover:text-blue-400 transition-colors">
+                    Global Race
+                  </h3>
+                  <p className="text-slate-400 text-sm font-medium leading-relaxed max-w-xs">
+                    Compete live with thousands of students. Can you reach the top 10?
+                  </p>
+                </div>
+                <div className="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+                </div>
+              </div>
+            </a>
+
+          </div>
 
           {/* Main Tests Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
@@ -642,13 +692,6 @@ function HomeContent() {
             <button onClick={() => startTest(vocabTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-emerald-600 text-white text-xl font-bold shadow-xl hover:bg-emerald-700 transition-all">
               {vocabTest.title}
             </button>
-          </div>
-
-          {/* Race Mode Banner */}
-          <div className="mb-16">
-            <a href={raceTest.href} className="block w-full max-w-2xl mx-auto px-6 py-6 rounded-2xl bg-red-600 text-white text-xl font-bold shadow-xl hover:bg-red-700 transition-all">
-              🏁 {raceTest.title}
-            </a>
           </div>
 
           {/* Grammar Focus Section */}
