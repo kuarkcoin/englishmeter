@@ -786,5 +786,10 @@ function HomeContent() {
         </div>
       </div>
     </div>
+  export default function Home(props: any) {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-slate-50" />}>
+      <HomeContent />
+    </Suspense>
   );
 }
