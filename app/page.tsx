@@ -786,7 +786,10 @@ function HomeContent() {
         </div>
       </div>
     </div>
-  export default function Home(props: any) {
+  ); // <--- Return parantezini kapatır
+} // <--- HomeContent fonksiyonunu kapatır (BU EKSİKTİ)
+
+export default function Home(props: any) {
   return (
     <Suspense fallback={<div className="min-h-screen bg-slate-50" />}>
       <HomeContent />
