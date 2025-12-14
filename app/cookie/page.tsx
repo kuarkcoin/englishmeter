@@ -1,115 +1,42 @@
-// app/cookie/page.tsx → AdSense & SEO onaylı final versiyon
+// app/cookie/page.tsx
 import React from 'react';
-import { Shield, Cookie, Mail } from 'lucide-react';
+import { Metadata } from 'next';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Cookie Policy | EnglishMeter',
-  description: 'Learn how EnglishMeter uses cookies to improve your experience, analytics, and personalized ads.',
+  description: 'Learn how EnglishMeter uses cookies to improve your experience.',
 };
 
 export default function CookiePolicyPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-16 px-4">
-      <div className="max-w-4xl mx-auto">
-        {/* Başlık Alanı */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-100 mb-6">
-            <Cookie className="w-9 h-9 text-blue-600" />
+    <div className="min-h-screen bg-gray-50 py-16 px-4">
+      <div className="max-w-3xl mx-auto bg-white rounded-3xl shadow-sm p-8 sm:p-12">
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 text-blue-600 rounded-full mb-4">
+             {/* Cookie Icon */}
+             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><path d="M8.5 8.5v.01"/><path d="M16 15.5v.01"/><path d="M12 12v.01"/><path d="M11 17v.01"/><path d="M7 14v.01"/></svg>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-            Cookie Policy
-          </h1>
-          <p className="text-lg text-gray-600">
-            Last updated: <span className="font-semibold">November 24, 2025</span>
+          <h1 className="text-3xl font-bold text-gray-900">Cookie Policy</h1>
+          <p className="text-gray-500 mt-2">Last updated: November 2025</p>
+        </div>
+        
+        <div className="prose prose-blue max-w-none text-gray-600">
+          <p>
+            This Cookie Policy explains how EnglishMeter uses cookies and similar technologies to recognize you when you visit our website.
           </p>
-        </div>
-
-        {/* İçerik Kartı */}
-        <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
-          <div className="p-8 sm:p-12 lg:p-16 prose prose-lg max-w-none text-gray-700">
-            <p className="lead text-xl text-gray-800 mb-8">
-              This Cookie Policy explains what cookies are and how <strong>EnglishMeter.net</strong> uses them. 
-              By continuing to use our website, you agree to the use of cookies as described below.
-            </p>
-
-            <section className="space-y-6">
-              <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-                <Shield className="w-7 h-7 text-blue-600" />
-                1. What Are Cookies?
-              </h2>
-              <p>
-                Cookies are small text files that are placed on your device (computer, smartphone, or tablet) when you visit a website. 
-                They help the site remember your actions and preferences over time and make your experience faster and more personalized.
-              </p>
-            </section>
-
-            <section className="space-y-6 mt-10">
-              <h2 className="text-2xl font-bold text-gray-900">2. Types of Cookies We Use</h2>
-              <div className="grid gap-6 md:grid-cols-2">
-                <div className="bg-blue-50 rounded-2xl p-6 border border-blue-100">
-                  <h3 className="font-bold text-lg text-blue-900 mb-2">Essential Cookies</h3>
-                  <p className="text-sm">Required for the site to function properly (e.g., saving your quiz progress).</p>
-                </div>
-                <div className="bg-green-50 rounded-2xl p-6 border border-green-100">
-                  <h3 className="font-bold text-lg text-green-900 mb-2">Analytics Cookies</h3>
-                  <p className="text-sm">Help us understand how visitors use the site via Google Analytics.</p>
-                </div>
-                <div className="bg-purple-50 rounded-2xl p-6 border border-purple-100">
-                  <h3 className="font-bold text-lg text-purple-900 mb-2">Advertising Cookies</h3>
-                  <p className="text-sm">Used by Google AdSense and partners to show relevant ads based on your interests.</p>
-                </div>
-                <div className="bg-orange-50 rounded-2xl p-6 border border-orange-100">
-                  <h3 className="font-bold text-lg text-orange-900 mb-2">Preference Cookies</h3>
-                  <p className="text-sm">Remember your settings (language, theme, etc.).</p>
-                </div>
-              </div>
-            </section>
-
-            <section className="space-y-6 mt-10">
-              <h2 className="text-2xl font-bold text-gray-900">3. How to Manage Cookies</h2>
-              <p>
-                You can control and/or delete cookies at any time through your browser settings. 
-                Most browsers allow you to:
-              </p>
-              <ul className="list-disc pl-8 space-y-2 text-gray-700">
-                <li>View which cookies are set</li>
-                <li>Block cookies from specific or all websites</li>
-                <li>Delete all cookies when you close your browser</li>
-              </ul>
-              <p className="mt-4 text-sm text-gray-600">
-                Note: Disabling essential cookies may prevent some features (like saving test progress) from working.
-              </p>
-            </section>
-
-            <section className="space-y-6 mt-10">
-              <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-                <Mail className="w-7 h-7 text-blue-600" />
-                4. Contact Us
-              </h2>
-              <p>
-                If you have any questions about this Cookie Policy, feel free to reach out:
-              </p>
-              <div className="bg-gray-50 rounded-2xl p-6 border">
-                <p className="font-semibold text-gray-900">
-                  Email:{' '}
-                  <a
-                    href="mailto:support@englishmeter.net"
-                    className="text-blue-600 hover:underline font-bold"
-                  >
-                    support@englishmeter.net
-                  </a>
-                </p>
-                <p className="mt-2 text-sm text-gray-600">
-                  Or use our <a href="/contact" className="text-blue-600 hover:underline">Contact page</a>
-                </p>
-              </div>
-            </section>
+          <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-2">What are cookies?</h3>
+          <p>
+            Cookies are small data files that are placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners in order to make their websites work, or to work more efficiently, as well as to provide reporting information.
+          </p>
+          <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-2">How can I control cookies?</h3>
+          <p>
+            You have the right to decide whether to accept or reject cookies. You can exercise your cookie rights by setting your browser controls to accept or refuse cookies.
+          </p>
+          
+          <div className="mt-8 p-4 bg-blue-50 rounded-xl border border-blue-100">
+             <p className="text-sm text-blue-800 font-medium">Contact us</p>
+             <p className="text-sm text-blue-600">support@englishmeter.net</p>
           </div>
-        </div>
-
-        {/* Alt Bilgi */}
-        <div className="text-center mt-12 text-sm text-gray-500">
-          © 2025 EnglishMeter – All rights reserved
         </div>
       </div>
     </div>
