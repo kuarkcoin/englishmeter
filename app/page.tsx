@@ -556,54 +556,54 @@ function HomeContent() {
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
       {/* MAIN CONTENT */}
       <div className="flex flex-col items-center justify-center px-4 pb-16 pt-4">
         <div id="all-tests" className="w-full max-w-6xl mx-auto text-center">
-        {/* --- OYUN MODLARI (3'lü Grid) --- */}
-<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-  
-  {/* 1. SPEED RUN (SARI) */}
-  <a href="/speedrun" className="group relative overflow-hidden bg-gradient-to-br from-indigo-900 to-indigo-950 rounded-3xl p-6 border border-indigo-800 shadow-xl hover:shadow-yellow-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left">
-    <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-yellow-500 rounded-full opacity-10 blur-xl"></div>
-    <div className="relative z-10">
-      <div className="inline-flex items-center gap-1 px-2 py-1 bg-yellow-500/10 rounded-full text-yellow-400 text-[10px] font-bold uppercase mb-3">
-        ⚡ Fast
-      </div>
-      <h3 className="text-2xl font-black text-white mb-1">SpeedRun</h3>
-      <p className="text-indigo-200 text-xs mb-4">60 seconds challenge.</p>
-      <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center text-indigo-950 font-bold">▶</div>
-    </div>
-  </a>
 
-  {/* 2. GLOBAL RACE (MAVİ) */}
-  <a href="/race" className="group relative overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-6 border border-slate-700 shadow-xl hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left">
-    <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-blue-500 rounded-full opacity-10 blur-xl"></div>
-    <div className="relative z-10">
-      <div className="inline-flex items-center gap-1 px-2 py-1 bg-blue-500/10 rounded-full text-blue-400 text-[10px] font-bold uppercase mb-3">
-        🏆 Live
-      </div>
-      <h3 className="text-2xl font-black text-white mb-1">Race Arena</h3>
-      <p className="text-slate-400 text-xs mb-4">Compete with others.</p>
-      <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">⚔</div>
-    </div>
-  </a>
+          {/* --- OYUN MODLARI (3'lü Grid - DÜZELTİLMİŞ HALİ) --- */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+            
+            {/* 1. SPEED RUN (SARI) */}
+            <a href="/speedrun" className="group relative overflow-hidden bg-gradient-to-br from-indigo-900 to-indigo-950 rounded-3xl p-6 border border-indigo-800 shadow-xl hover:shadow-yellow-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left">
+              <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-yellow-500 rounded-full opacity-10 blur-xl"></div>
+              <div className="relative z-10">
+                <div className="inline-flex items-center gap-1 px-2 py-1 bg-yellow-500/10 rounded-full text-yellow-400 text-[10px] font-bold uppercase mb-3">
+                  ⚡ Fast
+                </div>
+                <h3 className="text-2xl font-black text-white mb-1">SpeedRun</h3>
+                <p className="text-indigo-200 text-xs mb-4">60 seconds challenge.</p>
+                <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center text-indigo-950 font-bold">▶</div>
+              </div>
+            </a>
 
-  {/* 3. FLASHCARDS (YEŞİL - YENİ) */}
-  <a href="/flashcards" className="group relative overflow-hidden bg-gradient-to-br from-emerald-900 to-emerald-950 rounded-3xl p-6 border border-emerald-800 shadow-xl hover:shadow-emerald-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left">
-    <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-emerald-500 rounded-full opacity-10 blur-xl"></div>
-    <div className="relative z-10">
-      <div className="inline-flex items-center gap-1 px-2 py-1 bg-emerald-500/10 rounded-full text-emerald-400 text-[10px] font-bold uppercase mb-3">
-        🧠 Study
-      </div>
-      <h3 className="text-2xl font-black text-white mb-1">Flashcards</h3>
-      <p className="text-emerald-200 text-xs mb-4">Memorize 3000 words.</p>
-      <div className="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold">↺</div>
-    </div>
-  </a>
+            {/* 2. GLOBAL RACE (MAVİ) */}
+            <a href="/race" className="group relative overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-6 border border-slate-700 shadow-xl hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left">
+              <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-blue-500 rounded-full opacity-10 blur-xl"></div>
+              <div className="relative z-10">
+                <div className="inline-flex items-center gap-1 px-2 py-1 bg-blue-500/10 rounded-full text-blue-400 text-[10px] font-bold uppercase mb-3">
+                  🏆 Live
+                </div>
+                <h3 className="text-2xl font-black text-white mb-1">Race Arena</h3>
+                <p className="text-slate-400 text-xs mb-4">Compete with others.</p>
+                <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">⚔</div>
+              </div>
+            </a>
+
+            {/* 3. FLASHCARDS (YEŞİL - YENİ) */}
+            <a href="/flashcards" className="group relative overflow-hidden bg-gradient-to-br from-emerald-900 to-emerald-950 rounded-3xl p-6 border border-emerald-800 shadow-xl hover:shadow-emerald-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left">
+              <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-emerald-500 rounded-full opacity-10 blur-xl"></div>
+              <div className="relative z-10">
+                <div className="inline-flex items-center gap-1 px-2 py-1 bg-emerald-500/10 rounded-full text-emerald-400 text-[10px] font-bold uppercase mb-3">
+                  🧠 Study
+                </div>
+                <h3 className="text-2xl font-black text-white mb-1">Flashcards</h3>
+                <p className="text-emerald-200 text-xs mb-4">Memorize 3000 words.</p>
+                <div className="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold">↺</div>
+              </div>
+            </a>
           </div>
 
           {/* Main Tests Grid */}
@@ -634,7 +634,7 @@ function HomeContent() {
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map((num) => {
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((num) => {
                   const isActive = availableTests.includes(num);
 
                   return (
@@ -786,14 +786,5 @@ function HomeContent() {
         </div>
       </div>
     </div>
-  );
-}
-
-// Next.js useSearchParams için Suspense Wrapper
-export default function Home() {
-  return (
-    <Suspense fallback={<div className="min-h-screen bg-slate-50" />}>
-      <HomeContent />
-    </Suspense>
   );
 }
