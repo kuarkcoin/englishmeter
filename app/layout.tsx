@@ -7,7 +7,7 @@ const siteName = 'EnglishMeter';
 const siteUrl = 'https://englishmeter.net';
 
 const siteDescription =
-  'Take our free English level test (A1–C2) and practice for YDS/YÖKDİL with our 1000 essential vocabulary words. Instant grammar & vocab results, no sign-up required.';
+  'Take our free English level test (A1–C2) and practice for YDS/YÖKDİL with our 3000 essential vocabulary words. Instant grammar & vocab results, no sign-up required.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
