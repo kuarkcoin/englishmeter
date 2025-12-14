@@ -604,9 +604,6 @@ function HomeContent() {
       <div className="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold">↺</div>
     </div>
   </a>
-
-</div>
-
           </div>
 
           {/* Main Tests Grid */}
