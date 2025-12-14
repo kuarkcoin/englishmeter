@@ -67,7 +67,6 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -129,8 +128,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-slate-50 min-h-screen flex flex-col">
-
-        {/* --- GOOGLE ANALYTICS KODU --- */}
+        
+        {/* --- GOOGLE ANALYTICS --- */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-Z4658W17W5"
           strategy="afterInteractive"
@@ -140,24 +139,22 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-
             gtag('config', 'G-Z4658W17W5');
           `}
         </Script>
 
-        {/* --- GOOGLE ADSENSE KODU (EKLENDİ) --- */}
-        {/* Not: ID'nizi 'ca-pub-...' formatına uygun hale getirdim */}
+        {/* --- GOOGLE ADSENSE --- */}
+        {/* AdSense Next.js'de en iyi 'afterInteractive' stratejisiyle çalışır */}
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1700979325865596"
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
-        {/* ------------------------------------- */}
 
+        {/* --- JSON-LD SCHEMA --- */}
         <script
           type="application/ld+json"
-          suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
 
