@@ -1,3 +1,4 @@
+// app/about/page.tsx
 import React from 'react';
 import { Users, Target, Zap, Globe } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -26,7 +27,7 @@ export default function AboutPage() {
         <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden mb-12">
           <div className="grid md:grid-cols-2">
             
-            {/* Sol Taraf - Resim/Görsel Alanı */}
+            {/* Sol Taraf - Görsel Alanı */}
             <div className="bg-blue-600 p-12 flex flex-col justify-center text-white">
               <div className="mb-6">
                 <Globe className="w-16 h-16 opacity-90" />
