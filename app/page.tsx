@@ -56,7 +56,7 @@ const raceTest = { title: 'Global Race Mode', href: '/race' };
 const ieltsTest = { title: 'IELTS Grammar (50Q)', slug: 'ielts-grammar' };
 
 // YDS TESTLERİ
-const ydsVocabTest = { title: 'YDS 3750 Words (Vocab)', slug: 'yds-3000-vocab' };
+const ydsVocabTest = { title: 'YDS 3750 Words (Vocab)', slug: 'yds-3750-vocab' };
 const ydsGrammarTest = { title: 'YDS Grammar Practice (100Q)', slug: 'yds-grammar-practice' };
 const ydsPhrasalTest = { title: 'YDS Phrasal Verbs (500Q)', slug: 'yds-phrasal-verbs' };
 const ydsReadingTest = { title: 'YDS Reading (40Q)', slug: 'yds-reading' };
@@ -291,7 +291,7 @@ function HomeContent() {
       return;
     }
 
-    // 4) YDS 3000 VOCAB
+    // 4) YDS 3750 VOCAB
     if (testSlug === 'yds-3750-vocab') {
       const selectedWords = shuffle(ydsVocabulary as any[]).slice(0, 50);
 
