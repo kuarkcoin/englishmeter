@@ -56,7 +56,7 @@ const raceTest = { title: 'Global Race Mode', href: '/race' };
 const ieltsTest = { title: 'IELTS Grammar (50Q)', slug: 'ielts-grammar' };
 
 // YDS TESTLERİ
-const ydsVocabTest = { title: 'YDS 3000 Words (Vocab)', slug: 'yds-3000-vocab' };
+const ydsVocabTest = { title: 'YDS 3750 Words (Vocab)', slug: 'yds-3000-vocab' };
 const ydsGrammarTest = { title: 'YDS Grammar Practice (100Q)', slug: 'yds-grammar-practice' };
 const ydsPhrasalTest = { title: 'YDS Phrasal Verbs (500Q)', slug: 'yds-phrasal-verbs' };
 const ydsReadingTest = { title: 'YDS Reading (40Q)', slug: 'yds-reading' };
@@ -292,7 +292,7 @@ function HomeContent() {
     }
 
     // 4) YDS 3000 VOCAB
-    if (testSlug === 'yds-3000-vocab') {
+    if (testSlug === 'yds-3750-vocab') {
       const selectedWords = shuffle(ydsVocabulary as any[]).slice(0, 50);
 
       const questions = selectedWords.map((item: any, idx: number) => {
@@ -740,7 +740,7 @@ function HomeContent() {
                     Our <strong>YDS Exam Pack</strong> includes full-length practice tests with 80 questions covering reading comprehension, vocabulary, grammar, and translation skills.
                   </p>
                   <ul className="list-disc pl-4 text-sm text-slate-500 space-y-1">
-                    <li><strong>YDS Vocabulary:</strong> Master the most common 3000 academic words.</li>
+                    <li><strong>YDS Vocabulary:</strong> Master the most common 3750 academic words.</li>
                     <li><strong>Synonyms Practice:</strong> Learn crucial synonyms and distractors for paraphrasing questions.</li>
                     <li><strong>Reading Comprehension:</strong> Analyze complex paragraphs with detailed explanations.</li>
                     <li><strong>Grammar Practice:</strong> Focus on tenses, prepositions, and sentence completion.</li>
