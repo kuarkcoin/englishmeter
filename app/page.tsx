@@ -600,7 +600,7 @@ function HomeContent() {
                   🧠 Study
                 </div>
                 <h3 className="text-2xl font-black text-white mb-1">Flashcards</h3>
-                <p className="text-emerald-200 text-xs mb-4">Memorize 3000 words.</p>
+                <p className="text-emerald-200 text-xs mb-4">Memorize 3750 words.</p>
                 <div className="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold">↺</div>
               </div>
             </a>
