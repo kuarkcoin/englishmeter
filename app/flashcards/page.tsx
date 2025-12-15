@@ -50,7 +50,7 @@ export default function FlashcardsPage() {
           Exit
         </Link>
         <div className="text-slate-400 text-sm font-semibold uppercase tracking-wider">
-          Card {viewedCount + 1} / 3000
+          Card {viewedCount + 1} / 3750
         </div>
       </div>
 
