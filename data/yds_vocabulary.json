@@ -14862,5 +14862,321 @@
     {
         "word": "piece together",
         "meaning": "parçaları birleştirip anlam çıkarmak"
+    },
+    {
+        "word": "Abruptly",
+        "meaning": "Ani bir şekilde"
+    },
+    {
+        "word": "Accurately",
+        "meaning": "Doğru ve kesin bir şekilde"
+    },
+    {
+        "word": "Actively",
+        "meaning": "Aktif olarak"
+    },
+    {
+        "word": "Adequately",
+        "meaning": "Yeterli düzeyde"
+    },
+    {
+        "word": "Adversely",
+        "meaning": "Olumsuz bir şekilde"
+    },
+    {
+        "word": "Apparently",
+        "meaning": "Görünüşe göre"
+    },
+    {
+        "word": "Approximately",
+        "meaning": "Yaklaşık olarak"
+    },
+    {
+        "word": "Arguably",
+        "meaning": "İleri sürülebilir şekilde"
+    },
+    {
+        "word": "Barely",
+        "meaning": "Zorla, neredeyse hiç"
+    },
+    {
+        "word": "Briefly",
+        "meaning": "Kısaca"
+    },
+    {
+        "word": "Broadly",
+        "meaning": "Genel olarak"
+    },
+    {
+        "word": "Carefully",
+        "meaning": "Dikkatli bir şekilde"
+    },
+    {
+        "word": "Clearly",
+        "meaning": "Açıkça"
+    },
+    {
+        "word": "Closely",
+        "meaning": "Yakından, dikkatle"
+    },
+    {
+        "word": "Commonly",
+        "meaning": "Genellikle"
+    },
+    {
+        "word": "Comparatively",
+        "meaning": "Karşılaştırmalı olarak"
+    },
+    {
+        "word": "Consistently",
+        "meaning": "Tutarlı bir şekilde"
+    },
+    {
+        "word": "Considerably",
+        "meaning": "Önemli ölçüde"
+    },
+    {
+        "word": "Constantly",
+        "meaning": "Sürekli olarak"
+    },
+    {
+        "word": "Conversely",
+        "meaning": "Tersine olarak"
+    },
+    {
+        "word": "Critically",
+        "meaning": "Eleştirel biçimde"
+    },
+    {
+        "word": "Currently",
+        "meaning": "Şu anda"
+    },
+    {
+        "word": "Deliberately",
+        "meaning": "Kasıtlı olarak"
+    },
+    {
+        "word": "Dramatically",
+        "meaning": "Çarpıcı biçimde"
+    },
+    {
+        "word": "Effectively",
+        "meaning": "Etkili bir şekilde"
+    },
+    {
+        "word": "Efficiently",
+        "meaning": "Verimli bir şekilde"
+    },
+    {
+        "word": "Equally",
+        "meaning": "Eşit derecede"
+    },
+    {
+        "word": "Essentially",
+        "meaning": "Temelde"
+    },
+    {
+        "word": "Eventually",
+        "meaning": "Sonunda"
+    },
+    {
+        "word": "Evidently",
+        "meaning": "Açıkça, belli ki"
+    },
+    {
+        "word": "Excessively",
+        "meaning": "Aşırı derecede"
+    },
+    {
+        "word": "Explicitly",
+        "meaning": "Açıkça, net biçimde"
+    },
+    {
+        "word": "Frequently",
+        "meaning": "Sık sık"
+    },
+    {
+        "word": "Generally",
+        "meaning": "Genel olarak"
+    },
+    {
+        "word": "Gradually",
+        "meaning": "Yavaş yavaş"
+    },
+    {
+        "word": "Hardly",
+        "meaning": "Neredeyse hiç"
+    },
+    {
+        "word": "Heavily",
+        "meaning": "Büyük ölçüde"
+    },
+    {
+        "word": "Highly",
+        "meaning": "Son derece"
+    },
+    {
+        "word": "Increasingly",
+        "meaning": "Giderek artan şekilde"
+    },
+    {
+        "word": "Inevitably",
+        "meaning": "Kaçınılmaz olarak"
+    },
+    {
+        "word": "Initially",
+        "meaning": "Başlangıçta"
+    },
+    {
+        "word": "Largely",
+        "meaning": "Büyük ölçüde"
+    },
+    {
+        "word": "Likewise",
+        "meaning": "Benzer şekilde"
+    },
+    {
+        "word": "Markedly",
+        "meaning": "Belirgin biçimde"
+    },
+    {
+        "word": "Meanwhile",
+        "meaning": "Bu arada"
+    },
+    {
+        "word": "Merely",
+        "meaning": "Sadece"
+    },
+    {
+        "word": "Moderately",
+        "meaning": "Orta düzeyde"
+    },
+    {
+        "word": "Naturally",
+        "meaning": "Doğal olarak"
+    },
+    {
+        "word": "Notably",
+        "meaning": "Özellikle"
+    },
+    {
+        "word": "Objectively",
+        "meaning": "Tarafsız bir şekilde"
+    },
+    {
+        "word": "Occasionally",
+        "meaning": "Ara sıra"
+    },
+    {
+        "word": "Overall",
+        "meaning": "Genel olarak"
+    },
+    {
+        "word": "Partially",
+        "meaning": "Kısmen"
+    },
+    {
+        "word": "Particularly",
+        "meaning": "Özellikle"
+    },
+    {
+        "word": "Potentially",
+        "meaning": "Potansiyel olarak"
+    },
+    {
+        "word": "Predominantly",
+        "meaning": "Baskın olarak"
+    },
+    {
+        "word": "Previously",
+        "meaning": "Önceden"
+    },
+    {
+        "word": "Primarily",
+        "meaning": "Başlıca"
+    },
+    {
+        "word": "Progressively",
+        "meaning": "Aşamalı olarak"
+    },
+    {
+        "word": "Rapidly",
+        "meaning": "Hızla"
+    },
+    {
+        "word": "Readily",
+        "meaning": "Kolayca"
+    },
+    {
+        "word": "Relatively",
+        "meaning": "Göreceli olarak"
+    },
+    {
+        "word": "Remarkably",
+        "meaning": "Dikkate değer biçimde"
+    },
+    {
+        "word": "Roughly",
+        "meaning": "Kabaca"
+    },
+    {
+        "word": "Significantly",
+        "meaning": "Önemli ölçüde"
+    },
+    {
+        "word": "Similarly",
+        "meaning": "Benzer şekilde"
+    },
+    {
+        "word": "Simultaneously",
+        "meaning": "Aynı anda"
+    },
+    {
+        "word": "Slightly",
+        "meaning": "Hafifçe"
+    },
+    {
+        "word": "Specifically",
+        "meaning": "Özellikle, spesifik olarak"
+    },
+    {
+        "word": "Steadily",
+        "meaning": "İstikrarlı biçimde"
+    },
+    {
+        "word": "Subsequently",
+        "meaning": "Sonrasında"
+    },
+    {
+        "word": "Substantially",
+        "meaning": "Önemli ölçüde"
+    },
+    {
+        "word": "Successfully",
+        "meaning": "Başarıyla"
+    },
+    {
+        "word": "Sufficiently",
+        "meaning": "Yeterince"
+    },
+    {
+        "word": "Theoretically",
+        "meaning": "Teorik olarak"
+    },
+    {
+        "word": "Typically",
+        "meaning": "Genellikle"
+    },
+    {
+        "word": "Ultimately",
+        "meaning": "En sonunda"
+    },
+    {
+        "word": "Unexpectedly",
+        "meaning": "Beklenmedik şekilde"
+    },
+    {
+        "word": "Widely",
+        "meaning": "Geniş çapta"
     }
 ]
