@@ -15178,5 +15178,345 @@
     {
         "word": "Widely",
         "meaning": "Geniş çapta"
+    },
+    {
+        "word": "Additionally",
+        "meaning": "Ayrıca"
+    },
+    {
+        "word": "Alternately",
+        "meaning": "Alternatif olarak"
+    },
+    {
+        "word": "Amazingly",
+        "meaning": "Şaşırtıcı bir şekilde"
+    },
+    {
+        "word": "Annually",
+        "meaning": "Yıllık olarak"
+    },
+    {
+        "word": "Automatically",
+        "meaning": "Otomatik olarak"
+    },
+    {
+        "word": "Briefly",
+        "meaning": "Kısa bir süre için"
+    },
+    {
+        "word": "Carelessly",
+        "meaning": "Dikkatsizce"
+    },
+    {
+        "word": "Cautiously",
+        "meaning": "Tedbirli bir şekilde"
+    },
+    {
+        "word": "Certainly",
+        "meaning": "Kesinlikle"
+    },
+    {
+        "word": "Closely",
+        "meaning": "Yakından"
+    },
+    {
+        "word": "Collectively",
+        "meaning": "Toplu olarak"
+    },
+    {
+        "word": "Completely",
+        "meaning": "Tamamen"
+    },
+    {
+        "word": "Consciously",
+        "meaning": "Bilinçli olarak"
+    },
+    {
+        "word": "Consequently",
+        "meaning": "Sonuç olarak"
+    },
+    {
+        "word": "Continually",
+        "meaning": "Sürekli olarak (aralıklı)"
+    },
+    {
+        "word": "Decisively",
+        "meaning": "Kararlı bir şekilde"
+    },
+    {
+        "word": "Deeply",
+        "meaning": "Derinden"
+    },
+    {
+        "word": "Directly",
+        "meaning": "Doğrudan"
+    },
+    {
+        "word": "Distinctly",
+        "meaning": "Belirgin biçimde"
+    },
+    {
+        "word": "Eagerly",
+        "meaning": "İstekle"
+    },
+    {
+        "word": "Economically",
+        "meaning": "Ekonomik açıdan"
+    },
+    {
+        "word": "Emotionally",
+        "meaning": "Duygusal olarak"
+    },
+    {
+        "word": "Entirely",
+        "meaning": "Tamamen"
+    },
+    {
+        "word": "Eventually",
+        "meaning": "Eninde sonunda"
+    },
+    {
+        "word": "Exactly",
+        "meaning": "Tam olarak"
+    },
+    {
+        "word": "Exceptionally",
+        "meaning": "Olağanüstü derecede"
+    },
+    {
+        "word": "Extensively",
+        "meaning": "Geniş kapsamlı olarak"
+    },
+    {
+        "word": "Externally",
+        "meaning": "Dışarıdan"
+    },
+    {
+        "word": "Firmly",
+        "meaning": "Sağlam bir şekilde"
+    },
+    {
+        "word": "Formally",
+        "meaning": "Resmi olarak"
+    },
+    {
+        "word": "Fortunately",
+        "meaning": "Neyse ki"
+    },
+    {
+        "word": "Frequently",
+        "meaning": "Sık sık"
+    },
+    {
+        "word": "Fully",
+        "meaning": "Tamamen"
+    },
+    {
+        "word": "Gradually",
+        "meaning": "Zamanla, yavaşça"
+    },
+    {
+        "word": "Greatly",
+        "meaning": "Büyük ölçüde"
+    },
+    {
+        "word": "Ideally",
+        "meaning": "İdeal olarak"
+    },
+    {
+        "word": "Immediately",
+        "meaning": "Hemen"
+    },
+    {
+        "word": "Indirectly",
+        "meaning": "Dolaylı olarak"
+    },
+    {
+        "word": "Inefficiently",
+        "meaning": "Verimsiz şekilde"
+    },
+    {
+        "word": "Intentionally",
+        "meaning": "Kasıtlı olarak"
+    },
+    {
+        "word": "Jointly",
+        "meaning": "Ortaklaşa"
+    },
+    {
+        "word": "Legally",
+        "meaning": "Yasal olarak"
+    },
+    {
+        "word": "Logically",
+        "meaning": "Mantıklı bir şekilde"
+    },
+    {
+        "word": "Loudly",
+        "meaning": "Yüksek sesle"
+    },
+    {
+        "word": "Mainly",
+        "meaning": "Çoğunlukla"
+    },
+    {
+        "word": "Mentally",
+        "meaning": "Zihinsel olarak"
+    },
+    {
+        "word": "Naturally",
+        "meaning": "Doğal olarak"
+    },
+    {
+        "word": "Necessarily",
+        "meaning": "Zorunlu olarak"
+    },
+    {
+        "word": "Normally",
+        "meaning": "Normalde"
+    },
+    {
+        "word": "Officially",
+        "meaning": "Resmi olarak"
+    },
+    {
+        "word": "Openly",
+        "meaning": "Açıkça"
+    },
+    {
+        "word": "Painfully",
+        "meaning": "Acı verici biçimde"
+    },
+    {
+        "word": "Personally",
+        "meaning": "Kişisel olarak"
+    },
+    {
+        "word": "Physically",
+        "meaning": "Fiziksel olarak"
+    },
+    {
+        "word": "Politically",
+        "meaning": "Siyasi olarak"
+    },
+    {
+        "word": "Practically",
+        "meaning": "Pratikte, neredeyse"
+    },
+    {
+        "word": "Predictably",
+        "meaning": "Tahmin edilebilir şekilde"
+    },
+    {
+        "word": "Previously",
+        "meaning": "Daha önce"
+    },
+    {
+        "word": "Professionally",
+        "meaning": "Profesyonelce"
+    },
+    {
+        "word": "Properly",
+        "meaning": "Düzgün bir şekilde"
+    },
+    {
+        "word": "Publicly",
+        "meaning": "Halka açık şekilde"
+    },
+    {
+        "word": "Quickly",
+        "meaning": "Hızlıca"
+    },
+    {
+        "word": "Rarely",
+        "meaning": "Nadiren"
+    },
+    {
+        "word": "Recently",
+        "meaning": "Yakın zamanda"
+    },
+    {
+        "word": "Regularly",
+        "meaning": "Düzenli olarak"
+    },
+    {
+        "word": "Roughly",
+        "meaning": "Kabaca"
+    },
+    {
+        "word": "Safely",
+        "meaning": "Güvenli bir şekilde"
+    },
+    {
+        "word": "Scientifically",
+        "meaning": "Bilimsel olarak"
+    },
+    {
+        "word": "Seriously",
+        "meaning": "Ciddi şekilde"
+    },
+    {
+        "word": "Sharply",
+        "meaning": "Keskin biçimde"
+    },
+    {
+        "word": "Socially",
+        "meaning": "Sosyal açıdan"
+    },
+    {
+        "word": "Specifically",
+        "meaning": "Özellikle"
+    },
+    {
+        "word": "Strongly",
+        "meaning": "Güçlü biçimde"
+    },
+    {
+        "word": "Successfully",
+        "meaning": "Başarıyla"
+    },
+    {
+        "word": "Suddenly",
+        "meaning": "Aniden"
+    },
+    {
+        "word": "Technically",
+        "meaning": "Teknik olarak"
+    },
+    {
+        "word": "Temporarily",
+        "meaning": "Geçici olarak"
+    },
+    {
+        "word": "Theoretically",
+        "meaning": "Teorik olarak"
+    },
+    {
+        "word": "Traditionally",
+        "meaning": "Geleneksel olarak"
+    },
+    {
+        "word": "Typically",
+        "meaning": "Tipik olarak"
+    },
+    {
+        "word": "Unexpectedly",
+        "meaning": "Beklenmedik şekilde"
+    },
+    {
+        "word": "Universally",
+        "meaning": "Evrensel olarak"
+    },
+    {
+        "word": "Visibly",
+        "meaning": "Gözle görülür şekilde"
+    },
+    {
+        "word": "Voluntarily",
+        "meaning": "Gönüllü olarak"
+    },
+    {
+        "word": "Widely",
+        "meaning": "Yaygın olarak"
     }
 ]
