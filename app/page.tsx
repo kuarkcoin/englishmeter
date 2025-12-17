@@ -574,7 +574,7 @@ function HomeContent() {
                   ⚡ Fast
                 </div>
                 <h3 className="text-2xl font-black text-white mb-1">SpeedRun</h3>
-                <p className="text-indigo-200 text-xs mb-4">60 seconds challenge.</p>
+                <p className="text-indigo-200 text-xs mb-4">120 seconds challenge.</p>
                 <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center text-indigo-950 font-bold">▶</div>
               </div>
             </a>
