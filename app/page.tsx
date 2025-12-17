@@ -605,6 +605,18 @@ function HomeContent() {
               </div>
             </a>
           </div>
+{/* 4. PHRASAL PUZZLE (RENKLİ - YENİ) */}
+<a href="/phrasal-puzzle" className="group relative overflow-hidden bg-gradient-to-br from-fuchsia-900 to-fuchsia-950 rounded-3xl p-6 border border-fuchsia-800 shadow-xl hover:shadow-fuchsia-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left">
+  <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-fuchsia-500 rounded-full opacity-10 blur-xl"></div>
+  <div className="relative z-10">
+    <div className="inline-flex items-center gap-1 px-2 py-1 bg-fuchsia-500/10 rounded-full text-fuchsia-300 text-[10px] font-bold uppercase mb-3">
+      🧩 Puzzle
+    </div>
+    <h3 className="text-2xl font-black text-white mb-1">Phrasal Puzzle</h3>
+    <p className="text-fuchsia-200 text-xs mb-4">Match verb + particle fast.</p>
+    <div className="w-10 h-10 bg-fuchsia-500 rounded-full flex items-center justify-center text-white font-bold">✦</div>
+  </div>
+</a>
 
           {/* Main Tests Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
