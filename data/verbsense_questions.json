@@ -1,0 +1,66 @@
+[
+  {
+    "id": "vs-a2-001",
+    "level": "A2",
+    "sentence": "I'll ___ you later.",
+    "options": ["say", "call", "speak"],
+    "correct": 1,
+    "explanation": "In spoken English, we say 'call you later'. 'Say' and 'speak' are not natural here."
+  },
+  {
+    "id": "vs-a2-002",
+    "level": "A2",
+    "sentence": "Can you ___ me a hand?",
+    "options": ["give", "take", "do"],
+    "correct": 0,
+    "explanation": "'Give someone a hand' means to help someone."
+  },
+  {
+    "id": "vs-b1-003",
+    "level": "B1",
+    "sentence": "Let’s ___ a break.",
+    "options": ["do", "take", "make"],
+    "correct": 1,
+    "explanation": "'Take a break' is a fixed collocation in daily English."
+  },
+  {
+    "id": "vs-b1-004",
+    "level": "B1",
+    "sentence": "I usually ___ coffee in the morning.",
+    "options": ["drink", "take", "eat"],
+    "correct": 0,
+    "explanation": "We 'drink' coffee. 'Take coffee' is not natural in this context."
+  },
+  {
+    "id": "vs-b2-005",
+    "level": "B2",
+    "sentence": "I can’t ___ it anymore.",
+    "options": ["keep", "hold", "take"],
+    "correct": 2,
+    "explanation": "'I can't take it anymore' means tolerance has ended."
+  },
+  {
+    "id": "vs-b2-006",
+    "level": "B2",
+    "sentence": "Do you ___ mind if I sit here?",
+    "options": ["have", "take", "mind"],
+    "correct": 2,
+    "explanation": "'Do you mind if…?' is a common polite spoken structure."
+  },
+  {
+    "id": "vs-c1-007",
+    "level": "C1",
+    "sentence": "We need to ___ a decision quickly.",
+    "options": ["do", "take", "make"],
+    "correct": 2,
+    "explanation": "'Make a decision' is the correct collocation."
+  },
+  {
+    "id": "vs-c1-008",
+    "level": "C1",
+    "sentence": "Let’s ___ out tonight.",
+    "options": ["go", "get", "take"],
+    "correct": 0,
+    "explanation": "'Go out' is a common spoken phrase meaning socialize."
+  }
+]
