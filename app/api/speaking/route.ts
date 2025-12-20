@@ -24,11 +24,11 @@ type SpeakingResponse = {
 
 function getRandomKey() {
   const keys = [
-    process.env.GEMINI_API_KEY,
-    process.env.GEMINI_API_KEY_2,
-    process.env.GEMINI_API_KEY_3,
-    process.env.GEMINI_API_KEY_4,
-    process.env.GEMINI_API_KEY_5,
+    process.env.GOOGLE_API_KEY,
+    process.env.GOOGLE_KEY_2,
+    process.env.GOOGLE_KEY_3,
+    process.env.GOOGLE_KEY_4,
+    process.env.GOOGLE_KEY_5,
   ].filter(Boolean) as string[];
   return keys.length ? keys[Math.floor(Math.random() * keys.length)] : null;
 }
