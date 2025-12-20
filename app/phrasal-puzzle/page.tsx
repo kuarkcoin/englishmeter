@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 
 import phrasalsRaw from "@/data/yds_phrasal_verbs.json";
@@ -33,6 +33,14 @@ function splitPhrasal(word: string) {
   return { verb, particle };
 }
 
+// Normalize for comparisons
+function norm(s: string) {
+  return String(s || "")
+    .trim()
+    .replace(/\s+/g, " ")
+    .toUpperCase();
+}
+
 function pickDistinct<T>(pool: T[], count: number, except?: (x: T) => boolean) {
   const out: T[] = [];
   const maxTry = 5000;
@@ -48,11 +56,12 @@ function pickDistinct<T>(pool: T[], count: number, except?: (x: T) => boolean) {
   return out;
 }
 
-const RECENT_KEY = "td_phrasal_puzzle_recent_v1";
-const BEST_KEY = "td_phrasal_puzzle_best_v1";
+const RECENT_KEY = "td_phrasal_puzzle_recent_v2";
+const BEST_KEY = "td_phrasal_puzzle_best_v2";
 
 function loadRecent(): string[] {
   try {
+    if (typeof window === "undefined") return [];
     const raw = localStorage.getItem(RECENT_KEY);
     if (!raw) return [];
     const parsed = JSON.parse(raw);
@@ -65,12 +74,14 @@ function loadRecent(): string[] {
 
 function saveRecent(recent: string[]) {
   try {
+    if (typeof window === "undefined") return;
     localStorage.setItem(RECENT_KEY, JSON.stringify(recent));
   } catch {}
 }
 
 function loadBest(): number {
   try {
+    if (typeof window === "undefined") return 0;
     const raw = localStorage.getItem(BEST_KEY);
     const n = Number(raw);
     return Number.isFinite(n) ? n : 0;
@@ -81,6 +92,7 @@ function loadBest(): number {
 
 function saveBest(n: number) {
   try {
+    if (typeof window === "undefined") return;
     localStorage.setItem(BEST_KEY, String(n));
   } catch {}
 }
@@ -94,10 +106,20 @@ export default function PhrasalParticlePuzzlePage() {
         meaning: String(x?.meaning || "").trim(),
       }))
       .filter((x) => x.word && x.meaning)
-      .filter((x) => x.word.includes(" ")) // en az 2 parçalı phrasal
-      .filter((x) => /^[a-z\s]+$/.test(x.word)); // sadece harf+space
+      .filter((x) => x.word.includes(" ")) // at least 2-word phrasal
+      .filter((x) => /^[a-z\s]+$/.test(x.word)) // letters+spaces only
+      .filter((x) => x.meaning.length >= 4); // minimal meaning length
     return arr as PhrasalItem[];
   }, []);
+
+  // ---- UNIQUE OPTION POOLS (fix: dedupe duplicates) ----
+  const verbsAll = useMemo(() => {
+    return Array.from(new Set(pool.map((x) => splitPhrasal(x.word).verb).filter(Boolean)));
+  }, [pool]);
+
+  const particlesAll = useMemo(() => {
+    return Array.from(new Set(pool.map((x) => splitPhrasal(x.word).particle).filter(Boolean)));
+  }, [pool]);
 
   // ---- GAME STATE ----
   const [loading, setLoading] = useState(true);
@@ -120,19 +142,36 @@ export default function PhrasalParticlePuzzlePage() {
 
   const [toast, setToast] = useState<{ msg: string; kind: ToastKind } | null>(null);
 
-  const showToast = (msg: string, kind: ToastKind = "info") => {
+  const toastTimerRef = useRef<number | null>(null);
+
+  const showToast = useCallback((msg: string, kind: ToastKind = "info") => {
     setToast({ msg, kind });
-    setTimeout(() => setToast(null), 1400);
-  };
+
+    if (toastTimerRef.current) {
+      window.clearTimeout(toastTimerRef.current);
+      toastTimerRef.current = null;
+    }
+
+    toastTimerRef.current = window.setTimeout(() => {
+      setToast(null);
+      toastTimerRef.current = null;
+    }, 1400);
+  }, []);
 
   useEffect(() => {
     setBest(loadBest());
+    return () => {
+      if (toastTimerRef.current) window.clearTimeout(toastTimerRef.current);
+    };
   }, []);
 
-  // ---- QUESTION GENERATOR ----
-  const newRound = () => {
-    if (pool.length < 30) {
-      showToast("Phrasal listesi çok küçük görünüyor.", "bad");
+  // ---- ROUND GENERATOR ----
+  const newRound = useCallback(() => {
+    // Hard guard
+    if (pool.length < 10 || verbsAll.length < 6 || particlesAll.length < 6) {
+      setLoading(false);
+      setTarget(null);
+      showToast("Phrasal listesi yetersiz (en az 6 verb ve 6 particle lazım).", "bad");
       return;
     }
 
@@ -159,6 +198,7 @@ export default function PhrasalParticlePuzzlePage() {
       chosen = { word: cand.word, meaning: cand.meaning };
     }
 
+    // Fallback: if everything is "recent", reset recent list
     if (!chosen) {
       const cand = pool[Math.floor(Math.random() * pool.length)];
       chosen = { word: cand.word, meaning: cand.meaning };
@@ -166,36 +206,47 @@ export default function PhrasalParticlePuzzlePage() {
     }
 
     const { verb: vCorrect, particle: pCorrect } = splitPhrasal(chosen.word);
+
     setTarget(chosen);
     setTargetVerb(vCorrect);
     setTargetParticle(pCorrect);
 
-    const verbsAll = pool.map((x) => splitPhrasal(x.word).verb).filter(Boolean);
-    const particlesAll = pool.map((x) => splitPhrasal(x.word).particle).filter(Boolean);
-
+    // Pick wrong options from UNIQUE pools
     const wrongVerbs = pickDistinct(verbsAll, 5, (v) => v === vCorrect);
     const wrongParticles = pickDistinct(particlesAll, 5, (p) => p === pCorrect);
 
-    setVerbOptions(shuffle([...wrongVerbs, vCorrect]));
-    setParticleOptions(shuffle([...wrongParticles, pCorrect]));
+    // Ensure we always show 6 options even if pickDistinct returns fewer (rare)
+    const vSet = new Set([...wrongVerbs, vCorrect]);
+    while (vSet.size < 6) {
+      const v = verbsAll[Math.floor(Math.random() * verbsAll.length)];
+      if (v !== vCorrect) vSet.add(v);
+    }
+
+    const pSet = new Set([...wrongParticles, pCorrect]);
+    while (pSet.size < 6) {
+      const p = particlesAll[Math.floor(Math.random() * particlesAll.length)];
+      if (p !== pCorrect) pSet.add(p);
+    }
+
+    setVerbOptions(shuffle(Array.from(vSet)));
+    setParticleOptions(shuffle(Array.from(pSet)));
 
     const nextRecent = [chosen.word, ...recent].slice(0, 30);
     saveRecent(nextRecent);
 
     setLoading(false);
-  };
+  }, [pool, verbsAll, particlesAll, showToast]);
 
   useEffect(() => {
     newRound();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [newRound]);
 
   const combined = useMemo(() => {
     if (!pickVerb || !pickParticle) return "";
-    return `${pickVerb} ${pickParticle}`.trim();
+    return norm(`${pickVerb} ${pickParticle}`);
   }, [pickVerb, pickParticle]);
 
-  const checkAnswer = () => {
+  const checkAnswer = useCallback(() => {
     if (!target) return;
 
     if (!pickVerb || !pickParticle) {
@@ -203,12 +254,12 @@ export default function PhrasalParticlePuzzlePage() {
       return;
     }
 
-    const correct = `${targetVerb} ${targetParticle}`.trim();
+    const correct = norm(`${targetVerb} ${targetParticle}`);
 
     if (combined === correct) {
       setStatus("won");
 
-      // score + best güvenli güncelleme
+      // Score + best (safe, single source of truth)
       setScore((prev) => {
         const nextScore = prev + 10;
         setBest((bPrev) => {
@@ -226,13 +277,14 @@ export default function PhrasalParticlePuzzlePage() {
       setStreak(0);
       showToast("❌ Wrong!", "bad");
     }
-  };
+  }, [combined, pickParticle, pickVerb, showToast, target, targetParticle, targetVerb]);
 
-  const next = () => newRound();
-  const resetPick = () => {
+  const next = useCallback(() => newRound(), [newRound]);
+
+  const resetPick = useCallback(() => {
     setPickVerb("");
     setPickParticle("");
-  };
+  }, []);
 
   const pill =
     toast?.kind === "ok"
@@ -247,6 +299,10 @@ export default function PhrasalParticlePuzzlePage() {
       : status === "lost"
       ? "ring-2 ring-rose-500/40"
       : "ring-1 ring-white/10";
+
+  // For highlighting correct/wrong after round ends (UX upgrade)
+  const correctVerb = target ? targetVerb : "";
+  const correctParticle = target ? targetParticle : "";
 
   return (
     <main className="min-h-screen bg-slate-950 text-white px-4 py-8">
@@ -305,8 +361,12 @@ export default function PhrasalParticlePuzzlePage() {
 
         {/* MAIN CARD */}
         <section className={`rounded-3xl bg-white/5 border border-white/10 p-5 md:p-8 ${glow}`}>
-          {loading || !target ? (
+          {loading ? (
             <div className="text-center text-slate-400 font-bold py-12">Loading...</div>
+          ) : !target ? (
+            <div className="text-center text-slate-300 font-bold py-12">
+              Data not ready. Check <code className="px-1 py-0.5 rounded bg-white/5 border border-white/10">yds_phrasal_verbs.json</code>
+            </div>
           ) : (
             <div className="grid md:grid-cols-2 gap-6">
               {/* LEFT */}
@@ -349,7 +409,11 @@ export default function PhrasalParticlePuzzlePage() {
                     <button
                       onClick={resetPick}
                       disabled={loading || status !== "playing"}
-                      className="sm:w-40 py-3 rounded-2xl font-black bg-slate-800 hover:bg-slate-700 transition-all"
+                      className={`sm:w-40 py-3 rounded-2xl font-black transition-all ${
+                        loading || status !== "playing"
+                          ? "bg-slate-900 text-slate-500 cursor-not-allowed"
+                          : "bg-slate-800 hover:bg-slate-700"
+                      }`}
                     >
                       RESET
                     </button>
@@ -385,15 +449,29 @@ export default function PhrasalParticlePuzzlePage() {
                   <div className="grid grid-cols-2 gap-2">
                     {verbOptions.map((v) => {
                       const active = pickVerb === v;
+
+                      const isCorrect = status !== "playing" && v === correctVerb;
+                      const isWrongPick = status === "lost" && active && v !== correctVerb;
+
+                      const base =
+                        "py-3 rounded-2xl border font-black tracking-widest transition-all";
+
+                      const cls =
+                        status === "playing"
+                          ? active
+                            ? "bg-sky-500/30 border-sky-300 text-white"
+                            : "bg-slate-950/40 border-sky-400/15 text-sky-100 hover:bg-sky-500/15"
+                          : isCorrect
+                          ? "bg-emerald-500/20 border-emerald-300/40 text-emerald-100"
+                          : isWrongPick
+                          ? "bg-rose-500/20 border-rose-300/40 text-rose-100"
+                          : "bg-slate-950/30 border-white/10 text-slate-300";
+
                       return (
                         <button
                           key={v}
                           onClick={() => status === "playing" && setPickVerb(v)}
-                          className={`py-3 rounded-2xl border font-black tracking-widest transition-all ${
-                            active
-                              ? "bg-sky-500/30 border-sky-300 text-white"
-                              : "bg-slate-950/40 border-sky-400/15 text-sky-100 hover:bg-sky-500/15"
-                          }`}
+                          className={`${base} ${cls}`}
                         >
                           {v}
                         </button>
@@ -413,15 +491,29 @@ export default function PhrasalParticlePuzzlePage() {
                   <div className="grid grid-cols-2 gap-2">
                     {particleOptions.map((p) => {
                       const active = pickParticle === p;
+
+                      const isCorrect = status !== "playing" && p === correctParticle;
+                      const isWrongPick = status === "lost" && active && p !== correctParticle;
+
+                      const base =
+                        "py-3 rounded-2xl border font-black tracking-widest transition-all";
+
+                      const cls =
+                        status === "playing"
+                          ? active
+                            ? "bg-amber-500/30 border-amber-300 text-white"
+                            : "bg-slate-950/40 border-amber-400/15 text-amber-100 hover:bg-amber-500/15"
+                          : isCorrect
+                          ? "bg-emerald-500/20 border-emerald-300/40 text-emerald-100"
+                          : isWrongPick
+                          ? "bg-rose-500/20 border-rose-300/40 text-rose-100"
+                          : "bg-slate-950/30 border-white/10 text-slate-300";
+
                       return (
                         <button
                           key={p}
                           onClick={() => status === "playing" && setPickParticle(p)}
-                          className={`py-3 rounded-2xl border font-black tracking-widest transition-all ${
-                            active
-                              ? "bg-amber-500/30 border-amber-300 text-white"
-                              : "bg-slate-950/40 border-amber-400/15 text-amber-100 hover:bg-amber-500/15"
-                          }`}
+                          className={`${base} ${cls}`}
                         >
                           {p}
                         </button>
