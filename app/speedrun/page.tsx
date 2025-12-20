@@ -1,35 +1,50 @@
 'use client';
 
-import { useMemo, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import ReactConfetti from 'react-confetti';
 
-// 3000+ kelimelik dosyanı çekiyoruz
+// 3000+ kelimelik dosyan
 import fullWordList from '@/data/yds_vocabulary.json';
 
 type WordItem = { word: string; meaning: string };
 type GameState = 'menu' | 'playing' | 'gameover';
 type Difficulty = 'easy' | 'medium' | 'hard';
 
-// --- PENCERE BOYUTU (Konfeti için gerekli) ---
+// -------------------- HELPERS --------------------
+function norm(s: string) {
+  return String(s || '').trim().replace(/\s+/g, ' ').toLowerCase();
+}
+
+function shuffle<T>(arr: T[]) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// -------------------- WINDOW SIZE (Confetti) --------------------
 function useWindowSize() {
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
-    function handleResize() {
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    }
+    if (typeof window === 'undefined') return;
 
-    if (typeof window !== 'undefined') {
-      handleResize();
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }
+    const handleResize = () => setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return windowSize;
 }
 
+// -------------------- STORAGE --------------------
+const HS_KEY = 'englishmeter_speedrun_highscore_v2';
+
+// -------------------- PAGE --------------------
 export default function SpeedRunPage() {
   const { width, height } = useWindowSize();
 
@@ -49,34 +64,93 @@ export default function SpeedRunPage() {
   const [lastWords, setLastWords] = useState<string[]>([]);
 
   const [showConfetti, setShowConfetti] = useState(false);
+  const confettiTimerRef = useRef<number | null>(null);
 
-  // --- SES ÇALMA FONKSİYONU ---
-  const playSound = (type: 'correct' | 'wrong' | 'finish') => {
+  // 3 ses preload (mobilde lag azaltır)
+  const soundsRef = useRef<Record<'correct' | 'wrong' | 'finish', HTMLAudioElement | null>>({
+    correct: null,
+    wrong: null,
+    finish: null,
+  });
+
+  const playSound = useCallback((type: 'correct' | 'wrong' | 'finish') => {
     try {
+      if (typeof window === 'undefined') return;
+
+      const a = soundsRef.current[type];
+      if (a) {
+        a.currentTime = 0;
+        a.volume = 0.5;
+        a.play().catch(() => {});
+        return;
+      }
+
+      // fallback (ilk yüklenmede)
       const audio = new Audio(`/sounds/${type}.mp3`);
       audio.volume = 0.5;
-      audio.play().catch((e) => console.log('Ses çalınamadı:', e));
-    } catch (error) {
-      console.error('Audio error:', error);
+      audio.play().catch(() => {});
+    } catch {
+      // sessiz geç
     }
-  };
-
-  useEffect(() => {
-    const saved = localStorage.getItem('englishmeter_speedrun_highscore');
-    if (saved) setHighScore(parseInt(saved));
   }, []);
 
-  // Zorluk -> kelime havuzu (word uzunluğuna göre)
-  const pool: WordItem[] = useMemo(() => {
-    const list = (fullWordList as WordItem[])
+  // --- LOAD HIGHSCORE + PRELOAD SOUNDS ---
+  useEffect(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        const saved = localStorage.getItem(HS_KEY);
+        if (saved) {
+          const n = parseInt(saved, 10);
+          if (Number.isFinite(n)) setHighScore(n);
+        }
+
+        // preload
+        const correct = new Audio('/sounds/correct.mp3');
+        const wrong = new Audio('/sounds/wrong.mp3');
+        const finish = new Audio('/sounds/finish.mp3');
+
+        // iOS/Safari bazen play() gerektirir ama preload için set etmek yeterli
+        correct.preload = 'auto';
+        wrong.preload = 'auto';
+        finish.preload = 'auto';
+
+        soundsRef.current = { correct, wrong, finish };
+      }
+    } catch {
+      // ignore
+    }
+
+    return () => {
+      if (confettiTimerRef.current) window.clearTimeout(confettiTimerRef.current);
+    };
+  }, []);
+
+  // -------------------- POOL --------------------
+  const baseList: WordItem[] = useMemo(() => {
+    const list = (fullWordList as any[])
       .map((x) => ({
         word: String(x?.word || '').trim(),
         meaning: String(x?.meaning || '').trim(),
       }))
       .filter((x) => x.word && x.meaning);
 
+    // word normalize ile tekrarları azalt
+    // aynı word farklı yazılmışsa ilkini al
+    const seen = new Set<string>();
+    const dedup: WordItem[] = [];
+    for (const it of list) {
+      const key = norm(it.word);
+      if (!key) continue;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      dedup.push(it);
+    }
+    return dedup;
+  }, []);
+
+  const pool: WordItem[] = useMemo(() => {
     const byLen = (min: number, max: number) =>
-      list.filter((x) => {
+      baseList.filter((x) => {
         const L = x.word.replace(/[^a-zA-Z]/g, '').length;
         return L >= min && L <= max;
       });
@@ -84,141 +158,241 @@ export default function SpeedRunPage() {
     if (difficulty === 'easy') return byLen(4, 5);
     if (difficulty === 'hard') return byLen(8, 30);
     return byLen(6, 7); // medium
-  }, [difficulty]);
+  }, [difficulty, baseList]);
 
-  // Zamanlayıcı
-  useEffect(() => {
-    if (gameState === 'playing' && timeLeft > 0) {
-      const timer = setTimeout(() => setTimeLeft((prev) => prev - 1), 1000);
-      return () => clearTimeout(timer);
-    } else if (gameState === 'playing' && timeLeft === 0) {
-      endGame();
+  // Meaning havuzu (distractor için unique)
+  const meaningPoolByDifficulty: string[] = useMemo(() => {
+    const src = (pool.length >= 20 ? pool : baseList);
+    return Array.from(new Set(src.map((x) => x.meaning).filter(Boolean))).filter((m) => m.length >= 1);
+  }, [pool, baseList]);
+
+  // -------------------- TIMER (interval) --------------------
+  const intervalRef = useRef<number | null>(null);
+
+  const stopTimer = useCallback(() => {
+    if (intervalRef.current) {
+      window.clearInterval(intervalRef.current);
+      intervalRef.current = null;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gameState, timeLeft]);
+  }, []);
 
-  const startGame = () => {
-    setScore(0);
-    setCombo(0);
-    setTimeLeft(120);
-    setShowConfetti(false);
-    setLastWords([]);
-    setGameState('playing');
-    generateQuestion();
-  };
+  const endGame = useCallback(
+    (finalScore: number) => {
+      stopTimer();
+      setGameState('gameover');
+      playSound('finish');
 
-  const endGame = () => {
-    setGameState('gameover');
-    playSound('finish');
-
-    if (score > highScore) {
-      setHighScore(score);
-      localStorage.setItem('englishmeter_speedrun_highscore', score.toString());
-      setShowConfetti(true);
-      setTimeout(() => setShowConfetti(false), 8000);
-    }
-  };
-
-  // --- SORU ÜRETME MOTORU ---
-  const generateQuestion = () => {
-    if (!pool || pool.length < 10) {
-      // yeterli havuz yoksa fallback: tüm liste
-      const fallback = (fullWordList as WordItem[])
-        .map((x) => ({ word: String(x?.word || '').trim(), meaning: String(x?.meaning || '').trim() }))
-        .filter((x) => x.word && x.meaning);
-
-      if (fallback.length === 0) return;
-      makeQuestionFromPool(fallback);
-      return;
-    }
-
-    makeQuestionFromPool(pool);
-  };
-
-  const makeQuestionFromPool = (source: WordItem[]) => {
-    // 1) Rastgele kelime seç ama son 20 kelimede varsa yeniden seç
-    let picked: WordItem | null = null;
-    const maxTry = 40;
-
-    for (let t = 0; t < maxTry; t++) {
-      const idx = Math.floor(Math.random() * source.length);
-      const candidate = source[idx];
-      if (!candidate?.word || !candidate?.meaning) continue;
-      if (lastWords.includes(candidate.word)) continue;
-      picked = candidate;
-      break;
-    }
-
-    // çok sıkışırsa (havuz küçükse) yine de bir kelime seç
-    if (!picked) {
-      const idx = Math.floor(Math.random() * source.length);
-      picked = source[idx];
-    }
-    if (!picked) return;
-
-    // 2) Yanlış şıkları seç (unique meaning + doğru ile aynı olmasın)
-    const distractors: string[] = [];
-    let guard = 0;
-
-    while (distractors.length < 3 && guard < 300) {
-      guard++;
-      const randIdx = Math.floor(Math.random() * source.length);
-      const w = source[randIdx];
-      if (!w?.word || !w?.meaning) continue;
-
-      if (w.word === picked.word) continue;
-      if (w.meaning === picked.meaning) continue;
-      if (distractors.includes(w.meaning)) continue;
-
-      distractors.push(w.meaning);
-    }
-
-    // 3) Şıkları karıştır
-    const allOptions = [...distractors, picked.meaning].sort(() => 0.5 - Math.random());
-
-    setCurrentWord(picked);
-    setOptions(allOptions);
-
-    // lastWords güncelle (son 20 tut)
-    setLastWords((prev) => {
-      const next = [...prev, picked!.word];
-      return next.slice(-20);
-    });
-  };
-
-  const handleAnswer = (selectedMeaning: string) => {
-    if (gameState !== 'playing') return;
-
-    if (selectedMeaning === currentWord.meaning) {
-      // DOĞRU
-      playSound('correct');
-      setScore((prev) => prev + 10);
-      setTimeLeft((prev) => prev + 4);
-
-      setCombo((c) => {
-        const next = c + 1;
-
-        // 5'te bir bonus
-        if (next % 5 === 0) {
-          setScore((s) => s + 20);
-        }
-
+      setHighScore((prev) => {
+        const next = Math.max(prev, finalScore);
+        try {
+          if (typeof window !== 'undefined') localStorage.setItem(HS_KEY, String(next));
+        } catch {}
         return next;
       });
 
-      generateQuestion();
-    } else {
-      // YANLIŞ
-      playSound('wrong');
-      setCombo(0);
-      setTimeLeft((prev) => Math.max(0, prev - 2));
-      generateQuestion();
+      // Confetti only if new high score
+      setShowConfetti((prevShow) => {
+        // hesap: localStorage/prev state ile yarış olmasın diye finalScore üzerinden kontrol
+        const currentHS = (() => {
+          try {
+            if (typeof window === 'undefined') return 0;
+            const raw = localStorage.getItem(HS_KEY);
+            const n = parseInt(raw || '0', 10);
+            return Number.isFinite(n) ? n : 0;
+          } catch {
+            return 0;
+          }
+        })();
+
+        const isNew = finalScore >= currentHS && finalScore > 0;
+        return isNew ? true : prevShow;
+      });
+
+      // Confetti kapatma
+      if (confettiTimerRef.current) window.clearTimeout(confettiTimerRef.current);
+      confettiTimerRef.current = window.setTimeout(() => setShowConfetti(false), 8000);
+    },
+    [playSound, stopTimer]
+  );
+
+  const startTimer = useCallback(() => {
+    stopTimer();
+    if (typeof window === 'undefined') return;
+
+    intervalRef.current = window.setInterval(() => {
+      setTimeLeft((t) => {
+        if (t <= 1) {
+          // time bitti
+          // finalScore'yu garanti almak için score ref kullanacağız
+          return 0;
+        }
+        return t - 1;
+      });
+    }, 1000);
+  }, [stopTimer]);
+
+  // score ref: time bitince doğru finalScore
+  const scoreRef = useRef(0);
+  useEffect(() => {
+    scoreRef.current = score;
+  }, [score]);
+
+  // timeLeft 0 olunca endGame tetik
+  useEffect(() => {
+    if (gameState === 'playing' && timeLeft === 0) {
+      endGame(scoreRef.current);
     }
-  };
+  }, [gameState, timeLeft, endGame]);
+
+  // -------------------- QUESTION ENGINE --------------------
+  const makeQuestionFromPool = useCallback(
+    (source: WordItem[]) => {
+      if (!source || source.length === 0) return;
+
+      // normalize lastWords hızlı set
+      const lastSet = new Set(lastWords.map(norm));
+
+      // 1) Rastgele kelime seç ama son 20'de varsa yeniden seç
+      let picked: WordItem | null = null;
+      const maxTry = 80;
+
+      for (let t = 0; t < maxTry; t++) {
+        const idx = Math.floor(Math.random() * source.length);
+        const candidate = source[idx];
+        if (!candidate?.word || !candidate?.meaning) continue;
+        if (lastSet.has(norm(candidate.word))) continue;
+        picked = candidate;
+        break;
+      }
+
+      // sıkışırsa yine de seç
+      if (!picked) {
+        picked = source[Math.floor(Math.random() * source.length)] || null;
+      }
+      if (!picked) return;
+
+      // 2) Yanlış şıklar: unique meaning, doğru ile aynı değil
+      const correctMeaning = picked.meaning;
+      const distractSet = new Set<string>();
+
+      let guard = 0;
+      while (distractSet.size < 3 && guard < 800) {
+        guard++;
+
+        // meaning havuzundan çek
+        const m = meaningPoolByDifficulty[Math.floor(Math.random() * meaningPoolByDifficulty.length)];
+        if (!m) continue;
+        if (m === correctMeaning) continue;
+        distractSet.add(m);
+      }
+
+      // Eğer hala 3 yoksa source içinden tamamla
+      guard = 0;
+      while (distractSet.size < 3 && guard < 1200) {
+        guard++;
+        const w = source[Math.floor(Math.random() * source.length)];
+        if (!w?.meaning) continue;
+        if (w.meaning === correctMeaning) continue;
+        distractSet.add(w.meaning);
+      }
+
+      // En kötü ihtimal: options'u yine de 4'e tamamla (aynı meaning tekrar etmesin diye)
+      if (distractSet.size < 3) {
+        // anlam havuzu yetersizse: (çok nadir) random boş/benzerleri kabul etmeden yine de doldur
+        const allMeanings = Array.from(new Set([...meaningPoolByDifficulty, ...source.map((x) => x.meaning)].filter(Boolean)));
+        for (const m of allMeanings) {
+          if (distractSet.size >= 3) break;
+          if (m === correctMeaning) continue;
+          distractSet.add(m);
+        }
+      }
+
+      const distractors = Array.from(distractSet).slice(0, 3);
+      const allOptions = shuffle([...distractors, correctMeaning]);
+
+      setCurrentWord(picked);
+      setOptions(allOptions);
+
+      // lastWords güncelle (son 20 tut)
+      setLastWords((prev) => {
+        const next = [...prev, picked!.word];
+        return next.slice(-20);
+      });
+    },
+    [lastWords, meaningPoolByDifficulty]
+  );
+
+  const generateQuestion = useCallback(() => {
+    const src = pool && pool.length >= 10 ? pool : baseList;
+    makeQuestionFromPool(src);
+  }, [pool, baseList, makeQuestionFromPool]);
+
+  // -------------------- GAME ACTIONS --------------------
+  const startGame = useCallback(() => {
+    setShowConfetti(false);
+    setLastWords([]);
+
+    setScore(0);
+    setCombo(0);
+    setTimeLeft(120);
+    setGameState('playing');
+
+    // soru + timer
+    generateQuestion();
+    startTimer();
+  }, [generateQuestion, startTimer]);
+
+  const goMenu = useCallback(() => {
+    stopTimer();
+    setGameState('menu');
+  }, [stopTimer]);
+
+  const handleAnswer = useCallback(
+    (selectedMeaning: string) => {
+      if (gameState !== 'playing') return;
+      if (!currentWord.word || !currentWord.meaning) return;
+
+      const isCorrect = selectedMeaning === currentWord.meaning;
+
+      if (isCorrect) {
+        playSound('correct');
+
+        // score + time bonus
+        setScore((prev) => prev + 10);
+        setTimeLeft((prev) => prev + 4);
+
+        // combo + bonus
+        setCombo((c) => {
+          const next = c + 1;
+          if (next % 5 === 0) {
+            setScore((s) => s + 20);
+            // istersen ek zaman bonusu:
+            // setTimeLeft((t) => t + 1);
+          }
+          return next;
+        });
+
+        generateQuestion();
+      } else {
+        playSound('wrong');
+        setCombo(0);
+        setTimeLeft((prev) => Math.max(0, prev - 2));
+        generateQuestion();
+      }
+    },
+    [currentWord.meaning, currentWord.word, gameState, generateQuestion, playSound]
+  );
+
+  // Menüye dönünce timer dursun (garanti)
+  useEffect(() => {
+    if (gameState !== 'playing') stopTimer();
+  }, [gameState, stopTimer]);
+
+  const isLowTime = timeLeft < 10;
 
   return (
     <div className="min-h-screen bg-indigo-950 text-white flex flex-col items-center justify-center p-4 font-sans selection:bg-yellow-400 selection:text-indigo-900 overflow-hidden relative">
-      {/* KONFETİ */}
+      {/* CONFETTI */}
       {showConfetti && (
         <div className="absolute top-0 left-0 w-full h-full z-50 pointer-events-none">
           <ReactConfetti width={width} height={height} recycle={false} numberOfPieces={500} />
@@ -236,7 +410,8 @@ export default function SpeedRunPage() {
             Speed<span className="text-yellow-400">Run</span>
           </h1>
           <p className="text-indigo-300 mb-6 font-medium">
-            Vocabulary Challenge • 120s<br />
+            Vocabulary Challenge • 120s
+            <br />
             Choose difficulty and go!
           </p>
 
@@ -262,9 +437,7 @@ export default function SpeedRunPage() {
                 );
               })}
             </div>
-            <p className="mt-3 text-xs text-indigo-300/80">
-              Easy: 4–5 letters • Medium: 6–7 • Hard: 8+
-            </p>
+            <p className="mt-3 text-xs text-indigo-300/80">Easy: 4–5 letters • Medium: 6–7 • Hard: 8+</p>
           </div>
 
           {/* Highscore */}
@@ -293,7 +466,11 @@ export default function SpeedRunPage() {
           <div className="flex justify-between items-center mb-6 bg-indigo-900/60 p-4 rounded-2xl backdrop-blur-md border border-indigo-800/50">
             <div>
               <div className="text-[10px] text-indigo-300 font-bold uppercase tracking-widest mb-1">TIME</div>
-              <div className={`text-4xl font-black font-mono leading-none ${timeLeft < 10 ? 'text-red-500 animate-pulse' : 'text-white'}`}>
+              <div
+                className={`text-4xl font-black font-mono leading-none ${
+                  isLowTime ? 'text-red-500 animate-pulse' : 'text-white'
+                }`}
+              >
                 {timeLeft}
                 <span className="text-lg text-indigo-400 ml-1">s</span>
               </div>
@@ -318,7 +495,7 @@ export default function SpeedRunPage() {
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-yellow-400 to-orange-500"></div>
             <p className="text-indigo-400 text-xs font-bold uppercase mb-3 tracking-widest">TRANSLATE</p>
             <h2 className="text-4xl sm:text-5xl font-black tracking-tight break-words group-hover:scale-105 transition-transform duration-300">
-              {currentWord.word}
+              {currentWord.word || '...'}
             </h2>
           </div>
 
@@ -340,7 +517,7 @@ export default function SpeedRunPage() {
       {/* GAME OVER */}
       {gameState === 'gameover' && (
         <div className="text-center max-w-md w-full bg-indigo-900/90 p-10 rounded-3xl shadow-2xl border border-indigo-800 backdrop-blur-md animate-in slide-in-from-bottom-10 duration-500 relative z-20">
-          <h2 className="text-5xl font-black text-white mb-2 tracking-tight">Time's Up!</h2>
+          <h2 className="text-5xl font-black text-white mb-2 tracking-tight">Time&apos;s Up!</h2>
 
           {showConfetti ? (
             <p className="text-yellow-400 font-bold mb-8 animate-pulse text-lg">🎉 NEW HIGH SCORE! 🎉</p>
@@ -370,13 +547,16 @@ export default function SpeedRunPage() {
             </button>
 
             <button
-              onClick={() => setGameState('menu')}
+              onClick={goMenu}
               className="w-full py-4 bg-indigo-800 hover:bg-indigo-700 rounded-xl font-bold text-indigo-200 transition-colors"
             >
               Back to Difficulty
             </button>
 
-            <Link href="/" className="w-full py-4 bg-indigo-950/60 hover:bg-indigo-950/80 rounded-xl font-bold text-indigo-200 transition-colors border border-indigo-800">
+            <Link
+              href="/"
+              className="w-full py-4 bg-indigo-950/60 hover:bg-indigo-950/80 rounded-xl font-bold text-indigo-200 transition-colors border border-indigo-800"
+            >
               Exit to Main Menu
             </Link>
           </div>
