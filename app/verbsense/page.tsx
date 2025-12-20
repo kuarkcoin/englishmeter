@@ -2,10 +2,10 @@
 
 import Link from 'next/link';
 
-export default function VerbSenseHome() {
+export default function VerbSenseHomePage() {
   return (
     <div className="min-h-screen bg-slate-50 pb-24">
-      {/* Top Bar */}
+      {/* Top bar */}
       <div className="w-full max-w-3xl mx-auto px-4 pt-4 flex items-center justify-between">
         <Link
           href="/"
@@ -34,48 +34,52 @@ export default function VerbSenseHome() {
           </h1>
 
           <p className="mt-3 text-slate-600 font-semibold text-base md:text-lg leading-relaxed">
-            A short daily game to test your instinct for
-            <span className="text-slate-900 font-black"> natural verbs </span>
-            used in real spoken English.
+            Choose the verb that sounds natural in real spoken English.
+            <br />
+            <span className="text-slate-900 font-black">
+              No grammar rules. Just instinct.
+            </span>
           </p>
 
-          <p className="mt-2 text-slate-500 font-semibold text-sm">
-            No grammar rules. No translation. Just native-like choices.
-          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <div className="px-3 py-2 rounded-2xl bg-slate-50 border border-slate-200 text-slate-700 text-xs font-extrabold">
+              A2–C1 Levels
+            </div>
+            <div className="px-3 py-2 rounded-2xl bg-slate-50 border border-slate-200 text-slate-700 text-xs font-extrabold">
+              2–3 min per run
+            </div>
+            <div className="px-3 py-2 rounded-2xl bg-slate-50 border border-slate-200 text-slate-700 text-xs font-extrabold">
+              Daily collocations
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* How it works */}
+      {/* Example card */}
       <div className="w-full max-w-3xl mx-auto px-4 mt-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-            <div className="text-2xl">🧩</div>
-            <h3 className="mt-2 font-black text-slate-900">
-              Fill the verb
-            </h3>
-            <p className="mt-1 text-slate-500 font-semibold text-sm">
-              A sentence appears with a missing verb.
-            </p>
+        <div className="rounded-3xl border border-slate-200 bg-white shadow-sm p-6">
+          <div className="text-[11px] text-slate-500 font-black uppercase tracking-wider">
+            Example
           </div>
 
-          <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-            <div className="text-2xl">⚡</div>
-            <h3 className="mt-2 font-black text-slate-900">
-              Trust your instinct
-            </h3>
-            <p className="mt-1 text-slate-500 font-semibold text-sm">
-              Choose the verb that sounds natural in daily English.
-            </p>
+          <div className="mt-3 text-2xl md:text-3xl font-black text-slate-900 leading-snug">
+            I’ll <span className="text-indigo-600">___</span> you later.
           </div>
 
-          <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-            <div className="text-2xl">🏆</div>
-            <h3 className="mt-2 font-black text-slate-900">
-              Learn & improve
-            </h3>
-            <p className="mt-1 text-slate-500 font-semibold text-sm">
-              Instant feedback with real spoken explanations.
-            </p>
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="rounded-3xl border border-slate-200 bg-white px-5 py-4 font-extrabold text-slate-900">
+              say
+            </div>
+            <div className="rounded-3xl border border-emerald-300 bg-emerald-50 px-5 py-4 font-extrabold text-emerald-800">
+              call ✅
+            </div>
+            <div className="rounded-3xl border border-slate-200 bg-white px-5 py-4 font-extrabold text-slate-900">
+              speak
+            </div>
+          </div>
+
+          <div className="mt-4 text-sm text-slate-500 font-semibold">
+            “Call you later” is the natural spoken phrase.
           </div>
         </div>
       </div>
@@ -83,9 +87,7 @@ export default function VerbSenseHome() {
       {/* Modes */}
       <div className="w-full max-w-3xl mx-auto px-4 mt-6">
         <div className="rounded-3xl border border-slate-200 bg-white shadow-sm p-6">
-          <h2 className="text-xl font-black text-slate-900">
-            Choose a mode
-          </h2>
+          <h2 className="text-xl font-black text-slate-900">Choose a mode</h2>
 
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Classic */}
@@ -94,26 +96,22 @@ export default function VerbSenseHome() {
               className="group rounded-3xl border border-slate-200 bg-white p-5 hover:bg-slate-50 transition-all active:scale-[0.98]"
             >
               <div className="text-2xl">🎯</div>
-              <h3 className="mt-2 font-black text-slate-900">
-                Classic Mode
-              </h3>
+              <h3 className="mt-2 font-black text-slate-900">Classic Mode</h3>
               <p className="mt-1 text-slate-500 font-semibold text-sm">
-                10 questions · No time pressure · Learn as you play
+                10 questions · Instant feedback · Learn collocations
               </p>
               <div className="mt-3 font-black text-indigo-600 group-hover:underline">
-                Play →
+                Start →
               </div>
             </Link>
 
-            {/* Speed */}
-            <div className="relative rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-5 opacity-60">
+            {/* Speed (Coming Soon) */}
+            <div className="relative rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-5 opacity-70">
               <div className="absolute top-4 right-4 text-[10px] font-black bg-slate-200 text-slate-600 px-2 py-1 rounded-full">
                 Coming Soon
               </div>
               <div className="text-2xl">⚡</div>
-              <h3 className="mt-2 font-black text-slate-900">
-                Speed Mode
-              </h3>
+              <h3 className="mt-2 font-black text-slate-900">Speed Mode</h3>
               <p className="mt-1 text-slate-500 font-semibold text-sm">
                 Beat the clock and build combos
               </p>
@@ -132,7 +130,7 @@ export default function VerbSenseHome() {
         </Link>
 
         <p className="mt-3 text-center text-xs text-slate-400 font-semibold">
-          A2–C1 · Daily spoken English · 2–3 minutes
+          If Start opens a blank page, create <b>app/verbsense/play/page.tsx</b>.
         </p>
       </div>
     </div>
