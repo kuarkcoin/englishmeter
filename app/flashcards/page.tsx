@@ -1,120 +1,266 @@
 // app/flashcards/page.tsx
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
+import fullWordList from '@/data/yds_vocabulary.json';
 
-// 3000 kelimelik listeni buradan çekiyoruz
-import fullWordList from '@/data/yds_vocabulary.json'; 
+/* =======================
+   TYPES
+======================= */
+type WordItem = { word: string; meaning: string };
 
+type DeckItem = WordItem & {
+  id: string;
+  seenCount: number;
+  knownCount: number;
+  hardCount: number;
+};
+
+type Stats = {
+  seenTotal: number;
+  knownTotal: number;
+  hardTotal: number;
+};
+
+const STORAGE_KEY = 'testdunya_flashcards_voice_v1';
+
+/* =======================
+   HELPERS
+======================= */
+const makeId = (w: WordItem) => `${w.word}|||${w.meaning}`.toLowerCase();
+
+function shuffle<T>(arr: T[]) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/* 🔊 SPEECH (Web Speech API) */
+function speak(text: string, lang: 'en-US' | 'en-GB') {
+  if (typeof window === 'undefined') return;
+  if (!('speechSynthesis' in window)) return;
+
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = lang;
+  utter.rate = 0.9;
+  utter.pitch = 1;
+  utter.volume = 1;
+  window.speechSynthesis.speak(utter);
+}
+
+/* =======================
+   MAIN PAGE
+======================= */
 export default function FlashcardsPage() {
-  const [cards, setCards] = useState<any[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [deck, setDeck] = useState<DeckItem[]>([]);
+  const [index, setIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
-  const [viewedCount, setViewedCount] = useState(0);
+  const [accent, setAccent] = useState<'en-US' | 'en-GB'>('en-US');
+  const [stats, setStats] = useState<Stats>({
+    seenTotal: 0,
+    knownTotal: 0,
+    hardTotal: 0,
+  });
 
-  // Sayfa açılınca kelimeleri karıştır
+  const lock = useRef(false);
+
+  /* LOAD */
   useEffect(() => {
-    const shuffled = [...fullWordList].sort(() => 0.5 - Math.random());
-    setCards(shuffled);
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      setDeck(parsed.deck);
+      setIndex(parsed.index);
+      setStats(parsed.stats);
+      setAccent(parsed.accent ?? 'en-US');
+      return;
+    }
+
+    const base: DeckItem[] = shuffle(fullWordList as WordItem[]).map((w) => ({
+      ...w,
+      id: makeId(w),
+      seenCount: 0,
+      knownCount: 0,
+      hardCount: 0,
+    }));
+    setDeck(base);
   }, []);
 
-  const handleNext = () => {
-    setIsFlipped(false); // Önce kartı düzelt
-    setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % cards.length);
-      setViewedCount((prev) => prev + 1);
-    }, 200); // Dönme animasyonu bitince değiştir
-  };
+  /* SAVE */
+  useEffect(() => {
+    if (!deck.length) return;
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({ deck, index, stats, accent })
+    );
+  }, [deck, index, stats, accent]);
 
-  const handlePrev = () => {
-    if (currentIndex > 0) {
-      setIsFlipped(false);
-      setTimeout(() => {
-        setCurrentIndex((prev) => prev - 1);
-      }, 200);
+  const card = deck[index];
+  const total = deck.length;
+
+  /* AUTO SPEAK when card appears */
+  useEffect(() => {
+    if (!isFlipped && card?.word) {
+      speak(card.word, accent);
     }
+  }, [index, isFlipped, accent, card]);
+
+  const next = useCallback(() => {
+    if (lock.current) return;
+    lock.current = true;
+    setIsFlipped(false);
+
+    setDeck((d) =>
+      d.map((c, i) =>
+        i === index ? { ...c, seenCount: c.seenCount + 1 } : c
+      )
+    );
+    setStats((s) => ({ ...s, seenTotal: s.seenTotal + 1 }));
+
+    setTimeout(() => {
+      setIndex((i) => (i + 1) % total);
+      lock.current = false;
+    }, 200);
+  }, [index, total]);
+
+  const prev = () => {
+    if (index === 0) return;
+    setIsFlipped(false);
+    setIndex(index - 1);
   };
 
-  if (cards.length === 0) return <div className="min-h-screen bg-emerald-50 flex items-center justify-center">Loading...</div>;
+  const markKnow = () => {
+    setDeck((d) =>
+      d.map((c, i) =>
+        i === index ? { ...c, knownCount: c.knownCount + 1 } : c
+      )
+    );
+    setStats((s) => ({ ...s, knownTotal: s.knownTotal + 1 }));
+    next();
+  };
 
-  const currentCard = cards[currentIndex];
+  const markHard = () => {
+    setDeck((d) =>
+      d.map((c, i) =>
+        i === index ? { ...c, hardCount: c.hardCount + 1 } : c
+      )
+    );
+    setStats((s) => ({ ...s, hardTotal: s.hardTotal + 1 }));
+    next();
+  };
+
+  if (!card) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-slate-500">
+        Loading...
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4 font-sans">
-      
-      {/* Üst Bilgi Barı */}
-      <div className="w-full max-w-md flex justify-between items-center mb-8 px-2">
-        <Link href="/" className="text-slate-500 hover:text-emerald-600 font-bold flex items-center gap-2 transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
-          Exit
+    <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4">
+      {/* TOP BAR */}
+      <div className="w-full max-w-md flex justify-between mb-4">
+        <Link href="/" className="text-slate-500 font-bold">
+          ← Exit
         </Link>
-        <div className="text-slate-400 text-sm font-semibold uppercase tracking-wider">
-          Card {viewedCount + 1} / 3750
+        <div className="text-xs text-slate-400">
+          {index + 1} / {total}
         </div>
       </div>
 
-      {/* --- KART ALANI (3D FLIP EFFECT) --- */}
-      <div 
-        className="group w-full max-w-md h-96 perspective-1000 cursor-pointer"
+      {/* CARD */}
+      <div
+        className="w-full max-w-md h-96 perspective-1000 cursor-pointer"
         onClick={() => setIsFlipped(!isFlipped)}
       >
-        <div className={`relative w-full h-full transition-all duration-500 transform-style-3d ${isFlipped ? 'rotate-y-180' : ''}`}>
-          
-          {/* ÖN YÜZ (İngilizce) */}
-          <div className="absolute w-full h-full bg-white rounded-3xl shadow-2xl border border-slate-200 flex flex-col items-center justify-center backface-hidden p-8">
-            <span className="absolute top-6 left-6 text-xs font-bold text-slate-400 uppercase tracking-widest">English</span>
-            <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center text-3xl mb-6 text-emerald-600">
-              🇬🇧
-            </div>
-            <h2 className="text-4xl font-black text-slate-800 text-center leading-tight">
-              {currentCard.word}
-            </h2>
-            <p className="absolute bottom-6 text-slate-400 text-sm animate-pulse">
-              Tap to flip ↻
-            </p>
+        <div
+          className={`relative w-full h-full transition-all duration-500 transform-style-3d ${
+            isFlipped ? 'rotate-y-180' : ''
+          }`}
+        >
+          {/* FRONT */}
+          <div className="absolute w-full h-full bg-white rounded-3xl shadow-xl backface-hidden flex flex-col items-center justify-center p-8">
+            <h2 className="text-4xl font-black">{card.word}</h2>
+
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                speak(card.word, accent);
+              }}
+              className="mt-6 px-5 py-2 rounded-full bg-emerald-100 text-emerald-700 font-bold"
+            >
+              🔊 Pronounce
+            </button>
+
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setAccent(accent === 'en-US' ? 'en-GB' : 'en-US');
+              }}
+              className="mt-3 text-xs text-slate-400"
+            >
+              Accent: {accent === 'en-US' ? '🇺🇸 US' : '🇬🇧 UK'}
+            </button>
           </div>
 
-          {/* ARKA YÜZ (Türkçe) */}
-          <div className="absolute w-full h-full bg-emerald-600 rounded-3xl shadow-2xl border border-emerald-500 flex flex-col items-center justify-center backface-hidden rotate-y-180 p-8 text-white">
-            <span className="absolute top-6 left-6 text-xs font-bold text-emerald-200 uppercase tracking-widest">Turkish</span>
-             <div className="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center text-3xl mb-6 text-white">
-              🇹🇷
-            </div>
-            <h2 className="text-4xl font-black text-center leading-tight">
-              {currentCard.meaning}
+          {/* BACK */}
+          <div className="absolute w-full h-full bg-emerald-600 text-white rounded-3xl shadow-xl backface-hidden rotate-y-180 flex items-center justify-center p-8">
+            <h2 className="text-3xl font-black text-center">
+              {card.meaning}
             </h2>
-            <p className="absolute bottom-6 text-emerald-200 text-sm">
-              Tap to see English ↻
-            </p>
           </div>
-
         </div>
       </div>
 
-      {/* Kontrol Butonları */}
-      <div className="flex gap-4 mt-10 w-full max-w-md">
-        <button 
-          onClick={(e) => { e.stopPropagation(); handlePrev(); }}
-          disabled={currentIndex === 0}
-          className="flex-1 py-4 rounded-xl bg-white border border-slate-200 text-slate-600 font-bold hover:bg-slate-50 disabled:opacity-50 transition-all shadow-sm"
-        >
-          ← Prev
+      {/* CONTROLS */}
+      <div className="flex gap-3 mt-8 w-full max-w-md">
+        <button onClick={prev} className="flex-1 btn">← Prev</button>
+        <button onClick={markHard} className="flex-1 btn bg-amber-500 text-white">
+          Zor
         </button>
-        <button 
-          onClick={(e) => { e.stopPropagation(); handleNext(); }}
-          className="flex-[2] py-4 rounded-xl bg-emerald-600 text-white font-bold text-lg hover:bg-emerald-700 transition-all shadow-lg hover:shadow-emerald-500/30 active:scale-95"
+        <button
+          onClick={markKnow}
+          className="flex-1 btn bg-emerald-600 text-white"
         >
-          Next Card →
+          Biliyorum
+        </button>
+        <button onClick={next} className="flex-1 btn bg-slate-900 text-white">
+          Next →
         </button>
       </div>
 
-      {/* CSS STYLE (Tailwind config değiştirmemek için buraya ekliyoruz) */}
+      {/* STATS */}
+      <div className="mt-4 text-xs text-slate-500">
+        Seen: {stats.seenTotal} · Known: {stats.knownTotal} · Hard:{' '}
+        {stats.hardTotal}
+      </div>
+
       <style jsx>{`
-        .perspective-1000 { perspective: 1000px; }
-        .transform-style-3d { transform-style: preserve-3d; }
-        .backface-hidden { backface-visibility: hidden; }
-        .rotate-y-180 { transform: rotateY(180deg); }
+        .btn {
+          padding: 0.75rem;
+          border-radius: 0.75rem;
+          background: white;
+          border: 1px solid #e5e7eb;
+          font-weight: 700;
+        }
+        .perspective-1000 {
+          perspective: 1000px;
+        }
+        .transform-style-3d {
+          transform-style: preserve-3d;
+        }
+        .backface-hidden {
+          backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+          transform: rotateY(180deg);
+        }
       `}</style>
     </div>
   );
