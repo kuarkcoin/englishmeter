@@ -647,7 +647,49 @@ function HomeContent() {
     </div>
   </div>
 </a>
+{/* VERB SENSE */}
+<a
+  href="/verbsense"
+  className="group relative overflow-hidden
+             bg-gradient-to-br from-indigo-800 to-indigo-950
+             rounded-3xl p-6 border border-indigo-700 shadow-xl
+             hover:shadow-indigo-500/30 transition-all duration-300
+             transform hover:-translate-y-1 text-left"
+>
+  <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-indigo-400 rounded-full opacity-10 blur-xl"></div>
 
+  <div className="relative z-10">
+    <div className="inline-flex items-center gap-1 px-2 py-1
+                    bg-indigo-400/10 rounded-full text-indigo-300
+                    text-[10px] font-bold uppercase mb-3">
+      🔤 Verb Sense
+    </div>
+
+    <h3 className="text-2xl font-black text-white mb-1">
+      Verb Sense
+    </h3>
+
+    <p className="text-indigo-200 text-xs mb-4">
+      Choose the verb that sounds natural.
+    </p>
+
+    <div className="flex items-center justify-between">
+      <div className="text-[11px] text-indigo-300/80 font-semibold">
+        Spoken English · A2–C1
+      </div>
+
+      <div
+        className="w-11 h-11 bg-indigo-400 rounded-full
+                   flex items-center justify-center
+                   text-indigo-950 font-black
+                   transition-transform duration-200
+                   group-hover:scale-110 group-active:scale-95"
+      >
+        ▶
+      </div>
+    </div>
+  </div>
+</a>
 
   {/* 4. PHRASAL PUZZLE */}
   <a href="/phrasal-puzzle" className="group relative overflow-hidden bg-gradient-to-br from-fuchsia-900 to-fuchsia-950 rounded-3xl p-6 border border-fuchsia-800 shadow-xl hover:shadow-fuchsia-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left">
