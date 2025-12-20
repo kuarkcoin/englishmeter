@@ -5,7 +5,6 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link';
 
 type Level = 'A1' | 'A2' | 'B1' | 'B2' | 'C1';
-
 type ScenarioId = 'coffee' | 'taxi' | 'hotel' | 'restaurant' | 'shopping';
 
 type Scenario = {
@@ -13,8 +12,8 @@ type Scenario = {
   title: string;
   subtitle: string;
   emoji: string;
-  starters: string[]; // NPC first lines
-  hints: string[]; // sample phrases (optional)
+  starters: string[];
+  hints: string[];
 };
 
 type SpeakingResponse = {
@@ -33,11 +32,7 @@ const SCENARIOS: Scenario[] = [
     title: 'Coffee Shop',
     subtitle: 'Order a drink politely',
     emoji: '☕',
-    starters: [
-      'Hi! What would you like to drink?',
-      'Good afternoon! What can I get you today?',
-      'Welcome! What would you like?'
-    ],
+    starters: ['Hi! What would you like to drink?', 'Good afternoon! What can I get you today?', 'Welcome! What would you like?'],
     hints: ['I would like a ___, please.', 'Can I have a ___?', 'Small/medium/large, please.']
   },
   {
@@ -45,11 +40,7 @@ const SCENARIOS: Scenario[] = [
     title: 'Taxi Ride',
     subtitle: 'Give destination & small talk',
     emoji: '🚕',
-    starters: [
-      'Hi! Where would you like to go?',
-      'Hello! What’s your destination?',
-      'Good evening! Where are we heading?'
-    ],
+    starters: ['Hi! Where would you like to go?', 'Hello! What’s your destination?', 'Good evening! Where are we heading?'],
     hints: ['To ___, please.', 'How long will it take?', 'Can you take the fastest route?']
   },
   {
@@ -57,11 +48,7 @@ const SCENARIOS: Scenario[] = [
     title: 'Hotel Check-in',
     subtitle: 'Check in & ask basics',
     emoji: '🏨',
-    starters: [
-      'Hello! Do you have a reservation?',
-      'Welcome. Can I have your name, please?',
-      'Hi! Checking in today?'
-    ],
+    starters: ['Hello! Do you have a reservation?', 'Welcome. Can I have your name, please?', 'Hi! Checking in today?'],
     hints: ['Yes, it’s under ___.', 'Can I have a room with a view?', 'What time is breakfast?']
   },
   {
@@ -69,11 +56,7 @@ const SCENARIOS: Scenario[] = [
     title: 'Restaurant Order',
     subtitle: 'Order food & ask options',
     emoji: '🍽️',
-    starters: [
-      'Hi! Are you ready to order?',
-      'Hello! What would you like today?',
-      'Good evening! Can I take your order?'
-    ],
+    starters: ['Hi! Are you ready to order?', 'Hello! What would you like today?', 'Good evening! Can I take your order?'],
     hints: ['I’ll have the ___.', 'Could I get it without ___?', 'Can we have the bill, please?']
   },
   {
@@ -81,18 +64,19 @@ const SCENARIOS: Scenario[] = [
     title: 'Shopping',
     subtitle: 'Ask size, price, help',
     emoji: '🛍️',
-    starters: [
-      'Hi! Can I help you find something?',
-      'Hello! What are you looking for?',
-      'Welcome! Need any help today?'
-    ],
+    starters: ['Hi! Can I help you find something?', 'Hello! What are you looking for?', 'Welcome! Need any help today?'],
     hints: ['Do you have this in size ___?', 'How much is it?', 'Can I try it on?']
   }
 ];
 
+function pickRandom<T>(arr: T[]) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
 function speak(text: string, lang: 'en-US' | 'en-GB', rate = 0.95) {
   if (typeof window === 'undefined') return;
   if (!('speechSynthesis' in window)) return;
+
   window.speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
   u.lang = lang;
@@ -109,11 +93,6 @@ function vibrate(ms: number) {
   if ('vibrate' in n) n.vibrate(ms);
 }
 
-function pickRandom<T>(arr: T[]) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
-// SpeechRecognition typing (works on Chromium)
 type SpeechRecognitionType = any;
 
 function getSpeechRecognition(): SpeechRecognitionType | null {
@@ -123,19 +102,19 @@ function getSpeechRecognition(): SpeechRecognitionType | null {
 }
 
 export default function SpeakingPage() {
+  // Core selections
   const [scenarioId, setScenarioId] = useState<ScenarioId>('coffee');
-  const scenario = useMemo(
-    () => SCENARIOS.find((s) => s.id === scenarioId)!,
-    [scenarioId]
-  );
+  const scenario = useMemo(() => SCENARIOS.find((s) => s.id === scenarioId)!, [scenarioId]);
 
   const [level, setLevel] = useState<Level>('B1');
   const [accent, setAccent] = useState<'en-US' | 'en-GB'>('en-US');
 
+  // Conversation state
   const [npcLine, setNpcLine] = useState<string>(() => pickRandom(SCENARIOS[0].starters));
   const [transcript, setTranscript] = useState<string>('');
   const [isFlippedHint, setIsFlippedHint] = useState(false);
 
+  // Mic / API states
   const [isListening, setIsListening] = useState(false);
   const [micError, setMicError] = useState<string>('');
 
@@ -143,13 +122,24 @@ export default function SpeakingPage() {
   const [isLoadingAI, setIsLoadingAI] = useState(false);
   const [apiError, setApiError] = useState<string>('');
 
+  // Refs
   const recognitionRef = useRef<SpeechRecognitionType | null>(null);
   const listeningLock = useRef(false);
 
-  // Set a new starter when scenario changes
+  // Reset starter whenever scenario OR accent changes
   useEffect(() => {
     const sc = SCENARIOS.find((s) => s.id === scenarioId)!;
     const starter = pickRandom(sc.starters);
+
+    // stop mic if running (avoid dangling recognition)
+    try {
+      recognitionRef.current?.stop?.();
+    } catch {
+      // ignore
+    }
+    recognitionRef.current = null;
+    listeningLock.current = false;
+
     setNpcLine(starter);
     setTranscript('');
     setCoach(null);
@@ -157,13 +147,11 @@ export default function SpeakingPage() {
     setMicError('');
     setIsListening(false);
     setIsFlippedHint(false);
+
     vibrate(10);
-
-    // auto speak NPC
     speak(starter, accent, 0.95);
-  }, [scenarioId]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [scenarioId, accent]);
 
-  // If accent changes, you may want to repeat NPC line on demand only (not automatic)
   const onSpeakNpc = useCallback(() => {
     speak(npcLine, accent, 0.95);
     vibrate(8);
@@ -196,7 +184,7 @@ export default function SpeakingPage() {
 
     const SR = getSpeechRecognition();
     if (!SR) {
-      setMicError('SpeechRecognition not supported on this browser. Try Chrome/Edge on Android/PC.');
+      setMicError('SpeechRecognition not supported. Try Chrome/Edge on Android/PC.');
       return;
     }
 
@@ -207,8 +195,7 @@ export default function SpeakingPage() {
     const rec: SpeechRecognitionType = new SR();
     recognitionRef.current = rec;
 
-    // Settings
-    rec.lang = accent; // recognition language follows accent
+    rec.lang = accent;
     rec.continuous = false;
     rec.interimResults = true;
     rec.maxAlternatives = 1;
@@ -271,19 +258,16 @@ export default function SpeakingPage() {
 
       if (!res.ok) {
         setApiError((data as any)?.error || 'Server error');
-        setIsLoadingAI(false);
         return;
       }
 
       const parsed = data as SpeakingResponse;
       setCoach(parsed);
 
-      // If understood, progress NPC line
       if (parsed?.next_npc_line) {
         setNpcLine(parsed.next_npc_line);
       }
 
-      // speak short coach line? (optional, keep quiet by default)
       vibrate(10);
     } catch (e: any) {
       setApiError(e?.message ?? 'Network error');
@@ -293,7 +277,6 @@ export default function SpeakingPage() {
   }, [transcript, scenario.title, npcLine, level]);
 
   const nextRound = useCallback(() => {
-    // Start a new prompt line (use current npcLine already set by AI)
     setTranscript('');
     setCoach(null);
     setApiError('');
@@ -380,9 +363,7 @@ export default function SpeakingPage() {
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 text-rose-600 text-[11px] font-black uppercase tracking-wider">
                 🎙️ Speaking Mode
               </div>
-              <h1 className="mt-3 text-2xl md:text-3xl font-black text-slate-900">
-                Speak in Real Life
-              </h1>
+              <h1 className="mt-3 text-2xl md:text-3xl font-black text-slate-900">Speak in Real Life</h1>
               <p className="mt-1 text-slate-500 text-sm md:text-base">
                 Short daily conversation rounds. Speak → get feedback → continue.
               </p>
@@ -397,6 +378,9 @@ export default function SpeakingPage() {
               </div>
               <div className="px-3 py-2 rounded-2xl bg-slate-50 border border-slate-200 text-slate-600 text-xs font-bold">
                 P = Play NPC
+              </div>
+              <div className="px-3 py-2 rounded-2xl bg-slate-50 border border-slate-200 text-slate-600 text-xs font-bold">
+                R = Next Prompt
               </div>
             </div>
           </div>
@@ -426,8 +410,8 @@ export default function SpeakingPage() {
 
       {/* Main */}
       <div className="w-full max-w-3xl mx-auto px-4 mt-4 pb-28">
-        {/* NPC card */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* NPC card */}
           <div className="rounded-3xl border border-slate-200 bg-white shadow-sm p-5">
             <div className="flex items-center justify-between gap-3">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-700 text-[11px] font-black uppercase tracking-wider">
@@ -443,9 +427,7 @@ export default function SpeakingPage() {
               </button>
             </div>
 
-            <div className="mt-4 text-slate-900 font-black text-xl leading-snug">
-              “{npcLine}”
-            </div>
+            <div className="mt-4 text-slate-900 font-black text-xl leading-snug">“{npcLine}”</div>
 
             <div className="mt-4 flex items-center justify-between gap-3">
               <button
@@ -463,9 +445,7 @@ export default function SpeakingPage() {
 
             {isFlippedHint && (
               <div className="mt-4 rounded-2xl bg-slate-50 border border-slate-200 p-4">
-                <div className="text-[11px] text-slate-500 font-black uppercase tracking-wider mb-2">
-                  Useful phrases
-                </div>
+                <div className="text-[11px] text-slate-500 font-black uppercase tracking-wider mb-2">Useful phrases</div>
                 <ul className="space-y-1 text-sm text-slate-700 font-semibold">
                   {scenario.hints.map((h, i) => (
                     <li key={i} className="flex items-start gap-2">
@@ -505,9 +485,7 @@ export default function SpeakingPage() {
             </div>
 
             <div className="mt-4">
-              <div className="text-[11px] text-slate-500 font-black uppercase tracking-wider mb-2">
-                Transcript
-              </div>
+              <div className="text-[11px] text-slate-500 font-black uppercase tracking-wider mb-2">Transcript</div>
 
               <div
                 className={`min-h-[110px] rounded-2xl border p-4 font-semibold leading-relaxed ${
@@ -587,30 +565,25 @@ export default function SpeakingPage() {
           ) : (
             <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="rounded-2xl bg-slate-50 border border-slate-200 p-4">
-                <div className="text-[11px] text-slate-500 font-black uppercase tracking-wider">
-                  Scores
-                </div>
+                <div className="text-[11px] text-slate-500 font-black uppercase tracking-wider">Scores</div>
+
                 <div className="mt-3 flex items-center justify-between">
                   <div className="text-sm text-slate-700 font-extrabold">Meaning</div>
-                  <div className={`text-2xl font-black ${scoreColor(coach.meaning_score)}`}>
-                    {coach.meaning_score}
-                  </div>
+                  <div className={`text-2xl font-black ${scoreColor(coach.meaning_score)}`}>{coach.meaning_score}</div>
                 </div>
+
                 <div className="mt-2 flex items-center justify-between">
                   <div className="text-sm text-slate-700 font-extrabold">Fluency</div>
-                  <div className={`text-2xl font-black ${scoreColor(coach.fluency_score)}`}>
-                    {coach.fluency_score}
-                  </div>
+                  <div className={`text-2xl font-black ${scoreColor(coach.fluency_score)}`}>{coach.fluency_score}</div>
                 </div>
+
                 <div className="mt-3 text-xs text-slate-500 font-semibold">
                   {coach.understood ? '✅ Understood' : '⚠️ Not understood'}
                 </div>
               </div>
 
               <div className="rounded-2xl bg-slate-50 border border-slate-200 p-4">
-                <div className="text-[11px] text-slate-500 font-black uppercase tracking-wider">
-                  Fixes
-                </div>
+                <div className="text-[11px] text-slate-500 font-black uppercase tracking-wider">Fixes</div>
                 <ul className="mt-3 space-y-2">
                   {(coach.grammar_fixes?.length ? coach.grammar_fixes : ['Looks good!']).map((f, i) => (
                     <li key={i} className="text-sm text-slate-800 font-semibold flex gap-2">
@@ -622,24 +595,15 @@ export default function SpeakingPage() {
               </div>
 
               <div className="rounded-2xl bg-slate-50 border border-slate-200 p-4">
-                <div className="text-[11px] text-slate-500 font-black uppercase tracking-wider">
-                  Natural Reply
-                </div>
-                <div className="mt-3 text-slate-900 font-black text-lg leading-snug">
-                  {coach.natural_reply}
-                </div>
-                <div className="mt-3 text-xs text-slate-500 font-semibold">
-                  {coach.notes}
-                </div>
+                <div className="text-[11px] text-slate-500 font-black uppercase tracking-wider">Natural Reply</div>
+                <div className="mt-3 text-slate-900 font-black text-lg leading-snug">{coach.natural_reply}</div>
+                <div className="mt-3 text-xs text-slate-500 font-semibold">{coach.notes}</div>
               </div>
 
               <div className="md:col-span-3 rounded-2xl border border-indigo-200 bg-indigo-50 p-4">
-                <div className="text-[11px] text-indigo-700 font-black uppercase tracking-wider mb-2">
-                  Next NPC line
-                </div>
-                <div className="text-indigo-950 font-extrabold text-base leading-snug">
-                  “{coach.next_npc_line}”
-                </div>
+                <div className="text-[11px] text-indigo-700 font-black uppercase tracking-wider mb-2">Next NPC line</div>
+                <div className="text-indigo-950 font-extrabold text-base leading-snug">“{coach.next_npc_line}”</div>
+
                 <div className="mt-3 flex gap-2">
                   <button
                     onClick={() => {
