@@ -604,6 +604,50 @@ function HomeContent() {
       <div className="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold">↺</div>
     </div>
   </a>
+    {/* SPEAK IN REAL LIFE */}
+<a
+  href="/speaking"
+  className="group relative overflow-hidden
+             bg-gradient-to-br from-rose-900 to-rose-950
+             rounded-3xl p-6 border border-rose-800 shadow-xl
+             hover:shadow-rose-500/20 transition-all duration-300
+             transform hover:-translate-y-1 text-left"
+>
+  <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-rose-500 rounded-full opacity-10 blur-xl"></div>
+
+  <div className="relative z-10">
+    <div className="inline-flex items-center gap-1 px-2 py-1
+                    bg-rose-500/10 rounded-full text-rose-300
+                    text-[10px] font-bold uppercase mb-3">
+      🎙️ Speaking
+    </div>
+
+    <h3 className="text-2xl font-black text-white mb-1">
+      Speak in Real Life
+    </h3>
+
+    <p className="text-rose-200 text-xs mb-4">
+      Practice daily conversations with AI.
+    </p>
+
+    <div className="flex items-center justify-between">
+      <div className="text-[11px] text-rose-300/80 font-semibold">
+        Coffee · Taxi · Hotel
+      </div>
+
+      <div
+        className="w-11 h-11 bg-rose-400 rounded-full
+                   flex items-center justify-center
+                   text-rose-950 font-black
+                   transition-transform duration-200
+                   group-hover:scale-110 group-active:scale-95"
+      >
+        ▶
+      </div>
+    </div>
+  </div>
+</a>
+
 
   {/* 4. PHRASAL PUZZLE */}
   <a href="/phrasal-puzzle" className="group relative overflow-hidden bg-gradient-to-br from-fuchsia-900 to-fuchsia-950 rounded-3xl p-6 border border-fuchsia-800 shadow-xl hover:shadow-fuchsia-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left">
