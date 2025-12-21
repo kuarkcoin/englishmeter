@@ -15,6 +15,16 @@ type Card = {
   locked: boolean;
 };
 
+type ToastKind = 'ok' | 'bad' | 'info';
+
+type SwipeState = {
+  startX: number;
+  startY: number;
+  startT: number;
+  cardKey: string;
+  side: Side;
+};
+
 function shuffle<T>(arr: T[]) {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -25,10 +35,11 @@ function shuffle<T>(arr: T[]) {
 }
 
 function clean(s: string) {
-  return String(s || '')
-    .trim()
-    .replace(/\s+/g, ' ')
-    .toLowerCase();
+  return String(s || '').trim().replace(/\s+/g, ' ').toLowerCase();
+}
+
+function clamp(n: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, n));
 }
 
 function safeVocab(list: any): VocabItem[] {
@@ -71,7 +82,6 @@ function speak(text: string, lang: 'en-US' | 'en-GB' = 'en-US', rate = 0.95) {
   utter.pitch = 1;
 
   const voices = synth.getVoices ? synth.getVoices() : [];
-  // Ses bulunamazsa varsayılanı kullanması için esnek bırakıyoruz
   const voice =
     voices.find((v) => v.lang === lang) ||
     voices.find((v) => v.lang?.startsWith('en'));
@@ -80,26 +90,19 @@ function speak(text: string, lang: 'en-US' | 'en-GB' = 'en-US', rate = 0.95) {
   synth.speak(utter);
 }
 
-/** Swipe helpers */
-type SwipeState = {
-  startX: number;
-  startY: number;
-  startT: number;
-  cardKey: string;
-  side: Side;
-};
-
-function clamp(n: number, min: number, max: number) {
-  return Math.max(min, Math.min(max, n));
-}
-
 export default function MatchingPage() {
   const vocab = useMemo(() => safeVocab(vocabRaw as any), []);
 
-  // Kaç çift gösterileceği hedefi
+  // Settings
   const TARGET_PAIRS = 8;
   const ROUND_SECONDS = 60;
 
+  // Render behavior:
+  // true  => locked cards animate (opacity/scale) but still occupy space briefly
+  // false => locked cards are removed from DOM immediately (faster, no “gaps”)
+  const KEEP_LOCKED_IN_DOM_FOR_ANIM = true;
+
+  // Game state
   const [round, setRound] = useState(1);
   const [timeLeft, setTimeLeft] = useState(ROUND_SECONDS);
   const [running, setRunning] = useState(true);
@@ -108,46 +111,46 @@ export default function MatchingPage() {
   const [streak, setStreak] = useState(0);
   const [lives, setLives] = useState(3);
 
-  // pair state'i aslında sadece başlangıçta kullanılıyor, renderda gerek yok ama tutalım.
-  const [pairs, setPairs] = useState<VocabItem[]>([]);
   const [leftCards, setLeftCards] = useState<Card[]>([]);
   const [rightCards, setRightCards] = useState<Card[]>([]);
 
   const [selectedLeft, setSelectedLeft] = useState<Card | null>(null);
   const [selectedRight, setSelectedRight] = useState<Card | null>(null);
 
-  const [toast, setToast] = useState<{ kind: 'ok' | 'bad' | 'info'; text: string } | null>(null);
+  const [toast, setToast] = useState<{ kind: ToastKind; text: string } | null>(null);
   const [shakeKey, setShakeKey] = useState<string>('');
 
-  // 🔊 Ses ayarları
+  // Voice settings
   const [accent, setAccent] = useState<'en-US' | 'en-GB'>('en-US');
   const [rate, setRate] = useState<number>(0.95);
   const [autoSpeakCorrect, setAutoSpeakCorrect] = useState<boolean>(true);
 
-  // ✅ Finish bonus tek sefer çalışsın
+  // Refs for safety
   const finishOnceRef = useRef(false);
-
-  // Swipe state
   const swipeRef = useRef<SwipeState | null>(null);
 
-  // DÜZELTME: Kilitli kart sayısı ve bitiş kontrolü dinamik yapıldı.
+  // Prevent double match / race conditions
+  const matchLockRef = useRef(false);
+
   const lockedCount = useMemo(() => leftCards.filter((c) => c.locked).length, [leftCards]);
-  // Oyun, kartlar varsa ve hepsi kilitliyse biter.
   const finished = leftCards.length > 0 && leftCards.every((c) => c.locked);
 
   function startNewRound(nextRound: number) {
-    if (vocab.length === 0) return;
+    if (vocab.length === 0) {
+      setToast({ kind: 'bad', text: 'Kelime listesi boş. data/yds_vocabulary.json kontrol et.' });
+      setRunning(false);
+      return;
+    }
 
     finishOnceRef.current = false;
+    matchLockRef.current = false;
 
-    // Havuzdan kelime seç
     const picked = pickUniquePairs(vocab, TARGET_PAIRS);
-    setPairs(picked);
 
     if (picked.length === 0) {
-        setToast({ kind: 'bad', text: 'Yeterli kelime bulunamadı!' });
-        setRunning(false);
-        return;
+      setToast({ kind: 'bad', text: 'Yeterli kelime bulunamadı!' });
+      setRunning(false);
+      return;
     }
 
     const left: Card[] = picked.map((p, i) => ({
@@ -177,20 +180,17 @@ export default function MatchingPage() {
     setLives(3);
     setStreak(0);
     setRunning(true);
+
     setToast({ kind: 'info', text: `Round ${nextRound} başladı! (${picked.length} çift)` });
   }
 
+  // Init
   useEffect(() => {
-    if (vocab.length === 0) {
-      setToast({ kind: 'bad', text: 'Kelime listesi boş görünüyor. data/yds_vocabulary.json yolunu kontrol et.' });
-      setRunning(false);
-      return;
-    }
     startNewRound(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // voices warm-up
+  // voices warm-up (helps some mobile browsers)
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const synth = window.speechSynthesis;
@@ -201,76 +201,45 @@ export default function MatchingPage() {
         synth.getVoices?.();
       } catch {}
     };
+
     warm();
-    if (synth.onvoiceschanged !== undefined) {
-        synth.onvoiceschanged = warm;
-    }
+    // @ts-ignore
+    synth.onvoiceschanged = warm;
+
+    return () => {
+      // @ts-ignore
+      synth.onvoiceschanged = null;
+    };
   }, []);
 
   // Timer
   useEffect(() => {
     if (!running) return;
+
     if (timeLeft <= 0) {
       setRunning(false);
       setToast({ kind: 'bad', text: 'Süre bitti! Restart veya Next Round.' });
       return;
     }
+
     const t = setInterval(() => setTimeLeft((s) => s - 1), 1000);
     return () => clearInterval(t);
   }, [running, timeLeft]);
 
-
-  // DÜZELTME: Sonsuz döngüye neden olan useEffect kaldırıldı.
-  // Eşleşme mantığı handleMatch fonksiyonuna taşındı.
-
-  // Helper to process a potential match
-  function handleMatch(left: Card, right: Card) {
-    // Emniyet kilidi: eğer zaten kilitliyse işlem yapma
-    if (left.locked || right.locked) return;
-
-    const isMatch = left.pairId === right.pairId;
-
-    if (isMatch) {
-      // Kartları kilitle
-      setLeftCards((prev) => prev.map((c) => (c.key === left.key ? { ...c, locked: true } : c)));
-      setRightCards((prev) => prev.map((c) => (c.key === right.key ? { ...c, locked: true } : c)));
-
-      // Puanlama ve Streak (Sadece 1 kez çalışır)
-      setScore((s) => s + 10 + Math.min(streak, 10));
-      setStreak((x) => x + 1);
-      setToast({ kind: 'ok', text: 'Doğru!' });
-
-      if (autoSpeakCorrect) speak(left.text, accent, rate);
-    } else {
-      // Yanlış eşleşme
-      setLives((l) => Math.max(0, l - 1));
-      setScore((s) => Math.max(0, s - 5));
-      setStreak(0);
-      setToast({ kind: 'bad', text: 'Yanlış eşleşme!' });
-      setShakeKey(left.key + '|' + right.key);
-    }
-
-    // Seçimleri temizle
-    setTimeout(() => {
-      setSelectedLeft(null);
-      setSelectedRight(null);
-      setShakeKey('');
-    }, 350); // Animasyon süresine yakın bir süre
-  }
-
-  // DÜZELTME: Bitiş bonusu mantığı güvenli hale getirildi.
+  // Finish bonus (safe once)
   useEffect(() => {
     if (finished && running && !finishOnceRef.current) {
       finishOnceRef.current = true;
       setRunning(false);
 
-      // Süre bonusunu hesapla (timeLeft bağımlılığından kurtarıldı)
       const timeBonus = clamp(timeLeft, 0, 60);
       setScore((s) => s + timeBonus);
+
       setToast({ kind: 'ok', text: `Tur bitti! Süre Bonusu: +${timeBonus}` });
     }
-  }, [finished, running]); // timeLeft removed from dependency
+  }, [finished, running, timeLeft]);
 
+  // Lives end
   useEffect(() => {
     if (lives <= 0 && running) {
       setRunning(false);
@@ -278,26 +247,59 @@ export default function MatchingPage() {
     }
   }, [lives, running]);
 
-  // DÜZELTME: onPick fonksiyonu, seçim yapıldığında eşleşmeyi anında kontrol edecek şekilde güncellendi.
+  // Match processing (single entry point)
+  function handleMatch(left: Card, right: Card) {
+    if (!running) return;
+    if (left.locked || right.locked) return;
+
+    // hard lock to prevent “double scoring”
+    if (matchLockRef.current) return;
+    matchLockRef.current = true;
+
+    const isMatch = left.pairId === right.pairId;
+
+    if (isMatch) {
+      setLeftCards((prev) => prev.map((c) => (c.key === left.key ? { ...c, locked: true } : c)));
+      setRightCards((prev) => prev.map((c) => (c.key === right.key ? { ...c, locked: true } : c)));
+
+      setScore((s) => s + 10 + Math.min(streak, 10));
+      setStreak((x) => x + 1);
+      setToast({ kind: 'ok', text: 'Doğru!' });
+
+      if (autoSpeakCorrect) speak(left.text, accent, rate);
+    } else {
+      setLives((l) => Math.max(0, l - 1));
+      setScore((s) => Math.max(0, s - 5));
+      setStreak(0);
+      setToast({ kind: 'bad', text: 'Yanlış eşleşme!' });
+      setShakeKey(left.key + '|' + right.key);
+    }
+
+    // clear selection after short delay (for shake/feedback)
+    setTimeout(() => {
+      setSelectedLeft(null);
+      setSelectedRight(null);
+      setShakeKey('');
+      matchLockRef.current = false;
+    }, 320);
+  }
+
+  // Tap pick
   function onPick(card: Card) {
     if (!running || card.locked) return;
 
     if (card.side === 'left') {
-      // Zaten bu kart seçiliyse tekrar işlem yapma
       if (selectedLeft?.key === card.key) return;
-      
       setSelectedLeft(card);
-      // Eğer sağda bir kart zaten seçiliyse, eşleştirmeyi dene
-      if (selectedRight) {
+
+      if (selectedRight && !selectedRight.locked) {
         handleMatch(card, selectedRight);
       }
     } else {
-      // Right side
       if (selectedRight?.key === card.key) return;
-
       setSelectedRight(card);
-       // Eğer solda bir kart zaten seçiliyse, eşleştirmeyi dene
-      if (selectedLeft) {
+
+      if (selectedLeft && !selectedLeft.locked) {
         handleMatch(selectedLeft, card);
       }
     }
@@ -313,7 +315,13 @@ export default function MatchingPage() {
     startNewRound(round);
   }
 
-  /** Swipe logic */
+  /* ===================== SWIPE =====================
+     Primary UX:
+       1) Select left (English) with tap
+       2) Swipe RIGHT on a Turkish card to match
+     Secondary (optional):
+       - If Turkish selected, swipe LEFT on English to match
+  =================================================== */
   function onTouchStart(e: React.TouchEvent, card: Card) {
     if (!running || card.locked) return;
     const t = e.touches[0];
@@ -338,37 +346,32 @@ export default function MatchingPage() {
     const dy = t.clientY - st.startY;
     const dt = Date.now() - st.startT;
 
-    const H = 40; // horizontal min
-    const V = 35; // vertical max
+    const H = 40; // min horizontal
+    const V = 35; // max vertical (avoid scroll)
     const TMAX = 650;
 
     if (Math.abs(dy) > V || dt > TMAX) return;
 
-    // Right card swipe right (→)
+    // RIGHT side: swipe RIGHT (→) to match with selectedLeft
     if (card.side === 'right' && dx > H) {
       if (!selectedLeft) {
         setToast({ kind: 'info', text: 'Önce soldan İngilizce kelimeyi seç.' });
         return;
       }
-      // Swipe ile seçim yapıldığında da onPick mantığını tetikle
-      if (selectedRight?.key !== card.key) {
-         setSelectedRight(card);
-         handleMatch(selectedLeft, card);
-      }
+      // ensure right is selected (visual)
+      setSelectedRight(card);
+      handleMatch(selectedLeft, card);
       return;
     }
 
-    // Left card swipe left (←)
+    // LEFT side: swipe LEFT (←) to match with selectedRight
     if (card.side === 'left' && dx < -H) {
       if (!selectedRight) {
         setToast({ kind: 'info', text: 'Önce sağdan Türkçe anlamı seç.' });
         return;
       }
-       // Swipe ile seçim yapıldığında da onPick mantığını tetikle
-       if(selectedLeft?.key !== card.key) {
-         setSelectedLeft(card);
-         handleMatch(card, selectedRight);
-       }
+      setSelectedLeft(card);
+      handleMatch(card, selectedRight);
       return;
     }
   }
@@ -383,21 +386,28 @@ export default function MatchingPage() {
   const baseBtn =
     'px-4 py-2 rounded-2xl border border-slate-200 hover:bg-slate-50 font-semibold transition';
 
-  // ✨ YENİ: Kartlar için ortak temel ve animasyon sınıfları
-  // transition-all duration-500 ease-out: Tüm değişimleri (renk, opaklık, boyut) 500ms içinde yumuşatarak yap.
-  const card BaseClass = 'w-full text-left px-2 py-2 rounded-xl border select-none transition-all duration-500 ease-out will-change-transform flex items-center justify-between gap-2';
-  
+  // Unified card base (mobile-first)
+  const cardBaseClass =
+    'relative w-full text-left px-2 py-2 rounded-xl border select-none transition-all duration-300 ease-out will-change-transform';
+
+  // Filter locked cards (if not keeping for animation)
+  const leftRender = KEEP_LOCKED_IN_DOM_FOR_ANIM ? leftCards : leftCards.filter((c) => !c.locked);
+  const rightRender = KEEP_LOCKED_IN_DOM_FOR_ANIM ? rightCards : rightCards.filter((c) => !c.locked);
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Header - (Aynı kaldı) */}
+      {/* Header */}
       <div className="sticky top-0 z-10 bg-white/90 backdrop-blur border-b border-slate-200">
-        <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between gap-3">
+        <div className="max-w-5xl mx-auto px-3 sm:px-4 py-4 flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <Link href="/" className={baseBtn}>
               ← Home
             </Link>
             <div>
-              <div className="text-lg font-black text-slate-900">Matching Game (Sol EN / Sağ TR)</div>
+              <div className="text-lg font-black text-slate-900">Matching Game</div>
+              <div className="text-xs text-slate-500">
+                Sol EN • Sağ TR • Tap veya Swipe (EN seç → TR kartı sağa kaydır)
+              </div>
             </div>
           </div>
 
@@ -406,7 +416,7 @@ export default function MatchingPage() {
               ⏱️ <span className="font-bold">{timeLeft}s</span>
             </div>
             <div className="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-sm">
-              🎯 Skor: <span className="font-bold">{score}</span>
+              🎯 <span className="font-bold">{score}</span>
             </div>
             <div className="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-sm">
               🔥 <span className="font-bold">{streak}</span>
@@ -415,7 +425,7 @@ export default function MatchingPage() {
               ❤️ <span className="font-bold">{lives}</span>
             </div>
             <div className="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-sm">
-              ✅ {lockedCount}/{leftCards.length}
+              ✅ <span className="font-bold">{lockedCount}</span>/{leftCards.length || TARGET_PAIRS}
             </div>
           </div>
         </div>
@@ -425,20 +435,27 @@ export default function MatchingPage() {
       <div className="max-w-5xl mx-auto px-3 sm:px-4 py-5">
         {/* Toast */}
         {toast && (
-          <div className={`mb-3 p-3 rounded-2xl border ${toastCls} transition-all`}>
+          <div className={`mb-3 p-3 rounded-2xl border ${toastCls}`}>
             <div className="text-sm font-semibold">{toast.text}</div>
           </div>
         )}
 
-        {/* Controls - (Aynı kaldı) */}
+        {/* Controls */}
         <div className="mb-4 grid grid-cols-1 lg:grid-cols-3 gap-3">
           <div className="flex flex-wrap items-center gap-2">
-            <button onClick={() => setRunning((r) => !r)} className={baseBtn} disabled={finished || lives <=0}>
+            <button
+              onClick={() => setRunning((r) => !r)}
+              className={baseBtn}
+              disabled={finished || lives <= 0}
+              title="Pause / Resume"
+            >
               {running ? 'Pause' : 'Resume'}
             </button>
+
             <button onClick={restartRound} className={baseBtn}>
               Restart
             </button>
+
             <button
               onClick={nextRound}
               className="px-4 py-2 rounded-2xl bg-slate-900 text-white hover:bg-slate-800 font-semibold transition"
@@ -450,8 +467,8 @@ export default function MatchingPage() {
           {/* Voice controls */}
           <div className="rounded-3xl border border-slate-200 p-3 flex flex-wrap items-center gap-2 justify-between">
             <div className="text-sm font-black text-slate-900">Ses</div>
-             {/* ... (Ses kontrolleri aynı) ... */}
-             <div className="flex items-center gap-2 flex-wrap">
+
+            <div className="flex items-center gap-2 flex-wrap">
               <button
                 onClick={() => setAccent('en-US')}
                 className={`px-2 py-1 rounded-xl border text-xs font-semibold transition ${
@@ -462,6 +479,7 @@ export default function MatchingPage() {
               >
                 🇺🇸 US
               </button>
+
               <button
                 onClick={() => setAccent('en-GB')}
                 className={`px-2 py-1 rounded-xl border text-xs font-semibold transition ${
@@ -472,70 +490,84 @@ export default function MatchingPage() {
               >
                 🇬🇧 GB
               </button>
-               <label className="text-xs text-slate-600 flex items-center gap-1">
+
+              <label className="text-xs text-slate-600 flex items-center gap-2">
                 Hız
                 <input
-                  type="range" min={0.7} max={1.2} step={0.1}
-                  value={rate} onChange={(e) => setRate(parseFloat(e.target.value))}
-                  className="w-16"
+                  type="range"
+                  min={0.7}
+                  max={1.2}
+                  step={0.05}
+                  value={rate}
+                  onChange={(e) => setRate(parseFloat(e.target.value))}
+                  className="w-20"
                 />
+                <span className="font-semibold text-slate-900 w-10 text-right">{rate.toFixed(2)}</span>
               </label>
 
-              <label className="text-xs text-slate-600 flex items-center gap-1">
+              <label className="text-xs text-slate-600 flex items-center gap-2">
                 <input
-                  type="checkbox" checked={autoSpeakCorrect}
+                  type="checkbox"
+                  checked={autoSpeakCorrect}
                   onChange={(e) => setAutoSpeakCorrect(e.target.checked)}
                 />
-                Oto. Oku
+                Oto oku
               </label>
+
+              <button
+                onClick={() => {
+                  speak('Let’s begin!', accent, rate);
+                  setToast({ kind: 'info', text: 'Ses test edildi.' });
+                }}
+                className="px-3 py-2 rounded-2xl border border-slate-200 hover:bg-slate-50 font-semibold transition text-xs"
+                title="Ses testi"
+              >
+                🔊 Test
+              </button>
             </div>
           </div>
-           <div className="text-xs text-slate-500 flex items-center">
-            Swipe: Soldan seç → sağ kartı <span className="font-bold">sağa kaydır (→)</span>.
+
+          <div className="text-xs text-slate-500 flex items-center">
+            Swipe: Soldan seç → sağ kartı <span className="font-bold mx-1">sağa kaydır (→)</span>.
           </div>
         </div>
 
-        {/* Cards Grid */}
+        {/* ✅ Always 2 columns (mobile-first) */}
         <div className="grid grid-cols-2 gap-2">
           {/* Left column */}
           <div className="rounded-3xl border border-slate-200 p-3 bg-slate-50/50">
             <div className="text-xs font-black text-slate-900 mb-2">English</div>
-            <div className="grid grid-cols-1 gap-2 relative">
-              {leftCards.map((c) => {
-                const selected = selectedLeft?.key === c.key;
-                const shaking = shakeKey.includes(c.key) && !c.locked ? 'animate-[shake_.3s_ease-in-out_1]' : '';
 
-                // ✨ YENİ: Animasyonlu sınıf mantığı
+            <div className="grid grid-cols-1 gap-2">
+              {leftRender.map((c) => {
+                const selected = selectedLeft?.key === c.key;
+                const shaking = shakeKey.includes(c.key) && !c.locked ? 'animate-[shake_.28s_linear_1]' : '';
+
                 let cls = '';
                 if (c.locked) {
-                  // KİLİTLİ: Yeşilimsi, görünmez (opacity-0), küçülmüş (scale-95), tıklanamaz
-                  cls = 'bg-emerald-100/50 border-emerald-200 text-emerald-800 opacity-0 scale-95 pointer-events-none';
+                  // fade-out + scale-down + disable
+                  cls =
+                    'bg-emerald-100/40 border-emerald-200 text-emerald-800 opacity-0 scale-95 pointer-events-none';
                 } else if (selected) {
-                  // SEÇİLİ: Koyu renk
-                  cls = 'bg-slate-900 border-slate-900 text-white scale-[1.02] shadow-md cursor-pointer';
+                  cls = 'bg-slate-900 border-slate-900 text-white scale-[1.02] shadow-md';
                 } else {
-                  // NORMAL: Beyaz
-                  cls = 'bg-white border-slate-200 hover:bg-slate-50 text-slate-900 cursor-pointer hover:border-slate-300';
+                  cls = 'bg-white border-slate-200 hover:bg-slate-50 hover:border-slate-300 text-slate-900';
                 }
 
                 return (
-                  // DÜZELTME: İç içe button yerine div kullanıldı.
                   <div
                     key={c.key}
                     onClick={() => onPick(c)}
                     onTouchStart={(e) => onTouchStart(e, c)}
                     onTouchEnd={(e) => onTouchEnd(e, c)}
                     className={`${cardBaseClass} ${cls} ${shaking}`}
-                    style={{
-                        // Locked ise tıklamayı tamamen engelle (CSS yetmeyebilir)
-                        pointerEvents: (c.locked || !running) ? 'none' : 'auto'
-                    }}
+                    style={{ pointerEvents: !running || c.locked ? 'none' : 'auto' }}
                   >
+                    <div className="flex items-center justify-between gap-2">
                       <span className="font-semibold text-[13px] leading-tight break-words">
                         {c.text}
                       </span>
 
-                      {/* Hoparlör ikonu - sadece kilitli değilse göster */}
                       {!c.locked && (
                         <span
                           role="button"
@@ -545,7 +577,7 @@ export default function MatchingPage() {
                             speak(c.text, accent, rate);
                           }}
                           className={`shrink-0 px-2 py-1 rounded-lg border text-[12px] font-semibold transition ${
-                             selected
+                            selected
                               ? 'border-white/30 text-white/90 hover:text-white hover:border-white/50'
                               : 'border-slate-200 text-slate-500 hover:text-slate-800 hover:bg-slate-100'
                           }`}
@@ -554,8 +586,9 @@ export default function MatchingPage() {
                           🔊
                         </span>
                       )}
+                    </div>
 
-                    {/* Hint overlay */}
+                    {/* subtle hint overlay when opposite side selected */}
                     {selectedRight && !c.locked && !selected && (
                       <div className="absolute inset-0 bg-slate-900/5 rounded-xl pointer-events-none animate-pulse" />
                     )}
@@ -568,39 +601,45 @@ export default function MatchingPage() {
           {/* Right column */}
           <div className="rounded-3xl border border-slate-200 p-3 bg-slate-50/50">
             <div className="text-xs font-black text-slate-900 mb-2">Türkçe</div>
-            <div className="grid grid-cols-1 gap-2 relative">
-              {rightCards.map((c) => {
-                const selected = selectedRight?.key === c.key;
-                const shaking = shakeKey.includes(c.key) && !c.locked ? 'animate-[shake_.3s_ease-in-out_1]' : '';
 
-                // ✨ YENİ: Animasyonlu sınıf mantığı (Sağ taraf için aynısı)
+            <div className="grid grid-cols-1 gap-2">
+              {rightRender.map((c) => {
+                const selected = selectedRight?.key === c.key;
+                const shaking = shakeKey.includes(c.key) && !c.locked ? 'animate-[shake_.28s_linear_1]' : '';
+
                 let cls = '';
                 if (c.locked) {
-                  cls = 'bg-emerald-100/50 border-emerald-200 text-emerald-800 opacity-0 scale-95 pointer-events-none';
+                  cls =
+                    'bg-emerald-100/40 border-emerald-200 text-emerald-800 opacity-0 scale-95 pointer-events-none';
                 } else if (selected) {
-                  cls = 'bg-slate-900 border-slate-900 text-white scale-[1.02] shadow-md cursor-pointer';
+                  cls = 'bg-slate-900 border-slate-900 text-white scale-[1.02] shadow-md';
                 } else {
-                  cls = 'bg-white border-slate-200 hover:bg-slate-50 text-slate-900 cursor-pointer hover:border-slate-300';
+                  cls = 'bg-white border-slate-200 hover:bg-slate-50 hover:border-slate-300 text-slate-900';
                 }
 
                 return (
-                  // DÜZELTME: button yerine div
                   <div
                     key={c.key}
                     onClick={() => onPick(c)}
                     onTouchStart={(e) => onTouchStart(e, c)}
                     onTouchEnd={(e) => onTouchEnd(e, c)}
                     className={`${cardBaseClass} ${cls} ${shaking}`}
-                    style={{
-                        pointerEvents: (c.locked || !running) ? 'none' : 'auto'
-                    }}
+                    style={{ pointerEvents: !running || c.locked ? 'none' : 'auto' }}
                   >
                     <div className="font-semibold text-[13px] leading-tight break-words w-full">
                       {c.text}
                     </div>
-                     {/* Hint overlay */}
-                     {!c.locked && selectedLeft && !selected && (
+
+                    {/* hint overlay when left selected */}
+                    {!c.locked && selectedLeft && !selected && (
                       <div className="absolute inset-0 bg-slate-900/5 rounded-xl pointer-events-none animate-pulse" />
+                    )}
+
+                    {/* swipe hint text */}
+                    {!c.locked && selectedLeft && (
+                      <div className={`mt-1 text-[11px] ${selected ? 'text-white/70' : 'text-slate-400'}`}>
+                        → swipe to match
+                      </div>
                     )}
                   </div>
                 );
@@ -611,11 +650,12 @@ export default function MatchingPage() {
 
         {/* Footer */}
         <div className="mt-4 text-[11px] text-slate-500 text-center">
-          Round <span className="font-bold">{round}</span> • Havuz: {vocab.length} kelime.
+          Round <span className="font-bold">{round}</span> • Havuz: {vocab.length} kelime •
+          Sol EN / Sağ TR • Tap veya Swipe
         </div>
       </div>
 
-      {/* Shake animation (Biraz daha yumuşatıldı) */}
+      {/* Animations */}
       <style jsx global>{`
         @keyframes shake {
           0%, 100% { transform: translateX(0); }
@@ -628,4 +668,3 @@ export default function MatchingPage() {
     </div>
   );
 }
-
