@@ -3,21 +3,37 @@
 
 import React, { useMemo } from 'react';
 import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
 import ydsVocabulary from '@/data/yds_vocabulary.json';
 
 type VocabItem = { word: string; meaning: string };
-
 type Choice = { id: string; text: string; isCorrect: boolean };
 type Question = { id: string; prompt: string; choices: Choice[]; explanation?: string };
 
 const TEST_COUNT = 75;
 const QUESTIONS_PER_TEST = 50;
 
-// ---- DEMO PREMIUM ----
-// Şimdilik false bırak. Sonra Supabase profile’dan okuyup set edersin.
-const isPremium = false;
-const FREE_TESTS_OPEN = 2; // Premium değilse kaç test açık?
+// ---- PREMIUM GATE (şimdilik demo) ----
+const isPremium = false; // sonra Supabase profile’dan okuyacaksın
+const FREE_TESTS_OPEN = 2; // premium değilse kaç test açık?
 
+// --- ANIMASYONLAR ---
+const headerVariants = {
+  hidden: { y: -20, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.55, ease: 'easeOut' } },
+};
+
+const gridVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.03 } },
+};
+
+const cardVariants = {
+  hidden: { y: 14, opacity: 0 },
+  visible: { y: 0, opacity: 1 },
+};
+
+// --- HELPERS ---
 function makeAttemptId() {
   return `session-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
 }
@@ -31,26 +47,7 @@ function shuffle<T>(arr: T[]) {
   return a;
 }
 
-function buildChoices(all: VocabItem[], correctMeaning: string): Choice[] {
-  // 3 distractor meaning seç (doğrudan meaning bazlı)
-  const distractors = shuffle(
-    all
-      .filter((w) => w.meaning && w.meaning !== correctMeaning)
-      .map((w) => w.meaning)
-  ).slice(0, 3);
-
-  const options = shuffle([correctMeaning, ...distractors]);
-  const ids = ['a', 'b', 'c', 'd'];
-
-  return options.map((text, i) => ({
-    id: ids[i],
-    text,
-    isCorrect: text === correctMeaning,
-  }));
-}
-
 function getFixedTestSlice(all: VocabItem[], testNo: number): VocabItem[] {
-  // Test 1 => 0..49, Test 2 => 50..99 ... (deterministik)
   const start = (testNo - 1) * QUESTIONS_PER_TEST;
   return all.slice(start, start + QUESTIONS_PER_TEST);
 }
@@ -58,59 +55,64 @@ function getFixedTestSlice(all: VocabItem[], testNo: number): VocabItem[] {
 export default function Yds3750Hub() {
   const router = useRouter();
 
-  const totalWords = (ydsVocabulary as any[]).length;
-
-  // 3750 kelime yoksa da çalışsın diye otomatik test sayısını küçültelim
-  const maxPossibleTests = Math.floor(totalWords / QUESTIONS_PER_TEST);
-  const safeTestCount = Math.min(TEST_COUNT, Math.max(1, maxPossibleTests));
-
+  // 1) JSON normalize + boşları at
   const list = useMemo(() => {
-    // JSON içini normalize edelim
-    const all = (ydsVocabulary as any[])
+    return (ydsVocabulary as any[])
       .map((x) => ({
-        word: String(x.word ?? '').trim(),
-        meaning: String(x.meaning ?? '').trim(),
+        word: String(x?.word ?? '').trim(),
+        meaning: String(x?.meaning ?? '').trim(),
       }))
       .filter((x) => x.word && x.meaning) as VocabItem[];
-
-    return all;
   }, []);
+
+  // 2) Meaning'leri unique yap (aynı meaning tekrar etmesin)
+  const uniqueMeanings = useMemo(() => {
+    return Array.from(new Set(list.map((x) => x.meaning)));
+  }, [list]);
+
+  // 3) Test sayısını GERÇEK kullanılabilir kelimeye göre hesapla (en sağlamı)
+  const totalWords = list.length;
+  const maxPossibleTests = Math.floor(totalWords / QUESTIONS_PER_TEST);
+  const safeTestCount = Math.min(TEST_COUNT, Math.max(1, maxPossibleTests));
 
   const startTest = (testNo: number) => {
     const locked = !isPremium && testNo > FREE_TESTS_OPEN;
     if (locked) {
-      router.push('/pricing'); // istersen modal da açarsın
+      router.push('/pricing');
       return;
     }
 
     const attemptId = makeAttemptId();
 
-    // 50 kelimeyi sabit şekilde al
     const pack = getFixedTestSlice(list, testNo);
-
-    // pack boşsa hata ver
     if (!pack || pack.length === 0) {
       alert(`Test ${testNo} bulunamadı (data yetersiz).`);
       return;
     }
 
     const questions: Question[] = pack.map((item, idx) => {
-      const choices = buildChoices(list, item.meaning);
+      const distractors = shuffle(uniqueMeanings.filter((m) => m !== item.meaning)).slice(0, 3);
+      const options = shuffle([item.meaning, ...distractors]);
+      const ids = ['a', 'b', 'c', 'd'];
 
       return {
         id: `yds3750-t${testNo}-q${idx + 1}`,
         prompt: `What is the Turkish meaning of **"${item.word}"**?`,
-        choices,
+        choices: options.map((text, i) => ({
+          id: ids[i],
+          text,
+          isCorrect: text === item.meaning,
+        })),
         explanation: `**${item.word}**: ${item.meaning}`,
       };
     });
 
     const payload = {
       attemptId,
-      testSlug: `yds-3750-t${testNo}`, // ✅ Quiz result ekranındaki restart için
+      testSlug: `yds-3750-t${testNo}`, // quiz result ekranındaki restart için
       test: {
         title: `YDS 3750 VOCAB · TEST ${testNo} (50 Questions)`,
-        duration: 25, // ✅ dakika (Quiz sayfanda duration’ı kullanacak şekilde küçük fix önerdim)
+        duration: 25, // dakika (quiz sayfan buna göre ayarlıysa)
       },
       questions,
     };
@@ -122,66 +124,142 @@ export default function Yds3750Hub() {
   return (
     <div className="min-h-screen bg-slate-50">
       <div className="max-w-6xl mx-auto px-4 py-10">
-        <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200 mb-8">
-          <h1 className="text-3xl font-black text-slate-900">YDS 3750 Vocabulary</h1>
-          <p className="text-slate-600 mt-2">
-            75 test · Her test 50 soru · Timer’lı deneme
-          </p>
+        {/* ÜST KART */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={headerVariants}
+          className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200 mb-8"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+            <div>
+              <h1 className="text-4xl font-black text-slate-900 tracking-tight">
+                YDS 3750 <span className="text-blue-600">Vocabulary</span>
+              </h1>
+              <p className="text-slate-600 mt-2 font-medium">
+                {safeTestCount} test · Her test {QUESTIONS_PER_TEST} soru · 25 dakika süre
+              </p>
+
+              <div className="mt-3 text-xs text-slate-400">
+                Data: <span className="font-semibold">{list.length}</span> kelime yüklü.
+                {list.length < 3750 && (
+                  <span className="text-amber-600 font-bold"> (3750’den azsa test sayısı otomatik azalır)</span>
+                )}
+              </div>
+            </div>
+
+            {/* Premium badge */}
+            <div className="flex items-center gap-2">
+              {isPremium ? (
+                <div className="px-4 py-2 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 font-bold text-sm">
+                  ✅ Premium Active
+                </div>
+              ) : (
+                <div className="px-4 py-2 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 font-bold text-sm">
+                  Free Plan · Test 1–{FREE_TESTS_OPEN} açık 🔒
+                </div>
+              )}
+            </div>
+          </div>
 
           {!isPremium && (
-            <div className="mt-4 p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-800">
-              <div className="font-bold">Free Plan</div>
-              <div className="text-sm mt-1">
-                Test 1–{FREE_TESTS_OPEN} ücretsiz. Diğer testler premium 🔒
+            <div className="mt-6 p-4 rounded-2xl bg-slate-50 border border-slate-200 text-slate-700 flex items-start gap-3">
+              <div className="text-xl">💡</div>
+              <div className="text-sm leading-relaxed">
+                Premium olduğunda <span className="font-bold">tüm testler açılır</span> +{" "}
+                <span className="font-bold">reklamları kaldırırız</span> + ileride{" "}
+                <span className="font-bold">istatistik / streak</span> ekleriz.
               </div>
             </div>
           )}
+        </motion.div>
 
-          <div className="mt-4 text-xs text-slate-400">
-            Data: <span className="font-semibold">{list.length}</span> kelime yüklü.
-            {list.length < 3750 && (
-              <span className="text-amber-600 font-bold"> (3750’den azsa test sayısı otomatik azalır)</span>
-            )}
-          </div>
-        </div>
-
-        {/* 75 TEST BUTTON GRID */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-4">
+        {/* TEST GRID */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={gridVariants}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
+        >
           {Array.from({ length: safeTestCount }).map((_, i) => {
             const testNo = i + 1;
             const locked = !isPremium && testNo > FREE_TESTS_OPEN;
 
             return (
-              <button
+              <motion.button
                 key={testNo}
-                onClick={() => startTest(testNo)}
-                className={`py-4 rounded-2xl font-black text-lg shadow-sm transition-all transform active:scale-[0.98]
+                variants={cardVariants}
+                disabled={locked}
+                onClick={() => !locked && startTest(testNo)}
+                whileHover={
+                  locked
+                    ? {}
+                    : {
+                        scale: 1.03,
+                        y: -4,
+                        boxShadow: '0px 12px 20px rgba(37, 99, 235, 0.15)',
+                      }
+                }
+                whileTap={locked ? {} : { scale: 0.97 }}
+                className={`group relative py-6 rounded-2xl transition-all overflow-hidden border outline-none
                   ${locked
-                    ? 'bg-white text-slate-300 border border-slate-200 cursor-not-allowed'
-                    : 'bg-blue-600 text-white hover:bg-blue-700 shadow-blue-100'
+                    ? 'bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed'
+                    : 'bg-white text-slate-900 border-slate-200 hover:border-blue-500 shadow-sm'
                   }`}
               >
-                <div className="flex items-center justify-center gap-2">
-                  <span>Test {testNo}</span>
-                  {locked && <span aria-hidden>🔒</span>}
+                {/* hover gradient */}
+                {!locked && (
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                )}
+
+                <div className="relative z-10 flex flex-col items-center">
+                  <span className={`text-[10px] uppercase tracking-widest mb-1 font-bold ${locked ? 'text-slate-300' : 'text-blue-500'}`}>
+                    Test
+                  </span>
+
+                  <span className="text-2xl font-black">{testNo}</span>
+
+                  <div className={`mt-2 text-[11px] font-semibold ${locked ? 'text-slate-300' : 'text-blue-600'}`}>
+                    50 Questions · 25 min
+                  </div>
+
+                  {locked ? (
+                    <div className="mt-2 text-sm opacity-70">🔒 Locked</div>
+                  ) : (
+                    <div className="mt-2 text-[10px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                      Start Now
+                    </div>
+                  )}
                 </div>
-                <div className={`text-[11px] font-semibold mt-1 ${locked ? 'text-slate-300' : 'text-blue-100'}`}>
-                  50 Questions · 25 min
-                </div>
-              </button>
+              </motion.button>
             );
           })}
-        </div>
+        </motion.div>
 
-        {/* Back */}
-        <div className="mt-10 text-center">
+        {/* ALT BAR */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4"
+        >
           <button
             onClick={() => router.push('/')}
-            className="px-6 py-3 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold hover:bg-slate-50"
+            className="px-8 py-3 rounded-full bg-slate-900 text-white font-bold hover:bg-slate-800 transition-all flex items-center gap-2"
           >
-            ← Back to Home
+            <span className="transition-transform group-hover:-translate-x-1">←</span>
+            Ana Sayfaya Dön
           </button>
-        </div>
+
+          {!isPremium && (
+            <button
+              onClick={() => router.push('/pricing')}
+              className="px-8 py-3 rounded-full bg-blue-600 text-white font-bold hover:bg-blue-700 transition-all shadow-sm"
+            >
+              Premium’a Geç
+            </button>
+          )}
+        </motion.div>
       </div>
     </div>
   );
