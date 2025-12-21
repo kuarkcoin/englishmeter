@@ -62,5 +62,277 @@
     "options": ["go", "get", "take"],
     "correct": 0,
     "explanation": "'Go out' is a common spoken phrase meaning socialize."
+  },
+  {
+    "id": "vs-a2-017",
+    "level": "A2",
+    "sentence": "Can you ___ me a favor?",
+    "options": ["make", "do", "give"],
+    "correct": 1,
+    "explanation": "'Do me a favor' birinden ricada bulunurken kullanılan kalıplaşmış bir ifadedir."
+  },
+  {
+    "id": "vs-a2-018",
+    "level": "A2",
+    "sentence": "I'm ___ tired today.",
+    "options": ["very", "much", "so"],
+    "correct": 0,
+    "explanation": "Sıfatlarla birlikte yoğunluk belirtirken en yaygın kullanım 'very' dir."
+  },
+  {
+    "id": "vs-b1-019",
+    "level": "B1",
+    "sentence": "Let's ___ a break and continue later.",
+    "options": ["do", "take", "make"],
+    "correct": 1,
+    "explanation": "'Take a break' (ara vermek) günlük İngilizcede çok sık kullanılan bir ifadedir."
+  },
+  {
+    "id": "vs-b1-020",
+    "level": "B1",
+    "sentence": "She is really good ___ solving problems.",
+    "options": ["at", "in", "on"],
+    "correct": 0,
+    "explanation": "'Good at' bir konuda yetenekli olmayı ifade eder."
+  },
+  {
+    "id": "vs-b1-021",
+    "level": "B1",
+    "sentence": "I don't ___ like going out on weekdays.",
+    "options": ["much", "very", "really"],
+    "correct": 2,
+    "explanation": "'Don't really like' konuşma dilinde tercih edilmediğini yumuşak şekilde ifade eder."
+  },
+  {
+    "id": "vs-b2-022",
+    "level": "B2",
+    "sentence": "She apologized ___ being late.",
+    "options": ["for", "about", "to"],
+    "correct": 0,
+    "explanation": "'Apologize for' bir şeyden dolayı özür dilemek anlamında kullanılır."
+  },
+  {
+    "id": "vs-b2-023",
+    "level": "B2",
+    "sentence": "This problem is harder than I ___ expected.",
+    "options": ["have", "had", "was"],
+    "correct": 1,
+    "explanation": "Geçmişteki beklentiyi ifade ederken 'had expected' kullanılır."
+  },
+  {
+    "id": "vs-b2-024",
+    "level": "B2",
+    "sentence": "He refused to take ___ the responsibility.",
+    "options": ["up", "over", "on"],
+    "correct": 2,
+    "explanation": "'Take on responsibility' sorumluluk üstlenmek anlamına gelir."
+  },
+  {
+    "id": "vs-c1-025",
+    "level": "C1",
+    "sentence": "Her explanation was clear and easy to ___.",
+    "options": ["understand", "follow", "catch"],
+    "correct": 1,
+    "explanation": "'Follow' özellikle konuşma veya açıklamaları anlayabilmek anlamında kullanılır."
+  },
+  {
+    "id": "vs-c1-026",
+    "level": "C1",
+    "sentence": "The project was completed ___ schedule.",
+    "options": ["in", "on", "at"],
+    "correct": 1,
+    "explanation": "'On schedule' zamanında, planlandığı şekilde anlamına gelir."
+  },
+  {
+    "id": "vs-c1-027",
+    "level": "C1",
+    "sentence": "I find it difficult to keep ___ with all these changes.",
+    "options": ["up", "on", "out"],
+    "correct": 0,
+    "explanation": "'Keep up with' gelişmeleri yakalayabilmek anlamına gelir."
+  },
+  {
+    "id": "vs-c1-028",
+    "level": "C1",
+    "sentence": "His argument doesn't really hold ___.",
+    "options": ["on", "up", "out"],
+    "correct": 1,
+    "explanation": "'Hold up' mantıklı veya geçerli olmak anlamında kullanılır."
+  },
+  {
+    "id": "vs-a2-029",
+    "level": "A2",
+    "sentence": "Please ___ me know when you arrive.",
+    "options": ["say", "tell", "let"],
+    "correct": 2,
+    "explanation": "'Let me know' (haber ver) günlük konuşmada çok yaygın bir kalıptır."
+  },
+  {
+    "id": "vs-a2-030",
+    "level": "A2",
+    "sentence": "I'm ___ a bit cold.",
+    "options": ["feeling", "making", "doing"],
+    "correct": 0,
+    "explanation": "Duygular ve fiziksel durumlar için 'feel / feeling' kullanılır."
+  },
+  {
+    "id": "vs-a2-031",
+    "level": "A2",
+    "sentence": "Can I ___ you a question?",
+    "options": ["ask", "say", "tell"],
+    "correct": 0,
+    "explanation": "'Ask a question' doğru ve kalıplaşmış kullanımdır."
+  },
+  {
+    "id": "vs-a2-032",
+    "level": "A2",
+    "sentence": "I ___ agree with you.",
+    "options": ["am", "do", "very"],
+    "correct": 1,
+    "explanation": "'I do agree' vurgulu şekilde katıldığını belirtir."
+  },
+  {
+    "id": "vs-b1-033",
+    "level": "B1",
+    "sentence": "He ___ me of my brother.",
+    "options": ["remembers", "reminds", "thinks"],
+    "correct": 1,
+    "explanation": "'Remind someone of someone/something' benzetme anlamı verir."
+  },
+  {
+    "id": "vs-b1-034",
+    "level": "B1",
+    "sentence": "We ran ___ time before the exam.",
+    "options": ["out of", "away", "over"],
+    "correct": 0,
+    "explanation": "'Run out of time' sürenin bitmesi anlamına gelir."
+  },
+  {
+    "id": "vs-b1-035",
+    "level": "B1",
+    "sentence": "She picked ___ English very quickly.",
+    "options": ["up", "out", "on"],
+    "correct": 0,
+    "explanation": "'Pick up' dili/alışkanlığı hızlıca öğrenmek anlamında kullanılır."
+  },
+  {
+    "id": "vs-b1-036",
+    "level": "B1",
+    "sentence": "I wasn't aware ___ that rule.",
+    "options": ["of", "about", "for"],
+    "correct": 0,
+    "explanation": "'Be aware of' bir şeyin farkında olmak demektir."
+  },
+  {
+    "id": "vs-b2-037",
+    "level": "B2",
+    "sentence": "He tends to ___ things too personally.",
+    "options": ["get", "take", "make"],
+    "correct": 1,
+    "explanation": "'Take something personally' alınganlık göstermek anlamına gelir."
+  },
+  {
+    "id": "vs-b2-038",
+    "level": "B2",
+    "sentence": "The meeting was called ___ due to the storm.",
+    "options": ["off", "out", "away"],
+    "correct": 0,
+    "explanation": "'Call off' iptal etmek anlamına gelen phrasal verb’dür."
+  },
+  {
+    "id": "vs-b2-039",
+    "level": "B2",
+    "sentence": "I'm not used to ___ up so early.",
+    "options": ["get", "getting", "got"],
+    "correct": 1,
+    "explanation": "'Be used to' yapısından sonra fiil -ing alır."
+  },
+  {
+    "id": "vs-b2-040",
+    "level": "B2",
+    "sentence": "She managed to ___ the situation under control.",
+    "options": ["take", "get", "put"],
+    "correct": 1,
+    "explanation": "'Get something under control' durumu kontrol altına almak demektir."
+  },
+  {
+    "id": "vs-c1-041",
+    "level": "C1",
+    "sentence": "His excuse doesn't quite add ___.",
+    "options": ["up", "on", "to"],
+    "correct": 0,
+    "explanation": "'Add up' mantıklı olmak / tutarlı olmak anlamında kullanılır."
+  },
+  {
+    "id": "vs-c1-042",
+    "level": "C1",
+    "sentence": "She has a strong ___ for detail.",
+    "options": ["eye", "view", "sight"],
+    "correct": 0,
+    "explanation": "'Have an eye for detail' detaylara dikkat etmek anlamındadır."
+  },
+  {
+    "id": "vs-c1-043",
+    "level": "C1",
+    "sentence": "The plan was abandoned ___ lack of funding.",
+    "options": ["because", "due to", "since"],
+    "correct": 1,
+    "explanation": "'Due to' isimle kullanılır ve resmi anlatımda yaygındır."
+  },
+  {
+    "id": "vs-c1-044",
+    "level": "C1",
+    "sentence": "He is widely regarded ___ an expert.",
+    "options": ["as", "like", "for"],
+    "correct": 0,
+    "explanation": "'Regarded as' bir şey olarak görülmek anlamındadır."
+  },
+  {
+    "id": "vs-c1-045",
+    "level": "C1",
+    "sentence": "She spoke ___ behalf of the whole team.",
+    "options": ["in", "on", "at"],
+    "correct": 1,
+    "explanation": "'On behalf of' başkası adına konuşmak anlamına gelir."
+  },
+  {
+    "id": "vs-c1-046",
+    "level": "C1",
+    "sentence": "His comment was taken out of ___.",
+    "options": ["context", "meaning", "sense"],
+    "correct": 0,
+    "explanation": "'Out of context' bağlamından koparılmış anlamına gelir."
+  },
+  {
+    "id": "vs-c1-047",
+    "level": "C1",
+    "sentence": "She has difficulty ___ decisions under pressure.",
+    "options": ["make", "to make", "making"],
+    "correct": 2,
+    "explanation": "'Have difficulty' yapısından sonra fiil -ing alır."
+  },
+  {
+    "id": "vs-c1-048",
+    "level": "C1",
+    "sentence": "The issue needs to be dealt ___ immediately.",
+    "options": ["with", "by", "to"],
+    "correct": 0,
+    "explanation": "'Deal with' bir problemle ilgilenmek anlamına gelir."
+  },
+  {
+    "id": "vs-c1-049",
+    "level": "C1",
+    "sentence": "He came ___ with a brilliant solution.",
+    "options": ["up", "out", "over"],
+    "correct": 0,
+    "explanation": "'Come up with' fikir/çözüm üretmek demektir."
+  },
+  {
+    "id": "vs-c1-050",
+    "level": "C1",
+    "sentence": "Her reaction caught everyone ___ surprise.",
+    "options": ["in", "by", "at"],
+    "correct": 1,
+    "explanation": "'Catch someone by surprise' beklenmedik şekilde şaşırtmak anlamına gelir."
   }
 ]
