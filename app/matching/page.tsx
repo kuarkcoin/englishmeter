@@ -177,7 +177,7 @@ export default function MatchingPage() {
     setShakeKey('');
 
     setTimeLeft(ROUND_SECONDS);
-    setLives(3);
+    setLives(5);
     setStreak(0);
     setRunning(true);
 
@@ -232,7 +232,7 @@ export default function MatchingPage() {
       finishOnceRef.current = true;
       setRunning(false);
 
-      const timeBonus = clamp(timeLeft, 0, 60);
+      const timeBonus = clamp(timeLeft, 0, 90);
       setScore((s) => s + timeBonus);
 
       setToast({ kind: 'ok', text: `Tur bitti! Süre Bonusu: +${timeBonus}` });
