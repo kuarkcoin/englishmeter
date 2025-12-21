@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import vocabRaw from '@/data/yds_vocabulary.json';
 
@@ -44,7 +44,6 @@ function safeVocab(list: any): VocabItem[] {
 }
 
 function pickUniquePairs(pool: VocabItem[], count: number) {
-  // word tekrarlarını engelle
   const seen = new Set<string>();
   const shuffled = shuffle(pool);
   const picked: VocabItem[] = [];
@@ -64,7 +63,6 @@ function speak(text: string, lang: 'en-US' | 'en-GB' = 'en-US', rate = 0.95) {
   const synth = window.speechSynthesis;
   if (!synth || !text) return;
 
-  // üst üste binmesin
   synth.cancel();
 
   const utter = new SpeechSynthesisUtterance(text);
@@ -81,8 +79,22 @@ function speak(text: string, lang: 'en-US' | 'en-GB' = 'en-US', rate = 0.95) {
   synth.speak(utter);
 }
 
+/** Swipe helpers */
+type SwipeState = {
+  startX: number;
+  startY: number;
+  startT: number;
+  cardKey: string;
+  side: Side;
+};
+
+function clamp(n: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, n));
+}
+
 export default function MatchingPage() {
   const vocab = useMemo(() => safeVocab(vocabRaw as any), []);
+
   const TOTAL_PAIRS_PER_ROUND = 8;
   const ROUND_SECONDS = 60;
 
@@ -109,11 +121,19 @@ export default function MatchingPage() {
   const [rate, setRate] = useState<number>(0.95);
   const [autoSpeakCorrect, setAutoSpeakCorrect] = useState<boolean>(true);
 
+  // ✅ Finish bonus tek sefer çalışsın
+  const finishOnceRef = useRef(false);
+
+  // Swipe state
+  const swipeRef = useRef<SwipeState | null>(null);
+
   const lockedCount = useMemo(() => leftCards.filter((c) => c.locked).length, [leftCards]);
   const finished = lockedCount === TOTAL_PAIRS_PER_ROUND;
 
   function startNewRound(nextRound: number) {
     if (vocab.length === 0) return;
+
+    finishOnceRef.current = false;
 
     const picked = pickUniquePairs(vocab, TOTAL_PAIRS_PER_ROUND);
     setPairs(picked);
@@ -157,13 +177,12 @@ export default function MatchingPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // iOS/Chrome bazı durumlarda voice listesini ilk anda doldurmayabiliyor:
+  // voices warm-up
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const synth = window.speechSynthesis;
     if (!synth) return;
 
-    // bazı tarayıcılar için sesleri "ısındır"
     const warm = () => {
       try {
         synth.getVoices?.();
@@ -190,7 +209,7 @@ export default function MatchingPage() {
     return () => clearInterval(t);
   }, [running, timeLeft]);
 
-  // Match evaluation
+  // Evaluate match when both selected
   useEffect(() => {
     if (!selectedLeft || !selectedRight) return;
 
@@ -204,9 +223,7 @@ export default function MatchingPage() {
       setStreak((x) => x + 1);
       setToast({ kind: 'ok', text: 'Doğru!' });
 
-      if (autoSpeakCorrect) {
-        speak(selectedLeft.text, accent, rate);
-      }
+      if (autoSpeakCorrect) speak(selectedLeft.text, accent, rate);
     } else {
       setLives((l) => Math.max(0, l - 1));
       setScore((s) => Math.max(0, s - 5));
@@ -219,17 +236,20 @@ export default function MatchingPage() {
       setSelectedLeft(null);
       setSelectedRight(null);
       setShakeKey('');
-    }, 350);
+    }, 280);
 
     return () => clearTimeout(timeout);
   }, [selectedLeft, selectedRight, streak, autoSpeakCorrect, accent, rate]);
 
-  // Finish / lives
+  // Finish (bonus only once)
   useEffect(() => {
-    if (finished && running) {
+    if (finished && running && !finishOnceRef.current) {
+      finishOnceRef.current = true;
       setRunning(false);
       setToast({ kind: 'ok', text: 'Tur bitti! Next Round ile devam.' });
-      setScore((s) => s + Math.max(0, timeLeft)); // kalan saniye bonusu
+
+      // küçük, kontrollü bonus (max 60)
+      setScore((s) => s + clamp(timeLeft, 0, 60));
     }
   }, [finished, running, timeLeft]);
 
@@ -263,6 +283,64 @@ export default function MatchingPage() {
     startNewRound(round);
   }
 
+  /** Swipe logic:
+   * - Normal: Tap left then Tap right (works on all devices)
+   * - Swipe: After selecting LEFT, swipe RIGHT on a Turkish card to confirm match.
+   * - Optional: After selecting RIGHT, swipe LEFT on an English card to confirm match.
+   */
+  function onTouchStart(e: React.TouchEvent, card: Card) {
+    if (!running || card.locked) return;
+    const t = e.touches[0];
+    swipeRef.current = {
+      startX: t.clientX,
+      startY: t.clientY,
+      startT: Date.now(),
+      cardKey: card.key,
+      side: card.side,
+    };
+  }
+
+  function onTouchEnd(e: React.TouchEvent, card: Card) {
+    if (!running || card.locked) return;
+
+    const st = swipeRef.current;
+    swipeRef.current = null;
+    if (!st || st.cardKey !== card.key) return;
+
+    const t = e.changedTouches[0];
+    const dx = t.clientX - st.startX;
+    const dy = t.clientY - st.startY;
+    const dt = Date.now() - st.startT;
+
+    // gesture thresholds
+    const H = 40; // horizontal min
+    const V = 35; // vertical max (avoid scroll)
+    const TMAX = 650;
+
+    if (Math.abs(dy) > V || dt > TMAX) return;
+
+    // Right card: swipe to the right to confirm (dx > H)
+    if (card.side === 'right' && dx > H) {
+      if (!selectedLeft) {
+        setToast({ kind: 'info', text: 'Önce soldan İngilizce kelimeyi seç.' });
+        return;
+      }
+      // set right selection to trigger evaluation
+      setSelectedRight(card);
+      return;
+    }
+
+    // Left card: swipe to the left to confirm (dx < -H)
+    if (card.side === 'left' && dx < -H) {
+      if (!selectedRight) {
+        setToast({ kind: 'info', text: 'Önce sağdan Türkçe anlamı seç.' });
+        return;
+      }
+      setSelectedLeft(card);
+      return;
+    }
+  }
+
   const toastCls =
     toast?.kind === 'ok'
       ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
@@ -273,6 +351,7 @@ export default function MatchingPage() {
   const baseBtn =
     'px-4 py-2 rounded-2xl border border-slate-200 hover:bg-slate-50 font-semibold transition';
 
+  // ✅ Mobile-first: always 2 columns (EN left, TR right)
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -283,8 +362,10 @@ export default function MatchingPage() {
               ← Home
             </Link>
             <div>
-              <div className="text-lg font-black text-slate-900">Matching Game (🔊 Sesli)</div>
-              <div className="text-xs text-slate-500">Önce İngilizce kelimeyi seç, sonra Türkçeyi seç.</div>
+              <div className="text-lg font-black text-slate-900">Matching Game (Sol EN / Sağ TR)</div>
+              <div className="text-xs text-slate-500">
+                Tap veya swipe: Soldan seç → sağ kartta sağa kaydır (→) ile eşleştir.
+              </div>
             </div>
           </div>
 
@@ -296,7 +377,7 @@ export default function MatchingPage() {
               🎯 Skor: <span className="font-bold">{score}</span>
             </div>
             <div className="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-sm">
-              🔥 Streak: <span className="font-bold">{streak}</span>
+              🔥 <span className="font-bold">{streak}</span>
             </div>
             <div className="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-sm">
               ❤️ <span className="font-bold">{lives}</span>
@@ -309,16 +390,16 @@ export default function MatchingPage() {
       </div>
 
       {/* Body */}
-      <div className="max-w-5xl mx-auto px-4 py-6">
+      <div className="max-w-5xl mx-auto px-3 sm:px-4 py-5">
         {/* Toast */}
         {toast && (
-          <div className={`mb-4 p-3 rounded-2xl border ${toastCls}`}>
+          <div className={`mb-3 p-3 rounded-2xl border ${toastCls}`}>
             <div className="text-sm font-semibold">{toast.text}</div>
           </div>
         )}
 
         {/* Controls */}
-        <div className="mb-5 grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="mb-4 grid grid-cols-1 lg:grid-cols-3 gap-3">
           <div className="flex flex-wrap items-center gap-2">
             <button onClick={() => setRunning((r) => !r)} className={baseBtn}>
               {running ? 'Pause' : 'Resume'}
@@ -336,31 +417,35 @@ export default function MatchingPage() {
 
           {/* Voice controls */}
           <div className="rounded-3xl border border-slate-200 p-3 flex flex-wrap items-center gap-2 justify-between">
-            <div className="text-sm font-black text-slate-900">Ses Ayarları</div>
+            <div className="text-sm font-black text-slate-900">Ses</div>
 
             <div className="flex items-center gap-2 flex-wrap">
               <button
                 onClick={() => setAccent('en-US')}
                 className={`px-3 py-2 rounded-2xl border font-semibold transition ${
-                  accent === 'en-US' ? 'bg-slate-900 text-white border-slate-900' : 'bg-white border-slate-200 hover:bg-slate-50'
+                  accent === 'en-US'
+                    ? 'bg-slate-900 text-white border-slate-900'
+                    : 'bg-white border-slate-200 hover:bg-slate-50'
                 }`}
               >
-                🇺🇸 US
+                🇺🇸
               </button>
               <button
                 onClick={() => setAccent('en-GB')}
                 className={`px-3 py-2 rounded-2xl border font-semibold transition ${
-                  accent === 'en-GB' ? 'bg-slate-900 text-white border-slate-900' : 'bg-white border-slate-200 hover:bg-slate-50'
+                  accent === 'en-GB'
+                    ? 'bg-slate-900 text-white border-slate-900'
+                    : 'bg-white border-slate-200 hover:bg-slate-50'
                 }`}
               >
-                🇬🇧 UK
+                🇬🇧
               </button>
 
               <label className="text-sm text-slate-600 flex items-center gap-2">
                 Hız
                 <input
                   type="range"
-                  min={0.7}
+                  min={0.75}
                   max={1.1}
                   step={0.05}
                   value={rate}
@@ -375,14 +460,13 @@ export default function MatchingPage() {
                   checked={autoSpeakCorrect}
                   onChange={(e) => setAutoSpeakCorrect(e.target.checked)}
                 />
-                Doğruda otomatik oku
+                Doğruda oku
               </label>
 
               <button
                 onClick={() => {
-                  // kullanıcı tıklaması iOS'ta TTS için önemli
                   speak('Let’s begin!', accent, rate);
-                  setToast({ kind: 'info', text: 'Ses test edildi: "Let’s begin!"' });
+                  setToast({ kind: 'info', text: 'Ses test edildi.' });
                 }}
                 className={baseBtn}
                 title="Ses testi"
@@ -393,20 +477,22 @@ export default function MatchingPage() {
           </div>
 
           <div className="text-xs text-slate-500 flex items-center">
-            İpucu: İngilizce kartın sağındaki 🔊 ile kelimeyi dinleyebilirsin.
+            Swipe kuralı: Soldan seç → sağ kartı <span className="font-bold">sağa kaydır</span> (→).
           </div>
         </div>
 
-        {/* Game grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Left */}
-          <div className="rounded-3xl border border-slate-200 p-4">
-            <div className="text-sm font-black text-slate-900 mb-3">English</div>
+        {/* ✅ Always 2 columns */}
+        <div className="grid grid-cols-2 gap-2">
+          {/* Left column */}
+          <div className="rounded-3xl border border-slate-200 p-3">
+            <div className="text-xs font-black text-slate-900 mb-2">English</div>
             <div className="grid grid-cols-1 gap-2">
               {leftCards.map((c) => {
                 const selected = selectedLeft?.key === c.key;
-                const shaking = shakeKey.includes(c.key) && !c.locked ? 'animate-[shake_.25s_linear_1]' : '';
-                const base = 'w-full text-left px-4 py-3 rounded-2xl border transition select-none';
+                const shaking =
+                  shakeKey.includes(c.key) && !c.locked ? 'animate-[shake_.25s_linear_1]' : '';
+
+                const base = 'w-full text-left px-2 py-2 rounded-xl border transition select-none';
                 const cls = c.locked
                   ? 'bg-emerald-50 border-emerald-200 text-emerald-700 cursor-default'
                   : selected
@@ -417,18 +503,23 @@ export default function MatchingPage() {
                   <button
                     key={c.key}
                     onClick={() => onPick(c)}
+                    onTouchStart={(e) => onTouchStart(e, c)}
+                    onTouchEnd={(e) => onTouchEnd(e, c)}
                     className={`${base} ${cls} ${shaking}`}
                     disabled={c.locked || !running}
                   >
                     <div className="flex items-center justify-between gap-2">
-                      <span className="font-semibold">{c.text}</span>
+                      <span className="font-semibold text-[13px] leading-tight break-words">
+                        {c.text}
+                      </span>
+
                       <button
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
                           speak(c.text, accent, rate);
                         }}
-                        className={`px-3 py-2 rounded-xl border text-sm font-semibold transition ${
+                        className={`shrink-0 px-2 py-1 rounded-lg border text-[12px] font-semibold transition ${
                           c.locked
                             ? 'border-emerald-200 text-emerald-700 bg-emerald-50'
                             : selected
@@ -440,20 +531,29 @@ export default function MatchingPage() {
                         🔊
                       </button>
                     </div>
+
+                    {/* Optional hint when right already selected */}
+                    {selectedRight && !c.locked && (
+                      <div className={`mt-1 text-[11px] ${selected ? 'text-white/70' : 'text-slate-400'}`}>
+                        ← (Swipe left to confirm)
+                      </div>
+                    )}
                   </button>
                 );
               })}
             </div>
           </div>
 
-          {/* Right */}
-          <div className="rounded-3xl border border-slate-200 p-4">
-            <div className="text-sm font-black text-slate-900 mb-3">Türkçe</div>
+          {/* Right column */}
+          <div className="rounded-3xl border border-slate-200 p-3">
+            <div className="text-xs font-black text-slate-900 mb-2">Türkçe</div>
             <div className="grid grid-cols-1 gap-2">
               {rightCards.map((c) => {
                 const selected = selectedRight?.key === c.key;
-                const shaking = shakeKey.includes(c.key) && !c.locked ? 'animate-[shake_.25s_linear_1]' : '';
-                const base = 'w-full text-left px-4 py-3 rounded-2xl border transition select-none';
+                const shaking =
+                  shakeKey.includes(c.key) && !c.locked ? 'animate-[shake_.25s_linear_1]' : '';
+
+                const base = 'w-full text-left px-2 py-2 rounded-xl border transition select-none';
                 const cls = c.locked
                   ? 'bg-emerald-50 border-emerald-200 text-emerald-700 cursor-default'
                   : selected
@@ -464,10 +564,21 @@ export default function MatchingPage() {
                   <button
                     key={c.key}
                     onClick={() => onPick(c)}
+                    onTouchStart={(e) => onTouchStart(e, c)}
+                    onTouchEnd={(e) => onTouchEnd(e, c)}
                     className={`${base} ${cls} ${shaking}`}
                     disabled={c.locked || !running}
                   >
-                    <div className="font-semibold">{c.text}</div>
+                    <div className="font-semibold text-[13px] leading-tight break-words">
+                      {c.text}
+                    </div>
+
+                    {/* Swipe hint */}
+                    {!c.locked && selectedLeft && (
+                      <div className={`mt-1 text-[11px] ${selected ? 'text-white/70' : 'text-slate-400'}`}>
+                        → (Swipe right to match)
+                      </div>
+                    )}
                   </button>
                 );
               })}
@@ -476,9 +587,9 @@ export default function MatchingPage() {
         </div>
 
         {/* Footer */}
-        <div className="mt-6 text-xs text-slate-500">
-          Round <span className="font-bold">{round}</span> • Havuz: {vocab.length} kelime •
-          Doğru eşleşmede (seçiliyse) otomatik ses okunur.
+        <div className="mt-4 text-[11px] text-slate-500">
+          Round <span className="font-bold">{round}</span> • Havuz: {vocab.length} •
+          Kontrol: Tap-tap veya swipe ile eşleştir.
         </div>
       </div>
 
