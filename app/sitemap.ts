@@ -2,47 +2,69 @@ import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://englishmeter.net';
-
-  // Google'ın içeriğin güncel olduğunu anlaması için build zamanını kullanıyoruz.
   const now = new Date();
 
-  const routes: {
-    path: string;
-    changeFrequency: MetadataRoute.Sitemap[0]['changeFrequency'];
-    priority: number;
-  }[] = [
-    // 1. ANA SAYFA
-    { path: '/',          changeFrequency: 'daily',  priority: 1.0 },
-
-    // 2. OYUN VE ÇALIŞMA MODLARI (YENİ EKLENENLER)
-    // Ana sayfadaki 4'lü grid yapısındaki linkler
-    { path: '/race',           changeFrequency: 'weekly', priority: 0.8 },
-    { path: '/speedrun',       changeFrequency: 'weekly', priority: 0.8 }, // Yeni
-    { path: '/flashcards',     changeFrequency: 'weekly', priority: 0.8 }, // Yeni
-    { path: '/phrasal-puzzle', changeFrequency: 'weekly', priority: 0.8 }, // Yeni
-
-    // 3. SEVİYE SAYFALARI
-    { path: '/levels',    changeFrequency: 'weekly', priority: 0.7 },
-    { path: '/levels/A1', changeFrequency: 'weekly', priority: 0.7 },
-    { path: '/levels/A2', changeFrequency: 'weekly', priority: 0.7 },
-    { path: '/levels/B1', changeFrequency: 'weekly', priority: 0.7 },
-    { path: '/levels/B2', changeFrequency: 'weekly', priority: 0.7 },
-    { path: '/levels/C1', changeFrequency: 'weekly', priority: 0.7 },
-    { path: '/levels/C2', changeFrequency: 'weekly', priority: 0.7 },
-
-    // 4. TEST BAŞLANGIÇ YÖNLENDİRME SAYFASI
-    { path: '/start',     changeFrequency: 'monthly', priority: 0.5 },
-
-    // 5. KURUMSAL / STATİK SAYFALAR
-    { path: '/contact',   changeFrequency: 'yearly', priority: 0.3 },
-    { path: '/privacy',   changeFrequency: 'yearly', priority: 0.2 },
-    { path: '/cookies',   changeFrequency: 'yearly', priority: 0.2 },
+  // 1. ANA YOLLAR VE OYUNLAR
+  const coreRoutes = [
+    { path: '/', priority: 1.0, changeFrequency: 'daily' },
+    { path: '/race', priority: 0.9, changeFrequency: 'weekly' },
+    { path: '/speedrun', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/flashcards', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/phrasal-puzzle', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/speaking', priority: 0.9, changeFrequency: 'weekly' },
+    { path: '/verbsense', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/matching', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/word-hunter', priority: 0.7, changeFrequency: 'weekly' }, // Hafızadaki oyun
+    { path: '/number-hunter', priority: 0.7, changeFrequency: 'weekly' }, // Hafızadaki oyun
   ];
 
-  return routes.map((route) => ({
+  // 2. CEFR SEVİYELERİ (A1 - C2)
+  const levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map(lvl => ({
+    path: `/levels/${lvl}`,
+    priority: 0.7,
+    changeFrequency: 'weekly'
+  }));
+
+  // 3. GRAMMAR FOCUS TESTLERİ (Kodunuzdaki slug'lara göre)
+  const grammarSlugs = [
+    'test-perfect-past', 'test-conditionals', 'test-relatives', 
+    'test-articles', 'test-tenses-mixed', 'test-passive-voice', 
+    'test-reported-speech', 'test-gerunds-infinitives', 
+    'test-clauses-advanced', 'test-modals-advanced', 'test-prepositions-advanced'
+  ];
+  const grammarRoutes = grammarSlugs.map(slug => ({
+    path: `/start?testSlug=${slug}`,
+    priority: 0.6,
+    changeFrequency: 'monthly'
+  }));
+
+  // 4. YDS EXAM PACK (1'den 15'e kadar)
+  const ydsExams = Array.from({ length: 15 }, (_, i) => ({
+    path: `/start?testSlug=yds-exam-test-${i + 1}`,
+    priority: 0.6,
+    changeFrequency: 'monthly'
+  }));
+
+  // 5. KURUMSAL SAYFALAR
+  const staticPages = [
+    { path: '/contact', priority: 0.3, changeFrequency: 'yearly' },
+    { path: '/privacy', priority: 0.2, changeFrequency: 'yearly' },
+    { path: '/cookies', priority: 0.2, changeFrequency: 'yearly' },
+  ];
+
+  // TÜMÜNÜ BİRLEŞTİR
+  const allPaths = [
+    ...coreRoutes,
+    ...levels,
+    ...grammarRoutes,
+    ...ydsExams,
+    ...staticPages
+  ];
+
+  return allPaths.map((route) => ({
     url: `${baseUrl}${route.path}`,
     lastModified: now,
-    changeFrequency: route.changeFrequency,
+    changeFrequency: route.changeFrequency as any,
     priority: route.priority,
   }));
 }
