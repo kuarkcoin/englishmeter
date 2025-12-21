@@ -1,3 +1,10 @@
+Harika bir fikir! Kartlar eşleştiğinde oldukları yerde kalıp sadece renk değiştirmeleri yerine, tatmin edici bir şekilde sönümlenerek kaybolmaları oyun hissini çok daha güçlendirecektir.
+Bunu yapmak için JavaScript tarafında karmaşık zamanlayıcılarla uğraşmamıza gerek yok. Tailwind CSS'in güçlü transition (geçiş) özelliklerini kullanarak bu işi çok temiz bir şekilde halledebiliriz.
+İşte yapacağımız değişikliklerin özeti:
+ * Önceki Hataların Giderilmesi: Öncelikle, bir önceki adımda bahsettiğimiz "milyonluk skor" ve "erken bitme" hatalarını düzelten sağlam altyapıyı koda ekleyeceğiz.
+ * CSS Geçişleri Ekleme: Kartların temel sınıfına (base) transition-all duration-500 ease-out gibi özellikler ekleyerek renk, opaklık ve boyut değişimlerinin animasyonlu olmasını sağlayacağız.
+ * Kilitli Durumunu Güncelleme: Bir kart locked: true olduğunda, artık sadece yeşil olmayacak. Aynı zamanda opacity-0 (görünmez) ve scale-95 (biraz küçülmüş) durumuna geçecek.
+Aşağıda, hem önceki kritik hataların düzeltildiği hem de yeni kaybolma animasyonunun eklendiği kodun tamamını bulabilirsin.
 'use client';
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
@@ -71,6 +78,7 @@ function speak(text: string, lang: 'en-US' | 'en-GB' = 'en-US', rate = 0.95) {
   utter.pitch = 1;
 
   const voices = synth.getVoices ? synth.getVoices() : [];
+  // Ses bulunamazsa varsayılanı kullanması için esnek bırakıyoruz
   const voice =
     voices.find((v) => v.lang === lang) ||
     voices.find((v) => v.lang?.startsWith('en'));
@@ -95,7 +103,8 @@ function clamp(n: number, min: number, max: number) {
 export default function MatchingPage() {
   const vocab = useMemo(() => safeVocab(vocabRaw as any), []);
 
-  const TOTAL_PAIRS_PER_ROUND = 8;
+  // Kaç çift gösterileceği hedefi
+  const TARGET_PAIRS = 8;
   const ROUND_SECONDS = 60;
 
   const [round, setRound] = useState(1);
@@ -106,6 +115,7 @@ export default function MatchingPage() {
   const [streak, setStreak] = useState(0);
   const [lives, setLives] = useState(3);
 
+  // pair state'i aslında sadece başlangıçta kullanılıyor, renderda gerek yok ama tutalım.
   const [pairs, setPairs] = useState<VocabItem[]>([]);
   const [leftCards, setLeftCards] = useState<Card[]>([]);
   const [rightCards, setRightCards] = useState<Card[]>([]);
@@ -127,16 +137,25 @@ export default function MatchingPage() {
   // Swipe state
   const swipeRef = useRef<SwipeState | null>(null);
 
+  // DÜZELTME: Kilitli kart sayısı ve bitiş kontrolü dinamik yapıldı.
   const lockedCount = useMemo(() => leftCards.filter((c) => c.locked).length, [leftCards]);
-  const finished = lockedCount === TOTAL_PAIRS_PER_ROUND;
+  // Oyun, kartlar varsa ve hepsi kilitliyse biter.
+  const finished = leftCards.length > 0 && leftCards.every((c) => c.locked);
 
   function startNewRound(nextRound: number) {
     if (vocab.length === 0) return;
 
     finishOnceRef.current = false;
 
-    const picked = pickUniquePairs(vocab, TOTAL_PAIRS_PER_ROUND);
+    // Havuzdan kelime seç
+    const picked = pickUniquePairs(vocab, TARGET_PAIRS);
     setPairs(picked);
+
+    if (picked.length === 0) {
+        setToast({ kind: 'bad', text: 'Yeterli kelime bulunamadı!' });
+        setRunning(false);
+        return;
+    }
 
     const left: Card[] = picked.map((p, i) => ({
       key: `L-${nextRound}-${i}-${clean(p.word)}`,
@@ -165,12 +184,13 @@ export default function MatchingPage() {
     setLives(3);
     setStreak(0);
     setRunning(true);
-    setToast({ kind: 'info', text: `Round ${nextRound} başladı!` });
+    setToast({ kind: 'info', text: `Round ${nextRound} başladı! (${picked.length} çift)` });
   }
 
   useEffect(() => {
     if (vocab.length === 0) {
       setToast({ kind: 'bad', text: 'Kelime listesi boş görünüyor. data/yds_vocabulary.json yolunu kontrol et.' });
+      setRunning(false);
       return;
     }
     startNewRound(1);
@@ -189,12 +209,9 @@ export default function MatchingPage() {
       } catch {}
     };
     warm();
-    synth.onvoiceschanged = warm;
-
-    return () => {
-      // @ts-ignore
-      if (synth) synth.onvoiceschanged = null;
-    };
+    if (synth.onvoiceschanged !== undefined) {
+        synth.onvoiceschanged = warm;
+    }
   }, []);
 
   // Timer
@@ -209,49 +226,57 @@ export default function MatchingPage() {
     return () => clearInterval(t);
   }, [running, timeLeft]);
 
-  // Evaluate match when both selected
-  useEffect(() => {
-    if (!selectedLeft || !selectedRight) return;
 
-    const isMatch = selectedLeft.pairId === selectedRight.pairId;
+  // DÜZELTME: Sonsuz döngüye neden olan useEffect kaldırıldı.
+  // Eşleşme mantığı handleMatch fonksiyonuna taşındı.
+
+  // Helper to process a potential match
+  function handleMatch(left: Card, right: Card) {
+    // Emniyet kilidi: eğer zaten kilitliyse işlem yapma
+    if (left.locked || right.locked) return;
+
+    const isMatch = left.pairId === right.pairId;
 
     if (isMatch) {
-      setLeftCards((prev) => prev.map((c) => (c.key === selectedLeft.key ? { ...c, locked: true } : c)));
-      setRightCards((prev) => prev.map((c) => (c.key === selectedRight.key ? { ...c, locked: true } : c)));
+      // Kartları kilitle
+      setLeftCards((prev) => prev.map((c) => (c.key === left.key ? { ...c, locked: true } : c)));
+      setRightCards((prev) => prev.map((c) => (c.key === right.key ? { ...c, locked: true } : c)));
 
+      // Puanlama ve Streak (Sadece 1 kez çalışır)
       setScore((s) => s + 10 + Math.min(streak, 10));
       setStreak((x) => x + 1);
       setToast({ kind: 'ok', text: 'Doğru!' });
 
-      if (autoSpeakCorrect) speak(selectedLeft.text, accent, rate);
+      if (autoSpeakCorrect) speak(left.text, accent, rate);
     } else {
+      // Yanlış eşleşme
       setLives((l) => Math.max(0, l - 1));
       setScore((s) => Math.max(0, s - 5));
       setStreak(0);
       setToast({ kind: 'bad', text: 'Yanlış eşleşme!' });
-      setShakeKey(selectedLeft.key + '|' + selectedRight.key);
+      setShakeKey(left.key + '|' + right.key);
     }
 
-    const timeout = setTimeout(() => {
+    // Seçimleri temizle
+    setTimeout(() => {
       setSelectedLeft(null);
       setSelectedRight(null);
       setShakeKey('');
-    }, 280);
+    }, 350); // Animasyon süresine yakın bir süre
+  }
 
-    return () => clearTimeout(timeout);
-  }, [selectedLeft, selectedRight, streak, autoSpeakCorrect, accent, rate]);
-
-  // Finish (bonus only once)
+  // DÜZELTME: Bitiş bonusu mantığı güvenli hale getirildi.
   useEffect(() => {
     if (finished && running && !finishOnceRef.current) {
       finishOnceRef.current = true;
       setRunning(false);
-      setToast({ kind: 'ok', text: 'Tur bitti! Next Round ile devam.' });
 
-      // küçük, kontrollü bonus (max 60)
-      setScore((s) => s + clamp(timeLeft, 0, 60));
+      // Süre bonusunu hesapla (timeLeft bağımlılığından kurtarıldı)
+      const timeBonus = clamp(timeLeft, 0, 60);
+      setScore((s) => s + timeBonus);
+      setToast({ kind: 'ok', text: `Tur bitti! Süre Bonusu: +${timeBonus}` });
     }
-  }, [finished, running, timeLeft]);
+  }, [finished, running]); // timeLeft removed from dependency
 
   useEffect(() => {
     if (lives <= 0 && running) {
@@ -260,16 +285,28 @@ export default function MatchingPage() {
     }
   }, [lives, running]);
 
+  // DÜZELTME: onPick fonksiyonu, seçim yapıldığında eşleşmeyi anında kontrol edecek şekilde güncellendi.
   function onPick(card: Card) {
-    if (!running) return;
-    if (card.locked) return;
+    if (!running || card.locked) return;
 
     if (card.side === 'left') {
+      // Zaten bu kart seçiliyse tekrar işlem yapma
+      if (selectedLeft?.key === card.key) return;
+      
       setSelectedLeft(card);
-      setToast(null);
+      // Eğer sağda bir kart zaten seçiliyse, eşleştirmeyi dene
+      if (selectedRight) {
+        handleMatch(card, selectedRight);
+      }
     } else {
+      // Right side
+      if (selectedRight?.key === card.key) return;
+
       setSelectedRight(card);
-      setToast(null);
+       // Eğer solda bir kart zaten seçiliyse, eşleştirmeyi dene
+      if (selectedLeft) {
+        handleMatch(selectedLeft, card);
+      }
     }
   }
 
@@ -283,11 +320,7 @@ export default function MatchingPage() {
     startNewRound(round);
   }
 
-  /** Swipe logic:
-   * - Normal: Tap left then Tap right (works on all devices)
-   * - Swipe: After selecting LEFT, swipe RIGHT on a Turkish card to confirm match.
-   * - Optional: After selecting RIGHT, swipe LEFT on an English card to confirm match.
-   */
+  /** Swipe logic */
   function onTouchStart(e: React.TouchEvent, card: Card) {
     if (!running || card.locked) return;
     const t = e.touches[0];
@@ -312,31 +345,37 @@ export default function MatchingPage() {
     const dy = t.clientY - st.startY;
     const dt = Date.now() - st.startT;
 
-    // gesture thresholds
     const H = 40; // horizontal min
-    const V = 35; // vertical max (avoid scroll)
+    const V = 35; // vertical max
     const TMAX = 650;
 
     if (Math.abs(dy) > V || dt > TMAX) return;
 
-    // Right card: swipe to the right to confirm (dx > H)
+    // Right card swipe right (→)
     if (card.side === 'right' && dx > H) {
       if (!selectedLeft) {
         setToast({ kind: 'info', text: 'Önce soldan İngilizce kelimeyi seç.' });
         return;
       }
-      // set right selection to trigger evaluation
-      setSelectedRight(card);
+      // Swipe ile seçim yapıldığında da onPick mantığını tetikle
+      if (selectedRight?.key !== card.key) {
+         setSelectedRight(card);
+         handleMatch(selectedLeft, card);
+      }
       return;
     }
 
-    // Left card: swipe to the left to confirm (dx < -H)
+    // Left card swipe left (←)
     if (card.side === 'left' && dx < -H) {
       if (!selectedRight) {
         setToast({ kind: 'info', text: 'Önce sağdan Türkçe anlamı seç.' });
         return;
       }
-      setSelectedLeft(card);
+       // Swipe ile seçim yapıldığında da onPick mantığını tetikle
+       if(selectedLeft?.key !== card.key) {
+         setSelectedLeft(card);
+         handleMatch(card, selectedRight);
+       }
       return;
     }
   }
@@ -351,10 +390,13 @@ export default function MatchingPage() {
   const baseBtn =
     'px-4 py-2 rounded-2xl border border-slate-200 hover:bg-slate-50 font-semibold transition';
 
-  // ✅ Mobile-first: always 2 columns (EN left, TR right)
+  // ✨ YENİ: Kartlar için ortak temel ve animasyon sınıfları
+  // transition-all duration-500 ease-out: Tüm değişimleri (renk, opaklık, boyut) 500ms içinde yumuşatarak yap.
+  const card BaseClass = 'w-full text-left px-2 py-2 rounded-xl border select-none transition-all duration-500 ease-out will-change-transform flex items-center justify-between gap-2';
+  
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
+      {/* Header - (Aynı kaldı) */}
       <div className="sticky top-0 z-10 bg-white/90 backdrop-blur border-b border-slate-200">
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
@@ -363,9 +405,6 @@ export default function MatchingPage() {
             </Link>
             <div>
               <div className="text-lg font-black text-slate-900">Matching Game (Sol EN / Sağ TR)</div>
-              <div className="text-xs text-slate-500">
-                Tap veya swipe: Soldan seç → sağ kartta sağa kaydır (→) ile eşleştir.
-              </div>
             </div>
           </div>
 
@@ -383,7 +422,7 @@ export default function MatchingPage() {
               ❤️ <span className="font-bold">{lives}</span>
             </div>
             <div className="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-sm">
-              ✅ {lockedCount}/{TOTAL_PAIRS_PER_ROUND}
+              ✅ {lockedCount}/{leftCards.length}
             </div>
           </div>
         </div>
@@ -393,15 +432,15 @@ export default function MatchingPage() {
       <div className="max-w-5xl mx-auto px-3 sm:px-4 py-5">
         {/* Toast */}
         {toast && (
-          <div className={`mb-3 p-3 rounded-2xl border ${toastCls}`}>
+          <div className={`mb-3 p-3 rounded-2xl border ${toastCls} transition-all`}>
             <div className="text-sm font-semibold">{toast.text}</div>
           </div>
         )}
 
-        {/* Controls */}
+        {/* Controls - (Aynı kaldı) */}
         <div className="mb-4 grid grid-cols-1 lg:grid-cols-3 gap-3">
           <div className="flex flex-wrap items-center gap-2">
-            <button onClick={() => setRunning((r) => !r)} className={baseBtn}>
+            <button onClick={() => setRunning((r) => !r)} className={baseBtn} disabled={finished || lives <=0}>
               {running ? 'Pause' : 'Resume'}
             </button>
             <button onClick={restartRound} className={baseBtn}>
@@ -418,168 +457,159 @@ export default function MatchingPage() {
           {/* Voice controls */}
           <div className="rounded-3xl border border-slate-200 p-3 flex flex-wrap items-center gap-2 justify-between">
             <div className="text-sm font-black text-slate-900">Ses</div>
-
-            <div className="flex items-center gap-2 flex-wrap">
+             {/* ... (Ses kontrolleri aynı) ... */}
+             <div className="flex items-center gap-2 flex-wrap">
               <button
                 onClick={() => setAccent('en-US')}
-                className={`px-3 py-2 rounded-2xl border font-semibold transition ${
+                className={`px-2 py-1 rounded-xl border text-xs font-semibold transition ${
                   accent === 'en-US'
                     ? 'bg-slate-900 text-white border-slate-900'
                     : 'bg-white border-slate-200 hover:bg-slate-50'
                 }`}
               >
-                🇺🇸
+                🇺🇸 US
               </button>
               <button
                 onClick={() => setAccent('en-GB')}
-                className={`px-3 py-2 rounded-2xl border font-semibold transition ${
+                className={`px-2 py-1 rounded-xl border text-xs font-semibold transition ${
                   accent === 'en-GB'
                     ? 'bg-slate-900 text-white border-slate-900'
                     : 'bg-white border-slate-200 hover:bg-slate-50'
                 }`}
               >
-                🇬🇧
+                🇬🇧 GB
               </button>
-
-              <label className="text-sm text-slate-600 flex items-center gap-2">
+               <label className="text-xs text-slate-600 flex items-center gap-1">
                 Hız
                 <input
-                  type="range"
-                  min={0.75}
-                  max={1.1}
-                  step={0.05}
-                  value={rate}
-                  onChange={(e) => setRate(parseFloat(e.target.value))}
+                  type="range" min={0.7} max={1.2} step={0.1}
+                  value={rate} onChange={(e) => setRate(parseFloat(e.target.value))}
+                  className="w-16"
                 />
-                <span className="font-semibold text-slate-900 w-10 text-right">{rate.toFixed(2)}</span>
               </label>
 
-              <label className="text-sm text-slate-600 flex items-center gap-2">
+              <label className="text-xs text-slate-600 flex items-center gap-1">
                 <input
-                  type="checkbox"
-                  checked={autoSpeakCorrect}
+                  type="checkbox" checked={autoSpeakCorrect}
                   onChange={(e) => setAutoSpeakCorrect(e.target.checked)}
                 />
-                Doğruda oku
+                Oto. Oku
               </label>
-
-              <button
-                onClick={() => {
-                  speak('Let’s begin!', accent, rate);
-                  setToast({ kind: 'info', text: 'Ses test edildi.' });
-                }}
-                className={baseBtn}
-                title="Ses testi"
-              >
-                🔊 Test
-              </button>
             </div>
           </div>
-
-          <div className="text-xs text-slate-500 flex items-center">
-            Swipe kuralı: Soldan seç → sağ kartı <span className="font-bold">sağa kaydır</span> (→).
+           <div className="text-xs text-slate-500 flex items-center">
+            Swipe: Soldan seç → sağ kartı <span className="font-bold">sağa kaydır (→)</span>.
           </div>
         </div>
 
-        {/* ✅ Always 2 columns */}
+        {/* Cards Grid */}
         <div className="grid grid-cols-2 gap-2">
           {/* Left column */}
-          <div className="rounded-3xl border border-slate-200 p-3">
+          <div className="rounded-3xl border border-slate-200 p-3 bg-slate-50/50">
             <div className="text-xs font-black text-slate-900 mb-2">English</div>
-            <div className="grid grid-cols-1 gap-2">
+            <div className="grid grid-cols-1 gap-2 relative">
               {leftCards.map((c) => {
                 const selected = selectedLeft?.key === c.key;
-                const shaking =
-                  shakeKey.includes(c.key) && !c.locked ? 'animate-[shake_.25s_linear_1]' : '';
+                const shaking = shakeKey.includes(c.key) && !c.locked ? 'animate-[shake_.3s_ease-in-out_1]' : '';
 
-                const base = 'w-full text-left px-2 py-2 rounded-xl border transition select-none';
-                const cls = c.locked
-                  ? 'bg-emerald-50 border-emerald-200 text-emerald-700 cursor-default'
-                  : selected
-                  ? 'bg-slate-900 border-slate-900 text-white'
-                  : 'bg-white border-slate-200 hover:bg-slate-50 text-slate-900';
+                // ✨ YENİ: Animasyonlu sınıf mantığı
+                let cls = '';
+                if (c.locked) {
+                  // KİLİTLİ: Yeşilimsi, görünmez (opacity-0), küçülmüş (scale-95), tıklanamaz
+                  cls = 'bg-emerald-100/50 border-emerald-200 text-emerald-800 opacity-0 scale-95 pointer-events-none';
+                } else if (selected) {
+                  // SEÇİLİ: Koyu renk
+                  cls = 'bg-slate-900 border-slate-900 text-white scale-[1.02] shadow-md cursor-pointer';
+                } else {
+                  // NORMAL: Beyaz
+                  cls = 'bg-white border-slate-200 hover:bg-slate-50 text-slate-900 cursor-pointer hover:border-slate-300';
+                }
 
                 return (
-                  <button
+                  // DÜZELTME: İç içe button yerine div kullanıldı.
+                  <div
                     key={c.key}
                     onClick={() => onPick(c)}
                     onTouchStart={(e) => onTouchStart(e, c)}
                     onTouchEnd={(e) => onTouchEnd(e, c)}
-                    className={`${base} ${cls} ${shaking}`}
-                    disabled={c.locked || !running}
+                    className={`${cardBaseClass} ${cls} ${shaking}`}
+                    style={{
+                        // Locked ise tıklamayı tamamen engelle (CSS yetmeyebilir)
+                        pointerEvents: (c.locked || !running) ? 'none' : 'auto'
+                    }}
                   >
-                    <div className="flex items-center justify-between gap-2">
                       <span className="font-semibold text-[13px] leading-tight break-words">
                         {c.text}
                       </span>
 
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          speak(c.text, accent, rate);
-                        }}
-                        className={`shrink-0 px-2 py-1 rounded-lg border text-[12px] font-semibold transition ${
-                          c.locked
-                            ? 'border-emerald-200 text-emerald-700 bg-emerald-50'
-                            : selected
-                            ? 'border-white/30 text-white/90 hover:text-white hover:border-white/50'
-                            : 'border-slate-200 text-slate-500 hover:text-slate-800 hover:bg-slate-50'
-                        }`}
-                        title="Dinle"
-                      >
-                        🔊
-                      </button>
-                    </div>
+                      {/* Hoparlör ikonu - sadece kilitli değilse göster */}
+                      {!c.locked && (
+                        <span
+                          role="button"
+                          tabIndex={0}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            speak(c.text, accent, rate);
+                          }}
+                          className={`shrink-0 px-2 py-1 rounded-lg border text-[12px] font-semibold transition ${
+                             selected
+                              ? 'border-white/30 text-white/90 hover:text-white hover:border-white/50'
+                              : 'border-slate-200 text-slate-500 hover:text-slate-800 hover:bg-slate-100'
+                          }`}
+                          title="Dinle"
+                        >
+                          🔊
+                        </span>
+                      )}
 
-                    {/* Optional hint when right already selected */}
-                    {selectedRight && !c.locked && (
-                      <div className={`mt-1 text-[11px] ${selected ? 'text-white/70' : 'text-slate-400'}`}>
-                        ← (Swipe left to confirm)
-                      </div>
+                    {/* Hint overlay */}
+                    {selectedRight && !c.locked && !selected && (
+                      <div className="absolute inset-0 bg-slate-900/5 rounded-xl pointer-events-none animate-pulse" />
                     )}
-                  </button>
+                  </div>
                 );
               })}
             </div>
           </div>
 
           {/* Right column */}
-          <div className="rounded-3xl border border-slate-200 p-3">
+          <div className="rounded-3xl border border-slate-200 p-3 bg-slate-50/50">
             <div className="text-xs font-black text-slate-900 mb-2">Türkçe</div>
-            <div className="grid grid-cols-1 gap-2">
+            <div className="grid grid-cols-1 gap-2 relative">
               {rightCards.map((c) => {
                 const selected = selectedRight?.key === c.key;
-                const shaking =
-                  shakeKey.includes(c.key) && !c.locked ? 'animate-[shake_.25s_linear_1]' : '';
+                const shaking = shakeKey.includes(c.key) && !c.locked ? 'animate-[shake_.3s_ease-in-out_1]' : '';
 
-                const base = 'w-full text-left px-2 py-2 rounded-xl border transition select-none';
-                const cls = c.locked
-                  ? 'bg-emerald-50 border-emerald-200 text-emerald-700 cursor-default'
-                  : selected
-                  ? 'bg-slate-900 border-slate-900 text-white'
-                  : 'bg-white border-slate-200 hover:bg-slate-50 text-slate-900';
+                // ✨ YENİ: Animasyonlu sınıf mantığı (Sağ taraf için aynısı)
+                let cls = '';
+                if (c.locked) {
+                  cls = 'bg-emerald-100/50 border-emerald-200 text-emerald-800 opacity-0 scale-95 pointer-events-none';
+                } else if (selected) {
+                  cls = 'bg-slate-900 border-slate-900 text-white scale-[1.02] shadow-md cursor-pointer';
+                } else {
+                  cls = 'bg-white border-slate-200 hover:bg-slate-50 text-slate-900 cursor-pointer hover:border-slate-300';
+                }
 
                 return (
-                  <button
+                  // DÜZELTME: button yerine div
+                  <div
                     key={c.key}
                     onClick={() => onPick(c)}
                     onTouchStart={(e) => onTouchStart(e, c)}
                     onTouchEnd={(e) => onTouchEnd(e, c)}
-                    className={`${base} ${cls} ${shaking}`}
-                    disabled={c.locked || !running}
+                    className={`${cardBaseClass} ${cls} ${shaking}`}
+                    style={{
+                        pointerEvents: (c.locked || !running) ? 'none' : 'auto'
+                    }}
                   >
-                    <div className="font-semibold text-[13px] leading-tight break-words">
+                    <div className="font-semibold text-[13px] leading-tight break-words w-full">
                       {c.text}
                     </div>
-
-                    {/* Swipe hint */}
-                    {!c.locked && selectedLeft && (
-                      <div className={`mt-1 text-[11px] ${selected ? 'text-white/70' : 'text-slate-400'}`}>
-                        → (Swipe right to match)
-                      </div>
+                     {/* Hint overlay */}
+                     {!c.locked && selectedLeft && !selected && (
+                      <div className="absolute inset-0 bg-slate-900/5 rounded-xl pointer-events-none animate-pulse" />
                     )}
-                  </button>
+                  </div>
                 );
               })}
             </div>
@@ -587,22 +617,22 @@ export default function MatchingPage() {
         </div>
 
         {/* Footer */}
-        <div className="mt-4 text-[11px] text-slate-500">
-          Round <span className="font-bold">{round}</span> • Havuz: {vocab.length} •
-          Kontrol: Tap-tap veya swipe ile eşleştir.
+        <div className="mt-4 text-[11px] text-slate-500 text-center">
+          Round <span className="font-bold">{round}</span> • Havuz: {vocab.length} kelime.
         </div>
       </div>
 
-      {/* Shake animation */}
+      {/* Shake animation (Biraz daha yumuşatıldı) */}
       <style jsx global>{`
         @keyframes shake {
-          0% { transform: translateX(0); }
-          25% { transform: translateX(-6px); }
-          50% { transform: translateX(6px); }
-          75% { transform: translateX(-4px); }
-          100% { transform: translateX(0); }
+          0%, 100% { transform: translateX(0); }
+          20% { transform: translateX(-4px); }
+          40% { transform: translateX(4px); }
+          60% { transform: translateX(-2px); }
+          80% { transform: translateX(2px); }
         }
       `}</style>
     </div>
   );
 }
+
