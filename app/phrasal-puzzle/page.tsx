@@ -8,6 +8,58 @@ import phrasalsRaw from "@/data/yds_phrasal_verbs.json";
 type PhrasalItem = { word: string; meaning: string };
 type ToastKind = "ok" | "bad" | "info";
 
+// -------------------- SIMPLE SOUND (A: NO FILES) --------------------
+let __td_audio_ctx: AudioContext | null = null;
+
+function getAudioCtx(): AudioContext | null {
+  if (typeof window === "undefined") return null;
+  const AnyWin = window as any;
+  const Ctx = window.AudioContext || AnyWin.webkitAudioContext;
+  if (!Ctx) return null;
+
+  if (!__td_audio_ctx) __td_audio_ctx = new Ctx();
+  return __td_audio_ctx;
+}
+
+// Tiny beep generator (safe for mobile: needs user gesture; your buttons provide it)
+function playBeep(freq = 440, duration = 0.08, type: OscillatorType = "sine", volume = 0.06) {
+  const ctx = getAudioCtx();
+  if (!ctx) return;
+
+  // Some browsers suspend audio until first interaction; try resume silently
+  if (ctx.state === "suspended") {
+    ctx.resume().catch(() => {});
+  }
+
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+
+  osc.type = type;
+  osc.frequency.value = freq;
+
+  // clickless envelope
+  const now = ctx.currentTime;
+  const attack = 0.008;
+  const release = Math.max(0.01, duration - attack);
+
+  gain.gain.setValueAtTime(0.0001, now);
+  gain.gain.exponentialRampToValueAtTime(Math.max(0.0002, volume), now + attack);
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + attack + release);
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  osc.start(now);
+  osc.stop(now + duration);
+
+  osc.onended = () => {
+    try {
+      osc.disconnect();
+      gain.disconnect();
+    } catch {}
+  };
+}
+
 function shuffle<T>(arr: T[]) {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -162,6 +214,11 @@ export default function PhrasalParticlePuzzlePage() {
     setBest(loadBest());
     return () => {
       if (toastTimerRef.current) window.clearTimeout(toastTimerRef.current);
+      // cleanup audio context (optional)
+      try {
+        __td_audio_ctx?.close();
+      } catch {}
+      __td_audio_ctx = null;
     };
   }, []);
 
@@ -172,6 +229,8 @@ export default function PhrasalParticlePuzzlePage() {
       setLoading(false);
       setTarget(null);
       showToast("Phrasal listesi yetersiz (en az 6 verb ve 6 particle lazım).", "bad");
+      // subtle error beep
+      playBeep(220, 0.12, "sawtooth", 0.05);
       return;
     }
 
@@ -235,6 +294,8 @@ export default function PhrasalParticlePuzzlePage() {
     saveRecent(nextRecent);
 
     setLoading(false);
+    // new round tiny "start" tick
+    playBeep(520, 0.05, "sine", 0.04);
   }, [pool, verbsAll, particlesAll, showToast]);
 
   useEffect(() => {
@@ -251,6 +312,7 @@ export default function PhrasalParticlePuzzlePage() {
 
     if (!pickVerb || !pickParticle) {
       showToast("Önce Verb + Particle seç.", "info");
+      playBeep(300, 0.08, "square", 0.04);
       return;
     }
 
@@ -258,6 +320,10 @@ export default function PhrasalParticlePuzzlePage() {
 
     if (combined === correct) {
       setStatus("won");
+
+      // correct fanfare (2 quick beeps)
+      playBeep(880, 0.07, "triangle", 0.06);
+      setTimeout(() => playBeep(1175, 0.08, "triangle", 0.06), 80);
 
       // Score + best (safe, single source of truth)
       setScore((prev) => {
@@ -275,6 +341,10 @@ export default function PhrasalParticlePuzzlePage() {
     } else {
       setStatus("lost");
       setStreak(0);
+
+      // wrong buzz
+      playBeep(220, 0.12, "sawtooth", 0.06);
+
       showToast("❌ Wrong!", "bad");
     }
   }, [combined, pickParticle, pickVerb, showToast, target, targetParticle, targetVerb]);
@@ -284,6 +354,7 @@ export default function PhrasalParticlePuzzlePage() {
   const resetPick = useCallback(() => {
     setPickVerb("");
     setPickParticle("");
+    playBeep(420, 0.05, "sine", 0.04);
   }, []);
 
   const pill =
@@ -365,7 +436,10 @@ export default function PhrasalParticlePuzzlePage() {
             <div className="text-center text-slate-400 font-bold py-12">Loading...</div>
           ) : !target ? (
             <div className="text-center text-slate-300 font-bold py-12">
-              Data not ready. Check <code className="px-1 py-0.5 rounded bg-white/5 border border-white/10">yds_phrasal_verbs.json</code>
+              Data not ready. Check{" "}
+              <code className="px-1 py-0.5 rounded bg-white/5 border border-white/10">
+                yds_phrasal_verbs.json
+              </code>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 gap-6">
@@ -396,7 +470,11 @@ export default function PhrasalParticlePuzzlePage() {
 
                   <div className="mt-4 flex flex-col sm:flex-row gap-2">
                     <button
-                      onClick={checkAnswer}
+                      onClick={() => {
+                        // click tick
+                        playBeep(520, 0.04, "sine", 0.04);
+                        checkAnswer();
+                      }}
                       disabled={status !== "playing"}
                       className={`flex-1 py-3 rounded-2xl font-black transition-all ${
                         status !== "playing"
@@ -426,7 +504,10 @@ export default function PhrasalParticlePuzzlePage() {
                         {`${targetVerb} ${targetParticle}`}
                       </div>
                       <button
-                        onClick={next}
+                        onClick={() => {
+                          playBeep(600, 0.05, "sine", 0.04);
+                          next();
+                        }}
                         className="mt-3 px-5 py-2 rounded-2xl bg-emerald-600 hover:bg-emerald-500 font-black"
                       >
                         NEXT
@@ -470,7 +551,11 @@ export default function PhrasalParticlePuzzlePage() {
                       return (
                         <button
                           key={v}
-                          onClick={() => status === "playing" && setPickVerb(v)}
+                          onClick={() => {
+                            if (status !== "playing") return;
+                            playBeep(520, 0.04, "sine", 0.04);
+                            setPickVerb(v);
+                          }}
                           className={`${base} ${cls}`}
                         >
                           {v}
@@ -512,7 +597,11 @@ export default function PhrasalParticlePuzzlePage() {
                       return (
                         <button
                           key={p}
-                          onClick={() => status === "playing" && setPickParticle(p)}
+                          onClick={() => {
+                            if (status !== "playing") return;
+                            playBeep(520, 0.04, "sine", 0.04);
+                            setPickParticle(p);
+                          }}
                           className={`${base} ${cls}`}
                         >
                           {p}
@@ -528,7 +617,10 @@ export default function PhrasalParticlePuzzlePage() {
                   </div>
                   <div className="flex flex-col sm:flex-row gap-2">
                     <button
-                      onClick={newRound}
+                      onClick={() => {
+                        playBeep(600, 0.05, "sine", 0.04);
+                        newRound();
+                      }}
                       className="flex-1 py-3 rounded-2xl bg-slate-800 hover:bg-slate-700 font-black"
                     >
                       NEW WORD
@@ -537,6 +629,7 @@ export default function PhrasalParticlePuzzlePage() {
                       onClick={() => {
                         saveRecent([]);
                         showToast("Recent list cleared.", "ok");
+                        playBeep(900, 0.06, "triangle", 0.05);
                       }}
                       className="flex-1 py-3 rounded-2xl bg-slate-800 hover:bg-slate-700 font-black"
                     >
