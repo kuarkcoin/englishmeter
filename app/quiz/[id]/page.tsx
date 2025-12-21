@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import Link from 'next/link';
 
 // --- TYPES ---
@@ -23,12 +23,12 @@ interface Question {
 
 interface TestInfo {
   title: string;
-  duration?: number;
+  duration?: number; // ✅ minutes (payload'da dakika)
 }
 
 interface QuizData {
   attemptId: string;
-  testSlug?: string; // --- YENİ EKLENDİ: Tekrar başlatma özelliği için gerekli
+  testSlug?: string;
   test: TestInfo;
   questions: Question[];
   error?: string;
@@ -73,11 +73,10 @@ function formatText(text: string) {
   return parts.map((part, index) => {
     if (part.startsWith('**') && part.endsWith('**')) {
       let content = part.slice(2, -2);
-      // Tırnak işaretlerini temizle
       content = content.replace(/^['"]+|['"]+$/g, '');
       return (
-        <span 
-          key={index} 
+        <span
+          key={index}
           className="bg-blue-100 text-blue-700 font-extrabold px-3 py-1 rounded-lg mx-1 border border-blue-200 shadow-sm inline-block transform -translate-y-0.5 tracking-wide"
         >
           {content}
@@ -98,6 +97,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
   // 1) LOAD DATA
   useEffect(() => {
     if (typeof window === 'undefined') return;
+
     const raw = sessionStorage.getItem('em_attempt_payload');
     if (!raw) {
       setData({
@@ -108,29 +108,66 @@ export default function Quiz({ params }: { params: { id: string } }) {
       });
       return;
     }
+
     try {
       const parsed: QuizData = JSON.parse(raw);
       setData(parsed);
+
       const qCount = parsed.questions?.length || 0;
-      let duration = qCount * 60; 
-      if (duration === 0) duration = 30 * 60;
-      setTimeLeft(duration);
+
+      // ✅ Duration dakikaysa (payload’da) saniyeye çevir
+      // duration yoksa fallback: soru başı 30sn (50 soru => 25dk)
+      let seconds = 0;
+
+      if (parsed.test?.duration && Number.isFinite(parsed.test.duration) && parsed.test.duration! > 0) {
+        seconds = Math.round(parsed.test.duration! * 60);
+      } else {
+        // fallback: 50 soru 25 dk => soru başı 30sn
+        seconds = qCount > 0 ? qCount * 30 : 25 * 60;
+      }
+
+      setTimeLeft(seconds);
     } catch (err) {
-      setData({ attemptId: '', test: { title: 'Error', duration: 0 }, questions: [], error: 'Data corrupted.' });
+      setData({
+        attemptId: '',
+        test: { title: 'Error', duration: 0 },
+        questions: [],
+        error: 'Data corrupted.',
+      });
     }
   }, [params.id]);
 
   // 2) TIMER
   useEffect(() => {
     if (timeLeft === null || showResult) return;
-    if (timeLeft <= 0) { handleSubmit(); return; }
-    const timerId = setInterval(() => setTimeLeft((p) => (p !== null && p > 0 ? p - 1 : 0)), 1000);
+    if (timeLeft <= 0) {
+      handleSubmit();
+      return;
+    }
+    const timerId = setInterval(() => {
+      setTimeLeft((p) => (p !== null && p > 0 ? p - 1 : 0));
+    }, 1000);
     return () => clearInterval(timerId);
-  }, [timeLeft, showResult]);
+  }, [timeLeft, showResult]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // ✅ Helper: Scroll to question
+  const scrollToQuestion = useCallback((index: number) => {
+    const el = document.getElementById(`q-${index}`);
+    el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, []);
 
   // 3) SUBMIT & SAVE MISTAKES
   const handleSubmit = () => {
     if (!data) return;
+
+    // ✅ Unanswered kontrolü (sınav modu hissi)
+    const unanswered = data.questions.filter((q) => !answers[q.id]);
+    if (unanswered.length > 0) {
+      const firstMissingIndex = data.questions.findIndex((q) => !answers[q.id]);
+      alert(`${unanswered.length} unanswered question(s). Please review before finishing.`);
+      scrollToQuestion(firstMissingIndex);
+      return;
+    }
 
     const { questions } = data;
     let correctCount = 0;
@@ -144,33 +181,26 @@ export default function Quiz({ params }: { params: { id: string } }) {
       const correctChoiceId = getCorrectChoiceId(q);
       const isCorrect = idsEqual(userAnswerId, correctChoiceId);
 
-      // Skoru hesapla
-      if (isCorrect) {
-        correctCount++;
-      }
+      if (isCorrect) correctCount++;
 
       // --- HATA KAYIT MANTIĞI ---
-      // Sadece cevap verilmişse işlem yap
       if (userAnswerId) {
         if (isCorrect) {
-          // DOĞRU CEVAP: Hata listesinden sil
           mistakeList = mistakeList.filter((m) => m.id !== q.id);
         } else {
-          // YANLIŞ CEVAP: Listeye ekle (zaten yoksa)
           const alreadyExists = mistakeList.find((m) => m.id === q.id);
           if (!alreadyExists) {
             mistakeList.push({
               ...q,
               myWrongAnswer: userAnswerId,
               savedAt: new Date().toISOString(),
-              testTitle: data.test.title
+              testTitle: data.test.title,
             });
           }
         }
       }
     });
 
-    // Güncellenmiş listeyi kaydet
     localStorage.setItem('my_mistakes', JSON.stringify(mistakeList));
 
     setScore(correctCount);
@@ -183,6 +213,11 @@ export default function Quiz({ params }: { params: { id: string } }) {
   if (data.error) return <div className="p-10 text-red-600">{data.error}</div>;
 
   const { questions, test } = data;
+
+  // ✅ Progress metrics
+  const totalQ = questions.length || 1;
+  const answeredCount = Object.keys(answers).length;
+  const progress = Math.round((answeredCount / totalQ) * 100);
 
   // --- RESULT SCREEN ---
   if (showResult) {
@@ -223,25 +258,41 @@ export default function Quiz({ params }: { params: { id: string } }) {
           </div>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            
-            {/* --- YENİ EKLENEN BUTTON --- */}
+            {/* --- RESTART: NEW QUESTIONS --- */}
             {data.testSlug && (
               <button
-                onClick={() => window.location.href = `/?restart=${data.testSlug}`}
+                onClick={() => (window.location.href = `/?restart=${data.testSlug}`)}
                 className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center gap-2"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-5 h-5"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
+                  />
                 </svg>
                 New Test (New Questions)
               </button>
             )}
-            {/* --------------------------- */}
 
-            <a href="/" className="px-6 py-3 bg-slate-100 text-slate-700 font-bold rounded-xl hover:bg-slate-200 transition-colors">
+            <a
+              href="/"
+              className="px-6 py-3 bg-slate-100 text-slate-700 font-bold rounded-xl hover:bg-slate-200 transition-colors"
+            >
               Back to Home
             </a>
-            <Link href="/mistakes" className="px-6 py-3 bg-red-100 text-red-700 font-bold rounded-xl hover:bg-red-200 transition-colors border border-red-200 flex items-center justify-center gap-2">
+
+            <Link
+              href="/mistakes"
+              className="px-6 py-3 bg-red-100 text-red-700 font-bold rounded-xl hover:bg-red-200 transition-colors border border-red-200 flex items-center justify-center gap-2"
+            >
               <span>📕</span> My Mistakes
             </Link>
           </div>
@@ -257,7 +308,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
             const isUserAnswered = !!userAnswerId;
             const isCorrect = idsEqual(userAnswerId, correctId);
 
-            // Renk ve Stil Ayarları
             let cardBorder = 'border-slate-200';
             let cardBg = 'bg-white';
             if (isCorrect) {
@@ -274,9 +324,11 @@ export default function Quiz({ params }: { params: { id: string } }) {
             return (
               <div key={q.id} className={`p-6 rounded-2xl border-2 ${cardBorder} ${cardBg}`}>
                 <div className="flex items-start gap-4">
-                  <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold shadow-sm ${
-                    isCorrect ? 'bg-green-500' : !isUserAnswered ? 'bg-amber-400' : 'bg-red-500'
-                  }`}>
+                  <div
+                    className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold shadow-sm ${
+                      isCorrect ? 'bg-green-500' : !isUserAnswered ? 'bg-amber-400' : 'bg-red-500'
+                    }`}
+                  >
                     {isCorrect ? '✓' : !isUserAnswered ? '−' : '✕'}
                   </div>
 
@@ -284,16 +336,14 @@ export default function Quiz({ params }: { params: { id: string } }) {
                     <div className="flex justify-between items-center mb-3">
                       <span className="text-sm text-slate-400 font-bold uppercase">Question {idx + 1}</span>
                       {!isUserAnswered && (
-                        <span className="text-xs font-bold px-2 py-1 bg-amber-100 text-amber-700 rounded-md">SKIPPED</span>
+                        <span className="text-xs font-bold px-2 py-1 bg-amber-100 text-amber-700 rounded-md">
+                          SKIPPED
+                        </span>
                       )}
                     </div>
 
-                    {/* Soru Metni */}
-                    <div className="text-lg font-medium text-slate-800 mb-5 leading-loose">
-                       {formatText(q.prompt)}
-                    </div>
+                    <div className="text-lg font-medium text-slate-800 mb-5 leading-loose">{formatText(q.prompt)}</div>
 
-                    {/* Şıklar */}
                     <div className="grid gap-2">
                       {(q.choices || []).map((c) => {
                         const isSelected = idsEqual(userAnswerId, c.id);
@@ -311,10 +361,15 @@ export default function Quiz({ params }: { params: { id: string } }) {
                         return (
                           <div key={c.id} className={optionClass}>
                             <div className="flex items-center gap-3">
-                              <div className={`w-6 h-6 rounded-full border flex items-center justify-center text-xs ${
-                                isTheCorrectAnswer ? 'border-green-500 bg-green-500 text-white' : 
-                                isSelected ? 'border-red-500 bg-red-500 text-white' : 'border-slate-300'
-                              }`}>
+                              <div
+                                className={`w-6 h-6 rounded-full border flex items-center justify-center text-xs ${
+                                  isTheCorrectAnswer
+                                    ? 'border-green-500 bg-green-500 text-white'
+                                    : isSelected
+                                    ? 'border-red-500 bg-red-500 text-white'
+                                    : 'border-slate-300'
+                                }`}
+                              >
                                 {c.id}
                               </div>
                               <span>{c.text}</span>
@@ -324,7 +379,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       })}
                     </div>
 
-                    {/* Açıklama */}
                     {q.explanation && (
                       <div className="mt-5 p-4 bg-blue-50 rounded-xl border border-blue-100 text-sm text-blue-800 flex gap-3 items-start">
                         <span className="text-xl">💡</span>
@@ -346,59 +400,149 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
   // --- QUIZ SOLVING SCREEN ---
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8 space-y-8">
+    <div className="max-w-3xl mx-auto px-4 py-8 space-y-6">
       {/* Top Bar */}
       <div className="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-slate-200 sticky top-4 z-20 backdrop-blur-sm bg-white/90">
-        <div className="text-sm font-semibold text-slate-700 truncate max-w-[220px]">
-          {test?.title || 'Test'}
-        </div>
-        <div className={`text-lg font-bold px-4 py-2 rounded-lg border transition-colors ${
-          timeLeft !== null && timeLeft < 60 
-            ? 'text-red-600 bg-red-50 border-red-200 animate-pulse' 
-            : 'text-blue-600 bg-blue-50 border-blue-200'
-        }`}>
+        <div className="text-sm font-semibold text-slate-700 truncate max-w-[220px]">{test?.title || 'Test'}</div>
+
+        <div
+          className={`text-lg font-bold px-4 py-2 rounded-lg border transition-colors ${
+            timeLeft !== null && timeLeft < 60
+              ? 'text-red-600 bg-red-50 border-red-200 animate-pulse'
+              : 'text-blue-600 bg-blue-50 border-blue-200'
+          }`}
+        >
           {timeLeft !== null ? formatTime(timeLeft) : '∞'}
+        </div>
+      </div>
+
+      {/* ✅ Progress Bar */}
+      <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        <div className="flex items-center justify-between text-sm font-semibold text-slate-600 mb-2">
+          <span>
+            {answeredCount}/{totalQ} answered
+          </span>
+          <span>{progress}%</span>
+        </div>
+        <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+          <div className="h-full bg-blue-600 transition-all" style={{ width: `${progress}%` }} />
+        </div>
+      </div>
+
+      {/* ✅ Question Navigator */}
+      <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        <div className="flex items-center justify-between mb-3">
+          <div className="text-sm font-black text-slate-800">Question Navigator</div>
+          <div className="text-xs text-slate-500">
+            Blue = answered · White = empty
+          </div>
+        </div>
+
+        <div className="grid grid-cols-10 gap-2">
+          {questions.map((q, i) => {
+            const done = !!answers[q.id];
+            return (
+              <button
+                key={q.id}
+                onClick={() => scrollToQuestion(i)}
+                className={`h-8 rounded-lg text-xs font-black border transition active:scale-[0.98]
+                  ${done ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-500 border-slate-200 hover:border-blue-400'}`}
+                title={done ? 'Answered' : 'Not answered'}
+              >
+                {i + 1}
+              </button>
+            );
+          })}
         </div>
       </div>
 
       {/* Questions Loop */}
       <div className="space-y-8">
         {questions.map((q, idx) => (
-          <div key={q.id} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-            <div className="text-sm text-slate-400 font-bold mb-3 uppercase tracking-wide">
-              Question {idx + 1}
+          <div id={`q-${idx}`} key={q.id} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 scroll-mt-28">
+            <div className="flex items-center justify-between mb-3">
+              <div className="text-sm text-slate-400 font-bold uppercase tracking-wide">
+                Question {idx + 1}
+              </div>
+              {!answers[q.id] && (
+                <span className="text-[11px] font-black px-2 py-1 bg-slate-100 text-slate-500 rounded-lg border border-slate-200">
+                  EMPTY
+                </span>
+              )}
             </div>
 
-            <div className="text-xl font-medium text-slate-800 mb-6 leading-loose">
-              {formatText(q.prompt)}
-            </div>
+            <div className="text-xl font-medium text-slate-800 mb-6 leading-loose">{formatText(q.prompt)}</div>
 
             <div className="grid gap-3">
               {(q.choices || []).map((c) => (
-                <label key={c.id} className={`group cursor-pointer flex items-center p-4 rounded-xl border-2 transition-all duration-200 active:scale-[0.99] ${
-                  answers[q.id] === c.id ? 'border-blue-600 bg-blue-50 shadow-md' : 'border-slate-100 hover:border-blue-300 hover:bg-slate-50'
-                }`}>
-                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 transition-colors ${
-                    answers[q.id] === c.id ? 'border-blue-600' : 'border-slate-300 group-hover:border-blue-400'
-                  }`}>
+                <label
+                  key={c.id}
+                  className={`group cursor-pointer flex items-center p-4 rounded-xl border-2 transition-all duration-200 active:scale-[0.99]
+                    ${answers[q.id] === c.id ? 'border-blue-600 bg-blue-50 shadow-md' : 'border-slate-100 hover:border-blue-300 hover:bg-slate-50'}`}
+                >
+                  <div
+                    className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 transition-colors ${
+                      answers[q.id] === c.id ? 'border-blue-600' : 'border-slate-300 group-hover:border-blue-400'
+                    }`}
+                  >
                     {answers[q.id] === c.id && <div className="w-2.5 h-2.5 rounded-full bg-blue-600" />}
                   </div>
 
-                  <input type="radio" name={q.id} className="hidden" checked={answers[q.id] === c.id} onChange={() => setAnswers((prev) => ({ ...prev, [q.id]: c.id }))} />
+                  <input
+                    type="radio"
+                    name={q.id}
+                    className="hidden"
+                    checked={answers[q.id] === c.id}
+                    onChange={() => setAnswers((prev) => ({ ...prev, [q.id]: c.id }))}
+                  />
+
                   <span className={`text-lg ${answers[q.id] === c.id ? 'text-blue-700 font-medium' : 'text-slate-600'}`}>
                     {c.text}
                   </span>
                 </label>
               ))}
             </div>
+
+            {/* Quick actions */}
+            <div className="mt-5 flex items-center justify-between">
+              <button
+                onClick={() => {
+                  // clear answer
+                  setAnswers((prev) => {
+                    const copy = { ...prev };
+                    delete copy[q.id];
+                    return copy;
+                  });
+                }}
+                className="text-xs font-bold px-3 py-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50"
+                type="button"
+              >
+                Clear answer
+              </button>
+
+              <button
+                onClick={() => scrollToQuestion(Math.min(idx + 1, questions.length - 1))}
+                className="text-xs font-black px-3 py-2 rounded-lg bg-slate-900 text-white hover:bg-slate-800"
+                type="button"
+              >
+                Next →
+              </button>
+            </div>
           </div>
         ))}
       </div>
 
-      <div className="pt-4 pb-12">
-        <button onClick={handleSubmit} className="w-full py-4 rounded-xl text-white text-xl font-bold shadow-lg transition-all transform active:scale-[0.98] bg-blue-600 hover:bg-blue-700 hover:shadow-blue-200">
+      <div className="pt-2 pb-12">
+        <button
+          onClick={handleSubmit}
+          className="w-full py-4 rounded-xl text-white text-xl font-bold shadow-lg transition-all transform active:scale-[0.98] bg-blue-600 hover:bg-blue-700 hover:shadow-blue-200"
+        >
           Finish Test
         </button>
+
+        <div className="mt-3 text-center text-xs text-slate-400">
+          Tip: Finish will warn you if any question is empty.
+        </div>
       </div>
     </div>
   );
