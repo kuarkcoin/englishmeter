@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
 import questions from '@/data/verbsense_questions.json';
 
@@ -19,18 +19,120 @@ function cx(...arr: Array<string | false | undefined | null>) {
   return arr.filter(Boolean).join(' ');
 }
 
-// --- TTS (Browser Speech) ---
-function speak(text: string, accent: 'en-US' | 'en-GB' = 'en-US', rate = 0.95) {
-  if (typeof window === 'undefined') return;
-  if (!('speechSynthesis' in window)) return;
+// -------------------- TTS Helpers --------------------
+type Accent = 'en-US' | 'en-GB';
 
-  window.speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = accent;
-  u.rate = rate;
-  u.pitch = 1;
-  u.volume = 1;
-  window.speechSynthesis.speak(u);
+function normalizeForTTS(text: string) {
+  // Make blanks sound natural
+  return String(text || '').replace('___', 'blank');
+}
+
+function pickBestVoice(voices: SpeechSynthesisVoice[], accent: Accent) {
+  // Prefer Google voices when available; then any matching locale; otherwise fallback.
+  const wanted = accent.toLowerCase(); // "en-us" / "en-gb"
+  const isWanted = (v: SpeechSynthesisVoice) => (v.lang || '').toLowerCase().startsWith(wanted);
+
+  const google = voices.filter((v) => isWanted(v) && /google/i.test(v.name));
+  if (google.length) return google[0];
+
+  const local = voices.filter((v) => isWanted(v));
+  if (local.length) return local[0];
+
+  // fallback to any english voice
+  const en = voices.filter((v) => (v.lang || '').toLowerCase().startsWith('en'));
+  if (en.length) return en[0];
+
+  return voices[0] || null;
+}
+
+/**
+ * Tiny wrapper around speechSynthesis that:
+ * - prevents fast duplicate triple-speak (StrictMode/dev quirks)
+ * - supports voice selection
+ * - supports replay
+ */
+function useTTS() {
+  const [voicesReady, setVoicesReady] = useState(false);
+
+  const lastSpokenTextRef = useRef('');
+  const lastSpokenAtRef = useRef(0);
+
+  const lastUtteranceRef = useRef<{
+    text: string;
+    accent: Accent;
+    rate: number;
+  } | null>(null);
+
+  const loadVoices = useCallback(() => {
+    if (typeof window === 'undefined') return;
+    if (!('speechSynthesis' in window)) return;
+    const vs = window.speechSynthesis.getVoices();
+    if (vs && vs.length > 0) setVoicesReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (!('speechSynthesis' in window)) return;
+
+    // Some browsers return empty list until voiceschanged
+    loadVoices();
+    const onChanged = () => loadVoices();
+
+    window.speechSynthesis.addEventListener('voiceschanged', onChanged);
+    return () => {
+      window.speechSynthesis.removeEventListener('voiceschanged', onChanged);
+    };
+  }, [loadVoices]);
+
+  const stop = useCallback(() => {
+    if (typeof window === 'undefined') return;
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+  }, []);
+
+  const speak = useCallback(
+    (textRaw: string, accent: Accent = 'en-US', rate = 0.95) => {
+      if (typeof window === 'undefined') return;
+      if (!('speechSynthesis' in window)) return;
+
+      const text = normalizeForTTS(textRaw);
+      const now = Date.now();
+
+      // 🔒 Prevent rapid duplicates (triple-fire fix)
+      if (text === lastSpokenTextRef.current && now - lastSpokenAtRef.current < 450) {
+        return;
+      }
+      lastSpokenTextRef.current = text;
+      lastSpokenAtRef.current = now;
+
+      // Save for replay
+      lastUtteranceRef.current = { text: textRaw, accent, rate };
+
+      // Cancel any pending utterances
+      window.speechSynthesis.cancel();
+
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = accent;
+      u.rate = rate;
+      u.pitch = 1;
+      u.volume = 1;
+
+      const all = window.speechSynthesis.getVoices();
+      const v = all && all.length ? pickBestVoice(all, accent) : null;
+      if (v) u.voice = v;
+
+      window.speechSynthesis.speak(u);
+    },
+    []
+  );
+
+  const replay = useCallback(() => {
+    const last = lastUtteranceRef.current;
+    if (!last) return;
+    speak(last.text, last.accent, last.rate);
+  }, [speak]);
+
+  return { speak, stop, replay, voicesReady };
 }
 
 // --- Tiny SFX (no audio files) ---
@@ -83,11 +185,23 @@ export default function VerbSensePlayPage() {
   const [picked, setPicked] = useState<number | null>(null);
   const [locked, setLocked] = useState(false);
 
-  const [accent, setAccent] = useState<'en-US' | 'en-GB'>('en-US');
+  const [accent, setAccent] = useState<Accent>('en-US');
   const [autoSpeak, setAutoSpeak] = useState(true);
+
+  // New: rate control
+  const [rate, setRate] = useState(0.95);
+
+  // New: auto coach voice
+  const [coach, setCoach] = useState(true);
+
+  const { speak, stop, replay, voicesReady } = useTTS();
 
   // Prevent double-beeps
   const lastAnsweredIdRef = useRef<string | null>(null);
+
+  // Prevent auto-speak triple (StrictMode/dev)
+  const autoSpeakKeyRef = useRef<string>('');
+  const autoSpeakTimerRef = useRef<any>(null);
 
   const answered = picked !== null;
   const isCorrect = answered && picked === q.correct;
@@ -97,15 +211,32 @@ export default function VerbSensePlayPage() {
     return q.sentence.replace('___', verb);
   }, [q.sentence, q.options, picked]);
 
-  // Auto-speak sentence when question changes
+  const blankSentenceForSpeech = useMemo(() => q.sentence.replace('___', 'blank'), [q.sentence]);
+
+  // Auto-speak sentence when question changes (robust)
   useEffect(() => {
     lastAnsweredIdRef.current = null;
-    if (autoSpeak) {
-      // Speak the blank sentence, not filled
-      speak(q.sentence, accent, 0.95);
-    }
+
+    if (!autoSpeak) return;
+
+    const key = `${q.id}-${accent}-${rate}`;
+    if (autoSpeakKeyRef.current === key) return;
+    autoSpeakKeyRef.current = key;
+
+    if (autoSpeakTimerRef.current) clearTimeout(autoSpeakTimerRef.current);
+
+    autoSpeakTimerRef.current = setTimeout(() => {
+      // If voices aren't ready yet, still attempt; TTS hook handles it,
+      // but delaying slightly reduces "double speak" on some Android devices.
+      speak(blankSentenceForSpeech, accent, rate);
+    }, voicesReady ? 120 : 240);
+
+    return () => {
+      if (autoSpeakTimerRef.current) clearTimeout(autoSpeakTimerRef.current);
+      stop();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [idx, autoSpeak, accent]);
+  }, [q.id, autoSpeak, accent, rate, voicesReady]);
 
   const pick = (i: number) => {
     if (locked) return;
@@ -114,20 +245,32 @@ export default function VerbSensePlayPage() {
     setLocked(true);
 
     // Speak selected option
-    speak(q.options[i], accent, 0.95);
+    speak(q.options[i], accent, rate);
 
     // Feedback sfx once
     const answerKey = `${q.id}:${i}`;
     if (lastAnsweredIdRef.current !== answerKey) {
       lastAnsweredIdRef.current = answerKey;
+
       if (i === q.correct) {
         beep('ok');
         vibrate(15);
-        // Optional coach voice
-        // speak('Correct.', accent, 0.95);
+
+        if (coach) {
+          // After a short delay, speak full correct sentence then the verb (reinforcement)
+          window.setTimeout(() => {
+            const full = q.sentence.replace('___', q.options[q.correct]);
+            speak(full, accent, rate);
+            window.setTimeout(() => speak(q.options[q.correct], accent, rate), 450);
+          }, 220);
+        }
       } else {
         beep('bad');
         vibrate(40);
+
+        if (coach) {
+          window.setTimeout(() => speak('Not quite.', accent, rate), 180);
+        }
       }
     }
   };
@@ -137,6 +280,7 @@ export default function VerbSensePlayPage() {
     setLocked(false);
     lastAnsweredIdRef.current = null;
     vibrate(8);
+    stop();
   };
 
   const next = () => {
@@ -145,6 +289,7 @@ export default function VerbSensePlayPage() {
     setLocked(false);
     lastAnsweredIdRef.current = null;
     vibrate(8);
+    stop();
   };
 
   const btnState = (i: number) => {
@@ -157,13 +302,15 @@ export default function VerbSensePlayPage() {
   return (
     <div className="min-h-screen bg-slate-50 pb-24">
       {/* Top */}
-      <div className="w-full max-w-2xl mx-auto px-4 pt-4 flex items-center justify-between">
+      <div className="w-full max-w-2xl mx-auto px-4 pt-4 flex items-center justify-between gap-3">
         <Link href="/verbsense" className="text-slate-500 hover:text-slate-900 font-black flex items-center gap-2">
-          <span className="inline-flex w-9 h-9 rounded-2xl bg-white border border-slate-200 items-center justify-center">←</span>
+          <span className="inline-flex w-9 h-9 rounded-2xl bg-white border border-slate-200 items-center justify-center">
+            ←
+          </span>
           Verb Sense
         </Link>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap justify-end">
           <button
             onClick={() => setAccent(accent === 'en-US' ? 'en-GB' : 'en-US')}
             className="px-3 py-2 rounded-2xl bg-white border border-slate-200 text-slate-700 font-extrabold active:scale-95"
@@ -176,13 +323,22 @@ export default function VerbSensePlayPage() {
             onClick={() => setAutoSpeak((v) => !v)}
             className={cx(
               'px-3 py-2 rounded-2xl border font-extrabold active:scale-95',
-              autoSpeak
-                ? 'bg-emerald-50 border-emerald-200 text-emerald-800'
-                : 'bg-white border-slate-200 text-slate-700'
+              autoSpeak ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-white border-slate-200 text-slate-700'
             )}
             title="Auto speak sentence"
           >
             🔊 Auto {autoSpeak ? 'ON' : 'OFF'}
+          </button>
+
+          <button
+            onClick={() => setCoach((v) => !v)}
+            className={cx(
+              'px-3 py-2 rounded-2xl border font-extrabold active:scale-95',
+              coach ? 'bg-indigo-50 border-indigo-200 text-indigo-800' : 'bg-white border-slate-200 text-slate-700'
+            )}
+            title="Coach voice (reads full correct sentence after correct answer)"
+          >
+            🧠 Coach {coach ? 'ON' : 'OFF'}
           </button>
 
           <div className="px-3 py-2 rounded-2xl bg-white border border-slate-200 text-slate-700 font-extrabold text-sm">
@@ -191,21 +347,70 @@ export default function VerbSensePlayPage() {
         </div>
       </div>
 
+      {/* Rate slider */}
+      <div className="w-full max-w-2xl mx-auto px-4 mt-3">
+        <div className="rounded-3xl border border-slate-200 bg-white shadow-sm p-4">
+          <div className="flex items-center justify-between gap-3">
+            <div className="text-sm font-black text-slate-800">Speaking speed</div>
+            <div className="text-xs font-extrabold text-slate-500">
+              {rate.toFixed(2)}x {voicesReady ? '' : '· loading voices…'}
+            </div>
+          </div>
+          <input
+            type="range"
+            min={0.8}
+            max={1.1}
+            step={0.01}
+            value={rate}
+            onChange={(e) => {
+              setRate(parseFloat(e.target.value));
+              vibrate(5);
+            }}
+            className="w-full mt-3"
+          />
+          <div className="mt-2 flex items-center justify-between text-[11px] font-bold text-slate-400">
+            <span>Slow</span>
+            <span>Fast</span>
+          </div>
+        </div>
+      </div>
+
       {/* Card */}
       <div className="w-full max-w-2xl mx-auto px-4 mt-4">
         <div className="rounded-3xl border border-slate-200 bg-white shadow-sm p-6">
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center justify-between gap-3 flex-wrap">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-700 text-[11px] font-black uppercase tracking-wider">
               Fill the verb · {q.level}
             </div>
 
-            <button
-              onClick={() => speak(q.sentence, accent, 0.95)}
-              className="px-4 py-2 rounded-2xl bg-indigo-600 text-white font-black hover:bg-indigo-700 active:scale-95"
-              title="Listen sentence"
-            >
-              🔊 Listen
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => speak(blankSentenceForSpeech, accent, rate)}
+                className="px-4 py-2 rounded-2xl bg-indigo-600 text-white font-black hover:bg-indigo-700 active:scale-95"
+                title="Listen sentence"
+              >
+                🔊 Listen
+              </button>
+
+              <button
+                onClick={replay}
+                className="px-3 py-2 rounded-2xl bg-white border border-slate-200 text-slate-700 font-black hover:bg-slate-50 active:scale-95"
+                title="Replay last audio"
+              >
+                🔁
+              </button>
+
+              <button
+                onClick={() => {
+                  stop();
+                  vibrate(8);
+                }}
+                className="px-3 py-2 rounded-2xl bg-white border border-slate-200 text-slate-700 font-black hover:bg-slate-50 active:scale-95"
+                title="Stop speaking"
+              >
+                ⏹
+              </button>
+            </div>
           </div>
 
           <div className="mt-4 text-2xl md:text-3xl font-black text-slate-900 leading-snug">
@@ -245,7 +450,7 @@ export default function VerbSensePlayPage() {
                       onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        speak(opt, accent, 0.95);
+                        speak(opt, accent, rate);
                         vibrate(8);
                       }}
                       className={cx(
@@ -286,9 +491,7 @@ export default function VerbSensePlayPage() {
               {isCorrect ? '✅ Nice!' : '⚠️ Not quite'}
             </div>
 
-            <div className="mt-3 text-slate-800 font-semibold leading-relaxed">
-              {q.explanation}
-            </div>
+            <div className="mt-3 text-slate-800 font-semibold leading-relaxed">{q.explanation}</div>
 
             {!isCorrect && (
               <div className="mt-2 text-sm text-slate-500 font-semibold">
@@ -296,12 +499,22 @@ export default function VerbSensePlayPage() {
                 <span className="text-slate-900 font-black">{q.options[q.correct]}</span>{' '}
                 <button
                   onClick={() => {
-                    speak(q.options[q.correct], accent, 0.95);
+                    speak(q.options[q.correct], accent, rate);
                     vibrate(8);
                   }}
                   className="ml-2 inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-slate-700 font-black text-xs hover:bg-slate-100 active:scale-95"
                 >
                   🔊 Hear it
+                </button>
+                <button
+                  onClick={() => {
+                    const full = q.sentence.replace('___', q.options[q.correct]);
+                    speak(full, accent, rate);
+                    vibrate(8);
+                  }}
+                  className="ml-2 inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-slate-700 font-black text-xs hover:bg-slate-100 active:scale-95"
+                >
+                  🔊 Full sentence
                 </button>
               </div>
             )}
@@ -327,7 +540,7 @@ export default function VerbSensePlayPage() {
         </div>
 
         <div className="mt-4 text-xs text-slate-400 font-semibold">
-          Tip: Tap 🔊 to hear sentence/options. This game is made for your ears.
+          Tip: Tap 🔊 to hear sentence/options · 🔁 to replay · ⏹ to stop. This game is made for your ears.
         </div>
       </div>
     </div>
