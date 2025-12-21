@@ -4,6 +4,7 @@
 import React, { useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import ydsVocabulary from '@/data/yds_vocabulary.json';
 
 type VocabItem = { word: string; meaning: string };
@@ -17,20 +18,31 @@ const QUESTIONS_PER_TEST = 50;
 const isPremium = false; // sonra Supabase profile’dan okuyacaksın
 const FREE_TESTS_OPEN = 2; // premium değilse kaç test açık?
 
-// --- ANIMASYONLAR ---
-const headerVariants = {
+// ✅ EASING (string yok -> TS hatası yok)
+const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+// --- ANIMASYONLAR (Typesafe) ---
+const headerVariants: Variants = {
   hidden: { y: -20, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { duration: 0.55, ease: 'easeOut' } },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.55, ease: EASE_OUT },
+  },
 };
 
-const gridVariants = {
+const gridVariants: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.03 } },
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { y: 14, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.25, ease: EASE_OUT },
+  },
 };
 
 // --- HELPERS ---
@@ -166,8 +178,8 @@ export default function Yds3750Hub() {
             <div className="mt-6 p-4 rounded-2xl bg-slate-50 border border-slate-200 text-slate-700 flex items-start gap-3">
               <div className="text-xl">💡</div>
               <div className="text-sm leading-relaxed">
-                Premium olduğunda <span className="font-bold">tüm testler açılır</span> +{" "}
-                <span className="font-bold">reklamları kaldırırız</span> + ileride{" "}
+                Premium olduğunda <span className="font-bold">tüm testler açılır</span> +{' '}
+                <span className="font-bold">reklamları kaldırırız</span> + ileride{' '}
                 <span className="font-bold">istatistik / streak</span> ekleriz.
               </div>
             </div>
@@ -202,9 +214,10 @@ export default function Yds3750Hub() {
                 }
                 whileTap={locked ? {} : { scale: 0.97 }}
                 className={`group relative py-6 rounded-2xl transition-all overflow-hidden border outline-none
-                  ${locked
-                    ? 'bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed'
-                    : 'bg-white text-slate-900 border-slate-200 hover:border-blue-500 shadow-sm'
+                  ${
+                    locked
+                      ? 'bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed'
+                      : 'bg-white text-slate-900 border-slate-200 hover:border-blue-500 shadow-sm'
                   }`}
               >
                 {/* hover gradient */}
@@ -213,7 +226,11 @@ export default function Yds3750Hub() {
                 )}
 
                 <div className="relative z-10 flex flex-col items-center">
-                  <span className={`text-[10px] uppercase tracking-widest mb-1 font-bold ${locked ? 'text-slate-300' : 'text-blue-500'}`}>
+                  <span
+                    className={`text-[10px] uppercase tracking-widest mb-1 font-bold ${
+                      locked ? 'text-slate-300' : 'text-blue-500'
+                    }`}
+                  >
                     Test
                   </span>
 
@@ -240,7 +257,7 @@ export default function Yds3750Hub() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
+          transition={{ delay: 0.6, ease: EASE_OUT }}
           className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
           <button
