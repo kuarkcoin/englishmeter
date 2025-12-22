@@ -742,8 +742,30 @@ function HomeContent() {
       <div className="flex flex-col items-center justify-center px-4 pb-16 pt-4">
         <div id="all-tests" className="w-full max-w-6xl mx-auto text-center">
 
-          {/* GAME MODES (8 cards) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+          {/* GAME MODES (Şimdi 9 Kart - 3x3 Düzeni) */}
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+  
+  {/* 1. YENİ ARAÇ: YouTube to Notes */}
+  <Link
+    href="/tools/youtube-to-text"
+    className="group relative overflow-hidden bg-gradient-to-br from-red-600 to-rose-700 rounded-3xl p-6 border border-red-500 shadow-xl hover:shadow-red-500/30 transition-all duration-300 transform hover:-translate-y-1 text-left"
+  >
+    <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white rounded-full opacity-10 blur-xl"></div>
+    <div className="relative z-10">
+      <div className="inline-flex items-center gap-1 px-2 py-1 bg-white/20 rounded-full text-white text-[10px] font-bold uppercase mb-3">
+        🆕 AI Tool
+      </div>
+      <h3 className="text-2xl font-black text-white mb-1">YouTube to Notes</h3>
+      <p className="text-red-100 text-xs mb-4">Extract full text & notes from any video.</p>
+      <div className="flex items-center justify-between">
+        <div className="text-[11px] text-red-200/80 font-semibold italic">Save as Word or TXT</div>
+        <div className="w-11 h-11 bg-white rounded-full flex items-center justify-center text-red-600 font-black transition-transform duration-200 group-hover:scale-110 group-active:scale-95">
+          📄
+        </div>
+      </div>
+    </div>
+  </Link>
+            
             <a
               href="/speedrun"
               className="group relative overflow-hidden bg-gradient-to-br from-indigo-900 to-indigo-950 rounded-3xl p-6 border border-indigo-800 shadow-xl hover:shadow-yellow-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left"
