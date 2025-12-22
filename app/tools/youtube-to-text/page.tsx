@@ -1,12 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import { saveAs } from 'file-saver';
 import { Document, Packer, Paragraph, TextRun } from 'docx';
 
 type ApiResult =
   | { error: string }
-  | { text: string; title: string; thumbnail: string; author: string; langPicked?: string; trackName?: string };
+  | { text: string; title: string; thumbnail: string; author: string };
 
 export default function YoutubeToolPage() {
   const [url, setUrl] = useState('');
@@ -14,17 +13,28 @@ export default function YoutubeToolPage() {
   const [data, setData] = useState<Extract<ApiResult, { text: string }> | null>(null);
   const [copyStatus, setCopyStatus] = useState(false);
 
-  // Dosya adını işletim sistemlerine uyumlu hale getiren fonksiyon
+  // Dosya adını temizleyen fonksiyon
   const safeName = (s: string) =>
     (s || 'transcript')
       .replace(/[\\/:*?"<>|]+/g, '_')
       .replace(/\s+/g, ' ')
       .trim()
-      .slice(0, 80);
+      .slice(0, 80) || 'video_transcript';
+
+  // Ortak İndirme Fonksiyonu (Kütüphanesiz, En Güvenli Yol)
+  const triggerDownload = (blob: Blob, fileName: string) => {
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+  };
 
   const handleFetch = async () => {
     if (!url.trim()) return;
-
     setLoading(true);
     setData(null);
 
@@ -35,180 +45,115 @@ export default function YoutubeToolPage() {
         body: JSON.stringify({ videoUrl: url.trim() }),
       });
 
-      let result: ApiResult;
-      try {
-        result = await res.json();
-      } catch {
-        alert('API yanıtı JSON değil. Sunucu hatası oluşmuş olabilir.');
-        return;
-      }
+      const result = await res.json();
 
       if (!res.ok) {
-        const msg = (result as any)?.error || 'Transcript alınamadı.';
-        alert(msg);
-        return;
-      }
-
-      if ('error' in result) {
-        alert(result.error);
+        alert(result.error || 'Bir hata oluştu.');
         return;
       }
 
       setData(result);
     } catch (err) {
-      console.error(err);
-      alert('İşlem sırasında bir hata oluştu.');
+      alert('Bağlantı hatası oluştu.');
     } finally {
       setLoading(false);
     }
   };
 
-  // TXT İndirme Fonksiyonu (Native Yöntem)
   const downloadTXT = () => {
     if (!data?.text) return;
-    
-    try {
-      // Türkçe karakterlerin düzgün çıkması için BOM ekliyoruz
-      const BOM = "\uFEFF";
-      const blob = new Blob([BOM + data.text], { type: 'text/plain;charset=utf-8' });
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `${safeName(data.title)}.txt`;
-      
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    } catch (err) {
-      alert("Dosya indirilemedi.");
-    }
+    const BOM = "\uFEFF"; // Türkçe karakter desteği için
+    const blob = new Blob([BOM + data.text], { type: 'text/plain;charset=utf-8' });
+    triggerDownload(blob, `${safeName(data.title)}.txt`);
   };
 
-  // Word İndirme Fonksiyonu
   const downloadWord = async () => {
     if (!data?.text) return;
-
     try {
       const doc = new Document({
-        sections: [
-          {
-            children: data.text
-              .split('\n')
-              .map((line: string) =>
-                new Paragraph({
-                  children: [new TextRun({ text: line, size: 24 })],
-                  spacing: { after: 200 },
-                })
-              ),
-          },
-        ],
+        sections: [{
+          children: data.text.split('\n').map(line => 
+            new Paragraph({
+              children: [new TextRun({ text: line, size: 24 })],
+              spacing: { after: 200 }
+            })
+          ),
+        }],
       });
 
       const blob = await Packer.toBlob(doc);
-      saveAs(blob, `${safeName(data.title)}.docx`);
+      triggerDownload(blob, `${safeName(data.title)}.docx`);
     } catch (err) {
-      alert("Word dosyası oluşturulamadı.");
+      alert("Word dosyası hazırlanırken hata oluştu.");
     }
   };
 
   const handleCopy = async () => {
     if (!data?.text) return;
-    try {
-      await navigator.clipboard.writeText(data.text);
-      setCopyStatus(true);
-      setTimeout(() => setCopyStatus(false), 2000);
-    } catch {
-      alert('Kopyalama başarısız.');
-    }
+    await navigator.clipboard.writeText(data.text);
+    setCopyStatus(true);
+    setTimeout(() => setCopyStatus(false), 2000);
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-12 px-4">
+    <div className="min-h-screen bg-slate-50 py-12 px-4 font-sans">
       <div className="max-w-3xl mx-auto text-center">
-        <h1 className="text-4xl font-black text-slate-900 mb-2">YouTube to Text</h1>
-        <p className="text-slate-500 mb-8">Video altyazılarını saniyeler içinde metne dönüştürün.</p>
+        <h1 className="text-4xl font-black text-slate-900 mb-2 tracking-tight">YouTube to Text</h1>
+        <p className="text-slate-500 mb-8">Video altyazılarını metne dönüştürün ve indirin.</p>
 
-        {/* Giriş Alanı */}
+        {/* Arama Barı */}
         <div className="flex flex-col sm:flex-row gap-3 mb-10">
           <input
             type="text"
             placeholder="YouTube linkini buraya yapıştırın..."
-            className="flex-1 px-6 py-4 rounded-2xl border-2 border-slate-200 focus:border-blue-500 outline-none transition shadow-sm"
+            className="flex-1 px-6 py-4 rounded-2xl border-2 border-slate-200 focus:border-blue-500 outline-none transition shadow-sm bg-white"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
           />
           <button
             onClick={handleFetch}
             disabled={loading}
-            className="px-8 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition disabled:opacity-50 shadow-lg shadow-blue-200"
+            className="px-8 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition disabled:opacity-50 shadow-lg"
           >
-            {loading ? 'İşleniyor...' : 'Metni Getir'}
+            {loading ? 'Yükleniyor...' : 'Metni Getir'}
           </button>
         </div>
 
-        {/* Sonuç Alanı */}
+        {/* Sonuç Paneli */}
         {data && (
-          <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100 animate-in fade-in zoom-in duration-300">
-            <div className="relative h-56 bg-slate-200">
-              {data.thumbnail ? (
-                <img src={data.thumbnail} alt="thumbnail" className="w-full h-full object-cover" />
-              ) : (
-                <div className="w-full h-full bg-slate-300" />
-              )}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6">
-                <div className="text-left text-white">
-                  <h2 className="text-xl font-bold line-clamp-2">{data.title}</h2>
-                  {data.author && <p className="text-white/80 text-sm mt-1">Kanal: {data.author}</p>}
-                </div>
+          <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="relative h-56">
+              <img src={data.thumbnail} alt="thumb" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-6 flex flex-col justify-end text-left">
+                <h2 className="text-white text-xl font-bold line-clamp-2">{data.title}</h2>
+                <p className="text-white/70 text-sm">{data.author}</p>
               </div>
             </div>
 
             <div className="p-8">
-              {/* Aksiyon Butonları */}
-              <div className="grid grid-cols-3 gap-4">
-                <button
-                  onClick={handleCopy}
-                  className={`flex flex-col items-center p-4 rounded-2xl border transition ${
-                    copyStatus ? 'bg-green-50 border-green-200 text-green-700' : 'bg-orange-50 border-orange-100 text-orange-700 hover:bg-orange-100'
-                  }`}
-                >
+              <div className="grid grid-cols-3 gap-4 mb-8">
+                <button onClick={handleCopy} className={`flex flex-col items-center p-4 rounded-2xl border transition ${copyStatus ? 'bg-green-50 border-green-200 text-green-700' : 'bg-orange-50 border-orange-100 text-orange-700 hover:bg-orange-100'}`}>
                   <span className="text-2xl mb-1">{copyStatus ? '✅' : '📋'}</span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider">{copyStatus ? 'Kopyalandı!' : 'Kopyala'}</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest">{copyStatus ? 'Kopyalandı' : 'Kopyala'}</span>
                 </button>
-
-                <button
-                  onClick={downloadTXT}
-                  className="flex flex-col items-center p-4 bg-slate-50 border border-slate-200 rounded-2xl hover:bg-slate-100 transition text-slate-600"
-                >
+                <button onClick={downloadTXT} className="flex flex-col items-center p-4 bg-slate-50 border border-slate-200 rounded-2xl hover:bg-slate-100 transition text-slate-600">
                   <span className="text-2xl mb-1">📄</span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider">TXT İndir</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest">TXT</span>
                 </button>
-
-                <button
-                  onClick={downloadWord}
-                  className="flex flex-col items-center p-4 bg-blue-50 border border-blue-100 rounded-2xl hover:bg-blue-100 transition text-blue-700"
-                >
+                <button onClick={downloadWord} className="flex flex-col items-center p-4 bg-blue-50 border border-blue-100 rounded-2xl hover:bg-blue-100 transition text-blue-700">
                   <span className="text-2xl mb-1">📘</span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider">Word İndir</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest">Word</span>
                 </button>
               </div>
 
-              {/* Önizleme Paneli */}
-              <div className="mt-8 text-left">
-                <h4 className="text-xs font-bold text-slate-400 uppercase mb-3 tracking-[0.2em]">Metin Önizleme</h4>
-                <div className="h-64 overflow-y-auto p-5 bg-slate-50 rounded-2xl text-sm text-slate-600 leading-relaxed border border-slate-100 font-medium">
+              <div className="text-left">
+                <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-3">Metin Önizleme</h4>
+                <div className="h-64 overflow-y-auto p-6 bg-slate-50 rounded-2xl text-sm text-slate-600 leading-relaxed border border-slate-100 scrollbar-thin">
                   {data.text}
                 </div>
               </div>
             </div>
           </div>
-        )}
-
-        {!data && !loading && (
-          <p className="text-xs text-slate-400 mt-8">
-            İpucu: Altyazıların görünebilmesi için videoda CC özelliğinin açık olması gerekir.
-          </p>
         )}
       </div>
     </div>
