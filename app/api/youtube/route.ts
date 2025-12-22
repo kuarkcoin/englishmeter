@@ -11,9 +11,18 @@ export async function POST(req: Request) {
     }
 
     try {
-      // DENEME 1: Otomatik Dil Çekimi
-      let transcript = await YoutubeTranscript.fetchTranscript(videoId);
-      
+      // YouTube'u kandırmak için sahte tarayıcı bilgileri (Headers)
+      // Not: youtube-transcript kütüphanesi fetch seçeneklerini destekler
+      const transcript = await YoutubeTranscript.fetchTranscript(videoId, {
+        params: {
+          lang: 'en', // Önce İngilizceyi zorla
+        },
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          'Accept-Language': 'en-US,en;q=0.9',
+        }
+      });
+
       const fullText = transcript.map(t => t.text).join(' ');
 
       const oembedRes = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`);
@@ -26,16 +35,11 @@ export async function POST(req: Request) {
       });
 
     } catch (err: any) {
-      console.error("Detaylı Hata:", err.message);
-
-      // Çözüm Önerisi: Eğer hata "disabled" ise, bu genellikle bot engelidir.
-      if (err.message.includes('disabled')) {
-        return NextResponse.json({ 
-          error: "YouTube bu videonun verilerini botlara kapattı. Bu genellikle Vercel IP'sinin engellenmesinden kaynaklanır. Lütfen farklı bir video deneyin veya bir süre bekleyin." 
-        }, { status: 403 });
-      }
-
-      return NextResponse.json({ error: `Hata: ${err.message}` }, { status: 404 });
+      console.error("Vercel IP Engeli Hatası:", err.message);
+      
+      return NextResponse.json({ 
+        error: "Vercel Sunucu Engeli: YouTube bu sunucunun (Vercel) altyazı çekmesini engelledi. Lütfen yerel bilgisayarınızda test edin veya bir Proxy kullanmayı düşünün." 
+      }, { status: 403 });
     }
   } catch (e) {
     return NextResponse.json({ error: "Sistem hatası." }, { status: 500 });
