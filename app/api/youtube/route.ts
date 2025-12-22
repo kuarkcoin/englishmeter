@@ -1,4 +1,5 @@
-import { getSubtitles } from 'youtube-captions-scraper'; // Doğru kütüphane bu
+// @ts-ignore
+import { getSubtitles } from 'youtube-captions-scraper';
 import { NextResponse } from 'next/server';
 
 function extractYouTubeId(url: string) {
