@@ -1,6 +1,12 @@
 import { YoutubeTranscript } from 'youtube-transcript';
 import { NextResponse } from 'next/server';
 
+function extractYouTubeId(url: string) {
+  const regExp = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[1].length === 11) ? match[1] : null;
+}
+
 export async function POST(req: Request) {
   try {
     const { videoUrl } = await req.json();
@@ -11,16 +17,10 @@ export async function POST(req: Request) {
     }
 
     try {
-      // YouTube'u kandırmak için sahte tarayıcı bilgileri (Headers)
-      // Not: youtube-transcript kütüphanesi fetch seçeneklerini destekler
+      // TypeScript hatasını düzeltmek için config objesini sadeleştirdik
+      // 'params' takısını kaldırdık, doğrudan 'lang' kullanıyoruz
       const transcript = await YoutubeTranscript.fetchTranscript(videoId, {
-        params: {
-          lang: 'en', // Önce İngilizceyi zorla
-        },
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-          'Accept-Language': 'en-US,en;q=0.9',
-        }
+        lang: 'en' 
       });
 
       const fullText = transcript.map(t => t.text).join(' ');
@@ -37,17 +37,17 @@ export async function POST(req: Request) {
     } catch (err: any) {
       console.error("Vercel IP Engeli Hatası:", err.message);
       
+      // Daha açıklayıcı bir hata mesajı
+      let errorMessage = "YouTube bu videonun altyazılarını vermeyi reddetti.";
+      if (err.message.includes('Transcript is disabled')) {
+        errorMessage = "Bu videoda altyazı bulunamadı veya Vercel sunucu IP'si YouTube tarafından engellendi.";
+      }
+
       return NextResponse.json({ 
-        error: "Vercel Sunucu Engeli: YouTube bu sunucunun (Vercel) altyazı çekmesini engelledi. Lütfen yerel bilgisayarınızda test edin veya bir Proxy kullanmayı düşünün." 
+        error: `Hata: ${errorMessage}` 
       }, { status: 403 });
     }
   } catch (e) {
-    return NextResponse.json({ error: "Sistem hatası." }, { status: 500 });
+    return NextResponse.json({ error: "Sistem hatası oluştu." }, { status: 500 });
   }
-}
-
-function extractYouTubeId(url: string) {
-  const regExp = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
-  const match = url.match(regExp);
-  return (match && match[1].length === 11) ? match[1] : null;
 }
