@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Document, Packer, Paragraph, TextRun } from 'docx';
+import { saveAs } from 'file-saver'; // Kütüphaneyi içeri aktardık
 
 type ApiResult =
   | { error: string }
@@ -13,7 +14,7 @@ export default function YoutubeToolPage() {
   const [data, setData] = useState<Extract<ApiResult, { text: string }> | null>(null);
   const [copyStatus, setCopyStatus] = useState(false);
 
-  // Dosya adını temizleme (Kritik: Boş kalırsa tarayıcı indirmez)
+  // Dosya adını temizleme
   const getFileName = (title: string, ext: string) => {
     const clean = (title || 'transcript')
       .replace(/[\\/:*?"<>|]+/g, '_')
@@ -21,24 +22,6 @@ export default function YoutubeToolPage() {
       .trim()
       .slice(0, 100);
     return `${clean}.${ext}`;
-  };
-
-  // TARAYICIYI İNDİRMEYE ZORLAYAN ANA FONKSİYON
-  const forceDownload = (blob: Blob, fileName: string) => {
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.style.display = 'none';
-    link.href = url;
-    link.download = fileName;
-    
-    document.body.appendChild(link);
-    link.click(); // Programatik tıklama
-    
-    // Temizlik
-    setTimeout(() => {
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    }, 100);
   };
 
   const handleFetch = async () => {
@@ -63,19 +46,20 @@ export default function YoutubeToolPage() {
     }
   };
 
-  // TXT İndirme
+  // TXT İndirme - saveAs Kullanarak
   const downloadTXT = () => {
     if (!data?.text) return;
     try {
-      const BOM = "\uFEFF"; // Türkçe karakter koruması
+      const BOM = "\uFEFF"; // Türkçe karakter desteği
       const blob = new Blob([BOM + data.text], { type: 'text/plain;charset=utf-8' });
-      forceDownload(blob, getFileName(data.title, 'txt'));
+      saveAs(blob, getFileName(data.title, 'txt')); // forceDownload yerine saveAs
     } catch (err) {
+      console.error(err);
       alert("TXT oluşturulamadı.");
     }
   };
 
-  // Word İndirme
+  // Word İndirme - saveAs Kullanarak
   const downloadWord = async () => {
     if (!data?.text) return;
     try {
@@ -91,9 +75,10 @@ export default function YoutubeToolPage() {
       });
 
       const blob = await Packer.toBlob(doc);
-      forceDownload(blob, getFileName(data.title, 'docx'));
+      saveAs(blob, getFileName(data.title, 'docx')); // forceDownload yerine saveAs
     } catch (err) {
-      alert("Word dosyası oluşturulurken hata oluştu. 'docx' paketinin yüklü olduğundan emin olun.");
+      console.error(err);
+      alert("Word dosyası oluşturulurken hata oluştu.");
     }
   };
 
@@ -142,21 +127,21 @@ export default function YoutubeToolPage() {
             <div className="p-8">
               <div className="grid grid-cols-3 gap-4 mb-8">
                 <button onClick={handleCopy} className={`flex flex-col items-center p-4 rounded-2xl border transition ${copyStatus ? 'bg-green-100 border-green-300' : 'bg-slate-50 border-slate-200'}`}>
-                  <span className="text-2xl">📋</span>
+                  <span className="text-2xl">{copyStatus ? '✅' : '📋'}</span>
                   <span className="text-[10px] font-bold mt-1 uppercase">{copyStatus ? 'Tamam!' : 'Kopyala'}</span>
                 </button>
-                <button onClick={downloadTXT} className="flex flex-col items-center p-4 bg-slate-50 border border-slate-200 rounded-2xl hover:bg-slate-100">
+                <button onClick={downloadTXT} className="flex flex-col items-center p-4 bg-slate-50 border border-slate-200 rounded-2xl hover:bg-slate-100 transition">
                   <span className="text-2xl">📄</span>
-                  <span className="text-[10px] font-bold mt-1 uppercase">TXT</span>
+                  <span className="text-[10px] font-bold mt-1 uppercase">TXT İndir</span>
                 </button>
-                <button onClick={downloadWord} className="flex flex-col items-center p-4 bg-blue-50 border border-blue-100 rounded-2xl hover:bg-blue-100">
+                <button onClick={downloadWord} className="flex flex-col items-center p-4 bg-blue-50 border border-blue-100 rounded-2xl hover:bg-blue-100 transition">
                   <span className="text-2xl">📘</span>
-                  <span className="text-[10px] font-bold mt-1 uppercase">Word</span>
+                  <span className="text-[10px] font-bold mt-1 uppercase">Word İndir</span>
                 </button>
               </div>
 
               <div className="text-left">
-                <div className="h-64 overflow-y-auto p-4 bg-slate-50 rounded-xl text-sm leading-relaxed text-slate-600">
+                <div className="h-64 overflow-y-auto p-4 bg-slate-50 rounded-xl text-sm leading-relaxed text-slate-600 border border-slate-100">
                   {data.text}
                 </div>
               </div>
