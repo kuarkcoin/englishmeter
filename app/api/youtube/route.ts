@@ -1,66 +1,69 @@
 import { NextResponse } from 'next/server';
 
-function extractYouTubeId(url: string) {
-  const regExp = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
-  const match = url.match(regExp);
-  return (match && match[1].length === 11) ? match[1] : null;
-}
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const videoId = searchParams.get('videoId');
 
-export async function POST(req: Request) {
+  if (!videoId) {
+    return NextResponse.json({ error: 'Video ID eksik' }, { status: 400 });
+  }
+
   try {
-    const { videoUrl } = await req.json();
-    const videoId = extractYouTubeId(videoUrl);
-    
-    // ANAHTAR KONTROLÜ
-    const apiKey = process.env.NEXT_PUBLIC_RAPIDAPI_KEY;
-
-    if (!videoId) return NextResponse.json({ error: "Geçersiz YouTube linki." }, { status: 400 });
-    
-    if (!apiKey) {
-      return NextResponse.json({ 
-        error: "Yapılandırma Hatası: .env dosyasında veya Vercel'de anahtar tanımlanmamış." 
-      }, { status: 500 });
-    }
-
-    // Senin paylaştığın curl formatına tam uyumlu URL
-    const url = `https://youtube-transcriptor.p.rapidapi.com/transcript?video_id=${videoId}&lang=en`;
-    
-    const response = await fetch(url, {
-      method: 'GET',
+    const response = await fetch(`https://www.youtube.com/watch?v=${videoId}`, {
       headers: {
-        'x-rapidapi-host': 'youtube-transcriptor.p.rapidapi.com',
-        'x-rapidapi-key': apiKey
-      },
-      cache: 'no-store'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
+        'Accept-Language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7',
+      }
     });
 
-    const result = await response.json();
+    const html = await response.text();
+    
+    // 1. YouTube'un tüm video datalarını içeren objeyi bulmaya çalışıyoruz
+    const regex = /ytInitialPlayerResponse\s*=\s*({.+?});/s;
+    const match = html.match(regex);
 
-    // API'den gelen veriyi işleme
-    let fullText = "";
-    if (Array.isArray(result)) {
-      fullText = result.map((t: any) => t.text).join(' ');
-    } else if (result.transcription) {
-      fullText = result.transcription;
-    } else if (result.message) {
-      // API bir hata mesajı döndüyse (Örn: 'Video not found' veya 'Subtitles disabled')
-      return NextResponse.json({ error: `API Mesajı: ${result.message}` }, { status: 404 });
-    } else {
-      // Beklenmedik bir veri gelirse
-      return NextResponse.json({ error: "Altyazı formatı desteklenmiyor." }, { status: 404 });
+    if (!match || !match[1]) {
+      throw new Error('Video verisi ayrıştırılamadı. YouTube erişimi kısıtlamış olabilir.');
     }
 
-    // Video Bilgileri (OEmbed)
-    const oembedRes = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`);
-    const info = await oembedRes.json().catch(() => null);
+    // 2. JSON parse işlemini hata ihtimaline karşı güvenli yapıyoruz
+    let playerResponse;
+    try {
+      playerResponse = JSON.parse(match[1]);
+    } catch (e) {
+      throw new Error('JSON verisi bozuk geldi (Unexpected end of input).');
+    }
 
-    return NextResponse.json({
-      text: fullText.replace(/\s+/g, ' ').trim(),
-      title: info?.title || "YouTube Video",
-      thumbnail: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
-    });
+    const tracks = playerResponse?.captions?.playerCaptionsTracklistRenderer?.captionTracks;
+
+    if (!tracks || tracks.length === 0) {
+      throw new Error('Bu videoda altyazı bulunmuyor.');
+    }
+
+    // Türkçe öncelikli, yoksa İngilizce, yoksa ilkini al
+    const track = tracks.find((t: any) => t.languageCode === 'tr') || 
+                  tracks.find((t: any) => t.languageCode === 'en') || 
+                  tracks[0];
+
+    const transcriptRes = await fetch(track.baseUrl);
+    const xml = await transcriptRes.text();
+
+    // XML içindeki metinleri temizleme
+    const cleanText = xml
+      .match(/text="([^"]*)"/g)
+      ?.map(m => m.slice(6, -1)
+        .replace(/&amp;#39;/g, "'")
+        .replace(/&quot;/g, '"')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&amp;/g, '&')
+      ).join(' ');
+
+    return NextResponse.json({ text: cleanText || 'Metin ayrıştırılamadı.' });
 
   } catch (error: any) {
-    return NextResponse.json({ error: "Sunucu hatası: " + error.message }, { status: 500 });
+    console.error('Sistem Hatası:', error.message);
+    // Frontend'in JSON hatası almaması için her zaman JSON dönüyoruz
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
