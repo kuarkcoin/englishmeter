@@ -3,8 +3,6 @@
 import { useEffect, useState, useMemo, useCallback } from 'react';
 import Link from 'next/link';
 import DOMPurify from 'dompurify';
-// Optional (if you want router instead of window.location.href):
-// import { useRouter } from 'next/navigation';
 
 // --- TYPES ---
 interface Choice {
@@ -36,6 +34,8 @@ interface QuizData {
   questions: Question[];
   error?: string;
 }
+
+type Mode = 'EXAM' | 'PRACTICE';
 
 // --- HELPER: FORMAT TIME MM:SS ---
 function formatTime(seconds: number): string {
@@ -101,19 +101,38 @@ function formatText(text: string) {
 }
 
 export default function Quiz({ params }: { params: { id: string } }) {
-  // Optional router:
-  // const router = useRouter();
-
   const [data, setData] = useState<QuizData | null>(null);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
 
+  // ✅ NEW (1/3): Mode + Practice behavior
+  const [mode, setMode] = useState<Mode>('EXAM');
+  const [autoNextPractice, setAutoNextPractice] = useState(true);
+
+  // ✅ NEW (2/3): Fun (XP + Streak)
+  const [xp, setXp] = useState(0);
+  const [streak, setStreak] = useState(0);
+  const [toast, setToast] = useState<string | null>(null);
+
+  // ✅ NEW (3/3): Flag system
+  const [flags, setFlags] = useState<Record<string, boolean>>({});
+
+  // ✅ Practice feedback per question
+  const [feedback, setFeedback] = useState<Record<string, { selectedId: string; isCorrect: boolean }>>(
+    {}
+  );
+
   // ✅ Helper: Scroll to question
   const scrollToQuestion = useCallback((index: number) => {
     const el = document.getElementById(`q-${index}`);
     el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, []);
+
+  const showToast = useCallback((msg: string) => {
+    setToast(msg);
+    window.setTimeout(() => setToast(null), 900);
   }, []);
 
   // 1) LOAD DATA
@@ -138,9 +157,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
       const qCount = parsed.questions?.length || 0;
 
       // ✅ Duration minutes -> seconds
-      // duration yoksa fallback: soru başı 30sn
       let seconds = 0;
-
       if (parsed.test?.duration && Number.isFinite(parsed.test.duration) && parsed.test.duration! > 0) {
         seconds = Math.round(parsed.test.duration! * 60);
       } else {
@@ -148,6 +165,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
       }
 
       setTimeLeft(seconds);
+
+      // optional: restore mode preference
+      const savedMode = localStorage.getItem('em_quiz_mode');
+      if (savedMode === 'PRACTICE' || savedMode === 'EXAM') setMode(savedMode);
     } catch {
       setData({
         attemptId: '',
@@ -158,11 +179,22 @@ export default function Quiz({ params }: { params: { id: string } }) {
     }
   }, [params.id]);
 
-  // 3) SUBMIT & SAVE MISTAKES (useCallback to avoid stale closure)
+  // 3) SUBMIT & SAVE MISTAKES
   const handleSubmit = useCallback(() => {
     if (!data) return;
 
-    // ✅ Unanswered kontrolü
+    // ✅ Flag warning (3/3)
+    const flaggedCount = data.questions.filter((q) => flags[q.id]).length;
+    if (flaggedCount > 0) {
+      const ok = window.confirm(`🚩 You have ${flaggedCount} flagged question(s). Finish anyway?`);
+      if (!ok) {
+        const firstFlagIndex = data.questions.findIndex((q) => flags[q.id]);
+        if (firstFlagIndex >= 0) scrollToQuestion(firstFlagIndex);
+        return;
+      }
+    }
+
+    // ✅ Unanswered kontrolü (Exam + Practice ikisinde de)
     const unanswered = data.questions.filter((q) => !answers[q.id]);
     if (unanswered.length > 0) {
       const firstMissingIndex = data.questions.findIndex((q) => !answers[q.id]);
@@ -191,13 +223,11 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
       if (isCorrect) correctCount++;
 
-      // ✅ ÇAKIŞMA ÇÖZÜMÜ: testSlug/attemptId + questionId ile unique key
       const scope = data.testSlug || data.attemptId || 'test';
       const mistakeKey = `${scope}::${q.id}`;
 
       if (userAnswerId) {
         if (isCorrect) {
-          // doğruysa o soruyu hatalardan sil
           mistakeList = mistakeList.filter((m) => m?.key !== mistakeKey);
         } else {
           const alreadyExists = mistakeList.find((m) => m?.key === mistakeKey);
@@ -223,7 +253,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
     setShowResult(true);
     window.scrollTo(0, 0);
     sessionStorage.removeItem('em_attempt_payload');
-  }, [data, answers, scrollToQuestion]);
+  }, [data, answers, scrollToQuestion, flags]);
 
   // 2) TIMER (deps fixed)
   useEffect(() => {
@@ -238,19 +268,20 @@ export default function Quiz({ params }: { params: { id: string } }) {
     return () => clearInterval(timerId);
   }, [timeLeft, showResult, handleSubmit]);
 
-  // 5) OPTIONAL: 10 seconds warning
+  // Optional: 10 seconds warning
   useEffect(() => {
     if (timeLeft === 10 && !showResult) {
-      alert('⏳ 10 seconds left!');
+      // keep it light
+      showToast('⏳ 10 seconds left!');
     }
-  }, [timeLeft, showResult]);
+  }, [timeLeft, showResult, showToast]);
 
   if (!data) return <div className="p-10 text-center animate-pulse">Loading...</div>;
   if (data.error) return <div className="p-10 text-red-600">{data.error}</div>;
 
   const { questions, test } = data;
 
-  // ✅ Progress metrics (more robust)
+  // Progress metrics
   const totalQ = questions.length || 1;
   const answeredCount = questions.filter((q) => !!answers[q.id]).length;
   const progress = Math.round((answeredCount / totalQ) * 100);
@@ -262,13 +293,11 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
     return (
       <div className="max-w-4xl mx-auto px-4 py-12 space-y-8">
-        {/* SCORE CARD */}
         <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-200 text-center relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-purple-600" />
           <h1 className="text-3xl font-black text-slate-800 mb-2">Test Completed!</h1>
 
           <div className="flex justify-center items-center gap-4 sm:gap-8 mb-8 mt-6">
-            {/* CORRECT */}
             <div className="flex flex-col">
               <span className="text-4xl font-black text-blue-600">{score}</span>
               <span className="text-xs font-bold text-slate-400 uppercase">Correct</span>
@@ -276,7 +305,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
             <div className="w-px h-12 bg-slate-200" />
 
-            {/* TOTAL */}
             <div className="flex flex-col">
               <span className="text-4xl font-black text-slate-700">{questions.length}</span>
               <span className="text-xs font-bold text-slate-400 uppercase">Total</span>
@@ -284,7 +312,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
             <div className="w-px h-12 bg-slate-200" />
 
-            {/* SCORE */}
             <div className="flex flex-col">
               <span className={`text-4xl font-black ${percentage >= 70 ? 'text-green-500' : 'text-orange-500'}`}>
                 {percentage}%
@@ -293,41 +320,28 @@ export default function Quiz({ params }: { params: { id: string } }) {
             </div>
           </div>
 
+          {/* Fun stats */}
+          <div className="flex justify-center gap-3 mb-8">
+            <div className="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-slate-700">
+              ⭐ XP: <span className="text-blue-700">{xp}</span>
+            </div>
+            <div className="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-slate-700">
+              🔥 Best Streak: <span className="text-orange-600">{streak}</span>
+            </div>
+          </div>
+
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            {/* --- RESTART: NEW QUESTIONS --- */}
             {data.testSlug && (
               <button
-                onClick={() => {
-                  // Option A: old way
-                  window.location.href = `/?restart=${data.testSlug}`;
-
-                  // Option B: Next router way
-                  // router.push(`/?restart=${data.testSlug}`);
-                }}
+                onClick={() => (window.location.href = `/?restart=${data.testSlug}`)}
                 className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center gap-2"
+                type="button"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
-                  />
-                </svg>
                 New Test (New Questions)
               </button>
             )}
 
-            <a
-              href="/"
-              className="px-6 py-3 bg-slate-100 text-slate-700 font-bold rounded-xl hover:bg-slate-200 transition-colors"
-            >
+            <a href="/" className="px-6 py-3 bg-slate-100 text-slate-700 font-bold rounded-xl hover:bg-slate-200 transition-colors">
               Back to Home
             </a>
 
@@ -342,7 +356,9 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
         {/* DETAILED ANALYSIS */}
         <div className="space-y-6">
-          <h2 className="text-xl font-bold text-slate-700 ml-2 border-l-4 border-blue-500 pl-3">Detailed Analysis</h2>
+          <h2 className="text-xl font-bold text-slate-700 ml-2 border-l-4 border-blue-500 pl-3">
+            Detailed Analysis
+          </h2>
 
           {questions.map((q, idx) => {
             const userAnswerId = answers[q.id];
@@ -446,25 +462,123 @@ export default function Quiz({ params }: { params: { id: string } }) {
     );
   }
 
+  // --- Interaction helpers for Practice Mode ---
+  const handlePick = (q: Question, choiceId: string, qIndex: number) => {
+    // already locked in practice?
+    if (mode === 'PRACTICE' && feedback[q.id]) return;
+
+    setAnswers((prev) => ({ ...prev, [q.id]: choiceId }));
+
+    if (mode === 'PRACTICE') {
+      const correctId = getCorrectChoiceId(q);
+      const isCorrect = idsEqual(choiceId, correctId);
+
+      setFeedback((prev) => ({ ...prev, [q.id]: { selectedId: choiceId, isCorrect } }));
+
+      if (isCorrect) {
+        setXp((x) => x + 10);
+        setStreak((s) => s + 1);
+        showToast(`✅ Correct! +10 XP  🔥 ${streak + 1}`);
+      } else {
+        setStreak(0);
+        showToast(`❌ Wrong. Streak reset`);
+      }
+
+      // Auto-next
+      if (autoNextPractice) {
+        window.setTimeout(() => {
+          scrollToQuestion(Math.min(qIndex + 1, questions.length - 1));
+        }, 420);
+      }
+    }
+  };
+
+  const toggleFlag = (qid: string) => {
+    setFlags((prev) => ({ ...prev, [qid]: !prev[qid] }));
+  };
+
   // --- QUIZ SOLVING SCREEN ---
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 space-y-6">
+      {/* Toast */}
+      {toast && (
+        <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-xl bg-slate-900 text-white text-sm font-bold shadow-lg">
+          {toast}
+        </div>
+      )}
+
       {/* Top Bar */}
       <div className="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-slate-200 sticky top-4 z-20 backdrop-blur-sm bg-white/90">
         <div className="text-sm font-semibold text-slate-700 truncate max-w-[220px]">{test?.title || 'Test'}</div>
 
-        <div
-          className={`text-lg font-bold px-4 py-2 rounded-lg border transition-colors ${
-            timeLeft !== null && timeLeft < 60
-              ? 'text-red-600 bg-red-50 border-red-200 animate-pulse'
-              : 'text-blue-600 bg-blue-50 border-blue-200'
-          }`}
-        >
-          {timeLeft !== null ? formatTime(timeLeft) : '∞'}
+        <div className="flex items-center gap-2">
+          {/* Mode toggle */}
+          <div className="hidden sm:flex items-center gap-1 px-2 py-1 rounded-xl border border-slate-200 bg-slate-50">
+            <button
+              type="button"
+              onClick={() => {
+                setMode('EXAM');
+                localStorage.setItem('em_quiz_mode', 'EXAM');
+              }}
+              className={`px-3 py-1 rounded-lg text-xs font-black ${
+                mode === 'EXAM' ? 'bg-slate-900 text-white' : 'text-slate-600 hover:bg-white'
+              }`}
+            >
+              EXAM
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setMode('PRACTICE');
+                localStorage.setItem('em_quiz_mode', 'PRACTICE');
+              }}
+              className={`px-3 py-1 rounded-lg text-xs font-black ${
+                mode === 'PRACTICE' ? 'bg-slate-900 text-white' : 'text-slate-600 hover:bg-white'
+              }`}
+            >
+              PRACTICE
+            </button>
+          </div>
+
+          {/* XP/Streak */}
+          <div className="hidden sm:flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200 bg-white">
+            <span className="text-xs font-black text-slate-700">⭐ {xp}</span>
+            <span className="text-xs font-black text-orange-600">🔥 {streak}</span>
+          </div>
+
+          {/* Timer */}
+          <div
+            className={`text-lg font-bold px-4 py-2 rounded-lg border transition-colors ${
+              timeLeft !== null && timeLeft < 60
+                ? 'text-red-600 bg-red-50 border-red-200 animate-pulse'
+                : 'text-blue-600 bg-blue-50 border-blue-200'
+            }`}
+          >
+            {timeLeft !== null ? formatTime(timeLeft) : '∞'}
+          </div>
         </div>
       </div>
 
-      {/* ✅ Progress Bar */}
+      {/* Practice options */}
+      {mode === 'PRACTICE' && (
+        <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex items-center justify-between">
+          <div>
+            <div className="text-sm font-black text-slate-800">Practice Mode</div>
+            <div className="text-xs text-slate-500">Instant feedback + explanation</div>
+          </div>
+
+          <label className="flex items-center gap-2 text-xs font-bold text-slate-700">
+            <input
+              type="checkbox"
+              checked={autoNextPractice}
+              onChange={(e) => setAutoNextPractice(e.target.checked)}
+            />
+            Auto next
+          </label>
+        </div>
+      )}
+
+      {/* Progress Bar */}
       <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
         <div className="flex items-center justify-between text-sm font-semibold text-slate-600 mb-2">
           <span>
@@ -477,23 +591,28 @@ export default function Quiz({ params }: { params: { id: string } }) {
         </div>
       </div>
 
-      {/* ✅ Question Navigator */}
+      {/* Question Navigator (with flags) */}
       <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
         <div className="flex items-center justify-between mb-3">
           <div className="text-sm font-black text-slate-800">Question Navigator</div>
-          <div className="text-xs text-slate-500">Blue = answered · White = empty</div>
+          <div className="text-xs text-slate-500">Blue = answered · Yellow = flagged</div>
         </div>
 
         <div className="grid grid-cols-10 gap-2">
           {questions.map((q, i) => {
             const done = !!answers[q.id];
+            const flagged = !!flags[q.id];
+
+            let cls = 'bg-white text-slate-500 border-slate-200 hover:border-blue-400';
+            if (flagged) cls = 'bg-amber-400 text-white border-amber-400';
+            else if (done) cls = 'bg-blue-600 text-white border-blue-600';
+
             return (
               <button
                 key={q.id}
                 onClick={() => scrollToQuestion(i)}
-                className={`h-8 rounded-lg text-xs font-black border transition active:scale-[0.98]
-                  ${done ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-500 border-slate-200 hover:border-blue-400'}`}
-                title={done ? 'Answered' : 'Not answered'}
+                className={`h-8 rounded-lg text-xs font-black border transition active:scale-[0.98] ${cls}`}
+                title={flagged ? 'Flagged' : done ? 'Answered' : 'Not answered'}
                 type="button"
               >
                 {i + 1}
@@ -505,80 +624,152 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
       {/* Questions Loop */}
       <div className="space-y-8">
-        {questions.map((q, idx) => (
-          <div
-            id={`q-${idx}`}
-            key={q.id}
-            className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 scroll-mt-28"
-          >
-            <div className="flex items-center justify-between mb-3">
-              <div className="text-sm text-slate-400 font-bold uppercase tracking-wide">Question {idx + 1}</div>
-              {!answers[q.id] && (
-                <span className="text-[11px] font-black px-2 py-1 bg-slate-100 text-slate-500 rounded-lg border border-slate-200">
-                  EMPTY
-                </span>
-              )}
-            </div>
+        {questions.map((q, idx) => {
+          const fb = feedback[q.id];
+          const correctId = getCorrectChoiceId(q);
 
-            <div className="text-xl font-medium text-slate-800 mb-6 leading-loose">{formatText(q.prompt)}</div>
+          return (
+            <div
+              id={`q-${idx}`}
+              key={q.id}
+              className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 scroll-mt-28"
+            >
+              <div className="flex items-center justify-between mb-3">
+                <div className="text-sm text-slate-400 font-bold uppercase tracking-wide">Question {idx + 1}</div>
 
-            <div className="grid gap-3">
-              {(q.choices || []).map((c) => (
-                <label
-                  key={c.id}
-                  className={`group cursor-pointer flex items-center p-4 rounded-xl border-2 transition-all duration-200 active:scale-[0.99]
-                    ${answers[q.id] === c.id ? 'border-blue-600 bg-blue-50 shadow-md' : 'border-slate-100 hover:border-blue-300 hover:bg-slate-50'}`}
-                >
-                  <div
-                    className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 transition-colors ${
-                      answers[q.id] === c.id ? 'border-blue-600' : 'border-slate-300 group-hover:border-blue-400'
+                <div className="flex items-center gap-2">
+                  {/* Flag */}
+                  <button
+                    type="button"
+                    onClick={() => toggleFlag(q.id)}
+                    className={`text-xs font-black px-2 py-1 rounded-lg border transition ${
+                      flags[q.id]
+                        ? 'bg-amber-100 text-amber-800 border-amber-200'
+                        : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
                     }`}
+                    title="Flag this question"
                   >
-                    {answers[q.id] === c.id && <div className="w-2.5 h-2.5 rounded-full bg-blue-600" />}
+                    🚩
+                  </button>
+
+                  {!answers[q.id] && (
+                    <span className="text-[11px] font-black px-2 py-1 bg-slate-100 text-slate-500 rounded-lg border border-slate-200">
+                      EMPTY
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <div className="text-xl font-medium text-slate-800 mb-6 leading-loose">{formatText(q.prompt)}</div>
+
+              <div className="grid gap-3">
+                {(q.choices || []).map((c) => {
+                  const selected = answers[q.id] === c.id;
+
+                  // Practice styling after answered
+                  let wrap =
+                    selected
+                      ? 'border-blue-600 bg-blue-50 shadow-md'
+                      : 'border-slate-100 hover:border-blue-300 hover:bg-slate-50';
+
+                  if (mode === 'PRACTICE' && fb) {
+                    const isCorrectChoice = idsEqual(c.id, correctId);
+                    const isSelectedWrong = selected && !fb.isCorrect;
+
+                    if (isCorrectChoice) wrap = 'border-green-600 bg-green-50 shadow-md';
+                    if (isSelectedWrong) wrap = 'border-red-600 bg-red-50 shadow-md';
+                    // lock others a bit
+                    if (!selected && !isCorrectChoice) wrap = 'border-slate-100 bg-white opacity-80';
+                  }
+
+                  return (
+                    <label
+                      key={c.id}
+                      className={`group cursor-pointer flex items-center p-4 rounded-xl border-2 transition-all duration-200 active:scale-[0.99] ${wrap}`}
+                    >
+                      <div
+                        className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 transition-colors ${
+                          selected ? 'border-blue-600' : 'border-slate-300 group-hover:border-blue-400'
+                        }`}
+                      >
+                        {selected && <div className="w-2.5 h-2.5 rounded-full bg-blue-600" />}
+                      </div>
+
+                      <input
+                        type="radio"
+                        name={q.id}
+                        className="hidden"
+                        checked={selected}
+                        onChange={() => handlePick(q, c.id, idx)}
+                        disabled={mode === 'PRACTICE' && !!fb}
+                      />
+
+                      <span className={`text-lg ${selected ? 'text-blue-700 font-medium' : 'text-slate-600'}`}>
+                        <SafeHTML html={c.text} />
+                      </span>
+                    </label>
+                  );
+                })}
+              </div>
+
+              {/* Practice feedback box */}
+              {mode === 'PRACTICE' && feedback[q.id] && (
+                <div
+                  className={`mt-5 p-4 rounded-xl border text-sm font-semibold ${
+                    feedback[q.id].isCorrect
+                      ? 'bg-green-50 border-green-200 text-green-800'
+                      : 'bg-red-50 border-red-200 text-red-800'
+                  }`}
+                >
+                  {feedback[q.id].isCorrect ? '✅ Correct!' : `❌ Wrong. Correct answer: ${correctId ?? '-'}`}
+                </div>
+              )}
+
+              {/* Explanation (Practice: show after answered; Exam: keep hidden here) */}
+              {mode === 'PRACTICE' && feedback[q.id] && q.explanation && (
+                <div className="mt-4 p-4 bg-blue-50 rounded-xl border border-blue-100 text-sm text-blue-800 flex gap-3 items-start">
+                  <span className="text-xl">💡</span>
+                  <div>
+                    <span className="font-bold block mb-1 text-blue-900">Explanation:</span>
+                    <span className="leading-relaxed opacity-90">
+                      <SafeHTML html={q.explanation} />
+                    </span>
                   </div>
+                </div>
+              )}
 
-                  <input
-                    type="radio"
-                    name={q.id}
-                    className="hidden"
-                    checked={answers[q.id] === c.id}
-                    onChange={() => setAnswers((prev) => ({ ...prev, [q.id]: c.id }))}
-                  />
+              {/* Quick actions */}
+              <div className="mt-5 flex items-center justify-between">
+                <button
+                  onClick={() => {
+                    setAnswers((prev) => {
+                      const copy = { ...prev };
+                      delete copy[q.id];
+                      return copy;
+                    });
+                    setFeedback((prev) => {
+                      const copy = { ...prev };
+                      delete copy[q.id];
+                      return copy;
+                    });
+                  }}
+                  className="text-xs font-bold px-3 py-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50"
+                  type="button"
+                >
+                  Clear answer
+                </button>
 
-                  <span className={`text-lg ${answers[q.id] === c.id ? 'text-blue-700 font-medium' : 'text-slate-600'}`}>
-                    <SafeHTML html={c.text} />
-                  </span>
-                </label>
-              ))}
+                <button
+                  onClick={() => scrollToQuestion(Math.min(idx + 1, questions.length - 1))}
+                  className="text-xs font-black px-3 py-2 rounded-lg bg-slate-900 text-white hover:bg-slate-800"
+                  type="button"
+                >
+                  Next →
+                </button>
+              </div>
             </div>
-
-            {/* Quick actions */}
-            <div className="mt-5 flex items-center justify-between">
-              <button
-                onClick={() => {
-                  // clear answer
-                  setAnswers((prev) => {
-                    const copy = { ...prev };
-                    delete copy[q.id];
-                    return copy;
-                  });
-                }}
-                className="text-xs font-bold px-3 py-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50"
-                type="button"
-              >
-                Clear answer
-              </button>
-
-              <button
-                onClick={() => scrollToQuestion(Math.min(idx + 1, questions.length - 1))}
-                className="text-xs font-black px-3 py-2 rounded-lg bg-slate-900 text-white hover:bg-slate-800"
-                type="button"
-              >
-                Next →
-              </button>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="pt-2 pb-12">
