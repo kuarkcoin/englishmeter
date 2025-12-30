@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useMemo, useCallback } from 'react';
+import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import Link from 'next/link';
 import DOMPurify from 'dompurify';
 
@@ -34,8 +34,6 @@ interface QuizData {
   questions: Question[];
   error?: string;
 }
-
-type Mode = 'EXAM' | 'PRACTICE';
 
 // --- HELPER: FORMAT TIME MM:SS ---
 function formatTime(seconds: number): string {
@@ -100,6 +98,82 @@ function formatText(text: string) {
   });
 }
 
+/** Confetti burst:
+ *  - 5 streak: small
+ *  - 10 streak: big
+ */
+function MiniConfetti({ burst }: { burst: { key: number; level: 'small' | 'big' } | null }) {
+  const intensity = burst?.level === 'big' ? 60 : 28;
+  const size = burst?.level === 'big' ? 10 : 8;
+
+  const pieces = useMemo(() => {
+    const k = burst?.key ?? 0;
+    if (!k) return [];
+    return Array.from({ length: intensity }).map((_, i) => ({
+      id: `${k}-${i}`,
+      left: Math.random() * 100,
+      drift: (Math.random() * 160 - 80).toFixed(1),
+      delay: (Math.random() * 0.12).toFixed(2),
+      dur: (burst?.level === 'big' ? 1.2 : 0.9 + Math.random() * 0.4).toFixed(2),
+      rot: Math.floor(Math.random() * 360),
+      hue: Math.floor(Math.random() * 360),
+      w: size,
+      h: burst?.level === 'big' ? size * 1.4 : size * 1.3,
+    }));
+  }, [burst?.key, burst?.level, intensity, size]);
+
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    if (!burst?.key) return;
+    setShow(true);
+    const t = window.setTimeout(() => setShow(false), burst.level === 'big' ? 1400 : 1100);
+    return () => window.clearTimeout(t);
+  }, [burst?.key, burst?.level]);
+
+  if (!show || pieces.length === 0) return null;
+
+  return (
+    <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden">
+      {pieces.map((p) => (
+        <span
+          key={p.id}
+          className="absolute top-[-14px] rounded-sm opacity-95 confetti-piece"
+          style={
+            {
+              left: `${p.left}%`,
+              width: `${p.w}px`,
+              height: `${p.h}px`,
+              background: `hsl(${p.hue} 85% 55%)`,
+              transform: `rotate(${p.rot}deg)`,
+              '--dx': `${p.drift}px`,
+              '--delay': `${p.delay}s`,
+              '--dur': `${p.dur}s`,
+              '--rot': `${p.rot}deg`,
+            } as React.CSSProperties
+          }
+        />
+      ))}
+
+      <style jsx>{`
+        .confetti-piece {
+          animation: confetti-fall var(--dur) ease-out var(--delay) forwards;
+          will-change: transform, opacity;
+        }
+        @keyframes confetti-fall {
+          0% {
+            transform: translate3d(0, 0, 0) rotate(var(--rot));
+          }
+          100% {
+            transform: translate3d(var(--dx), 105vh, 0) rotate(calc(var(--rot) + 560deg));
+            opacity: 0;
+          }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 export default function Quiz({ params }: { params: { id: string } }) {
   const [data, setData] = useState<QuizData | null>(null);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -107,32 +181,18 @@ export default function Quiz({ params }: { params: { id: string } }) {
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
 
-  // ✅ NEW (1/3): Mode + Practice behavior
-  const [mode, setMode] = useState<Mode>('EXAM');
-  const [autoNextPractice, setAutoNextPractice] = useState(true);
+  // ✅ PRACTICE MODE STATE
+  const [mode, setMode] = useState<'exam' | 'practice'>('exam');
+  const [feedback, setFeedback] = useState<{ questionId: string; isCorrect: boolean } | null>(null);
 
-  // ✅ NEW (2/3): Fun (XP + Streak)
-  const [xp, setXp] = useState(0);
+  // ✅ STREAK + CONFETTI
   const [streak, setStreak] = useState(0);
-  const [toast, setToast] = useState<string | null>(null);
-
-  // ✅ NEW (3/3): Flag system
-  const [flags, setFlags] = useState<Record<string, boolean>>({});
-
-  // ✅ Practice feedback per question
-  const [feedback, setFeedback] = useState<Record<string, { selectedId: string; isCorrect: boolean }>>(
-    {}
-  );
+  const [burst, setBurst] = useState<{ key: number; level: 'small' | 'big' } | null>(null);
 
   // ✅ Helper: Scroll to question
   const scrollToQuestion = useCallback((index: number) => {
     const el = document.getElementById(`q-${index}`);
     el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, []);
-
-  const showToast = useCallback((msg: string) => {
-    setToast(msg);
-    window.setTimeout(() => setToast(null), 900);
   }, []);
 
   // 1) LOAD DATA
@@ -157,18 +217,14 @@ export default function Quiz({ params }: { params: { id: string } }) {
       const qCount = parsed.questions?.length || 0;
 
       // ✅ Duration minutes -> seconds
+      // duration yoksa fallback: soru başı 30sn
       let seconds = 0;
       if (parsed.test?.duration && Number.isFinite(parsed.test.duration) && parsed.test.duration! > 0) {
         seconds = Math.round(parsed.test.duration! * 60);
       } else {
         seconds = qCount > 0 ? qCount * 30 : 25 * 60;
       }
-
       setTimeLeft(seconds);
-
-      // optional: restore mode preference
-      const savedMode = localStorage.getItem('em_quiz_mode');
-      if (savedMode === 'PRACTICE' || savedMode === 'EXAM') setMode(savedMode);
     } catch {
       setData({
         attemptId: '',
@@ -183,30 +239,20 @@ export default function Quiz({ params }: { params: { id: string } }) {
   const handleSubmit = useCallback(() => {
     if (!data) return;
 
-    // ✅ Flag warning (3/3)
-    const flaggedCount = data.questions.filter((q) => flags[q.id]).length;
-    if (flaggedCount > 0) {
-      const ok = window.confirm(`🚩 You have ${flaggedCount} flagged question(s). Finish anyway?`);
-      if (!ok) {
-        const firstFlagIndex = data.questions.findIndex((q) => flags[q.id]);
-        if (firstFlagIndex >= 0) scrollToQuestion(firstFlagIndex);
+    // ✅ Practice modda "bitirme" yine çalışsın ama sınav hissi için unanswered kontrolünü exam modda yap
+    if (mode === 'exam') {
+      const unanswered = data.questions.filter((q) => !answers[q.id]);
+      if (unanswered.length > 0) {
+        const firstMissingIndex = data.questions.findIndex((q) => !answers[q.id]);
+        alert(`${unanswered.length} unanswered question(s). Please review before finishing.`);
+        scrollToQuestion(firstMissingIndex);
         return;
       }
-    }
-
-    // ✅ Unanswered kontrolü (Exam + Practice ikisinde de)
-    const unanswered = data.questions.filter((q) => !answers[q.id]);
-    if (unanswered.length > 0) {
-      const firstMissingIndex = data.questions.findIndex((q) => !answers[q.id]);
-      alert(`${unanswered.length} unanswered question(s). Please review before finishing.`);
-      scrollToQuestion(firstMissingIndex);
-      return;
     }
 
     const { questions } = data;
     let correctCount = 0;
 
-    // Mevcut hataları çek (bozuk JSON'a karşı korumalı)
     const existingMistakesRaw = localStorage.getItem('my_mistakes');
     let mistakeList: any[] = [];
     try {
@@ -220,9 +266,9 @@ export default function Quiz({ params }: { params: { id: string } }) {
       const userAnswerId = answers[q.id];
       const correctChoiceId = getCorrectChoiceId(q);
       const isCorrect = idsEqual(userAnswerId, correctChoiceId);
-
       if (isCorrect) correctCount++;
 
+      // ✅ unique key
       const scope = data.testSlug || data.attemptId || 'test';
       const mistakeKey = `${scope}::${q.id}`;
 
@@ -253,9 +299,9 @@ export default function Quiz({ params }: { params: { id: string } }) {
     setShowResult(true);
     window.scrollTo(0, 0);
     sessionStorage.removeItem('em_attempt_payload');
-  }, [data, answers, scrollToQuestion, flags]);
+  }, [data, answers, scrollToQuestion, mode]);
 
-  // 2) TIMER (deps fixed)
+  // 2) TIMER
   useEffect(() => {
     if (timeLeft === null || showResult) return;
     if (timeLeft <= 0) {
@@ -268,20 +314,27 @@ export default function Quiz({ params }: { params: { id: string } }) {
     return () => clearInterval(timerId);
   }, [timeLeft, showResult, handleSubmit]);
 
-  // Optional: 10 seconds warning
+  // 5) OPTIONAL: 10 seconds warning (EXAM only)
   useEffect(() => {
+    if (mode !== 'exam') return;
     if (timeLeft === 10 && !showResult) {
-      // keep it light
-      showToast('⏳ 10 seconds left!');
+      alert('⏳ 10 seconds left!');
     }
-  }, [timeLeft, showResult, showToast]);
+  }, [timeLeft, showResult, mode]);
+
+  // Practice/Exam mode change: feedback + streak temizle (temiz başlangıç hissi)
+  useEffect(() => {
+    setFeedback(null);
+    setStreak(0);
+    setBurst(null);
+  }, [mode]);
 
   if (!data) return <div className="p-10 text-center animate-pulse">Loading...</div>;
   if (data.error) return <div className="p-10 text-red-600">{data.error}</div>;
 
   const { questions, test } = data;
 
-  // Progress metrics
+  // ✅ Progress metrics
   const totalQ = questions.length || 1;
   const answeredCount = questions.filter((q) => !!answers[q.id]).length;
   const progress = Math.round((answeredCount / totalQ) * 100);
@@ -320,16 +373,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
             </div>
           </div>
 
-          {/* Fun stats */}
-          <div className="flex justify-center gap-3 mb-8">
-            <div className="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-slate-700">
-              ⭐ XP: <span className="text-blue-700">{xp}</span>
-            </div>
-            <div className="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-slate-700">
-              🔥 Best Streak: <span className="text-orange-600">{streak}</span>
-            </div>
-          </div>
-
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             {data.testSlug && (
               <button
@@ -341,7 +384,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
               </button>
             )}
 
-            <a href="/" className="px-6 py-3 bg-slate-100 text-slate-700 font-bold rounded-xl hover:bg-slate-200 transition-colors">
+            <a
+              href="/"
+              className="px-6 py-3 bg-slate-100 text-slate-700 font-bold rounded-xl hover:bg-slate-200 transition-colors"
+            >
               Back to Home
             </a>
 
@@ -354,11 +400,8 @@ export default function Quiz({ params }: { params: { id: string } }) {
           </div>
         </div>
 
-        {/* DETAILED ANALYSIS */}
         <div className="space-y-6">
-          <h2 className="text-xl font-bold text-slate-700 ml-2 border-l-4 border-blue-500 pl-3">
-            Detailed Analysis
-          </h2>
+          <h2 className="text-xl font-bold text-slate-700 ml-2 border-l-4 border-blue-500 pl-3">Detailed Analysis</h2>
 
           {questions.map((q, idx) => {
             const userAnswerId = answers[q.id];
@@ -400,9 +443,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       )}
                     </div>
 
-                    <div className="text-lg font-medium text-slate-800 mb-5 leading-loose">
-                      {formatText(q.prompt)}
-                    </div>
+                    <div className="text-lg font-medium text-slate-800 mb-5 leading-loose">{formatText(q.prompt)}</div>
 
                     <div className="grid gap-2">
                       {(q.choices || []).map((c) => {
@@ -462,123 +503,62 @@ export default function Quiz({ params }: { params: { id: string } }) {
     );
   }
 
-  // --- Interaction helpers for Practice Mode ---
-  const handlePick = (q: Question, choiceId: string, qIndex: number) => {
-    // already locked in practice?
-    if (mode === 'PRACTICE' && feedback[q.id]) return;
-
-    setAnswers((prev) => ({ ...prev, [q.id]: choiceId }));
-
-    if (mode === 'PRACTICE') {
-      const correctId = getCorrectChoiceId(q);
-      const isCorrect = idsEqual(choiceId, correctId);
-
-      setFeedback((prev) => ({ ...prev, [q.id]: { selectedId: choiceId, isCorrect } }));
-
-      if (isCorrect) {
-        setXp((x) => x + 10);
-        setStreak((s) => s + 1);
-        showToast(`✅ Correct! +10 XP  🔥 ${streak + 1}`);
-      } else {
-        setStreak(0);
-        showToast(`❌ Wrong. Streak reset`);
-      }
-
-      // Auto-next
-      if (autoNextPractice) {
-        window.setTimeout(() => {
-          scrollToQuestion(Math.min(qIndex + 1, questions.length - 1));
-        }, 420);
-      }
-    }
-  };
-
-  const toggleFlag = (qid: string) => {
-    setFlags((prev) => ({ ...prev, [qid]: !prev[qid] }));
-  };
-
   // --- QUIZ SOLVING SCREEN ---
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 space-y-6">
-      {/* Toast */}
-      {toast && (
-        <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-xl bg-slate-900 text-white text-sm font-bold shadow-lg">
-          {toast}
-        </div>
-      )}
+      {/* confetti overlay */}
+      <MiniConfetti burst={burst} />
 
       {/* Top Bar */}
       <div className="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-slate-200 sticky top-4 z-20 backdrop-blur-sm bg-white/90">
-        <div className="text-sm font-semibold text-slate-700 truncate max-w-[220px]">{test?.title || 'Test'}</div>
+        <div className="text-sm font-semibold text-slate-700 truncate max-w-[200px]">{test?.title || 'Test'}</div>
 
-        <div className="flex items-center gap-2">
+        {/* Right cluster */}
+        <div className="flex items-center gap-3">
           {/* Mode toggle */}
-          <div className="hidden sm:flex items-center gap-1 px-2 py-1 rounded-xl border border-slate-200 bg-slate-50">
+          <div className="flex items-center gap-1 px-2 py-1 rounded-xl border border-slate-200 bg-slate-50">
             <button
-              type="button"
-              onClick={() => {
-                setMode('EXAM');
-                localStorage.setItem('em_quiz_mode', 'EXAM');
-              }}
-              className={`px-3 py-1 rounded-lg text-xs font-black ${
-                mode === 'EXAM' ? 'bg-slate-900 text-white' : 'text-slate-600 hover:bg-white'
+              onClick={() => setMode('exam')}
+              className={`px-3 py-1 text-xs font-black rounded-lg transition ${
+                mode === 'exam' ? 'bg-blue-600 text-white' : 'text-slate-600 hover:bg-slate-100'
               }`}
+              type="button"
             >
               EXAM
             </button>
+
             <button
-              type="button"
-              onClick={() => {
-                setMode('PRACTICE');
-                localStorage.setItem('em_quiz_mode', 'PRACTICE');
-              }}
-              className={`px-3 py-1 rounded-lg text-xs font-black ${
-                mode === 'PRACTICE' ? 'bg-slate-900 text-white' : 'text-slate-600 hover:bg-white'
+              onClick={() => setMode('practice')}
+              className={`px-3 py-1 text-xs font-black rounded-lg transition ${
+                mode === 'practice' ? 'bg-green-600 text-white' : 'text-slate-600 hover:bg-slate-100'
               }`}
+              type="button"
             >
               PRACTICE
             </button>
           </div>
 
-          {/* XP/Streak */}
-          <div className="flex items-center gap-1 px-2 py-1 rounded-xl border border-slate-200 bg-slate-50">
-            <span className="text-xs font-black text-slate-700">⭐ {xp}</span>
-            <span className="text-xs font-black text-orange-600">🔥 {streak}</span>
-          </div>
+          {/* Streak (practice only) */}
+          {mode === 'practice' && (
+            <div className="text-xs font-black text-orange-600 select-none" title="Correct streak">
+              🔥 {streak}
+            </div>
+          )}
 
           {/* Timer */}
           <div
             className={`text-lg font-bold px-4 py-2 rounded-lg border transition-colors ${
-              timeLeft !== null && timeLeft < 60
+              mode === 'exam' && timeLeft !== null && timeLeft < 60
                 ? 'text-red-600 bg-red-50 border-red-200 animate-pulse'
                 : 'text-blue-600 bg-blue-50 border-blue-200'
             }`}
           >
-            {timeLeft !== null ? formatTime(timeLeft) : '∞'}
+            {mode === 'practice' ? '∞' : timeLeft !== null ? formatTime(timeLeft) : '∞'}
           </div>
         </div>
       </div>
 
-      {/* Practice options */}
-      {mode === 'PRACTICE' && (
-        <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex items-center justify-between">
-          <div>
-            <div className="text-sm font-black text-slate-800">Practice Mode</div>
-            <div className="text-xs text-slate-500">Instant feedback + explanation</div>
-          </div>
-
-          <label className="flex items-center gap-2 text-xs font-bold text-slate-700">
-            <input
-              type="checkbox"
-              checked={autoNextPractice}
-              onChange={(e) => setAutoNextPractice(e.target.checked)}
-            />
-            Auto next
-          </label>
-        </div>
-      )}
-
-      {/* Progress Bar */}
+      {/* ✅ Progress Bar */}
       <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
         <div className="flex items-center justify-between text-sm font-semibold text-slate-600 mb-2">
           <span>
@@ -591,28 +571,27 @@ export default function Quiz({ params }: { params: { id: string } }) {
         </div>
       </div>
 
-      {/* Question Navigator (with flags) */}
+      {/* ✅ Question Navigator */}
       <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
         <div className="flex items-center justify-between mb-3">
           <div className="text-sm font-black text-slate-800">Question Navigator</div>
-          <div className="text-xs text-slate-500">Blue = answered · Yellow = flagged</div>
+          <div className="text-xs text-slate-500">Blue = answered · White = empty</div>
         </div>
 
         <div className="grid grid-cols-10 gap-2">
           {questions.map((q, i) => {
             const done = !!answers[q.id];
-            const flagged = !!flags[q.id];
-
-            let cls = 'bg-white text-slate-500 border-slate-200 hover:border-blue-400';
-            if (flagged) cls = 'bg-amber-400 text-white border-amber-400';
-            else if (done) cls = 'bg-blue-600 text-white border-blue-600';
-
             return (
               <button
                 key={q.id}
                 onClick={() => scrollToQuestion(i)}
-                className={`h-8 rounded-lg text-xs font-black border transition active:scale-[0.98] ${cls}`}
-                title={flagged ? 'Flagged' : done ? 'Answered' : 'Not answered'}
+                className={`h-8 rounded-lg text-xs font-black border transition active:scale-[0.98]
+                  ${
+                    done
+                      ? 'bg-blue-600 text-white border-blue-600'
+                      : 'bg-white text-slate-500 border-slate-200 hover:border-blue-400'
+                  }`}
+                title={done ? 'Answered' : 'Not answered'}
                 type="button"
               >
                 {i + 1}
@@ -625,8 +604,8 @@ export default function Quiz({ params }: { params: { id: string } }) {
       {/* Questions Loop */}
       <div className="space-y-8">
         {questions.map((q, idx) => {
-          const fb = feedback[q.id];
-          const correctId = getCorrectChoiceId(q);
+          const correctId = mode === 'practice' ? getCorrectChoiceId(q) : undefined;
+          const showThisFeedback = mode === 'practice' && feedback?.questionId === q.id;
 
           return (
             <div
@@ -636,28 +615,11 @@ export default function Quiz({ params }: { params: { id: string } }) {
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="text-sm text-slate-400 font-bold uppercase tracking-wide">Question {idx + 1}</div>
-
-                <div className="flex items-center gap-2">
-                  {/* Flag */}
-                  <button
-                    type="button"
-                    onClick={() => toggleFlag(q.id)}
-                    className={`text-xs font-black px-2 py-1 rounded-lg border transition ${
-                      flags[q.id]
-                        ? 'bg-amber-100 text-amber-800 border-amber-200'
-                        : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
-                    }`}
-                    title="Flag this question"
-                  >
-                    🚩
-                  </button>
-
-                  {!answers[q.id] && (
-                    <span className="text-[11px] font-black px-2 py-1 bg-slate-100 text-slate-500 rounded-lg border border-slate-200">
-                      EMPTY
-                    </span>
-                  )}
-                </div>
+                {!answers[q.id] && (
+                  <span className="text-[11px] font-black px-2 py-1 bg-slate-100 text-slate-500 rounded-lg border border-slate-200">
+                    EMPTY
+                  </span>
+                )}
               </div>
 
               <div className="text-xl font-medium text-slate-800 mb-6 leading-loose">{formatText(q.prompt)}</div>
@@ -666,26 +628,24 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 {(q.choices || []).map((c) => {
                   const selected = answers[q.id] === c.id;
 
-                  // Practice styling after answered
-                  let wrap =
-                    selected
+                  const isCorrectChoice = mode === 'practice' && correctId ? idsEqual(c.id, correctId) : false;
+                  const isWrongSelected = mode === 'practice' && showThisFeedback && selected && !isCorrectChoice;
+
+                  const practiceRing =
+                    mode === 'practice' && showThisFeedback
+                      ? isCorrectChoice
+                        ? 'border-green-500 bg-green-50'
+                        : isWrongSelected
+                        ? 'border-red-500 bg-red-50'
+                        : 'border-slate-100'
+                      : selected
                       ? 'border-blue-600 bg-blue-50 shadow-md'
                       : 'border-slate-100 hover:border-blue-300 hover:bg-slate-50';
-
-                  if (mode === 'PRACTICE' && fb) {
-                    const isCorrectChoice = idsEqual(c.id, correctId);
-                    const isSelectedWrong = selected && !fb.isCorrect;
-
-                    if (isCorrectChoice) wrap = 'border-green-600 bg-green-50 shadow-md';
-                    if (isSelectedWrong) wrap = 'border-red-600 bg-red-50 shadow-md';
-                    // lock others a bit
-                    if (!selected && !isCorrectChoice) wrap = 'border-slate-100 bg-white opacity-80';
-                  }
 
                   return (
                     <label
                       key={c.id}
-                      className={`group cursor-pointer flex items-center p-4 rounded-xl border-2 transition-all duration-200 active:scale-[0.99] ${wrap}`}
+                      className={`group cursor-pointer flex items-center p-4 rounded-xl border-2 transition-all duration-200 active:scale-[0.99] ${practiceRing}`}
                     >
                       <div
                         className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 transition-colors ${
@@ -700,8 +660,33 @@ export default function Quiz({ params }: { params: { id: string } }) {
                         name={q.id}
                         className="hidden"
                         checked={selected}
-                        onChange={() => handlePick(q, c.id, idx)}
-                        disabled={mode === 'PRACTICE' && !!fb}
+                        onChange={() => {
+                          setAnswers((prev) => ({ ...prev, [q.id]: c.id }));
+
+                          if (mode === 'practice') {
+                            const realCorrectId = getCorrectChoiceId(q);
+                            const isCorrect = idsEqual(c.id, realCorrectId);
+
+                            setFeedback({ questionId: q.id, isCorrect });
+
+                            if (isCorrect) {
+                              setStreak((s) => {
+                                const next = s + 1;
+
+                                // 10 streak -> big
+                                if (next % 10 === 0) {
+                                  setBurst((b) => ({ key: (b?.key ?? 0) + 1, level: 'big' }));
+                                } else if (next % 5 === 0) {
+                                  setBurst((b) => ({ key: (b?.key ?? 0) + 1, level: 'small' }));
+                                }
+
+                                return next;
+                              });
+                            } else {
+                              setStreak(0);
+                            }
+                          }
+                        }}
                       />
 
                       <span className={`text-lg ${selected ? 'text-blue-700 font-medium' : 'text-slate-600'}`}>
@@ -712,21 +697,19 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 })}
               </div>
 
-              {/* Practice feedback box */}
-              {mode === 'PRACTICE' && feedback[q.id] && (
+              {/* ✅ PRACTICE FEEDBACK */}
+              {mode === 'practice' && showThisFeedback && (
                 <div
-                  className={`mt-5 p-4 rounded-xl border text-sm font-semibold ${
-                    feedback[q.id].isCorrect
-                      ? 'bg-green-50 border-green-200 text-green-800'
-                      : 'bg-red-50 border-red-200 text-red-800'
+                  className={`mt-4 p-4 rounded-xl border font-bold ${
+                    feedback?.isCorrect ? 'bg-green-50 border-green-200 text-green-700' : 'bg-red-50 border-red-200 text-red-700'
                   }`}
                 >
-                  {feedback[q.id].isCorrect ? '✅ Correct!' : `❌ Wrong. Correct answer: ${correctId ?? '-'}`}
+                  {feedback?.isCorrect ? '✅ Correct!' : '❌ Incorrect'}
                 </div>
               )}
 
-              {/* Explanation (Practice: show after answered; Exam: keep hidden here) */}
-              {mode === 'PRACTICE' && feedback[q.id] && q.explanation && (
+              {/* ✅ PRACTICE EXPLANATION: show always if exists, after you answered */}
+              {mode === 'practice' && !!answers[q.id] && q.explanation && (
                 <div className="mt-4 p-4 bg-blue-50 rounded-xl border border-blue-100 text-sm text-blue-800 flex gap-3 items-start">
                   <span className="text-xl">💡</span>
                   <div>
@@ -747,11 +730,9 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       delete copy[q.id];
                       return copy;
                     });
-                    setFeedback((prev) => {
-                      const copy = { ...prev };
-                      delete copy[q.id];
-                      return copy;
-                    });
+                    if (mode === 'practice') {
+                      setFeedback(null);
+                    }
                   }}
                   className="text-xs font-bold px-3 py-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50"
                   type="button"
@@ -781,7 +762,9 @@ export default function Quiz({ params }: { params: { id: string } }) {
           Finish Test
         </button>
 
-        <div className="mt-3 text-center text-xs text-slate-400">Tip: Finish will warn you if any question is empty.</div>
+        <div className="mt-3 text-center text-xs text-slate-400">
+          Tip: {mode === 'exam' ? 'Finish will warn you if any question is empty.' : 'Practice mode shows instant feedback + streak confetti!'}
+        </div>
       </div>
     </div>
   );
