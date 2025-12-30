@@ -886,27 +886,6 @@ function HomeContent() {
               </div>
             </Link>
           </div>
-          {/* NEW: News Impact Tool Card */}
-<Link
-  href="/tools/news-impact"
-  className="group relative overflow-hidden bg-gradient-to-br from-slate-900 to-slate-950 rounded-3xl p-6 border border-slate-800 shadow-xl hover:shadow-emerald-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left"
->
-  <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-emerald-500 rounded-full opacity-10 blur-xl"></div>
-  <div className="relative z-10">
-    <div className="inline-flex items-center gap-1 px-2 py-1 bg-emerald-500/10 rounded-full text-emerald-300 text-[10px] font-bold uppercase mb-3">
-      📈 Tools
-    </div>
-    <h3 className="text-2xl font-black text-white mb-1">News Impact</h3>
-    <p className="text-slate-300 text-xs mb-4">How stocks react to news.</p>
-
-    <div className="flex items-center justify-between">
-      <div className="text-[11px] text-emerald-300/80 font-semibold">1D / 5D · Strength score</div>
-      <div className="w-11 h-11 bg-emerald-400 rounded-full flex items-center justify-center text-slate-950 font-black transition-transform duration-200 group-hover:scale-110 group-active:scale-95">
-        ▶
-      </div>
-    </div>
-  </div>
-</Link>
 
           {/* MAIN TESTS GRID */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
