@@ -541,7 +541,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
           </div>
 
           {/* XP/Streak */}
-          <div className="hidden sm:flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200 bg-white">
+          <div className="flex items-center gap-1 px-2 py-1 rounded-xl border border-slate-200 bg-slate-50">
             <span className="text-xs font-black text-slate-700">⭐ {xp}</span>
             <span className="text-xs font-black text-orange-600">🔥 {streak}</span>
           </div>
