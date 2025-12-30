@@ -2,6 +2,9 @@
 
 import { useEffect, useState, useMemo, useCallback } from 'react';
 import Link from 'next/link';
+import DOMPurify from 'dompurify';
+// Optional (if you want router instead of window.location.href):
+// import { useRouter } from 'next/navigation';
 
 // --- TYPES ---
 interface Choice {
@@ -23,7 +26,7 @@ interface Question {
 
 interface TestInfo {
   title: string;
-  duration?: number; // ✅ minutes (payload'da dakika)
+  duration?: number; // minutes
 }
 
 interface QuizData {
@@ -65,7 +68,17 @@ function idsEqual(a?: string | null, b?: string | null): boolean {
   return String(a).trim().toUpperCase() === String(b).trim().toUpperCase();
 }
 
-// --- HELPER: TEXT FORMATTER (BADGE & CLEAN QUOTES) ---
+// --- SAFE HTML RENDER (XSS PROTECTED) ---
+function SafeHTML({ html }: { html: string }) {
+  const clean = useMemo(() => {
+    if (typeof window === 'undefined') return html;
+    return DOMPurify.sanitize(html, { USE_PROFILES: { html: true } });
+  }, [html]);
+
+  return <span dangerouslySetInnerHTML={{ __html: clean }} />;
+}
+
+// --- HELPER: TEXT FORMATTER (**badge** + safe html) ---
 function formatText(text: string) {
   if (!text) return null;
   const parts = text.split(/(\*\*.*?\*\*)/g);
@@ -83,16 +96,25 @@ function formatText(text: string) {
         </span>
       );
     }
-    return <span key={index} dangerouslySetInnerHTML={{ __html: part }} />;
+    return <SafeHTML key={index} html={part} />;
   });
 }
 
 export default function Quiz({ params }: { params: { id: string } }) {
+  // Optional router:
+  // const router = useRouter();
+
   const [data, setData] = useState<QuizData | null>(null);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
+
+  // ✅ Helper: Scroll to question
+  const scrollToQuestion = useCallback((index: number) => {
+    const el = document.getElementById(`q-${index}`);
+    el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, []);
 
   // 1) LOAD DATA
   useEffect(() => {
@@ -115,19 +137,18 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
       const qCount = parsed.questions?.length || 0;
 
-      // ✅ Duration dakikaysa (payload’da) saniyeye çevir
-      // duration yoksa fallback: soru başı 30sn (50 soru => 25dk)
+      // ✅ Duration minutes -> seconds
+      // duration yoksa fallback: soru başı 30sn
       let seconds = 0;
 
       if (parsed.test?.duration && Number.isFinite(parsed.test.duration) && parsed.test.duration! > 0) {
         seconds = Math.round(parsed.test.duration! * 60);
       } else {
-        // fallback: 50 soru 25 dk => soru başı 30sn
         seconds = qCount > 0 ? qCount * 30 : 25 * 60;
       }
 
       setTimeLeft(seconds);
-    } catch (err) {
+    } catch {
       setData({
         attemptId: '',
         test: { title: 'Error', duration: 0 },
@@ -137,30 +158,11 @@ export default function Quiz({ params }: { params: { id: string } }) {
     }
   }, [params.id]);
 
-  // 2) TIMER
-  useEffect(() => {
-    if (timeLeft === null || showResult) return;
-    if (timeLeft <= 0) {
-      handleSubmit();
-      return;
-    }
-    const timerId = setInterval(() => {
-      setTimeLeft((p) => (p !== null && p > 0 ? p - 1 : 0));
-    }, 1000);
-    return () => clearInterval(timerId);
-  }, [timeLeft, showResult]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // ✅ Helper: Scroll to question
-  const scrollToQuestion = useCallback((index: number) => {
-    const el = document.getElementById(`q-${index}`);
-    el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, []);
-
-  // 3) SUBMIT & SAVE MISTAKES
-  const handleSubmit = () => {
+  // 3) SUBMIT & SAVE MISTAKES (useCallback to avoid stale closure)
+  const handleSubmit = useCallback(() => {
     if (!data) return;
 
-    // ✅ Unanswered kontrolü (sınav modu hissi)
+    // ✅ Unanswered kontrolü
     const unanswered = data.questions.filter((q) => !answers[q.id]);
     if (unanswered.length > 0) {
       const firstMissingIndex = data.questions.findIndex((q) => !answers[q.id]);
@@ -172,9 +174,15 @@ export default function Quiz({ params }: { params: { id: string } }) {
     const { questions } = data;
     let correctCount = 0;
 
-    // Önce mevcut hataları çekelim
+    // Mevcut hataları çek (bozuk JSON'a karşı korumalı)
     const existingMistakesRaw = localStorage.getItem('my_mistakes');
-    let mistakeList: any[] = existingMistakesRaw ? JSON.parse(existingMistakesRaw) : [];
+    let mistakeList: any[] = [];
+    try {
+      mistakeList = existingMistakesRaw ? JSON.parse(existingMistakesRaw) : [];
+      if (!Array.isArray(mistakeList)) mistakeList = [];
+    } catch {
+      mistakeList = [];
+    }
 
     questions.forEach((q) => {
       const userAnswerId = answers[q.id];
@@ -183,18 +191,26 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
       if (isCorrect) correctCount++;
 
-      // --- HATA KAYIT MANTIĞI ---
+      // ✅ ÇAKIŞMA ÇÖZÜMÜ: testSlug/attemptId + questionId ile unique key
+      const scope = data.testSlug || data.attemptId || 'test';
+      const mistakeKey = `${scope}::${q.id}`;
+
       if (userAnswerId) {
         if (isCorrect) {
-          mistakeList = mistakeList.filter((m) => m.id !== q.id);
+          // doğruysa o soruyu hatalardan sil
+          mistakeList = mistakeList.filter((m) => m?.key !== mistakeKey);
         } else {
-          const alreadyExists = mistakeList.find((m) => m.id === q.id);
+          const alreadyExists = mistakeList.find((m) => m?.key === mistakeKey);
           if (!alreadyExists) {
             mistakeList.push({
+              key: mistakeKey,
+              questionId: q.id,
+              attemptId: data.attemptId,
+              testSlug: data.testSlug,
+              testTitle: data.test.title,
               ...q,
               myWrongAnswer: userAnswerId,
               savedAt: new Date().toISOString(),
-              testTitle: data.test.title,
             });
           }
         }
@@ -207,16 +223,36 @@ export default function Quiz({ params }: { params: { id: string } }) {
     setShowResult(true);
     window.scrollTo(0, 0);
     sessionStorage.removeItem('em_attempt_payload');
-  };
+  }, [data, answers, scrollToQuestion]);
+
+  // 2) TIMER (deps fixed)
+  useEffect(() => {
+    if (timeLeft === null || showResult) return;
+    if (timeLeft <= 0) {
+      handleSubmit();
+      return;
+    }
+    const timerId = setInterval(() => {
+      setTimeLeft((p) => (p !== null && p > 0 ? p - 1 : 0));
+    }, 1000);
+    return () => clearInterval(timerId);
+  }, [timeLeft, showResult, handleSubmit]);
+
+  // 5) OPTIONAL: 10 seconds warning
+  useEffect(() => {
+    if (timeLeft === 10 && !showResult) {
+      alert('⏳ 10 seconds left!');
+    }
+  }, [timeLeft, showResult]);
 
   if (!data) return <div className="p-10 text-center animate-pulse">Loading...</div>;
   if (data.error) return <div className="p-10 text-red-600">{data.error}</div>;
 
   const { questions, test } = data;
 
-  // ✅ Progress metrics
+  // ✅ Progress metrics (more robust)
   const totalQ = questions.length || 1;
-  const answeredCount = Object.keys(answers).length;
+  const answeredCount = questions.filter((q) => !!answers[q.id]).length;
   const progress = Math.round((answeredCount / totalQ) * 100);
 
   // --- RESULT SCREEN ---
@@ -261,7 +297,13 @@ export default function Quiz({ params }: { params: { id: string } }) {
             {/* --- RESTART: NEW QUESTIONS --- */}
             {data.testSlug && (
               <button
-                onClick={() => (window.location.href = `/?restart=${data.testSlug}`)}
+                onClick={() => {
+                  // Option A: old way
+                  window.location.href = `/?restart=${data.testSlug}`;
+
+                  // Option B: Next router way
+                  // router.push(`/?restart=${data.testSlug}`);
+                }}
                 className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center gap-2"
               >
                 <svg
@@ -342,7 +384,9 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       )}
                     </div>
 
-                    <div className="text-lg font-medium text-slate-800 mb-5 leading-loose">{formatText(q.prompt)}</div>
+                    <div className="text-lg font-medium text-slate-800 mb-5 leading-loose">
+                      {formatText(q.prompt)}
+                    </div>
 
                     <div className="grid gap-2">
                       {(q.choices || []).map((c) => {
@@ -372,7 +416,9 @@ export default function Quiz({ params }: { params: { id: string } }) {
                               >
                                 {c.id}
                               </div>
-                              <span>{c.text}</span>
+                              <span>
+                                <SafeHTML html={c.text} />
+                              </span>
                             </div>
                           </div>
                         );
@@ -384,7 +430,9 @@ export default function Quiz({ params }: { params: { id: string } }) {
                         <span className="text-xl">💡</span>
                         <div>
                           <span className="font-bold block mb-1 text-blue-900">Explanation:</span>
-                          <span className="leading-relaxed opacity-90">{q.explanation}</span>
+                          <span className="leading-relaxed opacity-90">
+                            <SafeHTML html={q.explanation} />
+                          </span>
                         </div>
                       </div>
                     )}
@@ -433,9 +481,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
       <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
         <div className="flex items-center justify-between mb-3">
           <div className="text-sm font-black text-slate-800">Question Navigator</div>
-          <div className="text-xs text-slate-500">
-            Blue = answered · White = empty
-          </div>
+          <div className="text-xs text-slate-500">Blue = answered · White = empty</div>
         </div>
 
         <div className="grid grid-cols-10 gap-2">
@@ -448,6 +494,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 className={`h-8 rounded-lg text-xs font-black border transition active:scale-[0.98]
                   ${done ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-500 border-slate-200 hover:border-blue-400'}`}
                 title={done ? 'Answered' : 'Not answered'}
+                type="button"
               >
                 {i + 1}
               </button>
@@ -459,11 +506,13 @@ export default function Quiz({ params }: { params: { id: string } }) {
       {/* Questions Loop */}
       <div className="space-y-8">
         {questions.map((q, idx) => (
-          <div id={`q-${idx}`} key={q.id} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 scroll-mt-28">
+          <div
+            id={`q-${idx}`}
+            key={q.id}
+            className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 scroll-mt-28"
+          >
             <div className="flex items-center justify-between mb-3">
-              <div className="text-sm text-slate-400 font-bold uppercase tracking-wide">
-                Question {idx + 1}
-              </div>
+              <div className="text-sm text-slate-400 font-bold uppercase tracking-wide">Question {idx + 1}</div>
               {!answers[q.id] && (
                 <span className="text-[11px] font-black px-2 py-1 bg-slate-100 text-slate-500 rounded-lg border border-slate-200">
                   EMPTY
@@ -497,7 +546,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                   />
 
                   <span className={`text-lg ${answers[q.id] === c.id ? 'text-blue-700 font-medium' : 'text-slate-600'}`}>
-                    {c.text}
+                    <SafeHTML html={c.text} />
                   </span>
                 </label>
               ))}
@@ -536,13 +585,12 @@ export default function Quiz({ params }: { params: { id: string } }) {
         <button
           onClick={handleSubmit}
           className="w-full py-4 rounded-xl text-white text-xl font-bold shadow-lg transition-all transform active:scale-[0.98] bg-blue-600 hover:bg-blue-700 hover:shadow-blue-200"
+          type="button"
         >
           Finish Test
         </button>
 
-        <div className="mt-3 text-center text-xs text-slate-400">
-          Tip: Finish will warn you if any question is empty.
-        </div>
+        <div className="mt-3 text-center text-xs text-slate-400">Tip: Finish will warn you if any question is empty.</div>
       </div>
     </div>
   );
