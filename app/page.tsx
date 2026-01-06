@@ -637,7 +637,7 @@ function HomeContent() {
     );
   }
 
-  const freeMiniCount = 77; // Premium yoksa ilk 8 mini test ücretsiz gibi düşün
+  const freeMiniCount = 75; // Premium yoksa ilk 8 mini test ücretsiz gibi düşün
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -698,7 +698,7 @@ function HomeContent() {
                 <div>
                   <div className="text-sm font-black text-slate-900">Premium (Coming soon)</div>
                   <div className="text-xs text-slate-500 mt-1">
-                    Unlock all YDS 3850 mini tests + extra packs + analytics.
+                    Unlock all YDS 3750 mini tests + extra packs + analytics.
                   </div>
                 </div>
                 <button
@@ -911,7 +911,7 @@ function HomeContent() {
               </Link>
             </button>
 
-            {/* YDS 3750 HUB (toggles 77 buttons below) */}
+            {/* YDS 3750 HUB (toggles 75 buttons below) */}
             <button
               onClick={() => {
                 setShowYds3750Hub((p) => !p);
@@ -919,14 +919,14 @@ function HomeContent() {
                 ensureVocabMap();
                 // scroll a bit for UX
                 setTimeout(() => {
-                  const el = document.getElementById('yds3850hub');
+                  const el = document.getElementById('yds3750hub');
                   el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }, 50);
               }}
               className="flex flex-col items-center justify-center px-6 py-8 rounded-2xl bg-orange-500 text-white text-xl font-black shadow-xl hover:bg-orange-600 transition-all"
             >
               <div>{ydsVocabHub.title}</div>
-              <div className="mt-2 text-xs font-semibold opacity-90">77 mini tests · 50Q · 25 min</div>
+              <div className="mt-2 text-xs font-semibold opacity-90">75 mini tests · 50Q · 25 min</div>
               <div className="mt-3 text-[11px] underline opacity-90 hover:opacity-100">
                 {showYds3750Hub ? 'Hide tests ↑' : 'Open tests ↓'}
               </div>
@@ -936,7 +936,7 @@ function HomeContent() {
           {/* YDS 3750 HUB PANEL */}
           {showYds3750Hub && (
             <div
-              id="yds3850hub"
+              id="yds3750hub"
               className="mb-16 bg-orange-50 rounded-3xl p-6 border-2 border-orange-200 shadow-xl relative overflow-hidden text-left"
             >
               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-orange-400 to-amber-400"></div>
@@ -944,7 +944,7 @@ function HomeContent() {
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-5">
                 <div>
                   <h3 className="text-2xl font-black text-orange-700 flex items-center gap-2">
-                    <span className="text-3xl">📚</span> YDS 3850 Mini Tests
+                    <span className="text-3xl">📚</span> YDS 3750 Mini Tests
                   </h3>
                   <p className="text-sm text-orange-700/80 mt-1">
                     Her test 50 soru · 25 dakika. Aynı kullanıcı tekrar girince aynı test numarası aynı sorularla açılır.
@@ -965,14 +965,14 @@ function HomeContent() {
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-8 gap-3">
-                {Array.from({ length: 77 }, (_, i) => i + 1).map((num) => {
+                {Array.from({ length: 75 }, (_, i) => i + 1).map((num) => {
                   const locked = !isPremium && num > freeMiniCount;
                   return (
                     <button
                       key={num}
                       onClick={() => {
                         if (locked) return;
-                        startTest(`yds-3850-mini-${num}`);
+                        startTest(`yds-3750-mini-${num}`);
                       }}
                       disabled={locked}
                       className={`py-3 rounded-xl font-black text-sm shadow-sm transition-all transform hover:scale-[1.03] active:scale-[0.99]
