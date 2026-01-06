@@ -11,7 +11,7 @@ type VocabItem = { word: string; meaning: string };
 type Choice = { id: string; text: string; isCorrect: boolean };
 type Question = { id: string; prompt: string; choices: Choice[]; explanation?: string };
 
-const TEST_COUNT = 75;
+const TEST_COUNT = 77;
 const QUESTIONS_PER_TEST = 50;
 
 // ---- PREMIUM GATE (şimdilik demo) ----
