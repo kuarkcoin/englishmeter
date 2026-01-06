@@ -243,7 +243,7 @@ function HomeContent() {
           const idsLower = ['a', 'b', 'c', 'd'];
 
           return {
-            id: `yds-3850-mini-${n}-q${idx + 1}`,
+            id: `yds-3750-mini-${n}-q${idx + 1}`,
             prompt: `What is the Turkish meaning of **"${item.word}"**?`,
             choices: allOptions.map((optText: string, i: number) => ({
               id: idsLower[i],
