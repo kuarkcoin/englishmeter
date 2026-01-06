@@ -928,13 +928,13 @@ function HomeContent() {
               <div>{ydsVocabHub.title}</div>
               <div className="mt-2 text-xs font-semibold opacity-90">77 mini tests · 50Q · 25 min</div>
               <div className="mt-3 text-[11px] underline opacity-90 hover:opacity-100">
-                {showYds3850Hub ? 'Hide tests ↑' : 'Open tests ↓'}
+                {showYds3750Hub ? 'Hide tests ↑' : 'Open tests ↓'}
               </div>
             </button>
           </div>
 
-          {/* YDS 3850 HUB PANEL */}
-          {showYds3850Hub && (
+          {/* YDS 3750 HUB PANEL */}
+          {showYds3750Hub && (
             <div
               id="yds3850hub"
               className="mb-16 bg-orange-50 rounded-3xl p-6 border-2 border-orange-200 shadow-xl relative overflow-hidden text-left"
