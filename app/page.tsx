@@ -57,7 +57,7 @@ const raceTest = { title: 'Global Race Mode', href: '/race' };
 const ieltsTest = { title: 'IELTS Grammar (50Q)', slug: 'ielts-grammar' };
 
 // YDS TESTLERİ
-const ydsVocabHub = { title: 'YDS 3850 Words (77 Mini Tests)', slug: 'yds-3850-vocab-hub' };
+const ydsVocabHub = { title: 'YDS 3750 Words (75 Mini Tests)', slug: 'yds-3850-vocab-hub' };
 const ydsGrammarTest = { title: 'YDS Grammar Practice (100Q)', slug: 'yds-grammar-practice' };
 const ydsPhrasalTest = { title: 'YDS Phrasal Verbs (100Q)', slug: 'yds-phrasal-verbs' };
 const ydsReadingTest = { title: 'YDS Reading (40Q)', slug: 'yds-reading' };
@@ -182,15 +182,15 @@ function HomeContent() {
     if (last?.slug && last?.title) setLastTest(last);
   }, []);
 
-  // --- 77 mini test mapping (stable) ---
+  // --- 75 mini test mapping (stable) ---
   const ensureVocabMap = useCallback(() => {
     const total = (ydsVocabulary as any[])?.length || 0;
     const map = safeJsonParse<Record<string, number[]>>(typeof window !== 'undefined' ? localStorage.getItem(LS_VOCAB_MAP) : null, {});
     if (!total) return map;
 
-    // Ensure 1..77 exist
+    // Ensure 1..75 exist
     let changed = false;
-    for (let t = 1; t <= 77; t++) {
+    for (let t = 1; t <= 75; t++) {
       const key = String(t);
       if (!Array.isArray(map[key]) || map[key].length !== 50) {
         // seed by test number, but also depend on total length (so changes don't break too hard)
@@ -218,10 +218,10 @@ function HomeContent() {
         } catch {}
       };
 
-      // --- YDS 3850 MINI TESTS (1..77) ---
+      // --- YDS 3750 MINI TESTS (1..75) ---
       if (testSlug.startsWith('yds-3750-mini-')) {
         const nStr = testSlug.split('-').pop() || '1';
-        const n = Math.max(1, Math.min(77, Number(nStr) || 1));
+        const n = Math.max(1, Math.min(75, Number(nStr) || 1));
 
         const map = ensureVocabMap();
         const indices = map[String(n)] || [];
@@ -254,7 +254,7 @@ function HomeContent() {
           };
         });
 
-        const title = `YDS 3850 WORDS · MINI TEST ${n} (50Q · 25 min)`;
+        const title = `YDS 3750 WORDS · MINI TEST ${n} (50Q · 25 min)`;
 
         const payload = {
           attemptId,
