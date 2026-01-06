@@ -911,10 +911,10 @@ function HomeContent() {
               </Link>
             </button>
 
-            {/* YDS 3850 HUB (toggles 77 buttons below) */}
+            {/* YDS 3750 HUB (toggles 77 buttons below) */}
             <button
               onClick={() => {
-                setShowYds3850Hub((p) => !p);
+                setShowYds3750Hub((p) => !p);
                 // ensure mapping created once, so tests remain same on revisit
                 ensureVocabMap();
                 // scroll a bit for UX
