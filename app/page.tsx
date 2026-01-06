@@ -57,7 +57,7 @@ const raceTest = { title: 'Global Race Mode', href: '/race' };
 const ieltsTest = { title: 'IELTS Grammar (50Q)', slug: 'ielts-grammar' };
 
 // YDS TESTLERİ
-const ydsVocabHub = { title: 'YDS 3750 Words (75 Mini Tests)', slug: 'yds-3750-vocab-hub' };
+const ydsVocabHub = { title: 'YDS 3850 Words (77 Mini Tests)', slug: 'yds-3850-vocab-hub' };
 const ydsGrammarTest = { title: 'YDS Grammar Practice (100Q)', slug: 'yds-grammar-practice' };
 const ydsPhrasalTest = { title: 'YDS Phrasal Verbs (100Q)', slug: 'yds-phrasal-verbs' };
 const ydsReadingTest = { title: 'YDS Reading (40Q)', slug: 'yds-reading' };
@@ -182,15 +182,15 @@ function HomeContent() {
     if (last?.slug && last?.title) setLastTest(last);
   }, []);
 
-  // --- 75 mini test mapping (stable) ---
+  // --- 77 mini test mapping (stable) ---
   const ensureVocabMap = useCallback(() => {
     const total = (ydsVocabulary as any[])?.length || 0;
     const map = safeJsonParse<Record<string, number[]>>(typeof window !== 'undefined' ? localStorage.getItem(LS_VOCAB_MAP) : null, {});
     if (!total) return map;
 
-    // Ensure 1..75 exist
+    // Ensure 1..77 exist
     let changed = false;
-    for (let t = 1; t <= 75; t++) {
+    for (let t = 1; t <= 77; t++) {
       const key = String(t);
       if (!Array.isArray(map[key]) || map[key].length !== 50) {
         // seed by test number, but also depend on total length (so changes don't break too hard)
@@ -218,10 +218,10 @@ function HomeContent() {
         } catch {}
       };
 
-      // --- YDS 3750 MINI TESTS (1..75) ---
+      // --- YDS 3850 MINI TESTS (1..77) ---
       if (testSlug.startsWith('yds-3750-mini-')) {
         const nStr = testSlug.split('-').pop() || '1';
-        const n = Math.max(1, Math.min(75, Number(nStr) || 1));
+        const n = Math.max(1, Math.min(77, Number(nStr) || 1));
 
         const map = ensureVocabMap();
         const indices = map[String(n)] || [];
@@ -243,7 +243,7 @@ function HomeContent() {
           const idsLower = ['a', 'b', 'c', 'd'];
 
           return {
-            id: `yds-3750-mini-${n}-q${idx + 1}`,
+            id: `yds-3850-mini-${n}-q${idx + 1}`,
             prompt: `What is the Turkish meaning of **"${item.word}"**?`,
             choices: allOptions.map((optText: string, i: number) => ({
               id: idsLower[i],
@@ -254,7 +254,7 @@ function HomeContent() {
           };
         });
 
-        const title = `YDS 3750 WORDS · MINI TEST ${n} (50Q · 25 min)`;
+        const title = `YDS 3850 WORDS · MINI TEST ${n} (50Q · 25 min)`;
 
         const payload = {
           attemptId,
@@ -637,7 +637,7 @@ function HomeContent() {
     );
   }
 
-  const freeMiniCount = 75; // Premium yoksa ilk 8 mini test ücretsiz gibi düşün
+  const freeMiniCount = 77; // Premium yoksa ilk 8 mini test ücretsiz gibi düşün
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -698,7 +698,7 @@ function HomeContent() {
                 <div>
                   <div className="text-sm font-black text-slate-900">Premium (Coming soon)</div>
                   <div className="text-xs text-slate-500 mt-1">
-                    Unlock all YDS 3750 mini tests + extra packs + analytics.
+                    Unlock all YDS 3850 mini tests + extra packs + analytics.
                   </div>
                 </div>
                 <button
@@ -911,32 +911,32 @@ function HomeContent() {
               </Link>
             </button>
 
-            {/* YDS 3750 HUB (toggles 75 buttons below) */}
+            {/* YDS 3850 HUB (toggles 77 buttons below) */}
             <button
               onClick={() => {
-                setShowYds3750Hub((p) => !p);
+                setShowYds3850Hub((p) => !p);
                 // ensure mapping created once, so tests remain same on revisit
                 ensureVocabMap();
                 // scroll a bit for UX
                 setTimeout(() => {
-                  const el = document.getElementById('yds3750hub');
+                  const el = document.getElementById('yds3850hub');
                   el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }, 50);
               }}
               className="flex flex-col items-center justify-center px-6 py-8 rounded-2xl bg-orange-500 text-white text-xl font-black shadow-xl hover:bg-orange-600 transition-all"
             >
               <div>{ydsVocabHub.title}</div>
-              <div className="mt-2 text-xs font-semibold opacity-90">75 mini tests · 50Q · 25 min</div>
+              <div className="mt-2 text-xs font-semibold opacity-90">77 mini tests · 50Q · 25 min</div>
               <div className="mt-3 text-[11px] underline opacity-90 hover:opacity-100">
-                {showYds3750Hub ? 'Hide tests ↑' : 'Open tests ↓'}
+                {showYds3850Hub ? 'Hide tests ↑' : 'Open tests ↓'}
               </div>
             </button>
           </div>
 
-          {/* YDS 3750 HUB PANEL */}
-          {showYds3750Hub && (
+          {/* YDS 3850 HUB PANEL */}
+          {showYds3850Hub && (
             <div
-              id="yds3750hub"
+              id="yds3850hub"
               className="mb-16 bg-orange-50 rounded-3xl p-6 border-2 border-orange-200 shadow-xl relative overflow-hidden text-left"
             >
               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-orange-400 to-amber-400"></div>
@@ -944,7 +944,7 @@ function HomeContent() {
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-5">
                 <div>
                   <h3 className="text-2xl font-black text-orange-700 flex items-center gap-2">
-                    <span className="text-3xl">📚</span> YDS 3750 Mini Tests
+                    <span className="text-3xl">📚</span> YDS 3850 Mini Tests
                   </h3>
                   <p className="text-sm text-orange-700/80 mt-1">
                     Her test 50 soru · 25 dakika. Aynı kullanıcı tekrar girince aynı test numarası aynı sorularla açılır.
@@ -965,14 +965,14 @@ function HomeContent() {
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-8 gap-3">
-                {Array.from({ length: 75 }, (_, i) => i + 1).map((num) => {
+                {Array.from({ length: 77 }, (_, i) => i + 1).map((num) => {
                   const locked = !isPremium && num > freeMiniCount;
                   return (
                     <button
                       key={num}
                       onClick={() => {
                         if (locked) return;
-                        startTest(`yds-3750-mini-${num}`);
+                        startTest(`yds-3850-mini-${num}`);
                       }}
                       disabled={locked}
                       className={`py-3 rounded-xl font-black text-sm shadow-sm transition-all transform hover:scale-[1.03] active:scale-[0.99]
