@@ -11,7 +11,9 @@ function pickKey() {
     process.env.GOOGLE_API_KEY,
   ].filter(Boolean) as string[];
 
-  if (!keys.length) throw new Error("Google API key bulunamadı (GOOGLE_KEY_1..5).");
+  if (!keys.length) {
+    throw new Error("Google API key bulunamadı (GOOGLE_KEY_1..5 veya GOOGLE_API_KEY).");
+  }
   return keys[Math.floor(Math.random() * keys.length)];
 }
 
@@ -68,6 +70,9 @@ Turkish meaning reference: "${meaning}"
       note_tr: String(parsed.note_tr || ""),
     });
   } catch (e: any) {
-    return NextResponse.json({ error: e?.message ?? "server error" }, { status: 500 });
+    return NextResponse.json(
+      { error: e?.message ?? "server error" },
+      { status: 500 }
+    );
   }
 }
