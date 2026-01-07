@@ -1,24 +1,58 @@
 // app/tests/[slug]/page.tsx
-import { getQuestionsBySlug } from '@/lib/quizManager';
-import QuizClientWrapper from '@/components/QuizClientWrapper';
 import type { Metadata } from 'next';
+import { getQuestionsBySlug } from '@/lib/quizManager';
+import RaceQuiz from '@/components/RaceQuiz';
 
 type PageProps = { params: { slug: string } };
 
-// ✅ SEO: Her slug için dinamik title/description
+// RaceQuiz'in beklediği format
+type RaceQuestion = {
+  id: number;
+  question_text: string;
+  option_a: string;
+  option_b: string;
+  option_c: string;
+  option_d: string;
+  correct_option: 'a' | 'b' | 'c' | 'd';
+};
+
+function toRaceQuestions(
+  data: ReturnType<typeof getQuestionsBySlug>
+): RaceQuestion[] {
+  return (data.questions || []).map((q, idx) => {
+    // 4 şık garanti olsun
+    const c = (q.choices || []).slice(0, 4);
+    const safe = (i: number) => c[i]?.text ?? '';
+
+    // doğru şık id'sini bul (a/b/c/d)
+    const correct = (c.find((x) => x.isCorrect)?.id ?? 'a') as
+      | 'a'
+      | 'b'
+      | 'c'
+      | 'd';
+
+    return {
+      id: idx + 1,
+      question_text: q.prompt ?? 'Question missing',
+      option_a: safe(0),
+      option_b: safe(1),
+      option_c: safe(2),
+      option_d: safe(3),
+      correct_option: correct,
+    };
+  });
+}
+
 export function generateMetadata({ params }: PageProps): Metadata {
   const data = getQuestionsBySlug(params.slug);
-
-  const title = data?.title ? `${data.title} | TestDunya` : 'Test | TestDunya';
   const qCount = data?.questions?.length ?? 0;
-  const desc =
-    qCount > 0
-      ? `${qCount} soruluk ${data.title} testini çözerek seviyeni ölç. Ücretsiz online İngilizce testi.`
-      : 'Ücretsiz online İngilizce testleri.';
 
   return {
-    title,
-    description: desc,
+    title: data?.title ? `${data.title} | EnglishMeter` : 'Test | EnglishMeter',
+    description:
+      qCount > 0
+        ? `${qCount} soruluk ${data.title} testini çöz. Ücretsiz online İngilizce testi.`
+        : 'Ücretsiz online İngilizce testleri.',
     alternates: { canonical: `/tests/${params.slug}` },
   };
 }
@@ -26,7 +60,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
 export default function TestPage({ params }: PageProps) {
   const testData = getQuestionsBySlug(params.slug);
 
-  if (!testData || !testData.questions || testData.questions.length === 0) {
+  if (!testData?.questions?.length) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
         <div className="max-w-md w-full rounded-xl bg-white shadow p-6 text-center">
@@ -39,21 +73,36 @@ export default function TestPage({ params }: PageProps) {
     );
   }
 
+  const raceQuestions = toRaceQuestions(testData);
+
+  // RaceQuiz saniye bekliyor
+  const totalTimeSeconds = Math.max(60, (testData.duration || 15) * 60);
+
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* ✅ Google Botları JS çalıştırmasa bile başlık + açıklama görsün */}
+      {/* ✅ Google bot için görünür metin */}
       <div className="sr-only">
         <h1>{testData.title}</h1>
         <p>
-          İngilizce seviyenizi ölçmek için {testData.questions.length} soruluk {testData.title} testini çözün.
-          Test süresi {testData.duration} dakikadır.
+          {raceQuestions.length} soruluk {testData.title} testini çözün. Süre {testData.duration} dakikadır.
         </p>
-
-        {/* ✅ İstersen burada ilk 10 soruyu da metin olarak render edebiliriz (SEO daha da güçlenir) */}
       </div>
 
-      {/* ✅ Kullanıcı etkileşimli quiz UI */}
-      <QuizClientWrapper initialData={testData} slug={params.slug} />
+      <div className="max-w-3xl mx-auto p-4 md:p-8">
+        <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-4">
+          {testData.title}
+        </h1>
+
+        <RaceQuiz
+          questions={raceQuestions}
+          raceId={params.slug}   // slug'ı raceId gibi kullanıyoruz
+          totalTime={totalTimeSeconds}
+        />
+
+        {/* Footer sende varsa burada kullanabilirsin:
+            <Footer />
+        */}
+      </div>
     </div>
   );
 }
