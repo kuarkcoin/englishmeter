@@ -219,7 +219,7 @@ function HomeContent() {
       };
 
       // --- YDS 3750 MINI TESTS (1..75) ---
-      if (testSlug.startsWith('yds-3750-mini-')) {
+      if (testSlug.startsWith('yds-3850-mini-')) {
         const nStr = testSlug.split('-').pop() || '1';
         const n = Math.max(1, Math.min(77, Number(nStr) || 1));
 
