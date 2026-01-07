@@ -2,46 +2,28 @@ import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
-/**
- * .env dosyasındaki API anahtarlarından birini rastgele seçer.
- * Bu sayede kota limitlerine takılma ihtimali azalır.
- */
 function pickKey() {
   const keys = [
+    process.env.GOOGLE_API_KEY,
     process.env.GOOGLE_KEY_2,
     process.env.GOOGLE_KEY_3,
     process.env.GOOGLE_KEY_4,
     process.env.GOOGLE_KEY_5,
-    process.env.GOOGLE_API_KEY,
   ].filter(Boolean) as string[];
 
-  if (!keys.length) {
-    throw new Error("Google API key bulunamadı.");
-  }
+  if (!keys.length) throw new Error("API Key bulunamadı.");
   return keys[Math.floor(Math.random() * keys.length)];
 }
 
 export async function POST(req: Request) {
   try {
     const { word, meaning } = await req.json();
-
-    if (!word || !meaning) {
-      return NextResponse.json({ error: "Kelime veya anlam eksik." }, { status: 400 });
-    }
-
     const apiKey = pickKey();
 
-    // Modelin sadece JSON dönmesi için sistem talimatı ve formatı
-    const prompt = `You are a bilingual English teacher.
-Create ONE natural, short English sentence using the word: "${word}".
-The sentence should be relevant to its Turkish meaning: "${meaning}".
-
-Return ONLY a JSON object in this format:
-{
-  "en": "the english sentence",
-  "tr": "turkish translation",
-  "note_tr": "very short usage note (optional)"
-}`;
+    // Modelin kafasını karıştırmayacak en kısa ve net prompt
+    const prompt = `Return a JSON object for the English word "${word}" (Meaning: ${meaning}). 
+    Format: {"en": "sentence", "tr": "çeviri", "note_tr": "not"}. 
+    Output only raw JSON.`;
 
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
@@ -53,34 +35,38 @@ Return ONLY a JSON object in this format:
         generationConfig: { 
           temperature: 0.7, 
           maxOutputTokens: 300,
-          // ✅ ÖNEMLİ: Modelin cevabı kod bloğu (```json) olmadan saf JSON dönmesini sağlar
           responseMimeType: "application/json" 
         },
       }),
     });
 
-    if (!r.ok) {
-      const errorData = await r.json();
-      throw new Error(errorData?.error?.message || "Gemini API hatası");
-    }
-
     const data = await r.json();
     let text = data?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
 
-    // ✅ EKSTRA GÜVENLİK: Eğer model responseMimeType'a rağmen backtick eklerse temizle
-    text = text.replace(/```json/g, "").replace(/```/g, "").trim();
-
-    let parsed: any;
+    // ✅ YENİ: Metnin içindeki JSON'ı cımbızla çekip alma (En güvenli yöntem)
+    let parsed: any = null;
     try {
+      // Önce doğrudan parse etmeyi dene
       parsed = JSON.parse(text);
-    } catch (parseErr) {
-      console.error("JSON Ayrıştırma Hatası. Ham Metin:", text);
-      // JSON bozuksa metni en azından 'en' kısmına yerleştirip gönderiyoruz
-      parsed = { 
-        en: text.slice(0, 200), 
-        tr: "Çeviri yapılamadı (Format Hatası)", 
-        note_tr: "" 
-      };
+    } catch {
+      // Başarısız olursa metin içindeki { ... } bloğunu ara
+      const jsonMatch = text.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        try {
+          parsed = JSON.parse(jsonMatch[0]);
+        } catch (e) {
+          console.error("Regex parse hatası:", e);
+        }
+      }
+    }
+
+    // Eğer hala parse edilemediyse fallback (Hata göstermek yerine metni göster)
+    if (!parsed) {
+      return NextResponse.json({
+        en: text.replace(/[\{\}]/g, "").slice(0, 150), // En azından gelen düz metni göster
+        tr: "Format ayrıştırılamadı ama yukarıdaki metni inceleyin.",
+        note_tr: "Hata oluştu"
+      });
     }
 
     return NextResponse.json({
@@ -90,10 +76,6 @@ Return ONLY a JSON object in this format:
     });
 
   } catch (e: any) {
-    console.error("API Route Hatası:", e.message);
-    return NextResponse.json(
-      { error: e?.message ?? "Sunucu hatası oluştu." },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: e.message }, { status: 500 });
   }
 }
