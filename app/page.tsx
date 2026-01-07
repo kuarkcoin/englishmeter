@@ -637,7 +637,7 @@ function HomeContent() {
     );
   }
 
-  const freeMiniCount = 75; // Premium yoksa ilk 8 mini test ücretsiz gibi düşün
+  const freeMiniCount = 77; // Premium yoksa ilk 8 mini test ücretsiz gibi düşün
 
   return (
     <div className="min-h-screen bg-slate-50">
