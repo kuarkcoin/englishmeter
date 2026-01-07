@@ -43,7 +43,7 @@ Return ONLY a JSON object in this format:
   "note_tr": "very short usage note (optional)"
 }`;
 
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
     const r = await fetch(url, {
       method: "POST",
