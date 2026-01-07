@@ -12,7 +12,7 @@ function pickKey() {
   ].filter(Boolean) as string[];
 
   if (!keys.length) {
-    throw new Error("Google API key bulunamadı (GOOGLE_KEY_1..5 veya GOOGLE_API_KEY).");
+    throw new Error("Google API key bulunamadı (GOOGLE_KEY_2..5 veya GOOGLE_API_KEY).");
   }
   return keys[Math.floor(Math.random() * keys.length)];
 }
