@@ -57,7 +57,7 @@ const raceTest = { title: 'Global Race Mode', href: '/race' };
 const ieltsTest = { title: 'IELTS Grammar (50Q)', slug: 'ielts-grammar' };
 
 // YDS TESTLERİ
-const ydsVocabHub = { title: 'YDS 3750 Words (75 Mini Tests)', slug: 'yds-3750-vocab-hub' };
+const ydsVocabHub = { title: 'YDS 3850 Words (77 Mini Tests)', slug: 'yds-3750-vocab-hub' };
 const ydsGrammarTest = { title: 'YDS Grammar Practice (100Q)', slug: 'yds-grammar-practice' };
 const ydsPhrasalTest = { title: 'YDS Phrasal Verbs (100Q)', slug: 'yds-phrasal-verbs' };
 const ydsReadingTest = { title: 'YDS Reading (40Q)', slug: 'yds-reading' };
@@ -141,7 +141,7 @@ function seededUniqueIndices(total: number, need: number, seed: number) {
 // LocalStorage keys
 const LS_PREMIUM = 'em_is_premium';
 const LS_LAST = 'em_last_test';
-const LS_VOCAB_MAP = 'em_yds3750_map_v1';
+const LS_VOCAB_MAP = 'em_yds3850_map_v1';
 
 // Save / load helpers (safe)
 function safeJsonParse<T>(raw: string | null, fallback: T): T {
@@ -188,9 +188,9 @@ function HomeContent() {
     const map = safeJsonParse<Record<string, number[]>>(typeof window !== 'undefined' ? localStorage.getItem(LS_VOCAB_MAP) : null, {});
     if (!total) return map;
 
-    // Ensure 1..75 exist
+    // Ensure 1..77 exist
     let changed = false;
-    for (let t = 1; t <= 75; t++) {
+    for (let t = 1; t <= 77; t++) {
       const key = String(t);
       if (!Array.isArray(map[key]) || map[key].length !== 50) {
         // seed by test number, but also depend on total length (so changes don't break too hard)
@@ -221,7 +221,7 @@ function HomeContent() {
       // --- YDS 3750 MINI TESTS (1..75) ---
       if (testSlug.startsWith('yds-3750-mini-')) {
         const nStr = testSlug.split('-').pop() || '1';
-        const n = Math.max(1, Math.min(75, Number(nStr) || 1));
+        const n = Math.max(1, Math.min(77, Number(nStr) || 1));
 
         const map = ensureVocabMap();
         const indices = map[String(n)] || [];
@@ -254,7 +254,7 @@ function HomeContent() {
           };
         });
 
-        const title = `YDS 3750 WORDS · MINI TEST ${n} (50Q · 25 min)`;
+        const title = `YDS 3850 WORDS · MINI TEST ${n} (50Q · 25 min)`;
 
         const payload = {
           attemptId,
@@ -785,7 +785,7 @@ function HomeContent() {
                   🧠 Study
                 </div>
                 <h3 className="text-2xl font-black text-white mb-1">Flashcards</h3>
-                <p className="text-emerald-200 text-xs mb-4">Memorize 3750 words.</p>
+                <p className="text-emerald-200 text-xs mb-4">Memorize 3850 words.</p>
                 <div className="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold">↺</div>
               </div>
             </a>
@@ -842,7 +842,7 @@ function HomeContent() {
                 <h3 className="text-2xl font-black text-white mb-1">Matching Game</h3>
                 <p className="text-teal-200 text-xs mb-4">Match words + listen.</p>
                 <div className="flex items-center justify-between">
-                  <div className="text-[11px] text-teal-300/80 font-semibold">3750 Words · Audio</div>
+                  <div className="text-[11px] text-teal-300/80 font-semibold">3850 Words · Audio</div>
                   <div className="w-11 h-11 bg-teal-400 rounded-full flex items-center justify-center text-teal-950 font-black transition-transform duration-200 group-hover:scale-110 group-active:scale-95">
                     ▶
                   </div>
@@ -965,7 +965,7 @@ function HomeContent() {
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-8 gap-3">
-                {Array.from({ length: 75 }, (_, i) => i + 1).map((num) => {
+                {Array.from({ length: 77 }, (_, i) => i + 1).map((num) => {
                   const locked = !isPremium && num > freeMiniCount;
                   return (
                     <button
