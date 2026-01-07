@@ -10,6 +10,13 @@ type WordItem = { word: string; meaning: string };
 type DeckItem = WordItem & {
   id: string;
   seenCount: number;
+
+  // ✅ Lazy sentence cache (LocalStorage'a da kaydolur)
+  sentenceEn?: string;
+  sentenceTr?: string;
+  sentenceNoteTr?: string;
+  sentenceLoading?: boolean;
+  sentenceError?: string;
 };
 
 type Stats = {
@@ -65,11 +72,18 @@ export default function FlashcardsPage() {
         }
       }
     } catch {}
+
     const base: DeckItem[] = shuffle(fullWordList as WordItem[]).map((w) => ({
       ...w,
       id: makeId(w),
       seenCount: 0,
+      sentenceEn: '',
+      sentenceTr: '',
+      sentenceNoteTr: '',
+      sentenceLoading: false,
+      sentenceError: '',
     }));
+
     setDeck(base);
   }, []);
 
@@ -115,6 +129,75 @@ export default function FlashcardsPage() {
     setIndex((i) => (i > 0 ? i - 1 : 0));
   }, []);
 
+  // ✅ Lazy sentence generator (button ile)
+  const genSentence = useCallback(async () => {
+    if (!card) return;
+
+    // varsa tekrar üretme
+    if (card.sentenceEn && card.sentenceTr) return;
+
+    setDeck((d) =>
+      d.map((c, i) =>
+        i === index ? { ...c, sentenceLoading: true, sentenceError: '' } : c
+      )
+    );
+
+    try {
+      const res = await fetch('/api/flashcards/sentence', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ word: card.word, meaning: card.meaning }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error || 'Sentence üretilemedi');
+
+      setDeck((d) =>
+        d.map((c, i) =>
+          i === index
+            ? {
+                ...c,
+                sentenceEn: String(data.en || ''),
+                sentenceTr: String(data.tr || ''),
+                sentenceNoteTr: String(data.note_tr || ''),
+                sentenceLoading: false,
+                sentenceError: '',
+              }
+            : c
+        )
+      );
+    } catch (err: any) {
+      setDeck((d) =>
+        d.map((c, i) =>
+          i === index
+            ? {
+                ...c,
+                sentenceLoading: false,
+                sentenceError: err?.message || 'Hata',
+              }
+            : c
+        )
+      );
+    }
+  }, [card, index]);
+
+  const resetSentence = useCallback(() => {
+    setDeck((d) =>
+      d.map((c, i) =>
+        i === index
+          ? {
+              ...c,
+              sentenceEn: '',
+              sentenceTr: '',
+              sentenceNoteTr: '',
+              sentenceError: '',
+              sentenceLoading: false,
+            }
+          : c
+      )
+    );
+  }, [index]);
+
   if (!card) {
     return (
       <div className="min-h-screen flex items-center justify-center text-slate-500">
@@ -127,7 +210,9 @@ export default function FlashcardsPage() {
     <div className="min-h-screen bg-slate-50 flex flex-col">
       {/* TOP */}
       <div className="w-full max-w-md mx-auto flex justify-between items-center px-4 pt-4">
-        <Link href="/" className="text-slate-500 font-bold">← Exit</Link>
+        <Link href="/" className="text-slate-500 font-bold">
+          ← Exit
+        </Link>
         <div className="text-xs text-slate-400 font-semibold">
           {index + 1} / {total}
         </div>
@@ -180,25 +265,69 @@ export default function FlashcardsPage() {
             </div>
 
             {/* BACK */}
-            <div className="absolute w-full h-full bg-emerald-600 text-white rounded-3xl shadow-xl backface-hidden rotate-y-180 flex items-center justify-center p-8">
+            <div className="absolute w-full h-full bg-emerald-600 text-white rounded-3xl shadow-xl backface-hidden rotate-y-180 flex flex-col items-center justify-center p-8 gap-4">
               <h2 className="text-3xl font-black text-center break-words">
                 {card.meaning}
               </h2>
+
+              {/* ✅ AL Sentence Area */}
+              <div className="w-full rounded-2xl bg-white/10 p-4 text-sm">
+                {!card.sentenceEn ? (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      genSentence();
+                    }}
+                    disabled={!!card.sentenceLoading}
+                    className="w-full px-4 py-3 rounded-xl bg-white text-emerald-700 font-black active:scale-[0.99] disabled:opacity-60"
+                  >
+                    {card.sentenceLoading ? '⏳ Üretiliyor...' : '✨ AL Sentence (EN + TR)'}
+                  </button>
+                ) : (
+                  <>
+                    <div className="font-extrabold">EN</div>
+                    <div className="font-semibold">{card.sentenceEn}</div>
+
+                    <div className="mt-3 font-extrabold">TR</div>
+                    <div className="opacity-95">{card.sentenceTr}</div>
+
+                    {card.sentenceNoteTr ? (
+                      <div className="mt-3 opacity-80">📝 {card.sentenceNoteTr}</div>
+                    ) : null}
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        resetSentence();
+                      }}
+                      className="mt-3 text-xs underline opacity-80"
+                    >
+                      Yeniden üret
+                    </button>
+                  </>
+                )}
+
+                {card.sentenceError ? (
+                  <div className="mt-3 text-xs opacity-90">⚠️ {card.sentenceError}</div>
+                ) : null}
+              </div>
+
+              <p className="text-white/70 text-xs">Tap to flip ↻</p>
             </div>
           </div>
         </div>
 
         {/* STATS */}
-        <div className="mt-4 text-xs text-slate-500">
-          Seen: {stats.seenTotal}
-        </div>
+        <div className="mt-4 text-xs text-slate-500">Seen: {stats.seenTotal}</div>
       </div>
 
       {/* STICKY CONTROLS */}
       <div className="sticky bottom-0 w-full bg-slate-50/95 backdrop-blur border-t border-slate-200">
         <div className="w-full max-w-md mx-auto px-4 py-3">
           <div className="flex gap-3">
-            <button onClick={prev} className="flex-1 btn">← Prev</button>
+            <button onClick={prev} className="flex-1 btn">
+              ← Prev
+            </button>
             <button onClick={next} className="flex-1 btn btn-dark">
               Next →
             </button>
@@ -213,12 +342,12 @@ export default function FlashcardsPage() {
           background: white;
           border: 1px solid #e5e7eb;
           font-weight: 900;
-          box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+          box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
           transition: transform 120ms ease, box-shadow 120ms ease;
         }
         .btn:active {
           transform: translateY(2px);
-          box-shadow: 0 0 0 rgba(0,0,0,0);
+          box-shadow: 0 0 0 rgba(0, 0, 0, 0);
         }
         .btn-dark {
           background: #0f172a;
@@ -226,10 +355,18 @@ export default function FlashcardsPage() {
           border-color: #0f172a;
         }
 
-        .perspective-1000 { perspective: 1000px; }
-        .transform-style-3d { transform-style: preserve-3d; }
-        .backface-hidden { backface-visibility: hidden; }
-        .rotate-y-180 { transform: rotateY(180deg); }
+        .perspective-1000 {
+          perspective: 1000px;
+        }
+        .transform-style-3d {
+          transform-style: preserve-3d;
+        }
+        .backface-hidden {
+          backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+          transform: rotateY(180deg);
+        }
         .tok {
           transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
         }
