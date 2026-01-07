@@ -4,10 +4,10 @@ export const runtime = "nodejs";
 
 function pickKey() {
   const keys = [
-    process.env.GOOGLE_KEY_1,
     process.env.GOOGLE_KEY_2,
     process.env.GOOGLE_KEY_3,
     process.env.GOOGLE_KEY_4,
+    process.env.GOOGLE_KEY_5,
     process.env.GOOGLE_API_KEY,
   ].filter(Boolean) as string[];
 
