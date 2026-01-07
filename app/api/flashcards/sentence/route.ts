@@ -9,6 +9,12 @@ function pickKey() {
     process.env.GOOGLE_KEY_3,
     process.env.GOOGLE_KEY_4,
     process.env.GOOGLE_KEY_5,
+    process.env.GOOGLE_KEY_6,
+    process.env.GOOGLE_KEY_7,
+    process.env.GOOGLE_KEY_8,
+    process.env.GOOGLE_KEY_9,
+    process.env.GOOGLE_KEY_10,
+    
   ].filter(Boolean) as string[];
 
   if (!keys.length) throw new Error("API Key bulunamadı.");
