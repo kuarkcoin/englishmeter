@@ -57,7 +57,7 @@ const raceTest = { title: 'Global Race Mode', href: '/race' };
 const ieltsTest = { title: 'IELTS Grammar (50Q)', slug: 'ielts-grammar' };
 
 // YDS TESTLERİ
-const ydsVocabHub = { title: 'YDS 3850 Words (77 Mini Tests)', slug: 'yds-3750-vocab-hub' };
+const ydsVocabHub = { title: 'YDS 3850 Words (77 Mini Tests)', slug: 'yds-3850-vocab-hub' };
 const ydsGrammarTest = { title: 'YDS Grammar Practice (100Q)', slug: 'yds-grammar-practice' };
 const ydsPhrasalTest = { title: 'YDS Phrasal Verbs (100Q)', slug: 'yds-phrasal-verbs' };
 const ydsReadingTest = { title: 'YDS Reading (40Q)', slug: 'yds-reading' };
