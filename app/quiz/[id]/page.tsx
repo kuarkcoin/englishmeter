@@ -762,18 +762,16 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 </div>
               )}
 
-              {/* ✅ EXAM EXPLANATION: show after answering (isteğe bağlı; kapatmak istersen kaldır) */}
-              {mode === 'exam' && !!answers[q.id] && q.explanation && (
-                <div className="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-700 flex gap-3 items-start">
-                  <span className="text-xl">📝</span>
-                  <div>
-                    <span className="font-bold block mb-1 text-slate-700">Note:</span>
-                    <span className="leading-relaxed opacity-90">
-                      <SafeHTML html={q.explanation} />
-                    </span>
-                  </div>
-                </div>
-              )}
+             {mode === 'exam' && isFinished && q.explanation && (
+  <div className="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-700 flex gap-3 items-start">
+    <span className="text-xl">📝</span>
+    <div>
+      <span className="font-bold block mb-1 text-slate-700">Explanation</span>
+      <SafeHTML html={q.explanation} />
+    </div>
+  </div>
+)}
+
 
               {/* Quick actions */}
               <div className="mt-5 flex items-center justify-between">
