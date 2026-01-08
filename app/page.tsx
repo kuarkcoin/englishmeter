@@ -898,87 +898,86 @@ function HomeContent() {
     </div>
   </Link>
 </div>
-
-          {/* MAIN TESTS GRID */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
-            <button
-              onClick={() => startTest(quickTest.slug)}
-              className="flex flex-col items-center justify-center px-6 py-8 rounded-2xl bg-blue-600 text-white text-xl font-black shadow-xl hover:bg-blue-700 transition-all"
-            >
-              <div>{quickTest.title}</div>
-              <div className="mt-2 text-xs font-semibold opacity-90">50Q · 25 min · Instant results</div>
-              <Link href="/start?testSlug=quick-placement" className="mt-3 text-[11px] underline opacity-90 hover:opacity-100">
-                Learn more →
-              </Link>
-            </button>
-
-            <button
-              onClick={() => startTest(megaTest.slug)}
-              className="flex flex-col items-center justify-center px-6 py-8 rounded-2xl bg-purple-600 text-white text-xl font-black shadow-xl hover:bg-purple-700 transition-all"
-            >
-              <div>{megaTest.title}</div>
-              <div className="mt-2 text-xs font-semibold opacity-90">100Q · Timed · Deep review</div>
-              <Link href="/start?testSlug=grammar-mega-test-100" className="mt-3 text-[11px] underline opacity-90 hover:opacity-100">
-                Learn more →
-              </Link>
-            </button>
-
-           {/* 🔥 HERO YDS 3850 BUTTON */}
-<div className="mb-14">
+{/* MAIN TESTS GRID */}
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
   <button
+    onClick={() => startTest(quickTest.slug)}
+    className="flex flex-col items-center justify-center px-6 py-8 rounded-2xl bg-blue-600 text-white text-xl font-black shadow-xl hover:bg-blue-700 transition-all"
+  >
+    <div>{quickTest.title}</div>
+    <div className="mt-2 text-xs font-semibold opacity-90">50Q · 25 min · Instant results</div>
+    <Link
+      href="/start?testSlug=quick-placement"
+      className="mt-3 text-[11px] underline opacity-90 hover:opacity-100"
+    >
+      Learn more →
+    </Link>
+  </button>
+
+  <button
+    onClick={() => startTest(megaTest.slug)}
+    className="flex flex-col items-center justify-center px-6 py-8 rounded-2xl bg-purple-600 text-white text-xl font-black shadow-xl hover:bg-purple-700 transition-all"
+  >
+    <div>{megaTest.title}</div>
+    <div className="mt-2 text-xs font-semibold opacity-90">100Q · Timed · Deep review</div>
+    <Link
+      href="/start?testSlug=grammar-mega-test-100"
+      className="mt-3 text-[11px] underline opacity-90 hover:opacity-100"
+    >
+      Learn more →
+    </Link>
+  </button>
+
+  {/* 🔥 YDS 3850 HERO (GRID ITEM) */}
+  <button
+    type="button"
     onClick={() => {
-      setShowYds3750Hub(true);
+      const next = !showYds3750Hub;
+      setShowYds3750Hub(next);
+      if (!next) return;
+
       ensureVocabMap();
       setTimeout(() => {
-        document.getElementById("yds3750hub")
-          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+        document.getElementById("yds3750hub")?.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 80);
     }}
-    className="group relative w-full overflow-hidden rounded-[2.5rem]
+    className={`group relative overflow-hidden rounded-2xl p-6 md:p-7 text-left
       bg-gradient-to-br from-orange-600 via-orange-700 to-amber-600
-      p-10 md:p-14 text-left
-      shadow-2xl shadow-orange-500/30
-      hover:shadow-orange-500/50
-      transition-all duration-300
-      hover:-translate-y-1"
+      text-white shadow-xl transition-all duration-300 transform hover:-translate-y-1
+      hover:shadow-orange-500/30
+      ${showYds3750Hub ? "ring-2 ring-amber-200 ring-offset-2 ring-offset-white" : ""}`}
   >
-    <div className="absolute -top-24 -right-24 w-96 h-96 bg-amber-300 opacity-20 rounded-full blur-3xl"></div>
+    <div className="absolute -top-10 -right-10 w-40 h-40 bg-amber-300 opacity-20 rounded-full blur-3xl"></div>
 
-    <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+    <div className="relative z-10 flex flex-col justify-between h-full">
       <div>
-        <div className="inline-flex items-center gap-2 px-4 py-1.5
-          rounded-full bg-white/15 text-white text-xs font-black uppercase mb-4">
-          📚 YDS Vocabulary Mega Pack
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/15 rounded-full text-[10px] font-black uppercase mb-3 border border-white/20">
+          📚 Vocabulary Mega Pack
         </div>
 
-        <h2 className="text-4xl md:text-5xl font-black text-white leading-tight">
-          YDS 3850 Vocabulary Tests
-        </h2>
+        <div className="text-2xl font-black leading-tight">YDS 3850 Mini Tests</div>
 
-        <p className="mt-4 max-w-2xl text-white/90 text-sm md:text-base">
-          77 mini test · Her biri <b>50 soru</b> · 25 dakika  
-          <br />Aynı test numarası → aynı sorular
-        </p>
+        <div className="mt-2 text-xs text-white/90 leading-relaxed">
+          77 mini test · <span className="font-black">50 soru</span> · 25 dakika
+          <br />
+          Aynı test numarası → aynı sorular
+        </div>
       </div>
 
-      <div className="flex items-center gap-6">
-        <div className="hidden md:block text-white/20 text-7xl font-black select-none">
-          3850
+      <div className="mt-6 flex items-center justify-between">
+        <div className="text-[11px] font-bold text-white/90">
+          {isPremium ? "✅ Premium unlocked" : `🔒 Free: first ${freeMiniCount}`}
         </div>
 
-        <div className="w-20 h-20 rounded-3xl bg-white flex items-center justify-center
-          text-orange-700 text-4xl font-black
-          shadow-xl group-hover:scale-110 transition-transform">
-          ▶
+        <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-orange-700 text-2xl font-black shadow-lg group-hover:scale-110 transition-transform">
+          {showYds3750Hub ? "×" : "▶"}
         </div>
       </div>
     </div>
   </button>
 </div>
 
-
-
-          {/* 📂 YDS 3750 HUB AÇILIR PANEL (Butonların Hemen Altında) */}
+{/* 📂 YDS HUB PANEL (GRID DIŞINDA!) */}
 {showYds3750Hub && (
   <div
     id="yds3750hub"
@@ -998,9 +997,10 @@ function HomeContent() {
 
       <div className="flex items-center gap-2">
         <span className="text-xs font-bold px-3 py-1 rounded-full bg-white border border-orange-200 text-orange-700">
-          {isPremium ? '✅ Premium unlocked' : `🔒 Free: first ${freeMiniCount}`}
+          {isPremium ? "✅ Premium unlocked" : `🔒 Free: first ${freeMiniCount}`}
         </span>
         <button
+          type="button"
           onClick={() => setShowYds3750Hub(false)}
           className="text-xs font-bold px-4 py-2 rounded-xl bg-white border border-orange-200 text-orange-700 hover:bg-orange-100 transition shadow-sm"
         >
@@ -1012,8 +1012,10 @@ function HomeContent() {
     <div className="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-8 gap-3">
       {Array.from({ length: 77 }, (_, i) => i + 1).map((num) => {
         const locked = !isPremium && num > freeMiniCount;
+
         return (
           <button
+            type="button"
             key={num}
             onClick={() => {
               if (locked) return;
@@ -1021,22 +1023,22 @@ function HomeContent() {
             }}
             disabled={locked}
             className={`py-4 rounded-xl font-black text-sm shadow-sm transition-all transform hover:scale-[1.03] active:scale-[0.98]
-              ${locked
-                ? 'bg-white text-orange-200 border border-orange-100 cursor-not-allowed opacity-60'
-                : 'bg-orange-600 text-white hover:bg-orange-700 shadow-orange-200 ring-2 ring-orange-200 ring-offset-2'
+              ${
+                locked
+                  ? "bg-white text-orange-200 border border-orange-100 cursor-not-allowed opacity-60"
+                  : "bg-orange-600 text-white hover:bg-orange-700 shadow-orange-200 ring-2 ring-orange-200 ring-offset-2"
               }`}
-            title={locked ? 'Premium required' : 'Start mini test'}
+            title={locked ? "Premium required" : "Start mini test"}
           >
             Test {num}
-            <span className="block text-[10px] font-semibold opacity-90 mt-1">
-              {locked ? '🔒 Locked' : 'Start'}
-            </span>
+            <span className="block text-[10px] font-semibold opacity-90 mt-1">{locked ? "🔒 Locked" : "Start"}</span>
           </button>
         );
       })}
     </div>
   </div>
 )}
+
           {/* OTHER MAIN TESTS */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
             {/* YDS EXAM PACK */}
