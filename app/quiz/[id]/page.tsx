@@ -1,3 +1,4 @@
+// app/quiz/[id]/page.tsx
 'use client';
 
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
@@ -17,10 +18,11 @@ interface Question {
   choices: Choice[];
   explanation?: string;
 
-  // ✅ AI fields
+  // ✅ AI sentence + translation (payload'dan gelir)
   s?: string | null;
   t?: string | null;
 
+  // legacy / farklı datasetler için
   correctChoiceId?: string;
   correct?: string;
   correct_option?: string;
@@ -103,30 +105,6 @@ function formatText(text: string) {
   });
 }
 
-// ✅ Reusable AI Context Box
-function AiContextBox({ s, t }: { s?: string | null; t?: string | null }) {
-  if (!s) return null;
-  return (
-    <div className="mt-4 mb-6 p-5 bg-gradient-to-br from-emerald-50 to-white rounded-2xl border border-emerald-100 shadow-sm">
-      <div className="flex items-center gap-2 mb-3">
-        <div className="bg-emerald-500 text-white text-[10px] px-2 py-0.5 rounded-md font-black tracking-tighter">
-          AI CONTEXT
-        </div>
-        <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest opacity-60">
-          Usage Example
-        </span>
-      </div>
-      <p className="text-slate-800 text-lg font-semibold italic leading-snug">"{s}"</p>
-      {t && (
-        <div className="mt-3 pt-3 border-t border-emerald-100/50 flex items-start gap-2 text-slate-600">
-          <span className="text-emerald-500 font-bold text-xs mt-0.5">TR:</span>
-          <p className="text-sm font-medium">{t}</p>
-        </div>
-      )}
-    </div>
-  );
-}
-
 /** Confetti burst:
  *  - 5 streak: small
  *  - 10 streak: big
@@ -203,6 +181,29 @@ function MiniConfetti({ burst }: { burst: { key: number; level: 'small' | 'big' 
   );
 }
 
+// ✅ AI box component (tek yerde render)
+function AiSentenceBox({ s, t }: { s?: string | null; t?: string | null }) {
+  if (!s && !t) return null;
+
+  return (
+    <div className="mt-4 p-4 rounded-2xl border border-violet-200 bg-violet-50/40">
+      <div className="text-[11px] font-black text-violet-700 uppercase tracking-wide">AI Sentence</div>
+
+      {s && (
+        <div className="mt-2 text-sm font-semibold text-slate-900 leading-relaxed">
+          <SafeHTML html={s} />
+        </div>
+      )}
+
+      {t && (
+        <div className="mt-2 text-sm text-slate-700 leading-relaxed">
+          <SafeHTML html={t} />
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Quiz({ params }: { params: { id: string } }) {
   const [data, setData] = useState<QuizData | null>(null);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -268,6 +269,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
   const handleSubmit = useCallback(() => {
     if (!data) return;
 
+    // ✅ Practice modda "bitirme" yine çalışsın ama sınav hissi için unanswered kontrolünü exam modda yap
     if (mode === 'exam') {
       const unanswered = data.questions.filter((q) => !answers[q.id]);
       if (unanswered.length > 0) {
@@ -296,6 +298,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
       const isCorrect = idsEqual(userAnswerId, correctChoiceId);
       if (isCorrect) correctCount++;
 
+      // ✅ unique key
       const scope = data.testSlug || data.attemptId || 'test';
       const mistakeKey = `${scope}::${q.id}`;
 
@@ -349,7 +352,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
     }
   }, [timeLeft, showResult, mode]);
 
-  // Practice/Exam mode change: feedback + streak temizle
+  // Practice/Exam mode change: feedback + streak temizle (temiz başlangıç hissi)
   useEffect(() => {
     setFeedback(null);
     setStreak(0);
@@ -361,6 +364,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
   const { questions, test } = data;
 
+  // ✅ Progress metrics
   const totalQ = questions.length || 1;
   const answeredCount = questions.filter((q) => !!answers[q.id]).length;
   const progress = Math.round((answeredCount / totalQ) * 100);
@@ -471,9 +475,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
                     <div className="text-lg font-medium text-slate-800 mb-5 leading-loose">{formatText(q.prompt)}</div>
 
-                    {/* ✅ AI CONTEXT (RESULT SCREEN) */}
-                    <AiContextBox s={q.s} t={q.t} />
-
                     <div className="grid gap-2">
                       {(q.choices || []).map((c) => {
                         const isSelected = idsEqual(userAnswerId, c.id);
@@ -511,6 +512,9 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       })}
                     </div>
 
+                    {/* ✅ AI sentence shows in result always if exists */}
+                    <AiSentenceBox s={q.s ?? null} t={q.t ?? null} />
+
                     {q.explanation && (
                       <div className="mt-5 p-4 bg-blue-50 rounded-xl border border-blue-100 text-sm text-blue-800 flex gap-3 items-start">
                         <span className="text-xl">💡</span>
@@ -535,12 +539,14 @@ export default function Quiz({ params }: { params: { id: string } }) {
   // --- QUIZ SOLVING SCREEN ---
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 space-y-6">
+      {/* confetti overlay */}
       <MiniConfetti burst={burst} />
 
       {/* Top Bar */}
       <div className="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-slate-200 sticky top-4 z-20 backdrop-blur-sm bg-white/90">
         <div className="text-sm font-semibold text-slate-700 truncate max-w-[200px]">{test?.title || 'Test'}</div>
 
+        {/* Right cluster */}
         <div className="flex items-center gap-3">
           {/* Mode toggle */}
           <div className="flex items-center gap-1 px-2 py-1 rounded-xl border border-slate-200 bg-slate-50">
@@ -565,6 +571,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
             </button>
           </div>
 
+          {/* Streak (practice only) */}
           {mode === 'practice' && (
             <div className="text-xs font-black text-orange-600 select-none" title="Correct streak">
               🔥 {streak}
@@ -632,7 +639,9 @@ export default function Quiz({ params }: { params: { id: string } }) {
         {questions.map((q, idx) => {
           const correctId = mode === 'practice' ? getCorrectChoiceId(q) : undefined;
           const showThisFeedback = mode === 'practice' && feedback?.questionId === q.id;
-          const showAiNow = mode === 'practice' && !!answers[q.id] && !!q.s;
+
+          const hasAi = !!q.s || !!q.t;
+          const shouldShowAi = !!answers[q.id] && hasAi; // ✅ cevaplandıktan sonra göster
 
           return (
             <div
@@ -650,9 +659,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
               </div>
 
               <div className="text-xl font-medium text-slate-800 mb-6 leading-loose">{formatText(q.prompt)}</div>
-
-              {/* ✅ AI CONTEXT (PRACTICE: show after answer) */}
-              {showAiNow && <AiContextBox s={q.s} t={q.t} />}
 
               <div className="grid gap-3">
                 {(q.choices || []).map((c) => {
@@ -703,6 +709,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                               setStreak((s) => {
                                 const next = s + 1;
 
+                                // 10 streak -> big
                                 if (next % 10 === 0) {
                                   setBurst((b) => ({ key: (b?.key ?? 0) + 1, level: 'big' }));
                                 } else if (next % 5 === 0) {
@@ -739,7 +746,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 </div>
               )}
 
-              {/* ✅ PRACTICE EXPLANATION */}
+              {/* ✅ AI Sentence: answered -> show in BOTH modes */}
+              {shouldShowAi && <AiSentenceBox s={q.s ?? null} t={q.t ?? null} />}
+
+              {/* ✅ PRACTICE EXPLANATION: show always if exists, after you answered */}
               {mode === 'practice' && !!answers[q.id] && q.explanation && (
                 <div className="mt-4 p-4 bg-blue-50 rounded-xl border border-blue-100 text-sm text-blue-800 flex gap-3 items-start">
                   <span className="text-xl">💡</span>
@@ -752,6 +762,20 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 </div>
               )}
 
+              {/* ✅ EXAM EXPLANATION: show after answering (isteğe bağlı; kapatmak istersen kaldır) */}
+              {mode === 'exam' && !!answers[q.id] && q.explanation && (
+                <div className="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-700 flex gap-3 items-start">
+                  <span className="text-xl">📝</span>
+                  <div>
+                    <span className="font-bold block mb-1 text-slate-700">Note:</span>
+                    <span className="leading-relaxed opacity-90">
+                      <SafeHTML html={q.explanation} />
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {/* Quick actions */}
               <div className="mt-5 flex items-center justify-between">
                 <button
                   onClick={() => {
@@ -793,10 +817,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
         </button>
 
         <div className="mt-3 text-center text-xs text-slate-400">
-          Tip:{' '}
-          {mode === 'exam'
-            ? 'Finish will warn you if any question is empty.'
-            : 'Practice mode shows instant feedback + streak confetti!'}
+          Tip: {mode === 'exam' ? 'Finish will warn you if any question is empty.' : 'Practice mode shows instant feedback + streak confetti!'}
         </div>
       </div>
     </div>
