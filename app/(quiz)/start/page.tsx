@@ -1,3 +1,4 @@
+// app/(quiz)/start/page.tsx
 'use client';
 
 import React, { Suspense, useEffect, useMemo, useState } from 'react';
@@ -27,14 +28,14 @@ type Choice = {
   isCorrect: boolean;
 };
 
-// ✅ Quiz.tsx’e taşımak için s/t de ekliyoruz
-type FormattedQuestion = {
+// ✅ Question payload tip (Quiz sayfası bunu okuyacak)
+type QPayload = {
   id: string;
   prompt: string;
   explanation?: string;
   choices: Choice[];
-  s?: string | null;
-  t?: string | null;
+  s?: string | null; // ✅ AI sentence
+  t?: string | null; // ✅ AI translation
 };
 
 // ✅ EASING (string yok => TS hatası yok)
@@ -109,7 +110,7 @@ function StartQuizLogic() {
       const { title, questions: rawQuestions } = getQuestionsBySlug(slug);
       const safeQuestions = (rawQuestions || []) as any[];
 
-      const formattedQuestions: FormattedQuestion[] = safeQuestions
+      const formattedQuestions: QPayload[] = safeQuestions
         .map((item: any, index: number) => {
           const prompt = getPrompt(item);
 
@@ -151,6 +152,7 @@ function StartQuizLogic() {
               { id: 'A', text: item.definition, isCorrect: true },
               { id: 'B', text: 'Incorrect definition example 1', isCorrect: false },
               { id: 'C', text: 'Incorrect definition example 2', isCorrect: false },
+              { id: 'D', text: 'Incorrect definition example 3', isCorrect: false },
             ];
             choices = baseChoices;
           }
@@ -166,7 +168,7 @@ function StartQuizLogic() {
 
           if (!choices || choices.length === 0) {
             console.warn('Unknown question format, skipping item:', item);
-            return null;
+            return null as any;
           }
 
           // shuffle + normalize ids A/B/C/D
@@ -176,27 +178,29 @@ function StartQuizLogic() {
             id: String.fromCharCode(65 + idx),
           }));
 
+          // ✅ s/t köprüsü: item içinden al, yoksa null
+          const s = item?.s ?? item?.sentence ?? null;
+          const t = item?.t ?? item?.translation ?? null;
+
           return {
             id: item.id || `q-${index}`,
             prompt,
             explanation: item.explanation,
             choices: normalizedChoices,
-
-            // ✅ AI cümlelerini köprüden geçiriyoruz
-            s: item.s ?? null,
-            t: item.t ?? null,
-          } satisfies FormattedQuestion;
+            s: s ? String(s) : null,
+            t: t ? String(t) : null,
+          };
         })
-        .filter(Boolean) as FormattedQuestion[];
+        .filter(Boolean);
 
       console.log('FORMATTED QUESTIONS (AFTER SHUFFLE):', formattedQuestions);
 
       const attemptData = {
         attemptId: `session-${Date.now()}`,
-        testSlug: slug, // ✅ Quiz.tsx tarafında mistakes scope vs için faydalı
+        testSlug: slug, // ✅ restart için
         test: {
           title: title,
-          duration: 0, // Quiz.tsx questionCount * 60s
+          duration: 0, // Quiz.tsx questionCount * 60s (senin logic'e göre)
         },
         questions: formattedQuestions,
       };
@@ -222,7 +226,6 @@ function StartQuizLogic() {
         variants={cardVariants}
         className="w-full max-w-md bg-white border border-slate-200 rounded-3xl shadow-xl p-7"
       >
-        {/* Top badge */}
         <motion.div
           custom={0}
           variants={textVariants}
@@ -239,7 +242,6 @@ function StartQuizLogic() {
           Please wait while we prepare your questions.
         </motion.p>
 
-        {/* Spinner-like pulse */}
         <motion.div custom={3} variants={textVariants} className="mt-6 flex items-center gap-3">
           <motion.div
             aria-label="loading"
@@ -256,7 +258,6 @@ function StartQuizLogic() {
               <span>{Math.min(100, Math.max(0, progress))}%</span>
             </div>
 
-            {/* Progress bar */}
             <div className="mt-2 h-2 w-full rounded-full bg-slate-100 overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
@@ -268,7 +269,6 @@ function StartQuizLogic() {
           </div>
         </motion.div>
 
-        {/* Tip */}
         <motion.div custom={4} variants={textVariants} className="mt-6 p-4 rounded-2xl bg-slate-50 border border-slate-200">
           <div className="text-xs font-bold text-slate-500">Quick Tip</div>
           <motion.div
