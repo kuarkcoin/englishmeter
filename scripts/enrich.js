@@ -1,8 +1,9 @@
+// scripts/enrich.cjs
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const fs = require("fs");
 const path = require("path");
 
-// ✅ Codespace Secrets keys
+// ✅ Codespace Secrets keys (senin mevcut isimlerinle uyumlu)
 const apiKeys = [
   process.env.GOOGLE_API_KEY,
   process.env.GOOGLE_KEY_2,
@@ -17,19 +18,35 @@ const apiKeys = [
 ].filter(Boolean);
 
 let currentKeyIndex = 0;
-let consecutiveLimitErrors = 0; // Üst üste gelen limit hatalarını sayar
 
+// ✅ absolute path güvenliği
 const inputPath = path.join(process.cwd(), "data", "yds_vocabulary.json");
 const outputPath = path.join(process.cwd(), "data", "yds_vocabulary_enriched.json");
 const backupPath = path.join(process.cwd(), "data", "yds_vocabulary_raw.json");
+const oldPath = path.join(process.cwd(), "data", "yds_vocabulary_old.json");
 
+// --- Guards ---
+if (apiKeys.length === 0) {
+  console.error("❌ HATA: Hiç API anahtarı bulunamadı! Codespace Secrets ayarlarını kontrol et.");
+  process.exit(1);
+}
+if (!fs.existsSync(inputPath)) {
+  console.error("❌ HATA: input dosyası yok:", inputPath);
+  process.exit(1);
+}
+
+// --- Helpers ---
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 function loadJson(p) {
   return JSON.parse(fs.readFileSync(p, "utf-8"));
 }
-function saveJson(p, data) {
-  fs.writeFileSync(p, JSON.stringify(data, null, 2));
+
+// ✅ atomik yaz (JSON yarım kalıp bozulmasın)
+function saveJsonAtomic(p, data) {
+  const tmp = p + ".tmp";
+  fs.writeFileSync(tmp, JSON.stringify(data, null, 2), "utf-8");
+  fs.renameSync(tmp, p);
 }
 
 function isRateLimitError(msg) {
@@ -38,110 +55,188 @@ function isRateLimitError(msg) {
     m.includes("429") ||
     m.includes("limit") ||
     m.includes("quota") ||
-    m.includes("resource_exhausted")
+    m.includes("too many") ||
+    m.includes("resource_exhausted") ||
+    m.includes("rate") ||
+    m.includes("exceeded")
   );
 }
 
+// ✅ Gemini bazen JSON dışı metin ekler -> gövdeyi ayıkla
 function safeJsonParse(rawText) {
   let text = String(rawText || "").replace(/```json|```/g, "").trim();
+
   const start = text.indexOf("{");
   const end = text.lastIndexOf("}");
   if (start !== -1 && end !== -1) text = text.slice(start, end + 1);
+
   const parsed = JSON.parse(text);
-  return { s: String(parsed?.s || "").trim(), t: String(parsed?.t || "").trim() };
+
+  const s = String(parsed?.s ?? "").trim();
+  const t = String(parsed?.t ?? "").trim();
+  if (!s || !t) throw new Error("Invalid JSON: missing s/t");
+
+  return { s, t };
+}
+
+// ✅ model fallback: bazı hesaplarda 2.5-flash patlayabiliyor
+function getModel(genAI) {
+  // önce 2.5-flash en stabil
+  return genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 }
 
 async function getAiContent(wordObj) {
-  // Eğer tüm anahtarlar denendiyse ve hala hata alıyorsak mola ver
-  if (consecutiveLimitErrors >= apiKeys.length) {
-    console.log(`🛑 Tüm anahtarlar limit yedi. 65 saniye mola veriliyor (Soğuma modu)...`);
-    await sleep(65000); 
-    consecutiveLimitErrors = 0; // Sayacı sıfırla
-  }
+  const prompt = `Word: "${wordObj.word}" (Meaning: ${wordObj.meaning}).
+Task:
+1) Write ONE high-level academic English sentence using the word naturally.
+2) Write Turkish translation of that sentence.
+Return ONLY valid JSON:
+{"s":"...","t":"..."}`;
 
-  const genAI = new GoogleGenerativeAI(apiKeys[currentKeyIndex]);
-  // Model ismini en stabil olan 2.5-flash olarak güncelledim
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  // ✅ Bu kelime için 1 tur tüm key'leri dene. Hepsi rate-limit ise "cooldown" uygula.
+  let triedKeys = 0;
+  let didCooldown = false;
 
-  const prompt = `Word: "${wordObj.word}" (Meaning: ${wordObj.meaning}). 
-Return ONLY JSON: {"s":"ONE high-level academic English sentence","t":"Turkish translation"}`;
+  while (triedKeys < apiKeys.length) {
+    const genAI = new GoogleGenerativeAI(apiKeys[currentKeyIndex]);
+    const model = getModel(genAI);
 
-  try {
-    const result = await model.generateContent(prompt);
-    const raw = result?.response?.text?.() ?? "";
-    const parsed = safeJsonParse(raw);
-    
-    consecutiveLimitErrors = 0; // Başarılı olursa hata sayacını sıfırla
-    return parsed;
-  } catch (error) {
-    const msg = String(error?.message || error);
+    try {
+      const result = await model.generateContent(prompt);
+      const raw = result?.response?.text?.() ?? "";
+      return safeJsonParse(raw);
+    } catch (error) {
+      const msg = String(error?.message || error);
 
-    if (isRateLimitError(msg)) {
-      consecutiveLimitErrors++;
-      console.log(`⚠️ Key ${currentKeyIndex + 1} limitlendi. (Hata: ${consecutiveLimitErrors}/${apiKeys.length})`);
-      
-      // Sıradaki anahtara geç
-      currentKeyIndex = (currentKeyIndex + 1) % apiKeys.length;
-      
-      // Küçük bir nefes al ve tekrar dene
-      await sleep(1500); 
-      return getAiContent(wordObj);
+      if (isRateLimitError(msg)) {
+        console.log(`⚠️ Key ${currentKeyIndex + 1} limit/quota. Sonrakine geçiliyor...`);
+        currentKeyIndex = (currentKeyIndex + 1) % apiKeys.length;
+        triedKeys++;
+        await sleep(1200);
+        continue;
+      }
+
+      // rate-limit değilse (parse, model, network vb.) bu kelimeyi skip edip geç
+      console.error(`❌ Hata (${wordObj.word}) Key ${currentKeyIndex + 1}:`, msg);
+      return null;
     }
-
-    console.error(`❌ Beklenmedik Hata (${wordObj.word}):`, msg);
-    return null;
   }
+
+  // ✅ Buraya geldiyse: bu kelime için tüm key’ler limitli
+  if (!didCooldown) {
+    didCooldown = true;
+    console.log("🛑 Tüm anahtarlar limit yedi. 60 saniye tam mola veriliyor...");
+    await sleep(60000);
+  }
+
+  // cooldown sonrası tekrar 1 tur daha dene (hala olmazsa null)
+  triedKeys = 0;
+  while (triedKeys < apiKeys.length) {
+    const genAI = new GoogleGenerativeAI(apiKeys[currentKeyIndex]);
+    const model = getModel(genAI);
+
+    try {
+      const result = await model.generateContent(prompt);
+      const raw = result?.response?.text?.() ?? "";
+      return safeJsonParse(raw);
+    } catch (error) {
+      const msg = String(error?.message || error);
+
+      if (isRateLimitError(msg)) {
+        currentKeyIndex = (currentKeyIndex + 1) % apiKeys.length;
+        triedKeys++;
+        await sleep(1200);
+        continue;
+      }
+
+      console.error(`❌ Hata (${wordObj.word}) cooldown sonrası:`, msg);
+      return null;
+    }
+  }
+
+  return null;
 }
 
 async function start() {
-  console.log(`🚀 ENRICH BAŞLADI! (${apiKeys.length} Anahtar ile Güvenli Mod)`);
+  console.log(`🚀 ENRICH BAŞLADI! (${apiKeys.length} Anahtar Aktif)`);
 
+  // ✅ Resume mantığı
   let vocabulary;
   if (fs.existsSync(outputPath)) {
     vocabulary = loadJson(outputPath);
-    console.log("🔄 Kaldığı yerden (enriched) devam ediyor...");
+    console.log("🔄 Enriched bulundu, kaldığı yerden devam...");
   } else {
     vocabulary = loadJson(inputPath);
     console.log("📂 Orijinal liste yüklendi.");
   }
 
+  // ✅ normalize
+  vocabulary = (vocabulary || [])
+    .map((x) => ({
+      word: String(x?.word ?? "").trim(),
+      meaning: String(x?.meaning ?? "").trim(),
+      s: x?.s ?? null,
+      t: x?.t ?? null,
+    }))
+    .filter((x) => x.word && x.meaning);
+
   const total = vocabulary.length;
+  console.log(`📌 Toplam kelime: ${total}`);
+
+  // ✅ backup bir kez
+  try {
+    if (!fs.existsSync(backupPath)) {
+      fs.copyFileSync(inputPath, backupPath);
+      console.log("🧷 Backup alındı:", backupPath);
+    }
+  } catch (e) {
+    console.log("⚠️ Backup alınamadı:", e?.message || e);
+  }
+
+  let lastSaveAt = Date.now();
 
   for (let i = 0; i < total; i++) {
     if (vocabulary[i].s && vocabulary[i].t) continue;
 
     const result = await getAiContent(vocabulary[i]);
 
-    if (result && result.s) {
+    if (result?.s) {
       vocabulary[i].s = result.s;
       vocabulary[i].t = result.t;
       console.log(`✅ [${i + 1}/${total}] ${vocabulary[i].word} (Key ${currentKeyIndex + 1})`);
+    } else {
+      console.log(`⏭️ Skip: ${vocabulary[i].word}`);
     }
 
-    // Her 10 kelimede bir yedekle
-    if ((i + 1) % 10 === 0) {
-      saveJson(outputPath, vocabulary);
+    // ✅ Her 10 kelimede bir kaydet + en az 3sn arayla (disk spam olmasın)
+    const shouldSave = (i + 1) % 10 === 0 && Date.now() - lastSaveAt > 3000;
+    if (shouldSave) {
+      saveJsonAtomic(outputPath, vocabulary);
+      lastSaveAt = Date.now();
+      console.log("💾 Kaydedildi:", outputPath);
     }
 
-    // API'yi yormamak için hızı 1 saniyeye sabitledim (Daha güvenli)
-    await sleep(1200); 
+    // ✅ hız: 250ms yerine 1000ms öneriyorum (free tier için daha stabil)
+    await sleep(1000);
   }
 
-  saveJson(outputPath, vocabulary);
+  // final write
+  saveJsonAtomic(outputPath, vocabulary);
+  console.log("🏁 Enriched tamam:", outputPath);
 
-  // Swap İşlemi
+  // ✅ Swap (site eski dosyayı import ettiği için şart)
   try {
-    if (!fs.existsSync(backupPath)) {
-      fs.copyFileSync(inputPath, backupPath);
-      console.log("🧷 Orijinal dosya yedeklendi.");
+    if (!fs.existsSync(oldPath)) {
+      fs.copyFileSync(inputPath, oldPath);
+      console.log("🧷 Eski dosya yedeği alındı:", oldPath);
     }
     fs.copyFileSync(outputPath, inputPath);
-    console.log("✅ SWAP TAMAM: yds_vocabulary.json güncellendi.");
+    console.log("✅ Swap tamam: yds_vocabulary.json artık s/t içeriyor.");
   } catch (e) {
-    console.log("⚠️ Swap hatası:", e.message);
+    console.log("⚠️ Swap yapılamadı:", e?.message || e);
   }
 
-  console.log("🏁 İŞLEM TAMAMLANDI.");
+  console.log("✅ BİTTİ.");
 }
 
 start();
