@@ -269,7 +269,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
   const handleSubmit = useCallback(() => {
     if (!data) return;
 
-    // ✅ Practice modda "bitirme" yine çalışsın ama sınav hissi için unanswered kontrolünü exam modda yap
+    // ✅ Exam modda unanswered kontrolü
     if (mode === 'exam') {
       const unanswered = data.questions.filter((q) => !answers[q.id]);
       if (unanswered.length > 0) {
@@ -352,7 +352,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
     }
   }, [timeLeft, showResult, mode]);
 
-  // Practice/Exam mode change: feedback + streak temizle (temiz başlangıç hissi)
+  // Practice/Exam mode change: feedback + streak temizle
   useEffect(() => {
     setFeedback(null);
     setStreak(0);
@@ -452,6 +452,8 @@ export default function Quiz({ params }: { params: { id: string } }) {
               cardBg = 'bg-red-50/40';
             }
 
+            const showPracticeExtras = mode === 'practice';
+
             return (
               <div key={q.id} className={`p-6 rounded-2xl border-2 ${cardBorder} ${cardBg}`}>
                 <div className="flex items-start gap-4">
@@ -512,10 +514,11 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       })}
                     </div>
 
-                    {/* ✅ AI sentence shows in result always if exists */}
-                    <AiSentenceBox s={q.s ?? null} t={q.t ?? null} />
+                    {/* ✅ ONLY PRACTICE: AI sentence in result */}
+                    {showPracticeExtras && <AiSentenceBox s={q.s ?? null} t={q.t ?? null} />}
 
-                    {q.explanation && (
+                    {/* ✅ ONLY PRACTICE: Explanation in result */}
+                    {showPracticeExtras && q.explanation && (
                       <div className="mt-5 p-4 bg-blue-50 rounded-xl border border-blue-100 text-sm text-blue-800 flex gap-3 items-start">
                         <span className="text-xl">💡</span>
                         <div>
@@ -641,7 +644,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
           const showThisFeedback = mode === 'practice' && feedback?.questionId === q.id;
 
           const hasAi = !!q.s || !!q.t;
-          const shouldShowAi = !!answers[q.id] && hasAi; // ✅ cevaplandıktan sonra göster
+
+          // ✅ PRACTICE ONLY: answered -> show AI + explanation
+          const showPracticeAi = mode === 'practice' && !!answers[q.id] && hasAi;
+          const showPracticeExplanation = mode === 'practice' && !!answers[q.id] && !!q.explanation;
 
           return (
             <div
@@ -746,22 +752,22 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 </div>
               )}
 
-              {/* ✅ AI Sentence: answered -> show in BOTH modes */}
-              {shouldShowAi && <AiSentenceBox s={q.s ?? null} t={q.t ?? null} />}
+              {/* ✅ PRACTICE ONLY: AI sentence after answering */}
+              {showPracticeAi && <AiSentenceBox s={q.s ?? null} t={q.t ?? null} />}
 
-              {/* ✅ PRACTICE EXPLANATION: show always if exists, after you answered */}
-              {mode === 'practice' && !!answers[q.id] && q.explanation && (
+              {/* ✅ PRACTICE ONLY: Explanation after answering */}
+              {showPracticeExplanation && (
                 <div className="mt-4 p-4 bg-blue-50 rounded-xl border border-blue-100 text-sm text-blue-800 flex gap-3 items-start">
                   <span className="text-xl">💡</span>
                   <div>
                     <span className="font-bold block mb-1 text-blue-900">Explanation:</span>
                     <span className="leading-relaxed opacity-90">
-                      <SafeHTML html={q.explanation} />
+                      <SafeHTML html={q.explanation!} />
                     </span>
                   </div>
                 </div>
               )}
-              
+
               {/* Quick actions */}
               <div className="mt-5 flex items-center justify-between">
                 <button
