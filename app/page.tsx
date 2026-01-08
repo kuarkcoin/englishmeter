@@ -742,150 +742,162 @@ function HomeContent() {
       <div className="flex flex-col items-center justify-center px-4 pb-16 pt-4">
         <div id="all-tests" className="w-full max-w-6xl mx-auto text-center">
 
-          {/* GAME MODES (Şimdi 9 Kart - 3x3 Düzeni) */}
+          {/* GAME MODES (Öne Çıkan Flashcards Düzeni) */}
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-   
-            <a
-              href="/speedrun"
-              className="group relative overflow-hidden bg-gradient-to-br from-indigo-900 to-indigo-950 rounded-3xl p-6 border border-indigo-800 shadow-xl hover:shadow-yellow-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left"
-            >
-              <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-yellow-500 rounded-full opacity-10 blur-xl"></div>
-              <div className="relative z-10">
-                <div className="inline-flex items-center gap-1 px-2 py-1 bg-yellow-500/10 rounded-full text-yellow-400 text-[10px] font-bold uppercase mb-3">
-                  ⚡ Fast
-                </div>
-                <h3 className="text-2xl font-black text-white mb-1">SpeedRun</h3>
-                <p className="text-indigo-200 text-xs mb-4">120 seconds challenge.</p>
-                <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center text-indigo-950 font-bold">▶</div>
-              </div>
-            </a>
+  
+  {/* 🧠 FLASHCARDS - ÖNE ÇIKAN (Geniş Kart) */}
+  <a
+    href="/flashcards"
+    className="group relative overflow-hidden bg-gradient-to-br from-emerald-900 to-emerald-950 rounded-3xl p-8 border border-emerald-800 shadow-xl hover:shadow-emerald-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left lg:col-span-2 flex flex-col justify-between"
+  >
+    <div className="absolute top-0 right-0 -mt-8 -mr-8 w-48 h-48 bg-emerald-500 rounded-full opacity-10 blur-3xl"></div>
+    <div className="relative z-10">
+      <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/20 rounded-full text-emerald-400 text-xs font-bold uppercase mb-4 border border-emerald-500/30">
+        🧠 Most Popular Study Mode
+      </div>
+      <h3 className="text-3xl md:text-4xl font-black text-white mb-3">Academic Flashcards</h3>
+      <p className="text-emerald-200/80 text-sm md:text-base max-w-lg leading-relaxed">
+        Master **3,850 essential YDS, YÖKDİL & TOEFL words**. Now featuring 
+        <span className="text-emerald-400 font-bold"> AI-generated academic sentences</span>, 
+        professional pronunciations, and smart memory tracking.
+      </p>
+    </div>
+    
+    <div className="relative z-10 mt-8 flex items-center justify-between">
+      <div className="flex items-center gap-4">
+        <div className="w-12 h-12 bg-emerald-600 rounded-2xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform">
+          <span className="text-2xl font-bold">↺</span>
+        </div>
+        <div className="text-xs">
+          <div className="text-emerald-400 font-black uppercase tracking-widest">Start Memorizing</div>
+          <div className="text-emerald-500/60 font-medium">3850 words archive</div>
+        </div>
+      </div>
+      <div className="hidden sm:block text-emerald-500/30 text-6xl font-black select-none">3850</div>
+    </div>
+  </a>
 
-            <a
-              href="/race"
-              className="group relative overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-6 border border-slate-700 shadow-xl hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left"
-            >
-              <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-blue-500 rounded-full opacity-10 blur-xl"></div>
-              <div className="relative z-10">
-                <div className="inline-flex items-center gap-1 px-2 py-1 bg-blue-500/10 rounded-full text-blue-400 text-[10px] font-bold uppercase mb-3">
-                  🏆 Live
-                </div>
-                <h3 className="text-2xl font-black text-white mb-1">Race Arena</h3>
-                <p className="text-slate-400 text-xs mb-4">Compete with others.</p>
-                <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">⚔</div>
-              </div>
-            </a>
+  {/* ⚡ SPEEDRUN */}
+  <a
+    href="/speedrun"
+    className="group relative overflow-hidden bg-gradient-to-br from-indigo-900 to-indigo-950 rounded-3xl p-6 border border-indigo-800 shadow-xl hover:shadow-yellow-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left"
+  >
+    <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-yellow-500 rounded-full opacity-10 blur-xl"></div>
+    <div className="relative z-10">
+      <div className="inline-flex items-center gap-1 px-2 py-1 bg-yellow-500/10 rounded-full text-yellow-400 text-[10px] font-bold uppercase mb-3">
+        ⚡ Fast
+      </div>
+      <h3 className="text-2xl font-black text-white mb-1">SpeedRun</h3>
+      <p className="text-indigo-200 text-xs mb-4">120 seconds challenge.</p>
+      <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center text-indigo-950 font-bold group-hover:rotate-12 transition-transform">▶</div>
+    </div>
+  </a>
 
-            <a
-              href="/flashcards"
-              className="group relative overflow-hidden bg-gradient-to-br from-emerald-900 to-emerald-950 rounded-3xl p-6 border border-emerald-800 shadow-xl hover:shadow-emerald-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left"
-            >
-              <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-emerald-500 rounded-full opacity-10 blur-xl"></div>
-              <div className="relative z-10">
-                <div className="inline-flex items-center gap-1 px-2 py-1 bg-emerald-500/10 rounded-full text-emerald-400 text-[10px] font-bold uppercase mb-3">
-                  🧠 Study
-                </div>
-                <h3 className="text-2xl font-black text-white mb-1">Flashcards</h3>
-                <p className="text-emerald-200 text-xs mb-4">Memorize 3850 words.</p>
-                <div className="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold">↺</div>
-              </div>
-            </a>
+  {/* 🏆 RACE ARENA */}
+  <a
+    href="/race"
+    className="group relative overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-6 border border-slate-700 shadow-xl hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left"
+  >
+    <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-blue-500 rounded-full opacity-10 blur-xl"></div>
+    <div className="relative z-10">
+      <div className="inline-flex items-center gap-1 px-2 py-1 bg-blue-500/10 rounded-full text-blue-400 text-[10px] font-bold uppercase mb-3">
+        🏆 Live
+      </div>
+      <h3 className="text-2xl font-black text-white mb-1">Race Arena</h3>
+      <p className="text-slate-400 text-xs mb-4">Compete with others.</p>
+      <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">⚔</div>
+    </div>
+  </a>
 
-            <a
-              href="/speaking"
-              className="group relative overflow-hidden bg-gradient-to-br from-rose-900 to-rose-950 rounded-3xl p-6 border border-rose-800 shadow-xl hover:shadow-rose-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left"
-            >
-              <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-rose-500 rounded-full opacity-10 blur-xl"></div>
-              <div className="relative z-10">
-                <div className="inline-flex items-center gap-1 px-2 py-1 bg-rose-500/10 rounded-full text-rose-300 text-[10px] font-bold uppercase mb-3">
-                  🎙️ Speaking
-                </div>
-                <h3 className="text-2xl font-black text-white mb-1">Speak in Real Life</h3>
-                <p className="text-rose-200 text-xs mb-4">Daily conversations with AI.</p>
-                <div className="flex items-center justify-between">
-                  <div className="text-[11px] text-rose-300/80 font-semibold">Coffee · Taxi · Hotel</div>
-                  <div className="w-11 h-11 bg-rose-400 rounded-full flex items-center justify-center text-rose-950 font-black transition-transform duration-200 group-hover:scale-110 group-active:scale-95">
-                    ▶
-                  </div>
-                </div>
-              </div>
-            </a>
+  {/* 🎙️ SPEAKING */}
+  <a
+    href="/speaking"
+    className="group relative overflow-hidden bg-gradient-to-br from-rose-900 to-rose-950 rounded-3xl p-6 border border-rose-800 shadow-xl hover:shadow-rose-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left"
+  >
+    <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-rose-500 rounded-full opacity-10 blur-xl"></div>
+    <div className="relative z-10 flex flex-col h-full justify-between">
+      <div>
+        <div className="inline-flex items-center gap-1 px-2 py-1 bg-rose-500/10 rounded-full text-rose-300 text-[10px] font-bold uppercase mb-3">
+          🎙️ Speaking
+        </div>
+        <h3 className="text-2xl font-black text-white mb-1">AI Conversations</h3>
+        <p className="text-rose-200 text-xs mb-4">Daily real-life scenarios.</p>
+      </div>
+      <div className="w-11 h-11 bg-rose-400 rounded-full flex items-center justify-center text-rose-950 font-black">▶</div>
+    </div>
+  </a>
 
-            <a
-              href="/verbsense"
-              className="group relative overflow-hidden bg-gradient-to-br from-indigo-800 to-indigo-950 rounded-3xl p-6 border border-indigo-700 shadow-xl hover:shadow-indigo-500/30 transition-all duration-300 transform hover:-translate-y-1 text-left"
-            >
-              <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-indigo-400 rounded-full opacity-10 blur-xl"></div>
-              <div className="relative z-10">
-                <div className="inline-flex items-center gap-1 px-2 py-1 bg-indigo-400/10 rounded-full text-indigo-300 text-[10px] font-bold uppercase mb-3">
-                  🔤 Verb Sense
-                </div>
-                <h3 className="text-2xl font-black text-white mb-1">Verb Sense</h3>
-                <p className="text-indigo-200 text-xs mb-4">Choose what sounds natural.</p>
-                <div className="flex items-center justify-between">
-                  <div className="text-[11px] text-indigo-300/80 font-semibold">Spoken English · A2–C1</div>
-                  <div className="w-11 h-11 bg-indigo-400 rounded-full flex items-center justify-center text-indigo-950 font-black transition-transform duration-200 group-hover:scale-110 group-active:scale-95">
-                    ▶
-                  </div>
-                </div>
-              </div>
-            </a>
+  {/* 🔤 VERB SENSE */}
+  <a
+    href="/verbsense"
+    className="group relative overflow-hidden bg-gradient-to-br from-indigo-800 to-indigo-950 rounded-3xl p-6 border border-indigo-700 shadow-xl hover:shadow-indigo-500/30 transition-all duration-300 transform hover:-translate-y-1 text-left"
+  >
+    <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-indigo-400 rounded-full opacity-10 blur-xl"></div>
+    <div className="relative z-10 flex flex-col h-full justify-between">
+      <div>
+        <div className="inline-flex items-center gap-1 px-2 py-1 bg-indigo-400/10 rounded-full text-indigo-300 text-[10px] font-bold uppercase mb-3">
+          🔤 Grammar
+        </div>
+        <h3 className="text-2xl font-black text-white mb-1">Verb Sense</h3>
+        <p className="text-indigo-200 text-xs mb-4">Master natural usage.</p>
+      </div>
+      <div className="w-11 h-11 bg-indigo-400 rounded-full flex items-center justify-center text-indigo-950 font-black">▶</div>
+    </div>
+  </a>
 
-            <a
-              href="/matching"
-              className="group relative overflow-hidden bg-gradient-to-br from-teal-900 to-teal-950 rounded-3xl p-6 border border-teal-800 shadow-xl hover:shadow-teal-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left"
-            >
-              <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-teal-400 rounded-full opacity-10 blur-xl"></div>
-              <div className="relative z-10">
-                <div className="inline-flex items-center gap-1 px-2 py-1 bg-teal-400/10 rounded-full text-teal-300 text-[10px] font-bold uppercase mb-3">
-                  🔊 Vocabulary
-                </div>
-                <h3 className="text-2xl font-black text-white mb-1">Matching Game</h3>
-                <p className="text-teal-200 text-xs mb-4">Match words + listen.</p>
-                <div className="flex items-center justify-between">
-                  <div className="text-[11px] text-teal-300/80 font-semibold">3850 Words · Audio</div>
-                  <div className="w-11 h-11 bg-teal-400 rounded-full flex items-center justify-center text-teal-950 font-black transition-transform duration-200 group-hover:scale-110 group-active:scale-95">
-                    ▶
-                  </div>
-                </div>
-              </div>
-            </a>
+  {/* 🔊 MATCHING GAME */}
+  <a
+    href="/matching"
+    className="group relative overflow-hidden bg-gradient-to-br from-teal-900 to-teal-950 rounded-3xl p-6 border border-teal-800 shadow-xl hover:shadow-teal-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left"
+  >
+    <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-teal-400 rounded-full opacity-10 blur-xl"></div>
+    <div className="relative z-10 flex flex-col h-full justify-between">
+      <div>
+        <div className="inline-flex items-center gap-1 px-2 py-1 bg-teal-400/10 rounded-full text-teal-300 text-[10px] font-bold uppercase mb-3">
+          🔊 Vocab
+        </div>
+        <h3 className="text-2xl font-black text-white mb-1">Matching Game</h3>
+        <p className="text-teal-200 text-xs mb-4">Word to sound matching.</p>
+      </div>
+      <div className="w-11 h-11 bg-teal-400 rounded-full flex items-center justify-center text-teal-950 font-black">▶</div>
+    </div>
+  </a>
 
-            <a
-              href="/phrasal-puzzle"
-              className="group relative overflow-hidden bg-gradient-to-br from-fuchsia-900 to-fuchsia-950 rounded-3xl p-6 border border-fuchsia-800 shadow-xl hover:shadow-fuchsia-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left"
-            >
-              <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-fuchsia-500 rounded-full opacity-10 blur-xl"></div>
-              <div className="relative z-10">
-                <div className="inline-flex items-center gap-1 px-2 py-1 bg-fuchsia-500/10 rounded-full text-fuchsia-300 text-[10px] font-bold uppercase mb-3">
-                  🧩 Puzzle
-                </div>
-                <h3 className="text-2xl font-black text-white mb-1">Phrasal Puzzle</h3>
-                <p className="text-fuchsia-200 text-xs mb-4">Verb + particle fast.</p>
-                <div className="w-10 h-10 bg-fuchsia-500 rounded-full flex items-center justify-center text-white font-bold">✦</div>
-              </div>
-            </a>
+  {/* 🧩 PHRASAL PUZZLE */}
+  <a
+    href="/phrasal-puzzle"
+    className="group relative overflow-hidden bg-gradient-to-br from-fuchsia-900 to-fuchsia-950 rounded-3xl p-6 border border-fuchsia-800 shadow-xl hover:shadow-fuchsia-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left"
+  >
+    <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-fuchsia-500 rounded-full opacity-10 blur-xl"></div>
+    <div className="relative z-10">
+      <div className="inline-flex items-center gap-1 px-2 py-1 bg-fuchsia-500/10 rounded-full text-fuchsia-300 text-[10px] font-bold uppercase mb-3">
+        🧩 Logic
+      </div>
+      <h3 className="text-2xl font-black text-white mb-1">Phrasal Puzzle</h3>
+      <p className="text-fuchsia-200 text-xs mb-4">Fast phrasal verb builder.</p>
+      <div className="w-10 h-10 bg-fuchsia-500 rounded-full flex items-center justify-center text-white font-bold">✦</div>
+    </div>
+  </a>
 
-            {/* NEW: Mistake Bank Card */}
-            <Link
-              href="/mistakes"
-              className="group relative overflow-hidden bg-gradient-to-br from-red-900 to-red-950 rounded-3xl p-6 border border-red-800 shadow-xl hover:shadow-red-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left"
-            >
-              <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-red-500 rounded-full opacity-10 blur-xl"></div>
-              <div className="relative z-10">
-                <div className="inline-flex items-center gap-1 px-2 py-1 bg-red-500/10 rounded-full text-red-300 text-[10px] font-bold uppercase mb-3">
-                  📕 Review
-                </div>
-                <h3 className="text-2xl font-black text-white mb-1">Mistake Bank</h3>
-                <p className="text-red-200 text-xs mb-4">Repeat only wrong answers.</p>
-                <div className="flex items-center justify-between">
-                  <div className="text-[11px] text-red-300/80 font-semibold">Smart review mode</div>
-                  <div className="w-11 h-11 bg-red-400 rounded-full flex items-center justify-center text-red-950 font-black transition-transform duration-200 group-hover:scale-110 group-active:scale-95">
-                    ▶
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </div>
+  {/* 📕 MISTAKE BANK */}
+  <Link
+    href="/mistakes"
+    className="group relative overflow-hidden bg-gradient-to-br from-red-900 to-red-950 rounded-3xl p-6 border border-red-800 shadow-xl hover:shadow-red-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left"
+  >
+    <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-red-500 rounded-full opacity-10 blur-xl"></div>
+    <div className="relative z-10">
+      <div className="inline-flex items-center gap-1 px-2 py-1 bg-red-500/10 rounded-full text-red-300 text-[10px] font-bold uppercase mb-3">
+        📕 Review
+      </div>
+      <h3 className="text-2xl font-black text-white mb-1">Mistake Bank</h3>
+      <p className="text-red-200 text-xs mb-4">Your personalized review.</p>
+      <div className="flex items-center justify-between mt-2">
+        <div className="text-[10px] text-red-300/60 font-semibold uppercase tracking-widest">Smart Practice</div>
+        <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-red-950 font-black group-hover:scale-110 transition-transform">▶</div>
+      </div>
+    </div>
+  </Link>
+</div>
 
           {/* MAIN TESTS GRID */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
