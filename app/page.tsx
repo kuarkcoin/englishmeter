@@ -923,27 +923,60 @@ function HomeContent() {
               </Link>
             </button>
 
-            {/* YDS 3750 HUB (toggles 75 buttons below) */}
-            <button
-              onClick={() => {
-                setShowYds3750Hub((p) => !p);
-                // ensure mapping created once, so tests remain same on revisit
-                ensureVocabMap();
-                // scroll a bit for UX
-                setTimeout(() => {
-                  const el = document.getElementById('yds3750hub');
-                  el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 50);
-              }}
-              className="flex flex-col items-center justify-center px-6 py-8 rounded-2xl bg-orange-500 text-white text-xl font-black shadow-xl hover:bg-orange-600 transition-all"
-            >
-              <div>{ydsVocabHub.title}</div>
-              <div className="mt-2 text-xs font-semibold opacity-90">75 mini tests · 50Q · 25 min</div>
-              <div className="mt-3 text-[11px] underline opacity-90 hover:opacity-100">
-                {showYds3750Hub ? 'Hide tests ↑' : 'Open tests ↓'}
-              </div>
-            </button>
-          </div>
+           {/* 🔥 HERO YDS 3850 BUTTON */}
+<div className="mb-14">
+  <button
+    onClick={() => {
+      setShowYds3750Hub(true);
+      ensureVocabMap();
+      setTimeout(() => {
+        document.getElementById("yds3750hub")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 80);
+    }}
+    className="group relative w-full overflow-hidden rounded-[2.5rem]
+      bg-gradient-to-br from-orange-600 via-orange-700 to-amber-600
+      p-10 md:p-14 text-left
+      shadow-2xl shadow-orange-500/30
+      hover:shadow-orange-500/50
+      transition-all duration-300
+      hover:-translate-y-1"
+  >
+    <div className="absolute -top-24 -right-24 w-96 h-96 bg-amber-300 opacity-20 rounded-full blur-3xl"></div>
+
+    <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+      <div>
+        <div className="inline-flex items-center gap-2 px-4 py-1.5
+          rounded-full bg-white/15 text-white text-xs font-black uppercase mb-4">
+          📚 YDS Vocabulary Mega Pack
+        </div>
+
+        <h2 className="text-4xl md:text-5xl font-black text-white leading-tight">
+          YDS 3850 Vocabulary Tests
+        </h2>
+
+        <p className="mt-4 max-w-2xl text-white/90 text-sm md:text-base">
+          77 mini test · Her biri <b>50 soru</b> · 25 dakika  
+          <br />Aynı test numarası → aynı sorular
+        </p>
+      </div>
+
+      <div className="flex items-center gap-6">
+        <div className="hidden md:block text-white/20 text-7xl font-black select-none">
+          3850
+        </div>
+
+        <div className="w-20 h-20 rounded-3xl bg-white flex items-center justify-center
+          text-orange-700 text-4xl font-black
+          shadow-xl group-hover:scale-110 transition-transform">
+          ▶
+        </div>
+      </div>
+    </div>
+  </button>
+</div>
+
+
 
           {/* 📂 YDS 3750 HUB AÇILIR PANEL (Butonların Hemen Altında) */}
 {showYds3750Hub && (
