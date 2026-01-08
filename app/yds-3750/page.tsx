@@ -7,9 +7,25 @@ import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import ydsVocabulary from '@/data/yds_vocabulary.json';
 
-type VocabItem = { word: string; meaning: string };
+type VocabItem = {
+  word: string;
+  meaning: string;
+  // ✅ AI fields (enriched json’dan gelirse)
+  s?: string | null;
+  t?: string | null;
+};
+
 type Choice = { id: string; text: string; isCorrect: boolean };
-type Question = { id: string; prompt: string; choices: Choice[]; explanation?: string };
+
+type Question = {
+  id: string;
+  prompt: string;
+  choices: Choice[];
+  explanation?: string;
+  // ✅ quiz page bekliyor
+  s?: string | null;
+  t?: string | null;
+};
 
 const TEST_COUNT = 77;
 const QUESTIONS_PER_TEST = 50;
@@ -73,6 +89,9 @@ export default function Yds3750Hub() {
       .map((x) => ({
         word: String(x?.word ?? '').trim(),
         meaning: String(x?.meaning ?? '').trim(),
+        // ✅ s/t normalize
+        s: x?.s != null ? String(x.s).trim() : null,
+        t: x?.t != null ? String(x.t).trim() : null,
       }))
       .filter((x) => x.word && x.meaning) as VocabItem[];
   }, []);
@@ -82,7 +101,7 @@ export default function Yds3750Hub() {
     return Array.from(new Set(list.map((x) => x.meaning)));
   }, [list]);
 
-  // 3) Test sayısını GERÇEK kullanılabilir kelimeye göre hesapla (en sağlamı)
+  // 3) Test sayısını GERÇEK kullanılabilir kelimeye göre hesapla
   const totalWords = list.length;
   const maxPossibleTests = Math.floor(totalWords / QUESTIONS_PER_TEST);
   const safeTestCount = Math.min(TEST_COUNT, Math.max(1, maxPossibleTests));
@@ -116,15 +135,19 @@ export default function Yds3750Hub() {
           isCorrect: text === item.meaning,
         })),
         explanation: `**${item.word}**: ${item.meaning}`,
+
+        // ✅ AI CONTEXT payload’a girsin
+        s: item.s ?? null,
+        t: item.t ?? null,
       };
     });
 
     const payload = {
       attemptId,
-      testSlug: `yds-3750-t${testNo}`, // quiz result ekranındaki restart için
+      testSlug: `yds-3750-t${testNo}`,
       test: {
         title: `YDS 3750 VOCAB · TEST ${testNo} (50 Questions)`,
-        duration: 25, // dakika (quiz sayfan buna göre ayarlıysa)
+        duration: 25,
       },
       questions,
     };
@@ -136,7 +159,6 @@ export default function Yds3750Hub() {
   return (
     <div className="min-h-screen bg-slate-50">
       <div className="max-w-6xl mx-auto px-4 py-10">
-        {/* ÜST KART */}
         <motion.div
           initial="hidden"
           animate="visible"
@@ -160,7 +182,6 @@ export default function Yds3750Hub() {
               </div>
             </div>
 
-            {/* Premium badge */}
             <div className="flex items-center gap-2">
               {isPremium ? (
                 <div className="px-4 py-2 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 font-bold text-sm">
@@ -186,7 +207,6 @@ export default function Yds3750Hub() {
           )}
         </motion.div>
 
-        {/* TEST GRID */}
         <motion.div
           initial="hidden"
           animate="visible"
@@ -220,17 +240,12 @@ export default function Yds3750Hub() {
                       : 'bg-white text-slate-900 border-slate-200 hover:border-blue-500 shadow-sm'
                   }`}
               >
-                {/* hover gradient */}
                 {!locked && (
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white opacity-0 group-hover:opacity-100 transition-opacity" />
                 )}
 
                 <div className="relative z-10 flex flex-col items-center">
-                  <span
-                    className={`text-[10px] uppercase tracking-widest mb-1 font-bold ${
-                      locked ? 'text-slate-300' : 'text-blue-500'
-                    }`}
-                  >
+                  <span className={`text-[10px] uppercase tracking-widest mb-1 font-bold ${locked ? 'text-slate-300' : 'text-blue-500'}`}>
                     Test
                   </span>
 
@@ -253,7 +268,6 @@ export default function Yds3750Hub() {
           })}
         </motion.div>
 
-        {/* ALT BAR */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
