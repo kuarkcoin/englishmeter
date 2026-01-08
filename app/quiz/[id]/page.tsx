@@ -762,7 +762,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 </div>
               )}
 
-             {mode === 'exam' && isFinished && q.explanation && (
+             {mode === 'exam' && !!answers[q.id] && q.explanation && (
   <div className="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-700 flex gap-3 items-start">
     <span className="text-xl">📝</span>
     <div>
