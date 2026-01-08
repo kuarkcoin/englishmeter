@@ -5,8 +5,7 @@ import React, { useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import ydsVocabulary from '@/data/yds_vocabulary.json';
-
+import ydsVocabulary from '@/data/yds_vocabulary_enriched.json';
 type VocabItem = {
   word: string;
   meaning: string;
