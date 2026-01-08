@@ -1,6 +1,6 @@
 // app/vocabulary/[word]/page.tsx
 import { Metadata } from 'next';
-import ydsVocabulary from '@/data/yds_vocabulary_enriched.json'; // AI zenginleştirilmiş veri
+import ydsVocabulary from '@/data/yds_vocabulary.json'; // AI zenginleştirilmiş veri
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
