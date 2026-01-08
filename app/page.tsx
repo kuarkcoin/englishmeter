@@ -945,66 +945,65 @@ function HomeContent() {
             </button>
           </div>
 
-          {/* YDS 3750 HUB PANEL */}
-          {showYds3750Hub && (
-            <div
-              id="yds3750hub"
-              className="mb-16 bg-orange-50 rounded-3xl p-6 border-2 border-orange-200 shadow-xl relative overflow-hidden text-left"
-            >
-              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-orange-400 to-amber-400"></div>
+          {/* 📂 YDS 3750 HUB AÇILIR PANEL (Butonların Hemen Altında) */}
+{showYds3750Hub && (
+  <div
+    id="yds3750hub"
+    className="mb-12 bg-orange-50 rounded-3xl p-6 border-2 border-orange-200 shadow-xl relative overflow-hidden text-left animate-in slide-in-from-top-4 duration-300"
+  >
+    <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-orange-400 to-amber-400"></div>
 
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-5">
-                <div>
-                  <h3 className="text-2xl font-black text-orange-700 flex items-center gap-2">
-                    <span className="text-3xl">📚</span> YDS 3750 Mini Tests
-                  </h3>
-                  <p className="text-sm text-orange-700/80 mt-1">
-                    Her test 50 soru · 25 dakika. Aynı kullanıcı tekrar girince aynı test numarası aynı sorularla açılır.
-                  </p>
-                </div>
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
+      <div>
+        <h3 className="text-2xl font-black text-orange-700 flex items-center gap-2">
+          <span className="text-3xl">📚</span> YDS 3850 Mini Tests
+        </h3>
+        <p className="text-sm text-orange-700/80 mt-1">
+          Her test 50 soru · 25 dakika. Aynı test numarası her seferinde aynı soruları getirir.
+        </p>
+      </div>
 
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-white border border-orange-200 text-orange-700">
-                    {isPremium ? '✅ Premium unlocked' : `🔒 Free: first ${freeMiniCount}`}
-                  </span>
-                  <button
-                    onClick={() => setShowYds3750Hub(false)}
-                    className="text-xs font-bold px-3 py-2 rounded-xl bg-white border border-orange-200 text-orange-700 hover:bg-orange-100 transition"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
+      <div className="flex items-center gap-2">
+        <span className="text-xs font-bold px-3 py-1 rounded-full bg-white border border-orange-200 text-orange-700">
+          {isPremium ? '✅ Premium unlocked' : `🔒 Free: first ${freeMiniCount}`}
+        </span>
+        <button
+          onClick={() => setShowYds3750Hub(false)}
+          className="text-xs font-bold px-4 py-2 rounded-xl bg-white border border-orange-200 text-orange-700 hover:bg-orange-100 transition shadow-sm"
+        >
+          Close Panel
+        </button>
+      </div>
+    </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-8 gap-3">
-                {Array.from({ length: 77 }, (_, i) => i + 1).map((num) => {
-                  const locked = !isPremium && num > freeMiniCount;
-                  return (
-                    <button
-                      key={num}
-                      onClick={() => {
-                        if (locked) return;
-                        startTest(`yds-3750-mini-${num}`);
-                      }}
-                      disabled={locked}
-                      className={`py-3 rounded-xl font-black text-sm shadow-sm transition-all transform hover:scale-[1.03] active:scale-[0.99]
-                        ${locked
-                          ? 'bg-white text-orange-300 border border-orange-100 cursor-not-allowed opacity-70'
-                          : 'bg-orange-600 text-white hover:bg-orange-700 shadow-orange-200 ring-2 ring-orange-200 ring-offset-2'
-                        }`}
-                      title={locked ? 'Premium required' : 'Start mini test'}
-                    >
-                      Test {num}
-                      <span className="block text-[10px] font-semibold opacity-90 mt-1">
-                        {locked ? '🔒 Locked' : 'Start'}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-
+    <div className="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-8 gap-3">
+      {Array.from({ length: 77 }, (_, i) => i + 1).map((num) => {
+        const locked = !isPremium && num > freeMiniCount;
+        return (
+          <button
+            key={num}
+            onClick={() => {
+              if (locked) return;
+              startTest(`yds-3850-mini-${num}`);
+            }}
+            disabled={locked}
+            className={`py-4 rounded-xl font-black text-sm shadow-sm transition-all transform hover:scale-[1.03] active:scale-[0.98]
+              ${locked
+                ? 'bg-white text-orange-200 border border-orange-100 cursor-not-allowed opacity-60'
+                : 'bg-orange-600 text-white hover:bg-orange-700 shadow-orange-200 ring-2 ring-orange-200 ring-offset-2'
+              }`}
+            title={locked ? 'Premium required' : 'Start mini test'}
+          >
+            Test {num}
+            <span className="block text-[10px] font-semibold opacity-90 mt-1">
+              {locked ? '🔒 Locked' : 'Start'}
+            </span>
+          </button>
+        );
+      })}
+    </div>
+  </div>
+)}
           {/* OTHER MAIN TESTS */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
             {/* YDS EXAM PACK */}
