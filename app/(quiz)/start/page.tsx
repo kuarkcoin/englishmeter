@@ -27,6 +27,16 @@ type Choice = {
   isCorrect: boolean;
 };
 
+// ✅ Quiz.tsx’e taşımak için s/t de ekliyoruz
+type FormattedQuestion = {
+  id: string;
+  prompt: string;
+  explanation?: string;
+  choices: Choice[];
+  s?: string | null;
+  t?: string | null;
+};
+
 // ✅ EASING (string yok => TS hatası yok)
 const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -99,7 +109,7 @@ function StartQuizLogic() {
       const { title, questions: rawQuestions } = getQuestionsBySlug(slug);
       const safeQuestions = (rawQuestions || []) as any[];
 
-      const formattedQuestions = safeQuestions
+      const formattedQuestions: FormattedQuestion[] = safeQuestions
         .map((item: any, index: number) => {
           const prompt = getPrompt(item);
 
@@ -171,14 +181,19 @@ function StartQuizLogic() {
             prompt,
             explanation: item.explanation,
             choices: normalizedChoices,
-          };
+
+            // ✅ AI cümlelerini köprüden geçiriyoruz
+            s: item.s ?? null,
+            t: item.t ?? null,
+          } satisfies FormattedQuestion;
         })
-        .filter(Boolean);
+        .filter(Boolean) as FormattedQuestion[];
 
       console.log('FORMATTED QUESTIONS (AFTER SHUFFLE):', formattedQuestions);
 
       const attemptData = {
         attemptId: `session-${Date.now()}`,
+        testSlug: slug, // ✅ Quiz.tsx tarafında mistakes scope vs için faydalı
         test: {
           title: title,
           duration: 0, // Quiz.tsx questionCount * 60s
@@ -216,28 +231,16 @@ function StartQuizLogic() {
           ⚡ Preparing your test
         </motion.div>
 
-        <motion.h1
-          custom={1}
-          variants={textVariants}
-          className="mt-4 text-2xl font-black text-slate-900"
-        >
+        <motion.h1 custom={1} variants={textVariants} className="mt-4 text-2xl font-black text-slate-900">
           Your test is starting…
         </motion.h1>
 
-        <motion.p
-          custom={2}
-          variants={textVariants}
-          className="mt-2 text-slate-600 text-sm leading-relaxed"
-        >
+        <motion.p custom={2} variants={textVariants} className="mt-2 text-slate-600 text-sm leading-relaxed">
           Please wait while we prepare your questions.
         </motion.p>
 
         {/* Spinner-like pulse */}
-        <motion.div
-          custom={3}
-          variants={textVariants}
-          className="mt-6 flex items-center gap-3"
-        >
+        <motion.div custom={3} variants={textVariants} className="mt-6 flex items-center gap-3">
           <motion.div
             aria-label="loading"
             animate={{ scale: [1, 1.08, 1], opacity: [0.6, 1, 0.6] }}
@@ -266,11 +269,7 @@ function StartQuizLogic() {
         </motion.div>
 
         {/* Tip */}
-        <motion.div
-          custom={4}
-          variants={textVariants}
-          className="mt-6 p-4 rounded-2xl bg-slate-50 border border-slate-200"
-        >
+        <motion.div custom={4} variants={textVariants} className="mt-6 p-4 rounded-2xl bg-slate-50 border border-slate-200">
           <div className="text-xs font-bold text-slate-500">Quick Tip</div>
           <motion.div
             key={tipIndex}
