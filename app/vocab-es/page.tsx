@@ -21,6 +21,8 @@ type Q = {
   choices: Choice[];
 };
 
+type TTLLang = 'en-US' | 'en-GB' | 'es-ES' | 'es-MX';
+
 function shuffle<T>(arr: T[]) {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -32,6 +34,68 @@ function shuffle<T>(arr: T[]) {
 
 function uniqStrings(arr: string[]) {
   return Array.from(new Set(arr.map((x) => String(x || '').trim()).filter(Boolean)));
+}
+
+// -------------------- TTS HELPERS --------------------
+function pickVoiceFor(lang: TTLLang) {
+  if (typeof window === 'undefined') return null;
+  const voices = window.speechSynthesis?.getVoices?.() || [];
+  return (
+    voices.find((v) => v.lang?.toLowerCase() === lang.toLowerCase()) ||
+    voices.find((v) => v.lang?.toLowerCase().startsWith(lang.split('-')[0].toLowerCase())) ||
+    null
+  );
+}
+
+function stopSpeak() {
+  if (typeof window === 'undefined') return;
+  window.speechSynthesis.cancel();
+}
+
+function speak(text: string, lang: TTLLang, rate = 0.95, pitch = 1) {
+  if (typeof window === 'undefined') return;
+  const clean = String(text || '').trim();
+  if (!clean) return;
+
+  // üst üste binmesin
+  window.speechSynthesis.cancel();
+
+  const u = new SpeechSynthesisUtterance(clean);
+  u.lang = lang;
+  u.rate = rate;
+  u.pitch = pitch;
+
+  const v = pickVoiceFor(lang);
+  if (v) u.voice = v;
+
+  window.speechSynthesis.speak(u);
+}
+
+// Optional: sırayla okut (Play All)
+async function speakSequence(
+  items: Array<{ text: string; lang: TTLLang; rate?: number; pitch?: number }>
+) {
+  if (typeof window === 'undefined') return;
+  stopSpeak();
+
+  for (const it of items) {
+    const clean = String(it.text || '').trim();
+    if (!clean) continue;
+
+    await new Promise<void>((resolve) => {
+      const u = new SpeechSynthesisUtterance(clean);
+      u.lang = it.lang;
+      u.rate = it.rate ?? 0.95;
+      u.pitch = it.pitch ?? 1;
+
+      const v = pickVoiceFor(it.lang);
+      if (v) u.voice = v;
+
+      u.onend = () => resolve();
+      u.onerror = () => resolve();
+      window.speechSynthesis.speak(u);
+    });
+  }
 }
 
 export default function VocabFinishSpanishPage() {
@@ -60,6 +124,15 @@ export default function VocabFinishSpanishPage() {
     }
     return s;
   }, [answers, questions]);
+
+  // ✅ voice list load fix (çok önemli)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    window.speechSynthesis.getVoices();
+    const onVoices = () => window.speechSynthesis.getVoices();
+    window.speechSynthesis.addEventListener('voiceschanged', onVoices);
+    return () => window.speechSynthesis.removeEventListener('voiceschanged', onVoices);
+  }, []);
 
   // mount: create session
   useEffect(() => {
@@ -124,6 +197,7 @@ export default function VocabFinishSpanishPage() {
   }
 
   function restart() {
+    stopSpeak();
     setSessionId(`ves-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`);
   }
 
@@ -170,7 +244,7 @@ export default function VocabFinishSpanishPage() {
             </div>
             <h1 className="text-3xl font-black text-slate-900 mt-3">Daily English → Spanish Vocab Test</h1>
             <p className="text-sm text-slate-600 mt-2">
-              You can press <b>Finish</b> anytime → you’ll see only the words you answered with <b>Spanish meaning + EN sentence + ES translation</b>.
+              Press <b>Finish</b> anytime → you’ll see only answered words with <b>Spanish meaning + EN sentence + ES translation</b>.
             </p>
           </div>
 
@@ -205,7 +279,7 @@ export default function VocabFinishSpanishPage() {
             </div>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
             <button
               onClick={finishNow}
               className="px-4 py-2 rounded-xl font-black text-sm text-white
@@ -224,6 +298,13 @@ export default function VocabFinishSpanishPage() {
                          shadow-lg shadow-emerald-200"
             >
               New Test
+            </button>
+
+            <button
+              onClick={() => stopSpeak()}
+              className="px-4 py-2 rounded-xl font-black text-sm text-white bg-slate-900 hover:bg-slate-800"
+            >
+              ⏹ Stop
             </button>
           </div>
         </div>
@@ -246,8 +327,44 @@ export default function VocabFinishSpanishPage() {
         {/* Quiz */}
         {!isFinished && current && (
           <div className="mt-6 bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
-            <div className="text-xs text-slate-500 font-bold mb-2">Choose the Spanish meaning:</div>
-            <div className="text-4xl font-black text-slate-900 mb-6">{current.prompt}</div>
+            <div className="flex items-center justify-between gap-3 flex-wrap">
+              <div className="text-xs text-slate-500 font-bold">Choose the Spanish meaning:</div>
+
+              {/* 🔊 TTS QUICK BUTTONS (Question) */}
+              <div className="flex gap-2 flex-wrap">
+                <button
+                  onClick={() => speak(current.item.word, 'en-US', 0.95)}
+                  className="px-3 py-2 rounded-xl bg-white border border-slate-200 text-slate-800 font-bold text-xs hover:bg-slate-50"
+                  title="Speak word in English"
+                >
+                  🔊 Word EN
+                </button>
+                <button
+                  onClick={() => speak(current.item.meaning, 'es-ES', 0.95)}
+                  className="px-3 py-2 rounded-xl bg-white border border-slate-200 text-slate-800 font-bold text-xs hover:bg-slate-50"
+                  title="Speak meaning in Spanish"
+                >
+                  🔊 Meaning ES
+                </button>
+
+                <button
+                  onClick={() =>
+                    speakSequence([
+                      { text: current.item.word, lang: 'en-US', rate: 0.95 },
+                      { text: current.item.meaning, lang: 'es-ES', rate: 0.95 },
+                      { text: current.item.s || '', lang: 'en-US', rate: 0.92 },
+                      { text: current.item.t || '', lang: 'es-ES', rate: 0.92 },
+                    ])
+                  }
+                  className="px-3 py-2 rounded-xl bg-slate-900 text-white font-black text-xs hover:bg-slate-800"
+                  title="Play word + meaning + sentences"
+                >
+                  ▶ Play All
+                </button>
+              </div>
+            </div>
+
+            <div className="text-4xl font-black text-slate-900 mb-6 mt-3">{current.prompt}</div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {current.choices.map((c) => {
@@ -257,7 +374,11 @@ export default function VocabFinishSpanishPage() {
                     key={c.id}
                     onClick={() => answer(c.id)}
                     className={`text-left px-4 py-4 rounded-2xl border font-bold transition
-                      ${picked ? 'bg-indigo-50 border-indigo-300 text-indigo-900' : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'}`}
+                      ${
+                        picked
+                          ? 'bg-indigo-50 border-indigo-300 text-indigo-900'
+                          : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
+                      }`}
                   >
                     <span className="mr-2 uppercase">{c.id})</span>
                     {c.text}
@@ -295,17 +416,68 @@ export default function VocabFinishSpanishPage() {
 
                   return (
                     <div key={q.id} className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-                      <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center justify-between gap-3 flex-wrap">
                         <div className="font-black text-slate-900 text-lg">
                           {i + 1}. {q.item.word}
                         </div>
-                        <div className={`text-xs font-black px-3 py-1 rounded-full ${ok ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'}`}>
+                        <div
+                          className={`text-xs font-black px-3 py-1 rounded-full ${
+                            ok ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'
+                          }`}
+                        >
                           {ok ? 'Correct' : 'Wrong'}
                         </div>
                       </div>
 
                       <div className="mt-2 text-sm text-slate-700">
                         <b>Spanish meaning:</b> {q.item.meaning}
+                      </div>
+
+                      {/* 🔊 TTS BUTTONS (Review) */}
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        <button
+                          onClick={() => speak(q.item.word, 'en-US', 0.95)}
+                          className="px-3 py-2 rounded-xl bg-white border border-slate-200 text-slate-800 font-bold text-xs hover:bg-slate-50"
+                        >
+                          🔊 Word EN
+                        </button>
+                        <button
+                          onClick={() => speak(q.item.meaning, 'es-ES', 0.95)}
+                          className="px-3 py-2 rounded-xl bg-white border border-slate-200 text-slate-800 font-bold text-xs hover:bg-slate-50"
+                        >
+                          🔊 Meaning ES
+                        </button>
+                        <button
+                          onClick={() => speak(q.item.s || '', 'en-US', 0.92)}
+                          className="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 font-bold text-xs hover:bg-white"
+                        >
+                          🔊 Sentence EN
+                        </button>
+                        <button
+                          onClick={() => speak(q.item.t || '', 'es-ES', 0.92)}
+                          className="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 font-bold text-xs hover:bg-white"
+                        >
+                          🔊 Sentence ES
+                        </button>
+                        <button
+                          onClick={() =>
+                            speakSequence([
+                              { text: q.item.word, lang: 'en-US', rate: 0.95 },
+                              { text: q.item.meaning, lang: 'es-ES', rate: 0.95 },
+                              { text: q.item.s || '', lang: 'en-US', rate: 0.92 },
+                              { text: q.item.t || '', lang: 'es-ES', rate: 0.92 },
+                            ])
+                          }
+                          className="px-3 py-2 rounded-xl bg-slate-900 text-white font-black text-xs hover:bg-slate-800"
+                        >
+                          ▶ Play All
+                        </button>
+                        <button
+                          onClick={() => stopSpeak()}
+                          className="px-3 py-2 rounded-xl bg-slate-900 text-white font-black text-xs hover:bg-slate-800"
+                        >
+                          ⏹ Stop
+                        </button>
                       </div>
 
                       <div className="mt-3 grid gap-2">
@@ -329,7 +501,7 @@ export default function VocabFinishSpanishPage() {
               </div>
             )}
 
-            <div className="mt-6 flex gap-2">
+            <div className="mt-6 flex gap-2 flex-wrap">
               <button
                 onClick={restart}
                 className="px-5 py-3 rounded-2xl font-black text-white
