@@ -813,7 +813,7 @@ function HomeContent() {
       </div>
 
       <h3 className="text-2xl font-black text-white mb-1">
-        Daily EN → TR Vocab
+        Vocab Finish (EN → TR) Vocab
       </h3>
 
       <p className="text-cyan-200 text-xs mb-4">
