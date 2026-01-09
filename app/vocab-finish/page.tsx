@@ -2,7 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import ydsVocabulary from '@/data/yds_vocabulary_enriched.json';
+import ydsVocabulary from '@/data/yds_vocabulary1.json';
 
 type VocabItem = {
   word: string;
