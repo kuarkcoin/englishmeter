@@ -30,15 +30,9 @@ export default function VocabFinishPage() {
   const pool = (ydsVocabulary as any[] as VocabItem[]).filter((x) => x?.word && x?.meaning);
 
   const [count, setCount] = useState(20);
-  const [seed, setSeed] = useState(0);
-
-  // “Start new” için seed değiştiriyoruz
-  useEffect(() => {
-    setSeed(Date.now());
-  }, []);
+  const [seed, setSeed] = useState(() => Date.now()); // ✅ ilk anda 0 olmasın
 
   const questions = useMemo(() => {
-    // seed’i kullanarak deterministik yapmak istersen burada LCG de koyarız.
     const picked = pickN(pool, Math.min(count, pool.length));
 
     return picked.map((item, idx) => {
@@ -73,7 +67,6 @@ export default function VocabFinishPage() {
   const [isFinished, setIsFinished] = useState(false);
 
   const current = questions[currentIndex];
-
   const answeredCount = Object.keys(answers).length;
 
   const score = useMemo(() => {
@@ -89,12 +82,17 @@ export default function VocabFinishPage() {
 
   function answer(choiceId: Choice['id']) {
     if (!current || isFinished) return;
+
     setAnswers((prev) => ({ ...prev, [current.id]: choiceId }));
 
-    // otomatik next (istersen kapatırız)
-    if (currentIndex < questions.length - 1) {
-      setTimeout(() => setCurrentIndex((i) => i + 1), 150);
+    // ✅ SON SORUDA OTOMATİK FINISH
+    if (currentIndex >= questions.length - 1) {
+      setTimeout(() => setIsFinished(true), 120);
+      return;
     }
+
+    // otomatik next
+    setTimeout(() => setCurrentIndex((i) => i + 1), 150);
   }
 
   function finishNow() {
@@ -113,7 +111,7 @@ export default function VocabFinishPage() {
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
         <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
           <div className="font-black text-slate-900 mb-2">Vocabulary data not found</div>
-          <div className="text-sm text-slate-600">yds_vocabulary.json boş veya hatalı görünüyor.</div>
+          <div className="text-sm text-slate-600">yds_vocabulary1.json boş veya hatalı görünüyor.</div>
           <div className="mt-4">
             <Link className="text-blue-600 underline" href="/">
               Home →
@@ -135,6 +133,8 @@ export default function VocabFinishPage() {
             <h1 className="text-3xl font-black text-slate-900 mt-3">Vocab Test (Free Mode)</h1>
             <p className="text-sm text-slate-600 mt-2">
               İstediğin an <b>Finish</b> bas → o ana kadar gelen kelimelerin <b>meaning + s + t</b> çıktısı gelsin.
+              <br />
+              <span className="text-slate-500">Not: Tüm sorular cevaplanınca otomatik biter.</span>
             </p>
           </div>
 
@@ -148,7 +148,7 @@ export default function VocabFinishPage() {
 
         {/* Controls */}
         <div className="mt-6 bg-white border border-slate-200 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-wrap">
             <div className="text-xs text-slate-500 font-semibold">Question Count</div>
             <select
               value={count}
@@ -170,15 +170,24 @@ export default function VocabFinishPage() {
           </div>
 
           <div className="flex gap-2">
+            {/* ✅ Renkli Finish */}
             <button
               onClick={finishNow}
-              className="px-4 py-2 rounded-xl bg-slate-900 text-white font-black text-sm hover:bg-slate-800"
+              className="px-4 py-2 rounded-xl font-black text-sm text-white
+                         bg-gradient-to-r from-fuchsia-600 to-rose-600
+                         hover:from-fuchsia-700 hover:to-rose-700
+                         shadow-lg shadow-rose-200"
             >
               Finish
             </button>
+
+            {/* ✅ Renkli New Test */}
             <button
               onClick={restart}
-              className="px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold text-sm hover:bg-slate-100"
+              className="px-4 py-2 rounded-xl font-black text-sm text-white
+                         bg-gradient-to-r from-emerald-600 to-teal-600
+                         hover:from-emerald-700 hover:to-teal-700
+                         shadow-lg shadow-emerald-200"
             >
               New Test
             </button>
@@ -247,7 +256,11 @@ export default function VocabFinishPage() {
                       </div>
                       <div
                         className={`text-xs font-black px-3 py-1 rounded-full ${
-                          chosenId ? (ok ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800') : 'bg-slate-100 text-slate-700'
+                          chosenId
+                            ? ok
+                              ? 'bg-emerald-100 text-emerald-800'
+                              : 'bg-red-100 text-red-800'
+                            : 'bg-slate-100 text-slate-700'
                         }`}
                       >
                         {chosenId ? (ok ? 'Correct' : 'Wrong') : 'Not answered'}
@@ -278,6 +291,24 @@ export default function VocabFinishPage() {
                   </div>
                 );
               })}
+            </div>
+
+            <div className="mt-6 flex gap-2">
+              <button
+                onClick={restart}
+                className="px-5 py-3 rounded-2xl font-black text-white
+                           bg-gradient-to-r from-emerald-600 to-teal-600
+                           hover:from-emerald-700 hover:to-teal-700
+                           shadow-lg shadow-emerald-200"
+              >
+                🔁 New Test
+              </button>
+              <Link
+                href="/"
+                className="px-5 py-3 rounded-2xl font-black text-slate-800 bg-white border border-slate-200 hover:bg-slate-100"
+              >
+                ← Home
+              </Link>
             </div>
           </div>
         )}
