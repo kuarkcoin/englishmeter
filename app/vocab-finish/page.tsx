@@ -11,7 +11,15 @@ type VocabItem = {
   t?: string; // turkish translation
 };
 
-type Choice = { id: 'a' | 'b' | 'c' | 'd'; text: string; isCorrect: boolean };
+type ChoiceId = 'a' | 'b' | 'c' | 'd';
+type Choice = { id: ChoiceId; text: string; isCorrect: boolean };
+
+type Q = {
+  id: string;
+  item: VocabItem;
+  prompt: string;
+  choices: Choice[];
+};
 
 function shuffle<T>(arr: T[]) {
   const a = [...arr];
@@ -22,52 +30,27 @@ function shuffle<T>(arr: T[]) {
   return a;
 }
 
-function pickN<T>(arr: T[], n: number) {
-  return shuffle(arr).slice(0, n);
+function uniqStrings(arr: string[]) {
+  return Array.from(new Set(arr.map((x) => String(x || '').trim()).filter(Boolean)));
 }
 
 export default function VocabFinishPage() {
   const pool = (ydsVocabulary as any[] as VocabItem[]).filter((x) => x?.word && x?.meaning);
 
   const [count, setCount] = useState(20);
-  const [seed, setSeed] = useState(() => Date.now()); // ✅ ilk anda 0 olmasın
 
-  const questions = useMemo(() => {
-    const picked = pickN(pool, Math.min(count, pool.length));
-
-    return picked.map((item, idx) => {
-      const correct = item.meaning;
-      const distractors = pickN(
-        pool
-          .filter((w) => w.meaning && w.meaning !== correct)
-          .map((w) => w.meaning),
-        3
-      );
-
-      const options = shuffle([...distractors, correct]);
-      const ids: Choice['id'][] = ['a', 'b', 'c', 'd'];
-
-      const choices: Choice[] = options.map((text, i) => ({
-        id: ids[i],
-        text,
-        isCorrect: text === correct,
-      }));
-
-      return {
-        id: `vf-${seed}-${idx + 1}`,
-        item,
-        prompt: item.word,
-        choices,
-      };
-    });
-  }, [pool, count, seed]);
+  // ✅ Hydration-safe: questions'ı ilk render'da üretme, mount sonrası üret
+  const [questions, setQuestions] = useState<Q[]>([]);
+  const [sessionId, setSessionId] = useState<string>(''); // mount sonrası set
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, Choice['id']>>({});
+  const [answers, setAnswers] = useState<Record<string, ChoiceId>>({});
   const [isFinished, setIsFinished] = useState(false);
 
-  const current = questions[currentIndex];
-  const answeredCount = Object.keys(answers).length;
+  // ✅ sadece çözülenleri göstermek için (finish early)
+  const answeredSet = useMemo(() => new Set(Object.keys(answers)), [answers]);
+
+  const answeredCount = answeredSet.size;
 
   const score = useMemo(() => {
     let s = 0;
@@ -80,18 +63,64 @@ export default function VocabFinishPage() {
     return s;
   }, [answers, questions]);
 
-  function answer(choiceId: Choice['id']) {
+  // ✅ mount sonrası session id + ilk test
+  useEffect(() => {
+    setSessionId(`vf-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`);
+  }, []);
+
+  // ✅ Soruları üret (SSR/hydration riskini kesmek için sadece client mount sonrası)
+  useEffect(() => {
+    if (!sessionId) return;
+    if (!pool.length) return;
+
+    const picked = shuffle(pool).slice(0, Math.min(count, pool.length));
+
+    const allMeaningsUnique = uniqStrings(pool.map((p) => p.meaning));
+
+    const made: Q[] = picked.map((item, idx) => {
+      const correct = String(item.meaning).trim();
+
+      // ✅ distractors benzersiz olsun + correct hariç
+      const distractorPool = allMeaningsUnique.filter((m) => m !== correct);
+
+      const distractors = shuffle(distractorPool).slice(0, 3);
+
+      const options = shuffle([correct, ...distractors]);
+      const ids: ChoiceId[] = ['a', 'b', 'c', 'd'];
+
+      const choices: Choice[] = options.map((text, i) => ({
+        id: ids[i],
+        text,
+        isCorrect: text === correct,
+      }));
+
+      return {
+        id: `${sessionId}-${idx + 1}`,
+        item,
+        prompt: item.word,
+        choices,
+      };
+    });
+
+    setQuestions(made);
+    setCurrentIndex(0);
+    setAnswers({});
+    setIsFinished(false);
+  }, [sessionId, count, pool.length]);
+
+  const current = questions[currentIndex];
+
+  function answer(choiceId: ChoiceId) {
     if (!current || isFinished) return;
 
     setAnswers((prev) => ({ ...prev, [current.id]: choiceId }));
 
-    // ✅ SON SORUDA OTOMATİK FINISH
+    // ✅ son soruda otomatik finish
     if (currentIndex >= questions.length - 1) {
       setTimeout(() => setIsFinished(true), 120);
       return;
     }
 
-    // otomatik next
     setTimeout(() => setCurrentIndex((i) => i + 1), 150);
   }
 
@@ -100,13 +129,11 @@ export default function VocabFinishPage() {
   }
 
   function restart() {
-    setSeed(Date.now());
-    setCurrentIndex(0);
-    setAnswers({});
-    setIsFinished(false);
+    // ✅ yeni test için sessionId değiştir (useEffect tekrar üretir)
+    setSessionId(`vf-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`);
   }
 
-  if (!questions.length) {
+  if (!pool.length) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
         <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
@@ -122,6 +149,27 @@ export default function VocabFinishPage() {
     );
   }
 
+  if (!questions.length) {
+    // ✅ Hydration-safe loading state
+    return (
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
+        <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm text-center">
+          <div className="w-12 h-12 border-4 border-slate-200 border-t-slate-800 rounded-full animate-spin mx-auto mb-4" />
+          <div className="font-black text-slate-900">Preparing questions…</div>
+          <div className="text-sm text-slate-600 mt-1">Client-side generating (no hydration mismatch)</div>
+        </div>
+      </div>
+    );
+  }
+
+  // ✅ Progress bar
+  const progressPct = Math.round(((currentIndex + 1) / questions.length) * 100);
+
+  // ✅ Finish early: sadece cevaplanan soruları göster
+  const reviewList = isFinished
+    ? questions.filter((q) => answeredSet.has(q.id)) // sadece çözülenler
+    : [];
+
   return (
     <div className="min-h-screen bg-slate-50">
       <div className="max-w-3xl mx-auto px-4 py-10">
@@ -132,9 +180,7 @@ export default function VocabFinishPage() {
             </div>
             <h1 className="text-3xl font-black text-slate-900 mt-3">Vocab Test (Free Mode)</h1>
             <p className="text-sm text-slate-600 mt-2">
-              İstediğin an <b>Finish</b> bas → o ana kadar gelen kelimelerin <b>meaning + s + t</b> çıktısı gelsin.
-              <br />
-              <span className="text-slate-500">Not: Tüm sorular cevaplanınca otomatik biter.</span>
+              İstediğin an <b>Finish</b> bas → sadece <b>çözdüğün</b> kelimelerin meaning + s + t çıktısı gelir.
             </p>
           </div>
 
@@ -153,7 +199,7 @@ export default function VocabFinishPage() {
             <select
               value={count}
               onChange={(e) => setCount(Number(e.target.value))}
-              disabled={!isFinished && answeredCount > 0} // başladıktan sonra değiştirmesin
+              disabled={!isFinished && answeredCount > 0}
               className="px-3 py-2 rounded-xl border border-slate-200 text-sm font-bold"
             >
               {[10, 20, 30, 50].map((n) => (
@@ -170,7 +216,6 @@ export default function VocabFinishPage() {
           </div>
 
           <div className="flex gap-2">
-            {/* ✅ Renkli Finish */}
             <button
               onClick={finishNow}
               className="px-4 py-2 rounded-xl font-black text-sm text-white
@@ -181,7 +226,6 @@ export default function VocabFinishPage() {
               Finish
             </button>
 
-            {/* ✅ Renkli New Test */}
             <button
               onClick={restart}
               className="px-4 py-2 rounded-xl font-black text-sm text-white
@@ -194,13 +238,27 @@ export default function VocabFinishPage() {
           </div>
         </div>
 
+        {/* ✅ Progress Bar */}
+        {!isFinished && (
+          <div className="mt-4">
+            <div className="flex items-center justify-between text-xs text-slate-500 font-bold mb-2">
+              <span>
+                Question {currentIndex + 1} / {questions.length}
+              </span>
+              <span>{progressPct}%</span>
+            </div>
+            <div className="w-full h-3 rounded-full bg-slate-200 overflow-hidden">
+              <div
+                className="h-full bg-slate-900 rounded-full transition-all"
+                style={{ width: `${progressPct}%` }}
+              />
+            </div>
+          </div>
+        )}
+
         {/* Quiz */}
         {!isFinished && current && (
           <div className="mt-6 bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
-            <div className="text-xs text-slate-500 font-bold mb-2">
-              Question {currentIndex + 1} / {questions.length}
-            </div>
-
             <div className="text-4xl font-black text-slate-900 mb-6">{current.prompt}</div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -238,60 +296,60 @@ export default function VocabFinishPage() {
                 Finished ✅ Score: {score} / {questions.length}
               </div>
               <div className="text-sm text-emerald-700 mt-1">
-                Aşağıda çıkan kelimelerin <b>Türkçe anlamı + s + t</b> gösteriliyor.
+                Aşağıda sadece <b>çözdüğün</b> kelimeler gösteriliyor.
               </div>
             </div>
 
-            <div className="mt-4 space-y-3">
-              {questions.map((q, i) => {
-                const chosenId = answers[q.id];
-                const chosen = q.choices.find((c) => c.id === chosenId);
-                const ok = chosen?.isCorrect;
+            {reviewList.length === 0 ? (
+              <div className="mt-4 bg-white border border-slate-200 rounded-2xl p-4 text-slate-700">
+                Hiç soru çözmeden finish yaptın 🙂 İstersen <b>New Test</b> ile tekrar dene.
+              </div>
+            ) : (
+              <div className="mt-4 space-y-3">
+                {reviewList.map((q, i) => {
+                  const chosenId = answers[q.id];
+                  const chosen = q.choices.find((c) => c.id === chosenId);
+                  const ok = chosen?.isCorrect;
 
-                return (
-                  <div key={q.id} className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-                    <div className="flex items-center justify-between gap-3">
-                      <div className="font-black text-slate-900 text-lg">
-                        {i + 1}. {q.item.word}
-                      </div>
-                      <div
-                        className={`text-xs font-black px-3 py-1 rounded-full ${
-                          chosenId
-                            ? ok
-                              ? 'bg-emerald-100 text-emerald-800'
-                              : 'bg-red-100 text-red-800'
-                            : 'bg-slate-100 text-slate-700'
-                        }`}
-                      >
-                        {chosenId ? (ok ? 'Correct' : 'Wrong') : 'Not answered'}
-                      </div>
-                    </div>
-
-                    <div className="mt-2 text-sm text-slate-700">
-                      <b>Meaning:</b> {q.item.meaning}
-                    </div>
-
-                    <div className="mt-3 grid gap-2">
-                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-700">
-                        <div className="text-xs font-black text-slate-500 mb-1">EN Sentence (s)</div>
-                        <div>{q.item.s || '—'}</div>
+                  return (
+                    <div key={q.id} className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="font-black text-slate-900 text-lg">
+                          {i + 1}. {q.item.word}
+                        </div>
+                        <div
+                          className={`text-xs font-black px-3 py-1 rounded-full ${
+                            ok ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'
+                          }`}
+                        >
+                          {ok ? 'Correct' : 'Wrong'}
+                        </div>
                       </div>
 
-                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-700">
-                        <div className="text-xs font-black text-slate-500 mb-1">TR Translation (t)</div>
-                        <div>{q.item.t || '—'}</div>
+                      <div className="mt-2 text-sm text-slate-700">
+                        <b>Meaning:</b> {q.item.meaning}
                       </div>
-                    </div>
 
-                    {chosenId && (
+                      <div className="mt-3 grid gap-2">
+                        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-700">
+                          <div className="text-xs font-black text-slate-500 mb-1">EN Sentence (s)</div>
+                          <div>{q.item.s || '—'}</div>
+                        </div>
+
+                        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-700">
+                          <div className="text-xs font-black text-slate-500 mb-1">TR Translation (t)</div>
+                          <div>{q.item.t || '—'}</div>
+                        </div>
+                      </div>
+
                       <div className="mt-3 text-xs text-slate-500">
                         Your answer: <b className="text-slate-800">{chosen?.text}</b>
                       </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
 
             <div className="mt-6 flex gap-2">
               <button
