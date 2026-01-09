@@ -101,10 +101,12 @@ export default function FlashcardsPage() {
   const total = deck.length;
   const card = deck[index];
 
-  /* AUTO SPEAK */
-  useEffect(() => {
-    if (!isFlipped && card?.word) speak(card.word, accent);
-  }, [index, isFlipped, accent, card]);
+  /* ✅ AUTO SPEAK (sadece index değişince) */
+useEffect(() => {
+  const c = deck[index];
+  if (!c?.word) return;
+  speak(c.word, accent);
+}, [index, accent, deck]);
 
   const next = useCallback(() => {
     if (!total || lock.current) return;
