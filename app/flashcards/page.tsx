@@ -101,13 +101,20 @@ export default function FlashcardsPage() {
   const total = deck.length;
   const card = deck[index];
 
-  /* ✅ AUTO SPEAK (sadece index değişince) */
+  /* ✅ AUTO SPEAK — yalnızca yeni karta geçince */
 useEffect(() => {
-  const c = deck[index];
-  if (!c?.word) return;
-  speak(c.word, accent);
-}, [index, accent, deck]);
+  if (!card?.word) return;
 
+  // önce eski sesi kesin
+  window.speechSynthesis.cancel();
+
+  // index gerçekten güncellendikten sonra okut
+  const t = setTimeout(() => {
+    speak(card.word, accent);
+  }, 60); // 🔑 kritik gecikme
+
+  return () => clearTimeout(t);
+}, [index, accent]);
   const next = useCallback(() => {
     if (!total || lock.current) return;
     lock.current = true;
