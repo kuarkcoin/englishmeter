@@ -791,7 +791,7 @@ function HomeContent() {
   </div>
 </a>
 
- {/* 🇹🇷 DAILY EN → TR VOCAB TEST (Finish Anytime) */}
+ {/* 🇹🇷 YDS-IELTS EN → TR VOCAB TEST (Finish Anytime) */}
 <a
   href="/vocab-finish"
   className="group relative overflow-hidden
