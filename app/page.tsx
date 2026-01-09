@@ -776,6 +776,27 @@ function HomeContent() {
       <div className="hidden sm:block text-emerald-500/30 text-6xl font-black select-none">3850</div>
     </div>
   </a>
+ {/* 🧪 VOCAB QUICK TEST (Finish Anytime) */}
+<a
+  href="/vocab-finish"
+  className="group relative overflow-hidden bg-gradient-to-br from-cyan-900 to-cyan-950 rounded-3xl p-6 border border-cyan-800 shadow-xl hover:shadow-cyan-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left"
+>
+  <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-cyan-400 rounded-full opacity-10 blur-xl"></div>
+  <div className="relative z-10 flex flex-col h-full justify-between">
+    <div>
+      <div className="inline-flex items-center gap-1 px-2 py-1 bg-cyan-400/10 rounded-full text-cyan-300 text-[10px] font-bold uppercase mb-3">
+        ✅ Finish Anytime
+      </div>
+      <h3 className="text-2xl font-black text-white mb-1">Vocab Test</h3>
+      <p className="text-cyan-200 text-xs mb-4">
+        İstediğin an bitir → s/t örnekleri gelsin.
+      </p>
+    </div>
+    <div className="w-11 h-11 bg-cyan-400 rounded-full flex items-center justify-center text-cyan-950 font-black">
+      ▶
+    </div>
+  </div>
+</a>
 
   {/* ⚡ SPEEDRUN */}
   <a
