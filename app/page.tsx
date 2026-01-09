@@ -776,6 +776,21 @@ function HomeContent() {
       <div className="hidden sm:block text-emerald-500/30 text-6xl font-black select-none">3850</div>
     </div>
   </a>
+ <a
+  href="/vocab-es"
+  className="group relative overflow-hidden bg-gradient-to-br from-yellow-900 to-amber-950 rounded-3xl p-6 border border-yellow-800 shadow-xl hover:shadow-yellow-500/20 transition-all duration-300 transform hover:-translate-y-1 text-left"
+>
+  <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-yellow-500 rounded-full opacity-10 blur-xl"></div>
+  <div className="relative z-10">
+    <div className="inline-flex items-center gap-1 px-2 py-1 bg-yellow-500/10 rounded-full text-yellow-300 text-[10px] font-bold uppercase mb-3">
+      🇪🇸 Spanish
+    </div>
+    <h3 className="text-2xl font-black text-white mb-1">Vocab Finish (EN→ES)</h3>
+    <p className="text-yellow-200 text-xs mb-4">Finish anytime · review answered words.</p>
+    <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center text-amber-950 font-black">▶</div>
+  </div>
+</a>
+
  {/* 🧪 VOCAB QUICK TEST (Finish Anytime) */}
 <a
   href="/vocab-finish"
