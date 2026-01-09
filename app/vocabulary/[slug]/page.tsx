@@ -1,44 +1,60 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import vocab1 from '@/data/yds_vocabulary.json';
 import vocab2 from '@/data/yds_vocabulary1.json';
 
-// Veriyi tekilleştirme fonksiyonu
-function getUniqueVocab() {
+// Veriyi tekilleştirme fonksiyonu (Build sırasında performans için dışarıda tanımlandı)
+function getUniqueVocabMap() {
   const combined = [...vocab1, ...vocab2];
   const uniqueMap = new Map();
+  
   combined.forEach((item: any) => {
-    if (item?.word) uniqueMap.set(item.word.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]/g, ''), item);
+    if (item && item.word) {
+      // Kelimeyi URL dostu slug haline getiriyoruz
+      const slug = item.word
+        .toLowerCase()
+        .trim()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-');
+      
+      if (!uniqueMap.has(slug)) {
+        uniqueMap.set(slug, item);
+      }
+    }
   });
   return uniqueMap;
 }
 
-// 1. DİNAMİK METADATA (Google Başlığı)
+// 1. DİNAMİK METADATA
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const vocabMap = getUniqueVocab();
+  const vocabMap = getUniqueVocabMap();
   const item = vocabMap.get(params.slug);
-  const word = item?.word || params.slug;
+
+  if (!item) return { title: 'Kelime Bulunamadı | EnglishMeter' };
 
   return {
-    title: `${word} Ne Demek? Anlamı ve Örnek Cümleler | EnglishMeter`,
-    description: `${word} kelimesinin Türkçe anlamı, YDS/YÖKDİL çalışma notları ve akademik örnek cümle çevirileri. EnglishMeter ile İngilizce öğrenin.`,
+    title: `${item.word} Ne Demek? Anlamı ve Cümle Çevirisi | EnglishMeter`,
+    description: `${item.word} kelimesinin Türkçe anlamı: ${item.meaning}. YDS ve akademik sınavlar için örnek cümleler.`,
   };
 }
 
-// 2. STATIC PARAMS (Hız İçin Build Sırasında Üretim)
+// 2. STATIC PARAMS (8000 sayfanın yol haritası)
 export async function generateStaticParams() {
-  const vocabMap = getUniqueVocab();
-  return Array.from(vocabMap.keys()).map((slug) => ({ slug }));
+  const vocabMap = getUniqueVocabMap();
+  return Array.from(vocabMap.keys()).map((slug) => ({
+    slug: slug,
+  }));
 }
 
 export default function VocabularyDetailPage({ params }: { params: { slug: string } }) {
-  const vocabMap = getUniqueVocab();
+  const vocabMap = getUniqueVocabMap();
   const item = vocabMap.get(params.slug);
 
-  if (!item) return <div className="p-10 text-center">Kelime bulunamadı.</div>;
+  if (!item) notFound();
 
-  // Google için Yapılandırılmış Veri (Schema.org)
+  // JSON-LD (Google Arama Sonucu Zenginleştirme)
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "DefinedTerm",
@@ -49,8 +65,7 @@ export default function VocabularyDetailPage({ params }: { params: { slug: strin
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-10 px-4">
-      {/* Schema Script */}
+    <main className="min-h-screen bg-slate-50 py-10 px-4">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -59,52 +74,55 @@ export default function VocabularyDetailPage({ params }: { params: { slug: strin
       <article className="max-w-3xl mx-auto">
         <div className="mb-6">
           <Link href="/vocabulary" className="text-sm font-bold text-blue-600 hover:underline">
-            ← Kelime Dizini
+            ← Kelime Dizini (A-Z)
           </Link>
         </div>
 
-        {/* Kelime Kartı */}
-        <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
-          <header className="border-b border-slate-100 pb-6 mb-6">
-            <h1 className="text-5xl font-black text-slate-900 mb-2">{item.word}</h1>
-            <div className="inline-flex items-center px-4 py-1 bg-emerald-50 text-emerald-700 rounded-full font-bold text-sm">
-              Akademik Kelime
-            </div>
-          </header>
+        <div className="bg-white border border-slate-200 rounded-3xl shadow-sm overflow-hidden">
+          {/* Header */}
+          <div className="bg-slate-900 p-8 text-white">
+            <h1 className="text-5xl font-black mb-2">{item.word}</h1>
+            <p className="text-slate-400 font-bold uppercase tracking-tighter text-sm">Akademik Kelime Veritabanı</p>
+          </div>
 
-          <section className="mb-8">
-            <h2 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Türkçe Anlamı</h2>
-            <p className="text-2xl font-bold text-slate-800 leading-relaxed">
-              {item.meaning}
-            </p>
-          </section>
-
-          {/* Örnek Cümle Bölümü */}
-          {item.s && (
-            <section className="space-y-4">
-              <h2 className="text-xs font-black text-slate-400 uppercase tracking-widest">Cümle İçinde Kullanımı</h2>
-              
-              <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                <p className="text-xl text-slate-700 font-medium italic mb-4">
-                  "{item.s}"
-                </p>
-                <div className="pt-4 border-t border-slate-200">
-                  <p className="text-slate-600">
-                    <strong className="text-slate-900">Çeviri:</strong> {item.t}
-                  </p>
-                </div>
-              </div>
+          <div className="p-8 space-y-8">
+            {/* Anlam */}
+            <section>
+              <h2 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Türkçe Karşılığı</h2>
+              <p className="text-3xl font-bold text-slate-800 leading-tight">
+                {item.meaning}
+              </p>
             </section>
-          )}
 
-          {/* CTA - Kullanıcıyı Sitede Tutma */}
-          <div className="mt-10 pt-8 border-t border-slate-100">
-             <Link href="/race" className="block w-full py-4 bg-blue-600 text-white text-center rounded-2xl font-black hover:bg-blue-700 transition-all shadow-lg shadow-blue-100">
-               Bu Kelimeyi Oyunla Pekiştir!
-             </Link>
+            {/* Örnek Cümle - (Hem 's' hem 'sentence' keylerini kontrol eder) */}
+            {(item.s || item.sentence) && (
+              <section>
+                <h2 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Cümle İçinde Kullanımı</h2>
+                <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100">
+                  <p className="text-xl text-blue-900 font-medium italic leading-relaxed">
+                    "{item.s || item.sentence}"
+                  </p>
+                  <div className="mt-4 pt-4 border-t border-blue-200">
+                    <p className="text-blue-800">
+                      <strong className="font-black">Çeviri:</strong> {item.t || item.translation}
+                    </p>
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {/* Aksiyon Butonları */}
+            <div className="pt-6 border-t border-slate-100 flex flex-wrap gap-4">
+               <Link href="/race" className="flex-1 min-w-[200px] py-4 bg-emerald-600 text-white text-center rounded-2xl font-black hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-100">
+                 Kelimelerle Yarış
+               </Link>
+               <Link href="/flashcards" className="flex-1 min-w-[200px] py-4 bg-slate-100 text-slate-800 text-center rounded-2xl font-black hover:bg-slate-200 transition-all">
+                 Kartlarla Çalış
+               </Link>
+            </div>
           </div>
         </div>
       </article>
-    </div>
+    </main>
   );
 }
