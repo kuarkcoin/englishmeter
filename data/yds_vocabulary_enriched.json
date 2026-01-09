@@ -1,1 +1,122 @@
-
+[
+    {
+        "word": "Abdicate",
+        "meaning": "Tahttan çekilmek, feragat etmek",
+        "s": "The aging monarch decided to abdicate the throne in favor of his son to ensure stability.",
+        "t": "Yaşlı hükümdar, istikrarı sağlamak için oğlu lehine tahttan çekilmeye karar verdi."
+    },
+    {
+        "word": "Ability",
+        "meaning": "Yetenek",
+        "s": "Cognitive ability is often measured through a series of standardized psychological assessments.",
+        "t": "Bilişsel yetenek genellikle bir dizi standartlaştırılmış psikolojik değerlendirme yoluyla ölçülür."
+    },
+    {
+        "word": "Abolition",
+        "meaning": "Yürürlükten kaldırma, lağvetme",
+        "s": "The abolition of slavery remains one of the most significant milestones in human rights history.",
+        "t": "Köleliğin kaldırılması, insan hakları tarihindeki en önemli dönüm noktalarından biri olmaya devam ediyor."
+    },
+    {
+        "word": "Abound in",
+        "meaning": "Bol olmak, dolu olmak",
+        "s": "The tropical rainforests of South America abound in a diverse range of exotic species.",
+        "t": "Güney Amerika'nın tropikal yağmur ormanları, çok çeşitli egzotik türlerle doludur."
+    },
+    {
+        "word": "Abrasive",
+        "meaning": "Aşındırıcı; Kaba, sinir bozucu",
+        "s": "His abrasive management style caused significant friction among the senior staff members.",
+        "t": "Onun kaba yönetim tarzı, kıdemli personel arasında önemli bir sürtüşmeye neden oldu."
+    },
+    {
+        "word": "Absorbed in",
+        "meaning": "Dalmış, kendini kaptırmış",
+        "s": "The researcher was so absorbed in her data analysis that she failed to notice the time passing.",
+        "t": "Araştırmacı veri analizine o kadar dalmıştı ki zamanın nasıl geçtiğini fark etmedi."
+    },
+    {
+        "word": "Abstain from",
+        "meaning": "Sakınmak, -den uzak durmak",
+        "s": "During the election process, several board members chose to abstain from voting on the controversial proposal.",
+        "t": "Seçim sürecinde, birkaç yönetim kurulu üyesi tartışmalı teklif üzerine oy kullanmaktan kaçınmayı tercih etti."
+    },
+    {
+        "word": "Abundance",
+        "meaning": "Bolluk",
+        "s": "The region is known for its abundance of natural resources, particularly rare earth minerals.",
+        "t": "Bölge, özellikle nadir toprak mineralleri başta olmak üzere doğal kaynaklarının bolluğu ile tanınır."
+    },
+    {
+        "word": "Abundance of",
+        "meaning": "Bolluğu",
+        "s": "There is an abundance of evidence suggesting that early intervention improves educational outcomes.",
+        "t": "Erken müdahalenin eğitim sonuçlarını iyileştirdiğini kanıtlayan çok sayıda kanıt bulunmaktadır."
+    },
+    {
+        "word": "Accelerate",
+        "meaning": "Hızlandırmak",
+        "s": "The government introduced new subsidies to accelerate the transition to renewable energy sources.",
+        "t": "Hükümet, yenilenebilir enerji kaynaklarına geçişi hızlandırmak için yeni sübvansiyonlar getirdi."
+    },
+    {
+        "word": "Acceptable",
+        "meaning": "Kabul edilebilir",
+        "s": "The proposed compromise was deemed acceptable by both the labor union and the management.",
+        "t": "Önerilen uzlaşma, hem işçi sendikası hem de yönetim tarafından kabul edilebilir görüldü."
+    },
+    {
+        "word": "Accessible",
+        "meaning": "Erişilebilir",
+        "s": "New legislation requires all public buildings to be fully accessible to individuals with physical disabilities.",
+        "t": "Yeni mevzuat, tüm kamu binalarının fiziksel engelli bireyler için tamamen erişilebilir olmasını gerektirmektedir."
+    },
+    {
+        "word": "Accession",
+        "meaning": "Katılım (AB'ye vb.); Tahta çıkma",
+        "s": "The diplomatic negotiations regarding the country's accession to the alliance lasted for several years.",
+        "t": "Ülkenin ittifaka katılımına ilişkin diplomatik müzakereler birkaç yıl sürdü."
+    },
+    {
+        "word": "Accidental",
+        "meaning": "Kazara, tesadüfi",
+        "s": "Investigators concluded that the fire was accidental and caused by a faulty electrical circuit.",
+        "t": "Müfettişler, yangının kazara olduğunu ve arızalı bir elektrik devresinden kaynaklandığını belirlediler."
+    },
+    {
+        "word": "Accommodate",
+        "meaning": "Yerleştirmek, barındırmak",
+        "s": "The new facility was designed to accommodate over five hundred international students.",
+        "t": "Yeni tesis, beş yüzden fazla uluslararası öğrenciyi barındıracak şekilde tasarlandı."
+    },
+    {
+        "word": "Accompany",
+        "meaning": "Eşlik etmek",
+        "s": "High levels of inflation are often accompanied by a decrease in consumer purchasing power.",
+        "t": "Yüksek enflasyon oranlarına genellikle tüketicinin satın alma gücündeki azalma eşlik eder."
+    },
+    {
+        "word": "Accomplice",
+        "meaning": "Suç ortağı",
+        "s": "The suspect refused to identify his accomplice despite intense interrogation by the police.",
+        "t": "Şüpheli, polisin yoğun sorgusuna rağmen suç ortağının kimliğini açıklamayı reddetti."
+    },
+    {
+        "word": "Accomplish",
+        "meaning": "Başarmak, tamamlamak",
+        "s": "To accomplish such a complex task, the team must coordinate their efforts effectively.",
+        "t": "Böylesine karmaşık bir görevi başarmak için ekip, çabalarını etkili bir şekilde koordine etmelidir."
+    },
+    {
+        "word": "Accordance with",
+        "meaning": "Uyarınca, gereğince",
+        "s": "The financial statements were prepared in strict accordance with international accounting standards.",
+        "t": "Mali tablolar, uluslararası muhasebe standartlarına tam uygun olarak hazırlanmıştır."
+    },
+    {
+        "word": "Account for",
+        "meaning": "Açıklamak; Oluşturmak (miktar/oran)",
+        "s": "Small and medium-sized enterprises account for approximately sixty percent of the country's GDP.",
+        "t": "Küçük ve orta ölçekli işletmeler, ülkenin GSYİH'sının yaklaşık yüzde altmışını oluşturmaktadır."
+    }
+]
