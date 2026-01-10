@@ -800,7 +800,7 @@ function HomeContent() {
              transition-all duration-300
              transform hover:-translate-y-1 text-left"
 >
-  <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-amber-400 rounded-full opacity-10 blur-xl"></div>
+  <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-amber-400 rounded-full opacity-10 blur-xl" />
 
   <div className="relative z-10 flex flex-col h-full justify-between">
     <div>
@@ -809,10 +809,13 @@ function HomeContent() {
                       text-amber-300 text-[10px]
                       font-bold uppercase mb-3">
         🇸🇦 Finish Anytime
+        <span className="ml-1 px-2 py-[2px] rounded-full bg-amber-400/15 text-amber-200">
+          AR
+        </span>
       </div>
 
       <h3 className="text-2xl font-black text-white mb-1">
-        Vocab Tests (EN → AR) 
+        🇸🇦 Vocab Tests (EN → AR) 
       </h3>
 
       <p className="text-amber-200 text-xs mb-4 leading-relaxed">
@@ -827,6 +830,7 @@ function HomeContent() {
     </div>
   </div>
 </a>
+
 
 
  {/* 🇹🇷 Vocab EN → TR TEST (Finish Anytime) */}
