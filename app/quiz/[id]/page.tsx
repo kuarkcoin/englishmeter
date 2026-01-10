@@ -271,7 +271,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
   // ✅ Keyboard shortcuts: active question
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // ✅ NEW: UX toggles
+  // ✅ NEW: UX toggles (practice)
   const [autoScroll, setAutoScroll] = useState(true);
   const [soundOn, setSoundOn] = useState(true);
   const [autoSpeak, setAutoSpeak] = useState(false);
@@ -299,7 +299,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
 
-      // frekanslar: doğru -> kısa tatlı, yanlış -> daha düşük “bip”
       const f0 = kind === 'ok' ? 740 : 220;
       const f1 = kind === 'ok' ? 520 : 160;
 
@@ -325,7 +324,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
   // ✅ Helper: sticky header offset ile scroll
   const getScrollOffset = useCallback(() => {
     if (typeof window === 'undefined') return 120;
-    // mobilde sticky bar daha büyük hissediliyor
     return window.innerWidth < 640 ? 150 : 120;
   }, []);
 
@@ -335,7 +333,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
       const el = document.getElementById(id);
       if (!el) return;
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // sticky header için yukarı çek
       window.setTimeout(() => window.scrollBy({ top: -getScrollOffset(), behavior: 'smooth' }), 60);
     },
     [getScrollOffset]
@@ -349,12 +346,23 @@ export default function Quiz({ params }: { params: { id: string } }) {
     [scrollToIdWithOffset]
   );
 
-  // ✅ NEW: after-answer anchor scroll
+  // ✅ NEW: after-answer anchor scroll (practice)
   const scrollToAfter = useCallback(
     (index: number) => {
       scrollToIdWithOffset(`q-${index}-after`);
     },
     [scrollToIdWithOffset]
+  );
+
+  // ✅ EXAM: answer -> go next question
+  const goNextQuestion = useCallback(
+    (idx: number) => {
+      const next = Math.min(idx + 1, (data?.questions?.length ?? 1) - 1);
+      if (next === idx) return;
+      setActiveIndex(next);
+      window.setTimeout(() => scrollToQuestion(next), 80);
+    },
+    [data?.questions?.length, scrollToQuestion]
   );
 
   // 1) LOAD DATA
@@ -387,22 +395,27 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
   // ✅ remove session payload ONLY after result is visible
   useEffect(() => {
-    if (showResult) {
-      sessionStorage.removeItem('em_attempt_payload');
-    }
+    if (showResult) sessionStorage.removeItem('em_attempt_payload');
   }, [showResult]);
 
-  // 3) SUBMIT & SAVE MISTAKES
+  // ✅ SUBMIT & SAVE MISTAKES
   const handleSubmit = useCallback(() => {
     if (!data) return;
 
+    // ✅ EXAM: istediği anda bitirebilsin
     if (mode === 'exam') {
       const unanswered = data.questions.filter((q) => !answers[q.id]);
       if (unanswered.length > 0) {
         const firstMissingIndex = data.questions.findIndex((q) => !answers[q.id]);
-        alert(`${unanswered.length} unanswered question(s). Please review before finishing.`);
-        scrollToQuestion(firstMissingIndex);
-        return;
+
+        const ok = window.confirm(
+          `You have ${unanswered.length} unanswered question(s).\n\nFinish anyway? (Unanswered will be marked as SKIPPED)`
+        );
+
+        if (!ok) {
+          scrollToQuestion(firstMissingIndex);
+          return;
+        }
       }
     }
 
@@ -472,12 +485,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
   // 5) OPTIONAL: 10 seconds warning (EXAM only)
   useEffect(() => {
     if (mode !== 'exam') return;
-    if (timeLeft === 10 && !showResult) {
-      alert('⏳ 10 seconds left!');
-    }
+    if (timeLeft === 10 && !showResult) alert('⏳ 10 seconds left!');
   }, [timeLeft, showResult, mode]);
 
-  // Practice/Exam mode change: feedback + streak temizle
+  // Mode change: feedback + streak temizle
   useEffect(() => {
     setFeedback(null);
     setStreak(0);
@@ -485,7 +496,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
     setLocked({});
   }, [mode]);
 
-  // ✅ Keyboard shortcuts: 1-4 / A-D for active question
+  // ✅ Keyboard shortcuts: 1-4 / A-D
   useEffect(() => {
     if (!mounted) return;
     if (!data) return;
@@ -517,10 +528,8 @@ export default function Quiz({ params }: { params: { id: string } }) {
         setFeedback({ questionId: q.id, isCorrect });
         setLocked((p) => ({ ...p, [q.id]: true }));
 
-        // ✅ sound
         void beep(isCorrect ? 'ok' : 'bad');
 
-        // ✅ streak + confetti
         if (isCorrect) {
           setStreak((s) => {
             const next = s + 1;
@@ -532,22 +541,21 @@ export default function Quiz({ params }: { params: { id: string } }) {
           setStreak(0);
         }
 
-        // ✅ auto scroll down to AI/feedback area
-        if (autoScroll) {
-          window.setTimeout(() => scrollToAfter(activeIndex), 80);
-        }
+        if (autoScroll) window.setTimeout(() => scrollToAfter(activeIndex), 80);
 
-        // ✅ auto speak AI sentence
         if (autoSpeak && q.s) {
           const plain = stripHtml(q.s || '');
           if (plain.trim()) window.setTimeout(() => speak(plain, 'en-US', 1), 120);
         }
+      } else {
+        // ✅ EXAM: cevap verince bir sonraki soruya kay
+        goNextQuestion(activeIndex);
       }
     };
 
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [mounted, data, activeIndex, mode, locked, showResult, autoScroll, autoSpeak, beep, scrollToAfter]);
+  }, [mounted, data, activeIndex, mode, locked, showResult, autoScroll, autoSpeak, beep, scrollToAfter, goNextQuestion]);
 
   if (!mounted) return <div className="p-10 text-center animate-pulse">Loading...</div>;
   if (!data) return <div className="p-10 text-center animate-pulse">Loading...</div>;
@@ -751,7 +759,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
           <div className="flex items-center gap-1 px-2 py-1 rounded-xl border border-slate-200 bg-slate-50">
             <button
               onClick={() => {
-                void ensureAudio(); // ✅ user gesture ile ses aç
+                void ensureAudio();
                 setMode('exam');
               }}
               className={`px-3 py-1 text-xs font-black rounded-lg transition ${
@@ -764,7 +772,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
             <button
               onClick={() => {
-                void ensureAudio(); // ✅ user gesture ile ses aç
+                void ensureAudio();
                 setMode('practice');
               }}
               className={`px-3 py-1 text-xs font-black rounded-lg transition ${
@@ -946,7 +954,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       className={`group flex items-center p-4 rounded-xl border-2 transition-all duration-200 active:scale-[0.99]
                         ${practiceRing} ${isLocked ? 'cursor-not-allowed opacity-80' : 'cursor-pointer'}`}
                       onClick={() => {
-                        // ✅ label click de user gesture sayılır
                         void ensureAudio();
                       }}
                     >
@@ -975,10 +982,8 @@ export default function Quiz({ params }: { params: { id: string } }) {
                             setFeedback({ questionId: q.id, isCorrect });
                             setLocked((p) => ({ ...p, [q.id]: true }));
 
-                            // ✅ sound
                             void beep(isCorrect ? 'ok' : 'bad');
 
-                            // ✅ streak + confetti
                             if (isCorrect) {
                               setStreak((s) => {
                                 const next = s + 1;
@@ -991,16 +996,16 @@ export default function Quiz({ params }: { params: { id: string } }) {
                               setStreak(0);
                             }
 
-                            // ✅ auto scroll: tıklayınca alta kay
-                            if (autoScroll) {
-                              window.setTimeout(() => scrollToAfter(idx), 80);
-                            }
+                            // ✅ practice: tıklayınca AI/feedback kısmına kay
+                            if (autoScroll) window.setTimeout(() => scrollToAfter(idx), 80);
 
-                            // ✅ auto speak AI sentence
                             if (autoSpeak && q.s) {
                               const plain = stripHtml(q.s || '');
                               if (plain.trim()) window.setTimeout(() => speak(plain, 'en-US', 1), 120);
                             }
+                          } else {
+                            // ✅ exam: tıklayınca bir sonraki soruya geç
+                            goNextQuestion(idx);
                           }
                         }}
                       />
@@ -1051,7 +1056,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 </div>
               )}
 
-              {/* ✅ anchor: click sonrası buraya kayacağız */}
+              {/* ✅ anchor: practice click sonrası buraya kayacağız */}
               <div id={`q-${idx}-after`} className="h-1" />
 
               {/* Quick actions */}
@@ -1068,9 +1073,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       delete copy[q.id];
                       return copy;
                     });
-                    if (mode === 'practice') {
-                      setFeedback(null);
-                    }
+                    if (mode === 'practice') setFeedback(null);
                   }}
                   className="text-xs font-bold px-3 py-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50"
                   type="button"
@@ -1079,7 +1082,11 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 </button>
 
                 <button
-                  onClick={() => scrollToQuestion(Math.min(idx + 1, questions.length - 1))}
+                  onClick={() => {
+                    const next = Math.min(idx + 1, questions.length - 1);
+                    setActiveIndex(next);
+                    scrollToQuestion(next);
+                  }}
                   className="text-xs font-black px-3 py-2 rounded-lg bg-slate-900 text-white hover:bg-slate-800"
                   type="button"
                 >
@@ -1109,7 +1116,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
         <div className="mt-3 text-center text-xs text-slate-400">
           Tip:{' '}
           {mode === 'exam'
-            ? 'Finish will warn you if any question is empty.'
+            ? 'You can finish anytime. If some questions are empty, you can still finish (they will be marked as SKIPPED).'
             : 'Practice mode: instant feedback + lock + streak confetti + scroll + sound + speak!'}
         </div>
       </div>
