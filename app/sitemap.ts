@@ -1,124 +1,86 @@
 import { MetadataRoute } from 'next';
-import vocabSet1 from '@/data/yds_vocabulary.json';
-import vocabSet2 from '@/data/yds_vocabulary1.json';
+import vocab1 from '@/data/yds_vocabulary.json';
+import vocab2 from '@/data/yds_vocabulary1.json';
 import dailyEnEs from '@/data/daily_en_es.json';
-import dailyEnAr from '@/data/daily_en_ar.json'; // 2.500 Kelimelik yeni Arapça veri seti
+// Eğer Arapça dosyanın adı farklıysa burayı ona göre güncelle:
+import dailyEnAr from '@/data/daily_en_ar.json'; 
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://englishmeter.net';
   const now = new Date();
 
-  // 1. ANA YOLLAR VE OYUNLAR (Priority: 1.0)
-  const coreRoutes = [
-    { path: '/', priority: 1.0, changeFrequency: 'daily' },
-    { path: '/race', priority: 0.9, changeFrequency: 'weekly' },
-    { path: '/speedrun', priority: 0.9, changeFrequency: 'weekly' },
-    { path: '/flashcards', priority: 0.9, changeFrequency: 'weekly' },
-    { path: '/speaking', priority: 0.9, changeFrequency: 'weekly' },
-    { path: '/mistakes', priority: 0.8, changeFrequency: 'daily' },
-    { path: '/verbsense', priority: 0.8, changeFrequency: 'weekly' },
-    { path: '/matching', priority: 0.8, changeFrequency: 'weekly' },
-    { path: '/phrasal-puzzle', priority: 0.8, changeFrequency: 'weekly' },
-  ].map(r => ({
-    url: `${baseUrl}${r.path}`,
-    lastModified: now,
-    priority: r.priority,
-    changeFrequency: r.changeFrequency as any,
-  }));
- 
-  // 2. CEFR VE TEST YOLLARI
-  const levelRoutes = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map(lvl => ({
-    url: `${baseUrl}/levels/${lvl}`,
-    priority: 0.7,
-    changeFrequency: 'monthly' as any,
-    lastModified: now,
-  }));
-
-  const grammarSlugs = [
-    'test-perfect-past', 'test-conditionals', 'test-relatives', 
-    'test-articles', 'test-tenses-mixed', 'test-passive-voice', 
-    'test-reported-speech', 'test-gerunds-infinitives', 
-    'test-clauses-advanced', 'test-modals-advanced', 'test-prepositions-advanced',
-    'quick-placement', 'grammar-mega-test-100', 'ielts-grammar'
-  ];
-  const testRoutes = grammarSlugs.map(slug => ({
-    url: `${baseUrl}/tests/${slug}`,
-    priority: 0.8,
-    changeFrequency: 'monthly' as any,
-    lastModified: now,
-  }));
-
-  // 3. YDS SINAV VE MİNİ TESTLER
-  const ydsExamRoutes = Array.from({ length: 15 }, (_, i) => ({
-    url: `${baseUrl}/tests/yds-exam-test-${i + 1}`,
-    priority: 0.8,
-    changeFrequency: 'monthly' as any,
-    lastModified: now,
-  }));
-
-  const ydsMiniTests = Array.from({ length: 77 }, (_, i) => ({
-    url: `${baseUrl}/tests/yds-3850-mini-${i + 1}`,
-    priority: 0.7,
-    changeFrequency: 'monthly' as any,
-    lastModified: now,
-  }));
-
-  // 4. TÜRKÇE VOCABULARY (YDS)
-  const uniqueMap = new Map();
-  [...vocabSet1, ...vocabSet2].forEach((item: any) => {
-    if (item?.word) {
-      const key = item.word.toLowerCase().trim();
-      if (!uniqueMap.has(key)) uniqueMap.set(key, item);
-    }
-  });
-
-  const trVocabularyRoutes = Array.from(uniqueMap.values()).map((item: any) => ({
-    url: `${baseUrl}/vocabulary/${item.word.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-')}`,
-    priority: 0.5,
-    changeFrequency: 'monthly' as any,
-    lastModified: now,
-  }));
-
-  // 5. İSPANYOLCA GÜNLÜK VOCABULARY
-  const esVocabularyRoutes = dailyEnEs.map((item: any) => {
-    const slug = item.word.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
-    return {
-      url: `${baseUrl}/es/vocabulary/${slug}`,
-      priority: 0.6,
-      changeFrequency: 'monthly' as any,
-      lastModified: now,
-    };
-  });
-
-  // 6. 🚀 ARAPÇA GÜNLÜK VOCABULARY (New 2.500 Words!)
-  // Orta Doğu trafiğini domine etmek için bu rotalar sitemapa eklendi.
-  const arVocabularyRoutes = dailyEnAr.map((item: any) => {
-    const slug = item.word.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
-    return {
-      url: `${baseUrl}/ar/vocabulary/${slug}`,
-      priority: 0.6,
-      changeFrequency: 'monthly' as any,
-      lastModified: now,
-    };
-  });
-
-  // 7. KURUMSAL VE DİL İNDEKS SAYFALARI
+  // 1. STATİK SAYFALAR
   const staticPages = [
-    { url: `${baseUrl}/es/vocabulary`, priority: 0.7, changeFrequency: 'weekly' as any, lastModified: now }, // İspanyolca index
-    { url: `${baseUrl}/ar/vocabulary`, priority: 0.7, changeFrequency: 'weekly' as any, lastModified: now }, // Arapça index
-    { url: `${baseUrl}/contact`, priority: 0.3, changeFrequency: 'yearly' as any, lastModified: now },
-    { url: `${baseUrl}/privacy`, priority: 0.2, changeFrequency: 'yearly' as any, lastModified: now },
-  ];
+    '',
+    '/vocabulary',
+    '/es/vocabulary',
+    '/ar/vocabulary', // Arapça ana dizin
+    '/race',
+    '/flashcards',
+  ].map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: now,
+    changeFrequency: 'daily' as any,
+    priority: 1.0,
+  }));
 
+  // 2. TÜRKÇE YDS KELİMELERİ (SEO DOSTU SLUG İLE)
+  const combinedTurkish = [...vocab1, ...vocab2];
+  const turkishRoutes = combinedTurkish
+    .filter((item) => item && item.word) // Boş veri kontrolü
+    .map((item) => {
+      const slug = item.word
+        .toLowerCase()
+        .trim()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-');
+      return {
+        url: `${baseUrl}/vocabulary/${slug}`,
+        lastModified: now,
+        changeFrequency: 'monthly' as any,
+        priority: 0.7,
+      };
+    });
+
+  // 3. İSPANYOLCA GÜNLÜK KELİMELER
+  const spanishRoutes = (dailyEnEs as any[])
+    .filter((item) => item && item.word) // Kritik hata koruması
+    .map((item) => {
+      const slug = item.word
+        .toLowerCase()
+        .trim()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-');
+      return {
+        url: `${baseUrl}/es/vocabulary/${slug}`,
+        lastModified: now,
+        changeFrequency: 'monthly' as any,
+        priority: 0.6,
+      };
+    });
+
+  // 4. ARAPÇA GÜNLÜK KELİMELER
+  const arabicRoutes = (dailyEnAr as any[])
+    .filter((item) => item && item.word) // Kritik hata koruması
+    .map((item) => {
+      const slug = item.word
+        .toLowerCase()
+        .trim()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-');
+      return {
+        url: `${baseUrl}/ar/vocabulary/${slug}`,
+        lastModified: now,
+        changeFrequency: 'monthly' as any,
+        priority: 0.6,
+      };
+    });
+
+  // HEPSİNİ BİRLEŞTİR VE DÖNDÜR
   return [
-    ...coreRoutes,
-    ...levelRoutes,
-    ...testRoutes,
-    ...ydsExamRoutes,
-    ...ydsMiniTests,
-    ...trVocabularyRoutes,
-    ...esVocabularyRoutes,
-    ...arVocabularyRoutes, // Arapça rotaları eklendi
     ...staticPages,
+    ...turkishRoutes,
+    ...spanishRoutes,
+    ...arabicRoutes,
   ];
 }
