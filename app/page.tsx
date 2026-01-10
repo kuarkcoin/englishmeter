@@ -785,11 +785,49 @@ function HomeContent() {
     <div className="inline-flex items-center gap-1 px-2 py-1 bg-yellow-500/10 rounded-full text-yellow-300 text-[10px] font-bold uppercase mb-3">
       🇪🇸 Spanish
     </div>
-    <h3 className="text-2xl font-black text-white mb-1">Vocab Finish (EN→ES)</h3>
+    <h3 className="text-2xl font-black text-white mb-1">Vocab Tests (EN → ES)</h3>
     <p className="text-yellow-200 text-xs mb-4">Finish anytime · review answered words.</p>
     <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center text-amber-950 font-black">▶</div>
   </div>
 </a>
+ {/* 🇸🇦 DAILY EN → AR VOCAB TEST (Finish Anytime) */}
+<a
+  href="/vocab-finish-ar"
+  className="group relative overflow-hidden
+             bg-gradient-to-br from-amber-900 to-amber-950
+             rounded-3xl p-6 border border-amber-800
+             shadow-xl hover:shadow-amber-500/20
+             transition-all duration-300
+             transform hover:-translate-y-1 text-left"
+>
+  <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-amber-400 rounded-full opacity-10 blur-xl"></div>
+
+  <div className="relative z-10 flex flex-col h-full justify-between">
+    <div>
+      <div className="inline-flex items-center gap-1 px-2 py-1
+                      bg-amber-400/10 rounded-full
+                      text-amber-300 text-[10px]
+                      font-bold uppercase mb-3">
+        🇸🇦 Finish Anytime
+      </div>
+
+      <h3 className="text-2xl font-black text-white mb-1">
+        Vocab Tests (EN → AR) 
+      </h3>
+
+      <p className="text-amber-200 text-xs mb-4 leading-relaxed">
+        Finish anytime → Arabic meaning + EN sentence + AR translation.
+      </p>
+    </div>
+
+    <div className="w-11 h-11 bg-amber-400 rounded-full
+                    flex items-center justify-center
+                    text-amber-950 font-black">
+      ▶
+    </div>
+  </div>
+</a>
+
 
  {/* 🇹🇷 Vocab EN → TR TEST (Finish Anytime) */}
 <a
@@ -813,7 +851,7 @@ function HomeContent() {
       </div>
 
       <h3 className="text-2xl font-black text-white mb-1">
-        Vocab Finish (EN → TR) Vocab
+        Vocab Tests (EN → TR) 
       </h3>
 
       <p className="text-cyan-200 text-xs mb-4">
