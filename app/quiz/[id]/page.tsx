@@ -271,10 +271,14 @@ export default function Quiz({ params }: { params: { id: string } }) {
   // ✅ Keyboard shortcuts: active question
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // ✅ NEW: UX toggles (practice)
+  // ✅ UX toggles
   const [autoScroll, setAutoScroll] = useState(true);
   const [soundOn, setSoundOn] = useState(true);
   const [autoSpeak, setAutoSpeak] = useState(false);
+
+  // ✅ GUARANTEED SCROLL (render sonrası)
+  const [pendingScrollIndex, setPendingScrollIndex] = useState<number | null>(null);
+  const [pendingScrollMode, setPendingScrollMode] = useState<'after' | 'question' | null>(null);
 
   // ✅ Audio for correct/wrong (mobil uyumlu)
   const audioRef = useRef<AudioContext | null>(null);
@@ -289,6 +293,11 @@ export default function Quiz({ params }: { params: { id: string } }) {
     } catch {}
   }, []);
 
+  /**
+   * ✅ Beep SFX
+   * - ok: sine, kısa ve net
+   * - bad: square, daha PES + DONUK (lowpass) => psikolojik uyarı
+   */
   const beep = useCallback(
     async (kind: 'ok' | 'bad') => {
       if (!soundOn) return;
@@ -299,71 +308,102 @@ export default function Quiz({ params }: { params: { id: string } }) {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
 
-      const f0 = kind === 'ok' ? 740 : 220;
-      const f1 = kind === 'ok' ? 520 : 160;
+      // ✅ "Donuk" etki için lowpass filter (bad)
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(kind === 'bad' ? 520 : 8000, ctx.currentTime);
+      filter.Q.setValueAtTime(kind === 'bad' ? 0.9 : 0.2, ctx.currentTime);
 
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(f0, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(f1, ctx.currentTime + 0.09);
+      if (kind === 'ok') {
+        // ✅ OK: tatlı kısa sine
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(760, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(520, ctx.currentTime + 0.085);
 
-      gain.gain.setValueAtTime(0.001, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.05, ctx.currentTime + 0.01);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
+        gain.gain.setValueAtTime(0.001, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.06, ctx.currentTime + 0.012);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
 
-      osc.connect(gain);
-      gain.connect(ctx.destination);
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
 
-      osc.start();
-      osc.stop(ctx.currentTime + 0.13);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.13);
+      } else {
+        // ✅ BAD: daha pes + donuk + square (daha "uyarıcı")
+        osc.type = 'square';
+
+        // Daha düşük frekans + hafif “wobble” hissi (çok az)
+        osc.frequency.setValueAtTime(180, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(140, ctx.currentTime + 0.12);
+
+        // Gain: biraz daha uzun ve "sönük"
+        gain.gain.setValueAtTime(0.001, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.05, ctx.currentTime + 0.018);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
+
+        // “Donukluk”: lowpass daha düşük
+        filter.frequency.setValueAtTime(420, ctx.currentTime);
+
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start();
+        osc.stop(ctx.currentTime + 0.20);
+      }
     },
     [ensureAudio, soundOn]
   );
 
   useEffect(() => setMounted(true), []);
 
-  // ✅ Helper: sticky header offset ile scroll
+  // ✅ Sticky header offset: top-4 bar + mobil
   const getScrollOffset = useCallback(() => {
-    if (typeof window === 'undefined') return 120;
-    return window.innerWidth < 640 ? 150 : 120;
+    if (typeof window === 'undefined') return 140;
+    return window.innerWidth < 640 ? 170 : 145;
   }, []);
 
-  const scrollToIdWithOffset = useCallback(
+  // ✅ GUARANTEED scroll (sticky bypass): window.scrollTo + offset
+  const hardScrollTo = useCallback(
     (id: string) => {
       if (typeof window === 'undefined') return;
       const el = document.getElementById(id);
       if (!el) return;
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      window.setTimeout(() => window.scrollBy({ top: -getScrollOffset(), behavior: 'smooth' }), 60);
+
+      const y = el.getBoundingClientRect().top + window.pageYOffset - getScrollOffset();
+      window.scrollTo({ top: y, behavior: 'smooth' });
     },
     [getScrollOffset]
   );
 
-  // ✅ Helper: Scroll to question
   const scrollToQuestion = useCallback(
     (index: number) => {
-      scrollToIdWithOffset(`q-${index}`);
+      hardScrollTo(`q-${index}`);
     },
-    [scrollToIdWithOffset]
+    [hardScrollTo]
   );
 
-  // ✅ NEW: after-answer anchor scroll (practice)
   const scrollToAfter = useCallback(
     (index: number) => {
-      scrollToIdWithOffset(`q-${index}-after`);
+      hardScrollTo(`q-${index}-after`);
     },
-    [scrollToIdWithOffset]
+    [hardScrollTo]
   );
 
-  // ✅ EXAM: answer -> go next question
-  const goNextQuestion = useCallback(
-    (idx: number) => {
-      const next = Math.min(idx + 1, (data?.questions?.length ?? 1) - 1);
-      if (next === idx) return;
-      setActiveIndex(next);
-      window.setTimeout(() => scrollToQuestion(next), 80);
-    },
-    [data?.questions?.length, scrollToQuestion]
-  );
+  // ✅ Render sonrası kesin kaydır
+  useEffect(() => {
+    if (pendingScrollIndex === null || pendingScrollMode === null) return;
+    // DOM otursun
+    const t = window.setTimeout(() => {
+      if (pendingScrollMode === 'question') scrollToQuestion(pendingScrollIndex);
+      else scrollToAfter(pendingScrollIndex);
+      setPendingScrollIndex(null);
+      setPendingScrollMode(null);
+    }, 0);
+    return () => window.clearTimeout(t);
+  }, [pendingScrollIndex, pendingScrollMode, scrollToAfter, scrollToQuestion]);
 
   // 1) LOAD DATA
   useEffect(() => {
@@ -395,27 +435,23 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
   // ✅ remove session payload ONLY after result is visible
   useEffect(() => {
-    if (showResult) sessionStorage.removeItem('em_attempt_payload');
+    if (showResult) {
+      sessionStorage.removeItem('em_attempt_payload');
+    }
   }, [showResult]);
 
-  // ✅ SUBMIT & SAVE MISTAKES
+  // 3) SUBMIT & SAVE MISTAKES
   const handleSubmit = useCallback(() => {
     if (!data) return;
 
-    // ✅ EXAM: istediği anda bitirebilsin
+    // ✅ EXAM: kullanıcı istediği zaman bitirebilsin
     if (mode === 'exam') {
-      const unanswered = data.questions.filter((q) => !answers[q.id]);
-      if (unanswered.length > 0) {
-        const firstMissingIndex = data.questions.findIndex((q) => !answers[q.id]);
-
+      const unanswered = data.questions.filter((q) => !answers[q.id]).length;
+      if (unanswered > 0) {
         const ok = window.confirm(
-          `You have ${unanswered.length} unanswered question(s).\n\nFinish anyway? (Unanswered will be marked as SKIPPED)`
+          `${unanswered} unanswered question(s) var.\n\nYine de bitireyim mi? (Finish anyway)`
         );
-
-        if (!ok) {
-          scrollToQuestion(firstMissingIndex);
-          return;
-        }
+        if (!ok) return;
       }
     }
 
@@ -466,7 +502,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
     setScore(correctCount);
     setShowResult(true);
     window.scrollTo(0, 0);
-  }, [data, answers, scrollToQuestion, mode]);
+  }, [data, answers, mode]);
 
   // 2) TIMER (EXAM ONLY)
   useEffect(() => {
@@ -485,18 +521,22 @@ export default function Quiz({ params }: { params: { id: string } }) {
   // 5) OPTIONAL: 10 seconds warning (EXAM only)
   useEffect(() => {
     if (mode !== 'exam') return;
-    if (timeLeft === 10 && !showResult) alert('⏳ 10 seconds left!');
+    if (timeLeft === 10 && !showResult) {
+      alert('⏳ 10 seconds left!');
+    }
   }, [timeLeft, showResult, mode]);
 
-  // Mode change: feedback + streak temizle
+  // Practice/Exam mode change: feedback + streak temizle
   useEffect(() => {
     setFeedback(null);
     setStreak(0);
     setBurst(null);
     setLocked({});
+    setPendingScrollIndex(null);
+    setPendingScrollMode(null);
   }, [mode]);
 
-  // ✅ Keyboard shortcuts: 1-4 / A-D
+  // ✅ Keyboard shortcuts: 1-4 / A-D for active question
   useEffect(() => {
     if (!mounted) return;
     if (!data) return;
@@ -541,21 +581,29 @@ export default function Quiz({ params }: { params: { id: string } }) {
           setStreak(0);
         }
 
-        if (autoScroll) window.setTimeout(() => scrollToAfter(activeIndex), 80);
+        if (autoScroll) {
+          setPendingScrollIndex(activeIndex);
+          setPendingScrollMode('after');
+        }
 
         if (autoSpeak && q.s) {
           const plain = stripHtml(q.s || '');
           if (plain.trim()) window.setTimeout(() => speak(plain, 'en-US', 1), 120);
         }
       } else {
-        // ✅ EXAM: cevap verince bir sonraki soruya kay
-        goNextQuestion(activeIndex);
+        // ✅ EXAM: seçince sonraki soruya geç
+        const next = Math.min(activeIndex + 1, data.questions.length - 1);
+        setActiveIndex(next);
+        if (autoScroll) {
+          setPendingScrollIndex(next);
+          setPendingScrollMode('question');
+        }
       }
     };
 
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [mounted, data, activeIndex, mode, locked, showResult, autoScroll, autoSpeak, beep, scrollToAfter, goNextQuestion]);
+  }, [mounted, data, activeIndex, mode, locked, showResult, autoScroll, autoSpeak, beep]);
 
   if (!mounted) return <div className="p-10 text-center animate-pulse">Loading...</div>;
   if (!data) return <div className="p-10 text-center animate-pulse">Loading...</div>;
@@ -874,7 +922,8 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 key={q.id}
                 onClick={() => {
                   setActiveIndex(i);
-                  scrollToQuestion(i);
+                  setPendingScrollIndex(i);
+                  setPendingScrollMode('question'); // ✅ tıklayınca soruya kay
                 }}
                 className={`h-8 rounded-lg text-xs font-black border transition active:scale-[0.98]
                   ${
@@ -953,9 +1002,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       key={c.id}
                       className={`group flex items-center p-4 rounded-xl border-2 transition-all duration-200 active:scale-[0.99]
                         ${practiceRing} ${isLocked ? 'cursor-not-allowed opacity-80' : 'cursor-pointer'}`}
-                      onClick={() => {
-                        void ensureAudio();
-                      }}
+                      onClick={() => void ensureAudio()}
                     >
                       <div
                         className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 transition-colors ${
@@ -996,16 +1043,24 @@ export default function Quiz({ params }: { params: { id: string } }) {
                               setStreak(0);
                             }
 
-                            // ✅ practice: tıklayınca AI/feedback kısmına kay
-                            if (autoScroll) window.setTimeout(() => scrollToAfter(idx), 80);
+                            // ✅ PRACTICE: sorunun içinde kalıp aşağıdaki feedback/AI'ye kay
+                            if (autoScroll) {
+                              setPendingScrollIndex(idx);
+                              setPendingScrollMode('after');
+                            }
 
                             if (autoSpeak && q.s) {
                               const plain = stripHtml(q.s || '');
                               if (plain.trim()) window.setTimeout(() => speak(plain, 'en-US', 1), 120);
                             }
                           } else {
-                            // ✅ exam: tıklayınca bir sonraki soruya geç
-                            goNextQuestion(idx);
+                            // ✅ EXAM: şıkkı seçince otomatik sonraki soruya geç
+                            const next = Math.min(idx + 1, questions.length - 1);
+                            setActiveIndex(next);
+                            if (autoScroll) {
+                              setPendingScrollIndex(next);
+                              setPendingScrollMode('question');
+                            }
                           }
                         }}
                       />
@@ -1056,7 +1111,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 </div>
               )}
 
-              {/* ✅ anchor: practice click sonrası buraya kayacağız */}
+              {/* ✅ anchor: click sonrası buraya kayacağız */}
               <div id={`q-${idx}-after`} className="h-1" />
 
               {/* Quick actions */}
@@ -1073,7 +1128,9 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       delete copy[q.id];
                       return copy;
                     });
-                    if (mode === 'practice') setFeedback(null);
+                    if (mode === 'practice') {
+                      setFeedback(null);
+                    }
                   }}
                   className="text-xs font-bold px-3 py-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50"
                   type="button"
@@ -1085,7 +1142,8 @@ export default function Quiz({ params }: { params: { id: string } }) {
                   onClick={() => {
                     const next = Math.min(idx + 1, questions.length - 1);
                     setActiveIndex(next);
-                    scrollToQuestion(next);
+                    setPendingScrollIndex(next);
+                    setPendingScrollMode('question');
                   }}
                   className="text-xs font-black px-3 py-2 rounded-lg bg-slate-900 text-white hover:bg-slate-800"
                   type="button"
@@ -1116,8 +1174,8 @@ export default function Quiz({ params }: { params: { id: string } }) {
         <div className="mt-3 text-center text-xs text-slate-400">
           Tip:{' '}
           {mode === 'exam'
-            ? 'You can finish anytime. If some questions are empty, you can still finish (they will be marked as SKIPPED).'
-            : 'Practice mode: instant feedback + lock + streak confetti + scroll + sound + speak!'}
+            ? 'Exam: you can finish anytime. If some are empty, it will ask “Finish anyway?”.'
+            : 'Practice: instant feedback + lock + streak confetti + scroll + sound + speak!'}
         </div>
       </div>
     </div>
