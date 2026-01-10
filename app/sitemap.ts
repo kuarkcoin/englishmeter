@@ -2,7 +2,6 @@ import { MetadataRoute } from 'next';
 import vocab1 from '@/data/yds_vocabulary.json';
 import vocab2 from '@/data/yds_vocabulary1.json';
 import dailyEnEs from '@/data/daily_en_es.json';
-// Eğer Arapça dosyanın adı farklıysa burayı ona göre güncelle:
 import dailyEnAr from '@/data/daily_en_ar.json'; 
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -14,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '',
     '/vocabulary',
     '/es/vocabulary',
-    '/ar/vocabulary', // Arapça ana dizin
+    '/ar/vocabulary',
     '/race',
     '/flashcards',
   ].map((route) => ({
@@ -24,12 +23,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 1.0,
   }));
 
-  // 2. TÜRKÇE YDS KELİMELERİ (SEO DOSTU SLUG İLE)
-  const combinedTurkish = [...vocab1, ...vocab2];
+  // 2. TÜRKÇE YDS KELİMELERİ
+  // 'as any[]' ekleyerek TypeScript hatasını bypass ediyoruz
+  const combinedTurkish = [...(vocab1 as any[]), ...(vocab2 as any[])];
   const turkishRoutes = combinedTurkish
-    .filter((item) => item && item.word) // Boş veri kontrolü
+    .filter((item) => item && item.word) 
     .map((item) => {
-      const slug = item.word
+      const slug = String(item.word)
         .toLowerCase()
         .trim()
         .replace(/[^\w\s-]/g, '')
@@ -44,9 +44,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // 3. İSPANYOLCA GÜNLÜK KELİMELER
   const spanishRoutes = (dailyEnEs as any[])
-    .filter((item) => item && item.word) // Kritik hata koruması
+    .filter((item) => item && item.word) 
     .map((item) => {
-      const slug = item.word
+      const slug = String(item.word)
         .toLowerCase()
         .trim()
         .replace(/[^\w\s-]/g, '')
@@ -61,9 +61,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // 4. ARAPÇA GÜNLÜK KELİMELER
   const arabicRoutes = (dailyEnAr as any[])
-    .filter((item) => item && item.word) // Kritik hata koruması
+    .filter((item) => item && item.word) 
     .map((item) => {
-      const slug = item.word
+      const slug = String(item.word)
         .toLowerCase()
         .trim()
         .replace(/[^\w\s-]/g, '')
@@ -76,7 +76,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       };
     });
 
-  // HEPSİNİ BİRLEŞTİR VE DÖNDÜR
   return [
     ...staticPages,
     ...turkishRoutes,
