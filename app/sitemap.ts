@@ -1,7 +1,8 @@
 import { MetadataRoute } from 'next';
 import vocabSet1 from '@/data/yds_vocabulary.json';
 import vocabSet2 from '@/data/yds_vocabulary1.json';
-import dailyEnEs from '@/data/daily_en_es.json'; // 1.000 Kelimelik yeni İspanyolca veri seti
+import dailyEnEs from '@/data/daily_en_es.json';
+import dailyEnAr from '@/data/daily_en_ar.json'; // 2.500 Kelimelik yeni Arapça veri seti
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://englishmeter.net';
@@ -62,7 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: now,
   }));
 
-  // 4. 🚀 TÜRKÇE VOCABULARY (YDS)
+  // 4. TÜRKÇE VOCABULARY (YDS)
   const uniqueMap = new Map();
   [...vocabSet1, ...vocabSet2].forEach((item: any) => {
     if (item?.word) {
@@ -78,21 +79,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: now,
   }));
 
-  // 5. 🌍 İSPANYOLCA GÜNLÜK VOCABULARY (New!)
-  // Google'ın ABD ve İspanya aramalarında bizi öne çıkarması için bu rotalar kritik.
+  // 5. İSPANYOLCA GÜNLÜK VOCABULARY
   const esVocabularyRoutes = dailyEnEs.map((item: any) => {
     const slug = item.word.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
     return {
       url: `${baseUrl}/es/vocabulary/${slug}`,
-      priority: 0.6, // Günlük kelimeler daha çok trafik çektiği için önceliği biraz artırdık
+      priority: 0.6,
       changeFrequency: 'monthly' as any,
       lastModified: now,
     };
   });
 
-  // 6. KURUMSAL SAYFALAR
+  // 6. 🚀 ARAPÇA GÜNLÜK VOCABULARY (New 2.500 Words!)
+  // Orta Doğu trafiğini domine etmek için bu rotalar sitemapa eklendi.
+  const arVocabularyRoutes = dailyEnAr.map((item: any) => {
+    const slug = item.word.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+    return {
+      url: `${baseUrl}/ar/vocabulary/${slug}`,
+      priority: 0.6,
+      changeFrequency: 'monthly' as any,
+      lastModified: now,
+    };
+  });
+
+  // 7. KURUMSAL VE DİL İNDEKS SAYFALARI
   const staticPages = [
-    { url: `${baseUrl}/es/vocabulary`, priority: 0.7, changeFrequency: 'weekly' as any, lastModified: now }, // İspanyolca index sayfası
+    { url: `${baseUrl}/es/vocabulary`, priority: 0.7, changeFrequency: 'weekly' as any, lastModified: now }, // İspanyolca index
+    { url: `${baseUrl}/ar/vocabulary`, priority: 0.7, changeFrequency: 'weekly' as any, lastModified: now }, // Arapça index
     { url: `${baseUrl}/contact`, priority: 0.3, changeFrequency: 'yearly' as any, lastModified: now },
     { url: `${baseUrl}/privacy`, priority: 0.2, changeFrequency: 'yearly' as any, lastModified: now },
   ];
@@ -104,7 +117,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...ydsExamRoutes,
     ...ydsMiniTests,
     ...trVocabularyRoutes,
-    ...esVocabularyRoutes, // Yeni rotalar eklendi
+    ...esVocabularyRoutes,
+    ...arVocabularyRoutes, // Arapça rotaları eklendi
     ...staticPages,
   ];
 }
