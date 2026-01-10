@@ -25,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: r.priority,
     changeFrequency: r.changeFrequency as any,
   }));
-
+ 
   // 2. CEFR VE TEST YOLLARI
   const levelRoutes = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map(lvl => ({
     url: `${baseUrl}/levels/${lvl}`,
