@@ -2,7 +2,6 @@ import dailyEnAr from '@/data/daily_en_ar.json';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-// 1. Veri Yapısını Tanımlayalım (TypeScript hatasını çözen kısım)
 interface VocabItem {
   word: string;
   meaning: string;
@@ -10,32 +9,41 @@ interface VocabItem {
   t: string;
 }
 
-// JSON verisini bu tipe zorlayalım
 const vocabData = dailyEnAr as VocabItem[];
 
-// Slug oluşturma fonksiyonu
-const getSlug = (word: string) => 
-  word.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+// Slug oluşturma fonksiyonuna güvenlik kontrolü ekledik
+const getSlug = (word: string) => {
+  if (!word) return "";
+  return word.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+};
 
 export async function generateStaticParams() {
-  return vocabData.map((item) => ({
-    slug: getSlug(item.word),
-  }));
+  // Sadece geçerli word alanına sahip olanları filtreleyelim
+  // Bu, build sırasında olası bir crash'i engeller.
+  const validParams = vocabData
+    .filter(item => item && item.word)
+    .map((item) => ({
+      slug: getSlug(item.word),
+    }));
+
+  console.log(`🚀 Build: ${validParams.length} Arapça sayfa üretiliyor...`);
+  return validParams;
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const item = vocabData.find((i) => getSlug(i.word) === params.slug);
+  const item = vocabData.find((i) => getSlug(i?.word) === params.slug);
   
   if (!item) return { title: 'Word Not Found' };
 
   return {
-    title: `${item.word} - Arapça Anlamı ve Okunuşu | EnglishMeter`,
-    description: `İngilizce "${item.word}" kelimesinin Arapça karşılığı: ${item.meaning}. Örnek cümle: ${item.s}`,
+    title: `${item.word} - Arapça Anlamı | EnglishMeter`,
+    description: `İngilizce ${item.word} kelimesinin Arapça anlamı: ${item.meaning}.`,
   };
 }
 
 export default function ArabicWordPage({ params }: { params: { slug: string } }) {
-  const item = vocabData.find((i) => getSlug(i.word) === params.slug);
+  // Params'ı bulurken güvenlik kontrolü
+  const item = vocabData.find((i) => i?.word && getSlug(i.word) === params.slug);
 
   if (!item) {
     notFound();
@@ -50,7 +58,6 @@ export default function ArabicWordPage({ params }: { params: { slug: string } })
         </div>
 
         <div className="p-8 space-y-8">
-          {/* Anlam Bölümü */}
           <div className="flex flex-col md:flex-row justify-between items-center border-b pb-8">
             <div className="text-center md:text-left mb-4 md:mb-0">
               <span className="text-sm text-gray-500 uppercase tracking-widest">English Word</span>
@@ -63,17 +70,10 @@ export default function ArabicWordPage({ params }: { params: { slug: string } })
             </div>
           </div>
 
-          {/* Örnek Cümleler */}
           <div className="space-y-6">
             <h3 className="text-xl font-bold text-gray-700 border-l-4 border-blue-500 pl-3">Example Usage</h3>
-            
-            <div className="bg-gray-50 p-6 rounded-lg italic text-gray-700 text-lg">
-              "{item.s}"
-            </div>
-            
-            <div className="bg-blue-50 p-6 rounded-lg text-right text-blue-900 text-xl font-medium" dir="rtl">
-              "{item.t}"
-            </div>
+            <div className="bg-gray-50 p-6 rounded-lg italic text-gray-700 text-lg">"{item.s}"</div>
+            <div className="bg-blue-50 p-6 rounded-lg text-right text-blue-900 text-xl font-medium" dir="rtl">"{item.t}"</div>
           </div>
         </div>
       </div>
