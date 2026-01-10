@@ -1,7 +1,7 @@
 // app/quiz/[id]/page.tsx
 'use client';
 
-import React, { useEffect, useMemo, useState, useCallback } from 'react';
+import React, { useEffect, useMemo, useState, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import DOMPurify from 'dompurify';
 import { useRouter } from 'next/navigation';
@@ -182,7 +182,7 @@ function MiniConfetti({ burst }: { burst: { key: number; level: 'small' | 'big' 
   );
 }
 
-// ✅ TTS helpers (EnglishMeter pro)
+// ✅ TTS helpers
 function speak(text: string, lang = 'en-US', rate = 1) {
   if (typeof window === 'undefined') return;
   const synth = window.speechSynthesis;
@@ -201,22 +201,27 @@ function stripHtml(input: string) {
   return div.textContent || div.innerText || '';
 }
 
-// ✅ AI box component (tek yerde render) + TTS
-function AiSentenceBox({ s, t }: { s?: string | null; t?: string | null }) {
+// ✅ AI box component + TTS
+function AiSentenceBox({
+  s,
+  t,
+  showSpeak = true,
+  onSpeak,
+}: {
+  s?: string | null;
+  t?: string | null;
+  showSpeak?: boolean;
+  onSpeak?: () => void;
+}) {
   if (!s && !t) return null;
-
-  const speakEn = () => {
-    const plain = stripHtml(s || '');
-    if (plain.trim()) speak(plain, 'en-US', 1);
-  };
 
   return (
     <div className="mt-4 p-4 rounded-2xl border border-violet-200 bg-violet-50/40">
       <div className="flex items-center justify-between">
         <div className="text-[11px] font-black text-violet-700 uppercase tracking-wide">AI Sentence</div>
-        {s && (
+        {showSpeak && s && (
           <button
-            onClick={speakEn}
+            onClick={onSpeak}
             className="text-xs font-black px-3 py-1 rounded-lg bg-violet-600 text-white hover:bg-violet-700"
             type="button"
           >
@@ -266,13 +271,91 @@ export default function Quiz({ params }: { params: { id: string } }) {
   // ✅ Keyboard shortcuts: active question
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // ✅ NEW: UX toggles
+  const [autoScroll, setAutoScroll] = useState(true);
+  const [soundOn, setSoundOn] = useState(true);
+  const [autoSpeak, setAutoSpeak] = useState(false);
+
+  // ✅ Audio for correct/wrong (mobil uyumlu)
+  const audioRef = useRef<AudioContext | null>(null);
+
+  const ensureAudio = useCallback(async () => {
+    try {
+      if (typeof window === 'undefined') return;
+      const AC = (window.AudioContext || (window as any).webkitAudioContext) as typeof AudioContext | undefined;
+      if (!AC) return;
+      if (!audioRef.current) audioRef.current = new AC();
+      if (audioRef.current.state === 'suspended') await audioRef.current.resume();
+    } catch {}
+  }, []);
+
+  const beep = useCallback(
+    async (kind: 'ok' | 'bad') => {
+      if (!soundOn) return;
+      await ensureAudio();
+      const ctx = audioRef.current;
+      if (!ctx) return;
+
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      // frekanslar: doğru -> kısa tatlı, yanlış -> daha düşük “bip”
+      const f0 = kind === 'ok' ? 740 : 220;
+      const f1 = kind === 'ok' ? 520 : 160;
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(f0, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(f1, ctx.currentTime + 0.09);
+
+      gain.gain.setValueAtTime(0.001, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.05, ctx.currentTime + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start();
+      osc.stop(ctx.currentTime + 0.13);
+    },
+    [ensureAudio, soundOn]
+  );
+
   useEffect(() => setMounted(true), []);
 
-  // ✅ Helper: Scroll to question
-  const scrollToQuestion = useCallback((index: number) => {
-    const el = document.getElementById(`q-${index}`);
-    el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // ✅ Helper: sticky header offset ile scroll
+  const getScrollOffset = useCallback(() => {
+    if (typeof window === 'undefined') return 120;
+    // mobilde sticky bar daha büyük hissediliyor
+    return window.innerWidth < 640 ? 150 : 120;
   }, []);
+
+  const scrollToIdWithOffset = useCallback(
+    (id: string) => {
+      if (typeof window === 'undefined') return;
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // sticky header için yukarı çek
+      window.setTimeout(() => window.scrollBy({ top: -getScrollOffset(), behavior: 'smooth' }), 60);
+    },
+    [getScrollOffset]
+  );
+
+  // ✅ Helper: Scroll to question
+  const scrollToQuestion = useCallback(
+    (index: number) => {
+      scrollToIdWithOffset(`q-${index}`);
+    },
+    [scrollToIdWithOffset]
+  );
+
+  // ✅ NEW: after-answer anchor scroll
+  const scrollToAfter = useCallback(
+    (index: number) => {
+      scrollToIdWithOffset(`q-${index}-after`);
+    },
+    [scrollToIdWithOffset]
+  );
 
   // 1) LOAD DATA
   useEffect(() => {
@@ -280,7 +363,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
     const raw = sessionStorage.getItem('em_attempt_payload');
     if (!raw) {
-      // ✅ better UX: redirect home (attempt expired)
       router.replace('/?toast=attempt-expired');
       return;
     }
@@ -291,8 +373,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
       const qCount = parsed.questions?.length || 0;
 
-      // ✅ Duration minutes -> seconds
-      // duration yoksa fallback: soru başı 30sn
       let seconds = 0;
       if (parsed.test?.duration && Number.isFinite(parsed.test.duration) && parsed.test.duration! > 0) {
         seconds = Math.round(parsed.test.duration! * 60);
@@ -316,7 +396,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
   const handleSubmit = useCallback(() => {
     if (!data) return;
 
-    // ✅ Exam modda unanswered kontrolü
     if (mode === 'exam') {
       const unanswered = data.questions.filter((q) => !answers[q.id]);
       if (unanswered.length > 0) {
@@ -345,7 +424,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
       const isCorrect = idsEqual(userAnswerId, correctChoiceId);
       if (isCorrect) correctCount++;
 
-      // ✅ unique key
       const scope = data.testSlug || data.attemptId || 'test';
       const mistakeKey = `${scope}::${q.id}`;
 
@@ -420,7 +498,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
       const q = data.questions?.[activeIndex];
       if (!q) return;
 
-      // practice lock: ignore if already locked
       if (mode === 'practice' && locked[q.id]) return;
 
       const k = e.key.toLowerCase();
@@ -431,7 +508,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
       const choice = q.choices?.[ci];
       if (!choice) return;
 
-      // same behavior as click
       setAnswers((prev) => ({ ...prev, [q.id]: choice.id }));
 
       if (mode === 'practice') {
@@ -441,6 +517,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
         setFeedback({ questionId: q.id, isCorrect });
         setLocked((p) => ({ ...p, [q.id]: true }));
 
+        // ✅ sound
+        void beep(isCorrect ? 'ok' : 'bad');
+
+        // ✅ streak + confetti
         if (isCorrect) {
           setStreak((s) => {
             const next = s + 1;
@@ -451,12 +531,23 @@ export default function Quiz({ params }: { params: { id: string } }) {
         } else {
           setStreak(0);
         }
+
+        // ✅ auto scroll down to AI/feedback area
+        if (autoScroll) {
+          window.setTimeout(() => scrollToAfter(activeIndex), 80);
+        }
+
+        // ✅ auto speak AI sentence
+        if (autoSpeak && q.s) {
+          const plain = stripHtml(q.s || '');
+          if (plain.trim()) window.setTimeout(() => speak(plain, 'en-US', 1), 120);
+        }
       }
     };
 
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [mounted, data, activeIndex, mode, locked, showResult]);
+  }, [mounted, data, activeIndex, mode, locked, showResult, autoScroll, autoSpeak, beep, scrollToAfter]);
 
   if (!mounted) return <div className="p-10 text-center animate-pulse">Loading...</div>;
   if (!data) return <div className="p-10 text-center animate-pulse">Loading...</div>;
@@ -614,10 +705,17 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       })}
                     </div>
 
-                    {/* ✅ ONLY PRACTICE: AI sentence in result */}
-                    {showPracticeExtras && <AiSentenceBox s={q.s ?? null} t={q.t ?? null} />}
+                    {showPracticeExtras && (
+                      <AiSentenceBox
+                        s={q.s ?? null}
+                        t={q.t ?? null}
+                        onSpeak={() => {
+                          const plain = stripHtml(q.s || '');
+                          if (plain.trim()) speak(plain, 'en-US', 1);
+                        }}
+                      />
+                    )}
 
-                    {/* ✅ ONLY PRACTICE: Explanation in result */}
                     {showPracticeExtras && q.explanation && (
                       <div className="mt-5 p-4 bg-blue-50 rounded-xl border border-blue-100 text-sm text-blue-800 flex gap-3 items-start">
                         <span className="text-xl">💡</span>
@@ -642,19 +740,20 @@ export default function Quiz({ params }: { params: { id: string } }) {
   // --- QUIZ SOLVING SCREEN ---
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 space-y-6">
-      {/* confetti overlay */}
       <MiniConfetti burst={burst} />
 
       {/* Top Bar */}
       <div className="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-slate-200 sticky top-4 z-20 backdrop-blur-sm bg-white/90">
         <div className="text-sm font-semibold text-slate-700 truncate max-w-[200px]">{test?.title || 'Test'}</div>
 
-        {/* Right cluster */}
         <div className="flex items-center gap-3">
           {/* Mode toggle */}
           <div className="flex items-center gap-1 px-2 py-1 rounded-xl border border-slate-200 bg-slate-50">
             <button
-              onClick={() => setMode('exam')}
+              onClick={() => {
+                void ensureAudio(); // ✅ user gesture ile ses aç
+                setMode('exam');
+              }}
               className={`px-3 py-1 text-xs font-black rounded-lg transition ${
                 mode === 'exam' ? 'bg-blue-600 text-white' : 'text-slate-600 hover:bg-slate-100'
               }`}
@@ -664,7 +763,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
             </button>
 
             <button
-              onClick={() => setMode('practice')}
+              onClick={() => {
+                void ensureAudio(); // ✅ user gesture ile ses aç
+                setMode('practice');
+              }}
               className={`px-3 py-1 text-xs font-black rounded-lg transition ${
                 mode === 'practice' ? 'bg-green-600 text-white' : 'text-slate-600 hover:bg-slate-100'
               }`}
@@ -673,6 +775,47 @@ export default function Quiz({ params }: { params: { id: string } }) {
               PRACTICE
             </button>
           </div>
+
+          {/* Practice toggles */}
+          {mode === 'practice' && (
+            <div className="hidden sm:flex items-center gap-2">
+              <button
+                onClick={() => setAutoScroll((v) => !v)}
+                className={`px-2 py-1 rounded-lg text-[11px] font-black border ${
+                  autoScroll ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-600 border-slate-200'
+                }`}
+                type="button"
+                title="Auto scroll to feedback/AI section"
+              >
+                ⤓ Scroll {autoScroll ? 'ON' : 'OFF'}
+              </button>
+
+              <button
+                onClick={() => {
+                  void ensureAudio();
+                  setSoundOn((v) => !v);
+                }}
+                className={`px-2 py-1 rounded-lg text-[11px] font-black border ${
+                  soundOn ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-600 border-slate-200'
+                }`}
+                type="button"
+                title="Correct/Wrong sound"
+              >
+                🔔 Sound {soundOn ? 'ON' : 'OFF'}
+              </button>
+
+              <button
+                onClick={() => setAutoSpeak((v) => !v)}
+                className={`px-2 py-1 rounded-lg text-[11px] font-black border ${
+                  autoSpeak ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-600 border-slate-200'
+                }`}
+                type="button"
+                title="Auto speak AI sentence"
+              >
+                🗣️ Speak {autoSpeak ? 'ON' : 'OFF'}
+              </button>
+            </div>
+          )}
 
           {/* Streak (practice only) */}
           {mode === 'practice' && (
@@ -749,7 +892,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
           const hasAi = !!q.s || !!q.t;
 
-          // ✅ PRACTICE ONLY: answered -> show AI + explanation
           const showPracticeAi = mode === 'practice' && !!answers[q.id] && hasAi;
           const showPracticeExplanation = mode === 'practice' && !!answers[q.id] && !!q.explanation;
 
@@ -803,6 +945,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       key={c.id}
                       className={`group flex items-center p-4 rounded-xl border-2 transition-all duration-200 active:scale-[0.99]
                         ${practiceRing} ${isLocked ? 'cursor-not-allowed opacity-80' : 'cursor-pointer'}`}
+                      onClick={() => {
+                        // ✅ label click de user gesture sayılır
+                        void ensureAudio();
+                      }}
                     >
                       <div
                         className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 transition-colors ${
@@ -829,21 +975,31 @@ export default function Quiz({ params }: { params: { id: string } }) {
                             setFeedback({ questionId: q.id, isCorrect });
                             setLocked((p) => ({ ...p, [q.id]: true }));
 
+                            // ✅ sound
+                            void beep(isCorrect ? 'ok' : 'bad');
+
+                            // ✅ streak + confetti
                             if (isCorrect) {
                               setStreak((s) => {
                                 const next = s + 1;
-
-                                // 10 streak -> big
-                                if (next % 10 === 0) {
-                                  setBurst((b) => ({ key: (b?.key ?? 0) + 1, level: 'big' }));
-                                } else if (next % 5 === 0) {
+                                if (next % 10 === 0) setBurst((b) => ({ key: (b?.key ?? 0) + 1, level: 'big' }));
+                                else if (next % 5 === 0)
                                   setBurst((b) => ({ key: (b?.key ?? 0) + 1, level: 'small' }));
-                                }
-
                                 return next;
                               });
                             } else {
                               setStreak(0);
+                            }
+
+                            // ✅ auto scroll: tıklayınca alta kay
+                            if (autoScroll) {
+                              window.setTimeout(() => scrollToAfter(idx), 80);
+                            }
+
+                            // ✅ auto speak AI sentence
+                            if (autoSpeak && q.s) {
+                              const plain = stripHtml(q.s || '');
+                              if (plain.trim()) window.setTimeout(() => speak(plain, 'en-US', 1), 120);
                             }
                           }
                         }}
@@ -871,7 +1027,16 @@ export default function Quiz({ params }: { params: { id: string } }) {
               )}
 
               {/* ✅ PRACTICE ONLY: AI sentence after answering */}
-              {showPracticeAi && <AiSentenceBox s={q.s ?? null} t={q.t ?? null} />}
+              {showPracticeAi && (
+                <AiSentenceBox
+                  s={q.s ?? null}
+                  t={q.t ?? null}
+                  onSpeak={() => {
+                    const plain = stripHtml(q.s || '');
+                    if (plain.trim()) speak(plain, 'en-US', 1);
+                  }}
+                />
+              )}
 
               {/* ✅ PRACTICE ONLY: Explanation after answering */}
               {showPracticeExplanation && (
@@ -885,6 +1050,9 @@ export default function Quiz({ params }: { params: { id: string } }) {
                   </div>
                 </div>
               )}
+
+              {/* ✅ anchor: click sonrası buraya kayacağız */}
+              <div id={`q-${idx}-after`} className="h-1" />
 
               {/* Quick actions */}
               <div className="mt-5 flex items-center justify-between">
@@ -939,7 +1107,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
         </button>
 
         <div className="mt-3 text-center text-xs text-slate-400">
-          Tip: {mode === 'exam' ? 'Finish will warn you if any question is empty.' : 'Practice mode: instant feedback + lock + streak confetti!'}
+          Tip:{' '}
+          {mode === 'exam'
+            ? 'Finish will warn you if any question is empty.'
+            : 'Practice mode: instant feedback + lock + streak confetti + scroll + sound + speak!'}
         </div>
       </div>
     </div>
