@@ -4,6 +4,7 @@
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import Link from 'next/link';
 import DOMPurify from 'dompurify';
+import { useRouter } from 'next/navigation';
 
 // --- TYPES ---
 interface Choice {
@@ -181,13 +182,48 @@ function MiniConfetti({ burst }: { burst: { key: number; level: 'small' | 'big' 
   );
 }
 
-// ✅ AI box component (tek yerde render)
+// ✅ TTS helpers (EnglishMeter pro)
+function speak(text: string, lang = 'en-US', rate = 1) {
+  if (typeof window === 'undefined') return;
+  const synth = window.speechSynthesis;
+  if (!synth) return;
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang;
+  u.rate = rate;
+  synth.speak(u);
+}
+
+function stripHtml(input: string) {
+  if (typeof window === 'undefined') return input;
+  const div = document.createElement('div');
+  div.innerHTML = input;
+  return div.textContent || div.innerText || '';
+}
+
+// ✅ AI box component (tek yerde render) + TTS
 function AiSentenceBox({ s, t }: { s?: string | null; t?: string | null }) {
   if (!s && !t) return null;
 
+  const speakEn = () => {
+    const plain = stripHtml(s || '');
+    if (plain.trim()) speak(plain, 'en-US', 1);
+  };
+
   return (
     <div className="mt-4 p-4 rounded-2xl border border-violet-200 bg-violet-50/40">
-      <div className="text-[11px] font-black text-violet-700 uppercase tracking-wide">AI Sentence</div>
+      <div className="flex items-center justify-between">
+        <div className="text-[11px] font-black text-violet-700 uppercase tracking-wide">AI Sentence</div>
+        {s && (
+          <button
+            onClick={speakEn}
+            className="text-xs font-black px-3 py-1 rounded-lg bg-violet-600 text-white hover:bg-violet-700"
+            type="button"
+          >
+            🔊 Speak
+          </button>
+        )}
+      </div>
 
       {s && (
         <div className="mt-2 text-sm font-semibold text-slate-900 leading-relaxed">
@@ -205,6 +241,11 @@ function AiSentenceBox({ s, t }: { s?: string | null; t?: string | null }) {
 }
 
 export default function Quiz({ params }: { params: { id: string } }) {
+  const router = useRouter();
+
+  // ✅ Hydration gate
+  const [mounted, setMounted] = useState(false);
+
   const [data, setData] = useState<QuizData | null>(null);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
@@ -215,9 +256,17 @@ export default function Quiz({ params }: { params: { id: string } }) {
   const [mode, setMode] = useState<'exam' | 'practice'>('exam');
   const [feedback, setFeedback] = useState<{ questionId: string; isCorrect: boolean } | null>(null);
 
+  // ✅ PRACTICE LOCK (no trial & error streak)
+  const [locked, setLocked] = useState<Record<string, boolean>>({});
+
   // ✅ STREAK + CONFETTI
   const [streak, setStreak] = useState(0);
   const [burst, setBurst] = useState<{ key: number; level: 'small' | 'big' } | null>(null);
+
+  // ✅ Keyboard shortcuts: active question
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => setMounted(true), []);
 
   // ✅ Helper: Scroll to question
   const scrollToQuestion = useCallback((index: number) => {
@@ -231,12 +280,8 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
     const raw = sessionStorage.getItem('em_attempt_payload');
     if (!raw) {
-      setData({
-        attemptId: '',
-        test: { title: 'Error', duration: 0 },
-        questions: [],
-        error: 'Test data not found. Please start again.',
-      });
+      // ✅ better UX: redirect home (attempt expired)
+      router.replace('/?toast=attempt-expired');
       return;
     }
 
@@ -256,14 +301,16 @@ export default function Quiz({ params }: { params: { id: string } }) {
       }
       setTimeLeft(seconds);
     } catch {
-      setData({
-        attemptId: '',
-        test: { title: 'Error', duration: 0 },
-        questions: [],
-        error: 'Data corrupted.',
-      });
+      router.replace('/?toast=attempt-corrupted');
     }
-  }, [params.id]);
+  }, [params.id, router]);
+
+  // ✅ remove session payload ONLY after result is visible
+  useEffect(() => {
+    if (showResult) {
+      sessionStorage.removeItem('em_attempt_payload');
+    }
+  }, [showResult]);
 
   // 3) SUBMIT & SAVE MISTAKES
   const handleSubmit = useCallback(() => {
@@ -328,11 +375,11 @@ export default function Quiz({ params }: { params: { id: string } }) {
     setScore(correctCount);
     setShowResult(true);
     window.scrollTo(0, 0);
-    sessionStorage.removeItem('em_attempt_payload');
   }, [data, answers, scrollToQuestion, mode]);
 
-  // 2) TIMER
+  // 2) TIMER (EXAM ONLY)
   useEffect(() => {
+    if (mode !== 'exam') return;
     if (timeLeft === null || showResult) return;
     if (timeLeft <= 0) {
       handleSubmit();
@@ -342,7 +389,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
       setTimeLeft((p) => (p !== null && p > 0 ? p - 1 : 0));
     }, 1000);
     return () => clearInterval(timerId);
-  }, [timeLeft, showResult, handleSubmit]);
+  }, [timeLeft, showResult, handleSubmit, mode]);
 
   // 5) OPTIONAL: 10 seconds warning (EXAM only)
   useEffect(() => {
@@ -357,8 +404,61 @@ export default function Quiz({ params }: { params: { id: string } }) {
     setFeedback(null);
     setStreak(0);
     setBurst(null);
+    setLocked({});
   }, [mode]);
 
+  // ✅ Keyboard shortcuts: 1-4 / A-D for active question
+  useEffect(() => {
+    if (!mounted) return;
+    if (!data) return;
+    if (showResult) return;
+
+    const onKey = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement)?.tagName?.toLowerCase();
+      if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+
+      const q = data.questions?.[activeIndex];
+      if (!q) return;
+
+      // practice lock: ignore if already locked
+      if (mode === 'practice' && locked[q.id]) return;
+
+      const k = e.key.toLowerCase();
+      const map: Record<string, number> = { '1': 0, '2': 1, '3': 2, '4': 3, a: 0, b: 1, c: 2, d: 3 };
+      if (!(k in map)) return;
+
+      const ci = map[k];
+      const choice = q.choices?.[ci];
+      if (!choice) return;
+
+      // same behavior as click
+      setAnswers((prev) => ({ ...prev, [q.id]: choice.id }));
+
+      if (mode === 'practice') {
+        const realCorrectId = getCorrectChoiceId(q);
+        const isCorrect = idsEqual(choice.id, realCorrectId);
+
+        setFeedback({ questionId: q.id, isCorrect });
+        setLocked((p) => ({ ...p, [q.id]: true }));
+
+        if (isCorrect) {
+          setStreak((s) => {
+            const next = s + 1;
+            if (next % 10 === 0) setBurst((b) => ({ key: (b?.key ?? 0) + 1, level: 'big' }));
+            else if (next % 5 === 0) setBurst((b) => ({ key: (b?.key ?? 0) + 1, level: 'small' }));
+            return next;
+          });
+        } else {
+          setStreak(0);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [mounted, data, activeIndex, mode, locked, showResult]);
+
+  if (!mounted) return <div className="p-10 text-center animate-pulse">Loading...</div>;
   if (!data) return <div className="p-10 text-center animate-pulse">Loading...</div>;
   if (data.error) return <div className="p-10 text-red-600">{data.error}</div>;
 
@@ -617,16 +717,20 @@ export default function Quiz({ params }: { params: { id: string } }) {
         <div className="grid grid-cols-10 gap-2">
           {questions.map((q, i) => {
             const done = !!answers[q.id];
+            const isActive = i === activeIndex;
             return (
               <button
                 key={q.id}
-                onClick={() => scrollToQuestion(i)}
+                onClick={() => {
+                  setActiveIndex(i);
+                  scrollToQuestion(i);
+                }}
                 className={`h-8 rounded-lg text-xs font-black border transition active:scale-[0.98]
                   ${
                     done
                       ? 'bg-blue-600 text-white border-blue-600'
                       : 'bg-white text-slate-500 border-slate-200 hover:border-blue-400'
-                  }`}
+                  } ${isActive ? 'ring-2 ring-blue-200' : ''}`}
                 title={done ? 'Answered' : 'Not answered'}
                 type="button"
               >
@@ -649,17 +753,27 @@ export default function Quiz({ params }: { params: { id: string } }) {
           const showPracticeAi = mode === 'practice' && !!answers[q.id] && hasAi;
           const showPracticeExplanation = mode === 'practice' && !!answers[q.id] && !!q.explanation;
 
+          const isLocked = mode === 'practice' && !!locked[q.id];
+
           return (
             <div
               id={`q-${idx}`}
               key={q.id}
-              className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 scroll-mt-28"
+              onMouseEnter={() => setActiveIndex(idx)}
+              onFocus={() => setActiveIndex(idx)}
+              tabIndex={0}
+              className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 scroll-mt-28 outline-none focus:ring-2 focus:ring-blue-200"
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="text-sm text-slate-400 font-bold uppercase tracking-wide">Question {idx + 1}</div>
                 {!answers[q.id] && (
                   <span className="text-[11px] font-black px-2 py-1 bg-slate-100 text-slate-500 rounded-lg border border-slate-200">
                     EMPTY
+                  </span>
+                )}
+                {isLocked && (
+                  <span className="text-[11px] font-black px-2 py-1 bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-200">
+                    LOCKED
                   </span>
                 )}
               </div>
@@ -687,7 +801,8 @@ export default function Quiz({ params }: { params: { id: string } }) {
                   return (
                     <label
                       key={c.id}
-                      className={`group cursor-pointer flex items-center p-4 rounded-xl border-2 transition-all duration-200 active:scale-[0.99] ${practiceRing}`}
+                      className={`group flex items-center p-4 rounded-xl border-2 transition-all duration-200 active:scale-[0.99]
+                        ${practiceRing} ${isLocked ? 'cursor-not-allowed opacity-80' : 'cursor-pointer'}`}
                     >
                       <div
                         className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 transition-colors ${
@@ -703,6 +818,8 @@ export default function Quiz({ params }: { params: { id: string } }) {
                         className="hidden"
                         checked={selected}
                         onChange={() => {
+                          if (mode === 'practice' && locked[q.id]) return;
+
                           setAnswers((prev) => ({ ...prev, [q.id]: c.id }));
 
                           if (mode === 'practice') {
@@ -710,6 +827,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                             const isCorrect = idsEqual(c.id, realCorrectId);
 
                             setFeedback({ questionId: q.id, isCorrect });
+                            setLocked((p) => ({ ...p, [q.id]: true }));
 
                             if (isCorrect) {
                               setStreak((s) => {
@@ -777,6 +895,11 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       delete copy[q.id];
                       return copy;
                     });
+                    setLocked((p) => {
+                      const copy = { ...p };
+                      delete copy[q.id];
+                      return copy;
+                    });
                     if (mode === 'practice') {
                       setFeedback(null);
                     }
@@ -795,6 +918,12 @@ export default function Quiz({ params }: { params: { id: string } }) {
                   Next →
                 </button>
               </div>
+
+              {idx === 0 && (
+                <div className="mt-4 text-xs text-slate-400">
+                  ⌨️ Keyboard: Use <b>1-4</b> or <b>A-D</b> to answer the active question.
+                </div>
+              )}
             </div>
           );
         })}
@@ -810,7 +939,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
         </button>
 
         <div className="mt-3 text-center text-xs text-slate-400">
-          Tip: {mode === 'exam' ? 'Finish will warn you if any question is empty.' : 'Practice mode shows instant feedback + streak confetti!'}
+          Tip: {mode === 'exam' ? 'Finish will warn you if any question is empty.' : 'Practice mode: instant feedback + lock + streak confetti!'}
         </div>
       </div>
     </div>
