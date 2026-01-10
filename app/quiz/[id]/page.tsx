@@ -581,11 +581,11 @@ export default function Quiz({ params }: { params: { id: string } }) {
           setStreak(0);
         }
 
-        if (autoScroll) {
-          setPendingScrollIndex(activeIndex);
+        // ✅ PRACTICE: SADECE DOĞRUYSA aşağı kay (yanlışta soruda kal)
+         if (autoScroll && isCorrect) {
+           setPendingScrollIndex(activeIndex);
           setPendingScrollMode('after');
-        }
-
+         }
         if (autoSpeak && q.s) {
           const plain = stripHtml(q.s || '');
           if (plain.trim()) window.setTimeout(() => speak(plain, 'en-US', 1), 120);
@@ -1044,10 +1044,11 @@ export default function Quiz({ params }: { params: { id: string } }) {
                             }
 
                             // ✅ PRACTICE: sorunun içinde kalıp aşağıdaki feedback/AI'ye kay
-                            if (autoScroll) {
-                              setPendingScrollIndex(idx);
-                              setPendingScrollMode('after');
-                            }
+                            // ✅ PRACTICE: SADECE DOĞRUYSA aşağı kay (yanlışta soruda kal)
+                             if (autoScroll && isCorrect) {
+                                  setPendingScrollIndex(idx);
+                                    setPendingScrollMode('after');
+                                   }
 
                             if (autoSpeak && q.s) {
                               const plain = stripHtml(q.s || '');
