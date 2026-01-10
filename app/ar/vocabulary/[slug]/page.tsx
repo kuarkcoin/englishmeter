@@ -2,20 +2,29 @@ import dailyEnAr from '@/data/daily_en_ar.json';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-// Slug oluşturma fonksiyonu (Sitemap ile aynı olmalı)
+// 1. Veri Yapısını Tanımlayalım (TypeScript hatasını çözen kısım)
+interface VocabItem {
+  word: string;
+  meaning: string;
+  s: string;
+  t: string;
+}
+
+// JSON verisini bu tipe zorlayalım
+const vocabData = dailyEnAr as VocabItem[];
+
+// Slug oluşturma fonksiyonu
 const getSlug = (word: string) => 
   word.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
 
-// 1. Build anında tüm sayfaların oluşturulması için (SSG)
 export async function generateStaticParams() {
-  return dailyEnAr.map((item: any) => ({
+  return vocabData.map((item) => ({
     slug: getSlug(item.word),
   }));
 }
 
-// 2. Dinamik SEO Ayarları
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const item = dailyEnAr.find((i: any) => getSlug(i.word) === params.slug);
+  const item = vocabData.find((i) => getSlug(i.word) === params.slug);
   
   if (!item) return { title: 'Word Not Found' };
 
@@ -25,9 +34,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-// 3. Sayfa İçeriği
 export default function ArabicWordPage({ params }: { params: { slug: string } }) {
-  const item = dailyEnAr.find((i: any) => getSlug(i.word) === params.slug);
+  const item = vocabData.find((i) => getSlug(i.word) === params.slug);
 
   if (!item) {
     notFound();
@@ -50,7 +58,7 @@ export default function ArabicWordPage({ params }: { params: { slug: string } })
             </div>
             
             <div className="text-center md:text-right" dir="rtl">
-              <span className="text-sm text-gray-500 uppercase tracking-widest">المعنى بالعربية (Arapça Anlamı)</span>
+              <span className="text-sm text-gray-500 uppercase tracking-widest">المعنى بالعربية</span>
               <h2 className="text-4xl font-bold text-blue-600 leading-relaxed">{item.meaning}</h2>
             </div>
           </div>
