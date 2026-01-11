@@ -6,9 +6,19 @@ import Link from 'next/link';
 import DOMPurify from 'dompurify';
 import { useRouter } from 'next/navigation';
 
+// ✅ choices shuffle (sadece görüntü sırası)
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...(array || [])];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 // --- TYPES ---
 interface Choice {
-  id: string;
+  id: string; // data id'si (değişmez)
   text: string;
   isCorrect?: boolean;
 }
@@ -29,6 +39,8 @@ interface Question {
   correct_option?: string;
   answer?: string;
 }
+
+type QuestionWithShuffle = Question & { shuffledChoices: Choice[] };
 
 interface TestInfo {
   title: string;
@@ -334,16 +346,13 @@ export default function Quiz({ params }: { params: { id: string } }) {
         // ✅ BAD: daha pes + donuk + square (daha "uyarıcı")
         osc.type = 'square';
 
-        // Daha düşük frekans + hafif “wobble” hissi (çok az)
         osc.frequency.setValueAtTime(180, ctx.currentTime);
         osc.frequency.exponentialRampToValueAtTime(140, ctx.currentTime + 0.12);
 
-        // Gain: biraz daha uzun ve "sönük"
         gain.gain.setValueAtTime(0.001, ctx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.05, ctx.currentTime + 0.018);
         gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
 
-        // “Donukluk”: lowpass daha düşük
         filter.frequency.setValueAtTime(420, ctx.currentTime);
 
         osc.connect(filter);
@@ -395,7 +404,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
   // ✅ Render sonrası kesin kaydır
   useEffect(() => {
     if (pendingScrollIndex === null || pendingScrollMode === null) return;
-    // DOM otursun
     const t = window.setTimeout(() => {
       if (pendingScrollMode === 'question') scrollToQuestion(pendingScrollIndex);
       else scrollToAfter(pendingScrollIndex);
@@ -433,6 +441,15 @@ export default function Quiz({ params }: { params: { id: string } }) {
     }
   }, [params.id, router]);
 
+  // ✅ data geldiğinde choices’ları 1 kez karıştır
+  const questionsWithShuffledChoices: QuestionWithShuffle[] = useMemo(() => {
+    if (!data?.questions) return [];
+    return data.questions.map((q) => ({
+      ...q,
+      shuffledChoices: shuffleArray(q.choices || []),
+    }));
+  }, [data]);
+
   // ✅ remove session payload ONLY after result is visible
   useEffect(() => {
     if (showResult) {
@@ -444,13 +461,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
   const handleSubmit = useCallback(() => {
     if (!data) return;
 
-    // ✅ EXAM: kullanıcı istediği zaman bitirebilsin
     if (mode === 'exam') {
       const unanswered = data.questions.filter((q) => !answers[q.id]).length;
       if (unanswered > 0) {
-        const ok = window.confirm(
-          `${unanswered} unanswered question(s) var.\n\nYine de bitireyim mi? (Finish anyway)`
-        );
+        const ok = window.confirm(`${unanswered} unanswered question(s) var.\n\nYine de bitireyim mi? (Finish anyway)`);
         if (!ok) return;
       }
     }
@@ -536,7 +550,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
     setPendingScrollMode(null);
   }, [mode]);
 
-  // ✅ Keyboard shortcuts: 1-4 / A-D for active question
+  // ✅ Keyboard shortcuts: 1-4 / A-D (shuffled choices üzerinden)
   useEffect(() => {
     if (!mounted) return;
     if (!data) return;
@@ -546,7 +560,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
       const tag = (e.target as HTMLElement)?.tagName?.toLowerCase();
       if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
 
-      const q = data.questions?.[activeIndex];
+      const q = questionsWithShuffledChoices?.[activeIndex];
       if (!q) return;
 
       if (mode === 'practice' && locked[q.id]) return;
@@ -556,7 +570,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
       if (!(k in map)) return;
 
       const ci = map[k];
-      const choice = q.choices?.[ci];
+      const choice = q.shuffledChoices?.[ci];
       if (!choice) return;
 
       setAnswers((prev) => ({ ...prev, [q.id]: choice.id }));
@@ -581,18 +595,17 @@ export default function Quiz({ params }: { params: { id: string } }) {
           setStreak(0);
         }
 
-        // ✅ PRACTICE: SADECE DOĞRUYSA aşağı kay (yanlışta soruda kal)
-         if (autoScroll && isCorrect) {
-           setPendingScrollIndex(activeIndex);
+        if (autoScroll && isCorrect) {
+          setPendingScrollIndex(activeIndex);
           setPendingScrollMode('after');
-         }
+        }
+
         if (autoSpeak && q.s) {
           const plain = stripHtml(q.s || '');
           if (plain.trim()) window.setTimeout(() => speak(plain, 'en-US', 1), 120);
         }
       } else {
-        // ✅ EXAM: seçince sonraki soruya geç
-        const next = Math.min(activeIndex + 1, data.questions.length - 1);
+        const next = Math.min(activeIndex + 1, questionsWithShuffledChoices.length - 1);
         setActiveIndex(next);
         if (autoScroll) {
           setPendingScrollIndex(next);
@@ -603,13 +616,25 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [mounted, data, activeIndex, mode, locked, showResult, autoScroll, autoSpeak, beep]);
+  }, [
+    mounted,
+    data,
+    questionsWithShuffledChoices,
+    activeIndex,
+    mode,
+    locked,
+    showResult,
+    autoScroll,
+    autoSpeak,
+    beep,
+  ]);
 
   if (!mounted) return <div className="p-10 text-center animate-pulse">Loading...</div>;
   if (!data) return <div className="p-10 text-center animate-pulse">Loading...</div>;
   if (data.error) return <div className="p-10 text-red-600">{data.error}</div>;
 
-  const { questions, test } = data;
+  const questions = questionsWithShuffledChoices;
+  const { test } = data;
 
   // ✅ Progress metrics
   const totalQ = questions.length || 1;
@@ -725,9 +750,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
                     <div className="text-lg font-medium text-slate-800 mb-5 leading-loose">{formatText(q.prompt)}</div>
 
                     <div className="grid gap-2">
-                      {(q.choices || []).map((c) => {
+                      {(q.shuffledChoices || q.choices || []).map((c, choiceIdx) => {
                         const isSelected = idsEqual(userAnswerId, c.id);
                         const isTheCorrectAnswer = idsEqual(c.id, correctId);
+                        const choiceLetter = String.fromCharCode(65 + choiceIdx);
 
                         let optionClass = 'p-3 rounded-lg border flex items-center justify-between ';
                         if (isTheCorrectAnswer) {
@@ -742,15 +768,15 @@ export default function Quiz({ params }: { params: { id: string } }) {
                           <div key={c.id} className={optionClass}>
                             <div className="flex items-center gap-3">
                               <div
-                                className={`w-6 h-6 rounded-full border flex items-center justify-center text-xs ${
+                                className={`w-7 h-7 rounded-full border flex items-center justify-center text-xs font-black ${
                                   isTheCorrectAnswer
                                     ? 'border-green-500 bg-green-500 text-white'
                                     : isSelected
                                     ? 'border-red-500 bg-red-500 text-white'
-                                    : 'border-slate-300'
+                                    : 'border-slate-300 bg-white text-slate-500'
                                 }`}
                               >
-                                {c.id}
+                                {choiceLetter}
                               </div>
                               <span>
                                 <SafeHTML html={c.text} />
@@ -923,7 +949,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 onClick={() => {
                   setActiveIndex(i);
                   setPendingScrollIndex(i);
-                  setPendingScrollMode('question'); // ✅ tıklayınca soruya kay
+                  setPendingScrollMode('question');
                 }}
                 className={`h-8 rounded-lg text-xs font-black border transition active:scale-[0.98]
                   ${
@@ -980,8 +1006,9 @@ export default function Quiz({ params }: { params: { id: string } }) {
               <div className="text-xl font-medium text-slate-800 mb-6 leading-loose">{formatText(q.prompt)}</div>
 
               <div className="grid gap-3">
-                {(q.choices || []).map((c) => {
+                {(q.shuffledChoices || q.choices || []).map((c, choiceIdx) => {
                   const selected = answers[q.id] === c.id;
+                  const choiceLetter = String.fromCharCode(65 + choiceIdx); // A,B,C,D
 
                   const isCorrectChoice = mode === 'practice' && correctId ? idsEqual(c.id, correctId) : false;
                   const isWrongSelected = mode === 'practice' && showThisFeedback && selected && !isCorrectChoice;
@@ -1004,12 +1031,16 @@ export default function Quiz({ params }: { params: { id: string } }) {
                         ${practiceRing} ${isLocked ? 'cursor-not-allowed opacity-80' : 'cursor-pointer'}`}
                       onClick={() => void ensureAudio()}
                     >
+                      {/* ✅ A/B/C/D balonu */}
                       <div
-                        className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 transition-colors ${
-                          selected ? 'border-blue-600' : 'border-slate-300 group-hover:border-blue-400'
-                        }`}
+                        className={`w-7 h-7 rounded-full border-2 flex items-center justify-center mr-4 text-[12px] font-black transition-colors
+                          ${
+                            selected
+                              ? 'border-blue-600 text-blue-700 bg-blue-50'
+                              : 'border-slate-300 text-slate-500 group-hover:border-blue-400'
+                          }`}
                       >
-                        {selected && <div className="w-2.5 h-2.5 rounded-full bg-blue-600" />}
+                        {choiceLetter}
                       </div>
 
                       <input
@@ -1035,27 +1066,25 @@ export default function Quiz({ params }: { params: { id: string } }) {
                               setStreak((s) => {
                                 const next = s + 1;
                                 if (next % 10 === 0) setBurst((b) => ({ key: (b?.key ?? 0) + 1, level: 'big' }));
-                                else if (next % 5 === 0)
-                                  setBurst((b) => ({ key: (b?.key ?? 0) + 1, level: 'small' }));
+                                else if (next % 5 === 0) setBurst((b) => ({ key: (b?.key ?? 0) + 1, level: 'small' }));
                                 return next;
                               });
                             } else {
                               setStreak(0);
                             }
 
-                            // ✅ PRACTICE: sorunun içinde kalıp aşağıdaki feedback/AI'ye kay
-                            // ✅ PRACTICE: SADECE DOĞRUYSA aşağı kay (yanlışta soruda kal)
-                             if (autoScroll && isCorrect) {
-                                  setPendingScrollIndex(idx);
-                                    setPendingScrollMode('after');
-                                   }
+                            // ✅ PRACTICE: sadece doğruysa aşağı kay
+                            if (autoScroll && isCorrect) {
+                              setPendingScrollIndex(idx);
+                              setPendingScrollMode('after');
+                            }
 
                             if (autoSpeak && q.s) {
                               const plain = stripHtml(q.s || '');
                               if (plain.trim()) window.setTimeout(() => speak(plain, 'en-US', 1), 120);
                             }
                           } else {
-                            // ✅ EXAM: şıkkı seçince otomatik sonraki soruya geç
+                            // ✅ EXAM: seçince sonraki soruya geç
                             const next = Math.min(idx + 1, questions.length - 1);
                             setActiveIndex(next);
                             if (autoScroll) {
@@ -1078,9 +1107,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
               {mode === 'practice' && showThisFeedback && (
                 <div
                   className={`mt-4 p-4 rounded-xl border font-bold ${
-                    feedback?.isCorrect
-                      ? 'bg-green-50 border-green-200 text-green-700'
-                      : 'bg-red-50 border-red-200 text-red-700'
+                    feedback?.isCorrect ? 'bg-green-50 border-green-200 text-green-700' : 'bg-red-50 border-red-200 text-red-700'
                   }`}
                 >
                   {feedback?.isCorrect ? '✅ Correct!' : '❌ Incorrect'}
@@ -1112,7 +1139,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 </div>
               )}
 
-              {/* ✅ anchor: click sonrası buraya kayacağız */}
+              {/* ✅ anchor */}
               <div id={`q-${idx}-after`} className="h-1" />
 
               {/* Quick actions */}
@@ -1129,9 +1156,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       delete copy[q.id];
                       return copy;
                     });
-                    if (mode === 'practice') {
-                      setFeedback(null);
-                    }
+                    if (mode === 'practice') setFeedback(null);
                   }}
                   className="text-xs font-bold px-3 py-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50"
                   type="button"
