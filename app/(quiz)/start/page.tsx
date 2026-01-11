@@ -26,6 +26,7 @@ type Choice = {
   id: string;
   text: string;
   isCorrect: boolean;
+  _origId?: string; // ✅ internal: original id before normalization
 };
 
 // ✅ Question payload tip (Quiz sayfası bunu okuyacak)
@@ -34,6 +35,7 @@ type QPayload = {
   prompt: string;
   explanation?: string;
   choices: Choice[];
+  correctChoiceId?: string; // ✅ IMPORTANT: shuffle sonrası doğru şık id'si
   s?: string | null; // ✅ AI sentence
   t?: string | null; // ✅ AI translation
 };
@@ -125,6 +127,7 @@ function StartQuizLogic() {
 
             choices = labels.map((label) => ({
               id: label,
+              _origId: label,
               text: optionsObj[label],
               isCorrect:
                 correctKey &&
@@ -139,6 +142,7 @@ function StartQuizLogic() {
               .filter((l) => item[l])
               .map((label) => ({
                 id: label,
+                _origId: label,
                 text: item[label],
                 isCorrect:
                   correctKey &&
@@ -146,24 +150,28 @@ function StartQuizLogic() {
               }));
           }
 
-          // CASE 3: word + definition
+          // CASE 3: word + definition (NOT: gerçek distractor yoksa placeholder kalır)
           if (!choices && item.word && item.definition) {
             const baseChoices: Choice[] = [
-              { id: 'A', text: item.definition, isCorrect: true },
-              { id: 'B', text: 'Incorrect definition example 1', isCorrect: false },
-              { id: 'C', text: 'Incorrect definition example 2', isCorrect: false },
-              { id: 'D', text: 'Incorrect definition example 3', isCorrect: false },
+              { id: 'A', _origId: 'A', text: item.definition, isCorrect: true },
+              { id: 'B', _origId: 'B', text: 'Incorrect definition example 1', isCorrect: false },
+              { id: 'C', _origId: 'C', text: 'Incorrect definition example 2', isCorrect: false },
+              { id: 'D', _origId: 'D', text: 'Incorrect definition example 3', isCorrect: false },
             ];
             choices = baseChoices;
           }
 
           // CASE 4: already choices[]
           if (!choices && Array.isArray(item.choices)) {
-            choices = item.choices.map((c: any, i: number) => ({
-              id: c.id || String.fromCharCode(65 + i),
-              text: c.text ?? c.label ?? '',
-              isCorrect: c.isCorrect === true || c.correct === true || c.is_correct === true,
-            }));
+            choices = item.choices.map((c: any, i: number) => {
+              const cid = c.id || String.fromCharCode(65 + i);
+              return {
+                id: cid,
+                _origId: cid,
+                text: c.text ?? c.label ?? '',
+                isCorrect: c.isCorrect === true || c.correct === true || c.is_correct === true,
+              };
+            });
           }
 
           if (!choices || choices.length === 0) {
@@ -171,12 +179,21 @@ function StartQuizLogic() {
             return null as any;
           }
 
-          // shuffle + normalize ids A/B/C/D
-          const shuffled = shuffleArray(choices);
+          // ✅ Shuffle + normalize ids A/B/C/D
+          // IMPORTANT: do NOT lose which one is correct.
+          const shuffled = shuffleArray(choices).map((c) => ({
+            ...c,
+            _origId: c._origId ?? c.id,
+          }));
+
           const normalizedChoices: Choice[] = shuffled.map((c, idx) => ({
             ...c,
-            id: String.fromCharCode(65 + idx),
+            id: String.fromCharCode(65 + idx), // A/B/C/D new ids
           }));
+
+          // ✅ Compute correctChoiceId AFTER shuffle+normalize
+          const correctChoiceId =
+            normalizedChoices.find((c) => c.isCorrect)?.id ?? undefined;
 
           // ✅ s/t köprüsü: item içinden al, yoksa null
           const s = item?.s ?? item?.sentence ?? null;
@@ -187,6 +204,7 @@ function StartQuizLogic() {
             prompt,
             explanation: item.explanation,
             choices: normalizedChoices,
+            correctChoiceId,
             s: s ? String(s) : null,
             t: t ? String(t) : null,
           };
@@ -194,6 +212,16 @@ function StartQuizLogic() {
         .filter(Boolean);
 
       console.log('FORMATTED QUESTIONS (AFTER SHUFFLE):', formattedQuestions);
+
+      // ✅ optional debug: ilk 5 soruda doğru hep A mı diye kontrol
+      console.log(
+        'DEBUG correctChoiceId (first 5):',
+        formattedQuestions.slice(0, 5).map((q) => ({
+          qid: q.id,
+          correct: q.correctChoiceId,
+          marks: q.choices.map((c) => `${c.id}${c.isCorrect ? '✅' : ''}`).join(' '),
+        }))
+      );
 
       const attemptData = {
         attemptId: `session-${Date.now()}`,
