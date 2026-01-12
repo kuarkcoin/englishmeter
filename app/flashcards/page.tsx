@@ -23,7 +23,7 @@ type Stats = {
   seenTotal: number;
 };
 
-const STORAGE_KEY = 'testdunya_flashcards_voice_v2';
+const STORAGE_KEY = 'testdunya_flashcards_voice_5000';
 
 const makeId = (w: WordItem) => `${w.word}|||${w.meaning}`.toLowerCase();
 
