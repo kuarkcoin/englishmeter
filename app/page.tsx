@@ -188,9 +188,9 @@ function HomeContent() {
     const map = safeJsonParse<Record<string, number[]>>(typeof window !== 'undefined' ? localStorage.getItem(LS_VOCAB_MAP) : null, {});
     if (!total) return map;
 
-    // Ensure 1..77 exist
+    // Ensure 1..100 exist
     let changed = false;
-    for (let t = 1; t <= 77; t++) {
+    for (let t = 1; t <= 100; t++) {
       const key = String(t);
       if (!Array.isArray(map[key]) || map[key].length !== 50) {
         // seed by test number, but also depend on total length (so changes don't break too hard)
@@ -219,9 +219,9 @@ function HomeContent() {
       };
 
       // --- YDS 3750 MINI TESTS (1..75) ---
-      if (testSlug.startsWith('yds-3850-mini-')) {
+      if (testSlug.startsWith('yds-5000-mini-')) {
         const nStr = testSlug.split('-').pop() || '1';
-        const n = Math.max(1, Math.min(77, Number(nStr) || 1));
+        const n = Math.max(1, Math.min(100, Number(nStr) || 1));
 
         const map = ensureVocabMap();
         const indices = map[String(n)] || [];
@@ -254,7 +254,7 @@ function HomeContent() {
           };
         });
 
-        const title = `YDS 3850 WORDS · MINI TEST ${n} (50Q · 25 min)`;
+        const title = `YDS 5000 WORDS · MINI TEST ${n} (50Q · 25 min)`;
 
         const payload = {
           attemptId,
@@ -637,7 +637,7 @@ function HomeContent() {
     );
   }
 
-  const freeMiniCount = 77; // Premium yoksa ilk 8 mini test ücretsiz gibi düşün
+  const freeMiniCount = 100; // Premium yoksa ilk 8 mini test ücretsiz gibi düşün
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -770,10 +770,10 @@ function HomeContent() {
         </div>
         <div className="text-xs">
           <div className="text-emerald-400 font-black uppercase tracking-widest">Start Memorizing</div>
-          <div className="text-emerald-500/60 font-medium">3850 words archive</div>
+          <div className="text-emerald-500/60 font-medium">5000 words archive</div>
         </div>
       </div>
-      <div className="hidden sm:block text-emerald-500/30 text-6xl font-black select-none">3850</div>
+      <div className="hidden sm:block text-emerald-500/30 text-6xl font-black select-none">5000</div>
     </div>
   </a>
  <a
@@ -1023,7 +1023,7 @@ function HomeContent() {
     </Link>
   </button>
 
-  {/* 🔥 YDS 3850 HERO (GRID ITEM) */}
+  {/* 🔥 YDS 5000 HERO (GRID ITEM) */}
   <button
     type="button"
     onClick={() => {
@@ -1050,10 +1050,10 @@ function HomeContent() {
           📚 Vocabulary Mega Pack
         </div>
 
-        <div className="text-2xl font-black leading-tight">YDS 3850 Mini Tests</div>
+        <div className="text-2xl font-black leading-tight">YDS 5000 Mini Tests</div>
 
         <div className="mt-2 text-xs text-white/90 leading-relaxed">
-          77 mini test · <span className="font-black">50 soru</span> · 25 dakika
+          100 mini test · <span className="font-black">50 soru</span> · 25 dakika
           <br />
           Aynı test numarası → aynı sorular
         </div>
@@ -1083,7 +1083,7 @@ function HomeContent() {
     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
       <div>
         <h3 className="text-2xl font-black text-orange-700 flex items-center gap-2">
-          <span className="text-3xl">📚</span> YDS 3850 Mini Tests
+          <span className="text-3xl">📚</span> YDS 5000 Mini Tests
         </h3>
         <p className="text-sm text-orange-700/80 mt-1">
           Her test 50 soru · 25 dakika. Aynı test numarası her seferinde aynı soruları getirir.
@@ -1105,7 +1105,7 @@ function HomeContent() {
     </div>
 
     <div className="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-8 gap-3">
-      {Array.from({ length: 77 }, (_, i) => i + 1).map((num) => {
+      {Array.from({ length: 100 }, (_, i) => i + 1).map((num) => {
         const locked = !isPremium && num > freeMiniCount;
 
         return (
@@ -1114,7 +1114,7 @@ function HomeContent() {
             key={num}
             onClick={() => {
               if (locked) return;
-              startTest(`yds-3850-mini-${num}`);
+              startTest(`yds-5000-mini-${num}`);
             }}
             disabled={locked}
             className={`py-4 rounded-xl font-black text-sm shadow-sm transition-all transform hover:scale-[1.03] active:scale-[0.98]
