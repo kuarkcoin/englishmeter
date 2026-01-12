@@ -57,7 +57,7 @@ const raceTest = { title: 'Global Race Mode', href: '/race' };
 const ieltsTest = { title: 'IELTS Grammar (50Q)', slug: 'ielts-grammar' };
 
 // YDS TESTLERİ
-const ydsVocabHub = { title: 'YDS 3850 Words (77 Mini Tests)', slug: 'yds-3850-vocab-hub' };
+const ydsVocabHub = { title: 'YDS 5000 Words (100 Mini Tests)', slug: 'yds-5000-vocab-hub' };
 const ydsGrammarTest = { title: 'YDS Grammar Practice (100Q)', slug: 'yds-grammar-practice' };
 const ydsPhrasalTest = { title: 'YDS Phrasal Verbs (100Q)', slug: 'yds-phrasal-verbs' };
 const ydsReadingTest = { title: 'YDS Reading (40Q)', slug: 'yds-reading' };
@@ -141,7 +141,7 @@ function seededUniqueIndices(total: number, need: number, seed: number) {
 // LocalStorage keys
 const LS_PREMIUM = 'em_is_premium';
 const LS_LAST = 'em_last_test';
-const LS_VOCAB_MAP = 'em_yds3850_map_v1';
+const LS_VOCAB_MAP = 'em_yds5000_map_v1';
 
 // Save / load helpers (safe)
 function safeJsonParse<T>(raw: string | null, fallback: T): T {
@@ -243,7 +243,7 @@ function HomeContent() {
           const idsLower = ['a', 'b', 'c', 'd'];
 
           return {
-            id: `yds-3750-mini-${n}-q${idx + 1}`,
+            id: `yds-5000-mini-${n}-q${idx + 1}`,
             prompt: `What is the Turkish meaning of **"${item.word}"**?`,
             choices: allOptions.map((optText: string, i: number) => ({
               id: idsLower[i],
