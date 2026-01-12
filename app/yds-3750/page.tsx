@@ -27,7 +27,7 @@ type Question = {
   t?: string | null;
 };
 
-const TEST_COUNT = 77;
+const TEST_COUNT = 100;
 const QUESTIONS_PER_TEST = 50;
 
 // ---- PREMIUM GATE (şimdilik demo) ----
@@ -127,7 +127,7 @@ export default function Yds3750Hub() {
       const ids = ['a', 'b', 'c', 'd'];
 
       return {
-        id: `yds3750-t${testNo}-q${idx + 1}`,
+        id: `yds5000-t${testNo}-q${idx + 1}`,
         prompt: `What is the Turkish meaning of **"${item.word}"**?`,
         choices: options.map((text, i) => ({
           id: ids[i],
@@ -144,9 +144,9 @@ export default function Yds3750Hub() {
 
     const payload = {
       attemptId,
-      testSlug: `yds-3750-t${testNo}`,
+      testSlug: `yds-5000-t${testNo}`,
       test: {
-        title: `YDS 3750 VOCAB · TEST ${testNo} (50 Questions)`,
+        title: `YDS 5000 VOCAB · TEST ${testNo} (50 Questions)`,
         duration: 25,
       },
       questions,
@@ -168,7 +168,7 @@ export default function Yds3750Hub() {
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
             <div>
               <h1 className="text-4xl font-black text-slate-900 tracking-tight">
-                YDS 3750 <span className="text-blue-600">Vocabulary</span>
+                YDS 5000 <span className="text-blue-600">Vocabulary</span>
               </h1>
               <p className="text-slate-600 mt-2 font-medium">
                 {safeTestCount} test · Her test {QUESTIONS_PER_TEST} soru · 25 dakika süre
@@ -176,8 +176,8 @@ export default function Yds3750Hub() {
 
               <div className="mt-3 text-xs text-slate-400">
                 Data: <span className="font-semibold">{list.length}</span> kelime yüklü.
-                {list.length < 3750 && (
-                  <span className="text-amber-600 font-bold"> (3750’den azsa test sayısı otomatik azalır)</span>
+                {list.length < 5000 && (
+                  <span className="text-amber-600 font-bold"> (5000’den azsa test sayısı otomatik azalır)</span>
                 )}
               </div>
             </div>
