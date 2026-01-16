@@ -1,9 +1,8 @@
-// app/contact/page.tsx → FİNAL VERSİYON (2025 standartlarında en iyisi)
 'use client';
 
 import { useState } from 'react';
 import { Loader2, CheckCircle2, AlertCircle, Send, Mail } from 'lucide-react';
- 
+
 export default function Contact() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -11,13 +10,18 @@ export default function Contact() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [feedback, setFeedback] = useState('');
 
+  const resetForm = () => {
+    setName('');
+    setEmail('');
+    setMessage('');
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!name.trim() || !email.trim() || !message.trim()) {
       setStatus('error');
       setFeedback('Please fill in all fields.');
-      return;
       return;
     }
 
@@ -35,33 +39,29 @@ export default function Contact() {
         }),
       });
 
-      // API yoksa → Demo modu (geliştirme & AdSense için çok önemli!)
+      // API yoksa → SADECE development'ta demo
       if (res.status === 404) {
-        await new Promise(r => setTimeout(r, 1300));
-        setStatus('success');
-        setFeedback('Message sent successfully! (Demo mode – no API)');
-        resetForm();
-        return;
+        if (process.env.NODE_ENV === 'development') {
+          await new Promise((r) => setTimeout(r, 1300));
+          setStatus('success');
+          setFeedback('Message sent successfully! (Demo mode – no API)');
+          resetForm();
+          return;
+        }
+        throw new Error('Contact API not found.');
       }
 
-      const data = await res.json();
-
-      if (!res.ok) throw new Error(data.error || 'Failed to send message');
+      const data = await res.json().catch(() => ({} as any));
+      if (!res.ok) throw new Error(data?.error || 'Failed to send message');
 
       setStatus('success');
       setFeedback('Thank you! We’ve received your message and will reply soon');
       resetForm();
     } catch (err: any) {
       setStatus('error');
-      setFeedback(err.message || 'Connection error. Please try again.');
+      setFeedback(err?.message || 'Connection error. Please try again.');
       console.error('Contact form:', err);
     }
-  };
-
-  const resetForm = () => {
-    setName('');
-    setEmail('');
-    setMessage('');
   };
 
   const isLoading = status === 'loading';
@@ -70,7 +70,6 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-16 px-4">
       <div className="max-w-3xl mx-auto">
-        {/* Başlık + Email (AdSense için altın değerinde) */}
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Contact Us</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
@@ -89,7 +88,6 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Form */}
         <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-white/50 overflow-hidden">
           <div className="p-8 sm:p-12">
             <form onSubmit={handleSubmit} className="space-y-7" noValidate>
@@ -149,28 +147,40 @@ export default function Contact() {
                 className={`
                   w-full flex items-center justify-center gap-3 px-8 py-5 rounded-2xl font-bold text-white text-lg shadow-lg
                   transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]
-                  ${isSuccess 
-                    ? 'bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700' 
-                    : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700'
-                  }
+                  ${isSuccess
+                    ? 'bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700'
+                    : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700'}
                   disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100
                 `}
               >
                 {isLoading ? (
-                  <> <Loader2 className="w-7 h-7 animate-spin" /> Sending... </>
+                  <>
+                    <Loader2 className="w-7 h-7 animate-spin" /> Sending...
+                  </>
                 ) : isSuccess ? (
-                  <> <CheckCircle2 className="w-7 h-7" /> Sent Successfully! </>
+                  <>
+                    <CheckCircle2 className="w-7 h-7" /> Sent Successfully!
+                  </>
                 ) : (
-                  <> <Send className="w-6 h-6" /> Send Message </>
+                  <>
+                    <Send className="w-6 h-6" /> Send Message
+                  </>
                 )}
               </button>
 
-              {/* Feedback */}
               {feedback && (
-                <div className={`mt-6 p-5 rounded-2xl border flex gap-4 animate-in fade-in slide-in-from-bottom duration-500
-                  ${status === 'success' ? 'bg-green-50 border-green-200 text-green-800' : 'bg-red-50 border-red-200 text-red-800'}
-                `}>
-                  {status === 'success' ? <CheckCircle2 className="w-7 h-7 flex-shrink-0" /> : <AlertCircle className="w-7 h-7 flex-shrink-0" />}
+                <div
+                  className={`mt-6 p-5 rounded-2xl border flex gap-4 animate-in fade-in slide-in-from-bottom duration-500
+                  ${status === 'success'
+                      ? 'bg-green-50 border-green-200 text-green-800'
+                      : 'bg-red-50 border-red-200 text-red-800'
+                    }`}
+                >
+                  {status === 'success' ? (
+                    <CheckCircle2 className="w-7 h-7 flex-shrink-0" />
+                  ) : (
+                    <AlertCircle className="w-7 h-7 flex-shrink-0" />
+                  )}
                   <p className="font-semibold text-lg">{feedback}</p>
                 </div>
               )}
