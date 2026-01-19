@@ -1074,19 +1074,22 @@ function HomeContent() {
 {/* 🧩 YDS CLOZE */}
 <a
   href="/start?testSlug=yds-cloze"
-  className="group relative overflow-hidden
-             bg-gradient-to-br from-amber-700 to-orange-900
-             rounded-3xl p-6 border border-amber-600
-             shadow-xl hover:shadow-amber-500/30
-             transition-all duration-300 transform hover:-translate-y-1 text-left"
+  className="group block relative overflow-hidden
+             rounded-3xl p-6
+             bg-gradient-to-br from-amber-800 via-orange-900 to-slate-950
+             border border-amber-700/40
+             shadow-xl hover:shadow-amber-500/25
+             transition-all duration-300 transform hover:-translate-y-1 text-left
+             min-h-[170px]"
 >
-  <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-amber-400 rounded-full opacity-10 blur-xl"></div>
+  {/* dekor (daha az rahatsız) */}
+  <div className="absolute -top-10 -right-10 w-28 h-28 bg-amber-300/10 rounded-full blur-2xl"></div>
+  <div className="absolute -bottom-12 -left-12 w-40 h-40 bg-orange-300/10 rounded-full blur-3xl"></div>
 
   <div className="relative z-10 flex flex-col h-full justify-between">
     <div>
-      <div className="inline-flex items-center gap-1 px-2 py-1
-                      bg-amber-400/10 rounded-full
-                      text-amber-300 text-[10px] font-bold uppercase mb-3">
+      <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full
+                      bg-white/10 text-amber-200 text-[10px] font-bold uppercase mb-3">
         🧠 Advanced
       </div>
 
@@ -1094,14 +1097,12 @@ function HomeContent() {
         YDS Cloze Test
       </h3>
 
-      <p className="text-amber-200 text-xs mb-4">
+      <p className="text-amber-100/90 text-xs mb-4">
         Multi-passage gap filling
       </p>
     </div>
 
-    <div className="w-11 h-11 bg-amber-400 rounded-full
-                    flex items-center justify-center
-                    text-amber-950 font-black">
+    <div className="w-11 h-11 bg-amber-300 rounded-full flex items-center justify-center text-slate-950 font-black">
       ▶
     </div>
   </div>
