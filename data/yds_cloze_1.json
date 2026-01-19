@@ -6,31 +6,61 @@
     "blanks": [
       {
         "blankNo": 1,
-        "options": { "A": "rapidly", "B": "rarely", "C": "rigidly", "D": "roughly", "E": "randomly" },
+        "options": {
+          "A": "rapidly",
+          "B": "rarely",
+          "C": "rigidly",
+          "D": "roughly",
+          "E": "randomly"
+        },
         "correct_option": "A",
         "explanation": "‘rapidly’ is the natural adverb modifying ‘transforming’."
       },
       {
         "blankNo": 2,
-        "options": { "A": "expansion", "B": "hesitation", "C": "elimination", "D": "interruption", "E": "refusal" },
+        "options": {
+          "A": "expansion",
+          "B": "hesitation",
+          "C": "elimination",
+          "D": "interruption",
+          "E": "refusal"
+        },
         "correct_option": "A",
         "explanation": "‘rapid expansion’ = fast growth."
       },
       {
         "blankNo": 3,
-        "options": { "A": "attempt", "B": "pretend", "C": "compel", "D": "declare", "E": "vanish" },
+        "options": {
+          "A": "attempt",
+          "B": "pretend",
+          "C": "compel",
+          "D": "declare",
+          "E": "vanish"
+        },
         "correct_option": "A",
         "explanation": "‘attempt to do’ is the correct structure."
       },
       {
         "blankNo": 4,
-        "options": { "A": "across", "B": "among", "C": "between", "D": "along", "E": "within" },
+        "options": {
+          "A": "across",
+          "B": "among",
+          "C": "between",
+          "D": "along",
+          "E": "within"
+        },
         "correct_option": "A",
         "explanation": "Rules vary ‘across’ countries."
       },
       {
         "blankNo": 5,
-        "options": { "A": "remain", "B": "repair", "C": "replace", "D": "remove", "E": "repeat" },
+        "options": {
+          "A": "remain",
+          "B": "repair",
+          "C": "replace",
+          "D": "remove",
+          "E": "repeat"
+        },
         "correct_option": "A",
         "explanation": "‘remain uneven’ is the correct collocation."
       }
@@ -41,11 +71,66 @@
     "title": "Passage 2",
     "passage": "Many students believe that studying longer guarantees success, yet efficiency matters ___1___ than duration. When people multitask, attention becomes ___2___, leading to weaker memory. A short break can actually ___3___ focus. In the long run, consistent habits ___4___ outperform last-minute effort. Therefore, planning is ___5___ for progress.",
     "blanks": [
-      { "blankNo": 1, "options": { "A": "more", "B": "much", "C": "most", "D": "many", "E": "major" }, "correct_option": "A", "explanation": "‘more than’ is the comparative structure." },
-      { "blankNo": 2, "options": { "A": "scattered", "B": "sealed", "C": "selected", "D": "settled", "E": "shaped" }, "correct_option": "A", "explanation": "Multitasking makes attention ‘scattered’." },
-      { "blankNo": 3, "options": { "A": "restore", "B": "replace", "C": "reduce", "D": "remove", "E": "reject" }, "correct_option": "A", "explanation": "Breaks can ‘restore’ focus." },
-      { "blankNo": 4, "options": { "A": "often", "B": "hardly", "C": "nearly", "D": "barely", "E": "randomly" }, "correct_option": "A", "explanation": "Good habits ‘often’ outperform cramming." },
-      { "blankNo": 5, "options": { "A": "essential", "B": "optional", "C": "fragile", "D": "trivial", "E": "reckless" }, "correct_option": "A", "explanation": "Planning is ‘essential’." }
+      {
+        "blankNo": 1,
+        "options": {
+          "A": "more",
+          "B": "much",
+          "C": "most",
+          "D": "many",
+          "E": "major"
+        },
+        "correct_option": "A",
+        "explanation": "‘more than’ is the comparative structure."
+      },
+      {
+        "blankNo": 2,
+        "options": {
+          "A": "scattered",
+          "B": "sealed",
+          "C": "selected",
+          "D": "settled",
+          "E": "shaped"
+        },
+        "correct_option": "A",
+        "explanation": "Multitasking makes attention ‘scattered’."
+      },
+      {
+        "blankNo": 3,
+        "options": {
+          "A": "restore",
+          "B": "replace",
+          "C": "reduce",
+          "D": "remove",
+          "E": "reject"
+        },
+        "correct_option": "A",
+        "explanation": "Breaks can ‘restore’ focus."
+      },
+      {
+        "blankNo": 4,
+        "options": {
+          "A": "often",
+          "B": "hardly",
+          "C": "nearly",
+          "D": "barely",
+          "E": "randomly"
+        },
+        "correct_option": "A",
+        "explanation": "Good habits ‘often’ outperform cramming."
+      },
+      {
+        "blankNo": 5,
+        "options": {
+          "A": "essential",
+          "B": "optional",
+          "C": "fragile",
+          "D": "trivial",
+          "E": "reckless"
+        },
+        "correct_option": "A",
+        "explanation": "Planning is ‘essential’."
+      }
     ]
   },
   {
@@ -53,11 +138,66 @@
     "title": "Passage 3",
     "passage": "Cities are becoming warmer due to the urban heat island effect, which occurs when concrete and asphalt ___1___ and release heat. Trees help by providing shade and by ___2___ water through leaves. Parks encourage walking, which can ___3___ public health. Policies must ___4___ both builders and residents. Otherwise, projects remain ___5___ and fail to scale.",
     "blanks": [
-      { "blankNo": 1, "options": { "A": "absorb", "B": "abolish", "C": "arrange", "D": "admit", "E": "assure" }, "correct_option": "A", "explanation": "Materials ‘absorb’ heat." },
-      { "blankNo": 2, "options": { "A": "evaporating", "B": "separating", "C": "concluding", "D": "calculating", "E": "inventing" }, "correct_option": "A", "explanation": "Trees cool by ‘evaporating’ water." },
-      { "blankNo": 3, "options": { "A": "improve", "B": "impose", "C": "ignore", "D": "imply", "E": "impair" }, "correct_option": "A", "explanation": "Walking can ‘improve’ health." },
-      { "blankNo": 4, "options": { "A": "involve", "B": "invite", "C": "invent", "D": "inform", "E": "invest" }, "correct_option": "A", "explanation": "Policies must ‘involve’ stakeholders." },
-      { "blankNo": 5, "options": { "A": "isolated", "B": "obvious", "C": "ordinary", "D": "organized", "E": "original" }, "correct_option": "A", "explanation": "Projects can remain ‘isolated’." }
+      {
+        "blankNo": 1,
+        "options": {
+          "A": "absorb",
+          "B": "abolish",
+          "C": "arrange",
+          "D": "admit",
+          "E": "assure"
+        },
+        "correct_option": "A",
+        "explanation": "Materials ‘absorb’ heat."
+      },
+      {
+        "blankNo": 2,
+        "options": {
+          "A": "evaporating",
+          "B": "separating",
+          "C": "concluding",
+          "D": "calculating",
+          "E": "inventing"
+        },
+        "correct_option": "A",
+        "explanation": "Trees cool by ‘evaporating’ water."
+      },
+      {
+        "blankNo": 3,
+        "options": {
+          "A": "improve",
+          "B": "impose",
+          "C": "ignore",
+          "D": "imply",
+          "E": "impair"
+        },
+        "correct_option": "A",
+        "explanation": "Walking can ‘improve’ health."
+      },
+      {
+        "blankNo": 4,
+        "options": {
+          "A": "involve",
+          "B": "invite",
+          "C": "invent",
+          "D": "inform",
+          "E": "invest"
+        },
+        "correct_option": "A",
+        "explanation": "Policies must ‘involve’ stakeholders."
+      },
+      {
+        "blankNo": 5,
+        "options": {
+          "A": "isolated",
+          "B": "obvious",
+          "C": "ordinary",
+          "D": "organized",
+          "E": "original"
+        },
+        "correct_option": "A",
+        "explanation": "Projects can remain ‘isolated’."
+      }
     ]
   },
   {
@@ -65,11 +205,66 @@
     "title": "Passage 4",
     "passage": "Scientific knowledge changes when new evidence ___1___ old assumptions. Researchers keep methods ___2___ so others can verify results. Findings must be ___3___ across contexts. Correcting errors is a sign of ___4___. Progress depends on the willingness to ___5___ beliefs.",
     "blanks": [
-      { "blankNo": 1, "options": { "A": "challenges", "B": "charges", "C": "chooses", "D": "changes", "E": "checks" }, "correct_option": "A", "explanation": "Evidence can ‘challenge’ assumptions." },
-      { "blankNo": 2, "options": { "A": "transparent", "B": "temporary", "C": "terminal", "D": "tolerant", "E": "trivial" }, "correct_option": "A", "explanation": "Methods should be ‘transparent’." },
-      { "blankNo": 3, "options": { "A": "replicated", "B": "reported", "C": "repaired", "D": "replaced", "E": "rejected" }, "correct_option": "A", "explanation": "Findings need to be ‘replicated’." },
-      { "blankNo": 4, "options": { "A": "integrity", "B": "intensity", "C": "identity", "D": "injustice", "E": "ignorance" }, "correct_option": "A", "explanation": "Fixing errors shows ‘integrity’." },
-      { "blankNo": 5, "options": { "A": "revise", "B": "revive", "C": "review", "D": "reveal", "E": "remove" }, "correct_option": "A", "explanation": "Science revises beliefs: ‘revise’." }
+      {
+        "blankNo": 1,
+        "options": {
+          "A": "challenges",
+          "B": "charges",
+          "C": "chooses",
+          "D": "changes",
+          "E": "checks"
+        },
+        "correct_option": "A",
+        "explanation": "Evidence can ‘challenge’ assumptions."
+      },
+      {
+        "blankNo": 2,
+        "options": {
+          "A": "transparent",
+          "B": "temporary",
+          "C": "terminal",
+          "D": "tolerant",
+          "E": "trivial"
+        },
+        "correct_option": "A",
+        "explanation": "Methods should be ‘transparent’."
+      },
+      {
+        "blankNo": 3,
+        "options": {
+          "A": "replicated",
+          "B": "reported",
+          "C": "repaired",
+          "D": "replaced",
+          "E": "rejected"
+        },
+        "correct_option": "A",
+        "explanation": "Findings need to be ‘replicated’."
+      },
+      {
+        "blankNo": 4,
+        "options": {
+          "A": "integrity",
+          "B": "intensity",
+          "C": "identity",
+          "D": "injustice",
+          "E": "ignorance"
+        },
+        "correct_option": "A",
+        "explanation": "Fixing errors shows ‘integrity’."
+      },
+      {
+        "blankNo": 5,
+        "options": {
+          "A": "revise",
+          "B": "revive",
+          "C": "review",
+          "D": "reveal",
+          "E": "remove"
+        },
+        "correct_option": "A",
+        "explanation": "Science revises beliefs: ‘revise’."
+      }
     ]
   },
   {
@@ -77,11 +272,401 @@
     "title": "Passage 5",
     "passage": "In the workplace, feedback is most useful when it is ___1___ and focused on behavior. If employees feel attacked, they may become ___2___. Managers ask questions to ___3___ expectations. This approach builds trust and ___4___ performance. Teams become more ___5___ in solving problems.",
     "blanks": [
-      { "blankNo": 1, "options": { "A": "specific", "B": "spectacular", "C": "symbolic", "D": "separate", "E": "sincere" }, "correct_option": "A", "explanation": "Feedback should be ‘specific’." },
-      { "blankNo": 2, "options": { "A": "defensive", "B": "decisive", "C": "delicate", "D": "dependent", "E": "decent" }, "correct_option": "A", "explanation": "People become ‘defensive’ if attacked." },
-      { "blankNo": 3, "options": { "A": "clarify", "B": "classify", "C": "collect", "D": "collapse", "E": "conclude" }, "correct_option": "A", "explanation": "Managers ‘clarify’ expectations." },
-      { "blankNo": 4, "options": { "A": "boosts", "B": "borrows", "C": "blocks", "D": "breaks", "E": "blames" }, "correct_option": "A", "explanation": "Trust ‘boosts’ performance." },
-      { "blankNo": 5, "options": { "A": "capable", "B": "careless", "C": "casual", "D": "curious", "E": "constant" }, "correct_option": "A", "explanation": "Teams become more ‘capable’." }
+      {
+        "blankNo": 1,
+        "options": {
+          "A": "specific",
+          "B": "spectacular",
+          "C": "symbolic",
+          "D": "separate",
+          "E": "sincere"
+        },
+        "correct_option": "A",
+        "explanation": "Feedback should be ‘specific’."
+      },
+      {
+        "blankNo": 2,
+        "options": {
+          "A": "defensive",
+          "B": "decisive",
+          "C": "delicate",
+          "D": "dependent",
+          "E": "decent"
+        },
+        "correct_option": "A",
+        "explanation": "People become ‘defensive’ if attacked."
+      },
+      {
+        "blankNo": 3,
+        "options": {
+          "A": "clarify",
+          "B": "classify",
+          "C": "collect",
+          "D": "collapse",
+          "E": "conclude"
+        },
+        "correct_option": "A",
+        "explanation": "Managers ‘clarify’ expectations."
+      },
+      {
+        "blankNo": 4,
+        "options": {
+          "A": "boosts",
+          "B": "borrows",
+          "C": "blocks",
+          "D": "breaks",
+          "E": "blames"
+        },
+        "correct_option": "A",
+        "explanation": "Trust ‘boosts’ performance."
+      },
+      {
+        "blankNo": 5,
+        "options": {
+          "A": "capable",
+          "B": "careless",
+          "C": "casual",
+          "D": "curious",
+          "E": "constant"
+        },
+        "correct_option": "A",
+        "explanation": "Teams become more ‘capable’."
+      },
+      {
+        "id": "clz-p6",
+        "title": "Passage 6",
+        "passage": "Modern agriculture relies heavily on technology to ___1___ crop yields. Sensors help farmers monitor soil moisture, which prevents water ___2___. However, the cost of equipment remains ___3___ for small-scale farmers. To address this, some cooperatives share tools to ___4___ expenses. This collective approach ensures that innovation is ___5___ to all.",
+        "blanks": [
+          {
+            "blankNo": 1,
+            "options": {
+              "A": "maximize",
+              "B": "memorize",
+              "C": "measure",
+              "D": "modify",
+              "E": "mention"
+            },
+            "correct_option": "A",
+            "explanation": "‘maximize’ (en üst düzeye çıkarmak) is the most logical verb for crop yields."
+          },
+          {
+            "blankNo": 2,
+            "options": {
+              "A": "waste",
+              "B": "wealth",
+              "C": "weight",
+              "D": "wisdom",
+              "E": "witness"
+            },
+            "correct_option": "A",
+            "explanation": "Monitoring moisture prevents the 'waste' (israf) of water."
+          },
+          {
+            "blankNo": 3,
+            "options": {
+              "A": "prohibitive",
+              "B": "productive",
+              "C": "protective",
+              "D": "primitive",
+              "E": "persuasive"
+            },
+            "correct_option": "A",
+            "explanation": "‘prohibitive’ (caydırıcı/çok yüksek) describes costs that prevent people from buying."
+          },
+          {
+            "blankNo": 4,
+            "options": {
+              "A": "reduce",
+              "B": "rely",
+              "C": "react",
+              "D": "refuse",
+              "E": "renew"
+            },
+            "correct_option": "A",
+            "explanation": "Sharing tools helps to ‘reduce’ (azaltmak) expenses."
+          },
+          {
+            "blankNo": 5,
+            "options": {
+              "A": "accessible",
+              "B": "acceptable",
+              "C": "accurate",
+              "D": "arrogant",
+              "E": "ancient"
+            },
+            "correct_option": "A",
+            "explanation": "Innovation becomes ‘accessible’ (erişilebilir) when costs are shared."
+          }
+        ]
+      },
+      {
+        "id": "clz-p7",
+        "title": "Passage 7",
+        "passage": "Reading fiction is more than just entertainment; it develops ___1___ by allowing readers to see through others' eyes. When we identify with a character, we ___2___ their emotions. Neuroscientists have found that stories ___3___ parts of the brain associated with real-life experiences. Thus, literature can ___4___ our social skills. It helps us navigate complex human relationships more ___5___.",
+        "blanks": [
+          {
+            "blankNo": 1,
+            "options": {
+              "A": "empathy",
+              "B": "energy",
+              "C": "envy",
+              "D": "entity",
+              "E": "entry"
+            },
+            "correct_option": "A",
+            "explanation": "Seeing through others' eyes builds 'empathy' (eşduyum/empati)."
+          },
+          {
+            "blankNo": 2,
+            "options": {
+              "A": "experience",
+              "B": "exclude",
+              "C": "examine",
+              "D": "exchange",
+              "E": "exhibit"
+            },
+            "correct_option": "A",
+            "explanation": "We 'experience' (deneyimlemek/yaşamak) the characters' emotions."
+          },
+          {
+            "blankNo": 3,
+            "options": {
+              "A": "activate",
+              "B": "accelerate",
+              "C": "accommodate",
+              "D": "accumulate",
+              "E": "accuse"
+            },
+            "correct_option": "A",
+            "explanation": "Stories 'activate' (etkinleştirmek) brain regions."
+          },
+          {
+            "blankNo": 4,
+            "options": {
+              "A": "enhance",
+              "B": "endure",
+              "C": "enforce",
+              "D": "enclose",
+              "E": "encounter"
+            },
+            "correct_option": "A",
+            "explanation": "‘enhance’ (geliştirmek/artırmak) is used for improving skills."
+          },
+          {
+            "blankNo": 5,
+            "options": {
+              "A": "effectively",
+              "ed": "efficiently",
+              "C": "eagerly",
+              "D": "eventually",
+              "E": "equally"
+            },
+            "correct_option": "A",
+            "explanation": "Navigating relationships 'effectively' (etkili bir şekilde) is a natural collocation."
+          }
+        ]
+      },
+      {
+        "id": "clz-p8",
+        "title": "Passage 8",
+        "passage": "Renewable energy sources like wind and solar are ___1___ for reducing carbon emissions. Unlike fossil fuels, they do not ___2___ greenhouse gases during operation. However, their output can be ___3___ depending on the weather. Engineers are developing batteries to ___4___ energy for later use. This transition requires ___5___ investment from both private and public sectors.",
+        "blanks": [
+          {
+            "blankNo": 1,
+            "options": {
+              "A": "crucial",
+              "B": "cruel",
+              "C": "curious",
+              "D": "casual",
+              "E": "coarse"
+            },
+            "correct_option": "A",
+            "explanation": "‘crucial’ (hayatı öneme sahip) fits the context of climate goals."
+          },
+          {
+            "blankNo": 2,
+            "options": {
+              "A": "emit",
+              "B": "edit",
+              "C": "exit",
+              "D": "omit",
+              "E": "unit"
+            },
+            "correct_option": "A",
+            "explanation": "To 'emit' (salmak/yaymak) gas is the correct scientific term."
+          },
+          {
+            "blankNo": 3,
+            "options": {
+              "A": "unpredictable",
+              "B": "unavoidable",
+              "C": "unbearable",
+              "D": "unconscious",
+              "E": "unnecessary"
+            },
+            "correct_option": "A",
+            "explanation": "Weather-dependent energy is ‘unpredictable’ (öngörülemez)."
+          },
+          {
+            "blankNo": 4,
+            "options": {
+              "A": "store",
+              "B": "stare",
+              "C": "steer",
+              "D": "stick",
+              "E": "stack"
+            },
+            "correct_option": "A",
+            "explanation": "Batteries are used to ‘store’ (depolamak) energy."
+          },
+          {
+            "blankNo": 5,
+            "options": {
+              "A": "substantial",
+              "B": "subsequent",
+              "C": "subtle",
+              "D": "subjective",
+              "E": "substitute"
+            },
+            "correct_option": "A",
+            "explanation": "‘substantial’ (önemli miktarda/büyük) investment is required for change."
+          }
+        ]
+      },
+      {
+        "id": "clz-p9",
+        "title": "Passage 9",
+        "passage": "Public speaking is a skill that many people ___1___ to master. The most common advice is to practice ___2___ until the material feels natural. Visual aids can help, but they should not ___3___ from the speaker’s message. Maintaining eye contact is a key way to ___4___ with the audience. Over time, anxiety tends to ___5___ as confidence grows.",
+        "blanks": [
+          {
+            "blankNo": 1,
+            "options": {
+              "A": "strive",
+              "B": "strike",
+              "C": "stroll",
+              "D": "stress",
+              "E": "stray"
+            },
+            "correct_option": "A",
+            "explanation": "‘strive to’ (çabalamak) means to make a great effort."
+          },
+          {
+            "blankNo": 2,
+            "options": {
+              "A": "thoroughly",
+              "B": "thoughtfully",
+              "C": "thankfully",
+              "D": "thinly",
+              "E": "threateningly"
+            },
+            "correct_option": "A",
+            "explanation": "Practicing ‘thoroughly’ (iyice/en ince ayrıntısına kadar) is common advice."
+          },
+          {
+            "blankNo": 3,
+            "options": {
+              "A": "distract",
+              "B": "disturb",
+              "C": "distinct",
+              "D": "distress",
+              "E": "distribute"
+            },
+            "correct_option": "A",
+            "explanation": "Visual aids should not 'distract' (dikkat dağıtmak) from the message."
+          },
+          {
+            "blankNo": 4,
+            "options": {
+              "A": "connect",
+              "B": "contain",
+              "C": "confuse",
+              "D": "conceal",
+              "E": "conduct"
+            },
+            "correct_option": "A",
+            "explanation": "Eye contact helps to ‘connect’ (bağ kurmak) with an audience."
+          },
+          {
+            "blankNo": 5,
+            "options": {
+              "A": "diminish",
+              "B": "demand",
+              "C": "deny",
+              "D": "defeat",
+              "E": "declare"
+            },
+            "correct_option": "A",
+            "explanation": "‘diminish’ (azalmak) describes the reduction of anxiety."
+          }
+        ]
+      },
+      {
+        "id": "clz-p10",
+        "title": "Passage 10",
+        "passage": "Space exploration provides valuable data about our universe, but it is extremely ___1___. Sending missions to Mars requires ___2___ engineering and years of planning. Some critics argue that the money should be spent on Earth's ___3___ instead. However, supporters believe that space research leads to ___4___ discoveries in medicine and physics. Ultimately, the quest for knowledge is what ___5___ humanity forward.",
+        "blanks": [
+          {
+            "blankNo": 1,
+            "options": {
+              "A": "costly",
+              "B": "comfy",
+              "C": "crafty",
+              "D": "curly",
+              "E": "cloudy"
+            },
+            "correct_option": "A",
+            "explanation": "Space missions are ‘costly’ (maliyetli)."
+          },
+          {
+            "blankNo": 2,
+            "options": {
+              "A": "precise",
+              "B": "precious",
+              "C": "previous",
+              "D": "predictable",
+              "E": "passive"
+            },
+            "correct_option": "A",
+            "explanation": "Engineering for space must be ‘precise’ (hassas/kesin)."
+          },
+          {
+            "blankNo": 3,
+            "options": {
+              "A": "issues",
+              "B": "items",
+              "C": "images",
+              "D": "ideals",
+              "E": "icons"
+            },
+            "correct_option": "A",
+            "explanation": "Earth's 'issues' (sorunlar/meseleler) refers to global problems."
+          },
+          {
+            "blankNo": 4,
+            "options": {
+              "A": "groundbreaking",
+              "B": "groundless",
+              "C": "grim",
+              "D": "greedy",
+              "E": "graceful"
+            },
+            "correct_option": "A",
+            "explanation": "‘groundbreaking’ (çığır açan) is used for major discoveries."
+          },
+          {
+            "blankNo": 5,
+            "options": {
+              "A": "drives",
+              "B": "drifts",
+              "C": "drops",
+              "D": "draws",
+              "E": "drains"
+            },
+            "correct_option": "A",
+            "explanation": "‘drives forward’ (ileriye taşımak/itmek) is a common metaphorical phrase."
+          }
+        ]
+      }
     ]
   }
 ]
