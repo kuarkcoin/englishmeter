@@ -1,0 +1,87 @@
+[
+  {
+    "id": "clz-p1",
+    "title": "Passage 1",
+    "passage": "Artificial intelligence is ___1___ transforming industries. However, its rapid ___2___ raises ethical concerns. Governments ___3___ to regulate it, but rules vary ___4___ countries. Without cooperation, progress may ___5___ uneven.",
+    "blanks": [
+      {
+        "blankNo": 1,
+        "options": { "A": "rapidly", "B": "rarely", "C": "rigidly", "D": "roughly", "E": "randomly" },
+        "correct_option": "A",
+        "explanation": "‘rapidly’ is the natural adverb modifying ‘transforming’."
+      },
+      {
+        "blankNo": 2,
+        "options": { "A": "expansion", "B": "hesitation", "C": "elimination", "D": "interruption", "E": "refusal" },
+        "correct_option": "A",
+        "explanation": "‘rapid expansion’ = fast growth."
+      },
+      {
+        "blankNo": 3,
+        "options": { "A": "attempt", "B": "pretend", "C": "compel", "D": "declare", "E": "vanish" },
+        "correct_option": "A",
+        "explanation": "‘attempt to do’ is the correct structure."
+      },
+      {
+        "blankNo": 4,
+        "options": { "A": "across", "B": "among", "C": "between", "D": "along", "E": "within" },
+        "correct_option": "A",
+        "explanation": "Rules vary ‘across’ countries."
+      },
+      {
+        "blankNo": 5,
+        "options": { "A": "remain", "B": "repair", "C": "replace", "D": "remove", "E": "repeat" },
+        "correct_option": "A",
+        "explanation": "‘remain uneven’ is the correct collocation."
+      }
+    ]
+  },
+  {
+    "id": "clz-p2",
+    "title": "Passage 2",
+    "passage": "Many students believe that studying longer guarantees success, yet efficiency matters ___1___ than duration. When people multitask, attention becomes ___2___, leading to weaker memory. A short break can actually ___3___ focus. In the long run, consistent habits ___4___ outperform last-minute effort. Therefore, planning is ___5___ for progress.",
+    "blanks": [
+      { "blankNo": 1, "options": { "A": "more", "B": "much", "C": "most", "D": "many", "E": "major" }, "correct_option": "A", "explanation": "‘more than’ is the comparative structure." },
+      { "blankNo": 2, "options": { "A": "scattered", "B": "sealed", "C": "selected", "D": "settled", "E": "shaped" }, "correct_option": "A", "explanation": "Multitasking makes attention ‘scattered’." },
+      { "blankNo": 3, "options": { "A": "restore", "B": "replace", "C": "reduce", "D": "remove", "E": "reject" }, "correct_option": "A", "explanation": "Breaks can ‘restore’ focus." },
+      { "blankNo": 4, "options": { "A": "often", "B": "hardly", "C": "nearly", "D": "barely", "E": "randomly" }, "correct_option": "A", "explanation": "Good habits ‘often’ outperform cramming." },
+      { "blankNo": 5, "options": { "A": "essential", "B": "optional", "C": "fragile", "D": "trivial", "E": "reckless" }, "correct_option": "A", "explanation": "Planning is ‘essential’." }
+    ]
+  },
+  {
+    "id": "clz-p3",
+    "title": "Passage 3",
+    "passage": "Cities are becoming warmer due to the urban heat island effect, which occurs when concrete and asphalt ___1___ and release heat. Trees help by providing shade and by ___2___ water through leaves. Parks encourage walking, which can ___3___ public health. Policies must ___4___ both builders and residents. Otherwise, projects remain ___5___ and fail to scale.",
+    "blanks": [
+      { "blankNo": 1, "options": { "A": "absorb", "B": "abolish", "C": "arrange", "D": "admit", "E": "assure" }, "correct_option": "A", "explanation": "Materials ‘absorb’ heat." },
+      { "blankNo": 2, "options": { "A": "evaporating", "B": "separating", "C": "concluding", "D": "calculating", "E": "inventing" }, "correct_option": "A", "explanation": "Trees cool by ‘evaporating’ water." },
+      { "blankNo": 3, "options": { "A": "improve", "B": "impose", "C": "ignore", "D": "imply", "E": "impair" }, "correct_option": "A", "explanation": "Walking can ‘improve’ health." },
+      { "blankNo": 4, "options": { "A": "involve", "B": "invite", "C": "invent", "D": "inform", "E": "invest" }, "correct_option": "A", "explanation": "Policies must ‘involve’ stakeholders." },
+      { "blankNo": 5, "options": { "A": "isolated", "B": "obvious", "C": "ordinary", "D": "organized", "E": "original" }, "correct_option": "A", "explanation": "Projects can remain ‘isolated’." }
+    ]
+  },
+  {
+    "id": "clz-p4",
+    "title": "Passage 4",
+    "passage": "Scientific knowledge changes when new evidence ___1___ old assumptions. Researchers keep methods ___2___ so others can verify results. Findings must be ___3___ across contexts. Correcting errors is a sign of ___4___. Progress depends on the willingness to ___5___ beliefs.",
+    "blanks": [
+      { "blankNo": 1, "options": { "A": "challenges", "B": "charges", "C": "chooses", "D": "changes", "E": "checks" }, "correct_option": "A", "explanation": "Evidence can ‘challenge’ assumptions." },
+      { "blankNo": 2, "options": { "A": "transparent", "B": "temporary", "C": "terminal", "D": "tolerant", "E": "trivial" }, "correct_option": "A", "explanation": "Methods should be ‘transparent’." },
+      { "blankNo": 3, "options": { "A": "replicated", "B": "reported", "C": "repaired", "D": "replaced", "E": "rejected" }, "correct_option": "A", "explanation": "Findings need to be ‘replicated’." },
+      { "blankNo": 4, "options": { "A": "integrity", "B": "intensity", "C": "identity", "D": "injustice", "E": "ignorance" }, "correct_option": "A", "explanation": "Fixing errors shows ‘integrity’." },
+      { "blankNo": 5, "options": { "A": "revise", "B": "revive", "C": "review", "D": "reveal", "E": "remove" }, "correct_option": "A", "explanation": "Science revises beliefs: ‘revise’." }
+    ]
+  },
+  {
+    "id": "clz-p5",
+    "title": "Passage 5",
+    "passage": "In the workplace, feedback is most useful when it is ___1___ and focused on behavior. If employees feel attacked, they may become ___2___. Managers ask questions to ___3___ expectations. This approach builds trust and ___4___ performance. Teams become more ___5___ in solving problems.",
+    "blanks": [
+      { "blankNo": 1, "options": { "A": "specific", "B": "spectacular", "C": "symbolic", "D": "separate", "E": "sincere" }, "correct_option": "A", "explanation": "Feedback should be ‘specific’." },
+      { "blankNo": 2, "options": { "A": "defensive", "B": "decisive", "C": "delicate", "D": "dependent", "E": "decent" }, "correct_option": "A", "explanation": "People become ‘defensive’ if attacked." },
+      { "blankNo": 3, "options": { "A": "clarify", "B": "classify", "C": "collect", "D": "collapse", "E": "conclude" }, "correct_option": "A", "explanation": "Managers ‘clarify’ expectations." },
+      { "blankNo": 4, "options": { "A": "boosts", "B": "borrows", "C": "blocks", "D": "breaks", "E": "blames" }, "correct_option": "A", "explanation": "Trust ‘boosts’ performance." },
+      { "blankNo": 5, "options": { "A": "capable", "B": "careless", "C": "casual", "D": "curious", "E": "constant" }, "correct_option": "A", "explanation": "Teams become more ‘capable’." }
+    ]
+  }
+]
