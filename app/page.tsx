@@ -1071,6 +1071,41 @@ function HomeContent() {
     </div>
   </button>
 </div>
+{/* 🧩 YDS CLOZE */}
+<a
+  href="/start?testSlug=yds-cloze"
+  className="group relative overflow-hidden
+             bg-gradient-to-br from-amber-700 to-orange-900
+             rounded-3xl p-6 border border-amber-600
+             shadow-xl hover:shadow-amber-500/30
+             transition-all duration-300 transform hover:-translate-y-1 text-left"
+>
+  <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-amber-400 rounded-full opacity-10 blur-xl"></div>
+
+  <div className="relative z-10 flex flex-col h-full justify-between">
+    <div>
+      <div className="inline-flex items-center gap-1 px-2 py-1
+                      bg-amber-400/10 rounded-full
+                      text-amber-300 text-[10px] font-bold uppercase mb-3">
+        🧠 Advanced
+      </div>
+
+      <h3 className="text-2xl font-black text-white mb-1">
+        YDS Cloze Test
+      </h3>
+
+      <p className="text-amber-200 text-xs mb-4">
+        Multi-passage gap filling
+      </p>
+    </div>
+
+    <div className="w-11 h-11 bg-amber-400 rounded-full
+                    flex items-center justify-center
+                    text-amber-950 font-black">
+      ▶
+    </div>
+  </div>
+</a>
 
 {/* 📂 YDS HUB PANEL (GRID DIŞINDA!) */}
 {showYds3750Hub && (
