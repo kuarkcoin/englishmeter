@@ -7,9 +7,12 @@ import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { getQuestionsBySlug } from '@/lib/quizManager';
 
+// ✅ ROOT /data import (kök dizinde data/ klasörü)
+import ydsCloze1 from '../../../data/yds_cloze_1.json';
+
 // --- HELPER: SHUFFLE ARRAY (for randomizing choices) ---
 function shuffleArray<T>(array: T[]): T[] {
-  const copy = [...array];
+  const copy = [...(array || [])];
   for (let i = copy.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [copy[i], copy[j]] = [copy[j], copy[i]];
@@ -68,6 +71,86 @@ const textVariants: Variants = {
   }),
 };
 
+// =======================
+// ✅ CLOZE SUPPORT
+// =======================
+type ClozeBlank = {
+  blankNo: number; // 1..5
+  options: Record<string, string>; // A..E
+  correct_option: string; // "A".."E"
+  explanation?: string;
+  s?: string | null;
+  t?: string | null;
+};
+
+type ClozePassage = {
+  id: string;
+  title?: string;
+  passage: string; // contains ___1___ ... ___5___
+  blanks: ClozeBlank[]; // length 5
+};
+
+function isClozePassage(item: any): item is ClozePassage {
+  return (
+    item &&
+    typeof item === 'object' &&
+    typeof item.passage === 'string' &&
+    Array.isArray(item.blanks) &&
+    item.blanks.length > 0
+  );
+}
+
+// Passage’ı “aktif boşluk” vurgulu hale getir (Quiz page DOMPurify ile sanitize ediyor)
+function renderClozePassage(passage: string, activeBlankNo: number) {
+  return passage.replace(/___(\d+)___/g, (_m, g1) => {
+    const n = Number(g1);
+    if (!Number.isFinite(n)) return '_____';
+    if (n === activeBlankNo) {
+      return `<span class="px-2 py-1 rounded-lg border-2 border-blue-500 bg-blue-50 text-blue-800 font-black">_____ (${n})</span>`;
+    }
+    return `<span class="px-2 py-1 rounded-lg border border-slate-200 bg-slate-50 text-slate-500 font-bold">_____</span>`;
+  });
+}
+
+// 5 pasaj x 5 boşluk => 25 soru üret
+function expandClozeToRawQuestions(passages: ClozePassage[]) {
+  const out: any[] = [];
+  const selected = (passages || []).slice(0, 5);
+
+  selected.forEach((p, pi) => {
+    const blanks = (p.blanks || []).slice(0, 5);
+
+    blanks.forEach((b, bi) => {
+      const activeNo = b.blankNo ?? bi + 1;
+
+      out.push({
+        id: `cloze-${p.id}-blank-${activeNo}`,
+        prompt: `
+          <div class="space-y-3">
+            <div class="text-xs font-black uppercase tracking-wide text-slate-500">
+              Cloze • Passage ${pi + 1}/5 • Blank ${activeNo}/5
+            </div>
+            ${p.title ? `<div class="text-sm font-extrabold text-slate-800">${p.title}</div>` : ''}
+            <div class="leading-loose text-slate-900">
+              ${renderClozePassage(p.passage, activeNo)}
+            </div>
+            <div class="text-sm font-bold text-slate-700">
+              Choose the best option for <span class="text-blue-700">Blank (${activeNo})</span>.
+            </div>
+          </div>
+        `,
+        options: b.options, // A..E
+        correct_option: b.correct_option, // "A".."E"
+        explanation: b.explanation,
+        s: b.s ?? null,
+        t: b.t ?? null,
+      });
+    });
+  });
+
+  return out;
+}
+
 function StartQuizLogic() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -109,16 +192,38 @@ function StartQuizLogic() {
       const slug = searchParams.get('testSlug') || 'quick-placement';
       console.log('STARTING TEST:', slug);
 
-      const { title, questions: rawQuestions } = getQuestionsBySlug(slug);
+      // ✅ 1) Raw questions kaynak seçimi
+      let title = '';
+      let rawQuestions: any[] = [];
+      let durationMinutes = 0;
+
+      if (slug === 'yds-cloze') {
+        title = 'YDS CLOZE TEST (25Q · 40 min)';
+        durationMinutes = 40;
+        rawQuestions = (ydsCloze1 as any[]) || [];
+      } else {
+        const r = getQuestionsBySlug(slug);
+        title = r.title;
+        rawQuestions = (r.questions || []) as any[];
+        durationMinutes = 0; // Quiz.tsx: 0 ise soru sayısına göre otomatik süre
+      }
+
       const safeQuestions = (rawQuestions || []) as any[];
 
-      const formattedQuestions: QPayload[] = safeQuestions
+      // ✅ 2) Cloze ise 25 soru üret (expand)
+      let expandedQuestions: any[] = safeQuestions;
+      if (safeQuestions.length > 0 && isClozePassage(safeQuestions[0])) {
+        expandedQuestions = expandClozeToRawQuestions(safeQuestions as ClozePassage[]);
+      }
+
+      // ✅ 3) Normalizer (tüm testler için aynı)
+      const formattedQuestions: QPayload[] = (expandedQuestions || [])
         .map((item: any, index: number) => {
           const prompt = getPrompt(item);
 
           let choices: Choice[] | null = null;
 
-          // CASE 1: question + options + correct_option
+          // CASE 1: question + options + correct_option (A..E destekli)
           const correctKey = item.correct_option ?? item.correct ?? item.answer ?? null;
 
           if (item.options && typeof item.options === 'object') {
@@ -135,9 +240,9 @@ function StartQuizLogic() {
             }));
           }
 
-          // CASE 2: A/B/C/D alanları
-          if (!choices && (item.A || item.B || item.C || item.D)) {
-            const labels: string[] = ['A', 'B', 'C', 'D'];
+          // CASE 2: A/B/C/D(/E) alanları
+          if (!choices && (item.A || item.B || item.C || item.D || item.E)) {
+            const labels: string[] = ['A', 'B', 'C', 'D', 'E'];
             choices = labels
               .filter((l) => item[l])
               .map((label) => ({
@@ -150,7 +255,7 @@ function StartQuizLogic() {
               }));
           }
 
-          // CASE 3: word + definition (NOT: gerçek distractor yoksa placeholder kalır)
+          // CASE 3: word + definition (placeholder)
           if (!choices && item.word && item.definition) {
             const baseChoices: Choice[] = [
               { id: 'A', _origId: 'A', text: item.definition, isCorrect: true },
@@ -179,8 +284,7 @@ function StartQuizLogic() {
             return null as any;
           }
 
-          // ✅ Shuffle + normalize ids A/B/C/D
-          // IMPORTANT: do NOT lose which one is correct.
+          // ✅ Shuffle + normalize ids A/B/C/D/E...
           const shuffled = shuffleArray(choices).map((c) => ({
             ...c,
             _origId: c._origId ?? c.id,
@@ -188,14 +292,13 @@ function StartQuizLogic() {
 
           const normalizedChoices: Choice[] = shuffled.map((c, idx) => ({
             ...c,
-            id: String.fromCharCode(65 + idx), // A/B/C/D new ids
+            id: String.fromCharCode(65 + idx), // A/B/C/D/E...
           }));
 
           // ✅ Compute correctChoiceId AFTER shuffle+normalize
-          const correctChoiceId =
-            normalizedChoices.find((c) => c.isCorrect)?.id ?? undefined;
+          const correctChoiceId = normalizedChoices.find((c) => c.isCorrect)?.id ?? undefined;
 
-          // ✅ s/t köprüsü: item içinden al, yoksa null
+          // ✅ s/t köprüsü
           const s = item?.s ?? item?.sentence ?? null;
           const t = item?.t ?? item?.translation ?? null;
 
@@ -213,22 +316,12 @@ function StartQuizLogic() {
 
       console.log('FORMATTED QUESTIONS (AFTER SHUFFLE):', formattedQuestions);
 
-      // ✅ optional debug: ilk 5 soruda doğru hep A mı diye kontrol
-      console.log(
-        'DEBUG correctChoiceId (first 5):',
-        formattedQuestions.slice(0, 5).map((q) => ({
-          qid: q.id,
-          correct: q.correctChoiceId,
-          marks: q.choices.map((c) => `${c.id}${c.isCorrect ? '✅' : ''}`).join(' '),
-        }))
-      );
-
       const attemptData = {
         attemptId: `session-${Date.now()}`,
         testSlug: slug, // ✅ restart için
         test: {
-          title: title,
-          duration: 0, // Quiz.tsx questionCount * 60s (senin logic'e göre)
+          title,
+          duration: durationMinutes, // ✅ cloze: 40, diğerleri: 0
         },
         questions: formattedQuestions,
       };
@@ -236,7 +329,10 @@ function StartQuizLogic() {
       // UX: %100’e çekiyormuş gibi yap
       setProgress(100);
 
-      sessionStorage.setItem('em_attempt_payload', JSON.stringify(attemptData));
+      try {
+        sessionStorage.setItem('em_attempt_payload', JSON.stringify(attemptData));
+      } catch {}
+
       router.push(`/quiz/${attemptData.attemptId}`);
     };
 
