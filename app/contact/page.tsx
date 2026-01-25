@@ -83,7 +83,7 @@ export default function Contact() {
               href="mailto:support@englishmeter.net"
               className="font-bold text-blue-600 hover:text-blue-800 underline transition"
             >
-              support@englishmeter.net
+              muratot79@gmail.com
             </a>
           </div>
         </div>
