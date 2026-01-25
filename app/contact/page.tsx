@@ -80,7 +80,7 @@ export default function Contact() {
             <Mail className="w-6 h-6 text-blue-600" />
             <span className="text-gray-700">Email us directly:</span>
             <a
-              href="mailto:support@englishmeter.net"
+              href="mailto: muratot79@gmail.com"
               className="font-bold text-blue-600 hover:text-blue-800 underline transition"
             >
               muratot79@gmail.com
