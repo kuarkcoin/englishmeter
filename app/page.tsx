@@ -29,6 +29,7 @@ import ydsExamQuestions12 from '@/data/yds_exam_questions_12.json';
 import ydsExamQuestions13 from '@/data/yds_exam_questions_13.json';
 import ydsExamQuestions14 from '@/data/yds_exam_questions_14.json';
 import ydsExamQuestions15 from '@/data/yds_exam_questions_15.json';
+import ydsExamQuestions15 from '@/data/yds_exam_questions_16.json';
 
 // --- TEST DATA MAP ---
 const YDS_EXAM_MAP: Record<string, any[]> = {
@@ -47,6 +48,7 @@ const YDS_EXAM_MAP: Record<string, any[]> = {
   '13': ydsExamQuestions13,
   '14': ydsExamQuestions14,
   '15': ydsExamQuestions15,
+  '16': ydsExamQuestions16,
 };
 
 // --- TEST TANIMLARI ---
