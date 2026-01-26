@@ -34,6 +34,8 @@ import ydsExamQuestions17 from '@/data/yds_exam_questions_17.json';
 import ydsExamQuestions18 from '@/data/yds_exam_questions_18.json';
 import ydsExamQuestions19 from '@/data/yds_exam_questions_19.json';
 import ydsExamQuestions20 from '@/data/yds_exam_questions_20.json';
+import ydsExamQuestions21 from '@/data/yds_exam_questions_21.json';
+import ydsExamQuestions22 from '@/data/yds_exam_questions_22.json';
 // --- TEST DATA MAP ---
 const YDS_EXAM_MAP: Record<string, any[]> = {
   '1': ydsExamQuestions1,
@@ -56,6 +58,8 @@ const YDS_EXAM_MAP: Record<string, any[]> = {
   '18': ydsExamQuestions18,
   '19': ydsExamQuestions19,
   '20': ydsExamQuestions20,
+  '21': ydsExamQuestions21,
+  '22': ydsExamQuestions22,
 };
 
 // --- TEST TANIMLARI ---
@@ -1195,7 +1199,7 @@ function HomeContent() {
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map((num) => {
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22].map((num) => {
                   const isActive = availableExamTests.includes(num);
                   return (
                     <button
