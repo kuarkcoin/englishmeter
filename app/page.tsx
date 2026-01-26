@@ -30,7 +30,7 @@ import ydsExamQuestions13 from '@/data/yds_exam_questions_13.json';
 import ydsExamQuestions14 from '@/data/yds_exam_questions_14.json';
 import ydsExamQuestions15 from '@/data/yds_exam_questions_15.json';
 import ydsExamQuestions16 from '@/data/yds_exam_questions_16.json';
-import ydsExamQuestions16 from '@/data/yds_exam_questions_17.json';
+import ydsExamQuestions17 from '@/data/yds_exam_questions_17.json';
 
 // --- TEST DATA MAP ---
 const YDS_EXAM_MAP: Record<string, any[]> = {
