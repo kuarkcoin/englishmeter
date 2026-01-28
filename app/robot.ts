@@ -8,9 +8,8 @@ export default function robots(): MetadataRoute.Robots {
       disallow: [
         '/private/', 
         '/admin/', 
-        '/api/',      // API rotalarını taramasını engeller
-        '/*_next/',   // Next.js iç dosyalarını taramasını engeller (opsiyonel)
-        '/*?*',       // Parametreli URL'lerin taranmasını engeller (SEO için kritik olabilir)
+        '/api/',
+        // '/*?*'  <-- BU SATIRI SİLDİK VEYA YORUMA ALDIK
       ],
     },
     sitemap: 'https://englishmeter.net/sitemap.xml',
