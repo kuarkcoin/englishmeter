@@ -1,936 +1,865 @@
 [
   {
     "id": 1,
-    "type": "Vocabulary",
     "prompt": "The discovery of the ancient manuscript was considered ______; not only did it provide a missing link in the region's history, but it also debunked several long-held myths.",
-    "options": {"A": "redundant", "B": "pivotal", "C": "marginal", "D": "trivial", "E": "obsolete"},
+    "A": "redundant",
+    "B": "pivotal",
+    "C": "marginal",
+    "D": "trivial",
+    "E": "obsolete",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'Pivotal' (hayati, kilit noktada, çok önemli) sıfatı, cümlenin devamındaki 'missing link' (kayıp halka) ve 'debunked myths' (mitleri çürütmek) ifadeleriyle tam bir anlam bütünlüğü kurar."
+    "explanation": "ÇÖZÜM: 'Pivotal' (hayati, kilit noktada, çok önemli) sıfatı, cümlenin devamındaki 'missing link' (kayıp halka) ve 'debunked myths' (mitleri çürütmek) ifadeleriyle tam bir anlam bütünlüğü kurar. Diğer şıklar 'önemsiz' veya 'gereksiz' anlamındadır."
   },
   {
     "id": 2,
-    "type": "Vocabulary",
     "prompt": "The scientist urged caution, arguing that the current evidence is too ______ to justify sweeping claims about the new drug's safety.",
-    "options": {"A": "inevitable", "B": "fragmentary", "C": "lucid", "D": "robust", "E": "cordial"},
+    "A": "inevitable",
+    "B": "fragmentary",
+    "C": "lucid",
+    "D": "robust",
+    "E": "cordial",
     "correct": "B",
     "explanation": "ÇÖZÜM: 'Fragmentary' (parça parça, eksik, yetersiz). Büyük iddiaları (sweeping claims) desteklemek için kanıtların henüz 'tamamlanmamış' olduğu vurgulanmaktadır."
   },
   {
     "id": 3,
-    "type": "Vocabulary",
     "prompt": "The new environmental regulations are intended to ______ the process of industrial waste management, ensuring stricter adherence to safety protocols.",
-    "options": {"A": "complicate", "B": "hinder", "C": "facilitate", "D": "streamline", "E": "stagnate"},
+    "A": "complicate",
+    "B": "hinder",
+    "C": "facilitate",
+    "D": "streamline",
+    "E": "stagnate",
     "correct": "D",
     "explanation": "ÇÖZÜM: 'Streamline' (modernize etmek, daha verimli hale getirmek). Sürecin iyileştirilmesi ve protokollere uyumun artırılması için 'düzene koymak' anlamı en uygundur."
   },
   {
     "id": 4,
-    "type": "Vocabulary",
     "prompt": "The CEO's ______ lifestyle stood in stark contrast to the company’s struggling finances and the recent wave of employee layoffs.",
-    "options": {"A": "frugal", "B": "ostentatious", "C": "modest", "D": "austere", "E": "prudent"},
+    "A": "frugal",
+    "B": "ostentatious",
+    "C": "modest",
+    "D": "austere",
+    "E": "prudent",
     "correct": "B",
     "explanation": "ÇÖZÜM: 'Ostentatious' (gösterişli, şatafatlı). Şirketin mali zorlukları ve işten çıkarmalarla zıtlık (contrast) oluşturan şey aşırı lüks yaşamdır."
   },
   {
     "id": 5,
-    "type": "Vocabulary",
     "prompt": "Facing a sudden ______ of applicants, the HR department had to revise its initial screening process to manage the volume effectively.",
-    "options": {"A": "scarcity", "B": "influx", "C": "dearth", "D": "void", "E": "depletion"},
+    "A": "scarcity",
+    "B": "influx",
+    "C": "dearth",
+    "D": "void",
+    "E": "depletion",
     "correct": "B",
     "explanation": "ÇÖZÜM: 'Influx' (akın, istila, yoğun geliş). Başvuranların yoğun bir şekilde gelmesi (volume) durumunu niteleyen en iyi kelimedir."
   },
   {
     "id": 6,
-    "type": "Vocabulary",
     "prompt": "The diplomat was praised for his ______ handling of the crisis, which prevented a minor border dispute from escalating into a full-scale war.",
-    "options": {"A": "clumsy", "B": "rash", "C": "adept", "D": "reckless", "E": "indifferent"},
+    "A": "clumsy",
+    "B": "rash",
+    "C": "adept",
+    "D": "reckless",
+    "E": "indifferent",
     "correct": "C",
-    "explanation": "ÇÖZÜM: 'Adept' (becerikli, usta). Krizi başarıyla yönetip savaşı önleyen bir diplomat için kullanılan olumlu sıfattır."
+    "explanation": "ÇÖZÜM: 'Adept' (becerikli, usta, yetenekli). Krizi başarıyla yönetip savaşı önleyen bir diplomat için kullanılan olumlu sıfattır."
   },
   {
     "id": 7,
-    "type": "Grammar",
     "prompt": "Not until the implementation of the new carbon tax ______ significant progress in the reduction of industrial emissions across the continent.",
-    "options": {"A": "there was", "B": "did there be", "C": "was there", "D": "has there been", "E": "there had been"},
+    "A": "there was",
+    "B": "did there be",
+    "C": "was there",
+    "D": "has there been",
+    "E": "there had been",
     "correct": "C",
-    "explanation": "ÇÖZÜM: 'Not until' yapısı cümle başında devrik (Inversion) yapı gerektirir. Geçmişe atıf için 'was there' doğrudur."
+    "explanation": "ÇÖZÜM: 'Not until' yapısı cümle başında devrik (Inversion) yapı gerektirir. 'Be' fiili devrik yapıda 'was/were' olarak başa gelir. Geçmişe atıf için 'was there' doğrudur."
   },
   {
     "id": 8,
-    "type": "Grammar",
     "prompt": "It is imperative that the judicial system ______ its independence from political influence to maintain public trust in the law.",
-    "options": {"A": "upholds", "B": "uphold", "C": "upholding", "D": "to uphold", "E": "is upholding"},
+    "A": "upholds",
+    "B": "uphold",
+    "C": "upholding",
+    "D": "to uphold",
+    "E": "is upholding",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'It is imperative that' yapısı Subjunctive gerektirir. Fiil her zaman yalın (bare infinitive) kalır; 'uphold' doğrudur."
+    "explanation": "ÇÖZÜM: 'It is imperative that' (Zorunludur ki) yapısı Subjunctive gerektirir. Bu yapıda fiil her zaman yalın (bare infinitive) kalır; 'uphold' doğrudur."
   },
   {
     "id": 9,
-    "type": "Grammar",
     "prompt": "The suspect is alleged ______ confidential information to foreign agents long before the official investigation began.",
-    "options": {"A": "to leak", "B": "to have leaked", "C": "leaking", "D": "to be leaking", "E": "having leaked"},
+    "A": "to leak",
+    "B": "to have leaked",
+    "C": "leaking",
+    "D": "to be leaking",
+    "E": "having leaked",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'Is alleged' yapısından sonra eylem geçmişte bittiği için (long before) Perfect Infinitive (to have + V3) kullanılır."
+    "explanation": "ÇÖZÜM: 'Is alleged' (iddia ediliyor) yapısından sonra eylem geçmişte bittiği için (long before) Perfect Infinitive (to have + V3) kullanılır."
   },
   {
     "id": 10,
-    "type": "Grammar",
     "prompt": "Should the volatile chemicals ______ to extreme heat, a catastrophic explosion is almost inevitable.",
-    "options": {"A": "expose", "B": "be exposed", "C": "to be exposed", "D": "exposing", "E": "have exposed"},
+    "A": "expose",
+    "B": "be exposed",
+    "C": "to be exposed",
+    "D": "exposing",
+    "E": "have exposed",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'Should' devrik Type 1. Kimyasallar maruz 'kalacağı' (pasif) için 'be exposed' (yalın pasif) kullanılır."
+    "explanation": "ÇÖZÜM: 'Should' ile başlayan devrik şart cümlesi (Type 1). Kimyasallar maruz 'kalacağı' (pasif) için 'be exposed' (yalın pasif) kullanılır."
   },
   {
     "id": 11,
-    "type": "Grammar",
     "prompt": "Little ______ the inventors realize that their discovery ______ the entire field of quantum physics in the years to follow.",
-    "options": {"A": "did / would revolutionize", "B": "have / will revolutionize", "C": "do / has revolutionized", "D": "had / was revolutionizing", "E": "were / had revolutionized"},
+    "A": "did / would revolutionize",
+    "B": "have / will revolutionize",
+    "C": "do / has revolutionized",
+    "D": "had / was revolutionizing",
+    "E": "were / had revolutionized",
     "correct": "A",
     "explanation": "ÇÖZÜM: 'Little' zarfı başta devrik yapı ister (did ... realize). Geçmişten geleceğe bakış 'would' (future in the past) ile verilir."
   },
   {
     "id": 12,
-    "type": "Grammar",
     "prompt": "Rarely ______ a single individual had such a profound impact on the direction of global economic policy.",
-    "options": {"A": "we encounter", "B": "do we encounter", "C": "has", "D": "we have encountered", "E": "have we"},
+    "A": "we encounter",
+    "B": "do we encounter",
+    "C": "has",
+    "D": "we have encountered",
+    "E": "have we",
     "correct": "C",
-    "explanation": "ÇÖZÜM: 'Rarely' (Inversion). Cümlede 'had' (V3) olduğu için yardımcı fiil 'has' devrilmiştir."
+    "explanation": "ÇÖZÜM: 'Rarely' (Inversion). Cümlede 'had' (V3) olduğu için yardımcı fiil 'has' devrilmiştir (Rarely has a single individual had...)."
   },
   {
     "id": 13,
-    "type": "Grammar",
     "prompt": "By the time the new regulations ______ next month, most corporations ______ their internal compliance systems.",
-    "options": {"A": "are implemented / will have changed", "B": "will be implemented / have changed", "C": "were implemented / had changed", "D": "are implemented / will change", "E": "implement / would have changed"},
+    "A": "are implemented / will have changed",
+    "B": "will be implemented / have changed",
+    "C": "were implemented / had changed",
+    "D": "are implemented / will change",
+    "E": "implement / would have changed",
     "correct": "A",
     "explanation": "ÇÖZÜM: 'By the time + Present Simple, Future Perfect (will have V3)' kalıbı. Gelecekte bir ana kadar tamamlanmış olacak eylemler için kullanılır."
   },
   {
     "id": 14,
-    "type": "Grammar",
     "prompt": "No sooner ______ the satellite reached its orbit ______ it began transmitting high-resolution data back to Earth.",
-    "options": {"A": "had / than", "B": "did / when", "C": "had / when", "D": "was / that", "E": "has / then"},
+    "A": "had / than",
+    "B": "did / when",
+    "C": "had / when",
+    "D": "was / that",
+    "E": "has / then",
     "correct": "A",
     "explanation": "ÇÖZÜM: 'No sooner ... than' (yapar yapmaz) kalıbı devrik dizilim (had + S + V3) ile kullanılır."
   },
   {
     "id": 15,
-    "type": "Grammar",
     "prompt": "Had the engineers ______ the bridge's structural integrity earlier, the collapse ______ successfully.",
-    "options": {"A": "assessed / could have been prevented", "B": "assess / could be prevented", "C": "assessed / would prevent", "D": "assessing / had been prevented", "E": "assess / might prevent"},
+    "A": "assessed / could have been prevented",
+    "B": "assess / could be prevented",
+    "C": "assessed / would prevent",
+    "D": "assessing / had been prevented",
+    "E": "assess / might prevent",
     "correct": "A",
     "explanation": "ÇÖZÜM: Type 3 Conditional devriği (Had + S + V3). Geçmişteki hayali sonuç pasif olduğu için 'could have been prevented' doğrudur."
   },
   {
     "id": 16,
-    "type": "Grammar",
     "prompt": "The more ______ the economic data becomes, the more ______ the market is to react to even the smallest policy shifts.",
-    "options": {"A": "volatile / likely", "B": "volatily / likelier", "C": "volatile / likelily", "D": "volatility / likelihood", "E": "volatily / likely"},
+    "A": "volatile / likely",
+    "B": "volatily / likelier",
+    "C": "volatile / likelily",
+    "D": "volatility / likelihood",
+    "E": "volatily / likely",
     "correct": "A",
     "explanation": "ÇÖZÜM: 'The more ... the more' yapısında her iki taraf da sıfat (adjective) olmalıdır."
   },
   {
     "id": 17,
-    "type": "Cloze Test",
     "prompt": "Many assume that scientific consensus emerges simply by accumulating facts. (17) ______, consensus also depends on shared standards...",
-    "options": {"A": "Therefore", "B": "Likewise", "C": "However", "D": "Namely", "E": "Consequently"},
+    "A": "Therefore",
+    "B": "Likewise",
+    "C": "However",
+    "D": "Namely",
+    "E": "Consequently",
     "correct": "C",
     "explanation": "ÇÖZÜM: Bir önceki cümledeki genel varsayıma zıt bir durum sunulduğu için zıtlık bağlacı 'However' (Ancak) gereklidir."
   },
   {
     "id": 18,
-    "type": "Cloze Test",
     "prompt": "...standards: which methods count (18) ______ reliable, how uncertainty is reported, and what replication thresholds are required.",
-    "options": {"A": "to", "B": "at", "C": "by", "D": "as", "E": "for"},
+    "A": "to",
+    "B": "at",
+    "C": "by",
+    "D": "as",
+    "E": "for",
     "correct": "D",
     "explanation": "ÇÖZÜM: 'Count as' (olarak kabul edilmek/sayılmak) kalıplaşmış bir phrasal verb kullanımıdır."
   },
   {
     "id": 19,
-    "type": "Cloze Test",
     "prompt": "When standards differ across fields, findings may (19) ______ in incompatible ways.",
-    "options": {"A": "interpret", "B": "be interpreted", "C": "interpreting", "D": "interpreted", "E": "be interpreting"},
+    "A": "interpret",
+    "B": "be interpreted",
+    "C": "interpreting",
+    "D": "interpreted",
+    "E": "be interpreting",
     "correct": "B",
     "explanation": "ÇÖZÜM: Bulgular (findings) kendi kendini yorumlayamaz, yorumlanır (pasif). Modaldan sonra yalın pasif: 'may be interpreted'."
   },
   {
     "id": 20,
-    "type": "Cloze Test",
     "prompt": "Thus, consensus is as much about common criteria (20) ______ it is about data.",
-    "options": {"A": "as", "B": "than", "C": "that", "D": "so", "E": "but"},
+    "A": "as",
+    "B": "than",
+    "C": "that",
+    "D": "so",
+    "E": "but",
     "correct": "A",
     "explanation": "ÇÖZÜM: 'As much ... as ...' (kadar) karşılaştırma yapısı kullanılmıştır."
   },
   {
     "id": 21,
-    "type": "Cloze Test",
-    "prompt": "Without bu kriterler, scientific progress would be (21) ______ by endless debates.",
-    "options": {"A": "facilitated", "B": "stymied", "C": "catalyzed", "D": "bolstered", "E": "expedited"},
+    "prompt": "Without these criteria, scientific progress would be (21) ______ by endless debates.",
+    "A": "facilitated",
+    "B": "stymied",
+    "C": "catalyzed",
+    "D": "bolstered",
+    "E": "expedited",
     "correct": "B",
     "explanation": "ÇÖZÜM: 'Stymie' (engellemek, sekteye uğratmak). Tartışmalar ilerlemeyi engelleyeceği için anlamca en uygun kelimedir."
   },
   {
     "id": 22,
-    "type": "Cloze Test",
     "prompt": "Remote work has expanded rapidly, (22) ______ flexibility and reducing commuting time.",
-    "options": {"A": "offering", "B": "to offer", "C": "offered", "D": "having offered", "E": "being offered"},
+    "A": "offering",
+    "B": "to offer",
+    "C": "offered",
+    "D": "having offered",
+    "E": "being offered",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Genişlemenin bir sonucu olarak aktif '-ing' kısaltması (sunarak) kullanılmıştır."
+    "explanation": "ÇÖZÜM: Genişlemenin bir sonucu/ek nitelemesi olarak aktif '-ing' kısaltması (offering - sunarak) kullanılmıştır."
   },
   {
     "id": 23,
-    "type": "Cloze Test",
     "prompt": "Yet it may also blur boundaries between work and personal life, (23) ______ to burnout.",
-    "options": {"A": "lead", "B": "leading", "C": "to lead", "D": "led", "E": "leads"},
+    "A": "lead",
+    "B": "leading",
+    "C": "to lead",
+    "D": "led",
+    "E": "leads",
     "correct": "B",
     "explanation": "ÇÖZÜM: 'Leading to' (yol açarak). Sürecin bir sonucunu niteleyen participle kısaltmasıdır."
   },
   {
     "id": 24,
-    "type": "Cloze Test",
     "prompt": "(24) ______ benefits are unevenly distributed, technological progress can widen inequality.",
-    "options": {"A": "Whether", "B": "Unless", "C": "When", "D": "Despite", "E": "Until"},
+    "A": "Whether",
+    "B": "Unless",
+    "C": "When",
+    "D": "Despite",
+    "E": "Until",
     "correct": "C",
     "explanation": "ÇÖZÜM: 'When' (-dığında/-dığı zaman). Koşul ve zaman belirten, bağlama en uygun bağlaçtır."
   },
   {
     "id": 25,
-    "type": "Cloze Test",
     "prompt": "Policymakers must ensure that regulations (25) ______ to protect vulnerable workers.",
-    "options": {"A": "are strengthened", "B": "strengthen", "C": "strengthened", "D": "be strengthening", "E": "strengthening"},
+    "A": "are strengthened",
+    "B": "strengthen",
+    "C": "strengthened",
+    "D": "be strengthening",
+    "E": "strengthening",
     "correct": "A",
     "explanation": "ÇÖZÜM: Kuralların (regulations) güçlendirilmesi (edilgen) gerektiği için Present Simple Passive kullanılmıştır."
   },
   {
     "id": 26,
-    "type": "Cloze Test",
-    "prompt": "Success depends on (26) ____ accountability and innovation are balanced correctly.",
-    "options": {"A": "how", "B": "what", "C": "which", "D": "who", "E": "why"},
+    "prompt": "Success depends on (26) ______ accountability and innovation are balanced correctly.",
+    "A": "how",
+    "B": "what",
+    "C": "which",
+    "D": "who",
+    "E": "why",
     "correct": "A",
     "explanation": "ÇÖZÜM: Dengelemenin 'nasıl' (how) yapıldığına bağlı olduğunu belirten Noun Clause bağlacıdır."
   },
   {
     "id": 27,
-    "type": "Sentence Completion",
     "prompt": "Despite the fact that the company reported a record profit this year, ______.",
-    "options": {
-      "A": "it has decided to hire more staff in every department",
-      "B": "several senior executives have been forced to resign due to misconduct",
-      "C": "stock prices are expected to reach an all-time high tomorrow",
-      "D": "it is planning to expand its operations into the Asian market",
-      "E": "most investors are highly satisfied with the current management"
-    },
+    "A": "it has decided to hire more staff in every department",
+    "B": "several senior executives have been forced to resign due to misconduct",
+    "C": "stock prices are expected to reach an all-time high tomorrow",
+    "D": "it is planning to expand its operations into the Asian market",
+    "E": "most investors are highly satisfied with the current management",
     "correct": "B",
     "explanation": "ÇÖZÜM: 'Despite' zıtlık ister. Kâra rağmen 'yöneticilerin istifası' (olumsuz durum) anlamca tamdır."
   },
   {
     "id": 28,
-    "type": "Sentence Completion",
     "prompt": "Unless the international community takes immediate action to curb carbon emissions, ______.",
-    "options": {
-      "A": "many endangered species will have a chance to survive",
-      "B": "global warming might be slowed down significantly",
-      "C": "we will witness an irreversible loss of biodiversity",
-      "D": "forest areas will expand more than ever before",
-      "E": "the targets set in the Paris Agreement will be easily met"
-    },
+    "A": "many endangered species will have a chance to survive",
+    "B": "global warming might be slowed down significantly",
+    "C": "we will witness an irreversible loss of biodiversity",
+    "D": "forest areas will expand more than ever before",
+    "E": "the targets set in the Paris Agreement will be easily met",
     "correct": "C",
-    "explanation": "ÇÖZÜM: 'Unless' (-mezse) olumsuz bir koşul sunar; aksiyon alınmazsa 'geri dönülemez kayıp' yaşanacaktır."
+    "explanation": "ÇÖZÜM: 'Unless' (-mezse) olumsuz bir koşul sunar; aksiyon alınmazsa 'geri dönülemez kayıp' (olumsuz sonuç) yaşanacaktır."
   },
   {
     "id": 29,
-    "type": "Sentence Completion",
     "prompt": "No matter how hard the rescue team tried to reach the trapped hikers, ______.",
-    "options": {
-      "A": "the weather conditions improved just in time",
-      "B": "they were able to save everyone safely",
-      "C": "the thick fog made it impossible to locate them",
-      "D": "it was a very successful mission for all involved",
-      "E": "the hikers were found in good health"
-    },
+    "A": "the weather conditions improved just in time",
+    "B": "they were able to save everyone safely",
+    "C": "the thick fog made it impossible to locate them",
+    "D": "it was a very successful mission for all involved",
+    "E": "the hikers were found in good health",
     "correct": "C",
-    "explanation": "ÇÖZÜM: 'No matter how hard' (ne kadar uğraşsalar da) zıtlık/başarısızlık beklentisi yaratır."
+    "explanation": "ÇÖZÜM: 'No matter how hard' (ne kadar uğraşsalar da) zıtlık/başarısızlık beklentisi yaratır. 'Sis yüzünden bulamamak' bu yapıyı tamamlar."
   },
   {
     "id": 30,
-    "type": "Sentence Completion",
     "prompt": "While some critics argue that digital technology isolates people, ______.",
-    "options": {
-      "A": "it often leads to shorter attention spans among students",
-      "B": "it clearly facilitates global communication and community building",
-      "C": "privacy concerns are becoming more prevalent nowadays",
-      "D": "many apps are designed to be addictive for users",
-      "E": "social media has many negative impacts on mental health"
-    },
+    "A": "it often leads to shorter attention spans among students",
+    "B": "it clearly facilitates global communication and community building",
+    "C": "privacy concerns are becoming more prevalent nowadays",
+    "D": "many apps are designed to be addictive for users",
+    "E": "social media has many negative impacts on mental health",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'While' zıtlık bağlacıdır. İzolasyon iddiasına karşı 'küresel iletişimi kolaylaştırma' zıtlığı kurar."
+    "explanation": "ÇÖZÜM: 'While' zıtlık bağlacıdır. İzolasyon iddiasına karşı 'küresel iletişimi kolaylaştırma' (olumlu yön) zıtlığı kurar."
   },
   {
     "id": 31,
-    "type": "Sentence Completion",
     "prompt": "So complex was the structural defect in the bridge ______.",
-    "options": {
-      "A": "even the most experienced engineers couldn't find a solution",
-      "B": "that it required years of intensive restoration work",
-      "C": "when it was first inspected by the city officials",
-      "D": "because the materials used were of very low quality",
-      "E": "although it appeared perfectly safe from the outside"
-    },
+    "A": "even the most experienced engineers couldn't find a solution",
+    "B": "that it required years of intensive restoration work",
+    "C": "when it was first inspected by the city officials",
+    "D": "because the materials used were of very low quality",
+    "E": "although it appeared perfectly safe from the outside",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'So ... that' kalıbı. Defekt o kadar karmaşıktı ki 'şuna yol açtı' (that) şeklinde tamamlanmalıdır."
+    "explanation": "ÇÖZÜM: 'So + Adjective + be + S + that' kalıbı. Defekt o kadar karmaşıktı ki 'şuna yol açtı' (that) şeklinde tamamlanmalıdır."
   },
   {
     "id": 32,
-    "type": "Sentence Completion",
-    "prompt": "______ for the timely discovery of the tumor, the patient would not have had a good chance of recovery.",
-    "options": {
-      "A": "If it were not",
-      "B": "Had it not been",
-      "C": "Unless it was",
-      "D": "Even if it had been",
-      "E": "Provided it was"
-    },
+    "prompt": "______ for the timely discovery of the tumor, the patient would not have had such a good chance of recovery.",
+    "A": "If it were not",
+    "B": "Had it not been",
+    "C": "Unless it was",
+    "D": "Even if it had been",
+    "E": "Provided it was",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Type 3 Conditional devriği: 'Had it not been for' (olmasaydı)."
+    "explanation": "ÇÖZÜM: Type 3 Conditional (geçmişteki hayali durum) devriği: 'Had it not been for' (olmasaydı). Sonuç 'would not have had' ile uyumludur."
   },
   {
     "id": 33,
-    "type": "Sentence Completion",
     "prompt": "Only after months of intense deliberation ______ to approve the controversial land development project.",
-    "options": {
-      "A": "the council agreed",
-      "B": "did the council agree",
-      "C": "the council had agreed",
-      "D": "has the council agreed",
-      "E": "the council was agreed"
-    },
+    "A": "the council agreed",
+    "B": "did the council agree",
+    "C": "the council had agreed",
+    "D": "has the council agreed",
+    "E": "the council was agreed",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'Only after' başta devrik yapı (Inversion) ister (did ... agree)."
+    "explanation": "ÇÖZÜM: 'Only after' başta devrik yapı (Inversion) ister. Geçmiş zaman dizilimi 'did the council agree' şeklindedir."
   },
   {
     "id": 34,
-    "type": "Sentence Completion",
     "prompt": "The novel, whose plot is based on real historical events, ______.",
-    "options": {
-      "A": "is often criticized for being too predictable",
-      "B": "has been translated into over thirty languages",
-      "C": "who was written by a famous author in the 19th century",
-      "D": "it provides a unique perspective on the Great Depression",
-      "E": "which gained immense popularity shortly after its release"
-    },
+    "A": "is often criticized for being too predictable",
+    "B": "has been translated into over thirty languages",
+    "C": "who was written by a famous author in the 19th century",
+    "D": "it provides a unique perspective on the Great Depression",
+    "E": "which gained immense popularity shortly after its release",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Ana özne 'the novel' dır. Relative clause bittikten sonra ana fiil (has been translated) gelmelidir."
+    "explanation": "ÇÖZÜM: Ana özne 'the novel' dır. Relative clause bittikten sonra ana cümlenin fiili (has been translated) gelmelidir."
   },
   {
     "id": 35,
-    "type": "Sentence Completion",
     "prompt": "It is recommended that anyone planning to visit the tropical region ______.",
-    "options": {
-      "A": "takes all necessary vaccinations before departure",
-      "B": "take all necessary vaccinations before departure",
-      "C": "to take all necessary vaccinations before departure",
-      "D": "taking all necessary vaccinations before departure",
-      "E": "should have taken all necessary vaccinations"
-    },
+    "A": "takes all the necessary vaccinations before departure",
+    "B": "take all the necessary vaccinations before departure",
+    "C": "to take all the necessary vaccinations before departure",
+    "D": "taking all the necessary vaccinations before departure",
+    "E": "should have taken all the necessary vaccinations",
     "correct": "B",
     "explanation": "ÇÖZÜM: 'It is recommended that' Subjunctive yapısıdır, fiil her zaman yalın (take) kalır."
   },
   {
     "id": 36,
-    "type": "Sentence Completion",
     "prompt": "Rather than spending all their budget on aggressive marketing campaigns, ______.",
-    "options": {
-      "A": "the company should consider investing in product development",
-      "B": "luxury brands have increased their prices significantly recently",
-      "C": "marketing is essential for any business to thrive",
-      "D": "they bought a new office in the city center last month",
-      "E": "the target audience prefers traditional forms of advertising"
-    },
+    "A": "the company should consider investing in product development",
+    "B": "luxury brands have increased their prices significantly recently",
+    "C": "marketing is essential for any business to thrive in a competitive market",
+    "D": "they bought a new office in the city center last month",
+    "E": "the target audience prefers traditional forms of advertising",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'Rather than' (yerine) bir tercih sunar."
+    "explanation": "ÇÖZÜM: 'Rather than' (yerine) bir tercih/tavsiye sunar; 'reklam yerine geliştirmeye yatırım yapmalı' anlamca tutarlıdır."
   },
   {
     "id": 37,
-    "type": "Translation",
     "prompt": "Bu yaklaşım, kısa vadeli kazançlar yerine sürdürülebilir büyümeyi hedefler.",
-    "options": {
-      "A": "This approach aims for sustainable growth rather than short-term gains.",
-      "B": "This approach rejects growth in every form for short-term profit.",
-      "C": "Sustainable growth is as important as short-term gains.",
-      "D": "This approach focuses only on short-term profit.",
-      "E": "Short-term gains are targeted by this approach."
-    },
+    "A": "This approach aims for sustainable growth rather than short-term gains.",
+    "B": "This approach rejects growth in every form for short-term profit.",
+    "C": "Sustainable growth is as important as short-term gains for this approach.",
+    "D": "This approach focuses only on short-term profit instead of sustainability.",
+    "E": "Short-term gains are targeted by this approach rather than sustainability.",
     "correct": "A",
     "explanation": "ÇÖZÜM: 'Rather than' (yerine) ve 'aim for' (hedeflemek) yapıları cümlenin tam karşılığıdır."
   },
   {
     "id": 38,
-    "type": "Translation",
     "prompt": "İnternetin yaygınlaşmasıyla birlikte, bilgiye erişim hızı artsa da bilginin doğruluğunu teyit etmek zorlaşmıştır.",
-    "options": {
-      "A": "Confirming information is hard even though the internet is common.",
-      "B": "With the widespread use of the internet, although the speed of access to information has increased, it has become harder to verify its accuracy.",
-      "C": "The internet has increased information speed, but verification is hard.",
-      "D": "Accessing information is faster now, but confirming it is difficult.",
-      "E": "Although the internet is common, accuracy is not important."
-    },
+    "A": "Confirming the accuracy of information is hard even though the internet is common.",
+    "B": "With the widespread use of the internet, although the speed of access to information has increased, it has become harder to verify its accuracy.",
+    "C": "The internet has increased the speed of information, but people do not verify if it is accurate.",
+    "D": "Accessing information is faster now, but confirming its accuracy is still very difficult.",
+    "E": "Although the internet is common, the accuracy of information is not as important as the speed of access.",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Cümlenin tüm öğeleri (yaygınlaşmasıyla, artsa da, teyit etmek) B şıkkında mevcuttur."
+    "explanation": "ÇÖZÜM: 'With the widespread use' (yaygınlaşmasıyla), 'although' (-sa da) ve 'verify/confirm accuracy' (doğruluğunu teyit etmek) ifadeleri birebir örtüşmektedir."
   },
   {
     "id": 39,
-    "type": "Translation",
     "prompt": "Ekonomik krizle başa çıkabilmek için hükümet, kamu harcamalarını azaltmak ve yerel üretimi desteklemek zorundadır.",
-    "options": {
-      "A": "The government must reduce public spending and support local production to cope with the economic crisis.",
-      "B": "To solve the crisis, the government should focus on production.",
-      "C": "Reducing public spending is the only way to support production.",
-      "D": "The government has reduced spending to support production.",
-      "E": "Although there is a crisis, the government continues production."
-    },
+    "A": "The government must reduce public spending and support local production to cope with the economic crisis.",
+    "B": "To solve the economic crisis, the government should ignore public spending and focus on production.",
+    "C": "Reducing public spending is the only way for the government to support local production during a crisis.",
+    "D": "The government has reduced public spending, so it can support local production and end the crisis.",
+    "E": "Although there is an economic crisis, the government continues to support local production and public spending.",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'Cope with' (başa çıkmak) ve 'must' (zorunda) anahtar kelimelerdir."
+    "explanation": "ÇÖZÜM: 'Cope with' (başa çıkmak), 'reduce' (azaltmak), 'must' (zorunda) anahtar kelimelerdir."
   },
   {
     "id": 40,
-    "type": "Translation",
     "prompt": "Despite the heavy rain, the football match was not postponed, which surprised the fans.",
-    "options": {
-      "A": "Şiddetli yağmura rağmen futbol maçının ertelenmemesi taraftarları şaşırttı.",
-      "B": "Yağmur şiddetli olduğu için maçın ertelenmesini bekliyorlardı.",
-      "C": "Maç ertelenmedi çünkü taraftarlar yağmura rağmen gelmişti.",
-      "D": "Taraftarlar maçın ertelenmemesine şaşırdılar ama maçı izlediler.",
-      "E": "Maçın ertelenmesi taraftarları şaşırttı çünkü yağmur azdı."
-    },
+    "A": "Şiddetli yağmura rağmen futbol maçının ertelenmemesi taraftarları şaşırttı.",
+    "B": "Yağmur çok şiddetli olduğu için taraftarlar maçın ertelenmesini bekliyordu.",
+    "C": "Futbol maçı ertelenmedi çünkü taraftarlar yağmura rağmen stadyuma gelmişti.",
+    "D": "Taraftarlar, maçın ertelenmemesine şaşırdılar ama yine de yağmurda maçı izlediler.",
+    "E": "Maçın ertelenmesi taraftarları şaşırttı çünkü yağmur o kadar da şiddetli değildi.",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'Despite' (rağmen), 'postpone' (erteleme) kavramları A şıkkında doğrudur."
+    "explanation": "ÇÖZÜM: 'Despite' (rağmen), 'postpone' (erteleme), 'surprise' (şaşırtmak) kelimeleri A şıkkında tam olarak karşılanmıştır."
   },
   {
     "id": 41,
-    "type": "Translation",
     "prompt": "The new project aims to provide clean water to rural areas where people suffer from water scarcity.",
-    "options": {
-      "A": "Su kıtlığı çeken insanlar için kırsal bölgelerde yeni bir proje başladı.",
-      "B": "Yeni proje, insanların su kıtlığı çektiği kırsal bölgelere temiz su sağlamayı amaçlamaktadır.",
-      "C": "Kırsal bölgelerdeki su kıtlığı sorunu çözülmeye çalışılıyor.",
-      "D": "Bu projenin amacı, su kıtlığı olan yerlerde temiz su bulmaktır.",
-      "E": "Temiz su sağlamak amacıyla başlatılan proje kırsal kesimi hedefliyor."
-    },
+    "A": "Su kıtlığı çeken insanlar için kırsal bölgelerde yeni bir temiz su projesi başlatıldı.",
+    "B": "Yeni proje, insanların su kıtlığı çektiği kırsal bölgelere temiz su sağlamayı amaçlamaktadır.",
+    "C": "Kırsal bölgelerdeki su kıtlığı sorunu, yeni bir temiz su projesiyle çözülmeye çalışılıyor.",
+    "D": "Bu projenin amacı, su kıtlığı olan yerlerdeki insanlara nasıl temiz su bulunacağını öğretmektir.",
+    "E": "Temiz su sağlamak amacıyla başlatılan proje, özellikle su kıtlığı olan kırsal kesimleri hedefliyor.",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'Aim to' (amaçlamak) ve 'rural areas' (kırsal bölgeler) B şıkkında doğru verilmiştir."
+    "explanation": "ÇÖZÜM: 'Aim to' (amaçlamak), 'rural areas' (kırsal bölgeler), 'water scarcity' (su kıtlığı) kavramları B şıkkında doğru dizilmiştir."
   },
   {
     "id": 42,
-    "type": "Translation",
     "prompt": "Son araştırmalar, düzenli egzersiz yapmanın sadece fiziksel sağlığı iyileştirmekle kalmayıp aynı zamanda stresi de azalttığını göstermektedir.",
-    "options": {
-      "A": "Regular exercise is good for physical health and stress.",
-      "B": "Recent research shows that doing regular exercise not only improves physical health but also reduces stress.",
-      "C": "If you want to improve health, you should do exercise.",
-      "D": "Research proven that stress can be reduced by exercise.",
-      "E": "Not only stress but also physical health can be improved."
-    },
+    "A": "Regular exercise is good for physical health and it also helps to manage stress according to some research.",
+    "B": "Recent research shows that doing regular exercise not only improves physical health but also reduces stress.",
+    "C": "If you want to improve your physical health and reduce stress, you should do regular exercise.",
+    "D": "Research has proven that stress can be reduced by improving physical health through regular exercise.",
+    "E": "Not only stress but also physical health can be improved by doing regular exercise, as research suggests.",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'Not only ... but also' (sadece ... değil aynı zamanda ...) yapısı Türkçedeki vurguyu tam karşılar."
+    "explanation": "ÇÖZÜM: 'Not only ... but also' (sadece ... değil, aynı zamanda ...) yapısı çeviride tam karşılığıdır."
   },
   {
     "id": 43,
-    "type": "Paragraph",
-    "prompt": "According to the passage, the primary reason for the decline in bee populations is ______.",
-    "options": {
-      "A": "the natural aging process of bee colonies",
-      "B": "environmental factors such as pesticide use and habitat loss",
-      "C": "an increase in the global production of nuts and fruits",
-      "D": "the migration of bees to urban areas for better food",
-      "E": "a lack of interest in traditional beekeeping methods"
-    },
+    "prompt": "According to the passage, bees are vital because they ______.",
+    "A": "produce large amounts of honey for export",
+    "B": "are the main pollinators for many food crops",
+    "C": "help to reduce the effects of climate change",
+    "D": "are resistant to the harmful effects of pesticides",
+    "E": "live in diverse habitats across the globe",
     "correct": "B",
-    "explanation": "ÇÖZÜM: (Pasaj Arılar üzerinedir). Metinde pestisit (pesticide) ve yaşam alanı kaybı (habitat loss) vurgulanmıştır."
+    "explanation": "ÇÖZÜM: (Metin özeti: Arılar tozlaşma (pollination) için kritiktir). Metinde 'primary pollinators' ifadesi geçtiği için B doğrudur."
   },
   {
     "id": 44,
-    "type": "Paragraph",
-    "prompt": "The author implies that without bees, global food security ______.",
-    "options": {
-      "A": "would remain unaffected due to modern technology",
-      "B": "could be severely compromised due to a lack of pollination",
-      "C": "would improve as farmers switch to other crops",
-      "D": "is only a concern for people in developing nations",
-      "E": "will depend solely on the use of wind-pollinated plants"
-    },
-    "correct": "B",
-    "explanation": "ÇÖZÜM: Arıların yokluğunun tozlaşmayı (pollination) bitirip gıda güvenliğini tehlikeye atacağı (compromised) belirtilmiştir."
+    "prompt": "The author implies that the decline in bee populations ______.",
+    "A": "is a natural process that occurs every few centuries",
+    "B": "will have little impact on the global economy",
+    "C": "could lead to a major crisis in the global food supply",
+    "D": "can be easily reversed by moving colonies to urban areas",
+    "E": "is primarily caused by the overproduction of fruits",
+    "correct": "C",
+    "explanation": "ÇÖZÜM: Metinde tozlaşma olmazsa gıda arzının (food supply) riske gireceği belirtilmiştir."
   },
   {
     "id": 45,
-    "type": "Paragraph",
-    "prompt": "In the context of the passage, the term 'efficiency' in policy is often ______.",
-    "options": {
-      "A": "misunderstood as a purely ethical goal",
-      "B": "presented as a neutral and objective target",
-      "C": "used to justify the equal distribution of wealth",
-      "D": "rejected by economists as a vague concept",
-      "E": "limited to the measurement of time saved"
-    },
-    "correct": "B",
-    "explanation": "ÇÖZÜM: (Pasaj Politika Verimliliği üzerinedir). Verimliliğin genelde 'tarafsız/objektif' (neutral) bir hedef olarak sunulduğu metinde geçer."
+    "prompt": "In the passage, 'efficiency' is described as ______.",
+    "A": "a purely technical and objective measurement",
+    "B": "a neutral goal that everyone agrees upon",
+    "C": "a value-laden concept inseparable from fairness",
+    "D": "a term only used in mathematical economic models",
+    "E": "the only priority for modern policymakers",
+    "correct": "C",
+    "explanation": "ÇÖZÜM: (Metin özeti: Verimlilik adalet tartışmalarından ayrılamaz). Metin verimliliğin 'fairness' (adalet) ile olan bağını vurgular."
   },
   {
     "id": 46,
-    "type": "Paragraph",
-    "prompt": "The passage suggests that debates about efficiency cannot be separated from ______.",
-    "options": {
-      "A": "the cost of initial infrastructure",
-      "B": "questions regarding fairness and equity",
-      "C": "the speed of technological advancement",
-      "D": "the geographic location of the population",
-      "E": "the personal preferences of policymakers"
-    },
+    "prompt": "The author suggests that a policy may appear efficient ______.",
+    "A": "if it benefits all social groups equally",
+    "B": "when it shifts the burden from one group to another",
+    "C": "only if it requires no financial investment",
+    "D": "because it eliminates the need for any measurement",
+    "E": "whenever it is implemented by a neutral authority",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Verimlilik ve adalet/hakkaniyet (fairness/equity) arasındaki ayrılmaz bağ vurgulanmıştır."
+    "explanation": "ÇÖZÜM: Metinde verimliliğin bir kesim üzerindeki yükü (burden) diğerine aktarabileceği söylenmiştir."
   },
   {
     "id": 47,
-    "type": "Paragraph",
-    "prompt": "The author argue that scientific consensus is built upon ______.",
-    "options": {
-      "A": "the simple accumulation of raw data and facts",
-      "B": "shared standards and criteria within the community",
-      "C": "ignoring uncertainty to reach quicker agreements",
-      "D": "political pressure from government funding agencies",
-      "E": "the elimination of all peer-review processes"
-    },
+    "prompt": "The main idea of the passage is that ______.",
+    "A": "data is the only factor in scientific consensus",
+    "B": "consensus is as much about shared criteria as it is about data",
+    "C": "scientists should ignore uncertainty to reach agreement",
+    "D": "replication is unnecessary in modern scientific research",
+    "E": "all scientific methods are equally valid regardless of the field",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Fikir birliğinin (consensus) 'ortak kriterlere' (shared standards) dayandığı savunulur."
+    "explanation": "ÇÖZÜM: (Metin özeti: Bilimsel fikir birliği ortak kriterlere dayanır). Veri ve ortak kriterlerin (shared criteria) önemi anlatılmaktadır."
   },
   {
     "id": 48,
-    "type": "Paragraph",
-    "prompt": "According to the passage, findings across different fields may be incompatible because ______.",
-    "options": {
-      "A": "the equipment used is often outdated",
-      "B": "researchers use different thresholds and standards",
-      "C": "there is too much focus on uncertainty reporting",
-      "D": "most data is now collected automatically by AI",
-      "E": "publication speed has decreased in recent years"
-    },
+    "prompt": "According to the passage, incompatible findings often result from ______.",
+    "A": "a lack of funding for research laboratories",
+    "B": "differences in standards and methods across fields",
+    "C": "the natural variation in physical data sets",
+    "D": "a lack of communication between scientists",
+    "E": "the use of overly advanced technology in trials",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Uyumsuzluğun nedeni 'farklı standartlar' (different thresholds) olarak açıklanmıştır."
+    "explanation": "ÇÖZÜM: Farklı alanlardaki standart ve yöntem farklarının (differences in standards) uyumsuz bulgulara yol açtığı metinde belirtilmiştir."
   },
   {
     "id": 49,
-    "type": "Paragraph",
-    "prompt": "Remote work expanded rapidly mainly because it ______.",
-    "options": {
-      "A": "guarantees that all employees work longer hours",
-      "B": "offers flexibility and eliminates commuting time",
-      "C": "completely removes all sources of workplace stress",
-      "D": "is the only way to ensure high levels of privacy",
-      "E": "requires no technical training for the staff"
-    },
+    "prompt": "Remote work is described in the passage as a system that ______.",
+    "A": "guarantees higher productivity for all employees",
+    "B": "blurs the boundaries between professional and private life",
+    "C": "is only beneficial for people living in urban areas",
+    "D": "requires more supervision than traditional office work",
+    "E": "has been rejected by most large corporations",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Esneklik (flexibility) ve yol süresi (commuting) avantajları metinde vurgulanmıştır."
+    "explanation": "ÇÖZÜM: (Metin özeti: Uzaktan çalışma tükenmişliğe yol açabilir). İş ve özel yaşam sınırlarını bulandırdığı (blur boundaries) belirtilmiştir."
   },
   {
     "id": 50,
-    "type": "Paragraph",
-    "prompt": "The author cautions that remote work might ______.",
-    "options": {
-      "A": "make office buildings completely obsolete within a year",
-      "B": "blur the boundaries between professional and personal life",
-      "C": "only be useful for people in the tech industry",
-      "D": "increase the cost of energy for most corporations",
-      "E": "prevent any form of teamwork among employees"
-    },
-    "correct": "B",
-    "explanation": "ÇÖZÜM: İş ve özel hayat sınırlarının bulanıklaşması (blur boundaries) temel risktir."
+    "prompt": "The author implies that the transition to renewable energy ______.",
+    "A": "is a choice rather than a necessity",
+    "B": "will be impossible due to the high initial costs",
+    "C": "is essential for the planet's long-term survival",
+    "D": "depends only on the availability of solar power",
+    "E": "should be postponed until the economy stabilizes",
+    "correct": "C",
+    "explanation": "ÇÖZÜM: (Metin özeti: Yenilenebilir enerji bir zorunluluktur). 'Survival of the planet' ifadesi C şıkkını destekler."
   },
   {
     "id": 51,
-    "type": "Paragraph",
-    "prompt": "The passage states that traditional energy sources like coal and oil are ______.",
-    "options": {
-      "A": "essential for reducing the impact of global warming",
-      "B": "the primary drivers behind the current climate crisis",
-      "C": "renewable if managed with modern technology",
-      "D": "more reliable and cleaner than solar energy",
-      "E": "the only focus of modern energy policy research"
-    },
-    "correct": "B",
-    "explanation": "ÇÖZÜM: Kömür ve petrolün iklim krizinin 'baş aktörü' (primary drivers) olduğu belirtilmiştir."
+    "prompt": "According to the passage, traditional energy sources are ______.",
+    "A": "cleaner than solar and wind energy",
+    "B": "inexhaustible and easy to manage",
+    "C": "the primary drivers of global warming",
+    "D": "more cost-effective in the long run",
+    "E": "favored by all environmental scientists",
+    "correct": "C",
+    "explanation": "ÇÖZÜM: Fosil yakıtların küresel ısınmanın ana tetikleyicisi (primary drivers) olduğu metinde geçer."
   },
   {
     "id": 52,
-    "type": "Paragraph",
-    "prompt": "It can be inferred from the passage that the cost of renewable energy infrastructure ______.",
-    "options": {
-      "A": "is negligible compared to traditional sources",
-      "B": "is high initially but justified by long-term benefits",
-      "C": "will always remain too high for developing nations",
-      "D": "is the main reason why global warming is increasing",
-      "E": "is no longer a concern for modern governments"
-    },
-    "correct": "B",
-    "explanation": "ÇÖZÜM: Maliyetin başta yüksek olduğu (high initially) ancak uzun vadeli faydaların (long-term benefits) ağır bastığı ifade edilir."
+    "prompt": "The passage points out that fossil fuels are ______.",
+    "A": "limited and damaging to the environment",
+    "B": "essential for reducing carbon emissions",
+    "C": "the only way to maintain modern lifestyles",
+    "D": "renewable if managed correctly over time",
+    "E": "cheaper to install than wind turbines",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: 'Finite' (sınırlı) ve 'damaging' (zarar verici) kelimeleri fosil yakıtları tarif eder."
   },
   {
     "id": 53,
-    "type": "Paragraph",
-    "prompt": "The author implies that digital misinformation ______.",
-    "options": {
-      "A": "is a transient problem that will solve itself",
-      "B": "threatens the very foundation of democratic discourse",
-      "C": "is only spread by people who lack technical skills",
-      "D": "has been eliminated by social media moderation",
-      "E": "is more prevalent in print media than online"
-    },
+    "prompt": "It can be inferred from the passage that AI ______.",
+    "A": "will eliminate all human jobs within a decade",
+    "B": "primarily automates repetitive and routine tasks",
+    "C": "is only useful for large-scale data analysis",
+    "D": "cannot replace human creativity in any way",
+    "E": "has reduced productivity in most industries",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Dijital yanlış bilginin demokratik tartışma zeminini (foundation of discourse) tehdit ettiği anlatılır."
+    "explanation": "ÇÖZÜM: (Metin özeti: YZ iş gücünü dönüştürüyor). YZ'nin genelde rutin görevleri (repetitive tasks) otomatize ettiği bilgisi yaygındır."
   },
   {
     "id": 54,
-    "type": "Paragraph",
-    "prompt": "According to the passage, combating misinformation requires ______.",
-    "options": {
-      "A": "the total censorship of all online news sources",
-      "B": "promoting digital literacy and shared verification standards",
-      "C": "ignoring all news that is not from official agencies",
-      "D": "reducing the speed of internet access globally",
-      "E": "allowing all users to share any information freely"
-    },
+    "prompt": "The author suggests that workers must ______ to adapt to AI.",
+    "A": "reject all forms of automation immediately",
+    "B": "acquire new skills to remain competitive",
+    "C": "focus only on traditional manufacturing jobs",
+    "D": "expect the government to provide for all their needs",
+    "E": "ignore technological shifts as much as possible",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Dijital okuryazarlık (digital literacy) ve doğrulama (verification) çözümdür."
+    "explanation": "ÇÖZÜM: Metinde yeni beceriler edinmenin (acquire new skills) önemi vurgulanmıştır."
   },
   {
     "id": 55,
-    "type": "Paragraph",
-    "prompt": "One impact of AI on the workforce mentioned in the passage is ______.",
-    "options": {
-      "A": "the total removal of the need for human management",
-      "B": "the automation of routine and repetitive tasks",
-      "C": "an increase in the number of traditional manufacturing jobs",
-      "D": "a decrease in the demand for technical and digital skills",
-      "E": "the complete elimination of inequality in every sector"
-    },
+    "prompt": "The transition to an AI-driven economy requires ______.",
+    "A": "no planning as the market will adjust itself",
+    "B": "careful strategic planning and policy shifts",
+    "C": "the total elimination of the traditional workforce",
+    "D": "ignoring the social impacts for the sake of profit",
+    "E": "only the financial investment of large tech firms",
     "correct": "B",
-    "explanation": "ÇÖZÜM: YZ'nin rutin görevleri (routine tasks) otomatize etmesi yaygın bir etkidir."
+    "explanation": "ÇÖZÜM: 'Careful planning' (dikkatli planlama) ihtiyacı metnin genel sonucudur."
   },
   {
     "id": 56,
-    "type": "Paragraph",
-    "prompt": "The transition to an AI-driven economy requires workers to ______.",
-    "options": {
-      "A": "acquire new skills to remain competitive in the market",
-      "B": "expect the government to eliminate all automation",
-      "C": "focus only on jobs that existed before the tech boom",
-      "D": "reject any form of technical training in the office",
-      "E": "ignore the long-term impacts of technological shifts"
-    },
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Yeni beceriler edinme (acquire new skills) ihtiyacı vurgulanır."
+    "prompt": "The passage mainly discusses ______.",
+    "A": "the history of ancient Egyptian manuscripts",
+    "B": "how scientific findings are interpreted across fields",
+    "C": "the impact of digital misinformation on democracy",
+    "D": "the relationship between efficiency and fairness in policy",
+    "E": "the role of bees in global food security",
+    "correct": "C",
+    "explanation": "ÇÖZÜM: (Metin özeti: Yanlış bilgi demokrasiyi tehdit eder). 'Misinformation' ve 'democracy' ana temadır."
   },
   {
     "id": 57,
-    "type": "Paragraph",
-    "prompt": "The main theme of the passage is ______.",
-    "options": {
-      "A": "the history of ancient archeological excavations",
-      "B": "the relationship between technology, work, and social equity",
-      "C": "the chemical properties of volatile substances in labs",
-      "D": "the benefits of traditional beekeeping in rural areas",
-      "E": "the failure of modern diplomatic negotiations"
-    },
-    "correct": "B",
-    "explanation": "ÇÖZÜM: Teknoloji, iş ve toplumsal eşitlik (equity) arasındaki ilişki ana temadır."
+    "prompt": "Misinformation is described as a threat because it ______.",
+    "A": "is expensive to produce and distribute",
+    "B": "only affects people in developing nations",
+    "C": "undermines the foundations of democratic discourse",
+    "D": "can be easily detected by most social media users",
+    "E": "requires advanced technology to spread effectively",
+    "correct": "C",
+    "explanation": "ÇÖZÜM: Metin yanlış bilginin demokratik söylemi baltaladığını (undermine discourse) belirtir."
   },
   {
     "id": 58,
-    "type": "Paragraph",
-    "prompt": "Income disparity has increased partly because ______.",
-    "options": {
-      "A": "technological benefits are distributed equally to everyone",
-      "B": "current tax and economic policies favor high-income groups",
-      "C": "there is a global decrease in the demand for skilled labor",
-      "D": "most people prefer lower-paying jobs with less stress",
-      "E": "small businesses are no longer affected by global markets"
-    },
+    "prompt": "The author argues that democratic discourse ______.",
+    "A": "is immune to the effects of digital media",
+    "B": "depends on the accuracy of shared information",
+    "C": "should be restricted to expert panels only",
+    "D": "can only survive if all news is censored",
+    "E": "is no longer relevant in the modern era",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Politikaların yüksek gelirlileri (high-income groups) kayırması eşitsizliğin bir nedenidir."
+    "explanation": "ÇÖZÜM: Demokrasinin bilgi doğruluğuna (accuracy) dayandığı vurgulanmaktadır."
   },
   {
     "id": 59,
-    "type": "Paragraph",
-    "prompt": "The author suggests that a failure to address income inequality ______.",
-    "options": {
-      "A": "will lead to higher levels of social stability and peace",
-      "B": "could result in widespread social unrest and instability",
-      "C": "is not a major concern for modern developed nations",
-      "D": "can be solved by increasing the hours of the workday",
-      "E": "will happen automatically through technological progress"
-    },
+    "prompt": "The passage suggests that to combat misinformation, we must ______.",
+    "A": "limit the use of all social media platforms",
+    "B": "promote digital literacy and verification standards",
+    "C": "rely only on information from government agencies",
+    "D": "ignore small errors and focus on large scale lies",
+    "E": "allow all opinions to be shared without any oversight",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Eşitsizliğin toplumsal huzursuzluğa (unrest) yol açacağı belirtilmiştir."
+    "explanation": "ÇÖZÜM: Dijital okuryazarlık (digital literacy) çözüm olarak sunulur."
   },
   {
     "id": 60,
-    "type": "Paragraph",
-    "prompt": "Democratic discourse is vulnerable when ______.",
-    "options": {
-      "A": "the speed of internet access is too high for users",
-      "B": "misinformation undermines the accuracy of shared data",
-      "C": "all information is verified by multiple independent sources",
-      "D": "users spend less time on social media platforms",
-      "E": "the cost of digital devices remains stable over time"
-    },
+    "prompt": "The tone of the author regarding misinformation is ______.",
+    "A": "indifferent",
+    "B": "alarmed",
+    "C": "optimistic",
+    "D": "cynical",
+    "E": "ambivalent",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Yanlış bilginin veri doğruluğunu sarsması (undermine accuracy) demokrasiyi kırılgan yapar."
+    "explanation": "ÇÖZÜM: Yazarın üslubu, demokrasiye tehdit olarak gördüğü için endişeli/uyarıcı (alarmed) niteliktedir."
   },
   {
     "id": 61,
-    "type": "Paragraph",
-    "prompt": "According to the passage, the Renaissance focused on ______.",
-    "options": {
-      "A": "abstract concepts rather than the human form",
-      "B": "realism and the innovative use of perspective",
-      "C": "rejecting any form of financial support from merchants",
-      "D": "the total elimination of traditional artistic techniques",
-      "E": "focusing only on religious themes without any realism"
-    },
-    "correct": "B",
-    "explanation": "ÇÖZÜM: Rönesans'ın gerçekçilik (realism) ve perspektif odaklı olduğu belirtilir."
+    "prompt": "One reason for the increase in income disparity is ______.",
+    "A": "the equal distribution of technological benefits",
+    "B": "the lack of skilled labor in most urban centers",
+    "C": "the way tax policies favor high-income groups",
+    "D": "the decline in the number of small businesses",
+    "E": "the global decrease in the demand for skilled workers",
+    "correct": "C",
+    "explanation": "ÇÖZÜM: (Metin özeti: Gelir adaletsizliği artıyor). Vergi politikalarının (tax policies) zenginleri kayırması metindeki bir sebeptir."
   },
   {
     "id": 62,
-    "type": "Paragraph",
     "prompt": "The author suggests that income disparity ______.",
-    "options": {
-      "A": "is inevitable and should not be questioned in policy",
-      "B": "requires careful policy intervention to be reduced",
-      "C": "will increase automatically as more people get degrees",
-      "D": "is only a problem during periods of economic boom",
-      "E": "can be solved by decreasing the number of urban workers"
-    },
-    "correct": "B",
-    "explanation": "ÇÖZÜM: Eşitsizliğin politika müdahalesi (policy intervention) gerektirdiği savunulur."
+    "A": "has no significant impact on social stability",
+    "B": "is a necessary part of a thriving economy",
+    "C": "can lead to widespread social unrest",
+    "D": "will decrease automatically as technology advances",
+    "E": "is only a problem in developed countries",
+    "correct": "C",
+    "explanation": "ÇÖZÜM: Gelir uçurumunun toplumsal huzursuzluğa (social unrest) yol açtığı genel bir tespittir."
   },
   {
     "id": 63,
-    "type": "Dialogue",
     "prompt": "Sarah: Have you noticed how many startups are failing lately?\nMark: Yes, it seems the initial hype isn't enough to sustain them.\nSarah: ______.\nMark: Exactly. A realistic budget is often missing in their plans.",
-    "options": {
-      "A": "Many of them have great ideas, though",
-      "B": "They often underestimate the importance of stable funding",
-      "C": "Innovation is the key to their long-term success",
-      "D": "The founders are usually quite experienced",
-      "E": "Marketing is where they spend most of their money"
-    },
-    "correct": "B",
-    "explanation": "ÇÖZÜM: Sarah, Mark'ın bütçe vurgusunu destekleyen 'finansal kaynak/fonlama' (stable funding) uyarısını yapmalıdır."
+    "A": "Many of them have great ideas, though",
+    "B": "Innovation is the key to their long-term success",
+    "C": "They often underestimate the importance of stable funding",
+    "D": "The founders are usually quite experienced",
+    "E": "Marketing is where they spend most of their money",
+    "correct": "C",
+    "explanation": "ÇÖZÜM: Mark'ın 'bütçe eksikliği' yorumuna Sarah 'fonlama/finansal destek' (stable funding) üzerinden destek vermelidir."
   },
   {
     "id": 64,
-    "type": "Dialogue",
-    "prompt": "Teacher: Why is peer review so important in science?\nStudent: It ensures that research is evaluated by experts before publication.\nTeacher: ______.\nStudent: That's true, it acts as a filter for errors and biases.",
-    "options": {
-      "A": "So, any scientist can publish their findings immediately",
-      "B": "It basically prevents flawed data from being accepted as fact",
-      "C": "Does it also help in getting more funding for the project?",
-      "D": "Many researchers find the process too time-consuming",
-      "E": "The number of reviewers depends on the field of study"
-    },
-    "correct": "B",
-    "explanation": "ÇÖZÜM: Öğretmen, 'hatalı verinin gerçek olarak kabulünü önleme' (prevent flawed data) diyerek süreci özetler."
+    "prompt": "Teacher: Why is peer review so important in science?\nStudent: It ensures that the research is evaluated by experts before publication.\nTeacher: ______.\nStudent: That's true, it acts as a filter for errors and biases.",
+    "A": "So, any scientist can publish their findings immediately",
+    "B": "Does it also help in getting more funding for the project?",
+    "C": "It basically prevents flawed data from being accepted as fact",
+    "D": "Many researchers find the process too time-consuming",
+    "E": "The number of reviewers depends on the field of study",
+    "correct": "C",
+    "explanation": "ÇÖZÜM: Öğretmen, öğrencinin cevabını pekiştirmeli; 'hatalı verinin kabulünü önleme' (prevent flawed data) en mantıklı devamdır."
   },
   {
     "id": 65,
-    "type": "Dialogue",
     "prompt": "Jane: I'm finding it hard to separate work from my personal life while working remotely.\nTom: I had the same issue until I created a dedicated workspace.\nJane: ______.\nTom: It really does. It tells your brain that the workday is officially over.",
-    "options": {
-      "A": "I don't think I have enough space in my apartment",
-      "B": "Maybe having a physical boundary is what I need",
-      "C": "Do you think that actually makes a difference in your focus?",
-      "D": "My coworkers often call me after office hours anyway",
-      "E": "I prefer working from the couch as it is more comfortable"
-    },
-    "correct": "B",
-    "explanation": "ÇÖZÜM: 'Fiziksel sınır' (physical boundary) kavramı, Tom'un 'beyne iş bitti sinyali' açıklamasıyla örtüşür."
+    "A": "I don't think I have enough space in my apartment",
+    "B": "Do you think that actually makes a difference in your focus?",
+    "C": "My coworkers often call me after office hours anyway",
+    "D": "I prefer working from the couch as it is more comfortable",
+    "E": "Maybe having a physical boundary is what I need",
+    "correct": "E",
+    "explanation": "ÇÖZÜM: Jane'in 'fiziksel sınır' (physical boundary) fikri, Tom'un 'beyne iş bitti sinyali gönderme' açıklamasıyla tam uyumludur."
   },
   {
     "id": 66,
-    "type": "Dialogue",
     "prompt": "Officer: Can you describe the person you saw leaving the building?\nWitness: It was dark, so I only saw a tall figure in a dark coat.\nOfficer: ______.\nWitness: No, I couldn't even see the color of their hair.",
-    "options": {
-      "A": "Did they seem to be in a hurry?",
-      "B": "Were you able to notice any distinguishing features?",
-      "C": "Was there anyone else around at that time?",
-      "D": "How long did you stay at the scene after that?",
-      "E": "Did you report this to anyone else before calling us?"
-    },
-    "correct": "B",
-    "explanation": "ÇÖZÜM: Şahidin 'saç rengini bile göremedim' demesi, polisin 'ayırt edici özellik' (distinguishing features) sorusuna cevaptır."
+    "A": "Did they seem to be in a hurry?",
+    "B": "Was there anyone else around at that time?",
+    "C": "Were you able to notice any distinguishing features?",
+    "D": "How long did you stay at the scene after that?",
+    "E": "Did you report this to anyone else before calling us?",
+    "correct": "C",
+    "explanation": "ÇÖZÜM: Şahidin 'saç rengini bile göremedim' cevabı, polisin 'ayırt edici özellik' (distinguishing features) sorusuna verilmiş bir yanıttır."
   },
   {
     "id": 67,
-    "type": "Dialogue",
     "prompt": "Reporter: The public is concerned about the new tax policy.\nMinister: We understand, but it is necessary for long-term stability.\nReporter: ______.\nMinister: We have introduced subsidies to mitigate that impact.",
-    "options": {
-      "A": "The policy has been praised by many economic experts",
-      "B": "Won't this disproportionately affect low-income families?",
-      "C": "When will the new regulations come into effect?",
-      "D": "The government is planning to reduce public spending",
-      "E": "Is there any other way to ensure economic recovery?"
-    },
+    "A": "The policy has been praised by many economic experts",
+    "B": "Won't this disproportionately affect low-income families?",
+    "C": "When will the new regulations come into effect?",
+    "D": "The government is planning to reduce public spending",
+    "E": "Is there any other way to ensure economic recovery?",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Bakanın 'etkiyi azaltmak için sübvansiyon getirdik' demesi, muhabirin 'dar gelirliler üzerindeki orantısız etki' sorusuna bir yanıttır."
+    "explanation": "ÇÖZÜM: Bakanın 'etkiyi azaltmak için sübvansiyon getirdik' cevabı, muhabirin 'dar gelirlileri etkiler mi' (affect low-income) endişesine yöneliktir."
   },
   {
     "id": 68,
-    "type": "Restatement",
     "prompt": "The minister’s assurances sounded confident, but analysts found them unconvincing because they ignored key economic indicators.",
-    "options": {
-      "A": "Analysts were not persuaded by the minister's confident talk as he failed to consider important economic data.",
-      "B": "The minister was not confident about the economic indicators, which analysts also pointed out.",
-      "C": "Important economic data were ignored by the minister despite the analysts' convincing arguments.",
-      "D": "Confidence was lacking in the minister's assurances, so analysts rejected the report.",
-      "E": "Analysts found the minister's talk unconvincing even though he addressed every key indicator."
-    },
+    "A": "Analysts were not persuaded by the minister's confident talk as he failed to consider important economic data.",
+    "B": "The minister was not confident about the economic indicators, which analysts also pointed out in their report.",
+    "C": "Important economic data were ignored by the minister despite the analysts' convincing arguments.",
+    "D": "Confidence was lacking in the minister's assurances, so analysts rejected his economic report entirely.",
+    "E": "Analysts found the minister's talk unconvincing even though he addressed every key economic indicator.",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'Unconvincing' (not persuaded) ve 'ignored key indicators' (failed to consider data) eşleşmesi A'da tamdır."
+    "explanation": "ÇÖZÜM: Orijinal cümledeki 'unconvincing' (persuaded - olumsuz) ve 'ignored key indicators' (failed to consider) yapıları A şıkkında korunmuştur."
   },
   {
     "id": 69,
-    "type": "Restatement",
     "prompt": "Technological progress can improve living standards, yet it can also widen inequality if benefits are unevenly distributed.",
-    "options": {
-      "A": "Living standards only improve when the benefits are shared equally among all people.",
-      "B": "Although technology may enhance how we live, it might also increase the gap between people if distributed unfairly.",
-      "C": "Technological advancement always leads to greater inequality regardless of distribution.",
-      "D": "Inequality is a natural result of technology, so living standards do not really improve.",
-      "E": "Progress in technology is necessary to reduce inequality and improve standards."
-    },
-    "correct": "B",
-    "explanation": "ÇÖZÜM: 'Yet' (although), 'widen inequality' (increase the gap) ve 'unevenly' (unfairly) kelime takasları anlamı korumuştur."
+    "A": "Living standards only improve through technology when the benefits are shared equally among all people.",
+    "B": "Technological advancement always leads to greater inequality regardless of how the benefits are shared.",
+    "C": "Although technology may enhance how we live, it might also increase the gap between people if distributed unfairly.",
+    "D": "Inequality is a natural result of technology, so living standards do not really improve for the majority.",
+    "E": "Progress in technology is necessary to reduce inequality and improve the general living standards.",
+    "correct": "C",
+    "explanation": "ÇÖZÜM: 'Yet' (although), 'widen inequality' (increase the gap) ve 'unevenly distributed' (unfairly distributed) eşleşmeleri C'yi doğru kılar."
   },
   {
     "id": 70,
-    "type": "Restatement",
     "prompt": "The suspect is believed to have leaked confidential documents to a rival company long before the investigation began.",
-    "options": {
-      "A": "The investigation started because the suspect was caught leaking documents.",
-      "B": "It is thought that the suspect shared secret files with another firm well before the official probe started.",
-      "C": "Documents were leaked only after the investigation into the suspect had begun.",
-      "D": "Before the investigation, the suspect was believed to be innocent of sharing secret information.",
-      "E": "A rival company helped the suspect leak confidential documents during the probe."
-    },
+    "A": "The investigation started because the suspect was caught leaking documents to a competitor.",
+    "B": "It is thought that the suspect shared secret files with another firm well before the official probe started.",
+    "C": "Documents were leaked to a rival company only after the investigation into the suspect had begun.",
+    "D": "Before the investigation, the suspect was believed to be innocent of sharing secret information.",
+    "E": "A rival company helped the suspect to leak confidential documents during the investigation.",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'Is believed' (is thought), 'confidential' (secret) ve 'investigation' (probe) eşleşmeleri doğrudur."
+    "explanation": "ÇÖZÜM: 'Is believed' (is thought), 'leaked' (shared), 'confidential' (secret) ve 'investigation' (probe) kelime değişimleri B'de başarılıdır."
   },
   {
     "id": 71,
-    "type": "Restatement",
     "prompt": "The committee insisted on reviewing the raw data before approving the final report to ensure its accuracy.",
-    "options": {
-      "A": "To make sure the report was correct, the committee demanded to see the original data prior to giving their approval.",
-      "B": "The final report was approved even though the raw data were found to be inaccurate.",
-      "C": "Reviewing raw data is the only way for the committee to guarantee approval.",
-      "D": "Accuracy was not a concern for the committee as long as data were provided.",
-      "E": "The committee approved the report because the raw data had already been reviewed."
-    },
+    "A": "To make sure the report was correct, the committee demanded to see the original data prior to giving their approval.",
+    "B": "The final report was approved by the committee even though the raw data were found to be inaccurate.",
+    "C": "Reviewing raw data is the only way for the committee to guarantee that every report is approved.",
+    "D": "Accuracy was not a concern for the committee as long as the raw data were provided before the deadline.",
+    "E": "The committee approved the report because the raw data had already been reviewed by experts.",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'Insisted on' (demanded), 'ensure accuracy' (make sure correct) ve 'before' (prior to) A'yı doğru yapar."
+    "explanation": "ÇÖZÜM: 'Insisted on' (demanded), 'raw data' (original data) ve 'before' (prior to) yapıları A'da doğru verilmiştir."
   },
   {
     "id": 72,
-    "type": "Paragraph Completion",
     "prompt": "In the world of finance, some risks are quantifiable and can be predicted with accuracy. ______. These unforeseen events often have the most significant impact on the market.",
-    "options": {
-      "A": "Mathematical models are used to calculate potential losses",
-      "B": "However, others are completely unpredictable and catch experts by surprise",
-      "C": "Investors usually prefer stable and low-risk assets",
-      "D": "Therefore, most people choose to invest in well-known companies",
-      "E": "The goal of every analyst is to eliminate risk entirely"
-    },
-    "correct": "B",
-    "explanation": "ÇÖZÜM: 'Bazı riskler öngörülebilir' ifadesinden sonra 'ancak diğerleri öngörülemez' (unpredictable) zıtlığı gelmelidir."
+    "A": "Mathematical models are used to calculate potential losses",
+    "B": "Investors usually prefer stable and low-risk assets",
+    "C": "However, others are completely unpredictable and catch experts by surprise",
+    "D": "Therefore, most people choose to invest in well-known companies",
+    "E": "The goal of every analyst is to eliminate risk entirely",
+    "correct": "C",
+    "explanation": "ÇÖZÜM: Boşluktan önceki 'bazı riskler öngörülebilir' ifadesine zıt olarak 'diğerleri öngörülemez' (unpredictable) ifadesi gelmelidir."
   },
   {
     "id": 73,
-    "type": "Paragraph Completion",
-    "prompt": "Ancient architecture often reflects the social hierarchy of the time. Temples were built to dwarf the common people. ______. Even today, these structures evoke a sense of awe.",
-    "options": {
-      "A": "Building materials were usually sourced from local quarries",
-      "B": "The use of scale and perspective was a deliberate psychological tool",
-      "C": "Many commoners were employed as skilled laborers",
-      "D": "The preservation of these sites is a challenge for governments",
-      "E": "Archaeologists are still discovering new layers beneath buildings"
-    },
+    "prompt": "Ancient architecture often reflects the social hierarchy of the time. Temples and palaces were built to dwarf the common people, emphasizing the power of the elite. ______. Even today, these structures evoke a sense of awe and submission.",
+    "A": "Building materials were usually sourced from local quarries",
+    "B": "The use of scale and perspective was a deliberate psychological tool",
+    "C": "Many commoners were employed as skilled laborers during construction",
+    "D": "The preservation of these sites is a major challenge for modern governments",
+    "E": "Archaeologists are still discovering new layers beneath these buildings",
     "correct": "B",
-    "explanation": "ÇÖZÜM: İnsanları küçük gösterme çabası 'bilinçli bir psikolojik araç' (deliberate psychological tool) olarak nitelenir."
+    "explanation": "ÇÖZÜM: Boşluk öncesindeki 'insanları küçük gösterme' (dwarf) çabası, 'psikolojik bir araç' (psychological tool) nitelemesiyle tamamlanır."
   },
   {
     "id": 74,
-    "type": "Paragraph Completion",
-    "prompt": "Digital literacy is no longer optional. Most roles require proficiency with various software. ______. As a result, those who lack these skills face barriers to employment.",
-    "options": {
-      "A": "Social media is the primary way people communicate",
-      "B": "Furthermore, many companies now conduct their entire operations remotely",
-      "C": "This shift has fundamentally changed how we perceive stability",
-      "D": "Traditional education systems are struggling with this demand",
-      "E": "The cost of hardware has decreased significantly recently"
-    },
-    "correct": "B",
-    "explanation": "ÇÖZÜM: 'Uzaktan çalışma' (remote operations) örneği, dijital okuryazarlık gerekliliğini destekler."
+    "prompt": "Digital literacy is no longer an optional skill in the modern workforce. Most professional roles require a high level of proficiency with various software and online platforms. ______. As a result, those who lack these skills face significant barriers to employment.",
+    "A": "Social media is the primary way people communicate with their families",
+    "B": "Traditional education systems are struggling to keep up with this demand",
+    "C": "This shift has fundamentally changed how we perceive career stability",
+    "D": "Furthermore, many companies now conduct their entire operations remotely",
+    "E": "The cost of hardware has decreased significantly over the last decade",
+    "correct": "D",
+    "explanation": "ÇÖZÜM: 'Digital literacy' gerekliliğini destekleyen 'uzaktan operasyon' (remote operations) örneği akışı güçlendirir."
   },
   {
     "id": 75,
-    "type": "Paragraph Completion",
-    "prompt": "Scientific consensus is built upon shared standards. Findings must be peer-reviewed multiple times. ______. It ensures that only the most robust ideas become part of established knowledge.",
-    "options": {
-      "A": "This skepticism is not a weakness but a fundamental strength",
-      "B": "Many researchers struggle to find funding for long-term projects",
-      "C": "Popular science often misinterprets these findings",
-      "D": "The speed of publication has increased due to online journals",
-      "E": "Individual genius is still the most important factor"
-    },
+    "prompt": "Scientific consensus is a slow and rigorous process. Findings must be replicated and peer-reviewed multiple times before they are widely accepted. ______. It ensures that only the most robust and verified ideas become part of the established body of knowledge.",
+    "A": "This skepticism is not a weakness but a fundamental strength of science",
+    "B": "Many researchers struggle to find funding for long-term projects",
+    "C": "Popular science often misinterprets these findings for a general audience",
+    "D": "The speed of publication has increased due to online journals",
+    "E": "Individual genius is still the most important factor in discovery",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Bilimsel kuşkunun 'güç' (strength) olduğunu belirten cümle, sürecin sağlam fikirleri seçmesini açıklar."
+    "explanation": "ÇÖZÜM: Boşluktan sonraki 'en sağlam fikirlerin kalmasını sağlar' ifadesi, bu sürecin bir 'güç' (strength) olduğunu söyleyen A şıkkıyla bağlanır."
   },
   {
     "id": 76,
-    "type": "Irrelevant Sentence",
-    "prompt": "(I) Solar energy is a solution to the energy crisis. (II) It is clean, inexhaustible, and cost-effective. (III) Most modern houses are built with better insulation. (IV) However, storage remains a technical challenge. (V) Until batteries improve, we cannot rely on it fully.",
-    "options": {"A": "I", "B": "II", "C": "III", "D": "IV", "E": "V"},
+    "prompt": "(I) Solar energy is often touted as the ultimate solution to the energy crisis. (II) It is clean, inexhaustible, and increasingly cost-effective. (III) Most modern houses are now being built with better insulation to save energy. (IV) However, the storage of solar power remains a significant technical challenge. (V) Until batteries become more efficient, we cannot rely on it as our primary source.",
+    "A": "I",
+    "B": "II",
+    "C": "III",
+    "D": "IV", "E": "V",
     "correct": "C",
-    "explanation": "ÇÖZÜM: Metin 'Güneş enerjisi' hakkındadır; III. cümledeki 'ev yalıtımı' (insulation) akışı bozar."
+    "explanation": "ÇÖZÜM: Metin 'Güneş enerjisi' üzerinedir. III. cümledeki 'ev yalıtımı' (insulation) konusu akışı bozmaktadır."
   },
   {
     "id": 77,
-    "type": "Irrelevant Sentence",
-    "prompt": "(I) The Renaissance was a period of cultural rebirth. (II) Artists used realism to depict the human form. (III) The printing press revolutionized the spread of knowledge. (IV) Many artists were funded by wealthy merchant families. (V) Modern art often focuses on abstract concepts.",
-    "options": {"A": "I", "B": "II", "C": "III", "D": "IV", "E": "V"},
+    "prompt": "(I) The Renaissance was a period of immense cultural and artistic rebirth in Europe. (II) Artists began to use perspective and realism to depict the human form. (III) At the same time, the printing press revolutionized the spread of knowledge. (IV) Many artists in the period were funded by wealthy merchant families like the Medicis. (V) Modern art, on the other hand, often focuses on abstract concepts rather than realism.",
+    "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V",
     "correct": "E",
-    "explanation": "ÇÖZÜM: Metin Rönesans üzerinedir; V. cümledeki 'Modern Sanat' genel konudan sapmaktadır."
+    "explanation": "ÇÖZÜM: Metin Rönesans dönemini anlatırken, V. cümledeki 'Modern Sanat' karşılaştırması tarihsel akışı bozmaktadır."
   },
   {
     "id": 78,
-    "type": "Irrelevant Sentence",
-    "prompt": "(I) Remote work offers flexibility for employees. (II) It eliminates the need for long commutes, saving time. (III) Public transport systems are often overcrowded. (IV) Yet, lack of interaction can lead to isolation. (V) Finding a balance remains a challenge for managers.",
-    "options": {"A": "I", "B": "II", "C": "III", "D": "IV", "E": "V"},
+    "prompt": "(I) Remote work offers flexibility that many employees find highly attractive. (II) It eliminates the need for long commutes, saving both time and money. (III) Public transport systems in major cities are often overcrowded during rush hours. (IV) Yet, the lack of face-to-face interaction can lead to feelings of professional isolation. (V) Finding a balance between the two remains a challenge for modern managers.",
+    "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V",
     "correct": "C",
-    "explanation": "ÇÖZÜM: Metin uzaktan çalışma üzerinedir; III. cümledeki 'toplu taşıma' detayı ilgisizdir."
+    "explanation": "ÇÖZÜM: Metin 'Uzaktan Çalışma' avantaj/dezavantajları üzerinedir. III. cümledeki 'toplu taşıma kalabalığı' genel bir bilgi olup ana konudan sapmaktadır."
   },
   {
     "id": 79,
-    "type": "Irrelevant Sentence",
-    "prompt": "(I) Bees are essential pollinators for ecosystems. (II) Without them, the food supply would be at risk. (III) Pesticides are a reason for their declining numbers. (IV) Some people are highly allergic to bee stings. (V) Efforts are being made to create bee-friendly environments.",
-    "options": {"A": "I", "B": "II", "C": "III", "D": "IV", "E": "V"},
+    "prompt": "(I) Bees are essential for the survival of many ecosystems as primary pollinators. (II) Without them, the global food supply would be at serious risk. (III) Pesticides and habitat loss are the main reasons for their declining numbers. (IV) Some people are highly allergic to bee stings and must carry emergency medication. (V) Efforts are now being made to create more bee-friendly agricultural environments.",
+    "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V",
     "correct": "D",
-    "explanation": "ÇÖZÜM: Metin ekolojik önem üzerinedir; IV. cümledeki 'arı alerjisi' tıbbi bir detaydır."
+    "explanation": "ÇÖZÜM: Metin arıların ekolojik önemi ve korunması üzerinedir. IV. cümledeki 'arı alerjisi' tıbbi bir detay olup konu dışıdır."
   },
   {
     "id": 80,
-    "type": "Irrelevant Sentence",
-    "prompt": "(I) Ethical AI requires transparency in design. (II) Users should know how their data is used. (III) Hardware to run these models is getting expensive. (IV) Accountability is crucial for decisions affecting lives. (V) Developers must prioritize fairness over speed.",
-    "options": {"A": "I", "B": "II", "C": "III", "D": "IV", "E": "V"},
+    "prompt": "(I) Ethical AI development requires transparency in how algorithms are designed. (II) Users should be informed about how their data is being used for training models. (III) The hardware required to run these models is becoming more expensive every year. (IV) Accountability is also crucial when AI systems make decisions that affect people's lives. (V) Therefore, developers must prioritize fairness over speed in their implementation.",
+    "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V",
     "correct": "C",
-    "explanation": "ÇÖZÜM: Metin YZ etiği üzerinedir; III. cümledeki 'donanım maliyeti' teknik/mali bir detaydır."
+    "explanation": "ÇÖZÜM: Metin 'YZ Etiği' üzerinedir. III. cümledeki 'donanım maliyeti' (hardware cost) teknik/mali bir detay olup etik tartışmasının akışını bozar."
   }
 ]
