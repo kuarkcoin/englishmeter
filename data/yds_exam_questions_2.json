@@ -1,642 +1,835 @@
 [
   {
     "id": 1,
-    "category": "Vocabulary",
     "prompt": "The government has implemented a new policy to ______ the negative effects of the economic recession on small businesses.",
-    "options": { "A": "mitigate", "B": "exacerbate", "C": "imply", "D": "initiate", "E": "perceive" },
+    "A": "mitigate",
+    "B": "exacerbate",
+    "C": "imply",
+    "D": "initiate",
+    "E": "perceive",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'Mitigate' (hafifletmek, azaltmak) olumsuz etkileri azaltmak anlamında kullanılır. 'Exacerbate' (kötüleştirmek) tam tersidir."
+    "explanation": "ÇÖZÜM: Cümlede hükümetin ekonomik durgunluğun olumsuz etkilerine karşı bir politika uyguladığından bahsediliyor. Bu bağlamda olumsuz etkileri 'hafifletmek/azaltmak' anlamındaki 'mitigate' kelimesi en uygunudur. 'Exacerbate' (kötüleştirmek) tam zıt anlamlıdır."
   },
   {
     "id": 2,
-    "category": "Vocabulary",
     "prompt": "The ______ of digital technology has transformed the way we communicate, making information accessible instantaneously.",
-    "options": { "A": "reluctance", "B": "prevalence", "C": "ambiguity", "D": "obsolescence", "E": "deficiency" },
+    "A": "reluctance",
+    "B": "prevalence",
+    "C": "ambiguity",
+    "D": "obsolescence",
+    "E": "deficiency",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'Prevalence' (yaygınlık, hakimiyet) teknolojinin her yere yayılmasını anlatır. Diğerleri olumsuz anlam taşır."
+    "explanation": "ÇÖZÜM: Cümle, dijital teknolojinin iletişimi dönüştürdüğünü söylüyor. Bu, teknolojinin 'yaygınlığı/hakimiyeti' sayesinde olur. 'Prevalence' doğru cevaptır. Diğer şıklar (isteksizlik, belirsizlik, eskimişlik, yetersizlik) olumsuz anlam taşır."
   },
   {
     "id": 3,
-    "category": "Vocabulary",
     "prompt": "The scientist's theory was initially rejected, but subsequent experiments ______ demonstrated its validity.",
-    "options": { "A": "vaguely", "B": "hardly", "C": "conclusively", "D": "coincidentally", "E": "partially" },
+    "A": "vaguely",
+    "B": "hardly",
+    "C": "conclusively",
+    "D": "coincidentally",
+    "E": "partially",
     "correct": "C",
-    "explanation": "ÇÖZÜM: 'Conclusively' (kesin olarak) geçerliliği (validity) kanıtlamak için en uygun zarftır."
+    "explanation": "ÇÖZÜM: Teorinin geçerliliğinin (validity) kanıtlanması durumu anlatılıyor. 'Conclusively' (kesin olarak, şüpheye yer bırakmayacak şekilde) bu durumu en iyi niteleyen zarftır."
   },
   {
     "id": 4,
-    "category": "Vocabulary",
     "prompt": "The instructions were so ______ that even the most inexperienced users could assemble the device without any help.",
-    "options": { "A": "explicit", "B": "obscure", "C": "lethal", "D": "frugal", "E": "hostile" },
+    "A": "explicit",
+    "B": "obscure",
+    "C": "lethal",
+    "D": "frugal",
+    "E": "hostile",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'Explicit' (açık, net) talimatlar sayesinde deneyimsiz kullanıcılar bile yapabilmiştir."
+    "explanation": "ÇÖZÜM: Deneyimsiz kullanıcıların bile yardım almadan yapabilmesi, talimatların 'açık, net ve anlaşılır' olduğunu gösterir. Bu anlamı 'explicit' karşılar. 'Obscure' (belirsiz) zıt anlamlıdır."
   },
   {
     "id": 5,
-    "category": "Vocabulary",
     "prompt": "Due to the heavy storm, the organizers had to ______ the outdoor concert to a later date.",
-    "options": { "A": "put off", "B": "call for", "C": "make up", "D": "turn down", "E": "bring about" },
+    "A": "put off",
+    "B": "call for",
+    "C": "make up",
+    "D": "turn down",
+    "E": "bring about",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'Put off' (ertelemek) fırtına nedeniyle etkinliğin ileri tarihe atılmasıdır."
+    "explanation": "ÇÖZÜM: Ağır fırtına sebebiyle konser ileri bir tarihe 'ertelenmiştir'. Bu anlamı veren phrasal verb 'put off'tur (postpone). 'Call for' (talep etmek), 'Turn down' (reddetmek) anlamındadır."
   },
   {
     "id": 6,
-    "category": "Vocabulary",
     "prompt": "Infants are highly ______ to infections because their immune systems have not yet fully developed.",
-    "options": { "A": "indifferent", "B": "susceptible", "C": "comparable", "D": "resistant", "E": "relevant" },
+    "A": "indifferent",
+    "B": "susceptible",
+    "C": "comparable",
+    "D": "resistant",
+    "E": "relevant",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'Susceptible to' (yatkın, savunmasız) bağışıklığı gelişmemiş bebekler için kullanılır."
+    "explanation": "ÇÖZÜM: Bağışıklık sistemi gelişmediği için bebekler enfeksiyonlara karşı 'savunmasız/yatkın'dır. 'Susceptible to' kalıbı bu durumu ifade eder. 'Resistant' (dirençli) tam tersidir."
   },
   {
     "id": 7,
-    "category": "Grammar",
     "prompt": "By the time the fire brigade arrived, the building ______ completely to the ground.",
-    "options": { "A": "burned", "B": "has burned", "C": "had burned", "D": "was burning", "E": "would burn" },
+    "A": "burned",
+    "B": "has burned",
+    "C": "had burned",
+    "D": "was burning",
+    "E": "would burn",
     "correct": "C",
-    "explanation": "ÇÖZÜM: 'By the time + Past Simple' yapısı ana cümlede 'Past Perfect' (had burned) gerektirir."
+    "explanation": "ÇÖZÜM: 'By the time' bağlacı geçmiş zamanla (arrived) kullanıldığında, ana cümlede eylemin daha önce gerçekleştiğini vurgulamak için 'Past Perfect' (had burned) kullanılır."
   },
   {
     "id": 8,
-    "category": "Grammar",
     "prompt": "The manager insists that the report ______ on his desk by tomorrow morning.",
-    "options": { "A": "is", "B": "was", "C": "be", "D": "has been", "E": "will be" },
+    "A": "is",
+    "B": "was",
+    "C": "be",
+    "D": "has been",
+    "E": "will be",
     "correct": "C",
-    "explanation": "ÇÖZÜM: 'Insist that' yapısı Subjunctive gerektirir, fiil yalın (be) kalır."
+    "explanation": "ÇÖZÜM: 'Insist that' yapısı bir Subjunctive (istek kipi) kullanımıdır. Bu yapıda özne ne olursa olsun fiil yalın halde (be) kullanılmalıdır. 'Is' veya 'will be' kullanımı YDS gramer kurallarına göre yanlıştır."
   },
   {
     "id": 9,
-    "category": "Grammar",
     "prompt": "______ the harsh weather conditions, the climbers managed to reach the summit.",
-    "options": { "A": "Although", "B": "Despite", "C": "However", "D": "Unless", "E": "Whereas" },
+    "A": "Although",
+    "B": "Despite",
+    "C": "However",
+    "D": "Unless",
+    "E": "Whereas",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'Despite' (rağmen) kendisinden sonra isim öbeği alır."
+    "explanation": "ÇÖZÜM: Boşluktan sonra 'the harsh weather conditions' şeklinde bir isim öbeği gelmektedir. İsim öbeği ile zıtlık kuran yapı 'Despite' veya 'In spite of'tur. 'Although' kendisinden sonra tam cümle ister."
   },
   {
     "id": 10,
-    "category": "Grammar",
     "prompt": "There are ______ variations in the dialects spoken across the country that mutual understanding can be difficult.",
-    "options": { "A": "such", "B": "so", "C": "too", "D": "very", "E": "much" },
+    "A": "such",
+    "B": "so",
+    "C": "too",
+    "D": "very",
+    "E": "much",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'Such ... that' kalıbında araya sıfat tamlaması (such variations) girer."
+    "explanation": "ÇÖZÜM: 'Such ... that' kalıbında araya sıfat tamlaması (variations - isim olduğu için) girer. Eğer sadece sıfat olsaydı (so beautiful that) 'so' kullanılırdı. Burada 'such (big) variations' mantığı vardır."
   },
   {
     "id": 11,
-    "category": "Grammar",
     "prompt": "The student, ______ project was selected as the best, received a scholarship.",
-    "options": { "A": "who", "B": "whom", "C": "whose", "D": "which", "E": "that" },
+    "A": "who",
+    "B": "whom",
+    "C": "whose",
+    "D": "which",
+    "E": "that",
     "correct": "C",
-    "explanation": "ÇÖZÜM: İyelik bildiren 'whose project' (projesi seçilen öğrenci) yapısıdır."
+    "explanation": "ÇÖZÜM: İki isim arasında (student - project) iyelik ilişkisi (öğrencinin projesi) olduğu için 'whose' ilgi zamiri kullanılmalıdır."
   },
   {
     "id": 12,
-    "category": "Grammar",
     "prompt": "It is no use ______ to convince him; he has already made up his mind.",
-    "options": { "A": "try", "B": "to try", "C": "trying", "D": "tried", "E": "having tried" },
+    "A": "try",
+    "B": "to try",
+    "C": "trying",
+    "D": "tried",
+    "E": "having tried",
     "correct": "C",
-    "explanation": "ÇÖZÜM: 'It is no use' kalıbı kendisinden sonra Gerund (V-ing) alır."
+    "explanation": "ÇÖZÜM: 'It is no use' (faydası yok/nafile) kalıbı, kendisinden sonra gelen fiilin Gerund (V-ing) olmasını gerektirir. Bu yüzden 'trying' doğrudur."
   },
   {
     "id": 13,
-    "category": "Grammar",
     "prompt": "The ancient city ______ by archaeologists dates back to the 3rd century BC.",
-    "options": { "A": "discovering", "B": "discovered", "C": "having discovered", "D": "to discover", "E": "discovers" },
+    "A": "discovering",
+    "B": "discovered",
+    "C": "having discovered",
+    "D": "to discover",
+    "E": "discovers",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'City (which was) discovered' kısaltması olarak Pasif Participle (discovered) kullanılır."
+    "explanation": "ÇÖZÜM: Burada 'The ancient city which was discovered' cümlesinin kısaltması (Reduced Relative Clause) vardır. Şehir keşfedilen (edilgen) konumda olduğu için V3 (Past Participle) hali 'discovered' kullanılır."
   },
   {
     "id": 14,
-    "category": "Grammar",
     "prompt": "He ______ have forgotten the meeting; I reminded him just an hour ago.",
-    "options": { "A": "mustn't", "B": "can't", "C": "shouldn't", "D": "needn't", "E": "might not" },
+    "A": "mustn't",
+    "B": "can't",
+    "C": "shouldn't",
+    "D": "needn't",
+    "E": "might not",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'Can't have V3' geçmişe yönelik güçlü olumsuz çıkarım (unutmuş olamaz) bildirir."
+    "explanation": "ÇÖZÜM: Geçmişe yönelik güçlü bir olumsuz çıkarım yapılıyor. 'Bir saat önce hatırlattım, unutmuş olamaz' anlamı için 'can't have V3' yapısı kullanılır."
   },
   {
     "id": 15,
-    "category": "Grammar",
     "prompt": "Whatever the outcome ______ be, we must remain united.",
-    "options": { "A": "may", "B": "has to", "C": "needs", "D": "ought", "E": "would" },
+    "A": "may",
+    "B": "has to",
+    "C": "needs",
+    "D": "ought",
+    "E": "would",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'Whatever ... may be' (her ne olursa olsun) kalıbıdır."
+    "explanation": "ÇÖZÜM: 'Whatever ... may be' (sonuç her ne olursa olsun) kalıplaşmış bir yapıdır. Olasılık bildirdiği için 'may' tercih edilir."
   },
   {
     "id": 16,
-    "category": "Grammar",
     "prompt": "Only after the war ended ______ the soldiers able to return home.",
-    "options": { "A": "did", "B": "were", "C": "had", "D": "could", "E": "would" },
+    "A": "did",
+    "B": "were",
+    "C": "had",
+    "D": "could",
+    "E": "would",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'Only after' cümle başında devrik yapı ister. 'Able to' ile 'were' kullanılır."
+    "explanation": "ÇÖZÜM: 'Only after' cümle başında kullanıldığında ana cümle devrik (inversion) olur. 'Be able to' yapısının geçmiş zamanı 'were able to' olduğu için yardımcı fiil olarak 'were' başa gelir."
   },
   {
     "id": 17,
-    "category": "Cloze Test",
     "prompt": "Coffee originated in Ethiopia and spread to the rest of the world. Initially, it was used (17) ______ religious ceremonies.",
-    "options": { "A": "at", "B": "on", "C": "in", "D": "by", "E": "from" },
+    "A": "at",
+    "B": "on",
+    "C": "in",
+    "D": "by",
+    "E": "from",
     "correct": "C",
-    "explanation": "ÇÖZÜM: 'In ceremonies' (törenlerde) edat kullanımı."
+    "explanation": "ÇÖZÜM: Törenlerde, ayinlerde derken 'in ceremonies' edatı kullanılır. Bir etkinliğin parçası olmayı ifade eder."
   },
   {
     "id": 18,
-    "category": "Cloze Test",
     "prompt": "By the 16th century, coffee (18) ______ the Middle East, Persia, and Turkey.",
-    "options": { "A": "reached", "B": "has reached", "C": "had reached", "D": "was reaching", "E": "reaches" },
+    "A": "reached",
+    "B": "has reached",
+    "C": "had reached",
+    "D": "was reaching",
+    "E": "reaches",
     "correct": "C",
-    "explanation": "ÇÖZÜM: 'By the 16th century' geçmişte bir noktadan öncesini (Past Perfect) anlatır."
+    "explanation": "ÇÖZÜM: 'By + geçmiş tarih' (16. yüzyıla gelindiğinde) ifadesi, o tarihten önce olayın tamamlandığını belirtir. Bu yüzden Past Perfect (had reached) kullanılır."
   },
   {
     "id": 19,
-    "category": "Cloze Test",
     "prompt": "European travelers brought back stories of an unusual dark beverage. (19) ______, it faced some resistance initially.",
-    "options": { "A": "Therefore", "B": "Moreover", "C": "However", "D": "Thus", "E": "Likewise" },
+    "A": "Therefore",
+    "B": "Moreover",
+    "C": "However",
+    "D": "Thus",
+    "E": "Likewise",
     "correct": "C",
-    "explanation": "ÇÖZÜM: Zıtlık bağlacı 'However' (Ancak) popülerleşme öncesi direnci anlatır."
+    "explanation": "ÇÖZÜM: Cümleler arasında zıtlık vardır. Kahve hikayeleri getirildi ama (buna rağmen) başlangıçta dirençle karşılaştı. Bu zıtlığı 'However' sağlar."
   },
   {
     "id": 20,
-    "category": "Cloze Test",
     "prompt": "Soon, coffee houses became places (20) ______ people gathered to discuss politics and philosophy.",
-    "options": { "A": "which", "B": "where", "C": "when", "D": "whose", "E": "whom" },
+    "A": "which",
+    "B": "where",
+    "C": "when",
+    "D": "whose",
+    "E": "whom",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'Places' (yer) nitelendiği için 'where' kullanılır."
+    "explanation": "ÇÖZÜM: 'Coffee houses' (mekan) niteleniyor ve insanlar orada toplanıyor. Yer bildiren ilgi zamiri 'where' (ki orada) doğrudur."
   },
   {
     "id": 21,
-    "category": "Cloze Test",
     "prompt": "Today, coffee is one of the most (21) ______ consumed beverages in the world.",
-    "options": { "A": "widely", "B": "hardly", "C": "scarcely", "D": "narrowly", "E": "slightly" },
+    "A": "widely",
+    "B": "hardly",
+    "C": "scarcely",
+    "D": "narrowly",
+    "E": "slightly",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'Widely consumed' (geniş çapta tüketilen) yaygın bir collocation'dır."
+    "explanation": "ÇÖZÜM: Kahvenin dünyada 'geniş çapta' tüketildiğini anlatmak için 'widely' zarfı kullanılır. Diğer şıklar 'neredeyse hiç' veya 'az' anlamındadır."
   },
   {
     "id": 22,
-    "category": "Cloze Test",
     "prompt": "Climate change poses a severe (22) ______ to global biodiversity.",
-    "options": { "A": "treat", "B": "threat", "C": "thread", "D": "trend", "E": "tread" },
+    "A": "treat",
+    "B": "threat",
+    "C": "thread",
+    "D": "trend",
+    "E": "tread",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'Pose a threat' (tehdit oluşturmak) kalıbıdır."
+    "explanation": "ÇÖZÜM: 'Pose a threat' (tehdit oluşturmak) yaygın bir akademik kalıptır. İklim değişikliği biyoçeşitlilik için bir tehdittir."
   },
   {
     "id": 23,
-    "category": "Cloze Test",
     "prompt": "Many species may not be able to (23) ______ to the rapidly changing temperatures.",
-    "options": { "A": "adopt", "B": "adept", "C": "adapt", "D": "admit", "E": "adjusting" },
+    "A": "adopt",
+    "B": "adept",
+    "C": "adapt",
+    "D": "admit",
+    "E": "adjusting",
     "correct": "C",
-    "explanation": "ÇÖZÜM: 'Adapt to' (uyum sağlamak) fiilidir."
+    "explanation": "ÇÖZÜM: Değişen sıcaklıklara 'uyum sağlamak' anlamında 'adapt to' fiili kullanılır. 'Adopt' (benimsemek/evlat edinmek) ile karıştırılmamalıdır."
   },
   {
     "id": 24,
-    "category": "Cloze Test",
     "prompt": "(24) ______ urgent action is taken, we might lose significant ecosystems forever.",
-    "options": { "A": "If", "B": "Since", "C": "Unless", "D": "While", "E": "As" },
+    "A": "If",
+    "B": "Since",
+    "C": "Unless",
+    "D": "While", "E": "As",
     "correct": "C",
-    "explanation": "ÇÖZÜM: 'Unless' (-mezse/madıkça) olumsuz koşul bildirir."
+    "explanation": "ÇÖZÜM: 'Acil önlem alınmazsa' anlamı veren olumsuz koşul bağlacı 'Unless' (-medikçe) gereklidir. Sonuç cümlesindeki 'lose forever' (kaybetmek) olumsuzluğu bunu destekler."
   },
   {
     "id": 25,
-    "category": "Cloze Test",
     "prompt": "Governments are aiming (25) ______ reducing carbon emissions by 50% within a decade.",
-    "options": { "A": "in", "B": "on", "C": "at", "D": "for", "E": "to" },
+    "A": "in",
+    "B": "on",
+    "C": "at",
+    "D": "for",
+    "E": "to",
     "correct": "C",
-    "explanation": "ÇÖZÜM: 'Aim at' (+Ving) hedefini belirtir."
+    "explanation": "ÇÖZÜM: 'Aim' fiili bir hedefe yönelmeyi anlatırken 'at' edatı ile kullanılır (aim at doing something). 'Aim to do' da olur ancak boşluktan sonra 'reducing' (V-ing) geldiği için 'aim at' doğrudur."
   },
   {
     "id": 26,
-    "category": "Cloze Test",
     "prompt": "This transition requires a shift (26) ______ fossil fuels to renewable energy sources.",
-    "options": { "A": "from", "B": "with", "C": "by", "D": "of", "E": "about" },
+    "A": "from",
+    "B": "with",
+    "C": "by",
+    "D": "of",
+    "E": "about",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'Shift from ... to ...' (...den ...ya geçiş) kalıbıdır."
+    "explanation": "ÇÖZÜM: Bir şeyden başka bir şeye geçişi anlatmak için 'shift from X to Y' kalıbı kullanılır."
   },
   {
     "id": 27,
-    "category": "Sentence Completion",
     "prompt": "Although the economy has shown signs of recovery, ______.",
-    "options": { "A": "unemployment rates remain stubbornly high", "B": "investors are more confident than ever", "C": "the government has reduced taxes significantly", "D": "production levels have reached a record peak", "E": "inflation has dropped to single digits" },
+    "A": "unemployment rates remain stubbornly high",
+    "B": "investors are more confident than ever",
+    "C": "the government has reduced taxes significantly",
+    "D": "production levels have reached a record peak",
+    "E": "inflation has dropped to single digits",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'Although' zıtlık ister. İyileşmeye rağmen işsizlik yüksek (olumsuz)."
+    "explanation": "ÇÖZÜM: 'Although' (rağmen) zıtlık ister. Ekonomi iyileşme belirtisi gösterse de, işsizliğin yüksek kalması (olumsuz durum) beklenen zıtlıktır."
   },
   {
     "id": 28,
-    "category": "Sentence Completion",
     "prompt": "______ because he had forgotten to bring his passport.",
-    "options": { "A": "He was allowed to board the plane", "B": "The police officer thanked him", "C": "He was denied entry to the country", "D": "His vacation was the best he ever had", "E": "He bought a ticket at the last minute" },
+    "A": "He was allowed to board the plane",
+    "B": "The police officer thanked him",
+    "C": "He was denied entry to the country",
+    "D": "His vacation was the best he ever had",
+    "E": "He bought a ticket at the last minute",
     "correct": "C",
-    "explanation": "ÇÖZÜM: Sebep (pasaport yok) -> Sonuç (giriş reddedildi)."
+    "explanation": "ÇÖZÜM: Sebep 'pasaportunu unutması' olduğuna göre, sonuç olumsuz ve pasaportla ilgili olmalıdır. Ülkeye girişinin reddedilmesi (denied entry) mantıklı sonuçtur."
   },
   {
     "id": 29,
-    "category": "Sentence Completion",
     "prompt": "Provided that you follow the instructions carefully, ______.",
-    "options": { "A": "the machine might break down easily", "B": "you should have no trouble assembling the desk", "C": "it is difficult to predict the outcome", "D": "you will have to pay a fine", "E": "nobody knows what will happen next" },
+    "A": "the machine might break down easily",
+    "B": "you should have no trouble assembling the desk",
+    "C": "it is difficult to predict the outcome",
+    "D": "you will have to pay a fine",
+    "E": "nobody knows what will happen next",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Olumlu koşul (dikkatli takip) -> Olumlu sonuç (sorun yaşamazsın)."
+    "explanation": "ÇÖZÜM: 'Provided that' (şartıyla) olumlu bir koşul sunar. Talimatlara uyarsan, montajda sorun yaşamazsın (no trouble) sonucu uyumludur."
   },
   {
     "id": 30,
-    "category": "Sentence Completion",
     "prompt": "The lecture was so boring that ______.",
-    "options": { "A": "the students listened attentively", "B": "everyone took detailed notes", "C": "many audience members fell asleep", "D": "the professor was applauded loudly", "E": "it ended much later than scheduled" },
+    "A": "the students listened attentively",
+    "B": "everyone took detailed notes",
+    "C": "many audience members fell asleep",
+    "D": "the professor was applauded loudly",
+    "E": "it ended much later than scheduled",
     "correct": "C",
-    "explanation": "ÇÖZÜM: 'So ... that' sebep-sonuç. Sıkıcı -> uyuyakaldılar."
+    "explanation": "ÇÖZÜM: 'So ... that' (o kadar ... ki) kalıbı. Ders o kadar sıkıcıydı ki, dinleyiciler uyuyakaldı (fell asleep)."
   },
   {
     "id": 31,
-    "category": "Sentence Completion",
     "prompt": "Even though he is the most qualified candidate, ______.",
-    "options": { "A": "he is likely to get the job", "B": "everyone respects his abilities", "C": "he was not selected for the position", "D": "his resume is impressive", "E": "he speaks three languages fluently" },
+    "A": "he is likely to get the job",
+    "B": "everyone respects his abilities",
+    "C": "he was not selected for the position",
+    "D": "his resume is impressive",
+    "E": "he speaks three languages fluently",
     "correct": "C",
-    "explanation": "ÇÖZÜM: Zıtlık (nitelikli ama seçilmedi)."
+    "explanation": "ÇÖZÜM: 'Even though' (olmasına rağmen) beklentinin aksini ifade eder. En nitelikli aday olmasına rağmen seçilmemesi (not selected) doğru zıtlıktır."
   },
   {
     "id": 32,
-    "category": "Sentence Completion",
     "prompt": "The new subway line was constructed so that ______.",
-    "options": { "A": "traffic congestion in the city center could be reduced", "B": "people prefer driving their own cars", "C": "it is more expensive than taking the bus", "D": "nobody wants to use public transport", "E": "it caused more traffic jams during rush hour" },
+    "A": "traffic congestion in the city center could be reduced",
+    "B": "people prefer driving their own cars",
+    "C": "it is more expensive than taking the bus",
+    "D": "nobody wants to use public transport",
+    "E": "it caused more traffic jams during rush hour",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'So that' amaç bildirir. Amaç trafiği azaltmaktır."
+    "explanation": "ÇÖZÜM: 'So that' amaç bildirir. Metro hattının yapılma amacı trafik sıkışıklığını azaltmaktır (reduced traffic congestion)."
   },
   {
     "id": 33,
-    "category": "Sentence Completion",
     "prompt": "Unlike the previous administration, which focused on austerity, ______.",
-    "options": { "A": "the current government is increasing public spending", "B": "taxes are being raised to cover the deficit", "C": "the economy is shrinking rapidly", "D": "nobody expects any positive change", "E": "the budget cuts are continuing as planned" },
+    "A": "the current government is increasing public spending",
+    "B": "taxes are being raised to cover the deficit",
+    "C": "the economy is shrinking rapidly",
+    "D": "nobody expects any positive change",
+    "E": "the budget cuts are continuing as planned",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'Unlike' zıtlık ister. Kemer sıkma (austerity) yerine harcama (spending)."
+    "explanation": "ÇÖZÜM: 'Unlike' (aksine) karşılaştırma yapar. Önceki yönetim 'kemer sıkma' (austerity) uyguladıysa, yenisi harcamaları artırıyor (increasing spending) olmalıdır."
   },
   {
     "id": 34,
-    "category": "Sentence Completion",
     "prompt": "Having finished his medical degree with honors, ______.",
-    "options": { "A": "medicine is a difficult field to study", "B": "he decided to specialize in cardiology", "C": "the hospital offered a job to his friend", "D": "it was time to take a long vacation", "E": "his parents were very disappointed" },
+    "A": "medicine is a difficult field to study",
+    "B": "he decided to specialize in cardiology",
+    "C": "the hospital offered a job to his friend",
+    "D": "it was time to take a long vacation",
+    "E": "his parents were very disappointed",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'Having finished' (özne ortaklığı). Bitiren 'o', karar veren 'o'."
+    "explanation": "ÇÖZÜM: 'Having finished' (bitirdikten sonra) yapısı ortak özne ister. Dereceyi bitiren 'o', uzmanlaşmaya karar veren yine 'o' (he) olmalıdır."
   },
   {
     "id": 35,
-    "category": "Sentence Completion",
     "prompt": "The darker the coffee beans are roasted, ______.",
-    "options": { "A": "the more caffeine they contain", "B": "the less acidic the taste becomes", "C": "it is easier to grind them", "D": "people prefer adding milk", "E": "they are grown in high altitudes" },
+    "A": "the more caffeine they contain",
+    "B": "the less acidic the taste becomes",
+    "C": "it is easier to grind them",
+    "D": "people prefer adding milk",
+    "E": "they are grown in high altitudes",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'The more ... the less' (ne kadar ... o kadar) yapısı."
+    "explanation": "ÇÖZÜM: 'The more ... the less' (ne kadar ... o kadar) yapısı. Kahve ne kadar koyu kavrulursa, asiditesi o kadar azalır bilgisi genel kültür ve dil bilgisi uyumudur."
   },
   {
     "id": 36,
-    "category": "Sentence Completion",
     "prompt": "Just as the invention of the wheel revolutionized transport, ______.",
-    "options": { "A": "people still prefer walking long distances", "B": "the internet has transformed communication", "C": "cars are becoming more expensive", "D": "airplanes are the safest mode of travel", "E": "history is full of similar inventions" },
+    "A": "people still prefer walking long distances",
+    "B": "the internet has transformed communication",
+    "C": "cars are becoming more expensive",
+    "D": "airplanes are the safest mode of travel",
+    "E": "history is full of similar inventions",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'Just as ... so ...' (benzetme). Tekerlek/ulaşım = İnternet/iletişim."
+    "explanation": "ÇÖZÜM: 'Just as ... (so) ...' yapısı benzerlik kurar. Tekerlek ulaşımı nasıl devrimleştirdiyse, internet de iletişimi dönüştürmüştür."
   },
   {
     "id": 37,
-    "category": "Translation",
     "prompt": "The report, which was published last week, reveals the extent of the damage caused by the earthquake.",
-    "options": { "A": "Geçen hafta yayınlanan rapor, depremin yol açtığı hasarın boyutunu gözler önüne seriyor.", "B": "Depremin neden olduğu hasar, geçen hafta yayınlanan bir raporla ortaya kondu.", "C": "Rapor geçen hafta yayınlandı ve depremin hasarını detaylıca anlatıyor.", "D": "Geçen hafta bir rapor yayınlayarak depremin hasarını açıkladılar.", "E": "Depremin hasarının boyutu, geçen haftaki raporda belirtildi." },
+    "A": "Geçen hafta yayınlanan rapor, depremin yol açtığı hasarın boyutunu gözler önüne seriyor.",
+    "B": "Depremin neden olduğu hasar, geçen hafta yayınlanan bir raporla ortaya kondu.",
+    "C": "Rapor geçen hafta yayınlandı ve depremin hasarını detaylıca anlatıyor.",
+    "D": "Geçen hafta bir rapor yayınlayarak depremin hasarını açıkladılar.",
+    "E": "Depremin hasarının boyutu, geçen haftaki raporda belirtildi.",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'which was published last week' -> 'Geçen hafta yayınlanan rapor' (özne grubu)."
+    "explanation": "ÇÖZÜM: Özne 'The report, which was published last week' (Geçen hafta yayınlanan rapor) ve yüklem 'reveals' (gözler önüne seriyor/ortaya koyuyor) tam eşleşmelidir."
   },
   {
     "id": 38,
-    "category": "Translation",
     "prompt": "If we had acted sooner, we could have prevented this disaster.",
-    "options": { "A": "Daha erken harekete geçseydik, bu felaketi önleyebilirdik.", "B": "Bu felaketi önlemek için daha erken davranmamız gerekiyordu.", "C": "Erken hareket etmemize rağmen felaketi önleyemedik.", "D": "Felaketi önleyebilmek adına hemen harekete geçmeliyiz.", "E": "Daha erken davransaydık bile felaket önlenemezdi." },
+    "A": "Daha erken harekete geçseydik, bu felaketi önleyebilirdik.",
+    "B": "Bu felaketi önlemek için daha erken davranmamız gerekiyordu.",
+    "C": "Erken hareket etmemize rağmen felaketi önleyemedik.",
+    "D": "Felaketi önleyebilmek adına hemen harekete geçmeliyiz.",
+    "E": "Daha erken davransaydık bile felaket önlenemezdi.",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Type 3 Conditional. 'Had acted' (geçseydik), 'could have prevented' (önleyebilirdik)."
+    "explanation": "ÇÖZÜM: Type 3 Conditional. 'Had acted' (harekete geçseydik), 'could have prevented' (önleyebilirdik). Birebir çeviri A şıkkıdır."
   },
   {
     "id": 39,
-    "category": "Translation",
     "prompt": "What matters most is not what you say, but what you do.",
-    "options": { "A": "Ne söylediğin değil, ne yaptığın önemlidir.", "B": "En önemli olan şey ne söylediğin değil, ne yaptığındır.", "C": "Söylediklerinden çok yaptıklarına önem vermelisin.", "D": "Ne yaparsan yap, ne söylediğin her zaman daha önemlidir.", "E": "Söylediklerin ve yaptıkların eşit derecede önemlidir." },
+    "A": "Ne söylediğin değil, ne yaptığın önemlidir.",
+    "B": "En önemli olan şey ne söylediğin değil, ne yaptığındır.",
+    "C": "Söylediklerinden çok yaptıklarına önem vermelisin.",
+    "D": "Ne yaparsan yap, ne söylediğin her zaman daha önemlidir.",
+    "E": "Söylediklerin ve yaptıkların eşit derecede önemlidir.",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'What matters most' (En önemli olan şey) özne grubudur."
+    "explanation": "ÇÖZÜM: 'What matters most' (En önemli olan şey) cümlesinin öznesidir. 'is' (dir/dır) ile bağlanır. Vurgu B şıkkındadır."
   },
   {
     "id": 40,
-    "category": "Translation",
     "prompt": "Yeni köprü, trafik sıkışıklığını azaltmak amacıyla inşa edildi.",
-    "options": { "A": "The new bridge was built in order to reduce traffic congestion.", "B": "They built a new bridge to stop the traffic jam.", "C": "Traffic congestion was reduced by the new bridge.", "D": "The aim of the new bridge is reducing traffic.", "E": "Building a new bridge helped traffic congestion." },
+    "A": "The new bridge was built in order to reduce traffic congestion.",
+    "B": "They built a new bridge to stop the traffic jam.",
+    "C": "Traffic congestion was reduced by the new bridge.",
+    "D": "The aim of the new bridge is reducing traffic.",
+    "E": "Building a new bridge helped traffic congestion.",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'Inşa edildi' (was built - pasif), 'amacıyla' (in order to)."
+    "explanation": "ÇÖZÜM: 'Yeni köprü' (The new bridge) özne, 'inşa edildi' (was built) pasif yüklem, 'amacıyla' (in order to) kalıbı A şıkkında tamdır."
   },
   {
     "id": 41,
-    "category": "Translation",
     "prompt": "Sadece çok çalışarak değil, aynı zamanda akıllıca çalışarak başarılı olabilirsin.",
-    "options": { "A": "You can succeed not only by working hard but also by working smartly.", "B": "Success comes from working hard and working smart.", "C": "Working hard is not enough, you must also be smart.", "D": "To succeed, you should work hard as well as smart.", "E": "Working smartly is more important than working hard for success." },
+    "A": "You can succeed not only by working hard but also by working smartly.",
+    "B": "Success comes from working hard and working smart.",
+    "C": "Working hard is not enough, you must also be smart.",
+    "D": "To succeed, you should work hard as well as smart.",
+    "E": "Working smartly is more important than working hard for success.",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'Sadece ... değil, aynı zamanda ...' (not only ... but also)."
+    "explanation": "ÇÖZÜM: 'Sadece ... değil, aynı zamanda ...' kalıbı 'not only ... but also' ile karşılanır. 'Başarılı olabilirsin' (You can succeed)."
   },
   {
     "id": 42,
-    "category": "Translation",
     "prompt": "Doktor, hastanın iyileşmesi için ilaçlarını düzenli alması gerektiğini söyledi.",
-    "options": { "A": "The doctor told the patient to take his medicines regularly to recover.", "B": "The patient must take his medicines regularly, said the doctor.", "C": "To recover, the doctor advised taking medicines regularly.", "D": "The doctor said that the patient had to take his medicines regularly for his recovery.", "E": "Taking medicines regularly is important for recovery, according to the doctor." },
+    "A": "The doctor told the patient to take his medicines regularly to recover.",
+    "B": "The patient must take his medicines regularly, said the doctor.",
+    "C": "To recover, the doctor advised taking medicines regularly.",
+    "D": "The doctor said that the patient had to take his medicines regularly for his recovery.",
+    "E": "Taking medicines regularly is important for recovery, according to the doctor.",
     "correct": "D",
-    "explanation": "ÇÖZÜM: Noun Clause '...gerektiğini söyledi' (said that ... had to take)."
+    "explanation": "ÇÖZÜM: 'Söyledi' (said that...), 'gerektiğini' (had to take / needed to take). 'İyileşmesi için' (for his recovery). D şıkkı bu yapıyı en iyi yansıtır."
   },
   {
     "id": 43,
-    "category": "Paragraph",
     "prompt": "(Passage: AI) The passage suggests that Artificial Intelligence ______.",
-    "options": { "A": "is a passing trend with no future", "B": "has the potential to transform many industries", "C": "is only useful for playing games", "D": "will never surpass human intelligence", "E": "is too expensive for practical use" },
+    "A": "is a passing trend with no future",
+    "B": "has the potential to transform many industries",
+    "C": "is only useful for playing games",
+    "D": "will never surpass human intelligence",
+    "E": "is too expensive for practical use",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Paragraf genelinde YZ'nin dönüştürücü gücünden bahsedilir."
+    "explanation": "ÇÖZÜM: Paragraf genelinde YZ'nin (AI) birçok endüstriyi dönüştürme potansiyelinden bahsedilir. Diğer şıklar çok kısıtlayıcı veya olumsuzdur."
   },
   {
     "id": 44,
-    "category": "Paragraph",
     "prompt": "(Passage: AI) One of the main concerns regarding AI mentioned in the text is ______.",
-    "options": { "A": "its slow processing speed", "B": "the lack of data available", "C": "ethical issues and job displacement", "D": "the difficulty of programming", "E": "its inability to understand language" },
+    "A": "its slow processing speed",
+    "B": "the lack of data available",
+    "C": "ethical issues and job displacement",
+    "D": "the difficulty of programming",
+    "E": "its inability to understand language",
     "correct": "C",
-    "explanation": "ÇÖZÜM: Etik sorunlar ve iş kaybı (job displacement) temel endişelerdir."
+    "explanation": "ÇÖZÜM: YZ ile ilgili metinlerde en sık vurgulanan endişe (concern) 'etik sorunlar' ve 'iş kayıpları'dır (job displacement)."
   },
   {
     "id": 45,
-    "category": "Paragraph",
     "prompt": "(Passage: AI) According to the text, machine learning allows computers to ______.",
-    "options": { "A": "fix their own hardware", "B": "learn from data without explicit programming", "C": "operate without electricity", "D": "create human emotions", "E": "control global markets" },
+    "A": "fix their own hardware",
+    "B": "learn from data without explicit programming",
+    "C": "operate without electricity",
+    "D": "create human emotions",
+    "E": "control global markets",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Makine öğrenmesinin tanımı: Veriden öğrenme."
+    "explanation": "ÇÖZÜM: Makine öğrenmesi (machine learning) tanımı gereği, bilgisayarların açıkça programlanmadan veriden öğrenmesini sağlar."
   },
   {
     "id": 46,
-    "category": "Paragraph",
     "prompt": "(Passage: AI) The author's attitude towards AI is ______.",
-    "options": { "A": "completely hostile", "B": "cautiously optimistic", "C": "indifferent", "D": "mocking", "E": "pessimistic" },
+    "A": "completely hostile",
+    "B": "cautiously optimistic",
+    "C": "indifferent",
+    "D": "mocking",
+    "E": "pessimistic",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Hem faydaları hem riskleri anlattığı için 'temkinli iyimser'."
+    "explanation": "ÇÖZÜM: Yazar hem potansiyel faydalardan hem de risklerden bahsettiği için 'temkinli iyimser' (cautiously optimistic) en doğru tondur."
   },
   {
     "id": 47,
-    "category": "Paragraph",
     "prompt": "(Passage: Monarch Butterflies) Monarch butterflies are known for their ______.",
-    "options": { "A": "short lifespan", "B": "incredible migration journey", "C": "ability to swim", "D": "diet of small insects", "E": "lack of color" },
+    "A": "short lifespan",
+    "B": "incredible migration journey",
+    "C": "ability to swim",
+    "D": "diet of small insects",
+    "E": "lack of color",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Hükümdar kelebekleri göçleriyle (migration) ünlüdür."
+    "explanation": "ÇÖZÜM: Hükümdar kelebeklerinin en belirgin özelliği uzun mesafeli göç (migration) yolculuklarıdır."
   },
   {
     "id": 48,
-    "category": "Paragraph",
     "prompt": "(Passage: Monarch Butterflies) During winter, these butterflies hibernate in ______.",
-    "options": { "A": "Canada", "B": "Mexico", "C": "New York", "D": "Florida", "E": "Alaska" },
+    "A": "Canada",
+    "B": "Mexico",
+    "C": "New York",
+    "D": "Florida",
+    "E": "Alaska",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Kış uykusu için Meksika'ya (Mexico) giderler."
+    "explanation": "ÇÖZÜM: Metne göre bu kelebekler kışı geçirmek (hibernate) için Meksika'ya (Mexico) giderler."
   },
   {
     "id": 49,
-    "category": "Paragraph",
     "prompt": "(Passage: Monarch Butterflies) The population of Monarchs is declining due to ______.",
-    "options": { "A": "loss of milkweed habitat", "B": "an increase in bird predators", "C": "too much tourism", "D": "colder summers", "E": "urban noise" },
+    "A": "loss of milkweed habitat",
+    "B": "an increase in bird predators",
+    "C": "too much tourism",
+    "D": "colder summers",
+    "E": "urban noise",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Yaşam alanı (milkweed) kaybı ana sebeptir."
+    "explanation": "ÇÖZÜM: Popülasyon düşüşünün ana sebebi, larvaların beslendiği 'milkweed' bitkisinin ve yaşam alanının kaybıdır."
   },
   {
     "id": 50,
-    "category": "Paragraph",
     "prompt": "(Passage: Monarch Butterflies) To navigate, Monarchs utilize ______.",
-    "options": { "A": "GPS technology", "B": "the position of the sun", "C": "wind currents only", "D": "landmarks on the ground", "E": "sounds from other insects" },
+    "A": "GPS technology",
+    "B": "the position of the sun",
+    "C": "wind currents only",
+    "D": "landmarks on the ground",
+    "E": "sounds from other insects",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Güneşin konumunu pusula gibi kullanırlar."
+    "explanation": "ÇÖZÜM: Kelebekler yön bulmak için güneşin konumunu (position of the sun) kullanırlar."
   },
   {
     "id": 51,
-    "category": "Paragraph",
     "prompt": "(Passage: The Great Depression) The Great Depression began with ______.",
-    "options": { "A": "the end of World War II", "B": "the stock market crash of 1929", "C": "a severe drought in Europe", "D": "the invention of the internet", "E": "a global pandemic" },
+    "A": "the end of World War II",
+    "B": "the stock market crash of 1929",
+    "C": "a severe drought in Europe",
+    "D": "the invention of the internet",
+    "E": "a global pandemic",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 1929 Borsa çöküşü (Crash) başlangıçtır."
+    "explanation": "ÇÖZÜM: Büyük Buhran'ın başlangıcı 1929 Borsa Çöküşü (Stock Market Crash) olarak bilinir."
   },
   {
     "id": 52,
-    "category": "Paragraph",
     "prompt": "(Passage: The Great Depression) During this period, unemployment rates ______.",
-    "options": { "A": "remained stable", "B": "decreased slightly", "C": "skyrocketed", "D": "were not recorded", "E": "affected only the rich" },
+    "A": "remained stable",
+    "B": "decreased slightly",
+    "C": "skyrocketed",
+    "D": "were not recorded",
+    "E": "affected only the rich",
     "correct": "C",
-    "explanation": "ÇÖZÜM: İşsizlik fırladı (skyrocketed)."
+    "explanation": "ÇÖZÜM: Buhran döneminde işsizlik oranları fırlamıştır (skyrocketed/increased dramatically)."
   },
   {
     "id": 53,
-    "category": "Paragraph",
     "prompt": "(Passage: The Great Depression) The 'New Deal' was a program introduced to ______.",
-    "options": { "A": "start a new war", "B": "aid economic recovery", "C": "close all banks", "D": "support foreign nations", "E": "increase taxes on the poor" },
+    "A": "start a new war",
+    "B": "aid economic recovery",
+    "C": "close all banks",
+    "D": "support foreign nations",
+    "E": "increase taxes on the poor",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Ekonomik iyileşme (recovery) için yapıldı."
+    "explanation": "ÇÖZÜM: 'New Deal' programı ekonomik iyileşmeyi (recovery) sağlamak için başlatılmıştır."
   },
   {
     "id": 54,
-    "category": "Paragraph",
     "prompt": "(Passage: The Great Depression) The depression ended primarily due to ______.",
-    "options": { "A": "charity organizations", "B": "industrial production for WWII", "C": "agricultural reforms", "D": "finding gold", "E": "population decrease" },
+    "A": "charity organizations",
+    "B": "industrial production for WWII",
+    "C": "agricultural reforms",
+    "D": "finding gold",
+    "E": "population decrease",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 2. Dünya Savaşı sanayileşmesi bitişi sağladı."
+    "explanation": "ÇÖZÜM: Ekonominin toparlanıp buhranın bitmesi büyük ölçüde 2. Dünya Savaşı için artan endüstriyel üretimle olmuştur."
   },
   {
     "id": 55,
-    "category": "Paragraph",
     "prompt": "(Passage: Sleep Hygiene) Good sleep hygiene involves ______.",
-    "options": { "A": "drinking coffee before bed", "B": "keeping a consistent sleep schedule", "C": "exercising right before sleep", "D": "watching TV in bed", "E": "sleeping at different times daily" },
+    "A": "drinking coffee before bed",
+    "B": "keeping a consistent sleep schedule",
+    "C": "exercising right before sleep",
+    "D": "watching TV in bed",
+    "E": "sleeping at different times daily",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Düzenli uyku programı (consistent schedule)."
+    "explanation": "ÇÖZÜM: İyi uyku hijyeni, tutarlı bir uyku programı (consistent schedule) gerektirir."
   },
   {
     "id": 56,
-    "category": "Paragraph",
     "prompt": "(Passage: Sleep Hygiene) Blue light from screens can ______.",
-    "options": { "A": "help you sleep faster", "B": "disrupt melatonin production", "C": "improve dream quality", "D": "cure insomnia", "E": "relax your eyes" },
+    "A": "help you sleep faster",
+    "B": "disrupt melatonin production",
+    "C": "improve dream quality",
+    "D": "cure insomnia",
+    "E": "relax your eyes",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Melatonini bozar (disrupt)."
+    "explanation": "ÇÖZÜM: Ekranlardan gelen mavi ışık, uyku hormonu melatoninin üretimini bozar (disrupt)."
   },
   {
     "id": 57,
-    "category": "Paragraph",
     "prompt": "(Passage: Sleep Hygiene) A cool and dark room is recommended because ______.",
-    "options": { "A": "it saves electricity", "B": "it promotes better sleep quality", "C": "it prevents nightmares", "D": "it scares away insects", "E": "it allows you to wake up earlier" },
+    "A": "it saves electricity",
+    "B": "it promotes better sleep quality",
+    "C": "it prevents nightmares",
+    "D": "it scares away insects",
+    "E": "it allows you to wake up earlier",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Daha iyi uyku kalitesi sağlar."
+    "explanation": "ÇÖZÜM: Serin ve karanlık oda, daha iyi uyku kalitesini (better sleep quality) teşvik eder."
   },
   {
     "id": 58,
-    "category": "Paragraph",
     "prompt": "(Passage: Sleep Hygiene) The text suggests avoiding ______ late in the day.",
-    "options": { "A": "water", "B": "caffeine and heavy meals", "C": "reading books", "D": "listening to music", "E": "meditation" },
+    "A": "water",
+    "B": "caffeine and heavy meals",
+    "C": "reading books",
+    "D": "listening to music",
+    "E": "meditation",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Kafein ve ağır yemeklerden kaçınılmalı."
+    "explanation": "ÇÖZÜM: Günün geç saatlerinde kafein ve ağır yemeklerden kaçınılması önerilir."
   },
   {
     "id": 59,
-    "category": "Paragraph",
     "prompt": "(Passage: Renewable Energy) Renewable energy is derived from sources that ______.",
-    "options": { "A": "are finite and expensive", "B": "replenish naturally", "C": "produce heavy pollution", "D": "are imported from other countries", "E": "require burning fuel" },
+    "A": "are finite and expensive",
+    "B": "replenish naturally",
+    "C": "produce heavy pollution",
+    "D": "are imported from other countries",
+    "E": "require burning fuel",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Doğal olarak yenilenir (replenish)."
+    "explanation": "ÇÖZÜM: Yenilenebilir enerji, doğal olarak kendini yenileyen (replenish naturally) kaynaklardan gelir."
   },
   {
     "id": 60,
-    "category": "Paragraph",
     "prompt": "(Passage: Renewable Energy) One major advantage of wind power is that it ______.",
-    "options": { "A": "is available 24/7 everywhere", "B": "produces no greenhouse gases", "C": "is silent", "D": "takes up no space", "E": "is cheaper than free" },
+    "A": "is available 24/7 everywhere",
+    "B": "produces no greenhouse gases",
+    "C": "is silent",
+    "D": "takes up no space",
+    "E": "is cheaper than free",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Sera gazı üretmez."
+    "explanation": "ÇÖZÜM: Rüzgar enerjisinin en büyük avantajı sera gazı üretmemesidir (no greenhouse gases)."
   },
   {
     "id": 61,
-    "category": "Paragraph",
     "prompt": "(Passage: Renewable Energy) A challenge facing solar energy is ______.",
-    "options": { "A": "the sun is shrinking", "B": "intermittency and storage", "C": "it is too dangerous", "D": "nobody wants to use it", "E": "panels are illegal" },
+    "A": "the sun is shrinking",
+    "B": "intermittency and storage",
+    "C": "it is too dangerous",
+    "D": "nobody wants to use it",
+    "E": "panels are illegal",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Kesintili olması (intermittency) ve depolama sorunu."
+    "explanation": "ÇÖZÜM: Güneş enerjisinin zorluğu kesintili olması (intermittency) ve depolama (storage) sorunudur."
   },
   {
     "id": 62,
-    "category": "Paragraph",
     "prompt": "(Passage: Renewable Energy) Governments support renewables through ______.",
-    "options": { "A": "banning cars", "B": "subsidies and incentives", "C": "increasing oil prices only", "D": "closing all factories", "E": "ignoring climate change" },
+    "A": "banning cars",
+    "B": "subsidies and incentives",
+    "C": "increasing oil prices only",
+    "D": "closing all factories",
+    "E": "ignoring climate change",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Teşvikler (subsidies) ile desteklenir."
+    "explanation": "ÇÖZÜM: Hükümetler yenilenebilir enerjiyi sübvansiyonlar ve teşviklerle (subsidies and incentives) destekler."
   },
   {
     "id": 63,
-    "category": "Dialogue",
     "prompt": "Interviewer: What do you consider your greatest strength?\nCandidate: ______\nInterviewer: Can you give an example of that?",
-    "options": { "A": "I don't like working in teams.", "B": "I am very adaptable and learn quickly.", "C": "My salary expectation is high.", "D": "I want to leave early on Fridays.", "E": "I have no weakness." },
+    "A": "I don't like working in teams.",
+    "B": "I am very adaptable and learn quickly.",
+    "C": "My salary expectation is high.",
+    "D": "I want to leave early on Fridays.",
+    "E": "I have no weakness.",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Güçlü yan sorusuna 'uyumlu ve hızlı öğrenen' cevabı uygundur."
+    "explanation": "ÇÖZÜM: Mülakatta güçlü yön sorulduğunda 'uyumlu olmak ve hızlı öğrenmek' uygun bir cevaptır."
   },
   {
     "id": 64,
-    "category": "Dialogue",
     "prompt": "Alice: I can't believe I failed the driving test again.\nBob: Don't worry. ______\nAlice: Thanks, I'll try again next month.",
-    "options": { "A": "You are a terrible driver.", "B": "Maybe you should sell your car.", "C": "It happens to the best of us.", "D": "I passed on my first try.", "E": "Driving is not important anyway." },
+    "A": "You are a terrible driver.",
+    "B": "Maybe you should sell your car.",
+    "C": "It happens to the best of us.", "D": "I passed on my first try.", "E": "Driving is not important anyway.",
     "correct": "C",
-    "explanation": "ÇÖZÜM: Teselli cümlesi: 'Herkesin başına gelebilir'."
+    "explanation": "ÇÖZÜM: Başarısız olan birini teselli etmek için 'En iyimizin bile başına gelir' (It happens to the best of us) denir."
   },
   {
     "id": 65,
-    "category": "Dialogue",
     "prompt": "Customer: This soup is cold.\nWaiter: I'm terribly sorry, sir. ______\nCustomer: Thank you, I'd appreciate that.",
-    "options": { "A": "It's supposed to be cold.", "B": "I will heat it up for you immediately.", "C": "You should eat it faster.", "D": "The chef is on break.", "E": "We are closing soon." },
+    "A": "It's supposed to be cold.", "B": "I will heat it up for you immediately.", "C": "You should eat it faster.", "D": "The chef is on break.", "E": "We are closing soon.",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Sorunu çözme teklifi: 'Isıtıp getireyim'."
+    "explanation": "ÇÖZÜM: Çorba soğuksa garsonun çözüm önerisi 'hemen ısıtmak' (heat it up) olmalıdır."
   },
   {
     "id": 66,
-    "category": "Dialogue",
     "prompt": "Student: I don't understand this physics problem.\nTeacher: ______\nStudent: Oh, I see where I made the mistake now.",
-    "options": { "A": "Physics is very hard.", "B": "Let's look at the formula again together.", "C": "You should study history instead.", "D": "The exam will be harder.", "E": "Ask your friend for help." },
+    "A": "Physics is very hard.", "B": "Let's look at the formula again together.", "C": "You should study history instead.", "D": "The exam will be harder.", "E": "Ask your friend for help.",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Öğretmen yardımı: 'Formüle tekrar bakalım'."
+    "explanation": "ÇÖZÜM: Öğretmen öğrenciye yardım etmek için 'formüle tekrar bakalım' der."
   },
   {
     "id": 67,
-    "category": "Dialogue",
     "prompt": "John: Are you coming to the party tonight?\nMary: ______\nJohn: That's too bad. We will miss you.",
-    "options": { "A": "Yes, I'll be there!", "B": "I wouldn't miss it for the world.", "C": "I have to finish my report, unfortunately.", "D": "Who else is coming?", "E": "What time does it start?" },
+    "A": "Yes, I'll be there!", "B": "I wouldn't miss it for the world.", "C": "I have to finish my report, unfortunately.", "D": "Who else is coming?", "E": "What time does it start?",
     "correct": "C",
-    "explanation": "ÇÖZÜM: Gelememe mazereti: 'Rapor bitirmem lazım'."
+    "explanation": "ÇÖZÜM: John 'kötü oldu, seni özleyeceğiz' dediğine göre Mary partiye gelemeyeceğini söylemiştir."
   },
   {
     "id": 68,
-    "category": "Restatement",
     "prompt": "It is rare for him to be late for a meeting.",
-    "options": { "A": "He is usually on time for meetings.", "B": "He is never late for meetings.", "C": "He is always late for meetings.", "D": "He prefers being late.", "E": "Meetings are rare for him." },
+    "A": "He is usually on time for meetings.",
+    "B": "He is never late for meetings.",
+    "C": "He is always late for meetings.",
+    "D": "He prefers being late.",
+    "E": "Meetings are rare for him.",
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'Rare' (nadir) = 'Usually on time' (genelde zamanında)."
+    "explanation": "ÇÖZÜM: Nadiren geç kalıyorsa, genellikle zamanında (usually on time) geliyor demektir."
   },
   {
     "id": 69,
-    "category": "Restatement",
     "prompt": "She would rather stay home than go out tonight.",
-    "options": { "A": "She prefers going out to staying home.", "B": "She prefers staying home to going out.", "C": "She doesn't want to stay home.", "D": "Going out is her favorite activity.", "E": "She will go out if she has to." },
+    "A": "She prefers going out to staying home.",
+    "B": "She prefers staying home to going out.",
+    "C": "She doesn't want to stay home.", "D": "Going out is her favorite activity.", "E": "She will go out if she has to.",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'Would rather X than Y' = 'Prefer X to Y'."
+    "explanation": "ÇÖZÜM: 'Would rather X than Y' kalıbı 'Prefer X to Y' (X'i Y'ye tercih etmek) ile eş anlamlıdır."
   },
   {
     "id": 70,
-    "category": "Restatement",
     "prompt": "No sooner had I left the house than it started to rain.",
-    "options": { "A": "It started raining long after I left.", "B": "I didn't leave the house because of rain.", "C": "As soon as I left the house, it started raining.", "D": "It was raining before I left.", "E": "I waited for the rain to stop before leaving." },
+    "A": "It started raining long after I left.",
+    "B": "I didn't leave the house because of rain.",
+    "C": "As soon as I left the house, it started raining.",
+    "D": "It was raining before I left.", "E": "I waited for the rain to stop before leaving.",
     "correct": "C",
-    "explanation": "ÇÖZÜM: 'No sooner ... than' = 'As soon as' (Yapar yapmaz)."
+    "explanation": "ÇÖZÜM: 'No sooner ... than' yapısı 'As soon as' (yapar yapmaz) ile aynı anlamdadır."
   },
   {
     "id": 71,
-    "category": "Restatement",
     "prompt": "The box was too heavy for me to lift.",
-    "options": { "A": "I was strong enough to lift the box.", "B": "The box wasn't light enough for me to lift.", "C": "I didn't want to lift the box.", "D": "The box was very light.", "E": "I lifted the box easily." },
+    "A": "I was strong enough to lift the box.",
+    "B": "The box wasn't light enough for me to lift.",
+    "C": "I didn't want to lift the box.", "D": "The box was very light.", "E": "I lifted the box easily.",
     "correct": "B",
-    "explanation": "ÇÖZÜM: 'Too heavy to lift' = 'Not light enough to lift' (Kaldıramayacak kadar ağır)."
+    "explanation": "ÇÖZÜM: 'Kaldıramayacağım kadar ağırdı' cümlesi 'kaldırabileceğim kadar hafif değildi' ile aynı kapıya çıkar."
   },
   {
     "id": 72,
-    "category": "Paragraph Completion",
     "prompt": "Electric cars are becoming popular. ______ However, their range is still a concern for some drivers.",
-    "options": { "A": "They are expensive to maintain.", "B": "They produce zero tailpipe emissions.", "C": "Gasoline is very cheap nowadays.", "D": "Bicycles are also eco-friendly.", "E": "Trains are faster than cars." },
+    "A": "They are expensive to maintain.",
+    "B": "They produce zero tailpipe emissions.",
+    "C": "Gasoline is very cheap nowadays.", "D": "Bicycles are also eco-friendly.", "E": "Trains are faster than cars.",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Olumlu özellik (emisyon yok) -> However -> Olumsuz özellik (menzil)."
+    "explanation": "ÇÖZÜM: Boşluktan sonra 'However' ile olumsuz bir özellik (menzil sorunu) geldiği için, boşlukta olumlu bir özellik (sıfır emisyon) olmalıdır."
   },
   {
     "id": 73,
-    "category": "Paragraph Completion",
     "prompt": "Learning a language requires patience. ______. It is not something that happens overnight.",
-    "options": { "A": "You can learn it in a week.", "B": "Consistent practice is essential.", "C": "Language books are expensive.", "D": "Translation apps are very useful.", "E": "Math is harder than languages." },
+    "A": "You can learn it in a week.",
+    "B": "Consistent practice is essential.",
+    "C": "Language books are expensive.", "D": "Translation apps are very useful.", "E": "Math is harder than languages.",
     "correct": "B",
-    "explanation": "ÇÖZÜM: Sabır gerekir -> Sürekli pratik şarttır."
+    "explanation": "ÇÖZÜM: Dil öğrenmek sabır gerektirir ve bir gecede olmaz. Aradaki cümlede 'sürekli pratik şarttır' denmesi akışı sağlar."
   },
   {
     "id": 74,
-    "category": "Paragraph Completion",
     "prompt": "The internet has changed education. Students can access information instantly. ______. Teachers now guide rather than just lecture.",
-    "options": { "A": "Libraries are closing down.", "B": "Classrooms are no longer needed.", "C": "This has shifted the role of educators.", "D": "Computers are very fast.", "E": "Homework is banned." },
+    "A": "Libraries are closing down.",
+    "B": "Classrooms are no longer needed.",
+    "C": "This has shifted the role of educators.",
+    "D": "Computers are very fast.", "E": "Homework is banned.",
     "correct": "C",
-    "explanation": "ÇÖZÜM: Bilgi erişimi değişti -> Eğitimcinin rolü değişti."
+    "explanation": "ÇÖZÜM: Bilgiye erişim değişince, eğitimcilerin rolü de değişmiştir (shifted the role)."
   },
   {
     "id": 75,
-    "category": "Paragraph Completion",
     "prompt": "Exercise is good for the heart. It improves circulation and lowers blood pressure. ______. Therefore, doctors recommend it.",
-    "options": { "A": "It also reduces stress levels.", "B": "Eating junk food is bad.", "C": "Hospitals are full of patients.", "D": "Watching sports is fun.", "E": "Medicine is expensive." },
+    "A": "It also reduces stress levels.",
+    "B": "Eating junk food is bad.",
+    "C": "Hospitals are full of patients.", "D": "Watching sports is fun.", "E": "Medicine is expensive.",
     "correct": "A",
-    "explanation": "ÇÖZÜM: Fayda 1, Fayda 2 -> Ek Fayda (Stresi azaltır) -> Sonuç."
+    "explanation": "ÇÖZÜM: Egzersizin faydaları sıralanıyor (kalp, tansiyon). Araya ek bir fayda (stresi azaltması) girmelidir."
   },
   {
     "id": 76,
-    "category": "Irrelevant Sentence",
     "prompt": "(I) The Louvre is a famous museum in France. (II) It houses the Mona Lisa. (III) Paris is the capital of France. (IV) Millions of tourists visit it every year. (V) The glass pyramid entrance is iconic.",
-    "options": { "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V" },
+    "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V",
     "correct": "C",
-    "explanation": "ÇÖZÜM: Konu Louvre Müzesi. III. cümle Paris hakkında genel bilgi."
+    "explanation": "ÇÖZÜM: Paragraf Louvre Müzesi hakkında. III. cümle ise Paris'in başkent olmasıyla ilgili genel bir bilgidir ve akışı bozar."
   },
   {
     "id": 77,
-    "category": "Irrelevant Sentence",
     "prompt": "(I) Cats are independent pets. (II) They don't need to be walked like dogs. (III) Dogs are very loyal animals. (IV) Cats can clean themselves. (V) They are suitable for apartment living.",
-    "options": { "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V" },
+    "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V",
     "correct": "C",
-    "explanation": "ÇÖZÜM: Konu kediler. III. cümle köpekler hakkında."
+    "explanation": "ÇÖZÜM: Paragraf kedilerin özelliklerini anlatıyor. III. cümle köpeklerin sadakatinden bahsederek konuyu saptırıyor."
   },
   {
     "id": 78,
-    "category": "Irrelevant Sentence",
     "prompt": "(I) Drinking water is vital for health. (II) It keeps the body hydrated. (III) Soda contains a lot of sugar. (IV) Water aids in digestion. (V) It also helps regulate body temperature.",
-    "options": { "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V" },
+    "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V",
     "correct": "C",
-    "explanation": "ÇÖZÜM: Konu suyun faydaları. III. cümle gazlı içecekler hakkında."
+    "explanation": "ÇÖZÜM: Konu su içmenin faydaları. III. cümle gazlı içeceklerin şeker oranından bahsederek akışı bozuyor."
   },
   {
     "id": 79,
-    "category": "Irrelevant Sentence",
     "prompt": "(I) The rainforests are the lungs of the Earth. (II) They produce oxygen. (III) Deserts are very dry places. (IV) They are home to diverse wildlife. (V) Deforestation threatens their existence.",
-    "options": { "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V" },
+    "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V",
     "correct": "C",
-    "explanation": "ÇÖZÜM: Konu yağmur ormanları. III. cümle çöller hakkında."
+    "explanation": "ÇÖZÜM: Paragraf yağmur ormanları ile ilgili. III. cümle çöllerden bahsediyor."
   },
   {
     "id": 80,
-    "category": "Irrelevant Sentence",
     "prompt": "(I) Reading books improves vocabulary. (II) It also enhances critical thinking. (III) Movies are more entertaining than books. (IV) Regular readers have better focus. (V) It is a habit worth developing.",
-    "options": { "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V" },
+    "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V",
     "correct": "C",
-    "explanation": "ÇÖZÜM: Konu okumanın faydaları. III. cümle film karşılaştırması yapıyor."
+    "explanation": "ÇÖZÜM: Konu kitap okumanın faydaları. III. cümle filmlerin daha eğlenceli olduğunu söyleyerek akışı bozuyor."
   }
 ]
