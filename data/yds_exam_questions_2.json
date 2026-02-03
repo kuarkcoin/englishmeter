@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "category": "Vocabulary",
     "prompt": "The government has implemented a new policy to ______ the negative effects of the economic recession on small businesses.",
     "options": { "A": "mitigate", "B": "exacerbate", "C": "imply", "D": "initiate", "E": "perceive" },
     "correct": "A",
@@ -8,6 +9,7 @@
   },
   {
     "id": 2,
+    "category": "Vocabulary",
     "prompt": "The ______ of digital technology has transformed the way we communicate, making information accessible instantaneously.",
     "options": { "A": "reluctance", "B": "prevalence", "C": "ambiguity", "D": "obsolescence", "E": "deficiency" },
     "correct": "B",
@@ -15,6 +17,7 @@
   },
   {
     "id": 3,
+    "category": "Vocabulary",
     "prompt": "The scientist's theory was initially rejected, but subsequent experiments ______ demonstrated its validity.",
     "options": { "A": "vaguely", "B": "hardly", "C": "conclusively", "D": "coincidentally", "E": "partially" },
     "correct": "C",
@@ -22,17 +25,15 @@
   },
   {
     "id": 4,
+    "category": "Vocabulary",
     "prompt": "The instructions were so ______ that even the most inexperienced users could assemble the device without any help.",
-    "A": "explicit",
-    "B": "obscure",
-    "C": "lethal",
-    "D": "frugal",
-    "E": "hostile",
+    "options": { "A": "explicit", "B": "obscure", "C": "lethal", "D": "frugal", "E": "hostile" },
     "correct": "A",
     "explanation": "ÇÖZÜM: 'Explicit' (açık, net) talimatlar sayesinde deneyimsiz kullanıcılar bile yapabilmiştir."
   },
   {
     "id": 5,
+    "category": "Vocabulary",
     "prompt": "Due to the heavy storm, the organizers had to ______ the outdoor concert to a later date.",
     "options": { "A": "put off", "B": "call for", "C": "make up", "D": "turn down", "E": "bring about" },
     "correct": "A",
@@ -40,6 +41,7 @@
   },
   {
     "id": 6,
+    "category": "Vocabulary",
     "prompt": "Infants are highly ______ to infections because their immune systems have not yet fully developed.",
     "options": { "A": "indifferent", "B": "susceptible", "C": "comparable", "D": "resistant", "E": "relevant" },
     "correct": "B",
@@ -47,6 +49,7 @@
   },
   {
     "id": 7,
+    "category": "Grammar",
     "prompt": "By the time the fire brigade arrived, the building ______ completely to the ground.",
     "options": { "A": "burned", "B": "has burned", "C": "had burned", "D": "was burning", "E": "would burn" },
     "correct": "C",
@@ -54,6 +57,7 @@
   },
   {
     "id": 8,
+    "category": "Grammar",
     "prompt": "The manager insists that the report ______ on his desk by tomorrow morning.",
     "options": { "A": "is", "B": "was", "C": "be", "D": "has been", "E": "will be" },
     "correct": "C",
@@ -61,6 +65,7 @@
   },
   {
     "id": 9,
+    "category": "Grammar",
     "prompt": "______ the harsh weather conditions, the climbers managed to reach the summit.",
     "options": { "A": "Although", "B": "Despite", "C": "However", "D": "Unless", "E": "Whereas" },
     "correct": "B",
@@ -68,6 +73,7 @@
   },
   {
     "id": 10,
+    "category": "Grammar",
     "prompt": "There are ______ variations in the dialects spoken across the country that mutual understanding can be difficult.",
     "options": { "A": "such", "B": "so", "C": "too", "D": "very", "E": "much" },
     "correct": "A",
@@ -75,6 +81,7 @@
   },
   {
     "id": 11,
+    "category": "Grammar",
     "prompt": "The student, ______ project was selected as the best, received a scholarship.",
     "options": { "A": "who", "B": "whom", "C": "whose", "D": "which", "E": "that" },
     "correct": "C",
@@ -82,6 +89,7 @@
   },
   {
     "id": 12,
+    "category": "Grammar",
     "prompt": "It is no use ______ to convince him; he has already made up his mind.",
     "options": { "A": "try", "B": "to try", "C": "trying", "D": "tried", "E": "having tried" },
     "correct": "C",
@@ -89,6 +97,7 @@
   },
   {
     "id": 13,
+    "category": "Grammar",
     "prompt": "The ancient city ______ by archaeologists dates back to the 3rd century BC.",
     "options": { "A": "discovering", "B": "discovered", "C": "having discovered", "D": "to discover", "E": "discovers" },
     "correct": "B",
@@ -96,6 +105,7 @@
   },
   {
     "id": 14,
+    "category": "Grammar",
     "prompt": "He ______ have forgotten the meeting; I reminded him just an hour ago.",
     "options": { "A": "mustn't", "B": "can't", "C": "shouldn't", "D": "needn't", "E": "might not" },
     "correct": "B",
@@ -103,6 +113,7 @@
   },
   {
     "id": 15,
+    "category": "Grammar",
     "prompt": "Whatever the outcome ______ be, we must remain united.",
     "options": { "A": "may", "B": "has to", "C": "needs", "D": "ought", "E": "would" },
     "correct": "A",
@@ -110,6 +121,7 @@
   },
   {
     "id": 16,
+    "category": "Grammar",
     "prompt": "Only after the war ended ______ the soldiers able to return home.",
     "options": { "A": "did", "B": "were", "C": "had", "D": "could", "E": "would" },
     "correct": "B",
@@ -117,6 +129,7 @@
   },
   {
     "id": 17,
+    "category": "Cloze Test",
     "prompt": "Coffee originated in Ethiopia and spread to the rest of the world. Initially, it was used (17) ______ religious ceremonies.",
     "options": { "A": "at", "B": "on", "C": "in", "D": "by", "E": "from" },
     "correct": "C",
@@ -124,6 +137,7 @@
   },
   {
     "id": 18,
+    "category": "Cloze Test",
     "prompt": "By the 16th century, coffee (18) ______ the Middle East, Persia, and Turkey.",
     "options": { "A": "reached", "B": "has reached", "C": "had reached", "D": "was reaching", "E": "reaches" },
     "correct": "C",
@@ -131,6 +145,7 @@
   },
   {
     "id": 19,
+    "category": "Cloze Test",
     "prompt": "European travelers brought back stories of an unusual dark beverage. (19) ______, it faced some resistance initially.",
     "options": { "A": "Therefore", "B": "Moreover", "C": "However", "D": "Thus", "E": "Likewise" },
     "correct": "C",
@@ -138,6 +153,7 @@
   },
   {
     "id": 20,
+    "category": "Cloze Test",
     "prompt": "Soon, coffee houses became places (20) ______ people gathered to discuss politics and philosophy.",
     "options": { "A": "which", "B": "where", "C": "when", "D": "whose", "E": "whom" },
     "correct": "B",
@@ -145,13 +161,15 @@
   },
   {
     "id": 21,
+    "category": "Cloze Test",
     "prompt": "Today, coffee is one of the most (21) ______ consumed beverages in the world.",
     "options": { "A": "widely", "B": "hardly", "C": "scarcely", "D": "narrowly", "E": "slightly" },
     "correct": "A",
-    "explanation": "ÇÖZÜM: 'Widely consumed' (geniş çapta tüketilen) yaygın bir collocations'dır."
+    "explanation": "ÇÖZÜM: 'Widely consumed' (geniş çapta tüketilen) yaygın bir collocation'dır."
   },
   {
     "id": 22,
+    "category": "Cloze Test",
     "prompt": "Climate change poses a severe (22) ______ to global biodiversity.",
     "options": { "A": "treat", "B": "threat", "C": "thread", "D": "trend", "E": "tread" },
     "correct": "B",
@@ -159,6 +177,7 @@
   },
   {
     "id": 23,
+    "category": "Cloze Test",
     "prompt": "Many species may not be able to (23) ______ to the rapidly changing temperatures.",
     "options": { "A": "adopt", "B": "adept", "C": "adapt", "D": "admit", "E": "adjusting" },
     "correct": "C",
@@ -166,6 +185,7 @@
   },
   {
     "id": 24,
+    "category": "Cloze Test",
     "prompt": "(24) ______ urgent action is taken, we might lose significant ecosystems forever.",
     "options": { "A": "If", "B": "Since", "C": "Unless", "D": "While", "E": "As" },
     "correct": "C",
@@ -173,13 +193,15 @@
   },
   {
     "id": 25,
+    "category": "Cloze Test",
     "prompt": "Governments are aiming (25) ______ reducing carbon emissions by 50% within a decade.",
     "options": { "A": "in", "B": "on", "C": "at", "D": "for", "E": "to" },
     "correct": "C",
-    "explanation": "ÇÖZÜM: 'Aim at' (+Ving) hedefini belirtir. (Aim to + V1 de olabilir ama şıklarda Ving var)."
+    "explanation": "ÇÖZÜM: 'Aim at' (+Ving) hedefini belirtir."
   },
   {
     "id": 26,
+    "category": "Cloze Test",
     "prompt": "This transition requires a shift (26) ______ fossil fuels to renewable energy sources.",
     "options": { "A": "from", "B": "with", "C": "by", "D": "of", "E": "about" },
     "correct": "A",
@@ -187,6 +209,7 @@
   },
   {
     "id": 27,
+    "category": "Sentence Completion",
     "prompt": "Although the economy has shown signs of recovery, ______.",
     "options": { "A": "unemployment rates remain stubbornly high", "B": "investors are more confident than ever", "C": "the government has reduced taxes significantly", "D": "production levels have reached a record peak", "E": "inflation has dropped to single digits" },
     "correct": "A",
@@ -194,6 +217,7 @@
   },
   {
     "id": 28,
+    "category": "Sentence Completion",
     "prompt": "______ because he had forgotten to bring his passport.",
     "options": { "A": "He was allowed to board the plane", "B": "The police officer thanked him", "C": "He was denied entry to the country", "D": "His vacation was the best he ever had", "E": "He bought a ticket at the last minute" },
     "correct": "C",
@@ -201,6 +225,7 @@
   },
   {
     "id": 29,
+    "category": "Sentence Completion",
     "prompt": "Provided that you follow the instructions carefully, ______.",
     "options": { "A": "the machine might break down easily", "B": "you should have no trouble assembling the desk", "C": "it is difficult to predict the outcome", "D": "you will have to pay a fine", "E": "nobody knows what will happen next" },
     "correct": "B",
@@ -208,6 +233,7 @@
   },
   {
     "id": 30,
+    "category": "Sentence Completion",
     "prompt": "The lecture was so boring that ______.",
     "options": { "A": "the students listened attentively", "B": "everyone took detailed notes", "C": "many audience members fell asleep", "D": "the professor was applauded loudly", "E": "it ended much later than scheduled" },
     "correct": "C",
@@ -215,6 +241,7 @@
   },
   {
     "id": 31,
+    "category": "Sentence Completion",
     "prompt": "Even though he is the most qualified candidate, ______.",
     "options": { "A": "he is likely to get the job", "B": "everyone respects his abilities", "C": "he was not selected for the position", "D": "his resume is impressive", "E": "he speaks three languages fluently" },
     "correct": "C",
@@ -222,6 +249,7 @@
   },
   {
     "id": 32,
+    "category": "Sentence Completion",
     "prompt": "The new subway line was constructed so that ______.",
     "options": { "A": "traffic congestion in the city center could be reduced", "B": "people prefer driving their own cars", "C": "it is more expensive than taking the bus", "D": "nobody wants to use public transport", "E": "it caused more traffic jams during rush hour" },
     "correct": "A",
@@ -229,6 +257,7 @@
   },
   {
     "id": 33,
+    "category": "Sentence Completion",
     "prompt": "Unlike the previous administration, which focused on austerity, ______.",
     "options": { "A": "the current government is increasing public spending", "B": "taxes are being raised to cover the deficit", "C": "the economy is shrinking rapidly", "D": "nobody expects any positive change", "E": "the budget cuts are continuing as planned" },
     "correct": "A",
@@ -236,6 +265,7 @@
   },
   {
     "id": 34,
+    "category": "Sentence Completion",
     "prompt": "Having finished his medical degree with honors, ______.",
     "options": { "A": "medicine is a difficult field to study", "B": "he decided to specialize in cardiology", "C": "the hospital offered a job to his friend", "D": "it was time to take a long vacation", "E": "his parents were very disappointed" },
     "correct": "B",
@@ -243,6 +273,7 @@
   },
   {
     "id": 35,
+    "category": "Sentence Completion",
     "prompt": "The darker the coffee beans are roasted, ______.",
     "options": { "A": "the more caffeine they contain", "B": "the less acidic the taste becomes", "C": "it is easier to grind them", "D": "people prefer adding milk", "E": "they are grown in high altitudes" },
     "correct": "B",
@@ -250,6 +281,7 @@
   },
   {
     "id": 36,
+    "category": "Sentence Completion",
     "prompt": "Just as the invention of the wheel revolutionized transport, ______.",
     "options": { "A": "people still prefer walking long distances", "B": "the internet has transformed communication", "C": "cars are becoming more expensive", "D": "airplanes are the safest mode of travel", "E": "history is full of similar inventions" },
     "correct": "B",
@@ -257,6 +289,7 @@
   },
   {
     "id": 37,
+    "category": "Translation",
     "prompt": "The report, which was published last week, reveals the extent of the damage caused by the earthquake.",
     "options": { "A": "Geçen hafta yayınlanan rapor, depremin yol açtığı hasarın boyutunu gözler önüne seriyor.", "B": "Depremin neden olduğu hasar, geçen hafta yayınlanan bir raporla ortaya kondu.", "C": "Rapor geçen hafta yayınlandı ve depremin hasarını detaylıca anlatıyor.", "D": "Geçen hafta bir rapor yayınlayarak depremin hasarını açıkladılar.", "E": "Depremin hasarının boyutu, geçen haftaki raporda belirtildi." },
     "correct": "A",
@@ -264,6 +297,7 @@
   },
   {
     "id": 38,
+    "category": "Translation",
     "prompt": "If we had acted sooner, we could have prevented this disaster.",
     "options": { "A": "Daha erken harekete geçseydik, bu felaketi önleyebilirdik.", "B": "Bu felaketi önlemek için daha erken davranmamız gerekiyordu.", "C": "Erken hareket etmemize rağmen felaketi önleyemedik.", "D": "Felaketi önleyebilmek adına hemen harekete geçmeliyiz.", "E": "Daha erken davransaydık bile felaket önlenemezdi." },
     "correct": "A",
@@ -271,6 +305,7 @@
   },
   {
     "id": 39,
+    "category": "Translation",
     "prompt": "What matters most is not what you say, but what you do.",
     "options": { "A": "Ne söylediğin değil, ne yaptığın önemlidir.", "B": "En önemli olan şey ne söylediğin değil, ne yaptığındır.", "C": "Söylediklerinden çok yaptıklarına önem vermelisin.", "D": "Ne yaparsan yap, ne söylediğin her zaman daha önemlidir.", "E": "Söylediklerin ve yaptıkların eşit derecede önemlidir." },
     "correct": "B",
@@ -278,6 +313,7 @@
   },
   {
     "id": 40,
+    "category": "Translation",
     "prompt": "Yeni köprü, trafik sıkışıklığını azaltmak amacıyla inşa edildi.",
     "options": { "A": "The new bridge was built in order to reduce traffic congestion.", "B": "They built a new bridge to stop the traffic jam.", "C": "Traffic congestion was reduced by the new bridge.", "D": "The aim of the new bridge is reducing traffic.", "E": "Building a new bridge helped traffic congestion." },
     "correct": "A",
@@ -285,6 +321,7 @@
   },
   {
     "id": 41,
+    "category": "Translation",
     "prompt": "Sadece çok çalışarak değil, aynı zamanda akıllıca çalışarak başarılı olabilirsin.",
     "options": { "A": "You can succeed not only by working hard but also by working smartly.", "B": "Success comes from working hard and working smart.", "C": "Working hard is not enough, you must also be smart.", "D": "To succeed, you should work hard as well as smart.", "E": "Working smartly is more important than working hard for success." },
     "correct": "A",
@@ -292,6 +329,7 @@
   },
   {
     "id": 42,
+    "category": "Translation",
     "prompt": "Doktor, hastanın iyileşmesi için ilaçlarını düzenli alması gerektiğini söyledi.",
     "options": { "A": "The doctor told the patient to take his medicines regularly to recover.", "B": "The patient must take his medicines regularly, said the doctor.", "C": "To recover, the doctor advised taking medicines regularly.", "D": "The doctor said that the patient had to take his medicines regularly for his recovery.", "E": "Taking medicines regularly is important for recovery, according to the doctor." },
     "correct": "D",
@@ -299,6 +337,7 @@
   },
   {
     "id": 43,
+    "category": "Paragraph",
     "prompt": "(Passage: AI) The passage suggests that Artificial Intelligence ______.",
     "options": { "A": "is a passing trend with no future", "B": "has the potential to transform many industries", "C": "is only useful for playing games", "D": "will never surpass human intelligence", "E": "is too expensive for practical use" },
     "correct": "B",
@@ -306,6 +345,7 @@
   },
   {
     "id": 44,
+    "category": "Paragraph",
     "prompt": "(Passage: AI) One of the main concerns regarding AI mentioned in the text is ______.",
     "options": { "A": "its slow processing speed", "B": "the lack of data available", "C": "ethical issues and job displacement", "D": "the difficulty of programming", "E": "its inability to understand language" },
     "correct": "C",
@@ -313,6 +353,7 @@
   },
   {
     "id": 45,
+    "category": "Paragraph",
     "prompt": "(Passage: AI) According to the text, machine learning allows computers to ______.",
     "options": { "A": "fix their own hardware", "B": "learn from data without explicit programming", "C": "operate without electricity", "D": "create human emotions", "E": "control global markets" },
     "correct": "B",
@@ -320,6 +361,7 @@
   },
   {
     "id": 46,
+    "category": "Paragraph",
     "prompt": "(Passage: AI) The author's attitude towards AI is ______.",
     "options": { "A": "completely hostile", "B": "cautiously optimistic", "C": "indifferent", "D": "mocking", "E": "pessimistic" },
     "correct": "B",
@@ -327,6 +369,7 @@
   },
   {
     "id": 47,
+    "category": "Paragraph",
     "prompt": "(Passage: Monarch Butterflies) Monarch butterflies are known for their ______.",
     "options": { "A": "short lifespan", "B": "incredible migration journey", "C": "ability to swim", "D": "diet of small insects", "E": "lack of color" },
     "correct": "B",
@@ -334,6 +377,7 @@
   },
   {
     "id": 48,
+    "category": "Paragraph",
     "prompt": "(Passage: Monarch Butterflies) During winter, these butterflies hibernate in ______.",
     "options": { "A": "Canada", "B": "Mexico", "C": "New York", "D": "Florida", "E": "Alaska" },
     "correct": "B",
@@ -341,6 +385,7 @@
   },
   {
     "id": 49,
+    "category": "Paragraph",
     "prompt": "(Passage: Monarch Butterflies) The population of Monarchs is declining due to ______.",
     "options": { "A": "loss of milkweed habitat", "B": "an increase in bird predators", "C": "too much tourism", "D": "colder summers", "E": "urban noise" },
     "correct": "A",
@@ -348,6 +393,7 @@
   },
   {
     "id": 50,
+    "category": "Paragraph",
     "prompt": "(Passage: Monarch Butterflies) To navigate, Monarchs utilize ______.",
     "options": { "A": "GPS technology", "B": "the position of the sun", "C": "wind currents only", "D": "landmarks on the ground", "E": "sounds from other insects" },
     "correct": "B",
@@ -355,6 +401,7 @@
   },
   {
     "id": 51,
+    "category": "Paragraph",
     "prompt": "(Passage: The Great Depression) The Great Depression began with ______.",
     "options": { "A": "the end of World War II", "B": "the stock market crash of 1929", "C": "a severe drought in Europe", "D": "the invention of the internet", "E": "a global pandemic" },
     "correct": "B",
@@ -362,6 +409,7 @@
   },
   {
     "id": 52,
+    "category": "Paragraph",
     "prompt": "(Passage: The Great Depression) During this period, unemployment rates ______.",
     "options": { "A": "remained stable", "B": "decreased slightly", "C": "skyrocketed", "D": "were not recorded", "E": "affected only the rich" },
     "correct": "C",
@@ -369,6 +417,7 @@
   },
   {
     "id": 53,
+    "category": "Paragraph",
     "prompt": "(Passage: The Great Depression) The 'New Deal' was a program introduced to ______.",
     "options": { "A": "start a new war", "B": "aid economic recovery", "C": "close all banks", "D": "support foreign nations", "E": "increase taxes on the poor" },
     "correct": "B",
@@ -376,6 +425,7 @@
   },
   {
     "id": 54,
+    "category": "Paragraph",
     "prompt": "(Passage: The Great Depression) The depression ended primarily due to ______.",
     "options": { "A": "charity organizations", "B": "industrial production for WWII", "C": "agricultural reforms", "D": "finding gold", "E": "population decrease" },
     "correct": "B",
@@ -383,6 +433,7 @@
   },
   {
     "id": 55,
+    "category": "Paragraph",
     "prompt": "(Passage: Sleep Hygiene) Good sleep hygiene involves ______.",
     "options": { "A": "drinking coffee before bed", "B": "keeping a consistent sleep schedule", "C": "exercising right before sleep", "D": "watching TV in bed", "E": "sleeping at different times daily" },
     "correct": "B",
@@ -390,6 +441,7 @@
   },
   {
     "id": 56,
+    "category": "Paragraph",
     "prompt": "(Passage: Sleep Hygiene) Blue light from screens can ______.",
     "options": { "A": "help you sleep faster", "B": "disrupt melatonin production", "C": "improve dream quality", "D": "cure insomnia", "E": "relax your eyes" },
     "correct": "B",
@@ -397,6 +449,7 @@
   },
   {
     "id": 57,
+    "category": "Paragraph",
     "prompt": "(Passage: Sleep Hygiene) A cool and dark room is recommended because ______.",
     "options": { "A": "it saves electricity", "B": "it promotes better sleep quality", "C": "it prevents nightmares", "D": "it scares away insects", "E": "it allows you to wake up earlier" },
     "correct": "B",
@@ -404,6 +457,7 @@
   },
   {
     "id": 58,
+    "category": "Paragraph",
     "prompt": "(Passage: Sleep Hygiene) The text suggests avoiding ______ late in the day.",
     "options": { "A": "water", "B": "caffeine and heavy meals", "C": "reading books", "D": "listening to music", "E": "meditation" },
     "correct": "B",
@@ -411,6 +465,7 @@
   },
   {
     "id": 59,
+    "category": "Paragraph",
     "prompt": "(Passage: Renewable Energy) Renewable energy is derived from sources that ______.",
     "options": { "A": "are finite and expensive", "B": "replenish naturally", "C": "produce heavy pollution", "D": "are imported from other countries", "E": "require burning fuel" },
     "correct": "B",
@@ -418,6 +473,7 @@
   },
   {
     "id": 60,
+    "category": "Paragraph",
     "prompt": "(Passage: Renewable Energy) One major advantage of wind power is that it ______.",
     "options": { "A": "is available 24/7 everywhere", "B": "produces no greenhouse gases", "C": "is silent", "D": "takes up no space", "E": "is cheaper than free" },
     "correct": "B",
@@ -425,6 +481,7 @@
   },
   {
     "id": 61,
+    "category": "Paragraph",
     "prompt": "(Passage: Renewable Energy) A challenge facing solar energy is ______.",
     "options": { "A": "the sun is shrinking", "B": "intermittency and storage", "C": "it is too dangerous", "D": "nobody wants to use it", "E": "panels are illegal" },
     "correct": "B",
@@ -432,6 +489,7 @@
   },
   {
     "id": 62,
+    "category": "Paragraph",
     "prompt": "(Passage: Renewable Energy) Governments support renewables through ______.",
     "options": { "A": "banning cars", "B": "subsidies and incentives", "C": "increasing oil prices only", "D": "closing all factories", "E": "ignoring climate change" },
     "correct": "B",
@@ -439,6 +497,7 @@
   },
   {
     "id": 63,
+    "category": "Dialogue",
     "prompt": "Interviewer: What do you consider your greatest strength?\nCandidate: ______\nInterviewer: Can you give an example of that?",
     "options": { "A": "I don't like working in teams.", "B": "I am very adaptable and learn quickly.", "C": "My salary expectation is high.", "D": "I want to leave early on Fridays.", "E": "I have no weakness." },
     "correct": "B",
@@ -446,6 +505,7 @@
   },
   {
     "id": 64,
+    "category": "Dialogue",
     "prompt": "Alice: I can't believe I failed the driving test again.\nBob: Don't worry. ______\nAlice: Thanks, I'll try again next month.",
     "options": { "A": "You are a terrible driver.", "B": "Maybe you should sell your car.", "C": "It happens to the best of us.", "D": "I passed on my first try.", "E": "Driving is not important anyway." },
     "correct": "C",
@@ -453,6 +513,7 @@
   },
   {
     "id": 65,
+    "category": "Dialogue",
     "prompt": "Customer: This soup is cold.\nWaiter: I'm terribly sorry, sir. ______\nCustomer: Thank you, I'd appreciate that.",
     "options": { "A": "It's supposed to be cold.", "B": "I will heat it up for you immediately.", "C": "You should eat it faster.", "D": "The chef is on break.", "E": "We are closing soon." },
     "correct": "B",
@@ -460,6 +521,7 @@
   },
   {
     "id": 66,
+    "category": "Dialogue",
     "prompt": "Student: I don't understand this physics problem.\nTeacher: ______\nStudent: Oh, I see where I made the mistake now.",
     "options": { "A": "Physics is very hard.", "B": "Let's look at the formula again together.", "C": "You should study history instead.", "D": "The exam will be harder.", "E": "Ask your friend for help." },
     "correct": "B",
@@ -467,6 +529,7 @@
   },
   {
     "id": 67,
+    "category": "Dialogue",
     "prompt": "John: Are you coming to the party tonight?\nMary: ______\nJohn: That's too bad. We will miss you.",
     "options": { "A": "Yes, I'll be there!", "B": "I wouldn't miss it for the world.", "C": "I have to finish my report, unfortunately.", "D": "Who else is coming?", "E": "What time does it start?" },
     "correct": "C",
@@ -474,6 +537,7 @@
   },
   {
     "id": 68,
+    "category": "Restatement",
     "prompt": "It is rare for him to be late for a meeting.",
     "options": { "A": "He is usually on time for meetings.", "B": "He is never late for meetings.", "C": "He is always late for meetings.", "D": "He prefers being late.", "E": "Meetings are rare for him." },
     "correct": "A",
@@ -481,6 +545,7 @@
   },
   {
     "id": 69,
+    "category": "Restatement",
     "prompt": "She would rather stay home than go out tonight.",
     "options": { "A": "She prefers going out to staying home.", "B": "She prefers staying home to going out.", "C": "She doesn't want to stay home.", "D": "Going out is her favorite activity.", "E": "She will go out if she has to." },
     "correct": "B",
@@ -488,6 +553,7 @@
   },
   {
     "id": 70,
+    "category": "Restatement",
     "prompt": "No sooner had I left the house than it started to rain.",
     "options": { "A": "It started raining long after I left.", "B": "I didn't leave the house because of rain.", "C": "As soon as I left the house, it started raining.", "D": "It was raining before I left.", "E": "I waited for the rain to stop before leaving." },
     "correct": "C",
@@ -495,6 +561,7 @@
   },
   {
     "id": 71,
+    "category": "Restatement",
     "prompt": "The box was too heavy for me to lift.",
     "options": { "A": "I was strong enough to lift the box.", "B": "The box wasn't light enough for me to lift.", "C": "I didn't want to lift the box.", "D": "The box was very light.", "E": "I lifted the box easily." },
     "correct": "B",
@@ -502,6 +569,7 @@
   },
   {
     "id": 72,
+    "category": "Paragraph Completion",
     "prompt": "Electric cars are becoming popular. ______ However, their range is still a concern for some drivers.",
     "options": { "A": "They are expensive to maintain.", "B": "They produce zero tailpipe emissions.", "C": "Gasoline is very cheap nowadays.", "D": "Bicycles are also eco-friendly.", "E": "Trains are faster than cars." },
     "correct": "B",
@@ -509,6 +577,7 @@
   },
   {
     "id": 73,
+    "category": "Paragraph Completion",
     "prompt": "Learning a language requires patience. ______. It is not something that happens overnight.",
     "options": { "A": "You can learn it in a week.", "B": "Consistent practice is essential.", "C": "Language books are expensive.", "D": "Translation apps are very useful.", "E": "Math is harder than languages." },
     "correct": "B",
@@ -516,6 +585,7 @@
   },
   {
     "id": 74,
+    "category": "Paragraph Completion",
     "prompt": "The internet has changed education. Students can access information instantly. ______. Teachers now guide rather than just lecture.",
     "options": { "A": "Libraries are closing down.", "B": "Classrooms are no longer needed.", "C": "This has shifted the role of educators.", "D": "Computers are very fast.", "E": "Homework is banned." },
     "correct": "C",
@@ -523,6 +593,7 @@
   },
   {
     "id": 75,
+    "category": "Paragraph Completion",
     "prompt": "Exercise is good for the heart. It improves circulation and lowers blood pressure. ______. Therefore, doctors recommend it.",
     "options": { "A": "It also reduces stress levels.", "B": "Eating junk food is bad.", "C": "Hospitals are full of patients.", "D": "Watching sports is fun.", "E": "Medicine is expensive." },
     "correct": "A",
@@ -530,6 +601,7 @@
   },
   {
     "id": 76,
+    "category": "Irrelevant Sentence",
     "prompt": "(I) The Louvre is a famous museum in France. (II) It houses the Mona Lisa. (III) Paris is the capital of France. (IV) Millions of tourists visit it every year. (V) The glass pyramid entrance is iconic.",
     "options": { "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V" },
     "correct": "C",
@@ -537,6 +609,7 @@
   },
   {
     "id": 77,
+    "category": "Irrelevant Sentence",
     "prompt": "(I) Cats are independent pets. (II) They don't need to be walked like dogs. (III) Dogs are very loyal animals. (IV) Cats can clean themselves. (V) They are suitable for apartment living.",
     "options": { "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V" },
     "correct": "C",
@@ -544,6 +617,7 @@
   },
   {
     "id": 78,
+    "category": "Irrelevant Sentence",
     "prompt": "(I) Drinking water is vital for health. (II) It keeps the body hydrated. (III) Soda contains a lot of sugar. (IV) Water aids in digestion. (V) It also helps regulate body temperature.",
     "options": { "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V" },
     "correct": "C",
@@ -551,6 +625,7 @@
   },
   {
     "id": 79,
+    "category": "Irrelevant Sentence",
     "prompt": "(I) The rainforests are the lungs of the Earth. (II) They produce oxygen. (III) Deserts are very dry places. (IV) They are home to diverse wildlife. (V) Deforestation threatens their existence.",
     "options": { "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V" },
     "correct": "C",
@@ -558,6 +633,7 @@
   },
   {
     "id": 80,
+    "category": "Irrelevant Sentence",
     "prompt": "(I) Reading books improves vocabulary. (II) It also enhances critical thinking. (III) Movies are more entertaining than books. (IV) Regular readers have better focus. (V) It is a habit worth developing.",
     "options": { "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V" },
     "correct": "C",
