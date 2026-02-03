@@ -1,882 +1,566 @@
 [
   {
-    "id": "m4-q1",
-    "prompt": "1. The company had to face ______ financial difficulties due to the sudden drop in sales.",
-    "A": "severe",
-    "B": "vague",
-    "C": "reluctant",
-    "D": "coincidental",
-    "E": "prosperous",
+    "id": 1,
+    "prompt": "The government has implemented a new policy to ______ the negative effects of the economic recession on small businesses.",
+    "options": { "A": "mitigate", "B": "exacerbate", "C": "imply", "D": "initiate", "E": "perceive" },
     "correct": "A",
-    "explanation": "ÇÖZÜM: Satışların düşmesi 'ciddi/ağır' (severe) mali zorluklara yol açar."
+    "explanation": "ÇÖZÜM: 'Mitigate' (hafifletmek, azaltmak) olumsuz etkileri azaltmak anlamında kullanılır. 'Exacerbate' (kötüleştirmek) tam tersidir."
   },
   {
-    "id": "m4-q2",
-    "prompt": "2. Scientists have ______ a new method to convert plastic waste into fuel.",
-    "A": "devised",
-    "B": "neglected",
-    "C": "dismissed",
-    "D": "abolished",
-    "E": "refined",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 'Have + V3' yapısı gerekir. Yeni bir yöntemi tasarlamak/geliştirmek anlamında en doğru seçenek 'devised'dir."
-  },
-  {
-    "id": "m4-q3",
-    "prompt": "3. The growth of the internet has ______ the way we access information.",
-    "A": "revolutionized",
-    "B": "deteriorated",
-    "C": "preserved",
-    "D": "withdrawn",
-    "E": "suspected",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: İnternet bilgiye erişimi 'devrim niteliğinde değiştirdi' (revolutionized)."
-  },
-  {
-    "id": "m4-q4",
-    "prompt": "4. It is vital to ______ strict safety regulations in nuclear power plants.",
-    "A": "implement",
-    "B": "abandon",
-    "C": "disturb",
-    "D": "accuse",
-    "E": "wander",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Güvenlik kurallarını 'uygulamak/hayata geçirmek' (implement) hayati önem taşır."
-  },
-  {
-    "id": "m4-q5",
-    "prompt": "5. The meeting was ______ because the manager was ill.",
-    "A": "called off",
-    "B": "put on",
-    "C": "taken up",
-    "D": "given in",
-    "E": "brought about",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Müdür hasta olduğu için toplantı 'iptal edildi' (called off)."
-  },
-  {
-    "id": "m4-q6",
-    "prompt": "6. She speaks three languages ______, which helps her in her international career.",
-    "A": "fluently",
-    "B": "barely",
-    "C": "partially",
-    "D": "roughly",
-    "E": "severely",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Kariyerine yardımcı olduğuna göre dilleri 'akıcı bir şekilde' (fluently) konuşuyordur."
-  },
-  {
-    "id": "m4-q7",
-    "prompt": "7. If we ______ earlier, we ______ the traffic jam.",
-    "A": "had left / would have avoided",
-    "B": "left / would avoid",
-    "C": "leave / will avoid",
-    "D": "have left / avoid",
-    "E": "were leaving / avoided",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Type 3 Conditional. Geçmişte erken çıksaydık (had left), trafikten kaçınırdık (would have avoided)."
-  },
-  {
-    "id": "m4-q8",
-    "prompt": "8. The new bridge is expected ______ by the end of next year.",
-    "A": "to be completed",
-    "B": "completing",
-    "C": "to have completed",
-    "D": "being completed",
-    "E": "having been completed",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Geleceğe yönelik pasif yapı. 'Expect' fiili 'to' alır: 'to be completed'."
-  },
-  {
-    "id": "m4-q9",
-    "prompt": "9. ______ the heavy rain, the concert continued as planned.",
-    "A": "Despite",
-    "B": "Although",
-    "C": "Because",
-    "D": "Since",
-    "E": "Unless",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Yağmura 'rağmen' (Despite + Noun Phrase)."
-  },
-  {
-    "id": "m4-q10",
-    "prompt": "10. He is famous ______ his contributions ______ science.",
-    "A": "for / to",
-    "B": "in / for",
-    "C": "with / at",
-    "D": "on / by",
-    "E": "of / in",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Bir şeyle ünlü olmak 'famous FOR'. Bilime katkı 'contribution TO'."
-  },
-  {
-    "id": "m4-q11",
-    "prompt": "11. Many people rely ______ public transport ______ get to work.",
-    "A": "on / to",
-    "B": "at / for",
-    "C": "in / by",
-    "D": "with / from",
-    "E": "to / with",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 'Rely ON' (güvenmek/kullanmak). İşe gitmek 'için' (to get)."
-  },
-  {
-    "id": "m4-q12",
-    "prompt": "12. It is essential that the doctor ______ immediately.",
-    "A": "be called",
-    "B": "is called",
-    "C": "called",
-    "D": "will call",
-    "E": "has called",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Subjunctive Passive. 'It is essential that... be V3'."
-  },
-  {
-    "id": "m4-q13",
-    "prompt": "13. ______ you study, the better your grades will be.",
-    "A": "The harder",
-    "B": "Harder",
-    "C": "As hard as",
-    "D": "Hardest",
-    "E": "So hard",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Double Comparative. 'The harder..., the better...'."
-  },
-  {
-    "id": "m4-q14",
-    "prompt": "14. No sooner had she entered the room ______ the phone rang.",
-    "A": "than",
-    "B": "when",
-    "C": "that",
-    "D": "before",
-    "E": "after",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 'No sooner... than' yapısı."
-  },
-  {
-    "id": "m4-q15",
-    "prompt": "15. This diet is suitable ______ people who are allergic ______ nuts.",
-    "A": "for / to",
-    "B": "to / with",
-    "C": "with / from",
-    "D": "on / by",
-    "E": "at / in",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: İnsanlar 'için' uygun (suitable FOR). Fıstığa alerjisi olan (allergic TO)."
-  },
-  {
-    "id": "m4-q16",
-    "prompt": "16. ______ the fact that he was tired, he finished the report.",
-    "A": "Despite",
-    "B": "Although",
-    "C": "Unless",
-    "D": "Because",
-    "E": "Since",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 'Despite the fact that' kalıbı."
-  },
-  {
-    "id": "m4-q17",
-    "prompt": "17. CLOZE TEST: Climate change is a global issue. (17) ______ rising temperatures, polar ice caps are melting.",
-    "A": "Due to",
-    "B": "Despite",
-    "C": "Unlike",
-    "D": "Instead of",
-    "E": "Regardless of",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Artan sıcaklıklar 'yüzünden' (Due to) eriyorlar."
-  },
-  {
-    "id": "m4-q18",
-    "prompt": "18. This leads to rising sea levels, (18) ______ threatens coastal cities.",
-    "A": "which",
-    "B": "that",
-    "C": "what",
-    "D": "where",
-    "E": "when",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Önceki cümlenin tamamını niteleyen 'which'."
-  },
-  {
-    "id": "m4-q19",
-    "prompt": "19. Many species are losing their habitats and are at risk of (19) ______.",
-    "A": "extinction",
-    "B": "survival",
-    "C": "reproduction",
-    "D": "migration",
-    "E": "adaptation",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Habitat kaybı 'yok olma' (extinction) riskini doğurur."
-  },
-  {
-    "id": "m4-q20",
-    "prompt": "20. Governments must take action (20) ______ it is too late.",
-    "A": "before",
-    "B": "after",
-    "C": "since",
-    "D": "while",
-    "E": "once",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Çok geç olmadan 'önce' (before)."
-  },
-  {
-    "id": "m4-q21",
-    "prompt": "21. Individuals can also contribute by reducing their carbon (21) ______.",
-    "A": "footprint",
-    "B": "copy",
-    "C": "paper",
-    "D": "trace",
-    "E": "mark",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 'Carbon footprint' (karbon ayak izi) kalıbı."
-  },
-  {
-    "id": "m4-q22",
-    "prompt": "22. CLOZE TEST 2: Language is a powerful tool. It allows us to express our thoughts and (22) ______ with others.",
-    "A": "communicate",
-    "B": "compete",
-    "C": "conflict",
-    "D": "compare",
-    "E": "conceal",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Başkalarıyla 'iletişim kurmamızı' (communicate) sağlar."
-  },
-  {
-    "id": "m4-q23",
-    "prompt": "23. There are thousands of languages spoken (23) ______ the world.",
-    "A": "throughout",
-    "B": "among",
-    "C": "between",
-    "D": "into",
-    "E": "onto",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Dünya 'genelinde/çapında' (throughout)."
-  },
-  {
-    "id": "m4-q24",
-    "prompt": "24. Some languages are spoken by millions, (24) ______ others have only a few speakers.",
-    "A": "while",
-    "B": "so",
-    "C": "thus",
-    "D": "therefore",
-    "E": "hence",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Zıtlık. Bazıları milyonlarca kişi tarafından konuşulurken (while), diğerleri az."
-  },
-  {
-    "id": "m4-q25",
-    "prompt": "25. Learning a second language can be challenging, (25) ______ it is very rewarding.",
-    "A": "but",
-    "B": "so",
-    "C": "for",
-    "D": "or",
-    "E": "nor",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Zor olabilir 'ama' (but) ödüllendiricidir."
-  },
-  {
-    "id": "m4-q26",
-    "prompt": "26. It opens up new opportunities for travel and (26) ______.",
-    "A": "employment",
-    "B": "unemployment",
-    "C": "punishment",
-    "D": "argument",
-    "E": "imprisonment",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Seyahat ve 'iş/istihdam' (employment) fırsatları."
-  },
-  {
-    "id": "m4-q27",
-    "prompt": "27. Although he is very wealthy, ______.",
-    "A": "he lives a very simple life",
-    "B": "he buys expensive cars",
-    "C": "he travels a lot",
-    "D": "he has many houses",
-    "E": "he donates money",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Zengin olmasına 'rağmen' (Although), basit yaşar (zıtlık)."
-  },
-  {
-    "id": "m4-q28",
-    "prompt": "28. Since the weather was nice, ______.",
-    "A": "we decided to have a picnic",
-    "B": "we stayed indoors",
-    "C": "it was raining",
-    "D": "we wore coats",
-    "E": "we watched TV",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Hava güzel olduğu 'için' (Since), piknik yaptık."
-  },
-  {
-    "id": "m4-q29",
-    "prompt": "29. Unless you hurry, ______.",
-    "A": "you will miss the train",
-    "B": "you will be early",
-    "C": "you can catch the bus",
-    "D": "you have time",
-    "E": "you should relax",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Acele etmezsen (Unless), treni kaçırırsın."
-  },
-  {
-    "id": "m4-q30",
-    "prompt": "30. Provided that you finish your work, ______.",
-    "A": "you can go out with your friends",
-    "B": "you must stay home",
-    "C": "you will be punished",
-    "D": "you cannot leave",
-    "E": "you should work more",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: İşini bitirmen 'şartıyla' (Provided that), çıkabilirsin."
-  },
-  {
-    "id": "m4-q31",
-    "prompt": "31. Even if it rains, ______.",
-    "A": "the football match will go ahead",
-    "B": "we will cancel the picnic",
-    "C": "we will stay home",
-    "D": "it will be sunny",
-    "E": "we won't go out",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Yağmur yağsa 'bile' (Even if), maç devam edecek."
-  },
-  {
-    "id": "m4-q32",
-    "prompt": "32. As technology advances, ______.",
-    "A": "our lives become more convenient",
-    "B": "we use stone tools",
-    "C": "communication gets harder",
-    "D": "people live shorter lives",
-    "E": "travel becomes slower",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Teknoloji geliştikçe (As), hayat kolaylaşır."
-  },
-  {
-    "id": "m4-q33",
-    "prompt": "33. Because he lied to me, ______.",
-    "A": "I don't trust him anymore",
-    "B": "I gave him a gift",
-    "C": "we are best friends",
-    "D": "he is very honest",
-    "E": "I believe him",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Yalan söylediği 'için' (Because), güvenmiyorum."
-  },
-  {
-    "id": "m4-q34",
-    "prompt": "34. While I was studying, ______.",
-    "A": "my brother was playing video games",
-    "B": "I was sleeping",
-    "C": "I went to the cinema",
-    "D": "I ate dinner",
-    "E": "I played football",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Ben ders çalışırken (While), kardeşim oyun oynuyordu (eş zamanlı zıtlık)."
-  },
-  {
-    "id": "m4-q35",
-    "prompt": "35. In order to lose weight, ______.",
-    "A": "you should exercise regularly",
-    "B": "you must eat more sugar",
-    "C": "you should sleep all day",
-    "D": "you need to watch TV",
-    "E": "you can eat junk food",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Kilo vermek 'için' (In order to), egzersiz yapmalısın."
-  },
-  {
-    "id": "m4-q36",
-    "prompt": "36. However tired he was, ______.",
-    "A": "he continued working until midnight",
-    "B": "he went to sleep immediately",
-    "C": "he took a break",
-    "D": "he stopped working",
-    "E": "he relaxed",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Ne kadar yorgun olursa olsun (However tired), çalışmaya devam etti."
-  },
-  {
-    "id": "m4-q37",
-    "prompt": "37. The findings of the study suggest that a balanced diet is essential for mental health.",
-    "A": "Çalışmanın bulguları, dengeli beslenmenin akıl sağlığı için gerekli olduğunu öne sürmektedir.",
-    "B": "Akıl sağlığı için dengeli beslenmek gerektiğini çalışma göstermiştir.",
-    "C": "Dengeli beslenme akıl sağlığı için önemlidir, bu çalışmanın bulgusudur.",
-    "D": "Çalışma, akıl sağlığının dengeli beslenmeye bağlı olduğunu bulmuştur.",
-    "E": "Dengeli beslenmenin akıl sağlığına etkisi çalışmada bulunmuştur.",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 'Suggest' (öne sürmek), 'essential' (gerekli/esas). A şıkkı."
-  },
-  {
-    "id": "m4-q38",
-    "prompt": "38. Although the internet provides vast amounts of information, not all of it is reliable.",
-    "A": "İnternet çok büyük miktarda bilgi sağlasa da, hepsi güvenilir değildir.",
-    "B": "İnternetteki bilgilerin hepsi güvenilir değildir, çok bilgi olsa bile.",
-    "C": "Çok bilgi sağlayan internet her zaman güvenilir değildir.",
-    "D": "Güvenilir olmayan bilgiler internette çoktur.",
-    "E": "İnternet bilgi sağlar ama güvenilmezdir.",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 'Although' (sa da / ...rağmen), 'not all of it' (hepsi ... değil). A şıkkı."
-  },
-  {
-    "id": "m4-q39",
-    "prompt": "39. Many experts believe that renewable energy will replace fossil fuels in the near future.",
-    "A": "Pek çok uzman, yakın gelecekte yenilenebilir enerjinin fosil yakıtların yerini alacağına inanmaktadır.",
-    "B": "Yenilenebilir enerji yakın gelecekte fosil yakıtları değiştirecektir, uzmanlara göre.",
-    "C": "Uzmanlar fosil yakıtların yerine yenilenebilir enerjinin geçeceğini düşünüyor.",
-    "D": "Gelecekte fosil yakıtlar yenilenebilir enerji ile değişecek.",
-    "E": "Yenilenebilir enerjinin fosil yakıtların yerini alması uzmanların inancıdır.",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 'Many experts believe' (Pek çok uzman inanmaktadır), 'replace' (yerini almak). A şıkkı."
-  },
-  {
-    "id": "m4-q40",
-    "prompt": "40. Çocukların erken yaşta yabancı dil öğrenmesi, zihinsel gelişimlerine katkı sağlar.",
-    "A": "Learning a foreign language at an early age contributes to children's mental development.",
-    "B": "Children should learn a foreign language early for mental development.",
-    "C": "Mental development is improved by learning a language early.",
-    "D": "It is good for children to learn a language early.",
-    "E": "Early language learning develops children's minds.",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 'Learning... contributes to...' (Öğrenmesi... katkı sağlar). A şıkkı."
-  },
-  {
-    "id": "m4-q41",
-    "prompt": "41. Düzenli egzersiz yapmak, kalp hastalığı riskini azaltmanın en etkili yollarından biridir.",
-    "A": "Doing regular exercise is one of the most effective ways to reduce the risk of heart disease.",
-    "B": "Regular exercise reduces heart disease risk effectively.",
-    "C": "One way to reduce heart disease is to exercise regularly.",
-    "D": "The most effective way to stop heart disease is exercise.",
-    "E": "Heart disease risk can be reduced by exercise.",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 'One of the most effective ways' (En etkili yollarından biri). A şıkkı."
-  },
-  {
-    "id": "m4-q42",
-    "prompt": "42. Küresel ısınma nedeniyle, kutup ayılarının yaşam alanları hızla yok oluyor.",
-    "A": "Due to global warming, the habitats of polar bears are disappearing rapidly.",
-    "B": "Polar bears are losing their habitats because of global warming.",
-    "C": "Global warming destroys polar bear habitats.",
-    "D": "Rapid disappearance of habitats affects polar bears.",
-    "E": "Habitats are gone due to global warming.",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 'Due to' (nedeniyle), 'disappearing rapidly' (hızla yok oluyor). A şıkkı."
-  },
-  {
-    "id": "m4-q43",
-    "prompt": "43. READING PASSAGE 1: The history of chocolate begins in Mesoamerica. Fermented beverages made from chocolate date back to 450 BC. The Aztecs believed that cacao seeds were the gift of Quetzalcoatl, the god of wisdom, and the seeds had so much value that they were used as a form of currency. Originally prepared only as a drink, chocolate was served as a bitter liquid, mixed with spices or corn puree. It was believed to have aphrodisiac powers and to give the drinker strength.\n\nAccording to the passage, in Aztec culture, cacao seeds ______.",
-    "A": "were used as money",
-    "B": "were eaten as candy",
-    "C": "were considered poisonous",
-    "D": "grew only in temples",
-    "E": "were given to enemies",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Tohumlar o kadar değerliydi ki 'para birimi' (currency) olarak kullanılıyordu."
-  },
-  {
-    "id": "m4-q44",
-    "prompt": "44. The passage states that chocolate was originally ______.",
-    "A": "consumed as a bitter drink",
-    "B": "a sweet dessert",
-    "C": "eaten as a bar",
-    "D": "used for cooking meat",
-    "E": "exported to Europe",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Başlangıçta 'acı bir sıvı' (bitter liquid) olarak içiliyordu."
-  },
-  {
-    "id": "m4-q45",
-    "prompt": "45. It was believed that drinking chocolate ______.",
-    "A": "gave strength to the drinker",
-    "B": "caused illness",
-    "C": "made people sleep",
-    "D": "was bad for wisdom",
-    "E": "tasted like corn",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: İçene 'güç verdiğine' (give strength) inanılıyordu."
-  },
-  {
-    "id": "m4-q46",
-    "prompt": "46. The origins of chocolate can be traced back to ______.",
-    "A": "Mesoamerica",
-    "B": "Europe",
-    "C": "Africa",
-    "D": "Asia",
-    "E": "Australia",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Tarihi 'Mesoamerica'da başlar."
-  },
-  {
-    "id": "m4-q47",
-    "prompt": "47. READING PASSAGE 2: Antibiotics are drugs used to treat bacterial infections. They have saved millions of lives since they were first discovered. However, the misuse and overuse of antibiotics have led to a phenomenon known as antibiotic resistance. This occurs when bacteria change in response to the use of these medicines. Bacteria, not humans or animals, become antibiotic-resistant. These bacteria may infect humans and animals, and the infections they cause are harder to treat than those caused by non-resistant bacteria.\n\nAntibiotic resistance is caused by ______.",
-    "A": "misuse and overuse of antibiotics",
-    "B": "using them correctly",
-    "C": "viral infections",
-    "D": "eating healthy food",
-    "E": "drinking water",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 'Yanlış ve aşırı kullanım' (misuse and overuse) dirence yol açar."
-  },
-  {
-    "id": "m4-q48",
-    "prompt": "48. According to the passage, what becomes resistant to antibiotics?",
-    "A": "Bacteria",
-    "B": "Humans",
-    "C": "Animals",
-    "D": "Viruses",
-    "E": "Doctors",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: İnsanlar değil, 'bakteriler' (Bacteria) dirençli hale gelir."
-  },
-  {
-    "id": "m4-q49",
-    "prompt": "49. Infections caused by resistant bacteria are ______.",
-    "A": "harder to treat",
-    "B": "easy to cure",
-    "C": "not dangerous",
-    "D": "rare",
-    "E": "beneficial",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Bu enfeksiyonların tedavisi 'daha zordur' (harder to treat)."
-  },
-  {
-    "id": "m4-q50",
-    "prompt": "50. Antibiotics are used to treat ______.",
-    "A": "bacterial infections",
-    "B": "viral infections",
-    "C": "headaches",
-    "D": "broken bones",
-    "E": "cancer",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 'Bakteriyel enfeksiyonları' (bacterial infections) tedavi ederler."
-  },
-  {
-    "id": "m4-q51",
-    "prompt": "51. READING PASSAGE 3: The Internet is a global system of interconnected computer networks that use the standard Internet protocol suite to serve billions of users worldwide. It is a network of networks that consists of millions of private, public, academic, business, and government networks, of local to global scope. The Internet carries an extensive range of information resources and services, such as the inter-linked hypertext documents of the World Wide Web and the infrastructure to support email.\n\nThe Internet is described as ______.",
-    "A": "a global system of interconnected networks",
-    "B": "a small local network",
-    "C": "a government agency",
-    "D": "a single computer",
-    "E": "a type of email",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Küresel bir 'bağlantılı ağlar sistemi' (global system of interconnected networks)."
-  },
-  {
-    "id": "m4-q52",
-    "prompt": "52. The Internet serves ______.",
-    "A": "billions of users",
-    "B": "only scientists",
-    "C": "just businesses",
-    "D": "a few people",
-    "E": "only governments",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 'Milyarlarca kullanıcıya' (billions of users) hizmet eder."
-  },
-  {
-    "id": "m4-q53",
-    "prompt": "53. Which of the following is NOT mentioned as part of the Internet?",
-    "A": "Television networks",
-    "B": "Private networks",
-    "C": "Public networks",
-    "D": "Academic networks",
-    "E": "Business networks",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Pasajda TV ağlarından bahsedilmemiştir. Diğerleri (private, public, academic...) sayılmıştır."
-  },
-  {
-    "id": "m4-q54",
-    "prompt": "54. The World Wide Web is ______.",
-    "A": "one of the services carried by the Internet",
-    "B": "the same thing as the Internet",
-    "C": "a type of computer",
-    "D": "a government department",
-    "E": "an email service",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: İnternetin taşıdığı 'hizmetlerden biridir' (one of the services)."
-  },
-  {
-    "id": "m4-q55",
-    "prompt": "55. READING PASSAGE 4: Yoga is a group of physical, mental, and spiritual practices or disciplines which originated in ancient India. There is a broad variety of yoga schools, practices, and goals in Hinduism, Buddhism, and Jainism. Among the most well-known types of yoga are Hatha yoga and Raja yoga. The origins of yoga have been speculated to date back to pre-Vedic Indian traditions; it is mentioned in the Rigveda, but most likely developed around the sixth and fifth centuries BCE.\n\nYoga originated in ______.",
-    "A": "ancient India",
-    "B": "modern America",
-    "C": "China",
-    "D": "Europe",
-    "E": "Africa",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 'Antik Hindistan'da' (ancient India) doğmuştur."
-  },
-  {
-    "id": "m4-q56",
-    "prompt": "56. Yoga includes ______.",
-    "A": "physical, mental, and spiritual practices",
-    "B": "only physical exercises",
-    "C": "only meditation",
-    "D": "running and swimming",
-    "E": "weightlifting",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Fiziksel, zihinsel ve ruhsal pratikleri kapsar."
-  },
-  {
-    "id": "m4-q57",
-    "prompt": "57. Hatha yoga is mentioned as ______.",
-    "A": "a well-known type of yoga",
-    "B": "a religion",
-    "C": "a type of food",
-    "D": "a musical instrument",
-    "E": "a book",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: En çok bilinen yoga türlerinden biridir."
-  },
-  {
-    "id": "m4-q58",
-    "prompt": "58. The origins of yoga likely date back to ______.",
-    "A": "pre-Vedic traditions",
-    "B": "the 20th century",
-    "C": "the Middle Ages",
-    "D": "the Industrial Revolution",
-    "E": "last year",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 'Pre-Vedic' (Veda öncesi) geleneklere dayanır."
-  },
-  {
-    "id": "m4-q59",
-    "prompt": "59. READING PASSAGE 5: The Great Barrier Reef is the world's largest coral reef system composed of over 2,900 individual reefs and 900 islands stretching for over 2,300 kilometres. The reef is located in the Coral Sea, off the coast of Queensland, Australia. The Great Barrier Reef can be seen from outer space and is the world's biggest single structure made by living organisms. It supports a wide diversity of life and was selected as a World Heritage Site in 1981.\n\nThe Great Barrier Reef is located ______.",
-    "A": "off the coast of Australia",
-    "B": "in the Atlantic Ocean",
-    "C": "in the Mediterranean Sea",
-    "D": "near Japan",
-    "E": "in the Red Sea",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Avustralya (Queensland) kıyısındadır."
-  },
-  {
-    "id": "m4-q60",
-    "prompt": "60. It is unique because ______.",
-    "A": "it is the biggest structure made by living organisms",
-    "B": "it is man-made",
-    "C": "it is made of gold",
-    "D": "it is located on land",
-    "E": "it has no life",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Canlı organizmalarca yapılmış 'en büyük yapıdır'."
-  },
-  {
-    "id": "m4-q61",
-    "prompt": "61. The reef stretches for ______.",
-    "A": "over 2,300 kilometres",
-    "B": "100 kilometres",
-    "C": "500 metres",
-    "D": "10 miles",
-    "E": "1 million kilometres",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 2300 km boyunca uzanır."
-  },
-  {
-    "id": "m4-q62",
-    "prompt": "62. In 1981, the Great Barrier Reef was ______.",
-    "A": "selected as a World Heritage Site",
-    "B": "destroyed",
-    "C": "discovered",
-    "D": "closed to tourists",
-    "E": "sold",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Dünya Mirası Listesi'ne seçildi."
-  },
-  {
-    "id": "m4-q63",
-    "prompt": "63. John: I am planning to visit London next summer.\nMary: ______\nJohn: I want to see Big Ben and the British Museum.\nMary: Those are great choices!",
-    "A": "What places do you want to visit there?",
-    "B": "London is very expensive.",
-    "C": "Why are you going there?",
-    "D": "Have you booked your flight?",
-    "E": "Is it cold in summer?",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: John yer isimleri sayıyor. Mary 'Nereleri gezmek istiyorsun?' diye sormuştur."
-  },
-  {
-    "id": "m4-q64",
-    "prompt": "64. Interviewer: Do you have any experience in sales?\nCandidate: ______\nInterviewer: That sounds impressive. Can you tell me more about it?\nCandidate: Sure, I managed a team of ten people.",
-    "A": "Yes, I worked as a sales manager for five years.",
-    "B": "No, I am a fresh graduate.",
-    "C": "I prefer marketing.",
-    "D": "I don't like sales.",
-    "E": "What is sales?",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Adayın 'etkileyici' bir deneyimi olmalı ve yöneticiymiş. A şıkkı (5 yıl müdürlük) uygundur."
-  },
-  {
-    "id": "m4-q65",
-    "prompt": "65. Tourist: Excuse me, where is the nearest bank?\nLocal: ______\nTourist: Is it far from here?\nLocal: No, it's just a five-minute walk.",
-    "A": "Go straight and turn right.",
-    "B": "I don't know.",
-    "C": "The banks are closed.",
-    "D": "Do you have money?",
-    "E": "Take a taxi.",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Yer tarif ediyor olmalı. 'Düz git sağa dön'."
-  },
-  {
-    "id": "m4-q66",
-    "prompt": "66. Doctor: How are you feeling today?\nPatient: ______\nDoctor: Let me check your temperature.\nPatient: Thank you.",
-    "A": "I have a fever and a headache.",
-    "B": "I am very happy.",
-    "C": "I am going to work.",
-    "D": "The weather is nice.",
-    "E": "I am hungry.",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Doktor ateş ölçmek istiyorsa, hasta ateşten şikayet etmiştir."
-  },
-  {
-    "id": "m4-q67",
-    "prompt": "67. Customer: How much is this jacket?\nShop Assistant: ______\nCustomer: That's a bit expensive. Do you have a discount?\nShop Assistant: Yes, 10% off for today.",
-    "A": "It is 100 dollars.",
-    "B": "It is free.",
-    "C": "It is not for sale.",
-    "D": "I don't know.",
-    "E": "It is very cheap.",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Müşteri 'pahalı' diyor. Fiyat söylenmiş olmalı."
-  },
-  {
-    "id": "m4-q68",
-    "prompt": "68. It is forbidden to smoke in this area.",
-    "A": "You must not smoke here.",
-    "B": "You should smoke here.",
-    "C": "You can smoke if you want.",
-    "D": "Smoking is good.",
-    "E": "Please smoke outside.",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 'Forbidden' (yasak) = 'Must not' (yapmamalısın/yasak)."
-  },
-  {
-    "id": "m4-q69",
-    "prompt": "69. I haven't seen him for ages.",
-    "A": "It has been a long time since I last saw him.",
-    "B": "I saw him yesterday.",
-    "C": "I see him every day.",
-    "D": "He is my best friend.",
-    "E": "I will see him tomorrow.",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 'For ages' (uzun zamandır) = 'It has been a long time since...'."
-  },
-  {
-    "id": "m4-q70",
-    "prompt": "70. She is too young to drive a car.",
-    "A": "She isn't old enough to drive a car.",
-    "B": "She is very good at driving.",
-    "C": "She can drive a car.",
-    "D": "She drives fast.",
-    "E": "She is old enough.",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 'Too young' (çok genç/yaşı tutmuyor) = 'Not old enough' (yeterince büyük değil)."
-  },
-  {
-    "id": "m4-q71",
-    "prompt": "71. They cancelled the match due to rain.",
-    "A": "The match was cancelled because of the rain.",
-    "B": "They played in the rain.",
-    "C": "The rain stopped before the match.",
-    "D": "They like rain.",
-    "E": "The match started late.",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: 'Due to' = 'Because of'."
-  },
-  {
-    "id": "m4-q72",
-    "prompt": "72. Bees are essential for nature. ______ . Without them, many plants would die.",
-    "A": "They pollinate flowers.",
-    "B": "They make honey.",
-    "C": "They sting people.",
-    "D": "They live in hives.",
-    "E": "They are yellow.",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Doğadaki rolleri 'polinasyon' (tozlaşma) yapmaktır."
-  },
-  {
-    "id": "m4-q73",
-    "prompt": "73. Exercise is good for you. ______ . It keeps your heart healthy.",
-    "A": "It has many physical benefits.",
-    "B": "It makes you tired.",
-    "C": "It is boring.",
-    "D": "You should sleep instead.",
-    "E": "Gyms are expensive.",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Kalbi koruması 'fiziksel faydalarından' (physical benefits) biridir."
-  },
-  {
-    "id": "m4-q74",
-    "prompt": "74. Learning English is important. ______ . It is the language of international business.",
-    "A": "It opens up career opportunities.",
-    "B": "It is difficult.",
-    "C": "French is better.",
-    "D": "Nobody speaks it.",
-    "E": "It takes time.",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Uluslararası iş dili olması 'kariyer fırsatları' (career opportunities) yaratır."
-  },
-  {
-    "id": "m4-q75",
-    "prompt": "75. Computers are useful tools. ______ . They help us work faster and more efficiently.",
-    "A": "They increase productivity.",
-    "B": "They are expensive.",
-    "C": "They break easily.",
-    "D": "They are bad for eyes.",
-    "E": "They use electricity.",
-    "correct": "A",
-    "explanation": "ÇÖZÜM: Hızlı çalışmak 'üretkenliği artırır' (increase productivity)."
+    "id": 2,
+    "prompt": "The ______ of digital technology has transformed the way we communicate, making information accessible instantaneously.",
+    "options": { "A": "reluctance", "B": "prevalence", "C": "ambiguity", "D": "obsolescence", "E": "deficiency" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: 'Prevalence' (yaygınlık, hakimiyet) teknolojinin her yere yayılmasını anlatır. Diğerleri olumsuz anlam taşır."
   },
   {
-    "id": "m4-q76",
-    "prompt": "76. (I) Sharks are predators. (II) They live in the ocean. (III) Dolphins are mammals. (IV) Sharks have sharp teeth. (V) They are excellent hunters.",
-    "A": "I",
-    "B": "II",
-    "C": "III",
-    "D": "IV",
-    "E": "V",
+    "id": 3,
+    "prompt": "The scientist's theory was initially rejected, but subsequent experiments ______ demonstrated its validity.",
+    "options": { "A": "vaguely", "B": "hardly", "C": "conclusively", "D": "coincidentally", "E": "partially" },
     "correct": "C",
-    "explanation": "ÇÖZÜM: Parça köpekbalıklarıyla ilgili. III. cümle yunuslardan bahsediyor."
+    "explanation": "ÇÖZÜM: 'Conclusively' (kesin olarak) geçerliliği (validity) kanıtlamak için en uygun zarftır."
   },
   {
-    "id": "m4-q77",
-    "prompt": "77. (I) Mount Everest is the highest mountain. (II) It is in the Himalayas. (III) Many climbers try to reach the summit. (IV) The Amazon river is very long. (V) It is a dangerous climb.",
-    "A": "I",
-    "B": "II",
-    "C": "III",
-    "D": "IV",
-    "E": "V",
+    "id": 4,
+    "prompt": "The instructions were so ______ that even the most inexperienced users could assemble the device without any help.",
+    "A": "explicit",
+    "B": "obscure",
+    "C": "lethal",
+    "D": "frugal",
+    "E": "hostile",
+    "correct": "A",
+    "explanation": "ÇÖZÜM: 'Explicit' (açık, net) talimatlar sayesinde deneyimsiz kullanıcılar bile yapabilmiştir."
+  },
+  {
+    "id": 5,
+    "prompt": "Due to the heavy storm, the organizers had to ______ the outdoor concert to a later date.",
+    "options": { "A": "put off", "B": "call for", "C": "make up", "D": "turn down", "E": "bring about" },
+    "correct": "A",
+    "explanation": "ÇÖZÜM: 'Put off' (ertelemek) fırtına nedeniyle etkinliğin ileri tarihe atılmasıdır."
+  },
+  {
+    "id": 6,
+    "prompt": "Infants are highly ______ to infections because their immune systems have not yet fully developed.",
+    "options": { "A": "indifferent", "B": "susceptible", "C": "comparable", "D": "resistant", "E": "relevant" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: 'Susceptible to' (yatkın, savunmasız) bağışıklığı gelişmemiş bebekler için kullanılır."
+  },
+  {
+    "id": 7,
+    "prompt": "By the time the fire brigade arrived, the building ______ completely to the ground.",
+    "options": { "A": "burned", "B": "has burned", "C": "had burned", "D": "was burning", "E": "would burn" },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: 'By the time + Past Simple' yapısı ana cümlede 'Past Perfect' (had burned) gerektirir."
+  },
+  {
+    "id": 8,
+    "prompt": "The manager insists that the report ______ on his desk by tomorrow morning.",
+    "options": { "A": "is", "B": "was", "C": "be", "D": "has been", "E": "will be" },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: 'Insist that' yapısı Subjunctive gerektirir, fiil yalın (be) kalır."
+  },
+  {
+    "id": 9,
+    "prompt": "______ the harsh weather conditions, the climbers managed to reach the summit.",
+    "options": { "A": "Although", "B": "Despite", "C": "However", "D": "Unless", "E": "Whereas" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: 'Despite' (rağmen) kendisinden sonra isim öbeği alır."
+  },
+  {
+    "id": 10,
+    "prompt": "There are ______ variations in the dialects spoken across the country that mutual understanding can be difficult.",
+    "options": { "A": "such", "B": "so", "C": "too", "D": "very", "E": "much" },
+    "correct": "A",
+    "explanation": "ÇÖZÜM: 'Such ... that' kalıbında araya sıfat tamlaması (such variations) girer."
+  },
+  {
+    "id": 11,
+    "prompt": "The student, ______ project was selected as the best, received a scholarship.",
+    "options": { "A": "who", "B": "whom", "C": "whose", "D": "which", "E": "that" },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: İyelik bildiren 'whose project' (projesi seçilen öğrenci) yapısıdır."
+  },
+  {
+    "id": 12,
+    "prompt": "It is no use ______ to convince him; he has already made up his mind.",
+    "options": { "A": "try", "B": "to try", "C": "trying", "D": "tried", "E": "having tried" },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: 'It is no use' kalıbı kendisinden sonra Gerund (V-ing) alır."
+  },
+  {
+    "id": 13,
+    "prompt": "The ancient city ______ by archaeologists dates back to the 3rd century BC.",
+    "options": { "A": "discovering", "B": "discovered", "C": "having discovered", "D": "to discover", "E": "discovers" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: 'City (which was) discovered' kısaltması olarak Pasif Participle (discovered) kullanılır."
+  },
+  {
+    "id": 14,
+    "prompt": "He ______ have forgotten the meeting; I reminded him just an hour ago.",
+    "options": { "A": "mustn't", "B": "can't", "C": "shouldn't", "D": "needn't", "E": "might not" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: 'Can't have V3' geçmişe yönelik güçlü olumsuz çıkarım (unutmuş olamaz) bildirir."
+  },
+  {
+    "id": 15,
+    "prompt": "Whatever the outcome ______ be, we must remain united.",
+    "options": { "A": "may", "B": "has to", "C": "needs", "D": "ought", "E": "would" },
+    "correct": "A",
+    "explanation": "ÇÖZÜM: 'Whatever ... may be' (her ne olursa olsun) kalıbıdır."
+  },
+  {
+    "id": 16,
+    "prompt": "Only after the war ended ______ the soldiers able to return home.",
+    "options": { "A": "did", "B": "were", "C": "had", "D": "could", "E": "would" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: 'Only after' cümle başında devrik yapı ister. 'Able to' ile 'were' kullanılır."
+  },
+  {
+    "id": 17,
+    "prompt": "Coffee originated in Ethiopia and spread to the rest of the world. Initially, it was used (17) ______ religious ceremonies.",
+    "options": { "A": "at", "B": "on", "C": "in", "D": "by", "E": "from" },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: 'In ceremonies' (törenlerde) edat kullanımı."
+  },
+  {
+    "id": 18,
+    "prompt": "By the 16th century, coffee (18) ______ the Middle East, Persia, and Turkey.",
+    "options": { "A": "reached", "B": "has reached", "C": "had reached", "D": "was reaching", "E": "reaches" },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: 'By the 16th century' geçmişte bir noktadan öncesini (Past Perfect) anlatır."
+  },
+  {
+    "id": 19,
+    "prompt": "European travelers brought back stories of an unusual dark beverage. (19) ______, it faced some resistance initially.",
+    "options": { "A": "Therefore", "B": "Moreover", "C": "However", "D": "Thus", "E": "Likewise" },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: Zıtlık bağlacı 'However' (Ancak) popülerleşme öncesi direnci anlatır."
+  },
+  {
+    "id": 20,
+    "prompt": "Soon, coffee houses became places (20) ______ people gathered to discuss politics and philosophy.",
+    "options": { "A": "which", "B": "where", "C": "when", "D": "whose", "E": "whom" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: 'Places' (yer) nitelendiği için 'where' kullanılır."
+  },
+  {
+    "id": 21,
+    "prompt": "Today, coffee is one of the most (21) ______ consumed beverages in the world.",
+    "options": { "A": "widely", "B": "hardly", "C": "scarcely", "D": "narrowly", "E": "slightly" },
+    "correct": "A",
+    "explanation": "ÇÖZÜM: 'Widely consumed' (geniş çapta tüketilen) yaygın bir collocations'dır."
+  },
+  {
+    "id": 22,
+    "prompt": "Climate change poses a severe (22) ______ to global biodiversity.",
+    "options": { "A": "treat", "B": "threat", "C": "thread", "D": "trend", "E": "tread" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: 'Pose a threat' (tehdit oluşturmak) kalıbıdır."
+  },
+  {
+    "id": 23,
+    "prompt": "Many species may not be able to (23) ______ to the rapidly changing temperatures.",
+    "options": { "A": "adopt", "B": "adept", "C": "adapt", "D": "admit", "E": "adjusting" },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: 'Adapt to' (uyum sağlamak) fiilidir."
+  },
+  {
+    "id": 24,
+    "prompt": "(24) ______ urgent action is taken, we might lose significant ecosystems forever.",
+    "options": { "A": "If", "B": "Since", "C": "Unless", "D": "While", "E": "As" },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: 'Unless' (-mezse/madıkça) olumsuz koşul bildirir."
+  },
+  {
+    "id": 25,
+    "prompt": "Governments are aiming (25) ______ reducing carbon emissions by 50% within a decade.",
+    "options": { "A": "in", "B": "on", "C": "at", "D": "for", "E": "to" },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: 'Aim at' (+Ving) hedefini belirtir. (Aim to + V1 de olabilir ama şıklarda Ving var)."
+  },
+  {
+    "id": 26,
+    "prompt": "This transition requires a shift (26) ______ fossil fuels to renewable energy sources.",
+    "options": { "A": "from", "B": "with", "C": "by", "D": "of", "E": "about" },
+    "correct": "A",
+    "explanation": "ÇÖZÜM: 'Shift from ... to ...' (...den ...ya geçiş) kalıbıdır."
+  },
+  {
+    "id": 27,
+    "prompt": "Although the economy has shown signs of recovery, ______.",
+    "options": { "A": "unemployment rates remain stubbornly high", "B": "investors are more confident than ever", "C": "the government has reduced taxes significantly", "D": "production levels have reached a record peak", "E": "inflation has dropped to single digits" },
+    "correct": "A",
+    "explanation": "ÇÖZÜM: 'Although' zıtlık ister. İyileşmeye rağmen işsizlik yüksek (olumsuz)."
+  },
+  {
+    "id": 28,
+    "prompt": "______ because he had forgotten to bring his passport.",
+    "options": { "A": "He was allowed to board the plane", "B": "The police officer thanked him", "C": "He was denied entry to the country", "D": "His vacation was the best he ever had", "E": "He bought a ticket at the last minute" },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: Sebep (pasaport yok) -> Sonuç (giriş reddedildi)."
+  },
+  {
+    "id": 29,
+    "prompt": "Provided that you follow the instructions carefully, ______.",
+    "options": { "A": "the machine might break down easily", "B": "you should have no trouble assembling the desk", "C": "it is difficult to predict the outcome", "D": "you will have to pay a fine", "E": "nobody knows what will happen next" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Olumlu koşul (dikkatli takip) -> Olumlu sonuç (sorun yaşamazsın)."
+  },
+  {
+    "id": 30,
+    "prompt": "The lecture was so boring that ______.",
+    "options": { "A": "the students listened attentively", "B": "everyone took detailed notes", "C": "many audience members fell asleep", "D": "the professor was applauded loudly", "E": "it ended much later than scheduled" },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: 'So ... that' sebep-sonuç. Sıkıcı -> uyuyakaldılar."
+  },
+  {
+    "id": 31,
+    "prompt": "Even though he is the most qualified candidate, ______.",
+    "options": { "A": "he is likely to get the job", "B": "everyone respects his abilities", "C": "he was not selected for the position", "D": "his resume is impressive", "E": "he speaks three languages fluently" },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: Zıtlık (nitelikli ama seçilmedi)."
+  },
+  {
+    "id": 32,
+    "prompt": "The new subway line was constructed so that ______.",
+    "options": { "A": "traffic congestion in the city center could be reduced", "B": "people prefer driving their own cars", "C": "it is more expensive than taking the bus", "D": "nobody wants to use public transport", "E": "it caused more traffic jams during rush hour" },
+    "correct": "A",
+    "explanation": "ÇÖZÜM: 'So that' amaç bildirir. Amaç trafiği azaltmaktır."
+  },
+  {
+    "id": 33,
+    "prompt": "Unlike the previous administration, which focused on austerity, ______.",
+    "options": { "A": "the current government is increasing public spending", "B": "taxes are being raised to cover the deficit", "C": "the economy is shrinking rapidly", "D": "nobody expects any positive change", "E": "the budget cuts are continuing as planned" },
+    "correct": "A",
+    "explanation": "ÇÖZÜM: 'Unlike' zıtlık ister. Kemer sıkma (austerity) yerine harcama (spending)."
+  },
+  {
+    "id": 34,
+    "prompt": "Having finished his medical degree with honors, ______.",
+    "options": { "A": "medicine is a difficult field to study", "B": "he decided to specialize in cardiology", "C": "the hospital offered a job to his friend", "D": "it was time to take a long vacation", "E": "his parents were very disappointed" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: 'Having finished' (özne ortaklığı). Bitiren 'o', karar veren 'o'."
+  },
+  {
+    "id": 35,
+    "prompt": "The darker the coffee beans are roasted, ______.",
+    "options": { "A": "the more caffeine they contain", "B": "the less acidic the taste becomes", "C": "it is easier to grind them", "D": "people prefer adding milk", "E": "they are grown in high altitudes" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: 'The more ... the less' (ne kadar ... o kadar) yapısı."
+  },
+  {
+    "id": 36,
+    "prompt": "Just as the invention of the wheel revolutionized transport, ______.",
+    "options": { "A": "people still prefer walking long distances", "B": "the internet has transformed communication", "C": "cars are becoming more expensive", "D": "airplanes are the safest mode of travel", "E": "history is full of similar inventions" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: 'Just as ... so ...' (benzetme). Tekerlek/ulaşım = İnternet/iletişim."
+  },
+  {
+    "id": 37,
+    "prompt": "The report, which was published last week, reveals the extent of the damage caused by the earthquake.",
+    "options": { "A": "Geçen hafta yayınlanan rapor, depremin yol açtığı hasarın boyutunu gözler önüne seriyor.", "B": "Depremin neden olduğu hasar, geçen hafta yayınlanan bir raporla ortaya kondu.", "C": "Rapor geçen hafta yayınlandı ve depremin hasarını detaylıca anlatıyor.", "D": "Geçen hafta bir rapor yayınlayarak depremin hasarını açıkladılar.", "E": "Depremin hasarının boyutu, geçen haftaki raporda belirtildi." },
+    "correct": "A",
+    "explanation": "ÇÖZÜM: 'which was published last week' -> 'Geçen hafta yayınlanan rapor' (özne grubu)."
+  },
+  {
+    "id": 38,
+    "prompt": "If we had acted sooner, we could have prevented this disaster.",
+    "options": { "A": "Daha erken harekete geçseydik, bu felaketi önleyebilirdik.", "B": "Bu felaketi önlemek için daha erken davranmamız gerekiyordu.", "C": "Erken hareket etmemize rağmen felaketi önleyemedik.", "D": "Felaketi önleyebilmek adına hemen harekete geçmeliyiz.", "E": "Daha erken davransaydık bile felaket önlenemezdi." },
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Type 3 Conditional. 'Had acted' (geçseydik), 'could have prevented' (önleyebilirdik)."
+  },
+  {
+    "id": 39,
+    "prompt": "What matters most is not what you say, but what you do.",
+    "options": { "A": "Ne söylediğin değil, ne yaptığın önemlidir.", "B": "En önemli olan şey ne söylediğin değil, ne yaptığındır.", "C": "Söylediklerinden çok yaptıklarına önem vermelisin.", "D": "Ne yaparsan yap, ne söylediğin her zaman daha önemlidir.", "E": "Söylediklerin ve yaptıkların eşit derecede önemlidir." },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: 'What matters most' (En önemli olan şey) özne grubudur."
+  },
+  {
+    "id": 40,
+    "prompt": "Yeni köprü, trafik sıkışıklığını azaltmak amacıyla inşa edildi.",
+    "options": { "A": "The new bridge was built in order to reduce traffic congestion.", "B": "They built a new bridge to stop the traffic jam.", "C": "Traffic congestion was reduced by the new bridge.", "D": "The aim of the new bridge is reducing traffic.", "E": "Building a new bridge helped traffic congestion." },
+    "correct": "A",
+    "explanation": "ÇÖZÜM: 'Inşa edildi' (was built - pasif), 'amacıyla' (in order to)."
+  },
+  {
+    "id": 41,
+    "prompt": "Sadece çok çalışarak değil, aynı zamanda akıllıca çalışarak başarılı olabilirsin.",
+    "options": { "A": "You can succeed not only by working hard but also by working smartly.", "B": "Success comes from working hard and working smart.", "C": "Working hard is not enough, you must also be smart.", "D": "To succeed, you should work hard as well as smart.", "E": "Working smartly is more important than working hard for success." },
+    "correct": "A",
+    "explanation": "ÇÖZÜM: 'Sadece ... değil, aynı zamanda ...' (not only ... but also)."
+  },
+  {
+    "id": 42,
+    "prompt": "Doktor, hastanın iyileşmesi için ilaçlarını düzenli alması gerektiğini söyledi.",
+    "options": { "A": "The doctor told the patient to take his medicines regularly to recover.", "B": "The patient must take his medicines regularly, said the doctor.", "C": "To recover, the doctor advised taking medicines regularly.", "D": "The doctor said that the patient had to take his medicines regularly for his recovery.", "E": "Taking medicines regularly is important for recovery, according to the doctor." },
     "correct": "D",
-    "explanation": "ÇÖZÜM: Parça Everest ile ilgili. IV. cümle Amazon Nehri'nden bahsediyor."
+    "explanation": "ÇÖZÜM: Noun Clause '...gerektiğini söyledi' (said that ... had to take)."
   },
   {
-    "id": "m4-q78",
-    "prompt": "78. (I) Water is essential for life. (II) We should drink 2 liters a day. (III) The sun is a star. (IV) Dehydration causes headaches. (V) Clean water is a basic right.",
-    "A": "I",
-    "B": "II",
-    "C": "III",
-    "D": "IV",
-    "E": "V",
+    "id": 43,
+    "prompt": "(Passage: AI) The passage suggests that Artificial Intelligence ______.",
+    "options": { "A": "is a passing trend with no future", "B": "has the potential to transform many industries", "C": "is only useful for playing games", "D": "will never surpass human intelligence", "E": "is too expensive for practical use" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Paragraf genelinde YZ'nin dönüştürücü gücünden bahsedilir."
+  },
+  {
+    "id": 44,
+    "prompt": "(Passage: AI) One of the main concerns regarding AI mentioned in the text is ______.",
+    "options": { "A": "its slow processing speed", "B": "the lack of data available", "C": "ethical issues and job displacement", "D": "the difficulty of programming", "E": "its inability to understand language" },
     "correct": "C",
-    "explanation": "ÇÖZÜM: Parça suyla ilgili. III. cümle güneşten bahsediyor."
+    "explanation": "ÇÖZÜM: Etik sorunlar ve iş kaybı (job displacement) temel endişelerdir."
   },
   {
-    "id": "m4-q79",
-    "prompt": "79. (I) Football is a team sport. (II) It is played with a ball. (III) There are 11 players in a team. (IV) Tennis is played with a racket. (V) The goal is to score.",
-    "A": "I",
-    "B": "II",
-    "C": "III",
-    "D": "IV",
-    "E": "V",
-    "correct": "D",
-    "explanation": "ÇÖZÜM: Parça futbolla ilgili. IV. cümle tenisten bahsediyor."
+    "id": 45,
+    "prompt": "(Passage: AI) According to the text, machine learning allows computers to ______.",
+    "options": { "A": "fix their own hardware", "B": "learn from data without explicit programming", "C": "operate without electricity", "D": "create human emotions", "E": "control global markets" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Makine öğrenmesinin tanımı: Veriden öğrenme."
   },
   {
-    "id": "m4-q80",
-    "prompt": "80. (I) Dogs are loyal pets. (II) They love their owners. (III) Cats are independent. (IV) Dogs can be trained easily. (V) They are known as man's best friend.",
-    "A": "I",
-    "B": "II",
-    "C": "III",
-    "D": "IV",
-    "E": "V",
+    "id": 46,
+    "prompt": "(Passage: AI) The author's attitude towards AI is ______.",
+    "options": { "A": "completely hostile", "B": "cautiously optimistic", "C": "indifferent", "D": "mocking", "E": "pessimistic" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Hem faydaları hem riskleri anlattığı için 'temkinli iyimser'."
+  },
+  {
+    "id": 47,
+    "prompt": "(Passage: Monarch Butterflies) Monarch butterflies are known for their ______.",
+    "options": { "A": "short lifespan", "B": "incredible migration journey", "C": "ability to swim", "D": "diet of small insects", "E": "lack of color" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Hükümdar kelebekleri göçleriyle (migration) ünlüdür."
+  },
+  {
+    "id": 48,
+    "prompt": "(Passage: Monarch Butterflies) During winter, these butterflies hibernate in ______.",
+    "options": { "A": "Canada", "B": "Mexico", "C": "New York", "D": "Florida", "E": "Alaska" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Kış uykusu için Meksika'ya (Mexico) giderler."
+  },
+  {
+    "id": 49,
+    "prompt": "(Passage: Monarch Butterflies) The population of Monarchs is declining due to ______.",
+    "options": { "A": "loss of milkweed habitat", "B": "an increase in bird predators", "C": "too much tourism", "D": "colder summers", "E": "urban noise" },
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Yaşam alanı (milkweed) kaybı ana sebeptir."
+  },
+  {
+    "id": 50,
+    "prompt": "(Passage: Monarch Butterflies) To navigate, Monarchs utilize ______.",
+    "options": { "A": "GPS technology", "B": "the position of the sun", "C": "wind currents only", "D": "landmarks on the ground", "E": "sounds from other insects" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Güneşin konumunu pusula gibi kullanırlar."
+  },
+  {
+    "id": 51,
+    "prompt": "(Passage: The Great Depression) The Great Depression began with ______.",
+    "options": { "A": "the end of World War II", "B": "the stock market crash of 1929", "C": "a severe drought in Europe", "D": "the invention of the internet", "E": "a global pandemic" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: 1929 Borsa çöküşü (Crash) başlangıçtır."
+  },
+  {
+    "id": 52,
+    "prompt": "(Passage: The Great Depression) During this period, unemployment rates ______.",
+    "options": { "A": "remained stable", "B": "decreased slightly", "C": "skyrocketed", "D": "were not recorded", "E": "affected only the rich" },
     "correct": "C",
-    "explanation": "ÇÖZÜM: Parça köpeklerle ilgili. III. cümle kedilerden bahsediyor."
+    "explanation": "ÇÖZÜM: İşsizlik fırladı (skyrocketed)."
+  },
+  {
+    "id": 53,
+    "prompt": "(Passage: The Great Depression) The 'New Deal' was a program introduced to ______.",
+    "options": { "A": "start a new war", "B": "aid economic recovery", "C": "close all banks", "D": "support foreign nations", "E": "increase taxes on the poor" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Ekonomik iyileşme (recovery) için yapıldı."
+  },
+  {
+    "id": 54,
+    "prompt": "(Passage: The Great Depression) The depression ended primarily due to ______.",
+    "options": { "A": "charity organizations", "B": "industrial production for WWII", "C": "agricultural reforms", "D": "finding gold", "E": "population decrease" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: 2. Dünya Savaşı sanayileşmesi bitişi sağladı."
+  },
+  {
+    "id": 55,
+    "prompt": "(Passage: Sleep Hygiene) Good sleep hygiene involves ______.",
+    "options": { "A": "drinking coffee before bed", "B": "keeping a consistent sleep schedule", "C": "exercising right before sleep", "D": "watching TV in bed", "E": "sleeping at different times daily" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Düzenli uyku programı (consistent schedule)."
+  },
+  {
+    "id": 56,
+    "prompt": "(Passage: Sleep Hygiene) Blue light from screens can ______.",
+    "options": { "A": "help you sleep faster", "B": "disrupt melatonin production", "C": "improve dream quality", "D": "cure insomnia", "E": "relax your eyes" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Melatonini bozar (disrupt)."
+  },
+  {
+    "id": 57,
+    "prompt": "(Passage: Sleep Hygiene) A cool and dark room is recommended because ______.",
+    "options": { "A": "it saves electricity", "B": "it promotes better sleep quality", "C": "it prevents nightmares", "D": "it scares away insects", "E": "it allows you to wake up earlier" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Daha iyi uyku kalitesi sağlar."
+  },
+  {
+    "id": 58,
+    "prompt": "(Passage: Sleep Hygiene) The text suggests avoiding ______ late in the day.",
+    "options": { "A": "water", "B": "caffeine and heavy meals", "C": "reading books", "D": "listening to music", "E": "meditation" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Kafein ve ağır yemeklerden kaçınılmalı."
+  },
+  {
+    "id": 59,
+    "prompt": "(Passage: Renewable Energy) Renewable energy is derived from sources that ______.",
+    "options": { "A": "are finite and expensive", "B": "replenish naturally", "C": "produce heavy pollution", "D": "are imported from other countries", "E": "require burning fuel" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Doğal olarak yenilenir (replenish)."
+  },
+  {
+    "id": 60,
+    "prompt": "(Passage: Renewable Energy) One major advantage of wind power is that it ______.",
+    "options": { "A": "is available 24/7 everywhere", "B": "produces no greenhouse gases", "C": "is silent", "D": "takes up no space", "E": "is cheaper than free" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Sera gazı üretmez."
+  },
+  {
+    "id": 61,
+    "prompt": "(Passage: Renewable Energy) A challenge facing solar energy is ______.",
+    "options": { "A": "the sun is shrinking", "B": "intermittency and storage", "C": "it is too dangerous", "D": "nobody wants to use it", "E": "panels are illegal" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Kesintili olması (intermittency) ve depolama sorunu."
+  },
+  {
+    "id": 62,
+    "prompt": "(Passage: Renewable Energy) Governments support renewables through ______.",
+    "options": { "A": "banning cars", "B": "subsidies and incentives", "C": "increasing oil prices only", "D": "closing all factories", "E": "ignoring climate change" },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Teşvikler (subsidies) ile desteklenir."
+  },
+  {
+    "id": 63,
+    "prompt": "Interviewer: What do you consider your greatest strength?\nCandidate: ______\nInterviewer: Can you give an example of that?",
+    "options": { "A": "I don't like working in teams.", "B": "I am very adaptable and learn quickly.", "C": "My salary expectation is high.", "D": "I want to leave early on Fridays.", "E": "I have no weakness." },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Güçlü yan sorusuna 'uyumlu ve hızlı öğrenen' cevabı uygundur."
+  },
+  {
+    "id": 64,
+    "prompt": "Alice: I can't believe I failed the driving test again.\nBob: Don't worry. ______\nAlice: Thanks, I'll try again next month.",
+    "options": { "A": "You are a terrible driver.", "B": "Maybe you should sell your car.", "C": "It happens to the best of us.", "D": "I passed on my first try.", "E": "Driving is not important anyway." },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: Teselli cümlesi: 'Herkesin başına gelebilir'."
+  },
+  {
+    "id": 65,
+    "prompt": "Customer: This soup is cold.\nWaiter: I'm terribly sorry, sir. ______\nCustomer: Thank you, I'd appreciate that.",
+    "options": { "A": "It's supposed to be cold.", "B": "I will heat it up for you immediately.", "C": "You should eat it faster.", "D": "The chef is on break.", "E": "We are closing soon." },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Sorunu çözme teklifi: 'Isıtıp getireyim'."
+  },
+  {
+    "id": 66,
+    "prompt": "Student: I don't understand this physics problem.\nTeacher: ______\nStudent: Oh, I see where I made the mistake now.",
+    "options": { "A": "Physics is very hard.", "B": "Let's look at the formula again together.", "C": "You should study history instead.", "D": "The exam will be harder.", "E": "Ask your friend for help." },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Öğretmen yardımı: 'Formüle tekrar bakalım'."
+  },
+  {
+    "id": 67,
+    "prompt": "John: Are you coming to the party tonight?\nMary: ______\nJohn: That's too bad. We will miss you.",
+    "options": { "A": "Yes, I'll be there!", "B": "I wouldn't miss it for the world.", "C": "I have to finish my report, unfortunately.", "D": "Who else is coming?", "E": "What time does it start?" },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: Gelememe mazereti: 'Rapor bitirmem lazım'."
+  },
+  {
+    "id": 68,
+    "prompt": "It is rare for him to be late for a meeting.",
+    "options": { "A": "He is usually on time for meetings.", "B": "He is never late for meetings.", "C": "He is always late for meetings.", "D": "He prefers being late.", "E": "Meetings are rare for him." },
+    "correct": "A",
+    "explanation": "ÇÖZÜM: 'Rare' (nadir) = 'Usually on time' (genelde zamanında)."
+  },
+  {
+    "id": 69,
+    "prompt": "She would rather stay home than go out tonight.",
+    "options": { "A": "She prefers going out to staying home.", "B": "She prefers staying home to going out.", "C": "She doesn't want to stay home.", "D": "Going out is her favorite activity.", "E": "She will go out if she has to." },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: 'Would rather X than Y' = 'Prefer X to Y'."
+  },
+  {
+    "id": 70,
+    "prompt": "No sooner had I left the house than it started to rain.",
+    "options": { "A": "It started raining long after I left.", "B": "I didn't leave the house because of rain.", "C": "As soon as I left the house, it started raining.", "D": "It was raining before I left.", "E": "I waited for the rain to stop before leaving." },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: 'No sooner ... than' = 'As soon as' (Yapar yapmaz)."
+  },
+  {
+    "id": 71,
+    "prompt": "The box was too heavy for me to lift.",
+    "options": { "A": "I was strong enough to lift the box.", "B": "The box wasn't light enough for me to lift.", "C": "I didn't want to lift the box.", "D": "The box was very light.", "E": "I lifted the box easily." },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: 'Too heavy to lift' = 'Not light enough to lift' (Kaldıramayacak kadar ağır)."
+  },
+  {
+    "id": 72,
+    "prompt": "Electric cars are becoming popular. ______ However, their range is still a concern for some drivers.",
+    "options": { "A": "They are expensive to maintain.", "B": "They produce zero tailpipe emissions.", "C": "Gasoline is very cheap nowadays.", "D": "Bicycles are also eco-friendly.", "E": "Trains are faster than cars." },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Olumlu özellik (emisyon yok) -> However -> Olumsuz özellik (menzil)."
+  },
+  {
+    "id": 73,
+    "prompt": "Learning a language requires patience. ______. It is not something that happens overnight.",
+    "options": { "A": "You can learn it in a week.", "B": "Consistent practice is essential.", "C": "Language books are expensive.", "D": "Translation apps are very useful.", "E": "Math is harder than languages." },
+    "correct": "B",
+    "explanation": "ÇÖZÜM: Sabır gerekir -> Sürekli pratik şarttır."
+  },
+  {
+    "id": 74,
+    "prompt": "The internet has changed education. Students can access information instantly. ______. Teachers now guide rather than just lecture.",
+    "options": { "A": "Libraries are closing down.", "B": "Classrooms are no longer needed.", "C": "This has shifted the role of educators.", "D": "Computers are very fast.", "E": "Homework is banned." },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: Bilgi erişimi değişti -> Eğitimcinin rolü değişti."
+  },
+  {
+    "id": 75,
+    "prompt": "Exercise is good for the heart. It improves circulation and lowers blood pressure. ______. Therefore, doctors recommend it.",
+    "options": { "A": "It also reduces stress levels.", "B": "Eating junk food is bad.", "C": "Hospitals are full of patients.", "D": "Watching sports is fun.", "E": "Medicine is expensive." },
+    "correct": "A",
+    "explanation": "ÇÖZÜM: Fayda 1, Fayda 2 -> Ek Fayda (Stresi azaltır) -> Sonuç."
+  },
+  {
+    "id": 76,
+    "prompt": "(I) The Louvre is a famous museum in France. (II) It houses the Mona Lisa. (III) Paris is the capital of France. (IV) Millions of tourists visit it every year. (V) The glass pyramid entrance is iconic.",
+    "options": { "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V" },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: Konu Louvre Müzesi. III. cümle Paris hakkında genel bilgi."
+  },
+  {
+    "id": 77,
+    "prompt": "(I) Cats are independent pets. (II) They don't need to be walked like dogs. (III) Dogs are very loyal animals. (IV) Cats can clean themselves. (V) They are suitable for apartment living.",
+    "options": { "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V" },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: Konu kediler. III. cümle köpekler hakkında."
+  },
+  {
+    "id": 78,
+    "prompt": "(I) Drinking water is vital for health. (II) It keeps the body hydrated. (III) Soda contains a lot of sugar. (IV) Water aids in digestion. (V) It also helps regulate body temperature.",
+    "options": { "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V" },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: Konu suyun faydaları. III. cümle gazlı içecekler hakkında."
+  },
+  {
+    "id": 79,
+    "prompt": "(I) The rainforests are the lungs of the Earth. (II) They produce oxygen. (III) Deserts are very dry places. (IV) They are home to diverse wildlife. (V) Deforestation threatens their existence.",
+    "options": { "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V" },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: Konu yağmur ormanları. III. cümle çöller hakkında."
+  },
+  {
+    "id": 80,
+    "prompt": "(I) Reading books improves vocabulary. (II) It also enhances critical thinking. (III) Movies are more entertaining than books. (IV) Regular readers have better focus. (V) It is a habit worth developing.",
+    "options": { "A": "I", "B": "II", "C": "III", "D": "IV", "E": "V" },
+    "correct": "C",
+    "explanation": "ÇÖZÜM: Konu okumanın faydaları. III. cümle film karşılaştırması yapıyor."
   }
 ]
