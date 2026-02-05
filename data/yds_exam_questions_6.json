@@ -1,4 +1,3 @@
-YDS (Yabancı Dil Bilgisi Seviye Tespit Sınavı) standartlarına ve belirlediğin konu dağılımına (6 Kelime, 10 Dil Bilgisi, 10 Cloze Test, 10 Cümle Tamamlama, 6 Çeviri, 20 Paragraf, 5 Diyalog, 4 Yakın Anlam, 4 Paragraf Tamamlama, 5 Akış Bozan) uygun, ID 1'den 80'e kadar sıralı, tamamen yeni ve özgün 80 soruluk JSON veri seti aşağıdadır.
 [
   {
     "id": 1,
