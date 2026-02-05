@@ -1,5 +1,3 @@
-Elbette, YDS formatına ve konu dağılımına (Kelime, Gramer, Cloze Test, Cümle Tamamlama, Çeviri, Paragraf, Diyalog, Yakın Anlam, Paragraf Tamamlama, Akış Bozan) uygun, daha önceki setlerden tamamen farklı ve özgün 80 soru aşağıdadır.
-JSON formatı düz yapıda (flat) hazırlanmıştır, böylece şıkları sorunsuz görebilirsin.
 [
   {
     "id": 1,
