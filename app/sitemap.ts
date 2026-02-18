@@ -1,63 +1,32 @@
-import { MetadataRoute } from 'next';
-import vocab1 from '@/data/yds_vocabulary.json';
-import dailyEnEs from '@/data/daily_en_es.json';
-import dailyEnAr from '@/data/daily_en_ar.json';
+// levelTests ve grammarTests dizilerini bir yerden import ettiğini veya burada tanımladığını varsayalım
+const levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+const grammarSlugs = [
+  'test-perfect-past', 'test-conditionals', 'test-relatives', 
+  'test-articles', 'test-tenses-mixed'
+];
 
-const baseUrl = 'https://englishmeter.net';
+// ... (createSlug fonksiyonun kalsın)
 
-// 1. Yardımcı fonksiyonu en üstte veya sitemap fonksiyonunun hemen dışında tanımlayın
-const createSlug = (word: string) => 
-  String(word).toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
+// Rotaları şu şekilde genişlet:
+const levelPages = levels.map(level => ({
+  url: `${baseUrl}/levels/${level}`,
+  lastModified: now,
+  changeFrequency: 'weekly' as const,
+  priority: 0.8,
+}));
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-  const lastMod = new Date('2024-01-01'); // Statik veriler için sabit tarih önerisi
+const grammarPages = grammarSlugs.map(slug => ({
+  url: `${baseUrl}/start?testSlug=${slug}`, // Veya /quiz/${slug}
+  lastModified: now,
+  changeFrequency: 'weekly' as const,
+  priority: 0.7,
+}));
 
-  // 2. Temel Sayfalar
-  const corePages = [
-    '', '/vocabulary', '/es/vocabulary', '/ar/vocabulary',
-    '/race', '/flashcards', '/speedrun', '/matching',
-    '/verbsense', '/speaking', '/mistakes'
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: now,
-    changeFrequency: 'daily' as const,
-    priority: 1.0,
-  }));
-
-  // 3. YDS Sınavları
-  const ydsExamTests = Array.from({ length: 27 }, (_, i) => i + 1).map((n) => ({
-    url: `${baseUrl}/start?testSlug=yds-exam-test-${n}`,
-    lastModified: lastMod,
-    changeFrequency: 'monthly' as const,
-    priority: 0.9,
-  }));
-
-  // 4. Kelime Rotaları Üretici
-  const wordRoutes = (data: any[], prefix: string, priority: number) => {
-    const slugs = new Set();
-    return data
-      .filter((item) => item?.word)
-      .map((item) => {
-        const slug = createSlug(item.word); // Artık bu fonksiyonu bulabiliyor
-        if (slugs.has(slug)) return null;
-        slugs.add(slug);
-        return {
-          url: `${baseUrl}${prefix}/${slug}`,
-          lastModified: lastMod,
-          changeFrequency: 'monthly' as const,
-          priority,
-        };
-      })
-      .filter(Boolean) as MetadataRoute.Sitemap;
-  };
-
-  return [
-    ...corePages,
-    ...ydsExamTests,
-    // Diğer testler ve seviyeler...
-    ...wordRoutes(vocab1, '/vocabulary', 0.6),
-    ...wordRoutes(dailyEnEs, '/es/vocabulary', 0.5),
-    ...wordRoutes(dailyEnAr, '/ar/vocabulary', 0.5),
-  ];
-}
+return [
+  ...corePages,
+  ...levelPages,
+  ...grammarPages,
+  ...ydsExamTests,
+  ...wordRoutes(vocab1, '/vocabulary', 0.4), // Kelimelerin önceliğini biraz daha düşürdük
+  // ...
+];
