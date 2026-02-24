@@ -126,8 +126,22 @@ export default function RootLayout({
   ];
 
   return (
-    <html lang="en">
-      <body className="bg-slate-50 min-h-screen flex flex-col">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function () {
+  try {
+    var savedTheme = localStorage.getItem("theme");
+    var systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    var shouldUseDark = savedTheme ? savedTheme === "dark" : systemDark;
+    document.documentElement.classList.toggle("dark", shouldUseDark);
+  } catch (e) {}
+})();`,
+          }}
+        />
+      </head>
+      <body className="min-h-screen flex flex-col">
         
         {/* --- GOOGLE ANALYTICS --- */}
         <Script

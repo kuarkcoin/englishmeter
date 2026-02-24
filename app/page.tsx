@@ -2,6 +2,7 @@
 
 import React, { useEffect, useMemo, useState, Suspense, useCallback } from 'react';
 import Link from 'next/link';
+import DarkToggle from '@/components/DarkToggle';
 import { useSearchParams, useRouter } from 'next/navigation';
  
 // --- DATA IMPORTS ---
@@ -676,6 +677,10 @@ function HomeContent() {
     <div className="min-h-screen bg-slate-50">
       {/* HERO */}
       <section className="w-full max-w-6xl mx-auto px-4 pt-10 pb-4">
+        <div className="mb-6 flex items-center justify-end">
+          <DarkToggle />
+        </div>
+
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
             <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100 mb-3">
