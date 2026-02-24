@@ -747,7 +747,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       )}
                     </div>
 
-                    <div className="text-lg font-medium text-slate-800 mb-5 leading-loose">{formatText(q.prompt)}</div>
+                    <div className="text-lg font-medium text-slate-900 dark:text-slate-50 opacity-100 dark:opacity-100 mb-5 leading-loose [&_a]:text-blue-600 dark:[&_a]:text-blue-300 [&_strong]:text-slate-900 dark:[&_strong]:text-slate-50 [&_em]:text-slate-800 dark:[&_em]:text-slate-100">{formatText(q.prompt)}</div>
 
                     <div className="grid gap-2">
                       {(q.shuffledChoices || q.choices || []).map((c, choiceIdx) => {
@@ -1003,7 +1003,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 )}
               </div>
 
-              <div className="text-xl font-medium text-slate-800 mb-6 leading-loose">{formatText(q.prompt)}</div>
+              <div className="text-xl font-medium text-slate-900 dark:text-slate-50 opacity-100 dark:opacity-100 mb-6 leading-loose [&_a]:text-blue-600 dark:[&_a]:text-blue-300 [&_strong]:text-slate-900 dark:[&_strong]:text-slate-50 [&_em]:text-slate-800 dark:[&_em]:text-slate-100">{formatText(q.prompt)}</div>
 
               <div className="grid gap-3">
                 {(q.shuffledChoices || q.choices || []).map((c, choiceIdx) => {
