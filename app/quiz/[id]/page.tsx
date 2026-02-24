@@ -243,7 +243,7 @@ function AiSentenceBox({
       </div>
 
       {s && (
-        <div className="mt-2 text-sm font-semibold text-slate-900 leading-relaxed">
+        <div className="mt-2 text-sm font-semibold text-slate-900 dark:text-slate-100 leading-relaxed">
           <SafeHTML html={s} />
         </div>
       )}
@@ -647,8 +647,8 @@ export default function Quiz({ params }: { params: { id: string } }) {
     const percentage = Math.round((score / total) * 100);
 
     return (
-      <div className="max-w-4xl mx-auto px-4 py-12 space-y-8">
-        <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-200 text-center relative overflow-hidden">
+      <div className="em-page max-w-4xl mx-auto px-4 py-12 space-y-8">
+        <div className="em-card p-8 rounded-3xl shadow-xl text-center relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-purple-600" />
           <h1 className="text-3xl font-black text-slate-800 mb-2">Test Completed!</h1>
 
@@ -712,7 +712,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
             const isCorrect = idsEqual(userAnswerId, correctId);
 
             let cardBorder = 'border-slate-200';
-            let cardBg = 'bg-white';
+            let cardBg = 'bg-white dark:bg-slate-900';
             if (isCorrect) {
               cardBorder = 'border-green-200';
               cardBg = 'bg-green-50/40';
@@ -761,7 +761,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                         } else if (isSelected) {
                           optionClass += 'bg-red-100 border-red-300 text-red-800 font-medium';
                         } else {
-                          optionClass += 'bg-white/60 border-slate-200 text-slate-500 opacity-70';
+                          optionClass += 'bg-white/60 dark:bg-slate-900/60 border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-300 opacity-70';
                         }
 
                         return (
@@ -773,7 +773,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                                     ? 'border-green-500 bg-green-500 text-white'
                                     : isSelected
                                     ? 'border-red-500 bg-red-500 text-white'
-                                    : 'border-slate-300 bg-white text-slate-500'
+                                    : 'border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-300'
                                 }`}
                               >
                                 {choiceLetter}
@@ -821,23 +821,23 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
   // --- QUIZ SOLVING SCREEN ---
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8 space-y-6">
+    <div className="em-page max-w-3xl mx-auto px-4 py-8 space-y-6">
       <MiniConfetti burst={burst} />
 
       {/* Top Bar */}
-      <div className="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-slate-200 sticky top-4 z-20 backdrop-blur-sm bg-white/90">
+      <div className="em-card flex items-center justify-between p-4 rounded-xl sticky top-4 z-20 backdrop-blur-sm bg-white/90 dark:bg-slate-900/90">
         <div className="text-sm font-semibold text-slate-700 truncate max-w-[200px]">{test?.title || 'Test'}</div>
 
         <div className="flex items-center gap-3">
           {/* Mode toggle */}
-          <div className="flex items-center gap-1 px-2 py-1 rounded-xl border border-slate-200 bg-slate-50">
+          <div className="flex items-center gap-1 px-2 py-1 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
             <button
               onClick={() => {
                 void ensureAudio();
                 setMode('exam');
               }}
               className={`px-3 py-1 text-xs font-black rounded-lg transition ${
-                mode === 'exam' ? 'bg-blue-600 text-white' : 'text-slate-600 hover:bg-slate-100'
+                mode === 'exam' ? 'bg-blue-600 text-white' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'
               }`}
               type="button"
             >
@@ -850,7 +850,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 setMode('practice');
               }}
               className={`px-3 py-1 text-xs font-black rounded-lg transition ${
-                mode === 'practice' ? 'bg-green-600 text-white' : 'text-slate-600 hover:bg-slate-100'
+                mode === 'practice' ? 'bg-green-600 text-white' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'
               }`}
               type="button"
             >
@@ -864,7 +864,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
               <button
                 onClick={() => setAutoScroll((v) => !v)}
                 className={`px-2 py-1 rounded-lg text-[11px] font-black border ${
-                  autoScroll ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-600 border-slate-200'
+                  autoScroll ? 'bg-slate-900 text-white border-slate-900' : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700'
                 }`}
                 type="button"
                 title="Auto scroll to feedback/AI section"
@@ -878,7 +878,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                   setSoundOn((v) => !v);
                 }}
                 className={`px-2 py-1 rounded-lg text-[11px] font-black border ${
-                  soundOn ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-600 border-slate-200'
+                  soundOn ? 'bg-slate-900 text-white border-slate-900' : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700'
                 }`}
                 type="button"
                 title="Correct/Wrong sound"
@@ -889,7 +889,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
               <button
                 onClick={() => setAutoSpeak((v) => !v)}
                 className={`px-2 py-1 rounded-lg text-[11px] font-black border ${
-                  autoSpeak ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-600 border-slate-200'
+                  autoSpeak ? 'bg-slate-900 text-white border-slate-900' : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700'
                 }`}
                 type="button"
                 title="Auto speak AI sentence"
@@ -920,8 +920,8 @@ export default function Quiz({ params }: { params: { id: string } }) {
       </div>
 
       {/* ✅ Progress Bar */}
-      <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
-        <div className="flex items-center justify-between text-sm font-semibold text-slate-600 mb-2">
+      <div className="em-card p-4 rounded-xl">
+        <div className="flex items-center justify-between text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">
           <span>
             {answeredCount}/{totalQ} answered
           </span>
@@ -933,10 +933,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
       </div>
 
       {/* ✅ Question Navigator */}
-      <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+      <div className="em-card p-4 rounded-xl">
         <div className="flex items-center justify-between mb-3">
           <div className="text-sm font-black text-slate-800">Question Navigator</div>
-          <div className="text-xs text-slate-500">Blue = answered · White = empty</div>
+          <div className="text-xs text-slate-500 dark:text-slate-400">Blue = answered · White = empty</div>
         </div>
 
         <div className="grid grid-cols-10 gap-2">
@@ -955,7 +955,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                   ${
                     done
                       ? 'bg-blue-600 text-white border-blue-600'
-                      : 'bg-white text-slate-500 border-slate-200 hover:border-blue-400'
+                      : 'bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-blue-400'
                   } ${isActive ? 'ring-2 ring-blue-200' : ''}`}
                 title={done ? 'Answered' : 'Not answered'}
                 type="button"
@@ -987,12 +987,12 @@ export default function Quiz({ params }: { params: { id: string } }) {
               onMouseEnter={() => setActiveIndex(idx)}
               onFocus={() => setActiveIndex(idx)}
               tabIndex={0}
-              className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 scroll-mt-28 outline-none focus:ring-2 focus:ring-blue-200"
+              className="em-card p-6 rounded-2xl scroll-mt-28 outline-none focus:ring-2 focus:ring-blue-200"
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="text-sm text-slate-400 font-bold uppercase tracking-wide">Question {idx + 1}</div>
                 {!answers[q.id] && (
-                  <span className="text-[11px] font-black px-2 py-1 bg-slate-100 text-slate-500 rounded-lg border border-slate-200">
+                  <span className="text-[11px] font-black px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-lg border border-slate-200 dark:border-slate-700">
                     EMPTY
                   </span>
                 )}
@@ -1022,7 +1022,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                         : 'border-slate-100'
                       : selected
                       ? 'border-blue-600 bg-blue-50 shadow-md'
-                      : 'border-slate-100 hover:border-blue-300 hover:bg-slate-50';
+                      : 'border-slate-100 dark:border-slate-700 hover:border-blue-300 hover:bg-slate-50 dark:hover:bg-slate-800';
 
                   return (
                     <label
@@ -1037,7 +1037,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                           ${
                             selected
                               ? 'border-blue-600 text-blue-700 bg-blue-50'
-                              : 'border-slate-300 text-slate-500 group-hover:border-blue-400'
+                              : 'border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-300 group-hover:border-blue-400'
                           }`}
                       >
                         {choiceLetter}
@@ -1095,7 +1095,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                         }}
                       />
 
-                      <span className={`text-lg ${selected ? 'text-blue-700 font-medium' : 'text-slate-600'}`}>
+                      <span className={`text-lg ${selected ? 'text-blue-700 font-medium' : 'text-slate-600 dark:text-slate-300'}`}>
                         <SafeHTML html={c.text} />
                       </span>
                     </label>
@@ -1158,7 +1158,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                     });
                     if (mode === 'practice') setFeedback(null);
                   }}
-                  className="text-xs font-bold px-3 py-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50"
+                  className="text-xs font-bold px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
                   type="button"
                 >
                   Clear answer

@@ -41,13 +41,13 @@ export default function LevelPage() {
   const mixedTestSlug = `level-${level.toLowerCase()}`; // level-a1, level-c2 vs.
 
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4">
+    <div className="em-page py-10 px-4">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-extrabold text-slate-900 mb-4">
+        <h1 className="text-3xl font-extrabold text-slate-900 dark:text-slate-50 mb-4">
           {level} Level Grammar Tests
         </h1>
 
-        <p className="text-slate-600 mb-6">
+        <p className="text-slate-600 dark:text-slate-300 mb-6">
           Practise key grammar structures for level {level}. Start a complete mixed test
           or choose a specific topic.
         </p>
@@ -71,7 +71,7 @@ export default function LevelPage() {
         {/* Topic-based tests */}
         {hasTopics && (
           <>
-            <h2 className="text-xl font-bold text-slate-900 mb-3">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-slate-50 mb-3">
               Topic-Based Tests ({level})
             </h2>
             <div className="space-y-3 mb-8">
@@ -79,7 +79,7 @@ export default function LevelPage() {
                 <Link
                   key={topic.slug}
                   href={`/levels/${level.toLowerCase()}/${topic.slug}`}
-                  className="block w-full text-center py-4 rounded-2xl border font-semibold bg-blue-50 border-blue-100 text-blue-800"
+                  className="block w-full text-center py-4 rounded-2xl border font-semibold bg-blue-50 dark:bg-blue-950/40 border-blue-100 dark:border-blue-800 text-blue-800 dark:text-blue-200"
                 >
                   {topic.title}
                 </Link>
@@ -90,7 +90,7 @@ export default function LevelPage() {
 
         <Link
           href="/"
-          className="text-sm text-slate-600 hover:underline inline-flex items-center"
+          className="text-sm text-slate-600 dark:text-slate-300 hover:underline inline-flex items-center"
         >
           ← Back to Home
         </Link>

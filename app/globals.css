@@ -7,3 +7,10 @@ body { @apply bg-slate-50 text-slate-900; }
 .btn { @apply inline-flex items-center justify-center rounded-2xl border px-4 py-2; }
 .btn-primary { @apply bg-brand text-white hover:bg-brand-dark border-brand; }
 .card { @apply rounded-2xl border border-slate-200 bg-white shadow-sm p-6; }
+
+@layer components {
+  .em-page { @apply min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50; }
+  .em-card { @apply bg-white border border-slate-200 text-slate-900 dark:bg-slate-900 dark:border-slate-700 dark:text-slate-50 rounded-2xl shadow-sm; }
+  .em-input{ @apply bg-white border border-slate-200 text-slate-900 dark:bg-slate-900 dark:border-slate-700 dark:text-slate-50 rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500/40; }
+  .em-btn  { @apply inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-bold border border-slate-200 bg-white text-slate-900 hover:shadow-md transition dark:border-slate-700 dark:bg-slate-900 dark:text-slate-50; }
+}

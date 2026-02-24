@@ -115,11 +115,11 @@ export default function LevelTopicPage() {
   const backHref = `/levels/${levelKey}`;
 
   return (
-    <div className="min-h-screen bg-slate-50 py-8 px-4">
+    <div className="em-page py-8 px-4">
       <div className="max-w-3xl mx-auto">
         <Link
           href={backHref}
-          className="text-sm text-slate-600 mb-4 inline-flex items-center hover:underline"
+          className="text-sm text-slate-600 dark:text-slate-300 mb-4 inline-flex items-center hover:underline"
         >
           ← Back to {levelLabel} Mixed Test & Topics
         </Link>
@@ -127,8 +127,8 @@ export default function LevelTopicPage() {
         <h1 className="text-2xl md:text-3xl font-bold mb-2">
           {topic.title}
         </h1>
-        <p className="text-slate-600 mb-4">{topic.description}</p>
-        <p className="text-xs text-slate-500 mb-6">
+        <p className="text-slate-600 dark:text-slate-300 mb-4">{topic.description}</p>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mb-6">
           Level {levelLabel} • {questions.length} questions
         </p>
 
@@ -136,7 +136,7 @@ export default function LevelTopicPage() {
           {questions.map((q, qIndex) => (
             <div
               key={q.id}
-              className="rounded-lg border border-slate-200 bg-white p-4"
+              className="em-card rounded-lg p-4"
             >
               <p className="font-medium mb-3">
                 {qIndex + 1}. {q.question}
@@ -152,7 +152,7 @@ export default function LevelTopicPage() {
                     <label
                       key={optIndex}
                       className={`flex items-center gap-2 rounded border px-3 py-2 cursor-pointer text-sm
-                        ${isSelected ? 'border-slate-800' : 'border-slate-200'}
+                        ${isSelected ? 'border-slate-800 dark:border-slate-200' : 'border-slate-200 dark:border-slate-700'}
                         ${isCorrect ? 'bg-green-50 border-green-500' : ''}
                         ${isWrongSelected ? 'bg-red-50 border-red-500' : ''}
                       `}
@@ -181,11 +181,11 @@ export default function LevelTopicPage() {
         </button>
 
         {showResult && (
-          <div className="mt-4 p-4 rounded-lg bg-slate-100 text-slate-800">
+          <div className="mt-4 p-4 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100">
             <p className="font-semibold">
               You scored {correctCount} / {questions.length}
             </p>
-            <p className="text-sm text-slate-600 mt-1">
+            <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">
               Review the red answers and try again if you want.
             </p>
           </div>

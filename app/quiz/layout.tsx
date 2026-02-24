@@ -16,7 +16,7 @@ export default function QuizLayout({
 }) {
   // Dikkati dağıtmayan, temiz beyaz/gri arka plan
   return (
-    <div className="min-h-screen bg-white text-slate-900 selection:bg-blue-100">
+    <div className="em-page selection:bg-blue-100">
       {children}
     </div>
   );

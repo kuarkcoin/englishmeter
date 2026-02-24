@@ -31,13 +31,13 @@ export default function VocabularyQuiz({ word, correctMeaning, allMeanings }: Qu
   };
 
   return (
-    <section className="mt-8 bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
-      <h3 className="text-lg font-black text-slate-800 mb-4 flex items-center gap-2">
+    <section className="mt-8 em-card rounded-3xl p-6">
+      <h3 className="text-lg font-black text-slate-800 dark:text-slate-100 mb-4 flex items-center gap-2">
         <span className="bg-amber-400 text-xs px-2 py-1 rounded-lg uppercase">Mini Test</span>
         Anlamını Hatırlıyor musun?
       </h3>
       
-      <p className="text-slate-600 mb-6">
+      <p className="text-slate-600 dark:text-slate-300 mb-6">
         <strong className="text-blue-600">"{word}"</strong> kelimesinin doğru Türkçe karşılığı hangisidir?
       </p>
 
@@ -54,7 +54,7 @@ export default function VocabularyQuiz({ word, correctMeaning, allMeanings }: Qu
                   : "bg-rose-50 border-rose-500 text-rose-700"
                 : selected !== null && option === correctMeaning
                 ? "bg-emerald-50 border-emerald-500 text-emerald-700"
-                : "bg-slate-50 border-slate-100 text-slate-700 hover:border-blue-300"
+                : "bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:border-blue-300"
             }`}
           >
             {option}
