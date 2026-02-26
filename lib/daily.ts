@@ -1,23 +1,23 @@
 // lib/daily.ts
-export function getDayKeyTR(now = new Date()) {
-  // Istanbul gün anahtarı: YYYY-MM-DD
-  return now.toLocaleDateString("en-CA", { timeZone: "Europe/Istanbul" });
+
+// Gün anahtarı: YYYY-MM-DD
+export function getDayKeyTR(d = new Date()) {
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const dd = String(d.getDate()).padStart(2, "0");
+  return `${yyyy}-${mm}-${dd}`;
 }
 
-export function getDailyTestNumber(now = new Date()) {
-  // 32 -> 1 döngüsü için: gün sayısını alıp mod 32
-  const dayKey = getDayKeyTR(now);
-  const [y, m, d] = dayKey.split("-").map(Number);
-  const utcMid = Date.UTC(y, (m ?? 1) - 1, d ?? 1);
-  const days = Math.floor(utcMid / 86400000);
-
-  const idx = days % 32;      // 0..31
-  return 32 - idx;            // 32..1
+// 32'den 1'e dönen günlük test numarası (1..32)
+export function getDailyTestNumber(d = new Date()) {
+  const dayIndex = Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000);
+  const mod = dayIndex % 32; // 0..31
+  return 32 - mod; // 32..1
 }
 
-export function getDailySlug(now = new Date()) {
-  const dayKey = getDayKeyTR(now);
-  const num = getDailyTestNumber(now);
-  // Her gün slug değiştiği için leaderboard otomatik sıfırlanır ✅
+// yds-daily-YYYY-MM-DD-test-N
+export function getDailySlug(d = new Date()) {
+  const dayKey = getDayKeyTR(d);
+  const num = getDailyTestNumber(d);
   return `yds-daily-${dayKey}-test-${num}`;
 }
