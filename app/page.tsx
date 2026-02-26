@@ -265,11 +265,11 @@ function HomeContent() {
       if (testSlug.startsWith('yds-daily-')) {
         // ör: yds-daily-2026-02-26-test-32
         const parts = testSlug.split('-');
+        const dayKey = `${parts[2]}-${parts[3]}-${parts[4]}`; // YYYY-MM-DD
         const testNumber = parts[parts.length - 1]; // "32"
-        const dayKey = `${parts[2]}-${parts[3]}-${parts[4]}`; // "2026-02-26"
 
-        const pool = (YDS_EXAM_MAP as any)[testNumber] as any[];
-        if (!pool || pool.length === 0) {
+        const pool = (YDS_EXAM_MAP as Record<string, any[]>)[String(testNumber)] || [];
+        if (!pool.length) {
           alert('Daily test data missing!');
           return;
         }
@@ -1129,6 +1129,7 @@ function HomeContent() {
   </button>
 
   <button
+    type="button"
     onClick={() => startTest(dailyInfo.slug)}
     className="flex flex-col items-center justify-center px-6 py-8 rounded-2xl bg-amber-500 text-slate-950 text-xl font-black shadow-xl hover:bg-amber-400 transition-all"
   >
