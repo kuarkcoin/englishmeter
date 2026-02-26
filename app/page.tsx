@@ -13,6 +13,7 @@ import ydsPhrasals from '@/data/yds_phrasal_verbs.json';
 import ydsReadingPassages from '@/data/yds_reading.json';
 import ydsSynonyms from '@/data/yds_synonyms.json';
 import ydsConjunctions from '@/data/yds_conjunctions.json';
+import { getDailySlug, getDailyTestNumber, getDayKeyTR } from '@/lib/daily';
 
 // --- YDS EXAM DENEMELERİ (1..15) ---
 import ydsExamQuestions1 from '@/data/yds_exam_questions.json';
@@ -206,6 +207,14 @@ function HomeContent() {
       .sort((a, b) => a - b);
   }, []);
 
+  const dailyInfo = useMemo(() => {
+    const now = new Date();
+    const dayKey = getDayKeyTR(now);
+    const num = getDailyTestNumber(now);
+    const slug = getDailySlug(now);
+    return { dayKey, num, slug };
+  }, []);
+
   // Load premium + last test
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -251,6 +260,64 @@ function HomeContent() {
           setLastTest(payload);
         } catch {}
       };
+
+      // --- DAILY YDS: yds-daily-YYYY-MM-DD-test-N ---
+      if (testSlug.startsWith('yds-daily-')) {
+        // ör: yds-daily-2026-02-26-test-32
+        const parts = testSlug.split('-');
+        const testNumber = parts[parts.length - 1]; // "32"
+        const dayKey = `${parts[2]}-${parts[3]}-${parts[4]}`; // "2026-02-26"
+
+        const pool = (YDS_EXAM_MAP as any)[testNumber] as any[];
+        if (!pool || pool.length === 0) {
+          alert('Daily test data missing!');
+          return;
+        }
+
+        // seed: aynı gün + aynı test => aynı 60 soru
+        const seed = Array.from(`${dayKey}-${testNumber}`).reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
+
+        // seededUniqueIndices() zaten dosyada var (LCG)
+        const indices = seededUniqueIndices(pool.length, 60, seed);
+        const selected = indices.map((i) => pool[i]).filter(Boolean);
+
+        const mappedQuestions = selected.map((q: any, idx: number) => {
+          const correctLetter = String(q.correct || 'A').trim().toUpperCase();
+          const letters = ['A', 'B', 'C', 'D', 'E'];
+          const idsLower = ['a', 'b', 'c', 'd', 'e'];
+
+          const choices = letters
+            .map((L, i) => ({
+              id: idsLower[i],
+              text: q[L],
+              isCorrect: correctLetter === L,
+            }))
+            .filter((c: any) => c.text);
+
+          return {
+            id: `yds-daily-${dayKey}-t${testNumber}-q${idx + 1}`,
+            prompt: q.prompt,
+            choices,
+            explanation: q.explanation || '',
+          };
+        });
+
+        const title = `DAILY YDS · TEST ${testNumber} (60Q) · ${dayKey}`;
+
+        const payload = {
+          attemptId,
+          testSlug, // daily slug => leaderboard otomatik reset
+          test: { title, duration: 60 },
+          durationSeconds: 60 * 60,
+          totalQuestions: 60,
+          questions: mappedQuestions,
+        };
+
+        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
+        saveLast(title, testSlug);
+        router.push(`/quiz/${attemptId}`);
+        return;
+      }
 
       // --- YDS 3750 MINI TESTS (1..75) ---
       if (testSlug.startsWith('yds-5000-mini-')) {
@@ -1059,6 +1126,15 @@ function HomeContent() {
     >
       Learn more →
     </Link>
+  </button>
+
+  <button
+    onClick={() => startTest(dailyInfo.slug)}
+    className="flex flex-col items-center justify-center px-6 py-8 rounded-2xl bg-amber-500 text-slate-950 text-xl font-black shadow-xl hover:bg-amber-400 transition-all"
+  >
+    <div>Daily YDS (Today)</div>
+    <div className="mt-2 text-xs font-semibold opacity-90">Test {dailyInfo.num} · 60Q · resets daily</div>
+    <div className="mt-1 text-[10px] font-semibold opacity-80">{dailyInfo.dayKey} (Europe/Istanbul)</div>
   </button>
 
   {/* 🔥 YDS 5000 HERO (GRID ITEM) */}
