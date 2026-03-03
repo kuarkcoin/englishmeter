@@ -1,452 +1,452 @@
 [
   {
-    "prompt": "In academic writing, the adjective \"plausible\" is closest in meaning to _____.",
-    "A": "seemingly reasonable",
-    "B": "impossible",
-    "C": "outdated",
-    "D": "silent",
+    "prompt": "The author's latest book attempts to _____ the complex relationship between climate change and global economic inequality.",
+    "A": "delineate",
+    "B": "obfuscate",
+    "C": "fabricate",
+    "D": "proliferate",
     "correct": "A",
-    "explanation": "\"plausible\" is best matched with the practical dictionary meaning in option A."
+    "explanation": "'Delineate' means to describe or portray something precisely, which perfectly fits an academic attempt to explain a complex relationship."
   },
   {
-    "prompt": "Insofar as the data look promising at first glance, a closer analysis reveals major sampling bias.",
-    "A": "Insofar as",
-    "B": "After",
-    "C": "Rather than",
-    "D": "In case",
-    "correct": "A",
-    "explanation": "\"Insofar as\" means \"to the extent that\" and fits analytical limitation."
+    "prompt": "By examining the ancient artifacts, historians were able to _____ a surprising amount of information about the daily lives of the civilization.",
+    "A": "elicit",
+    "B": "deduce",
+    "C": "instigate",
+    "D": "replicate",
+    "correct": "B",
+    "explanation": "'Deduce' means to arrive at a fact or a conclusion by reasoning or examining evidence."
   },
   {
-    "prompt": "Identify the part that contains an error: (A) Each of the applicants (B) have submitted (C) a portfolio. (D) No error",
+    "prompt": "The new environmental policy was designed to _____ the massive amount of plastic waste entering the oceans each year.",
+    "A": "curtail",
+    "B": "augment",
+    "C": "foster",
+    "D": "catalyze",
+    "correct": "A",
+    "explanation": "'Curtail' means to reduce in extent or quantity; to impose a restriction on."
+  },
+  {
+    "prompt": "Despite facing numerous logistical nightmares, the project manager remained incredibly _____ and kept the team motivated.",
+    "A": "resilient",
+    "B": "lethargic",
+    "C": "indifferent",
+    "D": "hesitant",
+    "correct": "A",
+    "explanation": "'Resilient' means able to withstand or recover quickly from difficult conditions."
+  },
+  {
+    "prompt": "The documentary vividly _____ the stark contrast between the extravagant lifestyles of the elite and the severe poverty of the working class.",
+    "A": "juxtaposes",
+    "B": "homogenizes",
+    "C": "assimilates",
+    "D": "conceals",
+    "correct": "A",
+    "explanation": "'Juxtapose' means to place or deal with close together for contrasting effect."
+  },
+  {
+    "prompt": "In order to avoid a potential diplomatic crisis, the ambassador had to carefully _____ the sensitive political issue.",
+    "A": "circumvent",
+    "B": "confront",
+    "C": "exacerbate",
+    "D": "provoke",
+    "correct": "A",
+    "explanation": "'Circumvent' means to find a way around an obstacle or to overcome a difficulty in a clever way."
+  },
+  {
+    "prompt": "The researcher was praised for her _____ attention to detail, which ensured that there were absolutely no flaws in the experimental design.",
+    "A": "meticulous",
+    "B": "haphazard",
+    "C": "superficial",
+    "D": "cursory",
+    "correct": "A",
+    "explanation": "'Meticulous' means showing great attention to detail; very careful and precise."
+  },
+  {
+    "prompt": "The rapid spread of the novel virus is considered a deeply _____ issue that requires immediate international collaboration.",
+    "A": "pressing",
+    "B": "trivial",
+    "C": "marginal",
+    "D": "dormant",
+    "correct": "A",
+    "explanation": "'Pressing' means requiring quick or immediate action or attention."
+  },
+  {
+    "prompt": "Many traditional manufacturing techniques have become entirely _____ with the advent of advanced 3D printing technology.",
+    "A": "obsolete",
+    "B": "indispensable",
+    "C": "prevalent",
+    "D": "lucrative",
+    "correct": "A",
+    "explanation": "'Obsolete' means no longer produced or used; out of date."
+  },
+  {
+    "prompt": "The defense attorney argued that there were _____ circumstances that should significantly reduce her client's prison sentence.",
+    "A": "mitigating",
+    "B": "aggravating",
+    "C": "incriminating",
+    "D": "redundant",
+    "correct": "A",
+    "explanation": "'Mitigating circumstances' is a common legal collocation referring to conditions that lessen the severity or culpability of a criminal act."
+  },
+  {
+    "prompt": "The government has promised to completely _____ the use of heavily polluting diesel engines within the next ten years.",
+    "A": "phase out",
+    "B": "bring about",
+    "C": "look into",
+    "D": "give away",
+    "correct": "A",
+    "explanation": "'Phase out' means to withdraw or remove something from use gradually."
+  },
+  {
+    "prompt": "To successfully complete her dissertation, the doctoral student had to _____ a vast array of primary historical sources.",
+    "A": "draw on",
+    "B": "fall through",
+    "C": "back out of",
+    "D": "look down on",
+    "correct": "A",
+    "explanation": "'Draw on' means to use information, experience, or knowledge for a particular purpose."
+  },
+  {
+    "prompt": "The marketing team managed to _____ the growing public interest in sustainability to launch their new eco-friendly product line.",
+    "A": "tap into",
+    "B": "ward off",
+    "C": "iron out",
+    "D": "stamp out",
+    "correct": "A",
+    "explanation": "'Tap into' means to manage to use something in a way that brings good results."
+  },
+  {
+    "prompt": "The strict dietary guidelines must be rigidly _____ if the clinical trial is to yield any scientifically valid results.",
+    "A": "adhered to",
+    "B": "dispensed with",
+    "C": "departed from",
+    "D": "tampered with",
+    "correct": "A",
+    "explanation": "'Adhere to' means to stick firmly to a rule, belief, or principle."
+  },
+  {
+    "prompt": "The prime minister _____ a comprehensive five-point plan to rescue the struggling national economy.",
+    "A": "set forth",
+    "B": "took back",
+    "C": "held up",
+    "D": "left out",
+    "correct": "A",
+    "explanation": "'Set forth' means to state or outline an idea, plan, or argument clearly."
+  },
+  {
+    "prompt": "Eating a balanced diet rich in vitamins is one of the most effective ways to _____ seasonal illnesses like the flu.",
+    "A": "ward off",
+    "B": "bring on",
+    "C": "succumb to",
+    "D": "pass out",
+    "correct": "A",
+    "explanation": "'Ward off' means to prevent someone or something from harming or affecting you."
+  },
+  {
+    "prompt": "During the panel discussion, several leading economists were invited to _____ on the controversial new tax legislation.",
+    "A": "weigh in",
+    "B": "back down",
+    "C": "tune out",
+    "D": "drop off",
+    "correct": "A",
+    "explanation": "'Weigh in' means to join a discussion or argument by expressing an opinion."
+  },
+  {
+    "prompt": "The urban planners have successfully _____ a strategy to reduce traffic congestion in the city center over the next decade.",
+    "A": "mapped out",
+    "B": "covered up",
+    "C": "torn down",
+    "D": "brushed off",
+    "correct": "A",
+    "explanation": "'Map out' means to plan something in detail."
+  },
+  {
+    "prompt": "Despite giving his verbal agreement yesterday, the main investor suddenly decided to _____ the deal at the last minute.",
+    "A": "back out of",
+    "B": "follow through with",
+    "C": "stand up for",
+    "D": "look forward to",
+    "correct": "A",
+    "explanation": "'Back out of' means to withdraw from a commitment or agreement."
+  },
+  {
+    "prompt": "The massive increase in global temperatures can be directly _____ the unprecedented rise in greenhouse gas emissions.",
+    "A": "attributed to",
+    "B": "deprived of",
+    "C": "exempt from",
+    "D": "derived from",
+    "correct": "A",
+    "explanation": "'Attribute to' means to regard something as being caused by someone or something."
+  },
+  {
+    "prompt": "Not only _____ the structural foundations of the building, but the earthquake also destroyed the main water supply lines.",
+    "A": "did the earthquake damage",
+    "B": "the earthquake damaged",
+    "C": "the earthquake did damage",
+    "D": "damaged the earthquake",
+    "correct": "A",
+    "explanation": "Starting a sentence with 'Not only' requires subject-auxiliary inversion in the main clause."
+  },
+  {
+    "prompt": "Nowhere else in the world _____ such a diverse concentration of marine life as in the Great Barrier Reef.",
+    "A": "will you find",
+    "B": "you will find",
+    "C": "will find you",
+    "D": "you find will",
+    "correct": "A",
+    "explanation": "Sentences beginning with negative adverbial phrases like 'Nowhere else' require subject-auxiliary inversion."
+  },
+  {
+    "prompt": "It is absolutely vital that the new software update _____ across all company devices before the end of the day.",
+    "A": "be installed",
+    "B": "is installed",
+    "C": "will be installed",
+    "D": "has been installed",
+    "correct": "A",
+    "explanation": "The phrase 'It is vital that' triggers the subjunctive mood, requiring the base form of the verb ('be installed' for passive)."
+  },
+  {
+    "prompt": "_____ the government to suddenly increase corporate taxes, many multinational companies would likely relocate to neighboring countries.",
+    "A": "Were",
+    "B": "Had",
+    "C": "Should",
+    "D": "If",
+    "correct": "A",
+    "explanation": "This is an inverted Type 2 conditional. 'Were the government to increase' means 'If the government increased'."
+  },
+  {
+    "prompt": "The climbers would have never reached the summit _____ the guidance of their highly experienced local sherpa.",
+    "A": "had it not been for",
+    "B": "if it were not for",
+    "C": "unless there was",
+    "D": "but for the fact that",
+    "correct": "A",
+    "explanation": "This is an inverted Type 3 conditional for a past unreal situation, meaning 'If it hadn't been for'."
+  },
+  {
+    "prompt": "_____ repeatedly about the dangers of the strong underwater currents, the tourists foolishly decided to swim anyway.",
+    "A": "Having been warned",
+    "B": "To be warned",
+    "C": "Warning",
+    "D": "Having warned",
+    "correct": "A",
+    "explanation": "A perfect passive participle clause is used to show that the tourists received the warning before they decided to swim."
+  },
+  {
+    "prompt": "The novel, _____ by a virtually unknown author, unexpectedly won the most prestigious literary award of the year.",
+    "A": "written",
+    "B": "writing",
+    "C": "having written",
+    "D": "to write",
+    "correct": "A",
+    "explanation": "'Written' is a reduced passive relative clause, meaning 'which was written'."
+  },
+  {
+    "prompt": "The experimental medical procedure proved to be a resounding success, _____ it took the patient several months to fully recover.",
+    "A": "albeit",
+    "B": "whereby",
+    "C": "inasmuch as",
+    "D": "hence",
+    "correct": "A",
+    "explanation": "'Albeit' is a formal conjunction meaning 'although' or 'even if'."
+  },
+  {
+    "prompt": "The historical documents are highly valuable _____ they provide a first-hand account of the political revolution.",
+    "A": "inasmuch as",
+    "B": "even though",
+    "C": "so that",
+    "D": "in case",
+    "correct": "A",
+    "explanation": "'Inasmuch as' means 'to the extent that' or 'considering that', functioning similarly to 'because'."
+  },
+  {
+    "prompt": "The soldiers completely camouflaged their vehicles _____ they be spotted by enemy reconnaissance aircraft during the daylight hours.",
+    "A": "lest",
+    "B": "unless",
+    "C": "until",
+    "D": "so long as",
+    "correct": "A",
+    "explanation": "'Lest' means 'with the intention of preventing' or 'for fear that', and is often followed by a subjunctive verb or 'should'."
+  },
+  {
+    "prompt": "The speaker's argument was based entirely on a _____, incorrectly assuming that all young people are addicted to smartphones.",
+    "A": "sweeping generalization",
+    "B": "vested interest",
+    "C": "foregone conclusion",
+    "D": "ulterior motive",
+    "correct": "A",
+    "explanation": "A 'sweeping generalization' is an overly broad statement applied to a group without allowing for exceptions."
+  },
+  {
+    "prompt": "The pharmaceutical company clearly has a _____ in ensuring that the new legislation regarding drug patents is passed.",
+    "A": "vested interest",
+    "B": "glaring error",
+    "C": "stark contrast",
+    "D": "conventional wisdom",
+    "correct": "A",
+    "explanation": "A 'vested interest' is a personal reason for wanting something to happen, especially because you will benefit from it."
+  },
+  {
+    "prompt": "Because the opposing team's star player was injured, their defeat in the championship match seemed like a _____.",
+    "A": "foregone conclusion",
+    "B": "ulterior motive",
+    "C": "paradigm shift",
+    "D": "sweeping generalization",
+    "correct": "A",
+    "explanation": "A 'foregone conclusion' is a result that can be predicted with certainty."
+  },
+  {
+    "prompt": "Many suspected that the politician's generous charity donation was driven by an _____, rather than genuine altruism.",
+    "A": "ulterior motive",
+    "B": "inextricable link",
+    "C": "empirical evidence",
+    "D": "inherent risk",
+    "correct": "A",
+    "explanation": "An 'ulterior motive' is a hidden or secret reason for doing something."
+  },
+  {
+    "prompt": "Contrary to _____, recent psychological studies suggest that humans do not actually learn better under extreme pressure.",
+    "A": "conventional wisdom",
+    "B": "mitigating circumstances",
+    "C": "stark contrast",
+    "D": "foregone conclusion",
+    "correct": "A",
+    "explanation": "'Conventional wisdom' refers to a generally accepted theory or belief."
+  },
+  {
+    "prompt": "The discovery of the double-helix structure of DNA represented a massive _____ in the field of genetics.",
+    "A": "paradigm shift",
+    "B": "glaring error",
+    "C": "ulterior motive",
+    "D": "vested interest",
+    "correct": "A",
+    "explanation": "A 'paradigm shift' is a fundamental change in approach or underlying assumptions."
+  },
+  {
+    "prompt": "Poverty and poor educational outcomes are often _____, making it difficult to solve one without addressing the other.",
+    "A": "inextricably linked",
+    "B": "mutually exclusive",
+    "C": "blatantly obvious",
+    "D": "severely depleted",
+    "correct": "A",
+    "explanation": "'Inextricably linked' means joined together in a way that is impossible to separate."
+  },
+  {
+    "prompt": "The editor discovered a _____ on the very first page of the manuscript, which severely damaged the author's credibility.",
+    "A": "glaring error",
+    "B": "sweeping generalization",
+    "C": "foregone conclusion",
+    "D": "stark contrast",
+    "correct": "A",
+    "explanation": "A 'glaring error' is a highly obvious and usually embarrassing mistake."
+  },
+  {
+    "prompt": "The luxurious modern hotels built along the coastline stand in _____ to the impoverished fishing villages just a mile inland.",
+    "A": "stark contrast",
+    "B": "close proximity",
+    "C": "direct proportion",
+    "D": "absolute tandem",
+    "correct": "A",
+    "explanation": "'Stark contrast' means a very clear, obvious, and often harsh difference."
+  },
+  {
+    "prompt": "The scientist's theories were highly controversial during his lifetime, but they eventually became part of the established academic _____.",
+    "A": "canon",
+    "B": "dilemma",
+    "C": "hindrance",
+    "D": "aberration",
+    "correct": "A",
+    "explanation": "An academic 'canon' refers to the body of rules, principles, or standards accepted as universally binding in a field of study."
+  },
+  {
+    "prompt": "Identify the part that contains an error: (A) The criteria used (B) to evaluate the candidates (C) is strictly based (D) on their academic performance.",
     "A": "Part A",
     "B": "Part B",
     "C": "Part C",
-    "D": "No error",
-    "correct": "B",
-    "explanation": "Part B has incorrect verb agreement or tense form."
+    "D": "Part D",
+    "correct": "C",
+    "explanation": "'Criteria' is the plural form of 'criterion'. Therefore, the plural verb 'are' must be used instead of 'is'."
   },
   {
-    "prompt": "By the time the board meets, the candidate ____ several times to address legal concerns.",
-    "A": "will have been revised",
-    "B": "has revised",
-    "C": "was reviseing",
-    "D": "would revise",
-    "correct": "A",
-    "explanation": "Future perfect passive shows an action completed before another future moment."
-  },
-  {
-    "prompt": "In academic writing, the adjective \"implicit\" is closest in meaning to _____.",
-    "A": "suggested but not directly stated",
-    "B": "publicly denied",
-    "C": "legally binding",
-    "D": "grammatically wrong",
-    "correct": "A",
-    "explanation": "\"implicit\" is best matched with the practical dictionary meaning in option A."
-  },
-  {
-    "prompt": "Provided that the data look promising at first glance, a closer analysis reveals major sampling bias.",
-    "A": "Provided that",
-    "B": "As if",
-    "C": "Despite",
-    "D": "Once",
-    "correct": "A",
-    "explanation": "\"Provided that\" introduces a condition, which fits controlled acceptance."
-  },
-  {
-    "prompt": "Identify the part that contains an error: (A) Each of the applicants (B) have submitted (C) a portfolio. (D) No error",
+    "prompt": "Identify the part that contains an error: (A) To be successful in this course, (B) students must be able to read complex texts, (C) writing analytical essays, (D) and participate in active debates.",
     "A": "Part A",
     "B": "Part B",
     "C": "Part C",
-    "D": "No error",
-    "correct": "B",
-    "explanation": "Part B has incorrect verb agreement or tense form."
+    "D": "Part D",
+    "correct": "C",
+    "explanation": "Parallelism error. The verbs following 'able to' should all be base infinitives: read, write, and participate. 'Writing' breaks the parallel structure."
   },
   {
-    "prompt": "By the time the board meets, the research team ____ several times to address legal concerns.",
-    "A": "will have been rejectd",
-    "B": "has rejectd",
-    "C": "was rejecting",
-    "D": "would reject",
-    "correct": "A",
-    "explanation": "Future perfect passive shows an action completed before another future moment."
-  },
-  {
-    "prompt": "In academic writing, the adjective \"redundant\" is closest in meaning to _____.",
-    "A": "unnecessarily repeated",
-    "B": "well supported",
-    "C": "newly created",
-    "D": "highly emotional",
-    "correct": "A",
-    "explanation": "\"redundant\" is best matched with the practical dictionary meaning in option A."
-  },
-  {
-    "prompt": "Notwithstanding the data look promising at first glance, a closer analysis reveals major sampling bias.",
-    "A": "Notwithstanding",
-    "B": "Consequently",
-    "C": "Likewise",
-    "D": "Namely",
-    "correct": "A",
-    "explanation": "\"Notwithstanding\" means \"despite\" and signals concession."
-  },
-  {
-    "prompt": "Identify the part that contains an error: (A) Each of the applicants (B) have submitted (C) a portfolio. (D) No error",
+    "prompt": "Identify the part that contains an error: (A) Exhausted after the grueling 12-hour shift, (B) the warm bed (C) felt like a miracle (D) to the young nurse.",
     "A": "Part A",
     "B": "Part B",
     "C": "Part C",
-    "D": "No error",
-    "correct": "B",
-    "explanation": "Part B has incorrect verb agreement or tense form."
-  },
-  {
-    "prompt": "By the time the board meets, the committee ____ several times to address legal concerns.",
-    "A": "will have been delayd",
-    "B": "has delayd",
-    "C": "was delaying",
-    "D": "would delay",
+    "D": "Part D",
     "correct": "A",
-    "explanation": "Future perfect passive shows an action completed before another future moment."
+    "explanation": "Dangling modifier. The warm bed was not exhausted; the nurse was. The sentence needs restructuring (e.g., 'Exhausted after the shift, the nurse felt that the bed...')."
   },
   {
-    "prompt": "In academic writing, the adjective \"pragmatic\" is closest in meaning to _____.",
-    "A": "practical rather than idealistic",
-    "B": "purely theoretical",
-    "C": "emotionally unstable",
-    "D": "historically inaccurate",
-    "correct": "A",
-    "explanation": "\"pragmatic\" is best matched with the practical dictionary meaning in option A."
-  },
-  {
-    "prompt": "Whereas the data look promising at first glance, a closer analysis reveals major sampling bias.",
-    "A": "Whereas",
-    "B": "Therefore",
-    "C": "In order that",
-    "D": "Until",
-    "correct": "A",
-    "explanation": "\"Whereas\" is used to contrast two clauses directly."
-  },
-  {
-    "prompt": "Identify the part that contains an error: (A) Each of the applicants (B) have submitted (C) a portfolio. (D) No error",
+    "prompt": "Identify the part that contains an error: (A) Because of the heavy fog, (B) the pilot could barely not see (C) the runway lights (D) during the emergency landing.",
     "A": "Part A",
     "B": "Part B",
     "C": "Part C",
-    "D": "No error",
+    "D": "Part D",
     "correct": "B",
-    "explanation": "Part B has incorrect verb agreement or tense form."
+    "explanation": "'Barely' is already a negative adverb. Using 'not' creates an incorrect double negative. It should be 'could barely see'."
   },
   {
-    "prompt": "By the time the board meets, the report ____ several times to address legal concerns.",
-    "A": "will have been publishd",
-    "B": "has publishd",
-    "C": "was publishing",
-    "D": "would publish",
-    "correct": "A",
-    "explanation": "Future perfect passive shows an action completed before another future moment."
-  },
-  {
-    "prompt": "In academic writing, the adjective \"coherent\" is closest in meaning to _____.",
-    "A": "logically connected",
-    "B": "financially risky",
-    "C": "too brief",
-    "D": "politically neutral",
-    "correct": "A",
-    "explanation": "\"coherent\" is best matched with the practical dictionary meaning in option A."
-  },
-  {
-    "prompt": "Even though the data look promising at first glance, a closer analysis reveals major sampling bias.",
-    "A": "Even though",
-    "B": "Unless",
-    "C": "Because",
-    "D": "So that",
-    "correct": "A",
-    "explanation": "\"Even though\" introduces concession and matches the contrast in the sentence."
-  },
-  {
-    "prompt": "Identify the part that contains an error: (A) Each of the applicants (B) have submitted (C) a portfolio. (D) No error",
+    "prompt": "Identify the part that contains an error: (A) The newly appointed CEO (B) is highly capable to lead (C) the international corporation (D) out of its current financial crisis.",
     "A": "Part A",
     "B": "Part B",
     "C": "Part C",
-    "D": "No error",
+    "D": "Part D",
     "correct": "B",
-    "explanation": "Part B has incorrect verb agreement or tense form."
+    "explanation": "The adjective 'capable' must be followed by the preposition 'of' and a gerund. It should be 'capable of leading'."
   },
   {
-    "prompt": "By the time the board meets, the proposal ____ several times to address legal concerns.",
-    "A": "will have been approved",
-    "B": "has approved",
-    "C": "was approveing",
-    "D": "would approve",
-    "correct": "A",
-    "explanation": "Future perfect passive shows an action completed before another future moment."
-  },
-  {
-    "prompt": "In academic writing, the adjective \"meticulous\" is closest in meaning to _____.",
-    "A": "very careful and precise",
-    "B": "careless",
-    "C": "temporary",
-    "D": "noisy",
-    "correct": "A",
-    "explanation": "\"meticulous\" is best matched with the practical dictionary meaning in option A."
-  },
-  {
-    "prompt": "Insofar as the data look promising at first glance, a closer analysis reveals major sampling bias.",
-    "A": "Insofar as",
-    "B": "After",
-    "C": "Rather than",
-    "D": "In case",
-    "correct": "A",
-    "explanation": "\"Insofar as\" means \"to the extent that\" and fits analytical limitation."
-  },
-  {
-    "prompt": "Identify the part that contains an error: (A) Each of the applicants (B) have submitted (C) a portfolio. (D) No error",
+    "prompt": "Identify the part that contains an error: (A) The security personnel (B) reacted extreme quick (C) when the fire alarm (D) sounded in the main lobby.",
     "A": "Part A",
     "B": "Part B",
     "C": "Part C",
-    "D": "No error",
+    "D": "Part D",
     "correct": "B",
-    "explanation": "Part B has incorrect verb agreement or tense form."
+    "explanation": "Adverbs are needed to modify the verb 'reacted' and the adverb 'quickly'. It should be 'reacted extremely quickly'."
   },
   {
-    "prompt": "By the time the board meets, the candidate ____ several times to address legal concerns.",
-    "A": "will have been revised",
-    "B": "has revised",
-    "C": "was reviseing",
-    "D": "would revise",
-    "correct": "A",
-    "explanation": "Future perfect passive shows an action completed before another future moment."
-  },
-  {
-    "prompt": "In academic writing, the adjective \"tenuous\" is closest in meaning to _____.",
-    "A": "weak and not well supported",
-    "B": "fully guaranteed",
-    "C": "widely accepted",
-    "D": "officially approved",
-    "correct": "A",
-    "explanation": "\"tenuous\" is best matched with the practical dictionary meaning in option A."
-  },
-  {
-    "prompt": "Provided that the data look promising at first glance, a closer analysis reveals major sampling bias.",
-    "A": "Provided that",
-    "B": "As if",
-    "C": "Despite",
-    "D": "Once",
-    "correct": "A",
-    "explanation": "\"Provided that\" introduces a condition, which fits controlled acceptance."
-  },
-  {
-    "prompt": "Identify the part that contains an error: (A) Each of the applicants (B) have submitted (C) a portfolio. (D) No error",
+    "prompt": "Identify the part that contains an error: (A) The financial director argued that (B) outsourcing the IT department (C) would be a much more better (D) solution for the company's budget.",
     "A": "Part A",
     "B": "Part B",
     "C": "Part C",
-    "D": "No error",
-    "correct": "B",
-    "explanation": "Part B has incorrect verb agreement or tense form."
+    "D": "Part D",
+    "correct": "C",
+    "explanation": "'More better' is a double comparative. 'Better' is already the comparative form of 'good', so it should just be 'much better'."
   },
   {
-    "prompt": "By the time the board meets, the research team ____ several times to address legal concerns.",
-    "A": "will have been rejectd",
-    "B": "has rejectd",
-    "C": "was rejecting",
-    "D": "would reject",
-    "correct": "A",
-    "explanation": "Future perfect passive shows an action completed before another future moment."
-  },
-  {
-    "prompt": "In academic writing, the adjective \"plausible\" is closest in meaning to _____.",
-    "A": "seemingly reasonable",
-    "B": "impossible",
-    "C": "outdated",
-    "D": "silent",
-    "correct": "A",
-    "explanation": "\"plausible\" is best matched with the practical dictionary meaning in option A."
-  },
-  {
-    "prompt": "Notwithstanding the data look promising at first glance, a closer analysis reveals major sampling bias.",
-    "A": "Notwithstanding",
-    "B": "Consequently",
-    "C": "Likewise",
-    "D": "Namely",
-    "correct": "A",
-    "explanation": "\"Notwithstanding\" means \"despite\" and signals concession."
-  },
-  {
-    "prompt": "Identify the part that contains an error: (A) Each of the applicants (B) have submitted (C) a portfolio. (D) No error",
+    "prompt": "Identify the part that contains an error: (A) By the time the archeological expedition (B) reaches the remote valley next month, (C) the rainy season (D) will already begin.",
     "A": "Part A",
     "B": "Part B",
     "C": "Part C",
-    "D": "No error",
-    "correct": "B",
-    "explanation": "Part B has incorrect verb agreement or tense form."
+    "D": "Part D",
+    "correct": "D",
+    "explanation": "For an action that will be completed before a certain time in the future, the future perfect tense is required: 'will have already begun'."
   },
   {
-    "prompt": "By the time the board meets, the committee ____ several times to address legal concerns.",
-    "A": "will have been delayd",
-    "B": "has delayd",
-    "C": "was delaying",
-    "D": "would delay",
-    "correct": "A",
-    "explanation": "Future perfect passive shows an action completed before another future moment."
-  },
-  {
-    "prompt": "In academic writing, the adjective \"implicit\" is closest in meaning to _____.",
-    "A": "suggested but not directly stated",
-    "B": "publicly denied",
-    "C": "legally binding",
-    "D": "grammatically wrong",
-    "correct": "A",
-    "explanation": "\"implicit\" is best matched with the practical dictionary meaning in option A."
-  },
-  {
-    "prompt": "Whereas the data look promising at first glance, a closer analysis reveals major sampling bias.",
-    "A": "Whereas",
-    "B": "Therefore",
-    "C": "In order that",
-    "D": "Until",
-    "correct": "A",
-    "explanation": "\"Whereas\" is used to contrast two clauses directly."
-  },
-  {
-    "prompt": "Identify the part that contains an error: (A) Each of the applicants (B) have submitted (C) a portfolio. (D) No error",
+    "prompt": "Identify the part that contains an error: (A) A massive amount of people (B) gathered in the city square (C) to peacefully protest (D) the new tax legislation.",
     "A": "Part A",
     "B": "Part B",
     "C": "Part C",
-    "D": "No error",
-    "correct": "B",
-    "explanation": "Part B has incorrect verb agreement or tense form."
-  },
-  {
-    "prompt": "By the time the board meets, the report ____ several times to address legal concerns.",
-    "A": "will have been publishd",
-    "B": "has publishd",
-    "C": "was publishing",
-    "D": "would publish",
+    "D": "Part D",
     "correct": "A",
-    "explanation": "Future perfect passive shows an action completed before another future moment."
+    "explanation": "'Amount' is used for uncountable nouns. Since 'people' is countable, it must be 'A massive number of people'."
   },
   {
-    "prompt": "In academic writing, the adjective \"redundant\" is closest in meaning to _____.",
-    "A": "unnecessarily repeated",
-    "B": "well supported",
-    "C": "newly created",
-    "D": "highly emotional",
-    "correct": "A",
-    "explanation": "\"redundant\" is best matched with the practical dictionary meaning in option A."
-  },
-  {
-    "prompt": "Even though the data look promising at first glance, a closer analysis reveals major sampling bias.",
-    "A": "Even though",
-    "B": "Unless",
-    "C": "Because",
-    "D": "So that",
-    "correct": "A",
-    "explanation": "\"Even though\" introduces concession and matches the contrast in the sentence."
-  },
-  {
-    "prompt": "Identify the part that contains an error: (A) Each of the applicants (B) have submitted (C) a portfolio. (D) No error",
+    "prompt": "Identify the part that contains an error: (A) Each of the female scientists (B) presented their groundbreaking research (C) at the international symposium (D) held in Geneva last week.",
     "A": "Part A",
     "B": "Part B",
     "C": "Part C",
-    "D": "No error",
+    "D": "Part D",
     "correct": "B",
-    "explanation": "Part B has incorrect verb agreement or tense form."
-  },
-  {
-    "prompt": "By the time the board meets, the proposal ____ several times to address legal concerns.",
-    "A": "will have been approved",
-    "B": "has approved",
-    "C": "was approveing",
-    "D": "would approve",
-    "correct": "A",
-    "explanation": "Future perfect passive shows an action completed before another future moment."
-  },
-  {
-    "prompt": "In academic writing, the adjective \"pragmatic\" is closest in meaning to _____.",
-    "A": "practical rather than idealistic",
-    "B": "purely theoretical",
-    "C": "emotionally unstable",
-    "D": "historically inaccurate",
-    "correct": "A",
-    "explanation": "\"pragmatic\" is best matched with the practical dictionary meaning in option A."
-  },
-  {
-    "prompt": "Insofar as the data look promising at first glance, a closer analysis reveals major sampling bias.",
-    "A": "Insofar as",
-    "B": "After",
-    "C": "Rather than",
-    "D": "In case",
-    "correct": "A",
-    "explanation": "\"Insofar as\" means \"to the extent that\" and fits analytical limitation."
-  },
-  {
-    "prompt": "Identify the part that contains an error: (A) Each of the applicants (B) have submitted (C) a portfolio. (D) No error",
-    "A": "Part A",
-    "B": "Part B",
-    "C": "Part C",
-    "D": "No error",
-    "correct": "B",
-    "explanation": "Part B has incorrect verb agreement or tense form."
-  },
-  {
-    "prompt": "By the time the board meets, the candidate ____ several times to address legal concerns.",
-    "A": "will have been revised",
-    "B": "has revised",
-    "C": "was reviseing",
-    "D": "would revise",
-    "correct": "A",
-    "explanation": "Future perfect passive shows an action completed before another future moment."
-  },
-  {
-    "prompt": "In academic writing, the adjective \"coherent\" is closest in meaning to _____.",
-    "A": "logically connected",
-    "B": "financially risky",
-    "C": "too brief",
-    "D": "politically neutral",
-    "correct": "A",
-    "explanation": "\"coherent\" is best matched with the practical dictionary meaning in option A."
-  },
-  {
-    "prompt": "Provided that the data look promising at first glance, a closer analysis reveals major sampling bias.",
-    "A": "Provided that",
-    "B": "As if",
-    "C": "Despite",
-    "D": "Once",
-    "correct": "A",
-    "explanation": "\"Provided that\" introduces a condition, which fits controlled acceptance."
-  },
-  {
-    "prompt": "Identify the part that contains an error: (A) Each of the applicants (B) have submitted (C) a portfolio. (D) No error",
-    "A": "Part A",
-    "B": "Part B",
-    "C": "Part C",
-    "D": "No error",
-    "correct": "B",
-    "explanation": "Part B has incorrect verb agreement or tense form."
-  },
-  {
-    "prompt": "By the time the board meets, the research team ____ several times to address legal concerns.",
-    "A": "will have been rejectd",
-    "B": "has rejectd",
-    "C": "was rejecting",
-    "D": "would reject",
-    "correct": "A",
-    "explanation": "Future perfect passive shows an action completed before another future moment."
-  },
-  {
-    "prompt": "In academic writing, the adjective \"meticulous\" is closest in meaning to _____.",
-    "A": "very careful and precise",
-    "B": "careless",
-    "C": "temporary",
-    "D": "noisy",
-    "correct": "A",
-    "explanation": "\"meticulous\" is best matched with the practical dictionary meaning in option A."
-  },
-  {
-    "prompt": "Notwithstanding the data look promising at first glance, a closer analysis reveals major sampling bias.",
-    "A": "Notwithstanding",
-    "B": "Consequently",
-    "C": "Likewise",
-    "D": "Namely",
-    "correct": "A",
-    "explanation": "\"Notwithstanding\" means \"despite\" and signals concession."
+    "explanation": "The subject 'Each' is singular. Therefore, the possessive pronoun referring back to 'female scientists' should be singular: 'presented her groundbreaking research'."
   }
 ]
