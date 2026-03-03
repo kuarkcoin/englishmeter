@@ -34,7 +34,7 @@ const tests = Array.from({ length: 10 }, (_, i) => {
   return {
     n,
     category,
-    locked: n >= 6,
+    locked: false,
   };
 });
 
