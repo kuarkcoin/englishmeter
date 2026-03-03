@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
+import { supabaseServer } from "@/lib/supabaseServer";
 
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY! // sadece server
-);
+type Top10Row = {
+  nickname: string | null;
+  score: number | null;
+  duration_seconds: number | null;
+};
 
 export async function POST(req: Request) {
   const body = await req.json();
@@ -29,10 +30,17 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Nickname too short" }, { status: 400 });
   }
 
+  if (!supabaseServer) {
+    return NextResponse.json(
+      { success: false, message: "Supabase not configured" },
+      { status: 500 }
+    );
+  }
+
   const score = Number(correct ?? 0); // veya accuracy*100
 
   // 1) Insert attempt
-  const { error: insErr } = await supabaseAdmin.from("attempts").insert([
+  const { error: insErr } = await supabaseServer.from("attempts").insert([
     {
       attempt_id: String(attemptId),
       test_slug: String(testSlug),
@@ -52,7 +60,7 @@ export async function POST(req: Request) {
 
   // 2) Rank hesapla (test bazlı ALL-TIME)
   // rank = senden daha yüksek score + eşit score olup daha kısa süre + 1
-  const { count: betterCount, error: cErr } = await supabaseAdmin
+  const { count: betterCount, error: cErr } = await supabaseServer
     .from("attempts")
     .select("id", { count: "exact", head: true })
     .eq("test_slug", testSlug)
@@ -65,13 +73,13 @@ export async function POST(req: Request) {
   const rank = (betterCount ?? 0) + 1;
 
   // 3) Total players
-  const { count: totalPlayers } = await supabaseAdmin
+  const { count: totalPlayers } = await supabaseServer
     .from("attempts")
     .select("id", { count: "exact", head: true })
     .eq("test_slug", testSlug);
 
   // 4) Top 10
-  const { data: top10 } = await supabaseAdmin
+  const { data: top10 }: { data: Top10Row[] | null } = await supabaseServer
     .from("attempts")
     .select("nickname,score,duration_seconds,finished_at")
     .eq("test_slug", testSlug)
@@ -82,7 +90,7 @@ export async function POST(req: Request) {
   return NextResponse.json({
     rank,
     totalPlayers: totalPlayers ?? 0,
-    top10: (top10 ?? []).map((x) => ({
+    top10: (top10 ?? []).map((x: Top10Row) => ({
       nickname: x.nickname,
       score: x.score,
       durationSeconds: x.duration_seconds,

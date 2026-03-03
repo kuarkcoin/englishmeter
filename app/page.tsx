@@ -4,6 +4,7 @@ import React, { useEffect, useMemo, useState, Suspense, useCallback } from 'reac
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import DarkToggle from '@/components/DarkToggle';
+import DiamondCard from '@/components/DiamondCard';
  
 // --- DATA IMPORTS ---
 import topicQuestions from '@/data/grammar_topic_tests.json';
@@ -370,11 +371,11 @@ function HomeContent() {
             questions.push({
               id: `yds-read-p${passage.passageId}-q${qIndex + 1}`,
               prompt: `
-                <div class="mb-4 p-4 bg-slate-50 border border-slate-200 rounded-lg text-sm leading-relaxed text-slate-700">
+                <div class="mb-4 p-4 bg-white/70 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700/60 rounded-lg text-sm leading-relaxed text-slate-700 dark:text-slate-200">
                   <strong>Passage ${pIndex + 1}:</strong><br/>
                   ${passage.text}
                 </div>
-                <div class="font-bold text-slate-900">
+                <div class="font-bold text-slate-900 dark:text-slate-50">
                   ${q.prompt}
                 </div>
               `,
@@ -505,7 +506,7 @@ function HomeContent() {
 
           return {
             id: `yds-syn-q${idx + 1}`,
-            prompt: `Select the word that is closest in meaning to: <br/> <strong class="text-xl text-blue-700">"${item.word}"</strong> <span class="text-sm text-gray-500">(${item.meaning})</span>`,
+            prompt: `Select the word that is closest in meaning to: <br/> <strong class="text-xl text-blue-700 dark:text-blue-300">"${item.word}"</strong> <span class="text-sm text-[rgb(var(--muted))] dark:text-slate-300">(${item.meaning})</span>`,
             choices: letters.map((L, i) => ({
               id: idsLower[i],
               text: allOptions[i],
@@ -665,8 +666,8 @@ function HomeContent() {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-950">
         <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-6"></div>
-        <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100 animate-pulse">Starting New Test...</h2>
-        <p className="text-slate-500 dark:text-slate-400 mt-2">Preparing fresh questions from the pool</p>
+        <h2 className="text-2xl font-bold text-[rgb(var(--text))] dark:text-slate-100 animate-pulse">Starting New Test...</h2>
+        <p className="text-[rgb(var(--muted))] dark:text-slate-400 mt-2">Preparing fresh questions from the pool</p>
       </div>
     );
   }
@@ -674,39 +675,47 @@ function HomeContent() {
   const freeMiniCount = 100; // Premium yoksa ilk 8 mini test ücretsiz gibi düşün
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
-      <div className="w-full max-w-6xl mx-auto px-4 pt-6 flex justify-end">
-        <DarkToggle />
+    <div className="min-h-screen bg-[rgb(var(--bg))] text-[rgb(var(--text))]">
+      <div className="sticky top-0 z-30 border-b border-[rgb(var(--border))] bg-[rgb(var(--bg))/0.82] backdrop-blur">
+        <div className="w-full max-w-6xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
+          <div className="font-black tracking-tight text-lg sm:text-xl">EnglishMeter</div>
+          <div className="flex items-center gap-3">
+            <DarkToggle />
+            <button onClick={() => startTest(quickTest.slug)} className="diamond-btn">
+              Start Test
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* HERO */}
-      <section className="w-full max-w-6xl mx-auto px-4 pt-10 pb-4">
+      <section className="w-full max-w-6xl mx-auto px-4 py-16">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
             <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100 mb-3">
               EnglishMeter · FREE ENGLISH TESTS
             </span>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-3 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight mb-3">
               Find your English level
               <span className="text-blue-600"> in minutes.</span>
             </h1>
 
-            <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg mb-5">
+            <p className="text-[rgb(var(--muted))] text-base sm:text-lg leading-relaxed mb-5">
               Online English grammar tests, CEFR level quizzes (A1–C2) and quick placement exams with instant results and detailed review.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">
               <button
                 onClick={() => startTest(quickTest.slug)}
-                className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-blue-600 text-white font-semibold text-sm sm:text-base shadow-md hover:bg-blue-700 transition"
+                className="diamond-btn px-6 py-3 text-sm sm:text-base"
               >
                 Start placement test
               </button>
 
               <a
                 href="#all-tests"
-                className="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-slate-300 text-slate-700 dark:text-slate-200 font-semibold text-sm sm:text-base bg-white dark:bg-slate-900 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition"
+                className="diamond-card inline-flex items-center justify-center px-6 py-3 font-semibold text-sm sm:text-base hover:bg-white/70 dark:hover:bg-slate-900/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--ring))] focus-visible:ring-offset-2"
               >
                 Browse all tests
               </a>
@@ -717,7 +726,7 @@ function HomeContent() {
               <div className="mt-5 flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={() => startTest(lastTest.slug)}
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-slate-900 text-white font-semibold text-sm sm:text-base shadow-md hover:bg-slate-800 transition"
+                  className="diamond-btn px-6 py-3 text-sm sm:text-base"
                 >
                   ▶ Continue: {lastTest.title}
                 </button>
@@ -731,11 +740,11 @@ function HomeContent() {
             )}
 
             {/* Premium teaser */}
-            <div className="mt-6 p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-sm">
+            <DiamondCard className="mt-6 p-4">
               <div className="flex items-center justify-between gap-3">
                 <div>
-                  <div className="text-sm font-black text-slate-900">Premium (Coming soon)</div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                  <div className="text-sm font-black">Premium (Coming soon)</div>
+                  <div className="text-xs text-[rgb(var(--muted))] mt-1 leading-relaxed">
                     Unlock all YDS 3750 mini tests + extra packs + analytics.
                   </div>
                 </div>
@@ -746,16 +755,16 @@ function HomeContent() {
                     setIsPremium(next);
                     localStorage.setItem(LS_PREMIUM, next ? '1' : '0');
                   }}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold border transition ${
+                  className={`diamond-card px-4 py-2 rounded-xl text-xs font-bold border transition ${
                     isPremium
                       ? 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100'
-                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                      : 'bg-slate-50 text-slate-700 border-[rgb(var(--border))] hover:bg-slate-100'
                   }`}
                 >
                   {isPremium ? '✅ Premium Active (demo)' : '🔒 Enable Premium (demo)'}
                 </button>
               </div>
-            </div>
+            </DiamondCard>
           </div>
 
           <div className="hidden md:block">
@@ -777,7 +786,7 @@ function HomeContent() {
       </section>
 
       {/* MAIN */}
-      <div className="flex flex-col items-center justify-center px-4 pb-16 pt-4">
+      <div className="flex flex-col items-center justify-center px-4 pb-20 pt-4">
         <div id="all-tests" className="w-full max-w-6xl mx-auto text-center">
 
           {/* GAME MODES (Öne Çıkan Flashcards Düzeni) */}
@@ -1209,16 +1218,16 @@ function HomeContent() {
 )}
 
           {/* OTHER MAIN TESTS */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
             {/* YDS EXAM PACK */}
-            <div className="col-span-1 md:col-span-2 lg:col-span-3 bg-pink-50 rounded-3xl p-6 border-2 border-pink-200 shadow-xl relative overflow-hidden">
+            <DiamondCard className="col-span-1 md:col-span-2 lg:col-span-3 p-6 relative overflow-hidden bg-pink-50/80 dark:bg-pink-950/20 border-pink-200/70 dark:border-pink-700/50">
               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-pink-400 to-rose-500"></div>
 
               <div className="flex flex-col md:flex-row items-center justify-between mb-6 gap-3">
                 <h3 className="text-2xl font-black text-pink-600 flex items-center gap-2">
                   <span className="text-3xl">🇹🇷</span> YDS EXAM PACK
                 </h3>
-                <span className="text-pink-500 text-sm font-bold bg-white px-3 py-1 rounded-full border border-pink-100">
+                <span className="text-pink-600 dark:text-pink-200 text-sm font-bold bg-white/80 dark:bg-slate-900/70 px-3 py-1 rounded-full border border-pink-200/80 dark:border-pink-700/60">
                   Real Exam Mode (80Q)
                 </span>
               </div>
@@ -1244,55 +1253,47 @@ function HomeContent() {
                   );
                 })}
               </div>
-            </div>
+            </DiamondCard>
 
-            <button onClick={() => startTest(ydsGrammarTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-indigo-600 text-white text-xl font-black shadow-xl hover:bg-indigo-700 transition-all">
-              {ydsGrammarTest.title}
-            </button>
-
-            <button onClick={() => startTest(ydsReadingTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-green-600 text-white text-xl font-black shadow-xl hover:bg-green-700 transition-all">
-              {ydsReadingTest.title}
-            </button>
-
-            <button onClick={() => startTest(ydsPhrasalTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-teal-600 text-white text-xl font-black shadow-xl hover:bg-teal-700 transition-all">
-              {ydsPhrasalTest.title}
-            </button>
-
-            <button onClick={() => startTest(ydsSynonymTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-purple-500 text-white text-xl font-black shadow-xl hover:bg-purple-600 transition-all">
-              {ydsSynonymTest.title}
-            </button>
-
-            <button onClick={() => startTest(ydsConjunctionTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-slate-700 text-white text-xl font-black shadow-xl hover:bg-slate-800 transition-all">
-              {ydsConjunctionTest.title}
-            </button>
-
-            <button onClick={() => startTest(ieltsTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-sky-500 text-white text-xl font-black shadow-xl hover:bg-sky-600 transition-all">
-              {ieltsTest.title}
-            </button>
-
-            <button onClick={() => startTest(vocabTest.slug)} className="flex items-center justify-center px-6 py-8 rounded-2xl bg-emerald-600 text-white text-xl font-black shadow-xl hover:bg-emerald-700 transition-all">
-              {vocabTest.title}
-            </button>
+            {[
+              { test: ydsGrammarTest, tint: 'bg-indigo-600/12 text-indigo-700 dark:text-indigo-300 border-indigo-200/70 dark:border-indigo-700/60' },
+              { test: ydsReadingTest, tint: 'bg-green-600/12 text-green-700 dark:text-green-300 border-green-200/70 dark:border-green-700/60' },
+              { test: ydsPhrasalTest, tint: 'bg-teal-600/12 text-teal-700 dark:text-teal-300 border-teal-200/70 dark:border-teal-700/60' },
+              { test: ydsSynonymTest, tint: 'bg-purple-600/12 text-purple-700 dark:text-purple-300 border-purple-200/70 dark:border-purple-700/60' },
+              { test: ydsConjunctionTest, tint: 'bg-slate-600/12 text-slate-700 dark:text-slate-200 border-slate-200/70 dark:border-slate-700/60' },
+              { test: ieltsTest, tint: 'bg-sky-600/12 text-sky-700 dark:text-sky-300 border-sky-200/70 dark:border-sky-700/60' },
+              { test: vocabTest, tint: 'bg-emerald-600/12 text-emerald-700 dark:text-emerald-300 border-emerald-200/70 dark:border-emerald-700/60' },
+            ].map(({ test, tint }) => (
+              <DiamondCard
+                as="button"
+                key={test.slug}
+                onClick={() => startTest(test.slug)}
+                className={`flex items-center justify-center px-6 py-8 text-lg sm:text-xl font-black ${tint}`}
+              >
+                {test.title}
+              </DiamondCard>
+            ))}
           </div>
 
           {/* Grammar Focus */}
           <div className="mb-20">
             <div className="flex items-center justify-center mb-8">
-              <span className="bg-white px-8 py-3 rounded-full text-slate-500 font-bold text-sm border border-slate-200 uppercase tracking-wider">
+              <span className="diamond-card px-8 py-3 text-[rgb(var(--muted))] font-bold text-sm uppercase tracking-wider">
                 Grammar Focus
               </span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {grammarTests.map((test) => (
-                <button
+                <DiamondCard
+                  as="button"
                   key={test.slug}
                   onClick={() => startTest(test.slug)}
-                  className="group px-4 py-5 rounded-xl bg-white text-indigo-700 font-black shadow-sm border border-indigo-50 hover:border-indigo-300 hover:shadow-lg transition-all"
+                  className="px-4 py-5 text-indigo-700 dark:text-indigo-300 font-black"
                 >
                   <span className="block group-hover:scale-105 transition-transform">{test.title}</span>
-                  <span className="block mt-1 text-[11px] font-semibold text-slate-400">20Q · timed</span>
-                </button>
+                  <span className="block mt-1 text-[11px] font-semibold text-[rgb(var(--muted))]">20Q · timed</span>
+                </DiamondCard>
               ))}
             </div>
           </div>
@@ -1300,42 +1301,43 @@ function HomeContent() {
           {/* All Levels */}
           <div className="mb-20">
             <div className="flex items-center justify-center mb-8">
-              <span className="bg-white px-8 py-3 rounded-full text-slate-500 font-bold text-sm border border-slate-200 uppercase tracking-wider">
+              <span className="diamond-card px-8 py-3 text-[rgb(var(--muted))] font-bold text-sm uppercase tracking-wider">
                 All Levels
               </span>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {levelTests.map((test) => (
-                <a
+                <DiamondCard
+                  as="a"
                   key={test.level}
                   href={`/levels/${test.level}`}
-                  className="px-4 py-10 rounded-2xl bg-white text-slate-700 font-black text-3xl border border-slate-200 hover:border-blue-400 hover:text-blue-600 hover:shadow-xl transition-all"
+                  className="px-4 py-10 text-slate-700 dark:text-slate-100 font-black text-3xl hover:text-blue-600 dark:hover:text-blue-300"
                 >
                   {test.level}
-                </a>
+                </DiamondCard>
               ))}
             </div>
 
-            <div className="mt-4 text-xs text-slate-500">
+            <div className="mt-4 text-xs text-[rgb(var(--muted))]">
               Tip: Levels pages can be SEO landing pages. Add “20Q · 10 min · instant review” there.
             </div>
           </div>
 
           {/* SEO SECTION (same as yours, kept) */}
-          <section className="text-left w-full border-t border-slate-200 pt-16 mt-16 pb-12 bg-slate-50">
+          <section className="text-left w-full border-t border-[rgb(var(--border))] pt-16 mt-16 pb-12 bg-transparent">
             <div className="max-w-5xl mx-auto space-y-12">
               <div className="grid md:grid-cols-2 gap-12">
                 <div>
-                  <h2 className="text-xl font-bold text-slate-900 mb-3 flex items-center">
+                  <h2 className="text-xl font-bold text-[rgb(var(--text))] mb-3 flex items-center">
                     <span className="bg-orange-100 text-orange-600 p-2 rounded-lg mr-3 text-sm">🇹🇷</span>
                     YDS & YÖKDİL Exam Preparation
                   </h2>
-                  <p className="text-slate-600 mb-4 text-sm leading-relaxed">
+                  <p className="text-[rgb(var(--muted))] mb-4 text-sm leading-relaxed">
                     Preparing for the <strong>Foreign Language Exam (YDS)</strong> or <strong>YÖKDİL</strong> in Turkey? EnglishMeter offers comprehensive online practice tests designed to simulate the real exam experience.
                     Our <strong>YDS Exam Pack</strong> includes full-length practice tests with 80 questions covering reading comprehension, vocabulary, grammar, and translation skills.
                   </p>
-                  <ul className="list-disc pl-4 text-sm text-slate-500 space-y-1">
+                  <ul className="list-disc pl-4 text-sm text-[rgb(var(--muted))] space-y-1">
                     <li><strong>YDS Vocabulary:</strong> Master the most common 3750 academic words.</li>
                     <li><strong>Synonyms Practice:</strong> Learn crucial synonyms and distractors for paraphrasing questions.</li>
                     <li><strong>Reading Comprehension:</strong> Analyze complex paragraphs with detailed explanations.</li>
@@ -1344,39 +1346,50 @@ function HomeContent() {
                 </div>
 
                 <div>
-                  <h2 className="text-xl font-bold text-slate-900 mb-3 flex items-center">
+                  <h2 className="text-xl font-bold text-[rgb(var(--text))] mb-3 flex items-center">
                     <span className="bg-blue-100 text-blue-600 p-2 rounded-lg mr-3 text-sm">🌍</span>
                     Global English Placement Tests
                   </h2>
-                  <p className="text-slate-600 mb-4 text-sm leading-relaxed">
+                  <p className="text-[rgb(var(--muted))] mb-4 text-sm leading-relaxed">
                     Test your English proficiency level with our free online placement tests. Based on the <strong>Common European Framework of Reference (CEFR)</strong>, our quizzes determine whether you are A1 (Beginner), B2 (Upper-Intermediate), or C2 (Advanced).
                     Whether you are preparing for IELTS, TOEFL, or just want to know your level, our <strong>Quick Placement Test</strong> gives you an instant score in under 20 minutes.
                   </p>
-                  <p className="text-sm text-slate-500">
+                  <p className="text-sm text-[rgb(var(--muted))]">
                     Join thousands of users improving their English daily with our grammar focus tests and vocabulary builders.
                   </p>
                 </div>
               </div>
 
-              <div className="border-t border-slate-200 pt-8">
-                <h3 className="text-lg font-bold text-slate-800 mb-4">Why use EnglishMeter?</h3>
-                <div className="grid sm:grid-cols-3 gap-6 text-sm text-slate-600">
+              <div className="border-t border-[rgb(var(--border))] pt-8">
+                <h3 className="text-lg font-bold text-[rgb(var(--text))] mb-4">Why use EnglishMeter?</h3>
+                <div className="grid sm:grid-cols-3 gap-6 text-sm text-[rgb(var(--muted))]">
                   <div>
-                    <h4 className="font-semibold text-slate-900 mb-1">Instant Results</h4>
+                    <h4 className="font-semibold text-[rgb(var(--text))] mb-1">Instant Results</h4>
                     <p>No waiting. Get your score, CEFR level, and detailed answer explanations immediately after finishing a test.</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-slate-900 mb-1">Mobile Friendly</h4>
+                    <h4 className="font-semibold text-[rgb(var(--text))] mb-1">Mobile Friendly</h4>
                     <p>Practice on the go. Our tests are optimized for phones, tablets, and desktops so you can study anywhere.</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-slate-900 mb-1">Completely Free</h4>
+                    <h4 className="font-semibold text-[rgb(var(--text))] mb-1">Completely Free</h4>
                     <p>Access high-quality YDS, YÖKDİL, and general English grammar tests without any subscription fees.</p>
                   </div>
                 </div>
               </div>
             </div>
           </section>
+
+          <footer className="mt-20 border-t border-[rgb(var(--border))] py-8 text-left text-sm text-[rgb(var(--muted))]">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <p>© {new Date().getFullYear()} EnglishMeter. All rights reserved.</p>
+              <div className="flex items-center gap-4">
+                <a href="#" className="hover:text-[rgb(var(--text))] transition">Privacy</a>
+                <a href="#" className="hover:text-[rgb(var(--text))] transition">Terms</a>
+                <a href="#" className="hover:text-[rgb(var(--text))] transition">Contact</a>
+              </div>
+            </div>
+          </footer>
 
           {/* Tiny SEO-friendly link list (optional, crawler sees) */}
           <div className="sr-only">
@@ -1396,7 +1409,7 @@ function HomeContent() {
 
 export default function Home(props: any) {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-slate-50 dark:bg-slate-950" />}>
+    <Suspense fallback={<div className="min-h-screen bg-[rgb(var(--bg))]" />}>
       <HomeContent />
     </Suspense>
   );
