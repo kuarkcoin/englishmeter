@@ -48,6 +48,16 @@ import ydsExamQuestions29 from '@/data/yds_exam_questions_29.json';
 import ydsExamQuestions30 from '@/data/yds_exam_questions_30.json';
 import ydsExamQuestions31 from '@/data/yds_exam_questions_31.json';
 import ydsExamQuestions32 from '@/data/yds_exam_questions_32.json';
+import advTest1 from '@/data/advanced_english_test_1.json';
+import advTest2 from '@/data/advanced_english_test_2.json';
+import advTest3 from '@/data/advanced_english_test_3.json';
+import advTest4 from '@/data/advanced_english_test_4.json';
+import advTest5 from '@/data/advanced_english_test_5.json';
+import advTest6 from '@/data/advanced_english_test_6.json';
+import advTest7 from '@/data/advanced_english_test_7.json';
+import advTest8 from '@/data/advanced_english_test_8.json';
+import advTest9 from '@/data/advanced_english_test_9.json';
+import advTest10 from '@/data/advanced_english_test_10.json';
 // --- TEST DATA MAP ---
 const YDS_EXAM_MAP: Record<string, any[]> = {
   '1': ydsExamQuestions1,
@@ -82,6 +92,19 @@ const YDS_EXAM_MAP: Record<string, any[]> = {
   '30': ydsExamQuestions30,
   '31': ydsExamQuestions31,
   '32': ydsExamQuestions32,
+};
+
+const ADV_TEST_MAP: Record<string, any[]> = {
+  '1': advTest1,
+  '2': advTest2,
+  '3': advTest3,
+  '4': advTest4,
+  '5': advTest5,
+  '6': advTest6,
+  '7': advTest7,
+  '8': advTest8,
+  '9': advTest9,
+  '10': advTest10,
 };
 
 // --- TEST TANIMLARI ---
@@ -343,6 +366,47 @@ function HomeContent() {
           testSlug,
           test: { title, duration: 150 },
           durationSeconds: 150 * 60,
+          questions: mappedQuestions,
+        };
+
+        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
+        saveLast(title, testSlug);
+        router.push(`/quiz/${attemptId}`);
+        return;
+      }
+
+      if (testSlug.startsWith('adv-test-')) {
+        const testNumber = testSlug.split('-').pop() || '1';
+        const selectedQuestions = ADV_TEST_MAP[testNumber];
+        if (!selectedQuestions?.length) {
+          alert('This test is coming soon!');
+          return;
+        }
+
+        const mappedQuestions = [...selectedQuestions].map((q: any, idx: number) => {
+          const correctLetter = String(q.correct || 'A').trim().toUpperCase();
+          const letters = ['A', 'B', 'C', 'D'];
+          const idsLower = ['a', 'b', 'c', 'd'];
+
+          return {
+            id: `adv-${testNumber}-q${idx + 1}`,
+            prompt: q.prompt,
+            choices: letters.map((L, i) => ({
+              id: idsLower[i],
+              text: q[L] || `Option ${L}`,
+              isCorrect: correctLetter === L,
+            })),
+            explanation: q.explanation || '',
+          };
+        });
+
+        const title = `ADVANCED ENGLISH · TEST ${testNumber} (50Q · 45 min)`;
+
+        const payload = {
+          attemptId,
+          testSlug,
+          test: { title, duration: 45 },
+          durationSeconds: 45 * 60,
           questions: mappedQuestions,
         };
 
@@ -1069,6 +1133,25 @@ function HomeContent() {
       Learn more →
     </Link>
   </button>
+
+  <Link
+    href="/advanced-tests"
+    className="group relative overflow-hidden rounded-2xl p-6 md:p-7 text-left bg-gradient-to-br from-indigo-700 via-violet-700 to-fuchsia-700 text-white shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-indigo-500/30"
+  >
+    <div className="absolute -top-12 -right-10 w-36 h-36 bg-white/20 rounded-full blur-3xl"></div>
+    <div className="relative z-10 flex flex-col justify-between h-full min-h-[160px]">
+      <div>
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/15 rounded-full text-[10px] font-black uppercase mb-3 border border-white/20">
+          ✨ Premium Track
+        </div>
+        <div className="text-2xl font-black leading-tight">Advanced English Tests</div>
+        <div className="mt-2 text-xs text-white/90 leading-relaxed">10 tests · 50 questions each · 45 min · B2–C1</div>
+      </div>
+      <div className="mt-6 w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-indigo-700 text-2xl font-black shadow-lg group-hover:scale-110 transition-transform">
+        ▶
+      </div>
+    </div>
+  </Link>
 
   {/* 🔥 YDS 5000 HERO (GRID ITEM) */}
   <button

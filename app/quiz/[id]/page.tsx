@@ -513,6 +513,27 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
     localStorage.setItem('my_mistakes', JSON.stringify(mistakeList));
 
+    if (data.testSlug?.startsWith('adv-test-')) {
+      const testNumber = data.testSlug.split('-').pop() || '1';
+      const key = 'em_adv_progress_v1';
+      try {
+        const raw = localStorage.getItem(key);
+        const parsed = raw ? JSON.parse(raw) : {};
+        const prev = parsed?.[testNumber] || {};
+        const nextBest = Math.max(Number(prev.best || 0), correctCount);
+
+        parsed[testNumber] = {
+          best: nextBest,
+          last: correctCount,
+          updatedAt: new Date().toISOString(),
+        };
+
+        localStorage.setItem(key, JSON.stringify(parsed));
+      } catch {
+        // ignore localStorage parse errors
+      }
+    }
+
     setScore(correctCount);
     setShowResult(true);
     window.scrollTo(0, 0);
