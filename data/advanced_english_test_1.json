@@ -1,452 +1,452 @@
 [
   {
-    "prompt": "The widespread use of antibiotics has led to the emergence of resistant bacteria, rendering many traditional treatments _____.",
-    "A": "pervasive",
-    "B": "obsolete",
-    "C": "lucrative",
-    "D": "profound",
-    "correct": "B",
-    "explanation": "\"Obsolete\" means no longer produced or used; out of date. This fits the context of traditional treatments becoming ineffective."
-  },
-  {
-    "prompt": "In an effort to _____ the economic crisis, the government introduced a series of tax cuts and stimulus packages.",
-    "A": "alleviate",
-    "B": "exacerbate",
-    "C": "instigate",
-    "D": "replicate",
+    "prompt": "The government has decided to _____ a significant portion of the annual budget to renewable energy research.",
+    "A": "allocate",
+    "B": "confiscate",
+    "C": "derive",
+    "D": "eradicate",
     "correct": "A",
-    "explanation": "\"Alleviate\" means to make suffering, deficiency, or a problem less severe."
+    "explanation": "\"Allocate\" means to distribute resources or duties for a particular purpose."
   },
   {
-    "prompt": "Researchers must _____ the data collected from the trials to ensure that no anomalies compromise the study's findings.",
-    "A": "fabricate",
-    "B": "overlook",
-    "C": "scrutinize",
-    "D": "endorse",
-    "correct": "C",
-    "explanation": "\"Scrutinize\" means to examine or inspect closely and thoroughly."
-  },
-  {
-    "prompt": "The new environmental regulations are highly _____, leaving many factory owners unsure of whether they are compliant.",
-    "A": "ambiguous",
-    "B": "explicit",
-    "C": "feasible",
+    "prompt": "Much of the meaning in the author's poetry is not explicitly stated but rather _____ through subtle metaphors.",
+    "A": "arbitrary",
+    "B": "implicit",
+    "C": "tangible",
     "D": "coherent",
-    "correct": "A",
-    "explanation": "\"Ambiguous\" means open to more than one interpretation; not having one obvious meaning."
-  },
-  {
-    "prompt": "Children who are not vaccinated are highly _____ to contracting preventable diseases such as measles and mumps.",
-    "A": "immune",
-    "B": "susceptible",
-    "C": "indifferent",
-    "D": "resilient",
     "correct": "B",
-    "explanation": "\"Susceptible\" means likely or liable to be influenced or harmed by a particular thing."
+    "explanation": "\"Implicit\" means suggested though not directly expressed."
   },
   {
-    "prompt": "The use of smartphones has become so _____ that it is rare to find someone without one in modern cities.",
-    "A": "scarce",
-    "B": "sporadic",
-    "C": "ubiquitous",
-    "D": "transient",
+    "prompt": "Rising sea levels continue to _____ a severe threat to low-lying coastal communities around the world.",
+    "A": "pose",
+    "B": "make",
+    "C": "do",
+    "D": "set",
+    "correct": "A",
+    "explanation": "The standard academic collocation is \"to pose a threat\"."
+  },
+  {
+    "prompt": "Solar and wind power are increasingly seen as commercially _____ alternatives to traditional fossil fuels.",
+    "A": "fictitious",
+    "B": "detrimental",
+    "C": "viable",
+    "D": "obsolete",
     "correct": "C",
-    "explanation": "\"Ubiquitous\" means present, appearing, or found everywhere."
+    "explanation": "\"Viable\" means capable of working successfully or feasible."
   },
   {
-    "prompt": "The manager decided to _____ the meeting until next week because several key stakeholders were unable to attend.",
-    "A": "put off",
-    "B": "call off",
-    "C": "bring up",
-    "D": "look into",
-    "correct": "A",
-    "explanation": "\"Put off\" is a phrasal verb meaning to postpone something."
-  },
-  {
-    "prompt": "Rapid industrialization has _____ significant changes in the global climate over the last century.",
-    "A": "taken over",
-    "B": "brought about",
-    "C": "turned down",
-    "D": "run out of",
+    "prompt": "The price of agricultural commodities tends to _____ wildly depending on global weather patterns.",
+    "A": "stagnate",
+    "B": "fluctuate",
+    "C": "diminish",
+    "D": "persevere",
     "correct": "B",
+    "explanation": "\"Fluctuate\" means to rise and fall irregularly in number or amount."
+  },
+  {
+    "prompt": "The sheer scale of the recent technological advancements is completely _____, with no historical parallel.",
+    "A": "unprecedented",
+    "B": "marginal",
+    "C": "inadequate",
+    "D": "redundant",
+    "correct": "A",
+    "explanation": "\"Unprecedented\" means never done or known before."
+  },
+  {
+    "prompt": "The initial experiment failed, but _____ attempts using a modified methodology yielded positive results.",
+    "A": "subsequent",
+    "B": "preceding",
+    "C": "preliminary",
+    "D": "concurrent",
+    "correct": "A",
+    "explanation": "\"Subsequent\" means coming after something in time; following."
+  },
+  {
+    "prompt": "Scientific theories must be supported by _____ data rather than mere speculation or personal opinion.",
+    "A": "anecdotal",
+    "B": "empirical",
+    "C": "fictional",
+    "D": "superficial",
+    "correct": "B",
+    "explanation": "\"Empirical\" evidence is based on observation or experience rather than theory or pure logic."
+  },
+  {
+    "prompt": "If the company fails to adapt to the new digital landscape, its eventual bankruptcy is absolutely _____.",
+    "A": "inevitable",
+    "B": "doubtful",
+    "C": "plausible",
+    "D": "avoidable",
+    "correct": "A",
+    "explanation": "\"Inevitable\" means certain to happen; unavoidable."
+  },
+  {
+    "prompt": "Agriculture remains the _____ source of income for the majority of the population in this developing nation.",
+    "A": "predominant",
+    "B": "subordinate",
+    "C": "trivial",
+    "D": "peripheral",
+    "correct": "A",
+    "explanation": "\"Predominant\" means present as the strongest or main element."
+  },
+  {
+    "prompt": "The invention of the internet has had a _____ impact on how modern societies communicate and conduct business.",
+    "A": "profound",
+    "B": "negligible",
+    "C": "fleeting",
+    "D": "vague",
+    "correct": "A",
+    "explanation": "\"Profound\" means very great or intense, denoting a deep impact."
+  },
+  {
+    "prompt": "To successfully combat global warming, _____ changes in our consumption habits are urgently required.",
+    "A": "radical",
+    "B": "superficial",
+    "C": "conservative",
+    "D": "cosmetic",
+    "correct": "A",
+    "explanation": "\"Radical\" means relating to or affecting the fundamental nature of something; far-reaching or thorough."
+  },
+  {
+    "prompt": "Because the new regulations were so complex, many small business owners _____ them as a threat to their survival.",
+    "A": "perceived",
+    "B": "facilitated",
+    "C": "endorsed",
+    "D": "concealed",
+    "correct": "A",
+    "explanation": "\"Perceive\" means to interpret or look on someone or something in a particular way."
+  },
+  {
+    "prompt": "The current rate of urban expansion is too rapid to _____, and it will soon deplete local water resources.",
+    "A": "sustain",
+    "B": "eradicate",
+    "C": "initiate",
+    "D": "dismantle",
+    "correct": "A",
+    "explanation": "\"Sustain\" means to strengthen or support physically or mentally; to cause to continue for an extended period."
+  },
+  {
+    "prompt": "The manager's decision to promote him seemed entirely _____, based on personal favoritism rather than actual performance.",
+    "A": "arbitrary",
+    "B": "rational",
+    "C": "objective",
+    "D": "meticulous",
+    "correct": "A",
+    "explanation": "\"Arbitrary\" means based on random choice or personal whim, rather than any reason or system."
+  },
+  {
+    "prompt": "Clean water and proper sanitation play a _____ role in preventing the spread of infectious diseases.",
+    "A": "crucial",
+    "B": "trivial",
+    "C": "dispensable",
+    "D": "marginal",
+    "correct": "A",
+    "explanation": "\"Crucial\" means decisive or critical, especially in the success or failure of something."
+  },
+  {
+    "prompt": "Renewable energy sources currently _____ less than 20 percent of the nation's total electricity production.",
+    "A": "account for",
+    "B": "stand for",
+    "C": "make up for",
+    "D": "look out for",
+    "correct": "A",
+    "explanation": "\"Account for\" is used to supply or make up a specified amount or proportion."
+  },
+  {
+    "prompt": "Most of the behavioral problems exhibited by the children _____ a lack of stability in their home environment.",
+    "A": "stem from",
+    "B": "boil down",
+    "C": "bring about",
+    "D": "take after",
+    "correct": "A",
+    "explanation": "\"Stem from\" means to be caused by or originate from something."
+  },
+  {
+    "prompt": "The introduction of automated machinery is expected to _____ massive changes in the manufacturing sector.",
+    "A": "bring about",
+    "B": "call off",
+    "C": "put forward",
+    "D": "rule out",
+    "correct": "A",
     "explanation": "\"Bring about\" means to cause something to happen."
   },
   {
-    "prompt": "The committee is currently _____ the allegations of financial fraud within the accounting department.",
-    "A": "looking forward to",
-    "B": "making up for",
-    "C": "looking into",
-    "D": "getting away with",
-    "correct": "C",
-    "explanation": "\"Look into\" means to investigate something."
-  },
-  {
-    "prompt": "Despite her initial reluctance, she eventually _____ the demands of the board of directors.",
-    "A": "gave in to",
-    "B": "stood up for",
-    "C": "ran out on",
-    "D": "caught up with",
+    "prompt": "Before they _____ their journey across the desert, the explorers ensured they had sufficient water supplies.",
+    "A": "embarked on",
+    "B": "backed out",
+    "C": "gave in",
+    "D": "settled down",
     "correct": "A",
-    "explanation": "\"Give in to\" means to cease fighting or arguing; to surrender to a demand."
+    "explanation": "\"Embark on\" means to begin a course of action, especially one that is important or demanding."
   },
   {
-    "prompt": "_____ the heavy rain and strong winds, the marathon continued as scheduled.",
-    "A": "Because of",
-    "B": "In spite of",
-    "C": "Although",
-    "D": "Even though",
-    "correct": "B",
-    "explanation": "\"In spite of\" is a prepositional phrase showing concession, followed by a noun phrase (\"the heavy rain...\")."
-  },
-  {
-    "prompt": "The flight was delayed for three hours _____ a severe snowstorm over the destination airport.",
-    "A": "due to",
-    "B": "as a result",
-    "C": "since",
-    "D": "therefore",
+    "prompt": "When diplomatic negotiations completely failed, the two nations felt they had no choice but to _____ military action.",
+    "A": "resort to",
+    "B": "dispose of",
+    "C": "abstain from",
+    "D": "comply with",
     "correct": "A",
-    "explanation": "\"Due to\" is a preposition meaning \"caused by\" or \"because of,\" followed by a noun phrase."
+    "explanation": "\"Resort to\" means to turn to and adopt a strategy or course of action, usually a disagreeable one, to resolve a difficult situation."
   },
   {
-    "prompt": "The museum houses a vast collection of modern art _____ an impressive array of ancient Egyptian artifacts.",
-    "A": "as well as",
-    "B": "rather than",
-    "C": "in addition",
-    "D": "moreover",
+    "prompt": "The new drug was finally approved by the medical board, _____ with a long list of potential side effects.",
+    "A": "albeit",
+    "B": "whereby",
+    "C": "unless",
+    "D": "so that",
     "correct": "A",
-    "explanation": "\"As well as\" means \"in addition to\" and correctly connects the two noun phrases."
+    "explanation": "\"Albeit\" is a formal conjunction meaning 'although' or 'even if'."
   },
   {
-    "prompt": "You may borrow the company laptop for the weekend, _____ you return it by 9 AM on Monday.",
-    "A": "unless",
-    "B": "provided that",
-    "C": "in case",
-    "D": "even if",
-    "correct": "B",
-    "explanation": "\"Provided that\" means \"on the condition that,\" which perfectly fits the stipulation."
-  },
-  {
-    "prompt": "The initial tests showed no signs of contamination; _____, the authorities decided to quarantine the area just to be safe.",
-    "A": "furthermore",
-    "B": "accordingly",
-    "C": "nevertheless",
-    "D": "subsequently",
-    "correct": "C",
-    "explanation": "\"Nevertheless\" introduces a contrasting statement or concession."
-  },
-  {
-    "prompt": "_____ reduce carbon emissions, the city council has subsidized public transportation fares.",
-    "A": "So that",
-    "B": "In order to",
-    "C": "For the purpose",
-    "D": "With a view to",
-    "correct": "B",
-    "explanation": "\"In order to\" is followed by a base verb (\"reduce\") to express purpose."
-  },
-  {
-    "prompt": "_____ traditional fossil fuels deplete natural resources, renewable energy sources offer a sustainable alternative.",
-    "A": "Whereas",
-    "B": "Since",
-    "C": "Despite",
-    "D": "Therefore",
-    "correct": "A",
-    "explanation": "\"Whereas\" is used to contrast two facts or ideas."
-  },
-  {
-    "prompt": "We will not be able to launch the new software application next month _____ we hire more developers immediately.",
-    "A": "if",
-    "B": "unless",
-    "C": "whether",
-    "D": "as long as",
-    "correct": "B",
-    "explanation": "\"Unless\" means \"if not,\" which fits the negative condition required for the context."
-  },
-  {
-    "prompt": "The CEO resigned unexpectedly amid the scandal. _____, the company's stock price plummeted by 15 percent within hours.",
+    "prompt": "In rural areas, public transportation is practically non-existent. _____, in the city center, it is highly efficient and cheap.",
     "A": "Conversely",
-    "B": "Similarly",
-    "C": "Consequently",
-    "D": "Ironically",
-    "correct": "C",
-    "explanation": "\"Consequently\" indicates that the second sentence is a direct result of the first."
-  },
-  {
-    "prompt": "_____ she had studied diligently for months, the exam proved to be far more difficult than she had anticipated.",
-    "A": "Even if",
-    "B": "Even though",
-    "C": "However",
-    "D": "Despite",
-    "correct": "B",
-    "explanation": "\"Even though\" introduces a concession and is followed by a full clause."
-  },
-  {
-    "prompt": "By the time the rescue team arrived at the scene, the trapped miners _____ in the dark for over 48 hours.",
-    "A": "have been waiting",
-    "B": "were waiting",
-    "C": "had been waiting",
-    "D": "would wait",
-    "correct": "C",
-    "explanation": "Past Perfect Continuous is used to show an action that was ongoing up to a specific point in the past."
-  },
-  {
-    "prompt": "Next year, the university _____ its 100th anniversary with a series of special lectures and events.",
-    "A": "will be celebrating",
-    "B": "is celebrated",
-    "C": "has celebrated",
-    "D": "was celebrating",
+    "B": "Consequently",
+    "C": "Therefore",
+    "D": "Moreover",
     "correct": "A",
-    "explanation": "Future Continuous emphasizes an action that will be in progress at a certain time in the future."
+    "explanation": "\"Conversely\" introduces a statement or idea which reverses one that has just been made or referred to."
   },
   {
-    "prompt": "Currently, the entire central banking system _____ to accommodate the new digital currency regulations.",
-    "A": "has reconstructed",
-    "B": "is reconstructing",
-    "C": "is being reconstructed",
-    "D": "reconstructs",
-    "correct": "C",
-    "explanation": "Present Continuous Passive is needed here to describe an ongoing action happening to the system."
-  },
-  {
-    "prompt": "_____ repeatedly about the dangers of the strong currents, the tourists still decided to swim in the restricted area.",
-    "A": "Warning",
-    "B": "Have warned",
-    "C": "To be warned",
-    "D": "Having been warned",
-    "correct": "D",
-    "explanation": "\"Having been warned\" is a perfect participle in the passive voice, indicating an action completed before the main verb."
-  },
-  {
-    "prompt": "The details of the merger are expected _____ during the press conference tomorrow morning.",
-    "A": "to be announced",
-    "B": "announcing",
-    "C": "to have announced",
-    "D": "being announced",
+    "prompt": "Whenever the CEO visits the regional offices, she _____ requests a detailed financial report from the local managers.",
+    "A": "invariably",
+    "B": "scarcely",
+    "C": "erratically",
+    "D": "intermittently",
     "correct": "A",
-    "explanation": "\"Expect\" is followed by a to-infinitive, and \"to be announced\" provides the necessary passive meaning."
+    "explanation": "\"Invariably\" means in every case or on every occasion; always."
   },
   {
-    "prompt": "John's car is not in the driveway, and his house keys are missing. He _____ for the airport already.",
-    "A": "must leave",
-    "B": "should leave",
-    "C": "must have left",
-    "D": "can't have left",
-    "correct": "C",
-    "explanation": "\"Must have left\" expresses a strong logical deduction about a past event."
-  },
-  {
-    "prompt": "The construction project _____ months ago, but persistent supply chain issues caused severe delays.",
-    "A": "must have finished",
-    "B": "could finish",
-    "C": "should have been finished",
-    "D": "might have finished",
-    "correct": "C",
-    "explanation": "\"Should have been finished\" implies that it was supposed to be completed in the past, but wasn't."
-  },
-  {
-    "prompt": "The sudden drop in temperature _____ extensive damage to the local agricultural crops.",
-    "A": "is thought causing",
-    "B": "thinks to cause",
-    "C": "is thought to have caused",
-    "D": "thought to cause",
-    "correct": "C",
-    "explanation": "Passive reporting verb structure for a past event: \"is thought\" + \"to have + V3\"."
-  },
-  {
-    "prompt": "_____ the quick actions of the firefighters, the historic building would have burned to the ground.",
-    "A": "Had it not been for",
-    "B": "Were it not for",
-    "C": "If it has not been for",
-    "D": "But for the fact that",
+    "prompt": "The law states that all children, _____ their social background, are entitled to a free and equal education.",
+    "A": "irrespective of",
+    "B": "in favor of",
+    "C": "on behalf of",
+    "D": "in accordance with",
     "correct": "A",
-    "explanation": "\"Had it not been for\" is a Type 3 conditional inversion meaning \"If it hadn't been for.\""
+    "explanation": "\"Irrespective of\" means not taking something into account; regardless of."
   },
   {
-    "prompt": "We _____ the client at the restaurant at 8 PM, but they called to cancel at the last minute.",
-    "A": "were to meet",
-    "B": "were to have met",
-    "C": "have met",
-    "D": "would meet",
-    "correct": "B",
-    "explanation": "\"Were to have met\" expresses a past plan or arrangement that did not actually happen."
-  },
-  {
-    "prompt": "Scarcely _____ the stage when the entire audience erupted into a deafening applause.",
-    "A": "the musician entered",
-    "B": "did the musician enter",
-    "C": "had the musician entered",
-    "D": "was the musician entered",
-    "correct": "C",
-    "explanation": "Negative adverbs like \"Scarcely\" at the beginning of a sentence require inversion (auxiliary before subject), and Past Perfect is used with \"when\"."
-  },
-  {
-    "prompt": "Only after the negotiations had completely broken down _____ how crucial the missing contract was.",
-    "A": "they realized",
-    "B": "did they realize",
-    "C": "they had realized",
-    "D": "have they realized",
-    "correct": "B",
-    "explanation": "\"Only after\" at the beginning of a sentence triggers inversion in the main clause (did + subject + verb)."
-  },
-  {
-    "prompt": "Under no circumstances _____ employees to share their login credentials with anyone, including IT staff.",
-    "A": "are",
-    "B": "should",
-    "C": "do",
-    "D": "are allowed",
+    "prompt": "_____ the overwhelming criticism from environmentalists, the government decided to proceed with the dam construction.",
+    "A": "Notwithstanding",
+    "B": "Because of",
+    "C": "Given that",
+    "D": "As long as",
     "correct": "A",
-    "explanation": "Inversion required. \"Under no circumstances are employees (allowed/supposed)...\" or simply \"are employees to share\" (meaning 'must share')."
+    "explanation": "\"Notwithstanding\" is a formal preposition meaning 'in spite of' or 'despite'."
   },
   {
-    "prompt": "The scientist, _____ research on quantum mechanics recently won a Nobel Prize, will be giving a lecture today.",
-    "A": "who",
-    "B": "whom",
-    "C": "whose",
-    "D": "that",
-    "correct": "C",
-    "explanation": "\"Whose\" acts as a possessive relative pronoun linking the scientist to the research."
+    "prompt": "_____ should laboratory equipment be removed from the facility without prior written authorization from the supervisor.",
+    "A": "On no account",
+    "B": "In no time",
+    "C": "Not until",
+    "D": "Only after",
+    "correct": "A",
+    "explanation": "\"On no account\" is a negative adverbial phrase meaning 'under no circumstances', requiring inversion (should laboratory equipment be)."
   },
   {
-    "prompt": "The laboratory in _____ the groundbreaking experiments were conducted has been transformed into a museum.",
-    "A": "that",
-    "B": "where",
+    "prompt": "Not only _____ the company's profits double this year, but their market share also expanded internationally.",
+    "A": "did",
+    "B": "do",
+    "C": "have",
+    "D": "had",
+    "correct": "A",
+    "explanation": "Starting with \"Not only\" requires subject-auxiliary inversion. The context is past tense (\"expanded\"), so \"did\" is correct."
+  },
+  {
+    "prompt": "You will be granted a student visa _____ you can demonstrate sufficient financial means to support yourself during your studies.",
+    "A": "provided that",
+    "B": "even though",
+    "C": "in case",
+    "D": "whereas",
+    "correct": "A",
+    "explanation": "\"Provided that\" means 'on the condition that'."
+  },
+  {
+    "prompt": "_____ the extensive training program, the new employees were fully prepared to handle customer complaints independently.",
+    "A": "Having completed",
+    "B": "To complete",
+    "C": "Completed",
+    "D": "Being completed",
+    "correct": "A",
+    "explanation": "A perfect active participle clause (\"Having + V3\") shows that the action was finished before the main clause action."
+  },
+  {
+    "prompt": "The specific socioeconomic conditions _____ crime rates tend to rise are currently being studied by urban sociologists.",
+    "A": "under which",
+    "B": "that",
+    "C": "wherever",
+    "D": "why",
+    "correct": "A",
+    "explanation": "The relative pronoun \"which\" combined with the preposition \"under\" correctly describes the conditions (crime rises under conditions)."
+  },
+  {
+    "prompt": "The research team interviewed fifty participants, the majority of _____ had experienced severe sleep deprivation.",
+    "A": "whom",
+    "B": "who",
     "C": "which",
-    "D": "whom",
-    "correct": "C",
-    "explanation": "Prepositions (in) can only be followed by \"which\" or \"whom\" in relative clauses, not \"where\" or \"that\"."
-  },
-  {
-    "prompt": "I couldn't remember the name of the author _____ book you recommended to me last week.",
-    "A": "who",
-    "B": "whom",
-    "C": "of which",
-    "D": "whose",
-    "correct": "D",
-    "explanation": "\"Whose\" establishes possession between the author and the book."
-  },
-  {
-    "prompt": "If only the city council _____ to the residents' concerns earlier, the current housing crisis might have been avoided.",
-    "A": "listened",
-    "B": "had listened",
-    "C": "would listen",
-    "D": "was listening",
-    "correct": "B",
-    "explanation": "\"If only\" referring to a past regret requires the Past Perfect tense."
-  },
-  {
-    "prompt": "It is high time the international community _____ decisive action against illegal deforestation.",
-    "A": "takes",
-    "B": "will take",
-    "C": "took",
-    "D": "has taken",
-    "correct": "C",
-    "explanation": "The structure \"It is high time\" is followed by a subject and a verb in the past simple tense to refer to the present or future."
-  },
-  {
-    "prompt": "The mechanism _____ the machine operates is incredibly complex and requires specialized training to repair.",
-    "A": "by which",
-    "B": "for why",
-    "C": "in that",
-    "D": "to whom",
+    "D": "them",
     "correct": "A",
-    "explanation": "\"By which\" means \"through which\" or \"how,\" accurately describing the method of operation."
+    "explanation": "Following a preposition (\"of\") in a relative clause referring to people, \"whom\" must be used."
   },
   {
-    "prompt": "Identify the part that contains an error: (A) Neither of the candidates (B) have adequately explained (C) their proposed solution (D) to the economic crisis.",
-    "A": "Part A",
-    "B": "Part B",
-    "C": "Part C",
-    "D": "Part D",
-    "correct": "B",
-    "explanation": "The subject \"Neither of the candidates\" is singular in formal grammar, so \"have\" should be \"has\"."
-  },
-  {
-    "prompt": "Identify the part that contains an error: (A) Walking down the avenue, (B) the tall buildings (C) blocked the sunlight (D) completely.",
-    "A": "Part A",
-    "B": "Part B",
-    "C": "Part C",
-    "D": "Part D",
+    "prompt": "_____ you practice speaking English with native speakers, _____ confident you will become during the actual IELTS exam.",
+    "A": "The more / the more",
+    "B": "More / more",
+    "C": "As much / as much",
+    "D": "The most / the most",
     "correct": "A",
-    "explanation": "This is a dangling modifier. The buildings were not walking down the avenue. It should be \"While I was walking...\"."
+    "explanation": "The double comparative structure \"The more..., the more...\" is used to show a proportional relationship."
   },
   {
-    "prompt": "Identify the part that contains an error: (A) The new software is (B) much more easier (C) to navigate than (D) the previous version.",
-    "A": "Part A",
-    "B": "Part B",
-    "C": "Part C",
-    "D": "Part D",
-    "correct": "B",
-    "explanation": "\"More easier\" is a double comparative. It should simply be \"much easier\"."
-  },
-  {
-    "prompt": "Identify the part that contains an error: (A) The board of directors (B) insists that the manager (C) resigns immediately (D) due to the scandal.",
-    "A": "Part A",
-    "B": "Part B",
-    "C": "Part C",
-    "D": "Part D",
-    "correct": "C",
-    "explanation": "Verbs like \"insist\" trigger the subjunctive mood in the \"that\" clause, requiring the base form of the verb: \"resign\"."
-  },
-  {
-    "prompt": "Identify the part that contains an error: (A) Rarely I have seen (B) such an impressive display (C) of teamwork (D) in a corporate setting.",
-    "A": "Part A",
-    "B": "Part B",
-    "C": "Part C",
-    "D": "Part D",
+    "prompt": "_____ the researchers discovered during the excavation fundamentally changed our understanding of ancient Egyptian culture.",
+    "A": "What",
+    "B": "That",
+    "C": "Which",
+    "D": "How",
     "correct": "A",
-    "explanation": "Negative adverbs at the start of a sentence require inversion: \"Rarely have I seen\"."
+    "explanation": "The noun clause acts as the subject of the sentence. \"What\" means \"The thing(s) that\"."
   },
   {
-    "prompt": "After driving for six hours straight, they stopped _____ dinner at a small diner near the highway.",
-    "A": "eating",
-    "B": "to eat",
-    "C": "for eating",
-    "D": "to eating",
-    "correct": "B",
-    "explanation": "\"Stop to do something\" means to interrupt an activity in order to do something else (purpose)."
-  },
-  {
-    "prompt": "I distinctly remember _____ the door before we left for the vacation, but it was wide open when we returned.",
-    "A": "to lock",
-    "B": "locking",
-    "C": "lock",
-    "D": "having to lock",
-    "correct": "B",
-    "explanation": "\"Remember doing something\" means recalling a past action that you performed."
-  },
-  {
-    "prompt": "Many environmentalists strongly object to _____ toxic waste in the ocean, citing irreparable damage to marine life.",
-    "A": "dumping",
-    "B": "dump",
-    "C": "be dumped",
-    "D": "have dumped",
+    "prompt": "It is widely believed that early human ancestors _____ fire for cooking approximately one million years ago.",
+    "A": "used",
+    "B": "have used",
+    "C": "had used",
+    "D": "to use",
     "correct": "A",
-    "explanation": "The phrase \"object to\" uses \"to\" as a preposition, which must be followed by a gerund (V-ing)."
+    "explanation": "Following \"It is widely believed that\", a standard subject + past simple verb (\"ancestors used\") is required for a completed past action."
   },
   {
-    "prompt": "The professor demanded that the assignment _____ by Friday afternoon without any exceptions.",
-    "A": "was submitted",
-    "B": "is submitted",
-    "C": "be submitted",
-    "D": "will be submitted",
-    "correct": "C",
-    "explanation": "\"Demand\" requires the subjunctive mood in the following noun clause, using the base form of the verb (\"be submitted\" for passive)."
+    "prompt": "Because the historical library was severely damaged by the flood, the city council decided to have the entire building _____.",
+    "A": "renovated",
+    "B": "renovate",
+    "C": "to renovate",
+    "D": "renovating",
+    "correct": "A",
+    "explanation": "The causative structure \"have something done\" requires the past participle (\"renovated\")."
   },
   {
-    "prompt": "Not until the late 19th century _____ recognized as a distinct branch of science.",
-    "A": "psychology was",
-    "B": "that psychology was",
-    "C": "was psychology",
-    "D": "did psychology",
-    "correct": "C",
-    "explanation": "\"Not until\" placed at the beginning of the sentence causes subject-auxiliary inversion in the main clause."
+    "prompt": "_____ the severe consequences of breaching the contract, they would never have signed it in the first place.",
+    "A": "Had they known",
+    "B": "If they knew",
+    "C": "Were they to know",
+    "D": "Should they know",
+    "correct": "A",
+    "explanation": "This is an inverted Type 3 conditional for an unreal past situation, meaning \"If they had known\"."
   },
   {
-    "prompt": "Had the management been more transparent about the financial difficulties, the employees _____ so betrayed.",
-    "A": "would not feel",
-    "B": "will not feel",
-    "C": "would not have felt",
-    "D": "had not felt",
-    "correct": "C",
-    "explanation": "This is a Type 3 conditional (unreal past). The \"if\" clause is inverted (Had + subject + V3), requiring \"would have + V3\" in the main clause."
+    "prompt": "If the government had invested more in public healthcare ten years ago, the hospitals _____ so overwhelmed during the recent crisis.",
+    "A": "would not be",
+    "B": "would not have been",
+    "C": "will not be",
+    "D": "were not",
+    "correct": "B",
+    "explanation": "Type 3 conditional: unreal past condition (\"had invested\") leading to an unreal past result (\"would not have been\")."
+  },
+  {
+    "prompt": "Environmental activists insist that it is high time humanity _____ its reliance on single-use plastics.",
+    "A": "ended",
+    "B": "ends",
+    "C": "will end",
+    "D": "has ended",
+    "correct": "A",
+    "explanation": "\"It is high time\" is followed by a past simple verb (\"ended\") to indicate that an action should be done immediately."
+  },
+  {
+    "prompt": "The university's ethics committee strongly recommended that the student _____ his thesis topic due to potential conflicts of interest.",
+    "A": "change",
+    "B": "changes",
+    "C": "changed",
+    "D": "has changed",
+    "correct": "A",
+    "explanation": "Verbs like \"recommend\" trigger the subjunctive mood in the \"that\" clause, requiring the bare infinitive (\"change\")."
+  },
+  {
+    "prompt": "Many indigenous communities strongly object to _____ from their ancestral lands by multinational mining corporations.",
+    "A": "being evicted",
+    "B": "evicting",
+    "C": "be evicted",
+    "D": "having evicted",
+    "correct": "A",
+    "explanation": "The phrase \"object to\" requires a gerund. Since the communities receive the action, it must be passive (\"being evicted\")."
+  },
+  {
+    "prompt": "We sincerely look forward to _____ from you regarding the outcome of our grant application.",
+    "A": "hearing",
+    "B": "hear",
+    "C": "be heard",
+    "D": "having heard",
+    "correct": "A",
+    "explanation": "The phrase \"look forward to\" uses \"to\" as a preposition, requiring a gerund (\"hearing\")."
+  },
+  {
+    "prompt": "Many international students find it difficult to _____ the immense academic pressure during their first semester abroad.",
+    "A": "cope with",
+    "B": "yield to",
+    "C": "dispose of",
+    "D": "abstain from",
+    "correct": "A",
+    "explanation": "\"Cope with\" means to deal effectively with something difficult."
+  },
+  {
+    "prompt": "People living in highly polluted urban areas are much more _____ respiratory illnesses than those in rural environments.",
+    "A": "prone to",
+    "B": "devoid of",
+    "C": "exempt from",
+    "D": "intent on",
+    "correct": "A",
+    "explanation": "\"Prone to\" means likely to or liable to suffer from, do, or experience something, typically something regrettable."
+  },
+  {
+    "prompt": "Many modern English words actually _____ ancient Latin and Greek roots.",
+    "A": "derive from",
+    "B": "result in",
+    "C": "consist of",
+    "D": "amount to",
+    "correct": "A",
+    "explanation": "\"Derive from\" means to obtain something from a specified source or to have a specified origin."
+  },
+  {
+    "prompt": "The new taxation policy will _____ a heavy financial burden on middle-class families.",
+    "A": "impose",
+    "B": "alleviate",
+    "C": "exempt",
+    "D": "derive",
+    "correct": "A",
+    "explanation": "\"Impose\" means to force an unwelcome decision, ruling, or tax on someone."
+  },
+  {
+    "prompt": "During the pandemic, online video conferences became a necessary _____ physical meetings.",
+    "A": "substitute for",
+    "B": "hindrance to",
+    "C": "catalyst for",
+    "D": "deterrent to",
+    "correct": "A",
+    "explanation": "\"Substitute for\" means a person or thing acting or serving in place of another."
+  },
+  {
+    "prompt": "The elderly and individuals with compromised immune systems are highly _____ viral infections.",
+    "A": "susceptible to",
+    "B": "resilient to",
+    "C": "indifferent to",
+    "D": "impervious to",
+    "correct": "A",
+    "explanation": "\"Susceptible to\" means likely or liable to be influenced or harmed by a particular thing."
+  },
+  {
+    "prompt": "In many cultures, the color white is _____ purity and innocence.",
+    "A": "synonymous with",
+    "B": "contrary to",
+    "C": "devoid of",
+    "D": "derived from",
+    "correct": "A",
+    "explanation": "\"Synonymous with\" means having the same or nearly the same meaning as another word or phrase; closely associated with."
+  },
+  {
+    "prompt": "The barren landscape of the desert is almost entirely _____ vegetation, making it hostile to most animal life.",
+    "A": "devoid of",
+    "B": "abundant in",
+    "C": "teeming with",
+    "D": "composed of",
+    "correct": "A",
+    "explanation": "\"Devoid of\" means entirely lacking or free from."
   }
 ]
