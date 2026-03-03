@@ -1,6 +1,12 @@
 import { NextResponse } from "next/server";
 import { supabaseServer } from "@/lib/supabaseServer";
 
+type Top10Row = {
+  nickname: string | null;
+  score: number | null;
+  duration_seconds: number | null;
+};
+
 export async function POST(req: Request) {
   const body = await req.json();
 
@@ -73,7 +79,7 @@ export async function POST(req: Request) {
     .eq("test_slug", testSlug);
 
   // 4) Top 10
-  const { data: top10 } = await supabaseServer
+  const { data: top10 }: { data: Top10Row[] | null } = await supabaseServer
     .from("attempts")
     .select("nickname,score,duration_seconds,finished_at")
     .eq("test_slug", testSlug)
@@ -84,7 +90,7 @@ export async function POST(req: Request) {
   return NextResponse.json({
     rank,
     totalPlayers: totalPlayers ?? 0,
-    top10: (top10 ?? []).map((x) => ({
+    top10: (top10 ?? []).map((x: Top10Row) => ({
       nickname: x.nickname,
       score: x.score,
       durationSeconds: x.duration_seconds,
