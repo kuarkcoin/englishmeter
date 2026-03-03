@@ -1,452 +1,452 @@
 [
   {
-    "prompt": "The government decided to _____ its spending on public infrastructure in order to balance the national budget.",
-    "A": "curtail",
-    "B": "foster",
-    "C": "aggravate",
-    "D": "prolong",
+    "prompt": "When presenting a scientific argument, it is crucial to focus only on the most _____ points that directly support your thesis.",
+    "A": "salient",
+    "B": "frivolous",
+    "C": "trivial",
+    "D": "redundant",
     "correct": "A",
-    "explanation": "\"Curtail\" means to reduce in extent or quantity, which fits the context of reducing spending."
+    "explanation": "\"Salient\" means most noticeable or important. It is a highly academic word used to describe key points or features."
   },
   {
-    "prompt": "Despite the advancements in modern medicine, malnutrition remains a _____ issue in many developing nations.",
-    "A": "prevalent",
-    "B": "superficial",
-    "C": "redundant",
-    "D": "transient",
-    "correct": "A",
-    "explanation": "\"Prevalent\" means widespread in a particular area at a particular time."
-  },
-  {
-    "prompt": "The discovery of a tropical plant species in the freezing tundra is considered a scientific _____.",
-    "A": "anomaly",
+    "prompt": "The ethics committee faced a difficult _____ when trying to balance the potential medical benefits of the research against the risks to patients.",
+    "A": "conundrum",
     "B": "consensus",
-    "C": "precedent",
-    "D": "substitute",
-    "correct": "A",
-    "explanation": "\"Anomaly\" refers to something that deviates from what is standard, normal, or expected."
-  },
-  {
-    "prompt": "The human brain is a highly _____ organ, and neuroscientists are still trying to understand all of its functions.",
-    "A": "intricate",
-    "B": "obsolete",
-    "C": "lucid",
-    "D": "superficial",
-    "correct": "A",
-    "explanation": "\"Intricate\" means very complicated or detailed."
-  },
-  {
-    "prompt": "Wearing a seatbelt is not just a recommendation; it is a _____ requirement in almost every country.",
-    "A": "mandatory",
-    "B": "tentative",
-    "C": "spontaneous",
-    "D": "feasible",
-    "correct": "A",
-    "explanation": "\"Mandatory\" means required by law or rules; compulsory."
-  },
-  {
-    "prompt": "Commodity prices tend to _____ wildly depending on global supply and geopolitical events.",
-    "A": "fluctuate",
-    "B": "diminish",
-    "C": "stagnate",
-    "D": "persevere",
-    "correct": "A",
-    "explanation": "\"Fluctuate\" means to rise and fall irregularly in number or amount."
-  },
-  {
-    "prompt": "The invention of the printing press had a _____ impact on the spread of knowledge across Europe.",
-    "A": "profound",
-    "B": "negligible",
-    "C": "vague",
-    "D": "detrimental",
-    "correct": "A",
-    "explanation": "\"Profound\" means very great or intense, showing a deep impact."
-  },
-  {
-    "prompt": "The manager's decision to fire the employee seemed completely _____, as there was no clear evidence of misconduct.",
-    "A": "arbitrary",
-    "B": "meticulous",
-    "C": "rational",
-    "D": "inevitable",
-    "correct": "A",
-    "explanation": "\"Arbitrary\" means based on random choice or personal whim, rather than any reason or system."
-  },
-  {
-    "prompt": "The shift from fossil fuels to renewable energy represents a fundamental _____ in how we power our world.",
-    "A": "paradigm",
-    "B": "obstacle",
-    "C": "dilemma",
+    "C": "resolution",
     "D": "stipulation",
     "correct": "A",
-    "explanation": "\"Paradigm\" refers to a typical example or pattern of something; a model or a shift in core concepts."
+    "explanation": "\"Conundrum\" means a confusing and difficult problem or question."
   },
   {
-    "prompt": "Children are often surprisingly _____, able to recover quickly from emotional or physical trauma.",
-    "A": "resilient",
-    "B": "vulnerable",
-    "C": "apathetic",
-    "D": "hostile",
+    "prompt": "Despite the overwhelming evidence against him, the suspect remained entirely _____ during the police interrogation.",
+    "A": "reticent",
+    "B": "garrulous",
+    "C": "boisterous",
+    "D": "articulate",
     "correct": "A",
-    "explanation": "\"Resilient\" means able to withstand or recover quickly from difficult conditions."
+    "explanation": "\"Reticent\" means not revealing one's thoughts or feelings readily; reserved."
   },
   {
-    "prompt": "The police haven't caught the suspect yet, but they have _____ several possibilities based on the security footage.",
-    "A": "ruled out",
-    "B": "brought up",
-    "C": "taken over",
-    "D": "put off",
-    "correct": "A",
-    "explanation": "\"Rule out\" means to exclude something as a possibility."
-  },
-  {
-    "prompt": "Due to the severe economic downturn, the automobile factory was forced to _____ hundreds of workers.",
-    "A": "lay off",
-    "B": "call off",
-    "C": "turn down",
-    "D": "give away",
-    "correct": "A",
-    "explanation": "\"Lay off\" means to discharge a worker temporarily or permanently because of a shortage of work."
-  },
-  {
-    "prompt": "When you look at all the political arguments, the main issue always _____ the economy.",
-    "A": "boils down to",
-    "B": "makes up for",
-    "C": "gets away with",
-    "D": "looks forward to",
-    "correct": "A",
-    "explanation": "\"Boil down to\" means to reduce something to its most basic or fundamental part."
-  },
-  {
-    "prompt": "The difficult entrance exam is designed to _____ the unqualified candidates early in the process.",
-    "A": "weed out",
-    "B": "bring about",
-    "C": "hand in",
-    "D": "set up",
-    "correct": "A",
-    "explanation": "\"Weed out\" means to remove unwanted or inferior elements from a group."
-  },
-  {
-    "prompt": "After the corruption scandal was exposed by the press, the mayor had no choice but to _____.",
-    "A": "step down",
-    "B": "stand out",
-    "C": "hold on",
-    "D": "break in",
-    "correct": "A",
-    "explanation": "\"Step down\" means to resign from an important position or office."
-  },
-  {
-    "prompt": "It is unfair to _____ one student for punishment when the entire class was misbehaving.",
-    "A": "single out",
-    "B": "point out",
-    "C": "leave out",
-    "D": "figure out",
-    "correct": "A",
-    "explanation": "\"Single out\" means to choose someone or something from a group for special treatment."
-  },
-  {
-    "prompt": "The company plans to gradually _____ the older software models over the next two years.",
-    "A": "phase out",
-    "B": "cut down",
-    "C": "wear out",
-    "D": "run into",
-    "correct": "A",
-    "explanation": "\"Phase out\" means to gradually stop using or producing something."
-  },
-  {
-    "prompt": "Despite the threats from the opposing legal team, she refused to _____ and continued with the lawsuit.",
-    "A": "back down",
-    "B": "give up on",
-    "C": "fall through",
-    "D": "show off",
-    "correct": "A",
-    "explanation": "\"Back down\" means to withdraw a claim or assertion in the face of opposition."
-  },
-  {
-    "prompt": "The success of the new agricultural project will heavily _____ the amount of rainfall we receive this spring.",
-    "A": "hinge on",
-    "B": "consist of",
-    "C": "result in",
-    "D": "stem from",
-    "correct": "A",
-    "explanation": "\"Hinge on\" means to depend entirely on something."
-  },
-  {
-    "prompt": "I have known him for over twenty years, so I can confidently _____ his honesty and work ethic.",
-    "A": "vouch for",
-    "B": "care for",
-    "C": "look into",
-    "D": "come across",
-    "correct": "A",
-    "explanation": "\"Vouch for\" means to assert or confirm as a result of one's own experience that something is true or reliable."
-  },
-  {
-    "prompt": "_____ the severe budget cuts across all departments, it is surprising that the research team managed to complete their project.",
-    "A": "Given that",
-    "B": "In spite of",
-    "C": "Provided that",
-    "D": "As though",
+    "prompt": "Given the unpredictable nature of the stock market, it would be highly _____ to invest all your savings into a single company.",
+    "A": "prudent",
+    "B": "foolhardy",
+    "C": "astute",
+    "D": "sagacious",
     "correct": "B",
-    "explanation": "\"In spite of\" introduces a prepositional phrase showing concession. ('Given that' would need a full clause)."
+    "explanation": "\"Foolhardy\" means recklessly bold or rash. The other options mean wise or careful."
   },
   {
-    "prompt": "The new manager is exceptionally talented; _____, she lacks the necessary experience to handle international clients.",
-    "A": "granted",
-    "B": "consequently",
-    "C": "likewise",
-    "D": "in addition",
+    "prompt": "The post-war architecture of the city is famously _____, featuring stark concrete blocks devoid of any decorative elements.",
+    "A": "austere",
+    "B": "opulent",
+    "C": "flamboyant",
+    "D": "lavish",
     "correct": "A",
-    "explanation": "\"Granted\" is used as a transition to admit that something is true, often before introducing a contrasting point."
+    "explanation": "\"Austere\" means severe or strict in manner, attitude, or appearance; having no comforts or luxuries."
   },
   {
-    "prompt": "The experimental treatment is considered a success _____ it has significantly improved the patients' quality of life.",
-    "A": "inasmuch as",
-    "B": "even if",
-    "C": "whereby",
-    "D": "so as to",
+    "prompt": "The professor is known for his _____ approach to grading, often deducting points for the slightest formatting errors.",
+    "A": "fastidious",
+    "B": "lenient",
+    "C": "indifferent",
+    "D": "haphazard",
     "correct": "A",
-    "explanation": "\"Inasmuch as\" means 'to the extent that' or 'considering that', functioning similarly to 'because'."
+    "explanation": "\"Fastidious\" means very attentive to and concerned about accuracy and detail."
   },
   {
-    "prompt": "The factory dumped toxic waste into the river for years. _____, the local government heavily fined the corporation.",
-    "A": "Hence",
-    "B": "Nevertheless",
-    "C": "Conversely",
-    "D": "Alternatively",
+    "prompt": "The sudden outbreak of the disease is considered _____ to that specific tropical region, meaning it is rarely found anywhere else.",
+    "A": "endemic",
+    "B": "pandemic",
+    "C": "ubiquitous",
+    "D": "transient",
     "correct": "A",
-    "explanation": "\"Hence\" means 'as a consequence' or 'for this reason'."
+    "explanation": "\"Endemic\" refers to a disease or condition regularly found among particular people or in a certain area."
   },
   {
-    "prompt": "They tied the boat securely to the dock _____ it drift away during the storm.",
-    "A": "lest",
-    "B": "unless",
-    "C": "in case",
-    "D": "so that",
+    "prompt": "The author's latest essay provides a highly _____ analysis of the political climate, cutting straight to the underlying truths.",
+    "A": "incisive",
+    "B": "vague",
+    "C": "ambiguous",
+    "D": "superficial",
     "correct": "A",
-    "explanation": "\"Lest\" means 'with the intention of preventing' or 'for fear that', usually followed by a bare infinitive or 'should'."
+    "explanation": "\"Incisive\" means intelligently analytical and clear-thinking."
   },
   {
-    "prompt": "Barely _____ the house when it started to rain heavily.",
-    "A": "had we left",
-    "B": "we had left",
-    "C": "did we leave",
-    "D": "we left",
+    "prompt": "Any attempt to _____ the findings of the independent inquiry will be met with severe legal consequences.",
+    "A": "falsify",
+    "B": "corroborate",
+    "C": "substantiate",
+    "D": "endorse",
     "correct": "A",
-    "explanation": "Negative adverbs like 'barely' at the beginning of a sentence require inversion (auxiliary before subject) and past perfect tense."
+    "explanation": "\"Falsify\" means to alter information or evidence so as to mislead."
   },
   {
-    "prompt": "No sooner _____ the final whistle than the fans stormed onto the football pitch.",
-    "A": "had the referee blown",
-    "B": "did the referee blow",
-    "C": "the referee had blown",
-    "D": "was the referee blowing",
+    "prompt": "To minimize environmental impact, the city has implemented a highly _____ public transportation system.",
+    "A": "utilitarian",
+    "B": "ornamental",
+    "C": "frivolous",
+    "D": "extravagant",
     "correct": "A",
-    "explanation": "The structure 'No sooner had + subject + V3... than' is used to show that one action happened immediately after another."
+    "explanation": "\"Utilitarian\" means designed to be useful or practical rather than attractive."
   },
   {
-    "prompt": "The investor agreed to fund the startup _____ the founders retained a 51 percent controlling stake in the company.",
-    "A": "on the condition that",
-    "B": "in the event of",
-    "C": "notwithstanding",
-    "D": "as opposed to",
+    "prompt": "The new manager was heavily criticized for her _____ spending on office renovations during a period of financial hardship.",
+    "A": "extravagant",
+    "B": "frugal",
+    "C": "thrifty",
+    "D": "economical",
     "correct": "A",
-    "explanation": "\"On the condition that\" introduces a strict requirement or stipulation."
+    "explanation": "\"Extravagant\" means lacking restraint in spending money or using resources."
   },
   {
-    "prompt": "The new software optimizes the database queries, _____ reducing the server's energy consumption by 30 percent.",
-    "A": "thereby",
-    "B": "moreover",
-    "C": "however",
-    "D": "otherwise",
+    "prompt": "Long periods of solitary confinement can have a profoundly _____ effect on a prisoner's mental health.",
+    "A": "detrimental",
+    "B": "salutary",
+    "C": "benign",
+    "D": "therapeutic",
     "correct": "A",
-    "explanation": "\"Thereby\" means 'by that means' or 'as a result of that', usually followed by an -ing verb."
+    "explanation": "\"Detrimental\" means tending to cause harm."
   },
   {
-    "prompt": "In northern Europe, the winters are long and harsh. _____, the summers are remarkably pleasant and mild.",
-    "A": "Conversely",
-    "B": "Accordingly",
-    "C": "Therefore",
-    "D": "Furthermore",
+    "prompt": "The theory of evolution remains a fundamental _____ of modern biological sciences.",
+    "A": "cornerstone",
+    "B": "detour",
+    "C": "impediment",
+    "D": "byproduct",
     "correct": "A",
-    "explanation": "\"Conversely\" introduces a statement or idea that reverses one that has just been made."
+    "explanation": "\"Cornerstone\" is an important quality or feature on which a particular thing depends or is based."
   },
   {
-    "prompt": "_____ further assistance with the installation process, please do not hesitate to contact our technical support team.",
-    "A": "Should you need",
-    "B": "If you needed",
-    "C": "Were you to need",
-    "D": "Had you needed",
+    "prompt": "The sheer volume of data collected during the clinical trials was entirely _____, overwhelming the research team.",
+    "A": "unprecedented",
+    "B": "scanty",
+    "C": "negligible",
+    "D": "inadequate",
     "correct": "A",
-    "explanation": "This is an inverted Type 1 conditional, meaning 'If you should need' or 'If you happen to need'."
+    "explanation": "\"Unprecedented\" means never done or known before."
   },
   {
-    "prompt": "_____ the immediate intervention of the paramedics, the victim would not have survived the accident.",
-    "A": "But for",
-    "B": "Except for",
-    "C": "If not for",
-    "D": "Without for",
+    "prompt": "The diplomat issued a highly _____ statement that managed to calm the tensions without making any concrete promises.",
+    "A": "diplomatic",
+    "B": "inflammatory",
+    "C": "provocative",
+    "D": "belligerent",
     "correct": "A",
-    "explanation": "\"But for\" is a prepositional phrase meaning 'if it hadn't been for', used with past unreal conditionals."
+    "explanation": "\"Diplomatic\" here functions as an adjective meaning tactful or sensitive in dealing with others."
   },
   {
-    "prompt": "The ancient vase was found completely shattered on the floor. It _____ by the earthquake that struck during the night.",
-    "A": "must have been knocked over",
-    "B": "should have been knocked over",
-    "C": "could knock over",
-    "D": "must be knocked over",
+    "prompt": "Rather than providing a clear answer, the CEO gave a highly _____ response that left investors worried.",
+    "A": "evasive",
+    "B": "forthright",
+    "C": "candid",
+    "D": "explicit",
     "correct": "A",
-    "explanation": "A strong logical deduction about a past passive event: 'must have been + V3'."
+    "explanation": "\"Evasive\" means tending to avoid commitment or self-revelation, especially by responding only indirectly."
   },
   {
-    "prompt": "Because his laptop was infected with malware, he had to have the hard drive _____ by a professional technician.",
-    "A": "wiped",
-    "B": "wipe",
-    "C": "to wipe",
-    "D": "wiping",
+    "prompt": "The rapid melting of polar ice caps is a highly _____ issue that requires immediate global cooperation.",
+    "A": "pressing",
+    "B": "trivial",
+    "C": "dormant",
+    "D": "marginal",
     "correct": "A",
-    "explanation": "The causative structure 'have something done' uses the past participle ('wiped') to indicate a service performed by someone else."
+    "explanation": "\"Pressing\" means requiring quick or immediate action or attention."
   },
   {
-    "prompt": "The advisory board recommended that the CEO _____ immediate action to address the plummeting stock prices.",
-    "A": "take",
-    "B": "takes",
-    "C": "took",
-    "D": "has taken",
+    "prompt": "After the scandal broke, the celebrity faced _____ criticism from both the media and her former fans.",
+    "A": "relentless",
+    "B": "intermittent",
+    "C": "sporadic",
+    "D": "fleeting",
     "correct": "A",
-    "explanation": "Verbs of recommendation trigger the subjunctive mood in the 'that' clause, requiring the bare infinitive ('take')."
+    "explanation": "\"Relentless\" means oppressively constant; incessant."
   },
   {
-    "prompt": "Little _____ that the document he had casually signed would eventually lead to his financial ruin.",
-    "A": "did he know",
-    "B": "he knew",
-    "C": "he had known",
-    "D": "has he known",
+    "prompt": "The two competing scientific theories are entirely _____; if one is proven true, the other must inherently be false.",
+    "A": "mutually exclusive",
+    "B": "inextricably linked",
+    "C": "largely synonymous",
+    "D": "broadly compatible",
     "correct": "A",
-    "explanation": "Starting a sentence with the negative adverb 'Little' requires subject-auxiliary inversion ('did he know')."
+    "explanation": "\"Mutually exclusive\" refers to two events or concepts that cannot occur or be true at the same time."
   },
   {
-    "prompt": "_____ the comprehensive training program, the new recruits were finally ready to handle live customer calls.",
-    "A": "Having completed",
-    "B": "To be completed",
-    "C": "Complete",
-    "D": "To have completed",
+    "prompt": "Due to a sudden surge in consumer demand, the supply chain was stretched to its absolute _____ limit.",
+    "A": "breaking",
+    "B": "starting",
+    "C": "boiling",
+    "D": "turning",
     "correct": "A",
-    "explanation": "A perfect participle clause ('Having + V3') shows that an active action was finished before the main clause started."
+    "explanation": "\"Breaking limit\" (or breaking point) is the point at which a person or system gives way under stress."
   },
   {
-    "prompt": "By the end of this year, Professor Higgins _____ at this university for exactly three decades.",
-    "A": "will have been teaching",
-    "B": "will be teaching",
-    "C": "is teaching",
-    "D": "has been teaching",
+    "prompt": "Hardly _____ the presentation when the fire alarm began to ring loudly throughout the building.",
+    "A": "had the speaker begun",
+    "B": "the speaker had begun",
+    "C": "did the speaker begin",
+    "D": "the speaker began",
     "correct": "A",
-    "explanation": "Future Perfect Continuous is used to emphasize the duration of an ongoing action up to a specific future point."
+    "explanation": "Sentences starting with 'Hardly' require subject-auxiliary inversion and are paired with 'when' using the past perfect tense."
   },
   {
-    "prompt": "If they had invested in that technology startup ten years ago, they _____ multi-millionaires today.",
-    "A": "would be",
-    "B": "would have been",
-    "C": "were",
-    "D": "will be",
+    "prompt": "It is absolutely vital that the chief engineer _____ immediately of any structural anomalies detected in the dam.",
+    "A": "be notified",
+    "B": "is notified",
+    "C": "was notified",
+    "D": "has been notified",
     "correct": "A",
-    "explanation": "This is a mixed conditional: an unreal past condition ('had invested') with an unreal present result ('would be today')."
+    "explanation": "Phrases like 'It is vital that' trigger the subjunctive mood, requiring the base form of the verb ('be notified' for passive)."
   },
   {
-    "prompt": "It was not until the invention of the microscope _____ scientists began to understand the existence of bacteria.",
-    "A": "that",
-    "B": "when",
-    "C": "than",
-    "D": "did",
+    "prompt": "_____ the overwhelming complexity of the legal documents, they decided to hire an experienced corporate lawyer.",
+    "A": "Given",
+    "B": "Provided",
+    "C": "Unless",
+    "D": "As though",
     "correct": "A",
-    "explanation": "The cleft sentence structure is 'It was not until X that Y happened'."
+    "explanation": "\"Given\" acts as a preposition meaning 'taking into account' or 'considering'."
   },
   {
-    "prompt": "The airline management regrets _____ passengers that all flights to London have been cancelled due to the fog.",
-    "A": "to inform",
-    "B": "informing",
-    "C": "inform",
-    "D": "having informed",
+    "prompt": "_____ heavily criticized by environmental groups, the government still decided to approve the new oil pipeline.",
+    "A": "Despite being",
+    "B": "Although being",
+    "C": "In spite",
+    "D": "However",
     "correct": "A",
-    "explanation": "'Regret to inform' is used formally to deliver bad news. 'Regret informing' would mean feeling sorry about a past action."
+    "explanation": "\"Despite\" must be followed by a noun phrase or gerund ('being'). 'Although' would require a full clause."
   },
   {
-    "prompt": "The factory workers strongly objected to _____ like mere machines rather than human beings.",
-    "A": "being treated",
-    "B": "be treated",
-    "C": "treat",
-    "D": "treating",
+    "prompt": "Should you require any further clarification regarding the university's admission policy, _____ to contact the admissions office.",
+    "A": "do not hesitate",
+    "B": "you will not hesitate",
+    "C": "not hesitating",
+    "D": "not hesitate",
     "correct": "A",
-    "explanation": "'Object to' requires a gerund. Since the workers receive the action, it must be the passive gerund ('being treated')."
+    "explanation": "This is a Type 1 conditional using inversion ('Should you require...'). The main clause is an imperative command ('do not hesitate')."
   },
   {
-    "prompt": "The specific degree _____ which a material expands when heated depends entirely on its chemical composition.",
-    "A": "to",
-    "B": "by",
-    "C": "for",
-    "D": "with",
+    "prompt": "By the end of the next financial quarter, the marketing department _____ their entire annual budget.",
+    "A": "will have exhausted",
+    "B": "will exhaust",
+    "C": "is exhausting",
+    "D": "exhausts",
     "correct": "A",
-    "explanation": "The preposition 'to' is used with 'degree' or 'extent' (e.g., 'to what degree', 'to a certain extent')."
+    "explanation": "The future perfect tense is used for actions that will be completed before a specific time in the future ('By the end of...')."
   },
   {
-    "prompt": "The rescue mission involved fifty volunteers, many of _____ had no prior experience in disaster relief.",
+    "prompt": "The professor demanded that all cellular devices _____ off prior to the commencement of the final examination.",
+    "A": "be turned",
+    "B": "are turned",
+    "C": "were turned",
+    "D": "will be turned",
+    "correct": "A",
+    "explanation": "The verb 'demand' triggers the subjunctive mood in the 'that' clause, requiring the base form of the verb ('be turned')."
+  },
+  {
+    "prompt": "The committee members, all of _____ hold PhDs in their respective fields, will evaluate the grant proposals.",
     "A": "whom",
-    "B": "which",
-    "C": "who",
+    "B": "who",
+    "C": "which",
     "D": "them",
     "correct": "A",
-    "explanation": "After a preposition ('of') in a relative clause referring to people, 'whom' must be used."
+    "explanation": "After a preposition ('of') referring to people in a relative clause, the objective pronoun 'whom' is required."
   },
   {
-    "prompt": "Identify the part that contains an error: (A) The governor, (B) along with his advisors, (C) are visiting the disaster zone (D) tomorrow morning.",
+    "prompt": "Not until the devastating effects of the drought became undeniable _____ to implement strict water conservation laws.",
+    "A": "did the council vote",
+    "B": "the council voted",
+    "C": "the council had voted",
+    "D": "voted the council",
+    "correct": "A",
+    "explanation": "Starting a sentence with 'Not until' causes subject-auxiliary inversion in the main clause."
+  },
+  {
+    "prompt": "_____ the harsh winter weather, the construction of the new terminal was completed three weeks ahead of schedule.",
+    "A": "Notwithstanding",
+    "B": "Because of",
+    "C": "Whereas",
+    "D": "Consequently",
+    "correct": "A",
+    "explanation": "\"Notwithstanding\" is a formal preposition meaning 'in spite of' or 'despite'."
+  },
+  {
+    "prompt": "The company's profits have been steadily declining; _____, the CEO has decided against laying off any employees.",
+    "A": "nevertheless",
+    "B": "accordingly",
+    "C": "furthermore",
+    "D": "thereby",
+    "correct": "A",
+    "explanation": "\"Nevertheless\" introduces a concession or contrast to the previous statement."
+  },
+  {
+    "prompt": "I would rather you _____ the results of the confidential audit with anyone outside of the executive board.",
+    "A": "didn't discuss",
+    "B": "don't discuss",
+    "C": "wouldn't discuss",
+    "D": "not to discuss",
+    "correct": "A",
+    "explanation": "The structure 'would rather + subject' uses the past simple tense to express a preference about present/future behavior."
+  },
+  {
+    "prompt": "The extent _____ the new artificial intelligence software will replace human jobs is currently a topic of intense debate.",
+    "A": "to which",
+    "B": "for which",
+    "C": "by which",
+    "D": "in which",
+    "correct": "A",
+    "explanation": "The standard prepositional collocation is 'the extent to which'."
+  },
+  {
+    "prompt": "Many scientists hypothesize that if a massive asteroid had not struck the Earth, the dinosaurs _____ extinct.",
+    "A": "would not have gone",
+    "B": "did not go",
+    "C": "will not go",
+    "D": "had not gone",
+    "correct": "A",
+    "explanation": "This is a Type 3 conditional for an unreal past situation, requiring 'would have + past participle' in the main clause."
+  },
+  {
+    "prompt": "_____ the initial public backlash, the government successfully pushed through the controversial pension reforms.",
+    "A": "In the face of",
+    "B": "In accordance with",
+    "C": "On behalf of",
+    "D": "With the exception of",
+    "correct": "A",
+    "explanation": "\"In the face of\" means despite having to deal with a difficult situation or problem."
+  },
+  {
+    "prompt": "Before launching the new marketing campaign, the advertising team had to _____ several logistical issues with the suppliers.",
+    "A": "iron out",
+    "B": "bring up",
+    "C": "rule out",
+    "D": "pass out",
+    "correct": "A",
+    "explanation": "\"Iron out\" is a phrasal verb meaning to resolve or clear up difficulties."
+  },
+  {
+    "prompt": "Because the factory has been continually violating safety standards, the regulatory board has threatened to _____ it.",
+    "A": "shut down",
+    "B": "turn down",
+    "C": "break down",
+    "D": "let down",
+    "correct": "A",
+    "explanation": "\"Shut down\" means to close a business or factory, either temporarily or permanently."
+  },
+  {
+    "prompt": "The documentary aims to _____ the truth about the environmental damage caused by unregulated mining corporations.",
+    "A": "bring to light",
+    "B": "keep in the dark",
+    "C": "take for granted",
+    "D": "make amends for",
+    "correct": "A",
+    "explanation": "\"Bring to light\" is an idiom meaning to make something known or public."
+  },
+  {
+    "prompt": "The ambitious startup company is hoping to _____ the rapidly expanding market for plant-based meat alternatives.",
+    "A": "capitalize on",
+    "B": "back out of",
+    "C": "catch up on",
+    "D": "cut down on",
+    "correct": "A",
+    "explanation": "\"Capitalize on\" means to take advantage of a situation to gain a benefit."
+  },
+  {
+    "prompt": "Rather than face a lengthy and public trial, the disgraced executive chose to _____ and resign quietly.",
+    "A": "step down",
+    "B": "stand out",
+    "C": "hold up",
+    "D": "fall back",
+    "correct": "A",
+    "explanation": "\"Step down\" means to resign from an important position."
+  },
+  {
+    "prompt": "Identify the part that contains an error: (A) The sheer number of technological innovations (B) developed during the 20th century (C) are absolutely staggering (D) to historians.",
     "A": "Part A",
     "B": "Part B",
     "C": "Part C",
     "D": "Part D",
     "correct": "C",
-    "explanation": "Phrases like 'along with' do not make the subject plural. The subject 'The governor' is singular, so 'are' should be 'is'."
+    "explanation": "The phrase 'The number of' requires a singular verb. 'Are' should be 'is'."
   },
   {
-    "prompt": "Identify the part that contains an error: (A) To succeed in this competitive industry, (B) one must be innovative, (C) adaptable, (D) and work hard.",
-    "A": "Part A",
-    "B": "Part B",
-    "C": "Part C",
-    "D": "Part D",
-    "correct": "D",
-    "explanation": "This lacks parallel structure. 'Innovative' and 'adaptable' are adjectives, so the last item should also be an adjective (e.g., 'hardworking') rather than a verb phrase."
-  },
-  {
-    "prompt": "Identify the part that contains an error: (A) Looking through the telescope, (B) the craters on the moon (C) could be seen (D) very clearly.",
+    "prompt": "Identify the part that contains an error: (A) Barely I had sat down (B) to begin writing the report (C) when my manager called (D) for an emergency meeting.",
     "A": "Part A",
     "B": "Part B",
     "C": "Part C",
     "D": "Part D",
     "correct": "A",
-    "explanation": "Dangling modifier. The craters were not looking through the telescope. It should be 'When we looked through the telescope...'."
+    "explanation": "Starting a sentence with 'Barely' requires subject-auxiliary inversion. It should be 'Barely had I sat down'."
   },
   {
-    "prompt": "Identify the part that contains an error: (A) Of the two candidates interviewed (B) for the managerial position, (C) Mr. Smith is definitely (D) the most qualified.",
-    "A": "Part A",
-    "B": "Part B",
-    "C": "Part C",
-    "D": "Part D",
-    "correct": "D",
-    "explanation": "When comparing only TWO things or people, the comparative form must be used, not the superlative. It should be 'the more qualified'."
-  },
-  {
-    "prompt": "Identify the part that contains an error: (A) Despite of the heavy snowfall, (B) the delivery trucks (C) managed to arrive (D) at the warehouse on time.",
-    "A": "Part A",
-    "B": "Part B",
-    "C": "Part C",
-    "D": "Part D",
-    "correct": "A",
-    "explanation": "The preposition 'despite' does not take 'of'. It should be either 'Despite the heavy snowfall' or 'In spite of the heavy snowfall'."
-  },
-  {
-    "prompt": "Identify the part that contains an error: (A) The archaeologists discovered (B) that the ancient tomb (C) was looted (D) hundreds of years before they arrived.",
+    "prompt": "Identify the part that contains an error: (A) To ensure structural integrity, (B) the engineers insisted that (C) the foundation is reinforced (D) with steel beams.",
     "A": "Part A",
     "B": "Part B",
     "C": "Part C",
     "D": "Part D",
     "correct": "C",
-    "explanation": "Because the looting happened BEFORE the past action of discovering/arriving, it requires the past perfect tense: 'had been looted'."
+    "explanation": "The verb 'insist' triggers the subjunctive mood in the following 'that' clause. 'Is reinforced' should be the base passive form 'be reinforced'."
+  },
+  {
+    "prompt": "Identify the part that contains an error: (A) Irregardless of his personal opinions, (B) the judge must base (C) her final ruling purely (D) on the empirical evidence.",
+    "A": "Part A",
+    "B": "Part B",
+    "C": "Part C",
+    "D": "Part D",
+    "correct": "A",
+    "explanation": "'Irregardless' is considered nonstandard and a double negative. The correct academic word is 'Regardless'."
+  },
+  {
+    "prompt": "Identify the part that contains an error: (A) The new fiscal policy aims (B) to stimulate economic growth, (C) reducing the national debt, (D) and lowering unemployment rates.",
+    "A": "Part A",
+    "B": "Part B",
+    "C": "Part C",
+    "D": "Part D",
+    "correct": "C",
+    "explanation": "This sentence lacks parallelism. It starts with an infinitive ('to stimulate'), so the following items should match: 'to reduce' and 'to lower' (or just 'reduce' and 'lower')."
+  },
+  {
+    "prompt": "Identify the part that contains an error: (A) If the warning sensors (B) would have functioned properly, (C) the catastrophic machinery failure (D) could have been prevented.",
+    "A": "Part A",
+    "B": "Part B",
+    "C": "Part C",
+    "D": "Part D",
+    "correct": "B",
+    "explanation": "In a Type 3 conditional, 'would have' is not used in the 'if' clause. It should use the past perfect: 'had functioned properly'."
+  },
+  {
+    "prompt": "Identify the part that contains an error: (A) The symposium featured (B) several esteemed speakers, (C) each of which presented (D) a unique perspective on climate change.",
+    "A": "Part A",
+    "B": "Part B",
+    "C": "Part C",
+    "D": "Part D",
+    "correct": "C",
+    "explanation": "When referring to people (speakers), the relative pronoun after a preposition must be 'whom', not 'which'. It should be 'each of whom'."
+  },
+  {
+    "prompt": "Identify the part that contains an error: (A) The board members strongly objected (B) to be pressured into (C) signing the controversial agreement (D) before thoroughly reviewing it.",
+    "A": "Part A",
+    "B": "Part B",
+    "C": "Part C",
+    "D": "Part D",
+    "correct": "B",
+    "explanation": "The phrase 'object to' requires a gerund. Since the action is passive, it must be 'to being pressured'."
+  },
+  {
+    "prompt": "Identify the part that contains an error: (A) By the time the archeological team (B) discovered the hidden tomb, (C) grave robbers completely emptied (D) it of all valuable artifacts.",
+    "A": "Part A",
+    "B": "Part B",
+    "C": "Part C",
+    "D": "Part D",
+    "correct": "C",
+    "explanation": "The action of emptying the tomb happened before the past action of discovery. The past perfect tense is required: 'had completely emptied'."
+  },
+  {
+    "prompt": "Identify the part that contains an error: (A) Between the two competing software applications, (B) the open-source version is (C) without a doubt the most (D) user-friendly.",
+    "A": "Part A",
+    "B": "Part B",
+    "C": "Part C",
+    "D": "Part D",
+    "correct": "C",
+    "explanation": "When comparing only two items, the comparative degree must be used, not the superlative. It should be 'the more user-friendly'."
   }
 ]
