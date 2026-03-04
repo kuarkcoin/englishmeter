@@ -1,62 +1,54 @@
-import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
-import vocab1 from '@/data/yds_vocabulary.json';
-import vocab2 from '@/data/yds_vocabulary1.json';
+import { SITE_URL, getAllVocabulary, slugifyWord } from '@/lib/vocabulary';
 
-// Veriyi birleştirip tekilleştirme fonksiyonu
-function getUniqueVocab() {
-  const combined = [...vocab1, ...vocab2];
-  const uniqueMap = new Map();
-  combined.forEach((item: any) => {
-    if (item?.word) uniqueMap.set(item.word.toLowerCase().trim(), item);
-  });
-  return Array.from(uniqueMap.values());
+type PageProps = { params: { letter: string } };
+
+export function generateStaticParams() {
+  return 'abcdefghijklmnopqrstuvwxyz'.split('').map((letter) => ({ letter }));
 }
 
-export async function generateStaticParams() {
-  return "abcdefghijklmnopqrstuvwxyz".split("").map((letter) => ({
-    letter: letter,
-  }));
-}
-
-export default function LetterDetailPage({ params }: { params: { letter: string } }) {
+export function generateMetadata({ params }: PageProps): Metadata {
   const letter = params.letter.toLowerCase();
-  const allVocab = getUniqueVocab();
-  
-  // Harfe göre filtrele
-  const filteredWords = allVocab
-    .filter((v: any) => v.word.toLowerCase().startsWith(letter))
-    .sort((a: any, b: any) => a.word.localeCompare(b.word));
+  return {
+    title: `Words starting with ${letter.toUpperCase()} | English Vocabulary Index`,
+    description: `Browse English words that start with ${letter.toUpperCase()} and open each word page for meaning, examples, and synonyms.`,
+    alternates: { canonical: `${SITE_URL}/vocabulary/letter/${letter}` },
+  };
+}
+
+export default function LetterDetailPage({ params }: PageProps) {
+  const letter = params.letter.toLowerCase();
+  const filteredWords = getAllVocabulary()
+    .filter((v) => v.word.toLowerCase().startsWith(letter))
+    .sort((a, b) => a.word.localeCompare(b.word));
 
   return (
-    <div className="min-h-screen bg-white py-12 px-4">
+    <main className="min-h-screen bg-white py-12 px-4">
       <div className="max-w-5xl mx-auto">
         <div className="mb-8">
-          <Link href="/vocabulary" className="text-blue-600 font-bold hover:underline">
-            ← Tüm Harfler
-          </Link>
-          <h1 className="text-5xl font-black text-slate-900 mt-4 uppercase">
-             "{letter}" Harfi ile Başlayan Kelimeler
-          </h1>
-          <p className="text-slate-500 mt-2">{filteredWords.length} kelime bulundu.</p>
+          <Link href="/vocabulary" className="text-blue-600 font-bold hover:underline">← Vocabulary Hub</Link>
+          <h1 className="text-4xl font-black text-slate-900 mt-4 uppercase">Words starting with "{letter}"</h1>
+          <p className="text-slate-500 mt-2">{filteredWords.length} words found.</p>
         </div>
 
-        {/* Kelime Linkleri Bulutu */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-3">
-          {filteredWords.map((item: any) => {
-            const slug = item.word.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
-            return (
-              <Link
-                key={slug}
-                href={`/vocabulary/${slug}`}
-                className="text-slate-700 hover:text-blue-600 font-medium border-b border-slate-100 py-1 transition-colors"
-              >
-                {item.word}
-              </Link>
-            );
-          })}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-3 mb-10">
+          {filteredWords.map((item) => (
+            <Link
+              key={item.word}
+              href={`/vocabulary/${slugifyWord(item.word)}`}
+              className="text-slate-700 hover:text-blue-600 font-medium border-b border-slate-100 py-1 transition-colors"
+            >
+              {item.word}
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex flex-wrap gap-3 text-sm">
+          <Link href="/flashcards" className="px-3 py-2 border rounded-lg hover:bg-slate-50">Flashcards</Link>
+          <Link href="/vocabulary-tests" className="px-3 py-2 border rounded-lg hover:bg-slate-50">Vocabulary Tests</Link>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

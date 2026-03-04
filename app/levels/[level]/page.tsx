@@ -88,6 +88,21 @@ export default function LevelPage() {
           </>
         )}
 
+        <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
+          <h2 className="text-lg font-bold mb-3 text-slate-900 dark:text-slate-100">CEFR Level Cluster</h2>
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 text-sm mb-4">
+            {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((lvl) => (
+              <Link
+                key={lvl}
+                href={`/levels/${lvl}`}
+                className="text-center py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-blue-400"
+              >
+                {lvl}
+              </Link>
+            ))}
+          </div>
+        </div>
+
         <Link
           href="/"
           className="text-sm text-slate-600 dark:text-slate-300 hover:underline inline-flex items-center"
