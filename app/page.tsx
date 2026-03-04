@@ -1,141 +1,131 @@
-import type { Metadata } from 'next';
-import HomeClient from './HomeClient';
+import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ?? 'https://englishmeter.net';
-const canonicalUrl = new URL('/', siteUrl).toString();
+const baseUrl =
+  (process.env.NEXT_PUBLIC_SITE_URL || "https://englishmeter.net").replace(/\/$/, "");
+
+const HomeClient = dynamic(() => import("./HomeClient"), {
+  ssr: false,
+  loading: () => <div className="min-h-screen bg-[rgb(var(--bg))]" />,
+});
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: 'EnglishMeter | Free English Level Test, YDS Practice & Grammar Quizzes',
+  metadataBase: new URL(baseUrl),
+  title: "EnglishMeter — Free English Tests, YDS Vocabulary & Placement",
   description:
-    'Measure your English level in minutes with free placement tests, CEFR quizzes, YDS practice packs, mini tests, and mistake tracking.',
-  keywords: ['english level test', 'yds practice test', 'cefr quiz', 'english grammar test', 'englishmeter'],
-  alternates: {
-    canonical: canonicalUrl,
-  },
+    "Take free online English tests: grammar, vocabulary, CEFR levels (A1–C2), YDS packs, flashcards and mistake review.",
+  alternates: { canonical: "/" },
   robots: {
     index: true,
     follow: true,
     googleBot: {
       index: true,
       follow: true,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-      'max-video-preview': -1,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
     },
   },
   openGraph: {
-    type: 'website',
-    url: canonicalUrl,
-    title: 'EnglishMeter | Find your English level in minutes',
+    type: "website",
+    url: baseUrl,
+    siteName: "EnglishMeter",
+    title: "EnglishMeter — Free English Tests & YDS Practice",
     description:
-      'Take free online placement tests, YDS packs, grammar quizzes, and vocabulary drills with instant results.',
-    siteName: 'EnglishMeter',
+      "Find your English level in minutes. Practice YDS-style exams, vocabulary, grammar and flashcards.",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'EnglishMeter | Free English Placement & YDS Practice',
+    card: "summary_large_image",
+    title: "EnglishMeter — Free English Tests & YDS Practice",
     description:
-      'Practice English with CEFR-aligned level tests, YDS exam packs, mini tests, and mistake review tools.',
-  },
-  verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
-    yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
+      "Free placement tests, CEFR quizzes, YDS vocabulary and exam packs with instant review.",
   },
 };
 
-const faqEntities = [
-  {
-    '@type': 'Question',
-    name: 'How does the placement test work?',
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: 'The placement test mixes grammar and vocabulary questions, then estimates your CEFR band with instant feedback and explanations.',
-    },
-  },
-  {
-    '@type': 'Question',
-    name: 'What is included in the YDS exam pack?',
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: 'The YDS pack includes full-length exam-style tests plus dedicated grammar, reading, synonym, and conjunction practice sets.',
-    },
-  },
-  {
-    '@type': 'Question',
-    name: 'What are YDS mini tests?',
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: 'Mini tests are shorter sets designed for quick daily practice, usually with timed sessions and focused review.',
-    },
-  },
-  {
-    '@type': 'Question',
-    name: 'What is the Mistake Bank?',
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: 'Mistake Bank stores questions you answered incorrectly so you can revisit weak areas and improve retention.',
-    },
-  },
-  {
-    '@type': 'Question',
-    name: 'Do I need an account to use EnglishMeter?',
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: 'Most tests are available immediately without account setup, and your recent progress is kept locally in your browser.',
-    },
-  },
-  {
-    '@type': 'Question',
-    name: 'Can I continue my last test later?',
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: 'Yes. EnglishMeter keeps your latest test shortcut so you can continue from the homepage with one click.',
-    },
-  },
-];
-
 export default function Page() {
-  const webSiteJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'EnglishMeter',
-    url: siteUrl,
-    inLanguage: 'en',
+  const websiteLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "EnglishMeter",
+    url: baseUrl,
   };
 
-  const organizationJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'EnglishMeter',
-    url: siteUrl,
+  const orgLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "EnglishMeter",
+    url: baseUrl,
   };
 
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqEntities,
-  };
-
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
       {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: canonicalUrl,
+        "@type": "Question",
+        name: "Is EnglishMeter free?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. You can take placement tests, grammar quizzes and many practice modes for free.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How long is the placement test?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The placement test typically takes about 20–25 minutes depending on your pace.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Do you have YDS practice?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. EnglishMeter includes YDS-style exam packs, reading, grammar, synonyms and vocabulary practice.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is the Mistake Bank?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Mistake Bank helps you revisit incorrect answers and practice weak areas efficiently.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I study with flashcards?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Flashcards are available to help you memorize academic vocabulary with smart review.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does EnglishMeter show CEFR levels?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Tests are aligned to CEFR levels from A1 to C2 for clear progress tracking.",
+        },
       },
     ],
   };
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
       <HomeClient />
     </>
   );
