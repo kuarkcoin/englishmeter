@@ -3,70 +3,89 @@ import vocab1 from '@/data/yds_vocabulary.json';
 import dailyEnEs from '@/data/daily_en_es.json';
 import dailyEnAr from '@/data/daily_en_ar.json';
 
-const baseUrl = 'https://englishmeter.net';
+const baseUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ||
+  'https://englishmeter.net';
 
-// 1. Slug oluşturma fonksiyonunu en üstte temiz bir şekilde tanımlayalım
-function createSlug(word: any): string {
-  if (!word) return '';
-  return String(word)
+function createSlug(input: any): string {
+  if (!input) return '';
+  return String(input)
     .toLowerCase()
     .trim()
-    .replace(/[^\w\s-]/g, '') // Özel karakterleri temizle
-    .replace(/\s+/g, '-');    // Boşlukları tireye çevir
+    .normalize('NFD')                   // ✅ unicode normalize
+    .replace(/[\u0300-\u036f]/g, '')    // ✅ diacritics strip
+    .replace(/[^a-z0-9\s-]/g, '')       // ✅ strict safe charset
+    .replace(/\s+/g, '-')              // spaces -> dash
+    .replace(/-+/g, '-')               // collapse dashes
+    .replace(/^-|-$/g, '');            // trim dashes
+}
+
+function generateWordRoutes(
+  data: any[],
+  prefix: string,
+  priority: number
+): MetadataRoute.Sitemap {
+  const seen = new Set<string>();
+  const routes: MetadataRoute.Sitemap = [];
+  const lastMod = new Date('2024-01-01');
+
+  for (const item of data) {
+    const w = item?.word;
+    if (!w) continue;
+
+    const slug = createSlug(w);
+    if (!slug || seen.has(slug)) continue;
+
+    seen.add(slug);
+    routes.push({
+      url: `${baseUrl}${prefix}/${slug}`,
+      lastModified: lastMod,
+      changeFrequency: 'monthly',
+      priority,
+    });
+  }
+  return routes;
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const lastMod = new Date('2024-01-01');
 
-  // 2. Temel Sayfalar
   const corePages: MetadataRoute.Sitemap = [
-    '', '/vocabulary', '/es/vocabulary', '/ar/vocabulary',
-    '/race', '/flashcards', '/speedrun', '/matching',
-    '/verbsense', '/speaking', '/mistakes'
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
+    { route: '', pr: 1.0, freq: 'daily' as const },
+    { route: '/vocabulary', pr: 0.9, freq: 'weekly' as const },
+    { route: '/es/vocabulary', pr: 0.7, freq: 'weekly' as const },
+    { route: '/ar/vocabulary', pr: 0.7, freq: 'weekly' as const },
+    { route: '/flashcards', pr: 0.8, freq: 'weekly' as const },
+    { route: '/mistakes', pr: 0.8, freq: 'weekly' as const },
+    { route: '/race', pr: 0.6, freq: 'weekly' as const },
+    { route: '/speedrun', pr: 0.6, freq: 'weekly' as const },
+    { route: '/matching', pr: 0.6, freq: 'weekly' as const },
+    { route: '/verbsense', pr: 0.6, freq: 'weekly' as const },
+    { route: '/speaking', pr: 0.6, freq: 'weekly' as const },
+  ].map((p) => ({
+    url: `${baseUrl}${p.route}`,
     lastModified: now,
-    changeFrequency: 'daily',
-    priority: 1.0,
+    changeFrequency: p.freq,
+    priority: p.pr,
   }));
 
-  // 3. YDS Sınavları (Dinamik parametreli linkler)
-  const ydsExamTests: MetadataRoute.Sitemap = Array.from({ length: 32 }, (_, i) => i + 1).map((n) => ({
-    url: `${baseUrl}/start?testSlug=yds-exam-test-${n}`,
-    lastModified: lastMod,
+  // ❌ Query-string sitemap önerilmez.
+  // ✅ En iyisi: /yds/exam/1 gibi landing pages (server-rendered) üretip onları eklemek.
+  // Şimdilik kaldırıyorum. Landing route oluşturunca aşağıyı aç:
+  /*
+  const ydsExamLanding: MetadataRoute.Sitemap = Array.from({ length: 32 }, (_, i) => i + 1).map((n) => ({
+    url: `${baseUrl}/yds/exam/${n}`,
+    lastModified: new Date('2024-01-01'),
     changeFrequency: 'monthly',
     priority: 0.8,
   }));
+  */
 
-  // 4. Kelime Rotaları Üretici (Set kullanarak duplicate engelleme)
-  const generateWordRoutes = (data: any[], prefix: string, priority: number): MetadataRoute.Sitemap => {
-    const seenSlugs = new Set();
-    const routes: MetadataRoute.Sitemap = [];
-
-    for (const item of data) {
-      if (item?.word) {
-        const slug = createSlug(item.word);
-        if (slug && !seenSlugs.has(slug)) {
-          seenSlugs.add(slug);
-          routes.push({
-            url: `${baseUrl}${prefix}/${slug}`,
-            lastModified: lastMod,
-            changeFrequency: 'monthly',
-            priority: priority,
-          });
-        }
-      }
-    }
-    return routes;
-  };
-
-  // Hepsini birleştir ve döndür
   return [
     ...corePages,
-    ...ydsExamTests,
-    ...generateWordRoutes(vocab1, '/vocabulary', 0.5),
-    ...generateWordRoutes(dailyEnEs, '/es/vocabulary', 0.5),
-    ...generateWordRoutes(dailyEnAr, '/ar/vocabulary', 0.5),
+    // ...ydsExamLanding,
+    ...generateWordRoutes(vocab1 as any[], '/vocabulary', 0.5),
+    ...generateWordRoutes(dailyEnEs as any[], '/es/vocabulary', 0.4),
+    ...generateWordRoutes(dailyEnAr as any[], '/ar/vocabulary', 0.4),
   ];
 }
