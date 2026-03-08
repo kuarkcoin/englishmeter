@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Footer from '@/components/Footer';
-import Script from 'next/script'; 
+import Script from 'next/script';
+import { Toaster } from 'sonner';
 
 const siteName = 'EnglishMeter';
 const siteUrl = 'https://englishmeter.net';
@@ -176,6 +177,7 @@ export default function RootLayout({
         />
 
         <div className="flex-1">{children}</div>
+        <Toaster richColors position="top-right" />
         <Footer />
       </body>
     </html>
