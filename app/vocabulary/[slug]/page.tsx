@@ -1,164 +1,161 @@
-import React, { cache } from 'react';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import vocab1 from '@/data/yds_vocabulary.json';
-import vocab2 from '@/data/yds_vocabulary1.json';
-import VocabularyQuiz from '@/components/VocabularyQuiz'; // Daha önce oluşturduğumuz bileşen
-import WordAudioButton from '@/components/WordAudioButton'; // Ses için küçük bir client component
+import {
+  SITE_URL,
+  getAllVocabulary,
+  getRelatedWords,
+  getSentenceVariants,
+  getSynonyms,
+  getVocabularyMap,
+  slugifyWord,
+} from '@/lib/vocabulary';
 
-// 1. PERFORMANS OPTİMİZASYONU: Veriyi cache'liyoruz
-const getUniqueVocabMap = cache(() => {
-  const combined = [...vocab1, ...vocab2];
-  const uniqueMap = new Map();
+type PageProps = { params: { slug: string } };
 
-  combined.forEach((item: any) => {
-    if (item && item.word) {
-      const slug = item.word
-        .toLowerCase()
-        .trim()
-        .replace(/[^\w\s-]/g, '')
-        .replace(/\s+/g, '-');
+export function generateStaticParams() {
+  return Array.from(getVocabularyMap().keys()).map((slug) => ({ slug }));
+}
 
-      if (!uniqueMap.has(slug)) {
-        uniqueMap.set(slug, item);
-      }
-    }
-  });
-  return uniqueMap;
-});
+export function generateMetadata({ params }: PageProps): Metadata {
+  const item = getVocabularyMap().get(params.slug);
 
-// 2. DİNAMİK METADATA
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const vocabMap = getUniqueVocabMap();
-  const item = vocabMap.get(params.slug);
+  if (!item) {
+    return {
+      title: 'Word not found | EnglishMeter',
+      robots: { index: false, follow: false },
+    };
+  }
 
-  if (!item) return { title: 'Kelime Bulunamadı | EnglishMeter' };
+  const canonical = `${SITE_URL}/vocabulary/${params.slug}`;
 
   return {
-    title: `${item.word} Ne Demek? Anlamı ve Cümle Çevirisi | EnglishMeter`,
-    description: `${item.word} kelimesinin Türkçe anlamı: ${item.meaning}. YDS, YÖKDİL ve akademik sınavlar için örnek cümleler.`,
-    alternates: {
-      canonical: `https://englishmeter.net/vocabulary/${params.slug}`,
-    }
+    metadataBase: new URL(SITE_URL),
+    title: `${item.word} meaning | English definition, synonyms & examples`,
+    description: `Learn the meaning of ${item.word}, example sentences, synonyms and how to use it in English.`,
+    alternates: { canonical },
+    openGraph: {
+      type: 'article',
+      url: canonical,
+      title: `${item.word} meaning | English definition, synonyms & examples`,
+      description: `Learn the meaning of ${item.word}, example sentences, synonyms and how to use it in English.`,
+      siteName: 'EnglishMeter',
+    },
+    twitter: {
+      card: 'summary',
+      title: `${item.word} meaning | English definition, synonyms & examples`,
+      description: `Learn the meaning of ${item.word}, example sentences, synonyms and how to use it in English.`,
+    },
   };
 }
 
-export async function generateStaticParams() {
-  const vocabMap = getUniqueVocabMap();
-  return Array.from(vocabMap.keys()).map((slug) => ({ slug }));
-}
-
-export default function VocabularyDetailPage({ params }: { params: { slug: string } }) {
-  const vocabMap = getUniqueVocabMap();
+export default function VocabularyWordPage({ params }: PageProps) {
+  const vocabMap = getVocabularyMap();
   const item = vocabMap.get(params.slug);
 
   if (!item) notFound();
 
-  // Test için tüm anlamlardan havuz oluştur
-  const allMeanings = Array.from(vocabMap.values()).map((v: any) => v.meaning);
-  
-  // Google Botları için "İç Linkleme": Rastgele 5 kelime seç
-  const allSlugs = Array.from(vocabMap.keys());
-  const relatedSlugs = allSlugs.sort(() => 0.5 - Math.random()).slice(0, 6);
+  const pool = getAllVocabulary();
+  const examples = getSentenceVariants(item).slice(0, 3);
+  const synonyms = getSynonyms(item, pool);
+  const relatedWords = getRelatedWords(item, pool);
+  const canonical = `${SITE_URL}/vocabulary/${params.slug}`;
 
-  // Geliştirilmiş JSON-LD
   const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "DefinedTerm",
-    "name": item.word,
-    "description": `${item.word} kelimesinin anlamı: ${item.meaning}`,
-    "inDefinedTermSet": {
-      "@type": "DefinedTermSet",
-      "name": "EnglishMeter Akademik Kelime Sözlüğü",
-      "url": "https://englishmeter.net/vocabulary"
+    '@context': 'https://schema.org',
+    '@type': 'DefinedTerm',
+    name: item.word,
+    description: `${item.word} means: ${item.meaning}`,
+    url: canonical,
+    inDefinedTermSet: {
+      '@type': 'DefinedTermSet',
+      name: 'EnglishMeter Vocabulary',
+      url: `${SITE_URL}/vocabulary`,
     },
-    "url": `https://englishmeter.net/vocabulary/${params.slug}`
   };
 
   return (
     <main className="min-h-screen bg-slate-50 py-10 px-4">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <article className="max-w-3xl mx-auto">
-        <div className="mb-6 flex justify-between items-center">
-          <Link href="/vocabulary" className="text-sm font-bold text-blue-600 hover:underline flex items-center gap-1">
-            ← Kelime Dizini
-          </Link>
-          <span className="text-xs text-slate-400 font-medium">YDS Hazırlık / Akademik</span>
-        </div>
+      <article className="max-w-4xl mx-auto">
+        <nav className="mb-6 text-sm flex flex-wrap gap-2 text-slate-600">
+          <Link href="/vocabulary" className="hover:text-blue-600">Vocabulary Hub</Link>
+          <span>/</span>
+          <Link href="/flashcards" className="hover:text-blue-600">Flashcards</Link>
+          <span>/</span>
+          <Link href="/vocabulary-tests" className="hover:text-blue-600">Vocabulary Tests</Link>
+        </nav>
 
-        <div className="bg-white border border-slate-200 rounded-3xl shadow-sm overflow-hidden">
-          {/* Header */}
-          <div className="bg-slate-900 p-8 text-white flex justify-between items-start">
-            <div>
-              <h1 className="text-5xl font-black mb-2 flex items-center gap-4">
-                {item.word}
-                <WordAudioButton word={item.word} /> 
-              </h1>
-              <p className="text-slate-400 font-bold uppercase tracking-tighter text-sm">Kelime Detayı ve Telaffuzu</p>
+        <h1 className="text-3xl sm:text-4xl font-black text-slate-900 mb-3">
+          {item.word} meaning and example sentences
+        </h1>
+
+        <p className="text-slate-700 leading-relaxed mb-8">
+          Learning <strong>{item.word}</strong> in context helps you remember meaning, use natural sentence patterns, and improve academic English performance. On this page, you will find a clear definition, practical examples, synonyms, and related words so you can build stronger vocabulary connections for exams and daily communication.
+        </p>
+
+        <div className="grid gap-6">
+          <section className="bg-white rounded-2xl border border-slate-200 p-6">
+            <h2 className="text-xl font-bold mb-2">Definition</h2>
+            <p className="text-lg text-slate-800"><strong>{item.word}</strong>: {item.meaning}</p>
+          </section>
+
+          <section className="bg-white rounded-2xl border border-slate-200 p-6">
+            <h2 className="text-xl font-bold mb-3">Example sentences</h2>
+            <ul className="list-disc pl-5 space-y-2 text-slate-700">
+              {examples.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="bg-white rounded-2xl border border-slate-200 p-6">
+            <h2 className="text-xl font-bold mb-3">Synonyms</h2>
+            <div className="flex flex-wrap gap-2">
+              {synonyms.length ? (
+                synonyms.map((syn) => (
+                  <Link
+                    key={syn}
+                    href={`/vocabulary/${slugifyWord(syn)}`}
+                    className="px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-sm hover:bg-blue-100"
+                  >
+                    {syn}
+                  </Link>
+                ))
+              ) : (
+                <span className="text-slate-600 text-sm">Synonym suggestions will expand as the dataset grows.</span>
+              )}
             </div>
-          </div>
+          </section>
 
-          <div className="p-8 space-y-10">
-            {/* Anlam */}
-            <section>
-              <h2 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Türkçe Karşılığı</h2>
-              <p className="text-4xl font-bold text-slate-800 leading-tight">
-                {item.meaning}
-              </p>
-            </section>
-
-            {/* Örnek Cümle */}
-            {(item.s || item.sentence) && (
-              <section className="bg-blue-50 p-6 rounded-2xl border border-blue-100">
-                <h2 className="text-xs font-black text-blue-400 uppercase tracking-widest mb-4">Örnek Cümle İçinde Kullanımı</h2>
-                <p className="text-xl text-blue-900 font-medium italic leading-relaxed">
-                  "{item.s || item.sentence}"
-                </p>
-                <div className="mt-4 pt-4 border-t border-blue-200 text-blue-800">
-                  <strong className="font-black text-xs uppercase mr-2">Çeviri:</strong> {item.t || item.translation}
-                </div>
-              </section>
-            )}
-
-            {/* MİNİ TEST BÖLÜMÜ */}
-            <VocabularyQuiz 
-              word={item.word} 
-              correctMeaning={item.meaning} 
-              allMeanings={allMeanings} 
-            />
-
-            {/* Aksiyon Butonları */}
-            <div className="grid grid-cols-2 gap-4">
-               <Link href="/race" className="py-4 bg-emerald-600 text-white text-center rounded-2xl font-black hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-100">
-                 Kelimelerle Yarış
-               </Link>
-               <Link href="/flashcards" className="py-4 bg-slate-100 text-slate-800 text-center rounded-2xl font-black hover:bg-slate-200 transition-all">
-                 Kartlarla Çalış
-               </Link>
+          <section className="bg-white rounded-2xl border border-slate-200 p-6">
+            <h2 className="text-xl font-bold mb-3">Related words</h2>
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+              {relatedWords.map((word) => (
+                <Link
+                  key={word}
+                  href={`/vocabulary/${slugifyWord(word)}`}
+                  className="border border-slate-200 rounded-xl px-4 py-3 hover:border-blue-400 hover:text-blue-700"
+                >
+                  {word}
+                </Link>
+              ))}
             </div>
-          </div>
-        </div>
+          </section>
 
-        {/* İÇ LİNKLEME: Google Botları için Diğer Kelimeler */}
-        <section className="mt-12">
-          <h2 className="text-sm font-black text-slate-500 uppercase tracking-widest mb-6 px-2">Benzer Akademik Kelimeler</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {relatedSlugs.map((slug) => (
-              <Link 
-                key={slug} 
-                href={`/vocabulary/${slug}`}
-                className="bg-white p-4 border border-slate-200 rounded-2xl text-center text-sm font-bold text-slate-700 hover:border-blue-500 hover:text-blue-600 transition-all shadow-sm"
-              >
-                {slug}
-              </Link>
-            ))}
-          </div>
-        </section>
+          <section className="bg-gradient-to-r from-emerald-50 to-blue-50 rounded-2xl border border-emerald-100 p-6">
+            <h2 className="text-xl font-bold mb-3">Practice section</h2>
+            <p className="text-slate-700 mb-4">
+              Reinforce <strong>{item.word}</strong> with active recall: review it in flashcards, then test yourself in timed vocabulary modes.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/flashcards" className="px-4 py-2 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700">Practice in Flashcards</Link>
+              <Link href="/vocabulary-tests" className="px-4 py-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700">Take Vocabulary Tests</Link>
+              <Link href="/vocabulary" className="px-4 py-2 rounded-xl bg-white border border-slate-300 font-semibold hover:bg-slate-100">Back to Vocabulary Hub</Link>
+            </div>
+          </section>
+        </div>
       </article>
     </main>
   );
