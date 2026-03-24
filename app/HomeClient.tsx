@@ -12,7 +12,6 @@ import ydsVocabulary from '@/data/yds_vocabulary.json';
 import ydsGrammarQuestions from '@/data/yds_grammar.json';
 import ydsPhrasals from '@/data/yds_phrasal_verbs.json';
 import ydsReadingPassages from '@/data/yds_reading.json';
-import ydsSynonyms from '@/data/yds_synonyms.json';
 import ydsConjunctions from '@/data/yds_conjunctions.json';
 
 // --- YDS EXAM DENEMELERİ (1..15) ---
@@ -119,7 +118,7 @@ const ydsVocabHub = { title: 'YDS 5000 Words (100 Mini Tests)', slug: 'yds-5000-
 const ydsGrammarTest = { title: 'YDS Grammar Practice (100Q)', slug: 'yds-grammar-practice' };
 const ydsPhrasalTest = { title: 'YDS Phrasal Verbs (100Q)', slug: 'yds-phrasal-verbs' };
 const ydsReadingTest = { title: 'YDS Reading (40Q)', slug: 'yds-reading' };
-const ydsSynonymTest = { title: 'YDS Synonyms (Advanced)', slug: 'yds-synonyms' };
+const ydsSynonymTest = { title: 'YDS Synonyms (Advanced)', slug: 'yds-synonyms', href: '/synonyms' };
 const ydsConjunctionTest = { title: 'YDS Conjunctions (Bağlaçlar)', slug: 'yds-conjunctions' };
 
 // Grammar Focus testleri
@@ -537,56 +536,6 @@ function HomeContent() {
           testSlug,
           test: { title, duration: 75 },
           durationSeconds: 75 * 60,
-          questions,
-        };
-
-        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
-        saveLast(title, testSlug);
-        router.push(`/quiz/${attemptId}`);
-        return;
-      }
-
-      // 5) YDS SYNONYMS
-      if (testSlug === 'yds-synonyms') {
-        const selectedWords = shuffle(ydsSynonyms as any[]).slice(0, 50);
-
-        const questions = selectedWords.map((item: any, idx: number) => {
-          const correctAnswer = item.synonym;
-
-          let distractors = item.distractors;
-          if (!distractors || distractors.length === 0) {
-            distractors = shuffle(
-              (ydsSynonyms as any[])
-                .filter((w: any) => w.synonym !== correctAnswer)
-                .map((w: any) => w.synonym)
-            ).slice(0, 3);
-          } else {
-            distractors = shuffle(distractors).slice(0, 3);
-          }
-
-          const allOptions = shuffle([...distractors, correctAnswer]);
-          const letters = ['A', 'B', 'C', 'D'];
-          const idsLower = ['a', 'b', 'c', 'd'];
-
-          return {
-            id: `yds-syn-q${idx + 1}`,
-            prompt: `Select the word that is closest in meaning to: <br/> <strong class="text-xl text-blue-700 dark:text-blue-300">"${item.word}"</strong> <span class="text-sm text-[rgb(var(--muted))] dark:text-slate-300">(${item.meaning})</span>`,
-            choices: letters.map((L, i) => ({
-              id: idsLower[i],
-              text: allOptions[i],
-              isCorrect: allOptions[i] === correctAnswer,
-            })),
-            explanation: `**${item.word}** means "${item.meaning}". <br/> Synonym: **${correctAnswer}**.`,
-          };
-        });
-
-        const title = 'YDS SYNONYMS PRACTICE (50Q · 40 min)';
-
-        const payload = {
-          attemptId,
-          testSlug,
-          test: { title, duration: 40 },
-          durationSeconds: 40 * 60,
           questions,
         };
 
@@ -1355,7 +1304,7 @@ function HomeContent() {
               <DiamondCard
                 as="button"
                 key={test.slug}
-                onClick={() => startTest(test.slug)}
+                onClick={() => (test as any).href ? router.push((test as any).href) : startTest(test.slug)}
                 className={`flex items-center justify-center px-6 py-8 text-lg sm:text-xl font-black ${tint}`}
               >
                 {test.title}

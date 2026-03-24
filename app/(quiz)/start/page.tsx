@@ -284,8 +284,10 @@ function StartQuizLogic() {
             return null as any;
           }
 
+          const disableRandomization = slug === 'yds-synonyms' || /^yds-synonyms-test-\d+$/.test(slug);
+
           // ✅ Shuffle + normalize ids A/B/C/D/E...
-          const shuffled = shuffleArray(choices).map((c) => ({
+          const shuffled = (disableRandomization ? choices : shuffleArray(choices)).map((c) => ({
             ...c,
             _origId: c._origId ?? c.id,
           }));
