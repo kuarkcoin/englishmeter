@@ -69,6 +69,19 @@ function clampInt(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n));
 }
 
+
+const SYNONYMS_TEST_COUNT = 10;
+const SYNONYMS_QUESTIONS_PER_TEST = 50;
+
+function parseSynonymsTestNumber(slug: string): number | null {
+  if (slug === 'yds-synonyms') return 1;
+  const match = slug.match(/^yds-synonyms-test-(\d+)$/);
+  if (!match) return null;
+  const n = Number.parseInt(match[1], 10);
+  if (!Number.isFinite(n)) return null;
+  return clampInt(n, 1, SYNONYMS_TEST_COUNT);
+}
+
 // --- MAPPINGS ---
 const grammarSlugToTag: Record<string, string> = {
   'test-perfect-past': 'perfect_tenses',
@@ -203,9 +216,12 @@ export const getQuestionsBySlug = (
     rawQuestions = shuffleArray(ydsPhrasals).slice(0, 50);
     title = 'YDS Phrasal Verbs Practice';
     duration = 40;
-  } else if (slug === 'yds-synonyms') {
-    rawQuestions = shuffleArray(ydsSynonyms).slice(0, 50);
-    title = 'YDS Synonyms Practice';
+  } else if (parseSynonymsTestNumber(slug) !== null) {
+    const testNo = parseSynonymsTestNumber(slug) || 1;
+    const startIndex = (testNo - 1) * SYNONYMS_QUESTIONS_PER_TEST;
+
+    rawQuestions = (ydsSynonyms as any[]).slice(startIndex, startIndex + SYNONYMS_QUESTIONS_PER_TEST);
+    title = `YDS Synonyms Practice - Test ${testNo}`;
     duration = 40;
   } else if (slug === 'yds-conjunctions') {
     rawQuestions = shuffleArray(ydsConjunctions).slice(0, 50);
