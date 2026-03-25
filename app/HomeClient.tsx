@@ -14,6 +14,7 @@ import ydsPhrasals from '@/data/yds_phrasal_verbs.json';
 import ydsReadingPassages from '@/data/yds_reading.json';
 import ydsSynonyms from '@/data/yds_synonyms.json';
 import ydsConjunctions from '@/data/yds_conjunctions.json';
+import ydsVocabulary2Raw from '@/data/data/yds_vocabulary2.json';
 
 // --- YDS EXAM DENEMELERİ (1..15) ---
 import ydsExamQuestions1 from '@/data/yds_exam_questions.json';
@@ -120,6 +121,7 @@ const ydsGrammarTest = { title: 'YDS Grammar Practice (100Q)', slug: 'yds-gramma
 const ydsPhrasalTest = { title: 'YDS Phrasal Verbs (100Q)', slug: 'yds-phrasal-verbs' };
 const ydsReadingTest = { title: 'YDS Reading (40Q)', slug: 'yds-reading' };
 const ydsSynonymTest = { title: 'YDS Synonyms (Advanced)', slug: 'yds-synonyms' };
+const globalVocabHub = { title: 'Vocabulary Global', slug: 'global-vocab-hub' };
 const ydsConjunctionTest = { title: 'YDS Conjunctions (Bağlaçlar)', slug: 'yds-conjunctions' };
 
 // Grammar Focus testleri
@@ -200,6 +202,9 @@ function seededUniqueIndices(total: number, need: number, seed: number) {
 const LS_PREMIUM = 'em_is_premium';
 const LS_LAST = 'em_last_test';
 const LS_VOCAB_MAP = 'em_yds5000_map_v1';
+const LS_GLOBAL_VOCAB_MAP = 'em_global_vocab_map_v1';
+const GLOBAL_VOCAB_QUESTIONS_PER_TEST = 25;
+const GLOBAL_VOCAB_DURATION_MIN = 15;
 
 // Save / load helpers (safe)
 function safeJsonParse<T>(raw: string | null, fallback: T): T {
@@ -220,7 +225,22 @@ function HomeContent() {
   const [isRestarting, setIsRestarting] = useState(false);
   const [isPremium, setIsPremium] = useState(false);
   const [showYds3750Hub, setShowYds3750Hub] = useState(false);
+  const [showGlobalVocabHub, setShowGlobalVocabHub] = useState(false);
   const [lastTest, setLastTest] = useState<{ title: string; slug: string; at: string } | null>(null);
+
+  const ydsVocabulary2 = useMemo(() => {
+    return ((ydsVocabulary2Raw as any[]) || [])
+      .map((x: any) => ({
+        word: String(x?.word ?? '').trim(),
+        meaning: String(x?.meaning ?? '').trim(),
+      }))
+      .filter((x) => x.word && x.meaning);
+  }, []);
+
+  const globalVocabTestCount = useMemo(
+    () => Math.floor(ydsVocabulary2.length / GLOBAL_VOCAB_QUESTIONS_PER_TEST),
+    [ydsVocabulary2.length]
+  );
 
   // Hangi YDS exam testleri gerçekten var?
   const availableExamTests = useMemo(() => {
@@ -261,6 +281,38 @@ function HomeContent() {
     }
     return map;
   }, []);
+
+  const ensureGlobalVocabMap = useCallback(() => {
+    const total = ydsVocabulary2.length;
+    const testCount = Math.floor(total / GLOBAL_VOCAB_QUESTIONS_PER_TEST);
+    const map = safeJsonParse<Record<string, number[]>>(
+      typeof window !== 'undefined' ? localStorage.getItem(LS_GLOBAL_VOCAB_MAP) : null,
+      {}
+    );
+    if (!testCount || !total) return map;
+
+    let changed = false;
+    for (let t = 1; t <= testCount; t++) {
+      const key = String(t);
+      if (!Array.isArray(map[key]) || map[key].length !== GLOBAL_VOCAB_QUESTIONS_PER_TEST) {
+        map[key] = seededUniqueIndices(total, GLOBAL_VOCAB_QUESTIONS_PER_TEST, 7000 + t * 3571 + total * 13);
+        changed = true;
+      }
+    }
+
+    Object.keys(map).forEach((key) => {
+      const n = Number(key);
+      if (!Number.isFinite(n) || n < 1 || n > testCount) {
+        delete map[key];
+        changed = true;
+      }
+    });
+
+    if (changed && typeof window !== 'undefined') {
+      localStorage.setItem(LS_GLOBAL_VOCAB_MAP, JSON.stringify(map));
+    }
+    return map;
+  }, [ydsVocabulary2]);
 
   // --- TEST BAŞLATMA MANTIĞI ---
   const startTest = useCallback(
@@ -319,6 +371,67 @@ function HomeContent() {
           testSlug,
           test: { title, duration: 25 }, // minutes (we will use in Quiz page later)
           durationSeconds: 25 * 60,
+          questions,
+        };
+
+        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
+        saveLast(title, testSlug);
+        router.push(`/quiz/${attemptId}`);
+        return;
+      }
+
+      if (testSlug.startsWith('global-vocab-mini-')) {
+        const nStr = testSlug.split('-').pop() || '1';
+        const n = Math.max(1, Math.min(globalVocabTestCount, Number(nStr) || 1));
+        if (!globalVocabTestCount) {
+          alert('Vocabulary Global data is not enough to create a 25-question mini test yet.');
+          return;
+        }
+
+        const map = ensureGlobalVocabMap();
+        const indices = map[String(n)] || [];
+        const selectedWords = indices.map((i) => ydsVocabulary2[i]).filter(Boolean);
+
+        const questions = selectedWords
+          .map((item: { word: string; meaning: string }, idx: number) => {
+            const correctAnswer = item.meaning;
+            const uniqueDistractors = Array.from(
+              new Set(
+                ydsVocabulary2
+                  .filter((w) => w.meaning !== correctAnswer)
+                  .map((w) => w.meaning)
+              )
+            );
+            const distractors = shuffle(uniqueDistractors).slice(0, 3);
+            if (distractors.length < 3) return null;
+
+            const allOptions = shuffle([...distractors, correctAnswer]);
+            const idsLower = ['a', 'b', 'c', 'd'];
+
+            return {
+              id: `global-vocab-mini-${n}-q${idx + 1}`,
+              prompt: `What is the English meaning of **"${item.word}"**?`,
+              choices: allOptions.map((optText: string, i: number) => ({
+                id: idsLower[i],
+                text: optText,
+                isCorrect: optText === correctAnswer,
+              })),
+              explanation: `**${item.word}**: ${correctAnswer}`,
+            };
+          })
+          .filter(Boolean);
+
+        if (!questions.length) {
+          alert('Not enough distinct meanings found to build this test right now.');
+          return;
+        }
+
+        const title = `VOCABULARY GLOBAL · MINI TEST ${n} (25Q · ${GLOBAL_VOCAB_DURATION_MIN} min)`;
+        const payload = {
+          attemptId,
+          testSlug,
+          test: { title, duration: GLOBAL_VOCAB_DURATION_MIN },
+          durationSeconds: GLOBAL_VOCAB_DURATION_MIN * 60,
           questions,
         };
 
@@ -715,7 +828,7 @@ function HomeContent() {
       // default: send to /start
       router.push(`/start?testSlug=${encodeURIComponent(testSlug)}`);
     },
-    [ensureVocabMap, router]
+    [ensureGlobalVocabMap, ensureVocabMap, globalVocabTestCount, router, ydsVocabulary2]
   );
 
   // restart parametresi ile otomatik başlat
@@ -1204,6 +1317,48 @@ function HomeContent() {
       </div>
     </div>
   </button>
+
+  <DiamondCard
+    as="button"
+    onClick={() => {
+      const next = !showGlobalVocabHub;
+      setShowGlobalVocabHub(next);
+      if (!next) return;
+
+      ensureGlobalVocabMap();
+      setTimeout(() => {
+        document.getElementById('globalVocabHub')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+    }}
+    className={`group relative overflow-hidden rounded-2xl p-6 md:p-7 text-left
+      bg-gradient-to-br from-blue-600 via-indigo-700 to-cyan-600 text-white shadow-xl transition-all duration-300
+      transform hover:-translate-y-1 hover:shadow-cyan-500/30 ${
+        showGlobalVocabHub ? 'ring-2 ring-cyan-200 ring-offset-2 ring-offset-white dark:ring-offset-slate-900' : ''
+      }`}
+  >
+    <div className="absolute -top-10 -right-10 w-40 h-40 bg-cyan-300 opacity-20 rounded-full blur-3xl"></div>
+    <div className="relative z-10 flex flex-col justify-between h-full">
+      <div>
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/15 rounded-full text-[10px] font-black uppercase mb-3 border border-white/20">
+          🌍 Global Vocabulary
+        </div>
+        <div className="text-2xl font-black leading-tight">{globalVocabHub.title}</div>
+        <div className="mt-2 text-xs text-white/90 leading-relaxed">
+          25-question mini tests · stable question sets
+          <br />
+          Dynamic test count from loaded word pool
+        </div>
+      </div>
+      <div className="mt-6 flex items-center justify-between">
+        <div className="text-[11px] font-bold text-white/90">
+          {ydsVocabulary2.length} words · {globalVocabTestCount} tests
+        </div>
+        <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-indigo-700 text-2xl font-black shadow-lg group-hover:scale-110 transition-transform">
+          {showGlobalVocabHub ? '×' : '▶'}
+        </div>
+      </div>
+    </div>
+  </DiamondCard>
 </div>
 {/* 🧩 YDS CLOZE */}
 <a
@@ -1304,6 +1459,57 @@ function HomeContent() {
   </div>
 )}
 
+{showGlobalVocabHub && (
+  <div
+    id="globalVocabHub"
+    className="mb-12 bg-blue-50/95 dark:bg-indigo-950/30 rounded-3xl p-6 border-2 border-blue-200/80 dark:border-indigo-700/60 shadow-xl relative overflow-hidden text-left animate-in slide-in-from-top-4 duration-300"
+  >
+    <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-500"></div>
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
+      <div>
+        <h3 className="text-2xl font-black text-blue-700 dark:text-cyan-200 flex items-center gap-2">
+          <span className="text-3xl">🌍</span> Vocabulary Global Mini Tests
+        </h3>
+        <p className="text-sm text-blue-700/80 dark:text-cyan-100/80 mt-1">
+          Each test has 25 questions. The same test number always brings the same words.
+        </p>
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="text-xs font-bold px-3 py-1 rounded-full bg-white/90 dark:bg-slate-900/70 border border-blue-200/80 dark:border-indigo-700/60 text-blue-700 dark:text-cyan-200">
+          {ydsVocabulary2.length} words loaded · {globalVocabTestCount} tests
+        </span>
+        <button
+          type="button"
+          onClick={() => setShowGlobalVocabHub(false)}
+          className="text-xs font-bold px-4 py-2 rounded-xl bg-white/90 dark:bg-slate-900/70 border border-blue-200/80 dark:border-indigo-700/60 text-blue-700 dark:text-cyan-200 hover:bg-blue-100 dark:hover:bg-indigo-900 transition shadow-sm"
+        >
+          Close Panel
+        </button>
+      </div>
+    </div>
+
+    {globalVocabTestCount > 0 ? (
+      <div className="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-8 gap-3">
+        {Array.from({ length: globalVocabTestCount }, (_, i) => i + 1).map((num) => (
+          <button
+            type="button"
+            key={num}
+            onClick={() => startTest(`global-vocab-mini-${num}`)}
+            className="py-4 rounded-xl font-black text-sm shadow-sm transition-all transform hover:scale-[1.03] active:scale-[0.98] bg-blue-600 text-white hover:bg-blue-700 shadow-blue-200 ring-2 ring-blue-200 dark:ring-indigo-700/70 ring-offset-2 dark:ring-offset-slate-900"
+          >
+            Test {num}
+            <span className="block text-[10px] font-semibold opacity-90 mt-1">Start</span>
+          </button>
+        ))}
+      </div>
+    ) : (
+      <DiamondCard className="p-5 text-sm font-semibold text-blue-700 dark:text-cyan-200 border-blue-200/80 dark:border-indigo-700/60">
+        Not enough words to generate a 25-question test yet. Add more vocabulary and this panel will auto-expand.
+      </DiamondCard>
+    )}
+  </div>
+)}
+
           {/* OTHER MAIN TESTS */}
           <h2 className="text-2xl sm:text-3xl font-black mb-6 text-left">YDS Exam Pack</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
@@ -1350,12 +1556,25 @@ function HomeContent() {
               { test: ydsSynonymTest, tint: 'bg-purple-600/12 text-purple-700 dark:text-purple-300 border-purple-200/70 dark:border-purple-700/60' },
               { test: ydsConjunctionTest, tint: 'bg-slate-600/12 text-slate-700 dark:text-slate-200 border-slate-200/70 dark:border-slate-700/60' },
               { test: ieltsTest, tint: 'bg-sky-600/12 text-sky-700 dark:text-sky-300 border-sky-200/70 dark:border-sky-700/60' },
+              { test: globalVocabHub, tint: 'bg-blue-600/12 text-blue-700 dark:text-cyan-300 border-blue-200/70 dark:border-cyan-700/60' },
               { test: vocabTest, tint: 'bg-emerald-600/12 text-emerald-700 dark:text-emerald-300 border-emerald-200/70 dark:border-emerald-700/60' },
             ].map(({ test, tint }) => (
               <DiamondCard
                 as="button"
                 key={test.slug}
-                onClick={() => startTest(test.slug)}
+                onClick={() => {
+                  if (test.slug === globalVocabHub.slug) {
+                    const next = !showGlobalVocabHub;
+                    setShowGlobalVocabHub(next);
+                    if (!next) return;
+                    ensureGlobalVocabMap();
+                    setTimeout(() => {
+                      document.getElementById('globalVocabHub')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 80);
+                    return;
+                  }
+                  startTest(test.slug);
+                }}
                 className={`flex items-center justify-center px-6 py-8 text-lg sm:text-xl font-black ${tint}`}
               >
                 {test.title}
