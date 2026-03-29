@@ -237,9 +237,11 @@ function HomeContent() {
       .filter((x) => x.word && x.meaning);
   }, []);
 
+  const validGlobalVocabWordCount = ydsVocabulary2.length;
+
   const globalVocabTestCount = useMemo(
-    () => Math.floor(ydsVocabulary2.length / GLOBAL_VOCAB_QUESTIONS_PER_TEST),
-    [ydsVocabulary2.length]
+    () => Math.floor(validGlobalVocabWordCount / GLOBAL_VOCAB_QUESTIONS_PER_TEST),
+    [validGlobalVocabWordCount]
   );
 
   // Hangi YDS exam testleri gerçekten var?
@@ -1351,7 +1353,7 @@ function HomeContent() {
       </div>
       <div className="mt-6 flex items-center justify-between">
         <div className="text-[11px] font-bold text-white/90">
-          {ydsVocabulary2.length} words · {globalVocabTestCount} tests
+          {validGlobalVocabWordCount} words · {globalVocabTestCount} tests
         </div>
         <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-indigo-700 text-2xl font-black shadow-lg group-hover:scale-110 transition-transform">
           {showGlobalVocabHub ? '×' : '▶'}
@@ -1476,7 +1478,7 @@ function HomeContent() {
       </div>
       <div className="flex items-center gap-2">
         <span className="text-xs font-bold px-3 py-1 rounded-full bg-white/90 dark:bg-slate-900/70 border border-blue-200/80 dark:border-indigo-700/60 text-blue-700 dark:text-cyan-200">
-          {ydsVocabulary2.length} words loaded · {globalVocabTestCount} tests
+          {validGlobalVocabWordCount} words loaded · {globalVocabTestCount} tests
         </span>
         <button
           type="button"
@@ -1577,7 +1579,14 @@ function HomeContent() {
                 }}
                 className={`flex items-center justify-center px-6 py-8 text-lg sm:text-xl font-black ${tint}`}
               >
-                {test.title}
+                <span className="text-center leading-tight">
+                  {test.title}
+                  {test.slug === globalVocabHub.slug && (
+                    <span className="block mt-1 text-xs sm:text-sm font-bold opacity-80">
+                      {globalVocabTestCount} tests · {validGlobalVocabWordCount} words
+                    </span>
+                  )}
+                </span>
               </DiamondCard>
             ))}
           </div>
