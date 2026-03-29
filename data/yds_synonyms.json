@@ -6247,5 +6247,1115 @@
         "synonym": "Useless",
         "meaning": "Nafile",
         "distractors": ["Useful", "Effective", "Helpful"]
-    }
+    },
+  {
+    "word": "Grasp",
+    "synonym": "Understand",
+    "meaning_en": "to completely understand a fact or an idea",
+    "distractors": [
+      "Misunderstand",
+      "Ignore",
+      "Confuse"
+    ]
+  },
+  {
+    "word": "Grievance",
+    "synonym": "Complaint",
+    "meaning_en": "a real or imagined wrong or other cause for complaint",
+    "distractors": [
+      "Compliment",
+      "Praise",
+      "Commendation"
+    ]
+  },
+  {
+    "word": "Hinder",
+    "synonym": "Impede",
+    "meaning_en": "to create difficulties for someone or something, resulting in delay or obstruction",
+    "distractors": [
+      "Assist",
+      "Facilitate",
+      "Help"
+    ]
+  },
+  {
+    "word": "Harsh",
+    "synonym": "Severe",
+    "meaning_en": "unpleasantly rough or jarring to the senses",
+    "distractors": [
+      "Mild",
+      "Gentle",
+      "Soft"
+    ]
+  },
+  {
+    "word": "Isolate",
+    "synonym": "Separate",
+    "meaning_en": "to remain alone or apart from others",
+    "distractors": [
+      "Integrate",
+      "Combine",
+      "Join"
+    ]
+  },
+  {
+    "word": "Imitate",
+    "synonym": "Copy",
+    "meaning_en": "to take or follow as a model",
+    "distractors": [
+      "Originate",
+      "Create",
+      "Invent"
+    ]
+  },
+  {
+    "word": "Jubilant",
+    "synonym": "Overjoyed",
+    "meaning_en": "feeling or expressing great happiness and triumph",
+    "distractors": [
+      "Sorrowful",
+      "Depressed",
+      "Miserable"
+    ]
+  },
+  {
+    "word": "Jeopardize",
+    "synonym": "Endanger",
+    "meaning_en": "to put someone or something into a situation in which there is a danger of loss or harm",
+    "distractors": [
+      "Protect",
+      "Secure",
+      "Save"
+    ]
+  },
+  {
+    "word": "Keen",
+    "synonym": "Eager",
+    "meaning_en": "having or showing eagerness or enthusiasm",
+    "distractors": [
+      "Apathetic",
+      "Indifferent",
+      "Reluctant"
+    ]
+  },
+  {
+    "word": "Knack",
+    "synonym": "Skill",
+    "meaning_en": "an acquired or natural skill at performing a task",
+    "distractors": [
+      "Inability",
+      "Clumsiness",
+      "Ignorance"
+    ]
+  },
+  {
+    "word": "Luminous",
+    "synonym": "Shining",
+    "meaning_en": "full of or shedding light; bright or shining, especially in the dark",
+    "distractors": [
+      "Dark",
+      "Gloomy",
+      "Dim"
+    ]
+  },
+  {
+    "word": "Linger",
+    "synonym": "Delay",
+    "meaning_en": "to stay in a place longer than necessary",
+    "distractors": [
+      "Rush",
+      "Hasten",
+      "Leave"
+    ]
+  },
+  {
+    "word": "Mend",
+    "synonym": "Repair",
+    "meaning_en": "to restore to a good condition after damage or wear",
+    "distractors": [
+      "Break",
+      "Destroy",
+      "Damage"
+    ]
+  },
+  {
+    "word": "Mutiny",
+    "synonym": "Rebellion",
+    "meaning_en": "an open rebellion against the proper authorities",
+    "distractors": [
+      "Obedience",
+      "Submission",
+      "Compliance"
+    ]
+  },
+  {
+    "word": "Nomad",
+    "synonym": "Wanderer",
+    "meaning_en": "a person who does not stay long in the same place",
+    "distractors": [
+      "Settler",
+      "Resident",
+      "Inhabitant"
+    ]
+  },
+  {
+    "word": "Novel",
+    "synonym": "Original",
+    "meaning_en": "new or unusual in an interesting way",
+    "distractors": [
+      "Traditional",
+      "Common",
+      "Outdated"
+    ]
+  },
+  {
+    "word": "Obstinate",
+    "synonym": "Stubborn",
+    "meaning_en": "stubbornly refusing to change one's opinion or chosen course of action",
+    "distractors": [
+      "Compliant",
+      "Flexible",
+      "Yielding"
+    ]
+  },
+  {
+    "word": "Obsolete",
+    "synonym": "Outdated",
+    "meaning_en": "no longer produced or used; out of date",
+    "distractors": [
+      "Modern",
+      "Current",
+      "New"
+    ]
+  },
+  {
+    "word": "Peculiar",
+    "synonym": "Strange",
+    "meaning_en": "strange or odd; unusual",
+    "distractors": [
+      "Ordinary",
+      "Common",
+      "Normal"
+    ]
+  },
+  {
+    "word": "Plausible",
+    "synonym": "Reasonable",
+    "meaning_en": "seeming reasonable or probable",
+    "distractors": [
+      "Unlikely",
+      "Impossible",
+      "Absurd"
+    ]
+  },
+  {
+    "word": "Quench",
+    "synonym": "Satisfy",
+    "meaning_en": "to satisfy a thirst or desire",
+    "distractors": [
+      "Deprive",
+      "Starve",
+      "Ignite"
+    ]
+  },
+  {
+    "word": "Rectify",
+    "synonym": "Correct",
+    "meaning_en": "to put something right; purify or refine",
+    "distractors": [
+      "Worsen",
+      "Ruin",
+      "Damage"
+    ]
+  },
+  {
+    "word": "Serene",
+    "synonym": "Calm",
+    "meaning_en": "calm, peaceful, and untroubled",
+    "distractors": [
+      "Turbulent",
+      "Chaotic",
+      "Anxious"
+    ]
+  },
+  {
+    "word": "Tedious",
+    "synonym": "Boring",
+    "meaning_en": "too long, slow, or dull; tiresome or monotonous",
+    "distractors": [
+      "Exciting",
+      "Interesting",
+      "Thrilling"
+    ]
+  },
+  {
+    "word": "Unanimous",
+    "synonym": "Agreed",
+    "meaning_en": "fully in agreement",
+    "distractors": [
+      "Divided",
+      "Split",
+      "Disagreeing"
+    ]
+  },
+  {
+    "word": "Vivid",
+    "synonym": "Bright",
+    "meaning_en": "producing powerful feelings or strong, clear images in the mind",
+    "distractors": [
+      "Dull",
+      "Vague",
+      "Obscure"
+    ]
+  },
+  {
+    "word": "Wane",
+    "synonym": "Decrease",
+    "meaning_en": "to decrease in vigor, power, or extent; become weaker",
+    "distractors": [
+      "Increase",
+      "Grow",
+      "Wax"
+    ]
+  },
+  {
+    "word": "Yearn",
+    "synonym": "Desire",
+    "meaning_en": "to have an intense feeling of longing for something",
+    "distractors": [
+      "Despise",
+      "Hate",
+      "Dislike"
+    ]
+  },
+  {
+    "word": "Zealous",
+    "synonym": "Enthusiastic",
+    "meaning_en": "showing great energy or enthusiasm in pursuit of a cause",
+    "distractors": [
+      "Apathetic",
+      "Indifferent",
+      "Uncaring"
+    ]
+  },
+  {
+    "word": "Genuine",
+    "synonym": "Authentic",
+    "meaning_en": "truly what something is said to be; authentic",
+    "distractors": [
+      "Fake",
+      "Artificial",
+      "Counterfeit"
+    ]
+  },
+  {
+    "word": "Gregarious",
+    "synonym": "Sociable",
+    "meaning_en": "fond of company; sociable",
+    "distractors": [
+      "Introverted",
+      "Isolated",
+      "Shy"
+    ]
+  },
+  {
+    "word": "Hasten",
+    "synonym": "Accelerate",
+    "meaning_en": "be quick to do something; move or travel hurriedly",
+    "distractors": [
+      "Delay",
+      "Linger",
+      "Postpone"
+    ]
+  },
+  {
+    "word": "Hypothesis",
+    "synonym": "Theory",
+    "meaning_en": "a supposition or proposed explanation made on the basis of limited evidence",
+    "distractors": [
+      "Fact",
+      "Certainty",
+      "Proof"
+    ]
+  },
+  {
+    "word": "Ignite",
+    "synonym": "Kindle",
+    "meaning_en": "catch fire or cause to catch fire",
+    "distractors": [
+      "Extinguish",
+      "Dampen",
+      "Quench"
+    ]
+  },
+  {
+    "word": "Inevitable",
+    "synonym": "Unavoidable",
+    "meaning_en": "certain to happen; unavoidable",
+    "distractors": [
+      "Preventable",
+      "Uncertain",
+      "Doubtful"
+    ]
+  },
+  {
+    "word": "Jovial",
+    "synonym": "Cheerful",
+    "meaning_en": "cheerful and friendly",
+    "distractors": [
+      "Miserable",
+      "Gloomy",
+      "Hostile"
+    ]
+  },
+  {
+    "word": "Kinship",
+    "synonym": "Affinity",
+    "meaning_en": "a sharing of characteristics or origins; blood relationship",
+    "distractors": [
+      "Enmity",
+      "Disconnection",
+      "Isolation"
+    ]
+  },
+  {
+    "word": "Lucrative",
+    "synonym": "Profitable",
+    "meaning_en": "producing a great deal of profit",
+    "distractors": [
+      "Unprofitable",
+      "Worthless",
+      "Failing"
+    ]
+  },
+  {
+    "word": "Meticulous",
+    "synonym": "Careful",
+    "meaning_en": "showing great attention to detail; very careful and precise",
+    "distractors": [
+      "Sloppy",
+      "Careless",
+      "Messy"
+    ]
+  },
+  {
+    "word": "Nostalgic",
+    "synonym": "Sentimental",
+    "meaning_en": "characterized by or exhibiting feelings of nostalgia",
+    "distractors": [
+      "Forward-looking",
+      "Unsentimental",
+      "Cynical"
+    ]
+  },
+  {
+    "word": "Obscure",
+    "synonym": "Unclear",
+    "meaning_en": "not discovered or known about; uncertain",
+    "distractors": [
+      "Obvious",
+      "Famous",
+      "Clear"
+    ]
+  },
+  {
+    "word": "Profound",
+    "synonym": "Deep",
+    "meaning_en": "very great or intense; having or showing great knowledge or insight",
+    "distractors": [
+      "Superficial",
+      "Shallow",
+      "Mild"
+    ]
+  },
+  {
+    "word": "Quaint",
+    "synonym": "Charming",
+    "meaning_en": "attractively unusual or old-fashioned",
+    "distractors": [
+      "Modern",
+      "Ordinary",
+      "Ugly"
+    ]
+  },
+  {
+    "word": "Resilient",
+    "synonym": "Tough",
+    "meaning_en": "able to withstand or recover quickly from difficult conditions",
+    "distractors": [
+      "Vulnerable",
+      "Fragile",
+      "Weak"
+    ]
+  },
+  {
+    "word": "Scrutinize",
+    "synonym": "Examine",
+    "meaning_en": "examine or inspect closely and thoroughly",
+    "distractors": [
+      "Ignore",
+      "Glance",
+      "Neglect"
+    ]
+  },
+  {
+    "word": "Tangible",
+    "synonym": "Concrete",
+    "meaning_en": "perceptible by touch; clear and definite",
+    "distractors": [
+      "Abstract",
+      "Conceptual",
+      "Imaginary"
+    ]
+  },
+  {
+    "word": "Ubiquitous",
+    "synonym": "Omnipresent",
+    "meaning_en": "present, appearing, or found everywhere",
+    "distractors": [
+      "Rare",
+      "Scarce",
+      "Uncommon"
+    ]
+  },
+  {
+    "word": "Valiant",
+    "synonym": "Brave",
+    "meaning_en": "possessing or showing courage or determination",
+    "distractors": [
+      "Cowardly",
+      "Fearful",
+      "Timid"
+    ]
+  },
+  {
+    "word": "Widespread",
+    "synonym": "Extensive",
+    "meaning_en": "found or distributed over a large area or number of people",
+    "distractors": [
+      "Limited",
+      "Local",
+      "Narrow"
+    ]
+  },
+  {
+    "word": "Yield",
+    "synonym": "Produce",
+    "meaning_en": "produce or provide (a natural, agricultural, or industrial product)",
+    "distractors": [
+      "Consume",
+      "Keep",
+      "Withhold"
+    ]
+  },
+  {
+    "word": "Zest",
+    "synonym": "Enthusiasm",
+    "meaning_en": "great enthusiasm and energy",
+    "distractors": [
+      "Apathy",
+      "Boredom",
+      "Dullness"
+    ]
+  },
+  {
+    "word": "Abundant",
+    "synonym": "Plentiful",
+    "meaning_en": "existing or available in large quantities; plentiful",
+    "distractors": ["Scarce", "Rare", "Deficient"]
+  },
+  {
+    "word": "Accomplice",
+    "synonym": "Partner",
+    "meaning_en": "a person who helps another commit a crime",
+    "distractors": ["Opponent", "Rival", "Enemy"]
+  },
+  {
+    "word": "Adept",
+    "synonym": "Skillful",
+    "meaning_en": "very skilled or proficient at something",
+    "distractors": ["Clumsy", "Incompetent", "Inept"]
+  },
+  {
+    "word": "Amiable",
+    "synonym": "Friendly",
+    "meaning_en": "having or displaying a friendly and pleasant manner",
+    "distractors": ["Hostile", "Rude", "Aggressive"]
+  },
+  {
+    "word": "Baffle",
+    "synonym": "Confuse",
+    "meaning_en": "totally bewilder or perplex",
+    "distractors": ["Clarify", "Explain", "Enlighten"]
+  },
+  {
+    "word": "Barren",
+    "synonym": "Desolate",
+    "meaning_en": "too poor to produce much or any vegetation",
+    "distractors": ["Fertile", "Productive", "Lush"]
+  },
+  {
+    "word": "Bashful",
+    "synonym": "Shy",
+    "meaning_en": "reluctant to draw attention to oneself; shy",
+    "distractors": ["Bold", "Confident", "Arrogant"]
+  },
+  {
+    "word": "Bolster",
+    "synonym": "Strengthen",
+    "meaning_en": "support or strengthen; prop up",
+    "distractors": ["Weaken", "Undermine", "Hinder"]
+  },
+  {
+    "word": "Candid",
+    "synonym": "Frank",
+    "meaning_en": "truthful and straightforward; frank",
+    "distractors": ["Deceitful", "Dishonest", "Secretive"]
+  },
+  {
+    "word": "Conceal",
+    "synonym": "Hide",
+    "meaning_en": "keep from sight; hide",
+    "distractors": ["Reveal", "Expose", "Disclose"]
+  },
+  {
+    "word": "Concur",
+    "synonym": "Agree",
+    "meaning_en": "be of the same opinion; agree",
+    "distractors": ["Disagree", "Argue", "Oppose"]
+  },
+  {
+    "word": "Condemn",
+    "synonym": "Criticize",
+    "meaning_en": "express complete disapproval of, typically in public",
+    "distractors": ["Praise", "Approve", "Commend"]
+  },
+  {
+    "word": "Daunting",
+    "synonym": "Intimidating",
+    "meaning_en": "seeming difficult to deal with in anticipation; intimidating",
+    "distractors": ["Encouraging", "Comforting", "Easy"]
+  },
+  {
+    "word": "Deceive",
+    "synonym": "Mislead",
+    "meaning_en": "cause someone to believe something that is not true",
+    "distractors": ["Guide", "Inform", "Protect"]
+  },
+  {
+    "word": "Deficient",
+    "synonym": "Lacking",
+    "meaning_en": "not having enough of a specified quality or ingredient",
+    "distractors": ["Sufficient", "Abundant", "Adequate"]
+  },
+  {
+    "word": "Deteriorate",
+    "synonym": "Worsen",
+    "meaning_en": "become progressively worse",
+    "distractors": ["Improve", "Enhance", "Recover"]
+  },
+  {
+    "word": "Elicit",
+    "synonym": "Extract",
+    "meaning_en": "evoke or draw out a response or answer from someone",
+    "distractors": ["Suppress", "Hide", "Ignore"]
+  },
+  {
+    "word": "Eloquent",
+    "synonym": "Articulate",
+    "meaning_en": "fluent or persuasive in speaking or writing",
+    "distractors": ["Silent", "Mumbling", "Inarticulate"]
+  },
+  {
+    "word": "Elusive",
+    "synonym": "Evasive",
+    "meaning_en": "difficult to find, catch, or achieve",
+    "distractors": ["Accessible", "Available", "Obvious"]
+  },
+  {
+    "word": "Emancipate",
+    "synonym": "Liberate",
+    "meaning_en": "set free, especially from legal, social, or political restrictions",
+    "distractors": ["Enslave", "Imprison", "Bind"]
+  },
+  {
+    "word": "Fabricate",
+    "synonym": "Invent",
+    "meaning_en": "invent or concoct something, typically with deceitful intent",
+    "distractors": ["Destroy", "Tell truth", "Dismantle"]
+  },
+  {
+    "word": "Fathom",
+    "synonym": "Understand",
+    "meaning_en": "understand a difficult problem or an enigmatic person",
+    "distractors": ["Misunderstand", "Confuse", "Miss"]
+  },
+  {
+    "word": "Fervent",
+    "synonym": "Passionate",
+    "meaning_en": "having or displaying a passionate intensity",
+    "distractors": ["Apathetic", "Indifferent", "Cold"]
+  },
+  {
+    "word": "Flawless",
+    "synonym": "Perfect",
+    "meaning_en": "without any blemishes or imperfections; perfect",
+    "distractors": ["Defective", "Broken", "Faulty"]
+  },
+  {
+    "word": "Garrulous",
+    "synonym": "Talkative",
+    "meaning_en": "excessively talkative, especially on trivial matters",
+    "distractors": ["Silent", "Quiet", "Reserved"]
+  },
+  {
+    "word": "Generous",
+    "synonym": "Giving",
+    "meaning_en": "showing a readiness to give more of something than is strictly necessary",
+    "distractors": ["Stingy", "Greedy", "Selfish"]
+  },
+  {
+    "word": "Grasp",
+    "synonym": "Comprehend",
+    "meaning_en": "seize and hold firmly; understand fully",
+    "distractors": ["Release", "Misunderstand", "Drop"]
+  },
+  {
+    "word": "Guile",
+    "synonym": "Deceit",
+    "meaning_en": "sly or cunning intelligence",
+    "distractors": ["Honesty", "Innocence", "Truthfulness"]
+  },
+  {
+    "word": "Haphazard",
+    "synonym": "Random",
+    "meaning_en": "lacking any obvious principle of organization",
+    "distractors": ["Planned", "Methodical", "Systematic"]
+  },
+  {
+    "word": "Hinder",
+    "synonym": "Impede",
+    "meaning_en": "create difficulties for someone or something, resulting in delay",
+    "distractors": ["Facilitate", "Assist", "Help"]
+  },
+  {
+    "word": "Hoard",
+    "synonym": "Accumulate",
+    "meaning_en": "amass and hide or store away",
+    "distractors": ["Squander", "Distribute", "Waste"]
+  },
+  {
+    "word": "Hostile",
+    "synonym": "Aggressive",
+    "meaning_en": "unfriendly; antagonistic",
+    "distractors": ["Friendly", "Welcoming", "Peaceful"]
+  },
+  {
+    "word": "Illuminate",
+    "synonym": "Brighten",
+    "meaning_en": "make something visible or bright by shining light on it",
+    "distractors": ["Darken", "Obscure", "Shadow"]
+  },
+  {
+    "word": "Imminent",
+    "synonym": "Approaching",
+    "meaning_en": "about to happen",
+    "distractors": ["Distant", "Delayed", "Past"]
+  },
+  {
+    "word": "Imperative",
+    "synonym": "Crucial",
+    "meaning_en": "of vital importance; crucial",
+    "distractors": ["Optional", "Unimportant", "Trivial"]
+  },
+  {
+    "word": "Imply",
+    "synonym": "Suggest",
+    "meaning_en": "strongly suggest the truth or existence of something not expressly stated",
+    "distractors": ["Declare", "State clearly", "Demand"]
+  },
+  {
+    "word": "Jargon",
+    "synonym": "Slang",
+    "meaning_en": "special words or expressions used by a particular profession",
+    "distractors": ["Standard", "Common language", "Clarity"]
+  },
+  {
+    "word": "Jeer",
+    "synonym": "Mock",
+    "meaning_en": "make rude and mocking remarks, typically in a loud voice",
+    "distractors": ["Cheer", "Applaud", "Praise"]
+  },
+  {
+    "word": "Judicious",
+    "synonym": "Wise",
+    "meaning_en": "having, showing, or done with good judgment or sense",
+    "distractors": ["Foolish", "Rash", "Careless"]
+  },
+  {
+    "word": "Justify",
+    "synonym": "Defend",
+    "meaning_en": "show or prove to be right or reasonable",
+    "distractors": ["Condemn", "Accuse", "Blame"]
+  },
+  {
+    "word": "Keen",
+    "synonym": "Sharp",
+    "meaning_en": "highly developed; sharp or eager",
+    "distractors": ["Dull", "Apathetic", "Blunt"]
+  },
+  {
+    "word": "Kinship",
+    "synonym": "Connection",
+    "meaning_en": "blood relationship or a sharing of characteristics",
+    "distractors": ["Enmity", "Isolation", "Hostility"]
+  },
+  {
+    "word": "Knack",
+    "synonym": "Talent",
+    "meaning_en": "an acquired or natural skill at performing a task",
+    "distractors": ["Inability", "Clumsiness", "Ignorance"]
+  },
+  {
+    "word": "Knotty",
+    "synonym": "Complex",
+    "meaning_en": "extremely difficult or intricate",
+    "distractors": ["Simple", "Easy", "Straightforward"]
+  },
+  {
+    "word": "Lament",
+    "synonym": "Mourn",
+    "meaning_en": "a passionate expression of grief or sorrow",
+    "distractors": ["Celebrate", "Rejoice", "Cheer"]
+  },
+  {
+    "word": "Latent",
+    "synonym": "Hidden",
+    "meaning_en": "existing but not yet developed or manifest",
+    "distractors": ["Obvious", "Active", "Visible"]
+  },
+  {
+    "word": "Laud",
+    "synonym": "Praise",
+    "meaning_en": "praise highly, especially in a public context",
+    "distractors": ["Criticize", "Condemn", "Blame"]
+  },
+  {
+    "word": "Lavish",
+    "synonym": "Extravagant",
+    "meaning_en": "sumptuously rich, elaborate, or luxurious",
+    "distractors": ["Poor", "Meager", "Frugal"]
+  },
+  {
+    "word": "Mandatory",
+    "synonym": "Required",
+    "meaning_en": "required by law or rules; compulsory",
+    "distractors": ["Optional", "Voluntary", "Unnecessary"]
+  },
+  {
+    "word": "Manifest",
+    "synonym": "Display",
+    "meaning_en": "clear or obvious to the eye or mind",
+    "distractors": ["Hide", "Conceal", "Obscure"]
+  },
+  {
+    "word": "Marginal",
+    "synonym": "Borderline",
+    "meaning_en": "of, relating to, or situated at the edge or margin of something",
+    "distractors": ["Central", "Core", "Major"]
+  },
+  {
+    "word": "Migrate",
+    "synonym": "Relocate",
+    "meaning_en": "move from one specific part of something to another",
+    "distractors": ["Stay", "Remain", "Settle"]
+  },
+  {
+    "word": "Negligent",
+    "synonym": "Careless",
+    "meaning_en": "failing to take proper care in doing something",
+    "distractors": ["Careful", "Attentive", "Meticulous"]
+  },
+  {
+    "word": "Nimble",
+    "synonym": "Agile",
+    "meaning_en": "quick and light in movement or action",
+    "distractors": ["Clumsy", "Slow", "Stiff"]
+  },
+  {
+    "word": "Notify",
+    "synonym": "Inform",
+    "meaning_en": "inform someone of something, typically in a formal or official manner",
+    "distractors": ["Conceal", "Hide", "Ignore"]
+  },
+  {
+    "word": "Novice",
+    "synonym": "Beginner",
+    "meaning_en": "a person new to or inexperienced in a field or situation",
+    "distractors": ["Expert", "Professional", "Veteran"]
+  },
+  {
+    "word": "Oblige",
+    "synonym": "Compel",
+    "meaning_en": "make someone legally or morally bound to an action or course of action",
+    "distractors": ["Free", "Release", "Pardon"]
+  },
+  {
+    "word": "Obnoxious",
+    "synonym": "Offensive",
+    "meaning_en": "extremely unpleasant",
+    "distractors": ["Pleasant", "Delightful", "Charming"]
+  },
+  {
+    "word": "Obstinate",
+    "synonym": "Stubborn",
+    "meaning_en": "stubbornly refusing to change one's opinion or course of action",
+    "distractors": ["Compliant", "Flexible", "Yielding"]
+  },
+  {
+    "word": "Opaque",
+    "synonym": "Cloudy",
+    "meaning_en": "not able to be seen through; not transparent",
+    "distractors": ["Transparent", "Clear", "Translucent"]
+  },
+  {
+    "word": "Perceive",
+    "synonym": "Notice",
+    "meaning_en": "become aware or conscious of something",
+    "distractors": ["Ignore", "Miss", "Overlook"]
+  },
+  {
+    "word": "Perplex",
+    "synonym": "Confuse",
+    "meaning_en": "cause someone to feel completely baffled",
+    "distractors": ["Clarify", "Explain", "Enlighten"]
+  },
+  {
+    "word": "Pervasive",
+    "synonym": "Widespread",
+    "meaning_en": "spreading widely throughout an area or a group of people",
+    "distractors": ["Rare", "Localized", "Limited"]
+  },
+  {
+    "word": "Plausible",
+    "synonym": "Credible",
+    "meaning_en": "seeming reasonable or probable",
+    "distractors": ["Unlikely", "Impossible", "Absurd"]
+  },
+  {
+    "word": "Quaint",
+    "synonym": "Charming",
+    "meaning_en": "attractively unusual or old-fashioned",
+    "distractors": ["Modern", "Ugly", "Contemporary"]
+  },
+  {
+    "word": "Quash",
+    "synonym": "Suppress",
+    "meaning_en": "put an end to; suppress",
+    "distractors": ["Encourage", "Support", "Promote"]
+  },
+  {
+    "word": "Quell",
+    "synonym": "Subdue",
+    "meaning_en": "put an end to a rebellion or other disorder, typically by the use of force",
+    "distractors": ["Incite", "Provoke", "Agitate"]
+  },
+  {
+    "word": "Query",
+    "synonym": "Question",
+    "meaning_en": "a question, especially one addressed to an official or organization",
+    "distractors": ["Answer", "Reply", "Response"]
+  },
+  {
+    "word": "Ratify",
+    "synonym": "Approve",
+    "meaning_en": "sign or give formal consent to a treaty, contract, or agreement",
+    "distractors": ["Reject", "Deny", "Veto"]
+  },
+  {
+    "word": "Relish",
+    "synonym": "Enjoy",
+    "meaning_en": "enjoy greatly",
+    "distractors": ["Dislike", "Hate", "Despise"]
+  },
+  {
+    "word": "Remedy",
+    "synonym": "Cure",
+    "meaning_en": "a medicine or treatment for a disease or injury",
+    "distractors": ["Poison", "Disease", "Harm"]
+  },
+  {
+    "word": "Resilient",
+    "synonym": "Tough",
+    "meaning_en": "able to withstand or recover quickly from difficult conditions",
+    "distractors": ["Fragile", "Weak", "Vulnerable"]
+  },
+  {
+    "word": "Scrutinize",
+    "synonym": "Examine",
+    "meaning_en": "examine or inspect closely and thoroughly",
+    "distractors": ["Ignore", "Glance", "Neglect"]
+  },
+  {
+    "word": "Sever",
+    "synonym": "Cut",
+    "meaning_en": "divide by cutting or slicing, especially suddenly and forcibly",
+    "distractors": ["Join", "Unite", "Connect"]
+  },
+  {
+    "word": "Solitary",
+    "synonym": "Alone",
+    "meaning_en": "done or existing alone",
+    "distractors": ["Sociable", "Crowded", "Together"]
+  },
+  {
+    "word": "Sporadic",
+    "synonym": "Occasional",
+    "meaning_en": "occurring at irregular intervals or only in a few places",
+    "distractors": ["Frequent", "Constant", "Regular"]
+  },
+  {
+    "word": "Taint",
+    "synonym": "Contaminate",
+    "meaning_en": "contaminate or pollute something",
+    "distractors": ["Purify", "Clean", "Filter"]
+  },
+  {
+    "word": "Tangle",
+    "synonym": "Complicate",
+    "meaning_en": "twist together into a confused mass",
+    "distractors": ["Untangle", "Simplify", "Clear"]
+  },
+  {
+    "word": "Tedious",
+    "synonym": "Boring",
+    "meaning_en": "too long, slow, or dull; tiresome or monotonous",
+    "distractors": ["Exciting", "Interesting", "Thrilling"]
+  },
+  {
+    "word": "Thrive",
+    "synonym": "Flourish",
+    "meaning_en": "grow or develop well or vigorously",
+    "distractors": ["Fail", "Die", "Wither"]
+  },
+  {
+    "word": "Ubiquitous",
+    "synonym": "Everywhere",
+    "meaning_en": "present, appearing, or found everywhere",
+    "distractors": ["Rare", "Scarce", "Uncommon"]
+  },
+  {
+    "word": "Unanimous",
+    "synonym": "Agreed",
+    "meaning_en": "fully in agreement",
+    "distractors": ["Divided", "Split", "Disagreeing"]
+  },
+  {
+    "word": "Uncanny",
+    "synonym": "Weird",
+    "meaning_en": "strange or mysterious, especially in an unsettling way",
+    "distractors": ["Normal", "Ordinary", "Common"]
+  },
+  {
+    "word": "Undertake",
+    "synonym": "Attempt",
+    "meaning_en": "commit oneself to and begin an enterprise or responsibility",
+    "distractors": ["Abandon", "Avoid", "Neglect"]
+  },
+  {
+    "word": "Vacant",
+    "synonym": "Empty",
+    "meaning_en": "having no fixtures, furniture, or inhabitants; empty",
+    "distractors": ["Occupied", "Full", "Busy"]
+  },
+  {
+    "word": "Vague",
+    "synonym": "Unclear",
+    "meaning_en": "of uncertain, indefinite, or unclear character or meaning",
+    "distractors": ["Clear", "Specific", "Definite"]
+  },
+  {
+    "word": "Validate",
+    "synonym": "Confirm",
+    "meaning_en": "check or prove the validity or accuracy of something",
+    "distractors": ["Deny", "Refute", "Invalidate"]
+  },
+  {
+    "word": "Versatile",
+    "synonym": "Adaptable",
+    "meaning_en": "able to adapt or be adapted to many different functions or activities",
+    "distractors": ["Inflexible", "Rigid", "Limited"]
+  },
+  {
+    "word": "Wane",
+    "synonym": "Decrease",
+    "meaning_en": "decrease in vigor, power, or extent; become weaker",
+    "distractors": ["Increase", "Grow", "Expand"]
+  },
+  {
+    "word": "Wary",
+    "synonym": "Cautious",
+    "meaning_en": "feeling or showing caution about possible dangers or problems",
+    "distractors": ["Careless", "Trusting", "Reckless"]
+  },
+  {
+    "word": "Waver",
+    "synonym": "Hesitate",
+    "meaning_en": "shake with a quivering motion; be undecided",
+    "distractors": ["Decide", "Stand firm", "Persist"]
+  },
+  {
+    "word": "Wholesome",
+    "synonym": "Healthy",
+    "meaning_en": "conducive to or suggestive of good health and physical well-being",
+    "distractors": ["Unhealthy", "Toxic", "Harmful"]
+  },
+  {
+    "word": "Yearn",
+    "synonym": "Long",
+    "meaning_en": "have an intense feeling of longing for something",
+    "distractors": ["Despise", "Hate", "Dislike"]
+  },
+  {
+    "word": "Yield",
+    "synonym": "Produce",
+    "meaning_en": "produce or provide a natural, agricultural, or industrial product",
+    "distractors": ["Keep", "Withhold", "Retain"]
+  },
+  {
+    "word": "Youthful",
+    "synonym": "Young",
+    "meaning_en": "young or seeming young",
+    "distractors": ["Old", "Elderly", "Aged"]
+  },
+  {
+    "word": "Yell",
+    "synonym": "Shout",
+    "meaning_en": "a loud, sharp cry, especially of pain, surprise, or delight",
+    "distractors": ["Whisper", "Mumble", "Murmur"]
+  },
+  {
+    "word": "Zenith",
+    "synonym": "Peak",
+    "meaning_en": "the time at which something is most powerful or successful",
+    "distractors": ["Bottom", "Base", "Nadir"]
+  },
+  {
+    "word": "Zealous",
+    "synonym": "Eager",
+    "meaning_en": "having or showing great energy or enthusiasm in pursuit of a cause",
+    "distractors": ["Apathetic", "Indifferent", "Uncaring"]
+  },
+  {
+    "word": "Zigzag",
+    "synonym": "Meander",
+    "meaning_en": "a line or course having abrupt alternate right and left turns",
+    "distractors": ["Straight", "Direct", "Level"]
+  },
+  {
+    "word": "Zealot",
+    "synonym": "Fanatic",
+    "meaning_en": "a person who is fanatical and uncompromising in pursuit of their religious, political, or other ideals",
+    "distractors": ["Moderate", "Pacifist", "Skeptic"]
+  }
 ]
