@@ -203,8 +203,11 @@ const LS_PREMIUM = 'em_is_premium';
 const LS_LAST = 'em_last_test';
 const LS_VOCAB_MAP = 'em_yds5000_map_v1';
 const LS_GLOBAL_VOCAB_MAP = 'em_global_vocab_map_v1';
+const LS_ENGLISH_DEUTSCH_MAP = 'em_english_deutsch_map_v1';
 const GLOBAL_VOCAB_QUESTIONS_PER_TEST = 25;
 const GLOBAL_VOCAB_DURATION_MIN = 15;
+const EN_DE_QUESTIONS_PER_TEST = 50;
+const EN_DE_DURATION_MIN = 25;
 
 // Save / load helpers (safe)
 function safeJsonParse<T>(raw: string | null, fallback: T): T {
@@ -226,6 +229,8 @@ function HomeContent() {
   const [isPremium, setIsPremium] = useState(false);
   const [showYds3750Hub, setShowYds3750Hub] = useState(false);
   const [showGlobalVocabHub, setShowGlobalVocabHub] = useState(false);
+  const [showEnglishDeutschHub, setShowEnglishDeutschHub] = useState(false);
+  const [englishDeutschWords, setEnglishDeutschWords] = useState<Array<{ word: string; meaning: string }>>([]);
   const [lastTest, setLastTest] = useState<{ title: string; slug: string; at: string } | null>(null);
 
   const ydsVocabulary2 = useMemo(() => {
@@ -244,6 +249,13 @@ function HomeContent() {
     [validGlobalVocabWordCount]
   );
 
+  const validEnglishDeutschWordCount = englishDeutschWords.length;
+
+  const englishDeutschTestCount = useMemo(
+    () => Math.floor(validEnglishDeutschWordCount / EN_DE_QUESTIONS_PER_TEST),
+    [validEnglishDeutschWordCount]
+  );
+
   // Hangi YDS exam testleri gerçekten var?
   const availableExamTests = useMemo(() => {
     return Object.keys(YDS_EXAM_MAP)
@@ -260,6 +272,35 @@ function HomeContent() {
 
     const last = safeJsonParse<{ title: string; slug: string; at: string } | null>(localStorage.getItem(LS_LAST), null);
     if (last?.slug && last?.title) setLastTest(last);
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadEnglishDeutschWords = async () => {
+      try {
+        const res = await fetch('/api/english-deutsch-words');
+        if (!res.ok) return;
+        const data = (await res.json()) as Array<{ word?: string; meaning?: string }>;
+        if (cancelled || !Array.isArray(data)) return;
+
+        const cleaned = data
+          .map((x) => ({
+            word: String(x?.word ?? '').trim(),
+            meaning: String(x?.meaning ?? '').trim(),
+          }))
+          .filter((x) => x.word && x.meaning);
+
+        setEnglishDeutschWords(cleaned);
+      } catch {
+        setEnglishDeutschWords([]);
+      }
+    };
+
+    loadEnglishDeutschWords();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   // --- 75 mini test mapping (stable) ---
@@ -315,6 +356,38 @@ function HomeContent() {
     }
     return map;
   }, [ydsVocabulary2]);
+
+  const ensureEnglishDeutschMap = useCallback(() => {
+    const total = englishDeutschWords.length;
+    const testCount = Math.floor(total / EN_DE_QUESTIONS_PER_TEST);
+    const map = safeJsonParse<Record<string, number[]>>(
+      typeof window !== 'undefined' ? localStorage.getItem(LS_ENGLISH_DEUTSCH_MAP) : null,
+      {}
+    );
+    if (!testCount || !total) return map;
+
+    let changed = false;
+    for (let t = 1; t <= testCount; t++) {
+      const key = String(t);
+      if (!Array.isArray(map[key]) || map[key].length !== EN_DE_QUESTIONS_PER_TEST) {
+        map[key] = seededUniqueIndices(total, EN_DE_QUESTIONS_PER_TEST, 9100 + t * 4051 + total * 19);
+        changed = true;
+      }
+    }
+
+    Object.keys(map).forEach((key) => {
+      const n = Number(key);
+      if (!Number.isFinite(n) || n < 1 || n > testCount) {
+        delete map[key];
+        changed = true;
+      }
+    });
+
+    if (changed && typeof window !== 'undefined') {
+      localStorage.setItem(LS_ENGLISH_DEUTSCH_MAP, JSON.stringify(map));
+    }
+    return map;
+  }, [englishDeutschWords]);
 
   // --- TEST BAŞLATMA MANTIĞI ---
   const startTest = useCallback(
@@ -434,6 +507,67 @@ function HomeContent() {
           testSlug,
           test: { title, duration: GLOBAL_VOCAB_DURATION_MIN },
           durationSeconds: GLOBAL_VOCAB_DURATION_MIN * 60,
+          questions,
+        };
+
+        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
+        saveLast(title, testSlug);
+        router.push(`/quiz/${attemptId}`);
+        return;
+      }
+
+      if (testSlug.startsWith('english-deutsch-mini-')) {
+        const nStr = testSlug.split('-').pop() || '1';
+        const n = Math.max(1, Math.min(englishDeutschTestCount, Number(nStr) || 1));
+        if (!englishDeutschTestCount) {
+          alert('Not enough words to generate a 50-question test yet.');
+          return;
+        }
+
+        const map = ensureEnglishDeutschMap();
+        const indices = map[String(n)] || [];
+        const selectedWords = indices.map((i) => englishDeutschWords[i]).filter(Boolean);
+
+        const questions = selectedWords
+          .map((item: { word: string; meaning: string }, idx: number) => {
+            const correctAnswer = item.meaning;
+            const uniqueDistractors = Array.from(
+              new Set(
+                englishDeutschWords
+                  .filter((w) => w.meaning !== correctAnswer)
+                  .map((w) => w.meaning)
+              )
+            );
+            const distractors = shuffle(uniqueDistractors).slice(0, 3);
+            if (distractors.length < 3) return null;
+
+            const allOptions = shuffle([...distractors, correctAnswer]);
+            const idsLower = ['a', 'b', 'c', 'd'];
+
+            return {
+              id: `english-deutsch-mini-${n}-q${idx + 1}`,
+              prompt: `What is the German meaning of "${item.word}"?`,
+              choices: allOptions.map((optText: string, i: number) => ({
+                id: idsLower[i],
+                text: optText,
+                isCorrect: optText === correctAnswer,
+              })),
+              explanation: `"${item.word}" = ${correctAnswer}`,
+            };
+          })
+          .filter(Boolean);
+
+        if (!questions.length) {
+          alert('Not enough words to generate a 50-question test yet.');
+          return;
+        }
+
+        const title = `ENGLISH / DEUTSCH · MINI TEST ${n} (50Q · ${EN_DE_DURATION_MIN} min)`;
+        const payload = {
+          attemptId,
+          testSlug,
+          test: { title, duration: EN_DE_DURATION_MIN },
+          durationSeconds: EN_DE_DURATION_MIN * 60,
           questions,
         };
 
@@ -830,7 +964,16 @@ function HomeContent() {
       // default: send to /start
       router.push(`/start?testSlug=${encodeURIComponent(testSlug)}`);
     },
-    [ensureGlobalVocabMap, ensureVocabMap, globalVocabTestCount, router, ydsVocabulary2]
+    [
+      englishDeutschTestCount,
+      englishDeutschWords,
+      ensureEnglishDeutschMap,
+      ensureGlobalVocabMap,
+      ensureVocabMap,
+      globalVocabTestCount,
+      router,
+      ydsVocabulary2,
+    ]
   );
 
   // restart parametresi ile otomatik başlat
@@ -1361,6 +1504,48 @@ function HomeContent() {
       </div>
     </div>
   </DiamondCard>
+
+  <DiamondCard
+    as="button"
+    onClick={() => {
+      const next = !showEnglishDeutschHub;
+      setShowEnglishDeutschHub(next);
+      if (!next) return;
+
+      ensureEnglishDeutschMap();
+      setTimeout(() => {
+        document.getElementById('englishDeutschHub')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+    }}
+    className={`group relative overflow-hidden rounded-2xl p-6 md:p-7 text-left
+      bg-gradient-to-br from-emerald-600 via-teal-700 to-cyan-700 text-white shadow-xl transition-all duration-300
+      transform hover:-translate-y-1 hover:shadow-emerald-500/30 ${
+        showEnglishDeutschHub ? 'ring-2 ring-emerald-200 ring-offset-2 ring-offset-white dark:ring-offset-slate-900' : ''
+      }`}
+  >
+    <div className="absolute -top-10 -right-10 w-40 h-40 bg-emerald-200 opacity-20 rounded-full blur-3xl"></div>
+    <div className="relative z-10 flex flex-col justify-between h-full">
+      <div>
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/15 rounded-full text-[10px] font-black uppercase mb-3 border border-white/20">
+          🇬🇧🇩🇪 Language Pair
+        </div>
+        <div className="text-2xl font-black leading-tight">English / Deutsch</div>
+        <div className="mt-2 text-xs text-white/90 leading-relaxed">
+          50-question mini tests · stable question sets
+          <br />
+          Dynamic test count from loaded word pool
+        </div>
+      </div>
+      <div className="mt-6 flex items-center justify-between">
+        <div className="text-[11px] font-bold text-white/90">
+          {validEnglishDeutschWordCount} words · {englishDeutschTestCount} tests
+        </div>
+        <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-teal-700 text-2xl font-black shadow-lg group-hover:scale-110 transition-transform">
+          {showEnglishDeutschHub ? '×' : '▶'}
+        </div>
+      </div>
+    </div>
+  </DiamondCard>
 </div>
 {/* 🧩 YDS CLOZE */}
 <a
@@ -1512,6 +1697,57 @@ function HomeContent() {
   </div>
 )}
 
+{showEnglishDeutschHub && (
+  <div
+    id="englishDeutschHub"
+    className="mb-12 bg-emerald-50/95 dark:bg-teal-950/30 rounded-3xl p-6 border-2 border-emerald-200/80 dark:border-teal-700/60 shadow-xl relative overflow-hidden text-left animate-in slide-in-from-top-4 duration-300"
+  >
+    <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-emerald-600 via-teal-700 to-cyan-700"></div>
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
+      <div>
+        <h3 className="text-2xl font-black text-emerald-700 dark:text-emerald-200 flex items-center gap-2">
+          <span className="text-3xl">🇬🇧🇩🇪</span> English / Deutsch Mini Tests
+        </h3>
+        <p className="text-sm text-emerald-700/80 dark:text-emerald-100/80 mt-1">
+          Each test has 50 questions. The same test number always brings the same words.
+        </p>
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="text-xs font-bold px-3 py-1 rounded-full bg-white/90 dark:bg-slate-900/70 border border-emerald-200/80 dark:border-teal-700/60 text-emerald-700 dark:text-emerald-200">
+          {validEnglishDeutschWordCount} words loaded · {englishDeutschTestCount} tests
+        </span>
+        <button
+          type="button"
+          onClick={() => setShowEnglishDeutschHub(false)}
+          className="text-xs font-bold px-4 py-2 rounded-xl bg-white/90 dark:bg-slate-900/70 border border-emerald-200/80 dark:border-teal-700/60 text-emerald-700 dark:text-emerald-200 hover:bg-emerald-100 dark:hover:bg-teal-900 transition shadow-sm"
+        >
+          Close Panel
+        </button>
+      </div>
+    </div>
+
+    {englishDeutschTestCount > 0 ? (
+      <div className="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-8 gap-3">
+        {Array.from({ length: englishDeutschTestCount }, (_, i) => i + 1).map((num) => (
+          <button
+            type="button"
+            key={num}
+            onClick={() => startTest(`english-deutsch-mini-${num}`)}
+            className="py-4 rounded-xl font-black text-sm shadow-sm transition-all transform hover:scale-[1.03] active:scale-[0.98] bg-emerald-600 text-white hover:bg-emerald-700 shadow-emerald-200 ring-2 ring-emerald-200 dark:ring-teal-700/70 ring-offset-2 dark:ring-offset-slate-900"
+          >
+            Test {num}
+            <span className="block text-[10px] font-semibold opacity-90 mt-1">Start</span>
+          </button>
+        ))}
+      </div>
+    ) : (
+      <DiamondCard className="p-5 text-sm font-semibold text-emerald-700 dark:text-emerald-200 border-emerald-200/80 dark:border-teal-700/60">
+        Not enough words to generate a 50-question test yet.
+      </DiamondCard>
+    )}
+  </div>
+)}
+
           {/* OTHER MAIN TESTS */}
           <h2 className="text-2xl sm:text-3xl font-black mb-6 text-left">YDS Exam Pack</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
@@ -1559,6 +1795,7 @@ function HomeContent() {
               { test: ydsConjunctionTest, tint: 'bg-slate-600/12 text-slate-700 dark:text-slate-200 border-slate-200/70 dark:border-slate-700/60' },
               { test: ieltsTest, tint: 'bg-sky-600/12 text-sky-700 dark:text-sky-300 border-sky-200/70 dark:border-sky-700/60' },
               { test: globalVocabHub, tint: 'bg-blue-600/12 text-blue-700 dark:text-cyan-300 border-blue-200/70 dark:border-cyan-700/60' },
+              { test: { title: 'English / Deutsch', slug: 'english-deutsch-hub' }, tint: 'bg-emerald-600/12 text-emerald-700 dark:text-emerald-300 border-emerald-200/70 dark:border-emerald-700/60' },
               { test: vocabTest, tint: 'bg-emerald-600/12 text-emerald-700 dark:text-emerald-300 border-emerald-200/70 dark:border-emerald-700/60' },
             ].map(({ test, tint }) => (
               <DiamondCard
@@ -1575,6 +1812,16 @@ function HomeContent() {
                     }, 80);
                     return;
                   }
+                  if (test.slug === 'english-deutsch-hub') {
+                    const next = !showEnglishDeutschHub;
+                    setShowEnglishDeutschHub(next);
+                    if (!next) return;
+                    ensureEnglishDeutschMap();
+                    setTimeout(() => {
+                      document.getElementById('englishDeutschHub')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 80);
+                    return;
+                  }
                   startTest(test.slug);
                 }}
                 className={`flex items-center justify-center px-6 py-8 text-lg sm:text-xl font-black ${tint}`}
@@ -1584,6 +1831,11 @@ function HomeContent() {
                   {test.slug === globalVocabHub.slug && (
                     <span className="block mt-1 text-xs sm:text-sm font-bold opacity-80">
                       {globalVocabTestCount} tests · {validGlobalVocabWordCount} words
+                    </span>
+                  )}
+                  {test.slug === 'english-deutsch-hub' && (
+                    <span className="block mt-1 text-xs sm:text-sm font-bold opacity-80">
+                      {englishDeutschTestCount} tests · {validEnglishDeutschWordCount} words
                     </span>
                   )}
                 </span>
