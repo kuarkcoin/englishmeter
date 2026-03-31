@@ -15,7 +15,6 @@ import ydsReadingPassages from '@/data/yds_reading.json';
 import ydsSynonyms from '@/data/yds_synonyms.json';
 import ydsConjunctions from '@/data/yds_conjunctions.json';
 import ydsVocabulary2Raw from '@/data/data/yds_vocabulary2.json';
-import englishDeutschWordsRaw from '@/data/german';
 
 // --- YDS EXAM DENEMELERİ (1..15) ---
 import ydsExamQuestions1 from '@/data/yds_exam_questions.json';
@@ -231,6 +230,7 @@ function HomeContent() {
   const [showYds3750Hub, setShowYds3750Hub] = useState(false);
   const [showGlobalVocabHub, setShowGlobalVocabHub] = useState(false);
   const [showEnglishDeutschHub, setShowEnglishDeutschHub] = useState(false);
+  const [englishDeutschWords, setEnglishDeutschWords] = useState<Array<{ word: string; meaning: string }>>([]);
   const [lastTest, setLastTest] = useState<{ title: string; slug: string; at: string } | null>(null);
 
   const ydsVocabulary2 = useMemo(() => {
@@ -248,15 +248,6 @@ function HomeContent() {
     () => Math.floor(validGlobalVocabWordCount / GLOBAL_VOCAB_QUESTIONS_PER_TEST),
     [validGlobalVocabWordCount]
   );
-
-  const englishDeutschWords = useMemo(() => {
-    return ((englishDeutschWordsRaw as any[]) || [])
-      .map((x: any) => ({
-        word: String(x?.word ?? '').trim(),
-        meaning: String(x?.meaning ?? '').trim(),
-      }))
-      .filter((x) => x.word && x.meaning);
-  }, []);
 
   const validEnglishDeutschWordCount = englishDeutschWords.length;
 
@@ -281,6 +272,35 @@ function HomeContent() {
 
     const last = safeJsonParse<{ title: string; slug: string; at: string } | null>(localStorage.getItem(LS_LAST), null);
     if (last?.slug && last?.title) setLastTest(last);
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadEnglishDeutschWords = async () => {
+      try {
+        const res = await fetch('/api/english-deutsch-words');
+        if (!res.ok) return;
+        const data = (await res.json()) as Array<{ word?: string; meaning?: string }>;
+        if (cancelled || !Array.isArray(data)) return;
+
+        const cleaned = data
+          .map((x) => ({
+            word: String(x?.word ?? '').trim(),
+            meaning: String(x?.meaning ?? '').trim(),
+          }))
+          .filter((x) => x.word && x.meaning);
+
+        setEnglishDeutschWords(cleaned);
+      } catch {
+        setEnglishDeutschWords([]);
+      }
+    };
+
+    loadEnglishDeutschWords();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   // --- 75 mini test mapping (stable) ---
