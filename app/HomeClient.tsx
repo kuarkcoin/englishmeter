@@ -15,6 +15,7 @@ import ydsReadingPassages from '@/data/yds_reading.json';
 import ydsSynonyms from '@/data/yds_synonyms.json';
 import ydsConjunctions from '@/data/yds_conjunctions.json';
 import ydsVocabulary2Raw from '@/data/data/yds_vocabulary2.json';
+import dailyEnglishData from '@/data/dailyenglish.json';
 
 // --- YDS EXAM DENEMELERİ (1..15) ---
 import ydsExamQuestions1 from '@/data/yds_exam_questions.json';
@@ -208,6 +209,8 @@ const GLOBAL_VOCAB_QUESTIONS_PER_TEST = 25;
 const GLOBAL_VOCAB_DURATION_MIN = 15;
 const EN_DE_QUESTIONS_PER_TEST = 50;
 const EN_DE_DURATION_MIN = 25;
+const DAILY_ENGLISH_QUESTIONS_PER_TEST = 50;
+const DAILY_ENGLISH_DURATION_MIN = 25;
 
 // Save / load helpers (safe)
 function safeJsonParse<T>(raw: string | null, fallback: T): T {
@@ -230,6 +233,7 @@ function HomeContent() {
   const [showYds3750Hub, setShowYds3750Hub] = useState(false);
   const [showGlobalVocabHub, setShowGlobalVocabHub] = useState(false);
   const [showEnglishDeutschHub, setShowEnglishDeutschHub] = useState(false);
+  const [showDailyEnglishHub, setShowDailyEnglishHub] = useState(false);
   const [englishDeutschWords, setEnglishDeutschWords] = useState<Array<{ word: string; meaning: string }>>([]);
   const [lastTest, setLastTest] = useState<{ title: string; slug: string; at: string } | null>(null);
 
@@ -254,6 +258,20 @@ function HomeContent() {
   const englishDeutschTestCount = useMemo(
     () => Math.floor(validEnglishDeutschWordCount / EN_DE_QUESTIONS_PER_TEST),
     [validEnglishDeutschWordCount]
+  );
+
+  const validDailyEnglishWordCount = useMemo(() => {
+    return ((dailyEnglishData as any[]) || [])
+      .map((x: any) => ({
+        word: String(x?.word ?? '').trim(),
+        meaning: String(x?.meaning ?? '').trim(),
+      }))
+      .filter((x) => x.word && x.meaning).length;
+  }, []);
+
+  const dailyEnglishTestCount = useMemo(
+    () => Math.floor(validDailyEnglishWordCount / DAILY_ENGLISH_QUESTIONS_PER_TEST),
+    [validDailyEnglishWordCount]
   );
 
   // Hangi YDS exam testleri gerçekten var?
@@ -568,6 +586,85 @@ function HomeContent() {
           testSlug,
           test: { title, duration: EN_DE_DURATION_MIN },
           durationSeconds: EN_DE_DURATION_MIN * 60,
+          questions,
+        };
+
+        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
+        saveLast(title, testSlug);
+        router.push(`/quiz/${attemptId}`);
+        return;
+      }
+
+      if (testSlug.startsWith('daily-english-mini-')) {
+        const nStr = testSlug.split('-').pop() || '1';
+        const n = Number(nStr);
+
+        if (!dailyEnglishTestCount) {
+          alert('Daily English data is not available right now.');
+          return;
+        }
+
+        if (!Number.isFinite(n) || n < 1 || n > dailyEnglishTestCount) {
+          alert(`This Daily English test does not exist. Please choose a test between 1 and ${dailyEnglishTestCount}.`);
+          return;
+        }
+
+        const cleanDailyEnglishData = ((dailyEnglishData as any[]) || [])
+          .map((x: any) => ({
+            word: String(x?.word ?? '').trim(),
+            meaning: String(x?.meaning ?? '').trim(),
+          }))
+          .filter((x) => x.word && x.meaning);
+
+        const startIndex = (n - 1) * DAILY_ENGLISH_QUESTIONS_PER_TEST;
+        const endIndex = startIndex + DAILY_ENGLISH_QUESTIONS_PER_TEST;
+        const selectedWords = cleanDailyEnglishData.slice(startIndex, endIndex);
+
+        if (selectedWords.length < DAILY_ENGLISH_QUESTIONS_PER_TEST) {
+          alert('This test range does not have enough questions yet.');
+          return;
+        }
+
+        const questions = selectedWords
+          .map((item: { word: string; meaning: string }, idx: number) => {
+            const correctAnswer = item.meaning;
+            const uniqueDistractors = Array.from(
+              new Set(
+                cleanDailyEnglishData
+                  .filter((w) => w.meaning !== correctAnswer)
+                  .map((w) => w.meaning)
+              )
+            );
+            const distractors = shuffle(uniqueDistractors).slice(0, 3);
+            if (distractors.length < 3) return null;
+
+            const allOptions = shuffle([...distractors, correctAnswer]);
+            const idsLower = ['a', 'b', 'c', 'd'];
+
+            return {
+              id: `daily-english-mini-${n}-q${idx + 1}`,
+              prompt: `What is the Turkish meaning of "${item.word}"?`,
+              choices: allOptions.map((optText: string, i: number) => ({
+                id: idsLower[i],
+                text: optText,
+                isCorrect: optText === correctAnswer,
+              })),
+              explanation: `"${item.word}" = ${correctAnswer}`,
+            };
+          })
+          .filter(Boolean);
+
+        if (!questions.length) {
+          alert('Not enough distinct meanings found to build this test right now.');
+          return;
+        }
+
+        const title = `DAILY ENGLISH · TEST ${n} (50Q · ${DAILY_ENGLISH_DURATION_MIN} min)`;
+        const payload = {
+          attemptId,
+          testSlug,
+          test: { title, duration: DAILY_ENGLISH_DURATION_MIN },
+          durationSeconds: DAILY_ENGLISH_DURATION_MIN * 60,
           questions,
         };
 
@@ -965,6 +1062,7 @@ function HomeContent() {
       router.push(`/start?testSlug=${encodeURIComponent(testSlug)}`);
     },
     [
+      dailyEnglishTestCount,
       englishDeutschTestCount,
       englishDeutschWords,
       ensureEnglishDeutschMap,
@@ -1546,6 +1644,47 @@ function HomeContent() {
       </div>
     </div>
   </DiamondCard>
+
+  <DiamondCard
+    as="button"
+    onClick={() => {
+      const next = !showDailyEnglishHub;
+      setShowDailyEnglishHub(next);
+      if (!next) return;
+
+      setTimeout(() => {
+        document.getElementById('dailyEnglishHub')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+    }}
+    className={`group relative overflow-hidden rounded-2xl p-6 md:p-7 text-left
+      bg-gradient-to-br from-violet-600 via-purple-700 to-indigo-700 text-white shadow-xl transition-all duration-300
+      transform hover:-translate-y-1 hover:shadow-violet-500/30 ${
+        showDailyEnglishHub ? 'ring-2 ring-violet-200 ring-offset-2 ring-offset-white dark:ring-offset-slate-900' : ''
+      }`}
+  >
+    <div className="absolute -top-10 -right-10 w-40 h-40 bg-violet-200 opacity-20 rounded-full blur-3xl"></div>
+    <div className="relative z-10 flex flex-col justify-between h-full">
+      <div>
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/15 rounded-full text-[10px] font-black uppercase mb-3 border border-white/20">
+          📅 Daily English
+        </div>
+        <div className="text-2xl font-black leading-tight">Daily English</div>
+        <div className="mt-2 text-xs text-white/90 leading-relaxed">
+          50 soruluk günlük İngilizce testleri
+          <br />
+          Test sayısı veri uzunluğundan otomatik hesaplanır
+        </div>
+      </div>
+      <div className="mt-6 flex items-center justify-between">
+        <div className="text-[11px] font-bold text-white/90">
+          {validDailyEnglishWordCount} words · {dailyEnglishTestCount} tests
+        </div>
+        <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-indigo-700 text-2xl font-black shadow-lg group-hover:scale-110 transition-transform">
+          {showDailyEnglishHub ? '×' : '▶'}
+        </div>
+      </div>
+    </div>
+  </DiamondCard>
 </div>
 {/* 🧩 YDS CLOZE */}
 <a
@@ -1748,6 +1887,57 @@ function HomeContent() {
   </div>
 )}
 
+{showDailyEnglishHub && (
+  <div
+    id="dailyEnglishHub"
+    className="mb-12 bg-violet-50/95 dark:bg-violet-950/30 rounded-3xl p-6 border-2 border-violet-200/80 dark:border-violet-700/60 shadow-xl relative overflow-hidden text-left animate-in slide-in-from-top-4 duration-300"
+  >
+    <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-violet-500 via-purple-500 to-indigo-600"></div>
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
+      <div>
+        <h3 className="text-2xl font-black text-violet-700 dark:text-violet-200 flex items-center gap-2">
+          <span className="text-3xl">📅</span> Daily English
+        </h3>
+        <p className="text-sm text-violet-700/80 dark:text-violet-100/80 mt-1">
+          50 soruluk günlük İngilizce testleri. Testler veri uzunluğuna göre dinamik oluşturulur.
+        </p>
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="text-xs font-bold px-3 py-1 rounded-full bg-white/90 dark:bg-slate-900/70 border border-violet-200/80 dark:border-violet-700/60 text-violet-700 dark:text-violet-200">
+          {validDailyEnglishWordCount} words loaded · {dailyEnglishTestCount} tests
+        </span>
+        <button
+          type="button"
+          onClick={() => setShowDailyEnglishHub(false)}
+          className="text-xs font-bold px-4 py-2 rounded-xl bg-white/90 dark:bg-slate-900/70 border border-violet-200/80 dark:border-violet-700/60 text-violet-700 dark:text-violet-200 hover:bg-violet-100 dark:hover:bg-violet-900 transition shadow-sm"
+        >
+          Close Panel
+        </button>
+      </div>
+    </div>
+
+    {dailyEnglishTestCount > 0 ? (
+      <div className="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-8 gap-3">
+        {Array.from({ length: dailyEnglishTestCount }, (_, i) => i + 1).map((num) => (
+          <button
+            type="button"
+            key={num}
+            onClick={() => startTest(`daily-english-mini-${num}`)}
+            className="py-4 rounded-xl font-black text-sm shadow-sm transition-all transform hover:scale-[1.03] active:scale-[0.98] bg-violet-600 text-white hover:bg-violet-700 shadow-violet-200 ring-2 ring-violet-200 dark:ring-violet-700/70 ring-offset-2 dark:ring-offset-slate-900"
+          >
+            Test {num}
+            <span className="block text-[10px] font-semibold opacity-90 mt-1">Start</span>
+          </button>
+        ))}
+      </div>
+    ) : (
+      <DiamondCard className="p-5 text-sm font-semibold text-violet-700 dark:text-violet-200 border-violet-200/80 dark:border-violet-700/60">
+        Daily English verisi bulunamadı. Lütfen veri kaynağını kontrol edin.
+      </DiamondCard>
+    )}
+  </div>
+)}
+
           {/* OTHER MAIN TESTS */}
           <h2 className="text-2xl sm:text-3xl font-black mb-6 text-left">YDS Exam Pack</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
@@ -1796,6 +1986,7 @@ function HomeContent() {
               { test: ieltsTest, tint: 'bg-sky-600/12 text-sky-700 dark:text-sky-300 border-sky-200/70 dark:border-sky-700/60' },
               { test: globalVocabHub, tint: 'bg-blue-600/12 text-blue-700 dark:text-cyan-300 border-blue-200/70 dark:border-cyan-700/60' },
               { test: { title: 'English / Deutsch', slug: 'english-deutsch-hub' }, tint: 'bg-emerald-600/12 text-emerald-700 dark:text-emerald-300 border-emerald-200/70 dark:border-emerald-700/60' },
+              { test: { title: 'Daily English', slug: 'daily-english-hub' }, tint: 'bg-violet-600/12 text-violet-700 dark:text-violet-300 border-violet-200/70 dark:border-violet-700/60' },
               { test: vocabTest, tint: 'bg-emerald-600/12 text-emerald-700 dark:text-emerald-300 border-emerald-200/70 dark:border-emerald-700/60' },
             ].map(({ test, tint }) => (
               <DiamondCard
@@ -1822,6 +2013,15 @@ function HomeContent() {
                     }, 80);
                     return;
                   }
+                  if (test.slug === 'daily-english-hub') {
+                    const next = !showDailyEnglishHub;
+                    setShowDailyEnglishHub(next);
+                    if (!next) return;
+                    setTimeout(() => {
+                      document.getElementById('dailyEnglishHub')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 80);
+                    return;
+                  }
                   startTest(test.slug);
                 }}
                 className={`flex items-center justify-center px-6 py-8 text-lg sm:text-xl font-black ${tint}`}
@@ -1836,6 +2036,11 @@ function HomeContent() {
                   {test.slug === 'english-deutsch-hub' && (
                     <span className="block mt-1 text-xs sm:text-sm font-bold opacity-80">
                       {englishDeutschTestCount} tests · {validEnglishDeutschWordCount} words
+                    </span>
+                  )}
+                  {test.slug === 'daily-english-hub' && (
+                    <span className="block mt-1 text-xs sm:text-sm font-bold opacity-80">
+                      {dailyEnglishTestCount} tests · {validDailyEnglishWordCount} words
                     </span>
                   )}
                 </span>
