@@ -119,9 +119,9 @@ export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps
 
   if (!questions || questions.length === 0) {
     return (
-      <div className="bg-white rounded-3xl shadow-xl border border-gray-200 p-8 text-center">
+      <div className="em-card rounded-3xl shadow-xl p-8 text-center">
         <h2 className="text-xl font-bold text-red-600 mb-4">No Questions Available</h2>
-        <p className="text-gray-600">Please check the questions data file.</p>
+        <p className="text-gray-600 dark:text-slate-300">Please check the questions data file.</p>
       </div>
     );
   }
@@ -131,17 +131,17 @@ export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps
 
   if (isFinished) {
     return (
-      <div className="bg-white rounded-3xl shadow-xl border border-gray-200 p-8 text-center">
+      <div className="em-card rounded-3xl shadow-xl p-8 text-center">
         <div className="text-xl font-bold text-blue-600 animate-pulse mb-4">
           Calculating Results... 🚀
         </div>
-        <p className="text-gray-600">Please wait while we save your score...</p>
+        <p className="text-gray-600 dark:text-slate-300">Please wait while we save your score...</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-white rounded-3xl shadow-xl border border-gray-200 overflow-hidden">
+    <div className="em-card rounded-3xl shadow-xl overflow-hidden">
       {/* Üst Bilgi */}
       <div className="bg-slate-900 text-white p-4 flex justify-between items-center">
         <div className="font-bold text-lg">
@@ -157,13 +157,13 @@ export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps
       </div>
 
       {/* İlerleme Çubuğu */}
-      <div className="w-full bg-gray-200 h-2">
+      <div className="w-full bg-gray-200 dark:bg-slate-700 h-2">
         <div className="bg-blue-600 h-2 transition-all duration-300" style={{ width: `${progress}%` }} />
       </div>
 
       {/* Soru Alanı */}
       <div className="p-6 md:p-8">
-        <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-8 leading-relaxed">
+        <h2 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-slate-100 mb-8 leading-relaxed">
           {currentQuestion.question_text}
         </h2>
 
@@ -175,19 +175,19 @@ export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps
               disabled={isSubmitting}
               className={`
                 text-left p-4 rounded-xl border-2 transition-all duration-200 flex items-center gap-4
-                ${answers[currentIndex] === opt ? 'border-blue-600 bg-blue-50 shadow-md' : 'border-gray-200 hover:border-blue-300 hover:bg-gray-50'}
+                ${answers[currentIndex] === opt ? 'border-blue-600 bg-blue-50 shadow-md' : 'border-gray-200 dark:border-slate-700 hover:border-blue-300 hover:bg-gray-50 dark:hover:bg-slate-800'}
                 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}
               `}
             >
               <div
                 className={`
                   w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border flex-shrink-0
-                  ${answers[currentIndex] === opt ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-gray-500 border-gray-300'}
+                  ${answers[currentIndex] === opt ? 'bg-blue-600 text-white border-blue-600' : 'bg-white dark:bg-slate-900 text-gray-500 dark:text-slate-300 border-gray-300 dark:border-slate-600'}
                 `}
               >
                 {opt.toUpperCase()}
               </div>
-              <div className="text-lg font-medium text-gray-700 text-left">
+              <div className="text-lg font-medium text-gray-700 dark:text-slate-200 text-left">
                 {currentQuestion[`option_${opt}` as const]}
               </div>
             </button>
@@ -196,11 +196,11 @@ export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps
       </div>
 
       {/* Alt Butonlar */}
-      <div className="p-6 border-t border-gray-100 flex justify-between items-center bg-gray-50">
+      <div className="p-6 border-t border-gray-100 dark:border-slate-700 flex justify-between items-center bg-gray-50 dark:bg-slate-800">
         <button
           onClick={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
           disabled={currentIndex === 0 || isSubmitting}
-          className="px-6 py-3 text-gray-600 font-bold hover:text-gray-900 disabled:opacity-30 rounded-lg transition"
+          className="px-6 py-3 text-gray-600 dark:text-slate-300 font-bold hover:text-gray-900 dark:hover:text-slate-100 disabled:opacity-30 rounded-lg transition"
         >
           ← Previous
         </button>

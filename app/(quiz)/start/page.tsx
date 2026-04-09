@@ -108,7 +108,7 @@ function renderClozePassage(passage: string, activeBlankNo: number) {
     if (n === activeBlankNo) {
       return `<span class="px-2 py-1 rounded-lg border-2 border-blue-500 bg-blue-50 text-blue-800 font-black">_____ (${n})</span>`;
     }
-    return `<span class="px-2 py-1 rounded-lg border border-slate-200 bg-slate-50 text-slate-500 font-bold">_____</span>`;
+    return `<span class="px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-500 dark:text-slate-400 font-bold">_____</span>`;
   });
 }
 
@@ -127,14 +127,14 @@ function expandClozeToRawQuestions(passages: ClozePassage[]) {
         id: `cloze-${p.id}-blank-${activeNo}`,
         prompt: `
           <div class="space-y-3">
-            <div class="text-xs font-black uppercase tracking-wide text-slate-500">
+            <div class="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
               Cloze • Passage ${pi + 1}/5 • Blank ${activeNo}/5
             </div>
-            ${p.title ? `<div class="text-sm font-extrabold text-slate-800">${p.title}</div>` : ''}
-            <div class="leading-loose text-slate-900">
+            ${p.title ? `<div class="text-sm font-extrabold text-slate-800 dark:text-slate-100">${p.title}</div>` : ''}
+            <div class="leading-loose text-slate-900 dark:text-slate-50">
               ${renderClozePassage(p.passage, activeNo)}
             </div>
-            <div class="text-sm font-bold text-slate-700">
+            <div class="text-sm font-bold text-slate-700 dark:text-slate-200">
               Choose the best option for <span class="text-blue-700">Blank (${activeNo})</span>.
             </div>
           </div>
@@ -344,11 +344,11 @@ function StartQuizLogic() {
       initial="hidden"
       animate="visible"
       variants={wrapVariants}
-      className="min-h-screen flex items-center justify-center bg-slate-50 p-4"
+      className="em-page flex items-center justify-center p-4"
     >
       <motion.div
         variants={cardVariants}
-        className="w-full max-w-md bg-white border border-slate-200 rounded-3xl shadow-xl p-7"
+        className="em-card w-full max-w-md rounded-3xl shadow-xl p-7"
       >
         <motion.div
           custom={0}
@@ -358,11 +358,11 @@ function StartQuizLogic() {
           ⚡ Preparing your test
         </motion.div>
 
-        <motion.h1 custom={1} variants={textVariants} className="mt-4 text-2xl font-black text-slate-900">
+        <motion.h1 custom={1} variants={textVariants} className="mt-4 text-2xl font-black text-slate-900 dark:text-slate-50">
           Your test is starting…
         </motion.h1>
 
-        <motion.p custom={2} variants={textVariants} className="mt-2 text-slate-600 text-sm leading-relaxed">
+        <motion.p custom={2} variants={textVariants} className="mt-2 text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
           Please wait while we prepare your questions.
         </motion.p>
 
@@ -377,7 +377,7 @@ function StartQuizLogic() {
           </motion.div>
 
           <div className="flex-1">
-            <div className="flex items-center justify-between text-[11px] text-slate-500 font-semibold">
+            <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 font-semibold">
               <span>Loading</span>
               <span>{Math.min(100, Math.max(0, progress))}%</span>
             </div>
@@ -393,8 +393,8 @@ function StartQuizLogic() {
           </div>
         </motion.div>
 
-        <motion.div custom={4} variants={textVariants} className="mt-6 p-4 rounded-2xl bg-slate-50 border border-slate-200">
-          <div className="text-xs font-bold text-slate-500">Quick Tip</div>
+        <motion.div custom={4} variants={textVariants} className="mt-6 p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+          <div className="text-xs font-bold text-slate-500 dark:text-slate-400">Quick Tip</div>
           <motion.div
             key={tipIndex}
             initial={{ y: 6, opacity: 0 }}

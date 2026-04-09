@@ -62,10 +62,10 @@ export default function TestPage({ params }: PageProps) {
 
   if (!testData?.questions?.length) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
-        <div className="max-w-md w-full rounded-xl bg-white shadow p-6 text-center">
-          <h1 className="text-xl font-semibold text-slate-900">Test bulunamadı</h1>
-          <p className="mt-2 text-slate-600">
+      <div className="em-page flex items-center justify-center p-6">
+        <div className="max-w-md w-full em-card rounded-xl p-6 text-center">
+          <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-50">Test bulunamadı</h1>
+          <p className="mt-2 text-slate-600 dark:text-slate-300">
             Bu slug ile eşleşen bir test yok: <span className="font-mono">{params.slug}</span>
           </p>
         </div>
@@ -79,7 +79,7 @@ export default function TestPage({ params }: PageProps) {
   const totalTimeSeconds = Math.max(60, (testData.duration || 15) * 60);
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="em-page">
       {/* ✅ Google bot için görünür metin */}
       <div className="sr-only">
         <h1>{testData.title}</h1>
@@ -89,7 +89,7 @@ export default function TestPage({ params }: PageProps) {
       </div>
 
       <div className="max-w-3xl mx-auto p-4 md:p-8">
-        <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-4">
+        <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-slate-50 mb-4">
           {testData.title}
         </h1>
 

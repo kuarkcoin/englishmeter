@@ -86,6 +86,20 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const themeScript = `
+    (function() {
+      try {
+        var stored = localStorage.getItem('theme');
+        var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  `;
+
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -126,8 +140,11 @@ export default function RootLayout({
   ];
 
   return (
-    <html lang="en">
-      <body className="bg-slate-50 min-h-screen flex flex-col">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="min-h-screen flex flex-col bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-50">
         
         {/* --- GOOGLE ANALYTICS --- */}
         <Script

@@ -3,6 +3,7 @@
 import React, { useEffect, useMemo, useState, Suspense, useCallback } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
+import DarkToggle from '@/components/DarkToggle';
  
 // --- DATA IMPORTS ---
 import topicQuestions from '@/data/grammar_topic_tests.json';
@@ -662,10 +663,10 @@ function HomeContent() {
 
   if (isRestarting) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-950">
         <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-6"></div>
-        <h2 className="text-2xl font-bold text-slate-800 animate-pulse">Starting New Test...</h2>
-        <p className="text-slate-500 mt-2">Preparing fresh questions from the pool</p>
+        <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100 animate-pulse">Starting New Test...</h2>
+        <p className="text-slate-500 dark:text-slate-400 mt-2">Preparing fresh questions from the pool</p>
       </div>
     );
   }
@@ -673,7 +674,11 @@ function HomeContent() {
   const freeMiniCount = 100; // Premium yoksa ilk 8 mini test ücretsiz gibi düşün
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
+      <div className="w-full max-w-6xl mx-auto px-4 pt-6 flex justify-end">
+        <DarkToggle />
+      </div>
+
       {/* HERO */}
       <section className="w-full max-w-6xl mx-auto px-4 pt-10 pb-4">
         <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -687,7 +692,7 @@ function HomeContent() {
               <span className="text-blue-600"> in minutes.</span>
             </h1>
 
-            <p className="text-slate-600 text-base sm:text-lg mb-5">
+            <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg mb-5">
               Online English grammar tests, CEFR level quizzes (A1–C2) and quick placement exams with instant results and detailed review.
             </p>
 
@@ -701,7 +706,7 @@ function HomeContent() {
 
               <a
                 href="#all-tests"
-                className="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-slate-300 text-slate-700 font-semibold text-sm sm:text-base bg-white hover:bg-slate-50 transition"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-slate-300 text-slate-700 dark:text-slate-200 font-semibold text-sm sm:text-base bg-white dark:bg-slate-900 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition"
               >
                 Browse all tests
               </a>
@@ -726,11 +731,11 @@ function HomeContent() {
             )}
 
             {/* Premium teaser */}
-            <div className="mt-6 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+            <div className="mt-6 p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-sm">
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <div className="text-sm font-black text-slate-900">Premium (Coming soon)</div>
-                  <div className="text-xs text-slate-500 mt-1">
+                  <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                     Unlock all YDS 3750 mini tests + extra packs + analytics.
                   </div>
                 </div>
@@ -1391,7 +1396,7 @@ function HomeContent() {
 
 export default function Home(props: any) {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-slate-50" />}>
+    <Suspense fallback={<div className="min-h-screen bg-slate-50 dark:bg-slate-950" />}>
       <HomeContent />
     </Suspense>
   );
