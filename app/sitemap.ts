@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { SITE_URL, getAllVocabulary, slugifyWord } from '@/lib/vocabulary';
+import dailyEnglishData from '@/data/dailyenglish.json';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: Array<{
@@ -34,6 +35,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/test-perfect-tenses', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/test-relatives', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/yds-3750', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/daily-english', priority: 0.9, changeFrequency: 'daily' },
+    { path: '/tests/yds-grammar', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/tests/yds-reading', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/tests/yds-synonyms', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/tests/yds-phrasal-verbs', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/tests/yds-conjunctions', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/tests/ielts-grammar', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/tests/grammar-mega-test-100', priority: 0.8, changeFrequency: 'weekly' },
   ];
 
   const levelRoutes = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((level) => ({
@@ -53,8 +62,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
     changeFrequency: 'monthly' as const,
   }));
+  const ydsMiniRoutes = Array.from({ length: 77 }, (_, i) => ({
+    path: `/tests/yds-3850-mini-${i + 1}`,
+    priority: 0.7,
+    changeFrequency: 'weekly' as const,
+  }));
+  const ydsExamRoutes = Array.from({ length: 32 }, (_, i) => ({
+    path: `/tests/yds-exam-test-${i + 1}`,
+    priority: 0.8,
+    changeFrequency: 'weekly' as const,
+  }));
+  const dailyCount = Math.ceil((dailyEnglishData as Array<unknown>).length / 50);
+  const dailyRoutes = Array.from({ length: dailyCount }, (_, i) => ({
+    path: `/daily-english/test-${i + 1}`,
+    priority: 0.8,
+    changeFrequency: 'daily' as const,
+  }));
 
-  const allRoutes = [...staticRoutes, ...levelRoutes, ...letterRoutes, ...wordRoutes];
+  const allRoutes = [...staticRoutes, ...levelRoutes, ...letterRoutes, ...wordRoutes, ...ydsMiniRoutes, ...ydsExamRoutes, ...dailyRoutes];
 
   const uniqueRoutes = Array.from(
     new Map(allRoutes.map((route) => [route.path, route])).values()
