@@ -16,10 +16,46 @@ import ydsConjunctions from '@/data/yds_conjunctions.json';
 // --- YDS EXAM DENEMELERİ (1..15) ---
 import ydsExam1 from '@/data/yds_exam_questions.json';
 import ydsExam2 from '@/data/yds_exam_questions_2.json';
-// Not: Diğer 13 denemeyi eklediğinde buraya import etmelisin.
+import ydsExam3 from '@/data/yds_exam_questions_3.json';
+import ydsExam4 from '@/data/yds_exam_questions_4.json';
+import ydsExam5 from '@/data/yds_exam_questions_5.json';
+import ydsExam6 from '@/data/yds_exam_questions_6.json';
+import ydsExam7 from '@/data/yds_exam_questions_7.json';
+import ydsExam8 from '@/data/yds_exam_questions_8.json';
+import ydsExam9 from '@/data/yds_exam_questions_9.json';
+import ydsExam10 from '@/data/yds_exam_questions_10.json';
+import ydsExam11 from '@/data/yds_exam_questions_11.json';
+import ydsExam12 from '@/data/yds_exam_questions_12.json';
+import ydsExam13 from '@/data/yds_exam_questions_13.json';
+import ydsExam14 from '@/data/yds_exam_questions_14.json';
+import ydsExam15 from '@/data/yds_exam_questions_15.json';
+import ydsExam16 from '@/data/yds_exam_questions_16.json';
+import ydsExam17 from '@/data/yds_exam_questions_17.json';
+import ydsExam18 from '@/data/yds_exam_questions_18.json';
+import ydsExam19 from '@/data/yds_exam_questions_19.json';
+import ydsExam20 from '@/data/yds_exam_questions_20.json';
+import ydsExam21 from '@/data/yds_exam_questions_21.json';
+import ydsExam22 from '@/data/yds_exam_questions_22.json';
+import ydsExam23 from '@/data/yds_exam_questions_23.json';
+import ydsExam24 from '@/data/yds_exam_questions_24.json';
+import ydsExam25 from '@/data/yds_exam_questions_25.json';
+import ydsExam26 from '@/data/yds_exam_questions_26.json';
+import ydsExam27 from '@/data/yds_exam_questions_27.json';
+import ydsExam28 from '@/data/yds_exam_questions_28.json';
+import ydsExam29 from '@/data/yds_exam_questions_29.json';
+import ydsExam30 from '@/data/yds_exam_questions_30.json';
+import ydsExam31 from '@/data/yds_exam_questions_31.json';
+import ydsExam32 from '@/data/yds_exam_questions_32.json';
+import dailyEnglish from '@/data/dailyenglish.json';
+
 const YDS_EXAM_MAP: Record<string, any[]> = {
   '1': ydsExam1,
   '2': ydsExam2,
+  '3': ydsExam3, '4': ydsExam4, '5': ydsExam5, '6': ydsExam6, '7': ydsExam7, '8': ydsExam8,
+  '9': ydsExam9, '10': ydsExam10, '11': ydsExam11, '12': ydsExam12, '13': ydsExam13, '14': ydsExam14,
+  '15': ydsExam15, '16': ydsExam16, '17': ydsExam17, '18': ydsExam18, '19': ydsExam19, '20': ydsExam20,
+  '21': ydsExam21, '22': ydsExam22, '23': ydsExam23, '24': ydsExam24, '25': ydsExam25, '26': ydsExam26,
+  '27': ydsExam27, '28': ydsExam28, '29': ydsExam29, '30': ydsExam30, '31': ydsExam31, '32': ydsExam32,
 };
 
 // --- TYPES ---
@@ -160,6 +196,24 @@ export const getQuestionsBySlug = (
     rawQuestions = YDS_EXAM_MAP[num] || [];
     title = `YDS Real Exam - Mock Test ${num}`;
     duration = 150;
+  }
+  else if (slug.startsWith('daily-english-')) {
+    const nRaw = parseInt(slug.split('-').pop() || '1', 10);
+    const n = Number.isFinite(nRaw) ? nRaw : 1;
+    const start = (n - 1) * 50;
+    rawQuestions = (dailyEnglish as any[]).slice(start, start + 50).map((item, idx, arr) => {
+      const choices = seededShuffle(
+        [item.meaning, ...arr.filter((_, i) => i !== idx).slice(0, 3).map((x) => x.meaning)],
+        45000 + n * 121 + idx
+      );
+      return {
+        id: `daily-english-${n}-${idx + 1}`,
+        prompt: `What is the Turkish meaning of "${item.word}"?`,
+        choices: choices.map((text, i) => ({ id: ['a', 'b', 'c', 'd'][i], text, isCorrect: text === item.meaning })),
+      };
+    });
+    title = `Daily English Test ${n}`;
+    duration = 25;
   }
 
   // 3) GRAMMAR FOCUS TESTLERİ

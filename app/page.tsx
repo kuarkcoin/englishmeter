@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
+import Link from "next/link";
+import { Suspense } from "react";
+import HomeClient from "./HomeClient";
 
 const baseUrl =
   (process.env.NEXT_PUBLIC_SITE_URL || "https://englishmeter.net").replace(/\/$/, "");
-
-const HomeClient = dynamic(() => import("./HomeClient"), {
-  ssr: false,
-  loading: () => <div className="min-h-screen bg-[rgb(var(--bg))]" />,
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -126,7 +123,45 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
-      <HomeClient />
+      <main className="sr-only">
+        <h1>Free English Tests & YDS Practice</h1>
+        <p>
+          Practice grammar, reading, synonyms, phrasal verbs, YDS vocabulary mini tests and
+          daily English quizzes with instant scoring.
+        </p>
+        <section>
+          <h2>Main test categories</h2>
+          <ul>
+            <li><Link href="/grammar">Grammar tests</Link></li>
+            <li><Link href="/tests/yds-reading">Reading tests</Link></li>
+            <li><Link href="/tests/yds-synonyms">Synonyms tests</Link></li>
+            <li><Link href="/tests/yds-phrasal-verbs">Phrasal verbs tests</Link></li>
+            <li><Link href="/tests/yds-conjunctions">Conjunctions tests</Link></li>
+            <li><Link href="/tests/ielts-grammar">IELTS grammar tests</Link></li>
+            <li><Link href="/tests/grammar-mega-test-100">Grammar mega test</Link></li>
+          </ul>
+        </section>
+        <section>
+          <h2>YDS vocabulary mini tests</h2>
+          <ul>
+            <li><Link href="/tests/yds-3850-mini-1">YDS Vocabulary Mini Test 1</Link></li>
+            <li><Link href="/tests/yds-3850-mini-2">YDS Vocabulary Mini Test 2</Link></li>
+            <li><Link href="/tests/yds-3850-mini-3">YDS Vocabulary Mini Test 3</Link></li>
+          </ul>
+        </section>
+        <section>
+          <h2>Daily English tests</h2>
+          <ul>
+            <li><Link href="/daily-english">Daily English test hub</Link></li>
+            <li><Link href="/daily-english/test-1">Daily English Test 1</Link></li>
+            <li><Link href="/daily-english/test-2">Daily English Test 2</Link></li>
+            <li><Link href="/daily-english/test-3">Daily English Test 3</Link></li>
+          </ul>
+        </section>
+      </main>
+      <Suspense fallback={<div className="min-h-screen bg-[rgb(var(--bg))]" />}>
+        <HomeClient />
+      </Suspense>
     </>
   );
 }
