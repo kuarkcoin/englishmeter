@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import HomeClient from "./HomeClient";
 
 const baseUrl =
@@ -158,7 +159,9 @@ export default function Page() {
           </ul>
         </section>
       </main>
-      <HomeClient />
+      <Suspense fallback={<div className="min-h-screen bg-[rgb(var(--bg))]" />}>
+        <HomeClient />
+      </Suspense>
     </>
   );
 }
