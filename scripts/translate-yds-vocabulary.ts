@@ -5,6 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 type LanguageCode = 'tr' | 'de' | 'es' | 'it' | 'fr';
+type TargetLanguageCode = Exclude<LanguageCode, 'tr'>;
 
 type VocabularyItem = {
   word: string;
@@ -13,9 +14,14 @@ type VocabularyItem = {
   [key: string]: unknown;
 };
 
-type TranslationResponseItem = {
+type TranslationResult = Partial<Record<TargetLanguageCode, string>>;
+
+type PendingItem = {
   index: number;
-} & Partial<Record<Exclude<LanguageCode, 'tr'>, string>>;
+  word: string;
+  meaning: string;
+  missing: TargetLanguageCode[];
+};
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,21 +31,22 @@ const vocabularyPath = path.join(rootDir, 'data', 'yds_vocabulary.json');
 const backupPath = path.join(rootDir, 'data', 'yds_vocabulary.backup.json');
 const tempPath = path.join(rootDir, 'data', 'yds_vocabulary.json.tmp');
 
-const TARGET_LANGUAGES = ['de', 'es', 'it', 'fr'] as const;
-const DEFAULT_BATCH_SIZE = 20;
+const TARGET_LANGUAGES: TargetLanguageCode[] = ['de', 'es', 'it', 'fr'];
+const SAVE_EVERY_WORDS = 50;
+const DEFAULT_RATE_LIMIT_DELAY_MS = 350;
 
-const envConfig = dotenv.config({ path: envPath });
+dotenv.config({ path: envPath });
 
-function getEnvValue(key: string) {
-  return envConfig.parsed?.[key];
+function assertLocalRuntime() {
+  if (process.env.VERCEL) {
+    throw new Error('This translation script is for local/Codespace use only. Do not run it in Vercel runtime.');
+  }
 }
 
-function getApiKey() {
-  const key = getEnvValue('GOOGLE_API_KEY') || getEnvValue('GEMINI_API_KEY');
+function getGeminiApiKey() {
+  const key = process.env.GEMINI_API_KEY;
   if (!key) {
-    throw new Error(
-      'Missing translation API key in .env.local. Add GOOGLE_API_KEY (or GEMINI_API_KEY) before running scripts/translate-yds-vocabulary.ts.'
-    );
+    throw new Error('Missing GEMINI_API_KEY. Add it to your Codespace/local environment or .env.local before running npm run translate:yds.');
   }
   return key;
 }
@@ -51,6 +58,8 @@ function hasText(value: unknown): value is string {
 function normalizeItem(item: VocabularyItem): VocabularyItem {
   return {
     ...item,
+    word: item.word,
+    meaning: item.meaning,
     meanings: {
       ...(item.meanings || {}),
       tr: item.meaning,
@@ -58,48 +67,69 @@ function normalizeItem(item: VocabularyItem): VocabularyItem {
   };
 }
 
-function missingTargetLanguages(item: VocabularyItem) {
+function missingTargetLanguages(item: VocabularyItem): TargetLanguageCode[] {
   return TARGET_LANGUAGES.filter((language) => !hasText(item.meanings?.[language]));
 }
 
-function extractJsonArray(text: string): TranslationResponseItem[] {
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function safeSaveVocabulary(vocabulary: VocabularyItem[]) {
+  await writeFile(tempPath, `${JSON.stringify(vocabulary, null, 2)}\n`, 'utf8');
+  await rename(tempPath, vocabularyPath);
+}
+
+function extractJsonObject(text: string): TranslationResult | null {
   const cleaned = text
     .trim()
     .replace(/^```(?:json)?/i, '')
     .replace(/```$/i, '')
     .trim();
 
-  const start = cleaned.indexOf('[');
-  const end = cleaned.lastIndexOf(']');
-  if (start === -1 || end === -1 || end <= start) {
-    throw new Error(`Translation API did not return a JSON array. Response: ${text.slice(0, 500)}`);
-  }
+  const start = cleaned.indexOf('{');
+  const end = cleaned.lastIndexOf('}');
+  if (start === -1 || end === -1 || end <= start) return null;
 
-  const parsed = JSON.parse(cleaned.slice(start, end + 1)) as TranslationResponseItem[];
-  if (!Array.isArray(parsed)) {
-    throw new Error('Translation API response JSON is not an array.');
+  try {
+    const parsed = JSON.parse(cleaned.slice(start, end + 1)) as TranslationResult;
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return null;
+    return parsed;
+  } catch {
+    return null;
   }
-
-  return parsed;
 }
 
-function buildPrompt(batch: Array<{ index: number; word: string; meaning: string; missing: readonly LanguageCode[] }>) {
-  return `Translate the Turkish vocabulary meanings for an English exam word list.\n\nRules:\n- Return ONLY valid JSON.\n- Return a JSON array.\n- Keep each input index exactly.\n- Translate only the requested missing language codes for each item.\n- Requested codes: de = German, es = Spanish, it = Italian, fr = French.\n- Do not translate the English word field; translate only the Turkish meaning.\n- Do not add markdown, explanations, or extra keys.\n- Output shape example when de and fr are requested: [{"index":0,"de":"...","fr":"..."}]\n\nItems:\n${JSON.stringify(batch, null, 2)}`;
+function buildPrompt(item: PendingItem) {
+  return `Translate the Turkish meaning of an English YDS vocabulary item.\n\nReturn ONLY valid JSON. No markdown. No explanation.\nTranslate only the requested missing language codes.\nRequested codes: ${item.missing.join(', ')}.\nLanguage codes: de = German, es = Spanish, it = Italian, fr = French.\nDo not translate the English word. Translate only the Turkish meaning.\nJSON shape example: {"de":"...","es":"...","it":"...","fr":"..."}\n\nInput:\n${JSON.stringify(
+    {
+      word: item.word,
+      meaning: item.meaning,
+      missing: item.missing,
+    },
+    null,
+    2
+  )}`;
 }
 
-async function translateBatch(
+async function translateOne(
   model: ReturnType<GoogleGenerativeAI['getGenerativeModel']>,
-  batch: Array<{ index: number; word: string; meaning: string; missing: readonly LanguageCode[] }>
-) {
-  const result = await model.generateContent(buildPrompt(batch));
-  const text = result.response.text();
-  return extractJsonArray(text);
+  item: PendingItem
+): Promise<TranslationResult | null> {
+  const result = await model.generateContent(buildPrompt(item));
+  return extractJsonObject(result.response.text());
 }
 
 async function main() {
-  const apiKey = getApiKey();
-  const batchSize = Math.max(1, Number(getEnvValue('YDS_TRANSLATE_BATCH_SIZE') || DEFAULT_BATCH_SIZE) || DEFAULT_BATCH_SIZE);
-  const modelName = getEnvValue('GEMINI_TRANSLATION_MODEL') || 'gemini-1.5-flash';
+  assertLocalRuntime();
+
+  const apiKey = getGeminiApiKey();
+  const modelName = process.env.GEMINI_TRANSLATION_MODEL || 'gemini-1.5-flash';
+  const rateLimitDelayMs = Math.max(
+    0,
+    Number(process.env.YDS_TRANSLATE_DELAY_MS || DEFAULT_RATE_LIMIT_DELAY_MS) || DEFAULT_RATE_LIMIT_DELAY_MS
+  );
+
   const genAI = new GoogleGenerativeAI(apiKey);
   const model = genAI.getGenerativeModel({
     model: modelName,
@@ -113,62 +143,83 @@ async function main() {
   }
 
   const vocabulary = parsed.map(normalizeItem);
-  const pending = vocabulary
-    .map((item, index) => ({ index, word: item.word, meaning: item.meaning, missing: missingTargetLanguages(item) }))
+  const pending: PendingItem[] = vocabulary
+    .map((item, index) => ({
+      index,
+      word: item.word,
+      meaning: item.meaning,
+      missing: missingTargetLanguages(item),
+    }))
     .filter((item) => hasText(item.word) && hasText(item.meaning) && item.missing.length > 0);
 
   await copyFile(vocabularyPath, backupPath);
+  console.log(`Backup created: ${path.relative(rootDir, backupPath)}`);
+  console.log(`Pending words: ${pending.length}`);
 
   let translatedWords = 0;
   let translatedFields = 0;
+  let skippedAlreadyComplete = vocabulary.length - pending.length;
+  let skippedBadResponse = 0;
+  let processedSinceSave = 0;
 
-  for (let offset = 0; offset < pending.length; offset += batchSize) {
-    const batch = pending.slice(offset, offset + batchSize);
-    const translations = await translateBatch(model, batch);
-    const byIndex = new Map(translations.map((item) => [item.index, item]));
+  for (const pendingItem of pending) {
+    const item = vocabulary[pendingItem.index];
 
-    for (const pendingItem of batch) {
-      const item = vocabulary[pendingItem.index];
-      const translated = byIndex.get(pendingItem.index);
+    try {
+      const translated = await translateOne(model, pendingItem);
       if (!translated) {
-        throw new Error(`Translation API response is missing index ${pendingItem.index} (${pendingItem.word}).`);
-      }
+        skippedBadResponse += 1;
+        console.warn(`Skipping ${pendingItem.word}: Gemini returned invalid JSON.`);
+      } else {
+        const hasAllRequestedTranslations = pendingItem.missing.every((language) => hasText(translated[language]));
 
-      let changedThisWord = false;
-      item.meanings = { ...(item.meanings || {}), tr: item.meaning };
+        if (!hasAllRequestedTranslations) {
+          skippedBadResponse += 1;
+          console.warn(`Skipping ${pendingItem.word}: Gemini JSON did not include all requested translations.`);
+        } else {
+          item.meanings = { ...(item.meanings || {}), tr: item.meaning };
 
-      for (const language of pendingItem.missing) {
-        const value = translated[language];
-        if (!hasText(value)) {
-          throw new Error(`Translation API response is missing ${language} for index ${pendingItem.index} (${pendingItem.word}).`);
+          for (const language of pendingItem.missing) {
+            item.meanings[language] = translated[language]!.trim();
+            translatedFields += 1;
+          }
+
+          translatedWords += 1;
         }
-
-        item.meanings[language] = value.trim();
-        translatedFields += 1;
-        changedThisWord = true;
       }
-
-      if (changedThisWord) translatedWords += 1;
+    } catch (error) {
+      skippedBadResponse += 1;
+      console.warn(
+        `Skipping ${pendingItem.word}: ${error instanceof Error ? error.message : 'Unknown Gemini translation error.'}`
+      );
     }
 
-    console.log(`Translated ${Math.min(offset + batch.length, pending.length)} / ${pending.length} pending words...`);
+    processedSinceSave += 1;
+    if (processedSinceSave >= SAVE_EVERY_WORDS) {
+      await safeSaveVocabulary(vocabulary);
+      processedSinceSave = 0;
+      console.log(`Safely saved progress after ${translatedWords + skippedBadResponse} processed pending words.`);
+    }
+
+    if (rateLimitDelayMs > 0) {
+      await sleep(rateLimitDelayMs);
+    }
   }
 
-  await writeFile(tempPath, `${JSON.stringify(vocabulary, null, 2)}\n`, 'utf8');
-  await rename(tempPath, vocabularyPath);
+  await safeSaveVocabulary(vocabulary);
 
-  const skippedWords = vocabulary.length - translatedWords;
   console.log('YDS vocabulary translation complete.');
   console.log(`Total words: ${vocabulary.length}`);
   console.log(`Translated words: ${translatedWords}`);
   console.log(`Translated fields: ${translatedFields}`);
-  console.log(`Skipped words: ${skippedWords}`);
+  console.log(`Skipped already complete words: ${skippedAlreadyComplete}`);
+  console.log(`Skipped invalid/error words: ${skippedBadResponse}`);
   console.log(`Backup: ${path.relative(rootDir, backupPath)}`);
   console.log(`Updated: ${path.relative(rootDir, vocabularyPath)}`);
 }
 
 main().catch((error: unknown) => {
-  console.error('YDS vocabulary translation failed. data/yds_vocabulary.json was not overwritten unless all translation steps completed.');
+  console.error('YDS vocabulary translation failed. Atomic writes prevent partial JSON corruption; backup remains available.');
   console.error(error instanceof Error ? error.message : error);
   process.exitCode = 1;
 });

@@ -7,7 +7,7 @@
     "dev": "next dev",
     "postinstall": "prisma generate",
     "build": "next build",
-    "translate:yds": "ts-node --esm scripts/translate-yds-vocabulary.ts",
+    "translate:yds": "tsx scripts/translate-yds-vocabulary.ts",
     "start": "next start"
   },
   "dependencies": {
@@ -43,7 +43,8 @@
     "prisma": "^6.2.1",
     "tailwindcss": "3.4.4",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "tsx": "^4.20.6"
   },
   "engines": {
     "node": ">=18.0.0"
