@@ -66,6 +66,30 @@ export interface StandardQuestion {
   explanation?: string;
 }
 
+
+type MeaningLanguageCode = 'tr' | 'de' | 'es' | 'it' | 'fr';
+
+const MEANING_LANGUAGE_LABELS: Record<MeaningLanguageCode, string> = {
+  tr: 'Turkish',
+  de: 'German',
+  es: 'Spanish',
+  it: 'Italian',
+  fr: 'French',
+};
+
+function normalizeMeaningLanguage(value?: string | null): MeaningLanguageCode {
+  if (value === 'de' || value === 'es' || value === 'it' || value === 'fr' || value === 'tr') return value;
+  return 'tr';
+}
+
+function getLocalizedMeaning(item: any, language: MeaningLanguageCode): string {
+  const localized = item?.meanings?.[language];
+  if (typeof localized === 'string' && localized.trim()) return localized.trim();
+
+  const fallback = item?.meaning;
+  return typeof fallback === 'string' ? fallback.trim() : '';
+}
+
 // --- HELPERS ---
 function shuffleArray<T>(arr: T[]): T[] {
   // (Genel kullanım için random kalabilir; SEO kritik yerlerde seeded kullanıyoruz)
@@ -136,54 +160,65 @@ const grammarTitleMap: Record<string, string> = {
 
 // --- MAIN FUNCTION ---
 export const getQuestionsBySlug = (
-  slug: string
+  slug: string,
+  meaningLanguageInput?: string | null
 ): { title: string; duration: number; questions: StandardQuestion[] } => {
   let rawQuestions: any[] = [];
   let title = 'English Practice Test';
   let duration = 30; // Varsayılan süre (dakika)
+  const meaningLanguage = normalizeMeaningLanguage(meaningLanguageInput);
 
   // 1) YDS 3850 MINI VOCAB TESTS (yds-3850-mini-1 .. 77)
   // Geriye dönük: yds-3750-mini-... slug’larını da kabul ediyoruz.
-  if (slug.startsWith('yds-3850-mini-') || slug.startsWith('yds-3750-mini-')) {
+  if (slug.startsWith('yds-5000-mini-') || slug.startsWith('yds-3850-mini-') || slug.startsWith('yds-3750-mini-')) {
     const nRaw = parseInt(slug.split('-').pop() || '1', 10);
-    const n = Number.isFinite(nRaw) ? clampInt(nRaw, 1, 77) : 1;
+    const maxMiniTest = slug.startsWith('yds-5000-mini-') ? 100 : 77;
+    const n = Number.isFinite(nRaw) ? clampInt(nRaw, 1, maxMiniTest) : 1;
 
     const pool = ydsVocabulary as any[];
     const indices = seededUniqueIndices(pool.length, 50, 1000 + n * 9991); // Sabit seed
 
-    title = `YDS 3850 Words - Mini Test ${n}`;
+    title = slug.startsWith('yds-5000-mini-')
+      ? `YDS 5000 Words - Mini Test ${n}`
+      : `YDS 3850 Words - Mini Test ${n}`;
     duration = 25;
 
     rawQuestions = indices.map((i) => {
       const item = pool[i];
+      const correctMeaning = getLocalizedMeaning(item, meaningLanguage);
+      const meaningLabel = MEANING_LANGUAGE_LABELS[meaningLanguage];
 
-      // Distractor havuzu (aynı meaning hariç)
-      const dPool = pool.filter((x) => x.meaning !== item.meaning);
+      // Distractor havuzu (aynı kelime ve aynı meaning hariç)
+      const dPool = pool
+        .filter((x) => x?.word !== item?.word)
+        .map((x) => getLocalizedMeaning(x, meaningLanguage))
+        .filter((meaning) => meaning && meaning !== correctMeaning);
+      const uniqueDPool = Array.from(new Set(dPool));
 
       // ✅ Distractor seçimi seeded (SEO tutarlı)
       const rand2 = lcg(5000 + n * 777 + i);
       const picked = new Set<number>();
-      while (picked.size < Math.min(3, dPool.length)) {
-        picked.add(Math.floor(rand2() * dPool.length));
+      while (picked.size < Math.min(3, uniqueDPool.length)) {
+        picked.add(Math.floor(rand2() * uniqueDPool.length));
       }
-      const selectedDistractors = Array.from(picked).map((idx) => dPool[idx]?.meaning).filter(Boolean);
+      const selectedDistractors = Array.from(picked).map((idx) => uniqueDPool[idx]).filter(Boolean);
 
       // ✅ Şık karıştırma da seeded (SEO tutarlı)
-      const baseChoices = [item.meaning, ...selectedDistractors];
+      const baseChoices = [correctMeaning, ...selectedDistractors];
       const shuffledChoices = seededShuffle(baseChoices, 9000 + n * 111 + i);
 
       const letterIds = ['a', 'b', 'c', 'd'];
       const choices = shuffledChoices.slice(0, 4).map((text, idx) => ({
         id: letterIds[idx],
         text,
-        isCorrect: text === item.meaning,
+        isCorrect: text === correctMeaning,
       }));
 
       return {
         id: `yds3850-mini-${n}-v-${i}`,
-        prompt: `What is the Turkish meaning of **"${item.word}"**?`,
+        prompt: `What is the ${meaningLabel} meaning of **"${item.word}"**?`,
         choices,
-        explanation: `**${item.word}** means **${item.meaning}**.`,
+        explanation: `**${item.word}** means **${correctMeaning}** in ${meaningLabel}.`,
       };
     });
 

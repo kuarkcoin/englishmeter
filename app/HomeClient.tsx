@@ -109,6 +109,55 @@ const ADV_TEST_MAP: Record<string, any[]> = {
   '10': advTest10,
 };
 
+
+const MEANING_LANGUAGE_OPTIONS = [
+  { code: 'tr', label: 'Turkish' },
+  { code: 'de', label: 'German' },
+  { code: 'es', label: 'Spanish' },
+  { code: 'it', label: 'Italian' },
+  { code: 'fr', label: 'French' },
+] as const;
+
+type MeaningLanguageCode = (typeof MEANING_LANGUAGE_OPTIONS)[number]['code'];
+
+const MEANING_LANGUAGE_LABELS: Record<MeaningLanguageCode, string> = {
+  tr: 'Turkish',
+  de: 'German',
+  es: 'Spanish',
+  it: 'Italian',
+  fr: 'French',
+};
+
+function normalizeMeaningLanguage(value: string | null | undefined): MeaningLanguageCode | null {
+  if (value === 'tr' || value === 'de' || value === 'es' || value === 'it' || value === 'fr') return value;
+  return null;
+}
+
+function detectBrowserMeaningLanguage(): MeaningLanguageCode {
+  if (typeof navigator === 'undefined') return 'tr';
+
+  // navigator.languages reflects the browser Accept-Language preference list.
+  const browserLanguages = [navigator.language, ...(navigator.languages || [])];
+
+  for (const language of browserLanguages) {
+    const prefix = String(language || '').toLowerCase().split('-')[0];
+    if (prefix === 'de') return 'de';
+    if (prefix === 'es') return 'es';
+    if (prefix === 'it') return 'it';
+    if (prefix === 'fr') return 'fr';
+  }
+
+  return 'tr';
+}
+
+function getLocalizedMeaning(item: any, language: MeaningLanguageCode): string {
+  const localized = item?.meanings?.[language];
+  if (typeof localized === 'string' && localized.trim()) return localized.trim();
+
+  const fallback = item?.meaning;
+  return typeof fallback === 'string' ? fallback.trim() : '';
+}
+
 // --- TEST TANIMLARI ---
 const quickTest = { title: 'Quick Placement Test', slug: 'quick-placement' };
 const megaTest = { title: 'Grammar Mega Test (100Q)', slug: 'grammar-mega-test-100' };
@@ -202,6 +251,7 @@ function seededUniqueIndices(total: number, need: number, seed: number) {
 // LocalStorage keys
 const LS_PREMIUM = 'em_is_premium';
 const LS_LAST = 'em_last_test';
+const LS_MEANING_LANGUAGE = 'em_yds5000_meaning_language';
 const LS_VOCAB_MAP = 'em_yds5000_map_v1';
 const LS_GLOBAL_VOCAB_MAP = 'em_global_vocab_map_v1';
 const LS_ENGLISH_DEUTSCH_MAP = 'em_english_deutsch_map_v1';
@@ -234,6 +284,7 @@ function HomeContent() {
   const [showGlobalVocabHub, setShowGlobalVocabHub] = useState(false);
   const [showEnglishDeutschHub, setShowEnglishDeutschHub] = useState(false);
   const [showDailyEnglishHub, setShowDailyEnglishHub] = useState(false);
+  const [meaningLanguage, setMeaningLanguage] = useState<MeaningLanguageCode>('tr');
   const [englishDeutschWords, setEnglishDeutschWords] = useState<Array<{ word: string; meaning: string }>>([]);
   const [lastTest, setLastTest] = useState<{ title: string; slug: string; at: string } | null>(null);
 
@@ -282,6 +333,38 @@ function HomeContent() {
       .sort((a, b) => a - b);
   }, []);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const urlLang = normalizeMeaningLanguage(searchParams.get('lang'));
+    const storedLang = normalizeMeaningLanguage(localStorage.getItem(LS_MEANING_LANGUAGE));
+    const browserLang = detectBrowserMeaningLanguage();
+    const nextLanguage = urlLang ?? storedLang ?? browserLang;
+
+    setMeaningLanguage(nextLanguage);
+
+    if (!urlLang) {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set('lang', nextLanguage);
+      router.replace(`?${params.toString()}`, { scroll: false });
+    }
+  }, [router, searchParams]);
+
+  const handleMeaningLanguageChange = useCallback(
+    (language: MeaningLanguageCode) => {
+      setMeaningLanguage(language);
+
+      try {
+        localStorage.setItem(LS_MEANING_LANGUAGE, language);
+      } catch {}
+
+      const params = new URLSearchParams(searchParams.toString());
+      params.set('lang', language);
+      router.replace(`?${params.toString()}`, { scroll: false });
+    },
+    [router, searchParams]
+  );
+
   // Load premium + last test
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -321,7 +404,7 @@ function HomeContent() {
     };
   }, []);
 
-  // --- 75 mini test mapping (stable) ---
+  // --- 100 mini test mapping (stable) ---
   const ensureVocabMap = useCallback(() => {
     const total = (ydsVocabulary as any[])?.length || 0;
     const map = safeJsonParse<Record<string, number[]>>(typeof window !== 'undefined' ? localStorage.getItem(LS_VOCAB_MAP) : null, {});
@@ -434,28 +517,36 @@ function HomeContent() {
 
         // 50Q, 25min default (user request)
         const questions = selectedWords.map((item: any, idx: number) => {
-          const correctAnswer = item.meaning;
+          const correctAnswer = getLocalizedMeaning(item, meaningLanguage);
+          if (!correctAnswer) return null;
 
-          const distractors = shuffle(
-            pool
-              .filter((w: any) => w.meaning !== correctAnswer)
-              .map((w: any) => w.meaning)
-          ).slice(0, 3);
+          const uniqueDistractors = Array.from(
+            new Set(
+              pool
+                .filter((w: any) => w?.word !== item?.word)
+                .map((w: any) => getLocalizedMeaning(w, meaningLanguage))
+                .filter((meaning: string) => meaning && meaning !== correctAnswer)
+            )
+          );
+
+          const distractors = shuffle(uniqueDistractors).slice(0, 3);
+          if (distractors.length < 3) return null;
 
           const allOptions = shuffle([...distractors, correctAnswer]);
           const idsLower = ['a', 'b', 'c', 'd'];
+          const meaningLabel = MEANING_LANGUAGE_LABELS[meaningLanguage];
 
           return {
             id: `yds-5000-mini-${n}-q${idx + 1}`,
-            prompt: `What is the Turkish meaning of **"${item.word}"**?`,
+            prompt: `What is the ${meaningLabel} meaning of **"${item.word}"**?`,
             choices: allOptions.map((optText: string, i: number) => ({
               id: idsLower[i],
               text: optText,
               isCorrect: optText === correctAnswer,
             })),
-            explanation: `**${item.word}**: ${correctAnswer}`,
+            explanation: `**${item.word}** (${meaningLabel}): ${correctAnswer}`,
           };
-        });
+        }).filter(Boolean);
 
         const title = `YDS 5000 WORDS · MINI TEST ${n} (50Q · 25 min)`;
 
@@ -469,7 +560,7 @@ function HomeContent() {
 
         sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
         saveLast(title, testSlug);
-        router.push(`/quiz/${attemptId}`);
+        router.push(`/quiz/${attemptId}?lang=${meaningLanguage}`);
         return;
       }
 
@@ -1059,7 +1150,7 @@ function HomeContent() {
       }
 
       // default: send to /start
-      router.push(`/start?testSlug=${encodeURIComponent(testSlug)}`);
+      router.push(`/start?testSlug=${encodeURIComponent(testSlug)}&lang=${meaningLanguage}`);
     },
     [
       dailyEnglishTestCount,
@@ -1069,6 +1160,7 @@ function HomeContent() {
       ensureGlobalVocabMap,
       ensureVocabMap,
       globalVocabTestCount,
+      meaningLanguage,
       router,
       ydsVocabulary2,
     ]
@@ -1514,52 +1606,75 @@ function HomeContent() {
   </Link>
 
   {/* 🔥 YDS 5000 HERO (GRID ITEM) */}
-  <button
-    type="button"
-    onClick={() => {
-      const next = !showYds3750Hub;
-      setShowYds3750Hub(next);
-      if (!next) return;
+  <div className="flex flex-col gap-3">
+    <button
+      type="button"
+      onClick={() => {
+        const next = !showYds3750Hub;
+        setShowYds3750Hub(next);
+        if (!next) return;
 
-      ensureVocabMap();
-      setTimeout(() => {
-        document.getElementById("yds3750hub")?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 80);
-    }}
-    className={`group relative overflow-hidden rounded-2xl p-6 md:p-7 text-left
-      bg-gradient-to-br from-orange-600 via-orange-700 to-amber-600
-      text-white shadow-xl transition-all duration-300 transform hover:-translate-y-1
-      hover:shadow-orange-500/30
-      ${showYds3750Hub ? "ring-2 ring-amber-200 ring-offset-2 ring-offset-white" : ""}`}
-  >
-    <div className="absolute -top-10 -right-10 w-40 h-40 bg-amber-300 opacity-20 rounded-full blur-3xl"></div>
+        ensureVocabMap();
+        setTimeout(() => {
+          document.getElementById("yds3750hub")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 80);
+      }}
+      className={`group relative overflow-hidden rounded-2xl p-6 md:p-7 text-left
+        bg-gradient-to-br from-orange-600 via-orange-700 to-amber-600
+        text-white shadow-xl transition-all duration-300 transform hover:-translate-y-1
+        hover:shadow-orange-500/30
+        ${showYds3750Hub ? "ring-2 ring-amber-200 ring-offset-2 ring-offset-white" : ""}`}
+    >
+      <div className="absolute -top-10 -right-10 w-40 h-40 bg-amber-300 opacity-20 rounded-full blur-3xl"></div>
 
-    <div className="relative z-10 flex flex-col justify-between h-full">
-      <div>
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/15 rounded-full text-[10px] font-black uppercase mb-3 border border-white/20">
-          📚 Vocabulary Mega Pack
+      <div className="relative z-10 flex flex-col justify-between h-full">
+        <div>
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/15 rounded-full text-[10px] font-black uppercase mb-3 border border-white/20">
+            📚 Vocabulary Mega Pack
+          </div>
+
+          <div className="text-2xl font-black leading-tight">YDS 5000 Mini Tests</div>
+
+          <div className="mt-2 text-xs text-white/90 leading-relaxed">
+            100 mini test · <span className="font-black">50 soru</span> · 25 dakika
+            <br />
+            Aynı test numarası → aynı sorular
+          </div>
         </div>
 
-        <div className="text-2xl font-black leading-tight">YDS 5000 Mini Tests</div>
+        <div className="mt-6 flex items-center justify-between">
+          <div className="text-[11px] font-bold text-white/90">
+            {isPremium ? "✅ Premium unlocked" : `🔒 Free: first ${freeMiniCount}`}
+          </div>
 
-        <div className="mt-2 text-xs text-white/90 leading-relaxed">
-          100 mini test · <span className="font-black">50 soru</span> · 25 dakika
-          <br />
-          Aynı test numarası → aynı sorular
+          <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-orange-700 text-2xl font-black shadow-lg group-hover:scale-110 transition-transform">
+            {showYds3750Hub ? "×" : "▶"}
+          </div>
         </div>
       </div>
+    </button>
 
-      <div className="mt-6 flex items-center justify-between">
-        <div className="text-[11px] font-bold text-white/90">
-          {isPremium ? "✅ Premium unlocked" : `🔒 Free: first ${freeMiniCount}`}
-        </div>
-
-        <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-orange-700 text-2xl font-black shadow-lg group-hover:scale-110 transition-transform">
-          {showYds3750Hub ? "×" : "▶"}
-        </div>
-      </div>
-    </div>
-  </button>
+    <label className="rounded-2xl border border-orange-200 bg-white/95 p-3 text-left shadow-sm dark:border-orange-900/60 dark:bg-slate-900">
+      <span className="block text-[11px] font-black uppercase tracking-wide text-orange-700 dark:text-orange-300">
+        Meaning Language
+      </span>
+      <select
+        value={meaningLanguage}
+        onChange={(event) => handleMeaningLanguageChange(event.target.value as MeaningLanguageCode)}
+        className="mt-2 w-full rounded-xl border border-orange-200 bg-white px-3 py-2 text-sm font-bold text-slate-900 outline-none transition focus:border-orange-500 focus:ring-2 focus:ring-orange-200 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-50"
+        aria-label="Meaning Language"
+      >
+        {MEANING_LANGUAGE_OPTIONS.map((option) => (
+          <option key={option.code} value={option.code}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+      <span className="mt-2 block text-[11px] font-semibold text-orange-700/75 dark:text-orange-300/80">
+        Questions and answer choices use this language. Missing translations fall back to Turkish.
+      </span>
+    </label>
+  </div>
 
   <DiamondCard
     as="button"
