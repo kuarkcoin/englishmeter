@@ -202,7 +202,7 @@ function StartQuizLogic() {
         durationMinutes = 40;
         rawQuestions = (ydsCloze1 as any[]) || [];
       } else {
-        const r = getQuestionsBySlug(slug);
+        const r = getQuestionsBySlug(slug, searchParams.get('lang'));
         title = r.title;
         rawQuestions = (r.questions || []) as any[];
         durationMinutes = 0; // Quiz.tsx: 0 ise soru sayısına göre otomatik süre

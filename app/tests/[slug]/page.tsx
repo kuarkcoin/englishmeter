@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { getQuestionsBySlug } from '@/lib/quizManager';
 import RaceQuiz from '@/components/RaceQuiz';
 
-type PageProps = { params: { slug: string } };
+type PageProps = { params: { slug: string }; searchParams?: { lang?: string } };
 
 // RaceQuiz'in beklediği format
 type RaceQuestion = {
@@ -43,8 +43,8 @@ function toRaceQuestions(
   });
 }
 
-export function generateMetadata({ params }: PageProps): Metadata {
-  const data = getQuestionsBySlug(params.slug);
+export function generateMetadata({ params, searchParams }: PageProps): Metadata {
+  const data = getQuestionsBySlug(params.slug, searchParams?.lang);
   const qCount = data?.questions?.length ?? 0;
 
   return {
@@ -57,8 +57,8 @@ export function generateMetadata({ params }: PageProps): Metadata {
   };
 }
 
-export default function TestPage({ params }: PageProps) {
-  const testData = getQuestionsBySlug(params.slug);
+export default function TestPage({ params, searchParams }: PageProps) {
+  const testData = getQuestionsBySlug(params.slug, searchParams?.lang);
 
   if (!testData?.questions?.length) {
     return (
