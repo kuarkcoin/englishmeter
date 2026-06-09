@@ -136,13 +136,17 @@ function normalizeMeaningLanguage(value: string | null | undefined): MeaningLang
 function detectBrowserMeaningLanguage(): MeaningLanguageCode {
   if (typeof navigator === 'undefined') return 'tr';
 
-  const candidates = [navigator.language, ...(navigator.languages || [])];
-  const normalized = candidates.map((lang) => String(lang || '').toLowerCase().split('-')[0]);
+  // navigator.languages reflects the browser Accept-Language preference list.
+  const browserLanguages = [navigator.language, ...(navigator.languages || [])];
 
-  if (normalized.includes('de')) return 'de';
-  if (normalized.includes('es')) return 'es';
-  if (normalized.includes('it')) return 'it';
-  if (normalized.includes('fr')) return 'fr';
+  for (const language of browserLanguages) {
+    const prefix = String(language || '').toLowerCase().split('-')[0];
+    if (prefix === 'de') return 'de';
+    if (prefix === 'es') return 'es';
+    if (prefix === 'it') return 'it';
+    if (prefix === 'fr') return 'fr';
+  }
+
   return 'tr';
 }
 
@@ -247,6 +251,7 @@ function seededUniqueIndices(total: number, need: number, seed: number) {
 // LocalStorage keys
 const LS_PREMIUM = 'em_is_premium';
 const LS_LAST = 'em_last_test';
+const LS_MEANING_LANGUAGE = 'em_yds5000_meaning_language';
 const LS_VOCAB_MAP = 'em_yds5000_map_v1';
 const LS_GLOBAL_VOCAB_MAP = 'em_global_vocab_map_v1';
 const LS_ENGLISH_DEUTSCH_MAP = 'em_english_deutsch_map_v1';
@@ -332,7 +337,10 @@ function HomeContent() {
     if (typeof window === 'undefined') return;
 
     const urlLang = normalizeMeaningLanguage(searchParams.get('lang'));
-    const nextLanguage = urlLang ?? detectBrowserMeaningLanguage();
+    const storedLang = normalizeMeaningLanguage(localStorage.getItem(LS_MEANING_LANGUAGE));
+    const browserLang = detectBrowserMeaningLanguage();
+    const nextLanguage = urlLang ?? storedLang ?? browserLang;
+
     setMeaningLanguage(nextLanguage);
 
     if (!urlLang) {
@@ -345,6 +353,10 @@ function HomeContent() {
   const handleMeaningLanguageChange = useCallback(
     (language: MeaningLanguageCode) => {
       setMeaningLanguage(language);
+
+      try {
+        localStorage.setItem(LS_MEANING_LANGUAGE, language);
+      } catch {}
 
       const params = new URLSearchParams(searchParams.toString());
       params.set('lang', language);
