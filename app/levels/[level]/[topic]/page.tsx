@@ -1,58 +1,114 @@
-'use client';
-
-import React, { useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 
-import { a1Topics } from '@/data/levels/a1_topics';
-import { a2Topics } from '@/data/levels/a2_topics';
-import { b1Topics } from '@/data/levels/b1_topics';
-import { b2Topics } from '@/data/levels/b2_topics';
-import { c1Topics } from '@/data/levels/c1_topics';
-import { c2Topics } from '@/data/levels/c2_topics';
-
+import LevelTopicQuizClient, {
+  type LevelTopicQuizQuestion,
+  type LevelTopicQuizTopic,
+} from '@/components/LevelTopicQuizClient';
 import { a1Questions } from '@/data/levels/a1_questions';
+import { a1Topics } from '@/data/levels/a1_topics';
 import { a2Questions } from '@/data/levels/a2_questions';
+import { a2Topics } from '@/data/levels/a2_topics';
 import { b1Questions } from '@/data/levels/b1_questions';
+import { b1Topics } from '@/data/levels/b1_topics';
 import { b2Questions } from '@/data/levels/b2_questions';
+import { b2Topics } from '@/data/levels/b2_topics';
 import { c1Questions } from '@/data/levels/c1_questions';
+import { c1Topics } from '@/data/levels/c1_topics';
 import { c2Questions } from '@/data/levels/c2_questions';
+import { c2Topics } from '@/data/levels/c2_topics';
 
 type RouteParams = {
   level?: string | string[];
   topic?: string | string[];
 };
 
-export default function LevelTopicPage() {
-  const params = useParams() as RouteParams;
-  const router = useRouter();
+type LevelTopicPageProps = {
+  params: RouteParams;
+};
 
-  const levelParam = Array.isArray(params.level) ? params.level[0] : params.level || '';
-  const topicParam = Array.isArray(params.topic) ? params.topic[0] : params.topic || '';
+const topicsByLevel: Record<string, LevelTopicQuizTopic[]> = {
+  a1: a1Topics,
+  a2: a2Topics,
+  b1: b1Topics,
+  b2: b2Topics,
+  c1: c1Topics,
+  c2: c2Topics,
+};
 
-  const levelKey = levelParam.toLowerCase(); // 'a1', 'a2', 'b1', 'b2', 'c1', 'c2'
-  const levelLabel = levelKey.toUpperCase(); // 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'
+const questionsByLevel: Record<string, LevelTopicQuizQuestion[]> = {
+  a1: a1Questions,
+  a2: a2Questions,
+  b1: b1Questions,
+  b2: b2Questions,
+  c1: c1Questions,
+  c2: c2Questions,
+};
 
-  const topicsByLevel: Record<string, any[]> = {
-    a1: a1Topics,
-    a2: a2Topics,
-    b1: b1Topics,
-    b2: b2Topics,
-    c1: c1Topics,
-    c2: c2Topics,
-  };
+const resolveParam = (param: string | string[] | undefined) =>
+  Array.isArray(param) ? param[0] : param || '';
 
-  const questionsByLevel: Record<string, any[]> = {
-    a1: a1Questions,
-    a2: a2Questions,
-    b1: b1Questions,
-    b2: b2Questions,
-    c1: c1Questions,
-    c2: c2Questions,
-  };
-
+const resolveLevelTopic = (params: RouteParams) => {
+  const levelParam = resolveParam(params.level);
+  const topicParam = resolveParam(params.topic);
+  const levelKey = levelParam.toLowerCase();
+  const levelLabel = levelKey.toUpperCase();
   const topics = topicsByLevel[levelKey];
   const allQuestions = questionsByLevel[levelKey];
+  const topic = topics?.find((item) => item.slug === topicParam);
+  const questions = allQuestions?.filter((question) => question.topic === topicParam) ?? [];
+
+  return {
+    levelKey,
+    levelLabel,
+    topicParam,
+    topics,
+    allQuestions,
+    topic,
+    questions,
+  };
+};
+
+export function generateMetadata({ params }: LevelTopicPageProps): Metadata {
+  const { levelKey, levelLabel, topicParam, topic } = resolveLevelTopic(params);
+  const canonical = `/levels/${levelKey}/${topicParam}`;
+  const title = topic
+    ? `${levelLabel} ${topic.title} Grammar Quiz`
+    : `${levelLabel || 'English'} Grammar Topic Quiz`;
+  const description = topic
+    ? `${topic.description} Practise this ${levelLabel} grammar topic with an interactive EnglishMeter quiz.`
+    : `Practise English grammar by level with interactive EnglishMeter topic quizzes.`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+    },
+  };
+}
+
+export default function LevelTopicPage({ params }: LevelTopicPageProps) {
+  const {
+    levelKey,
+    levelLabel,
+    topicParam,
+    topics,
+    allQuestions,
+    topic,
+    questions,
+  } = resolveLevelTopic(params);
 
   if (!topics || !allQuestions) {
     return (
@@ -61,56 +117,32 @@ export default function LevelTopicPage() {
           <p className="mb-4">
             Topic quizzes are only available for A1, A2, B1, B2, C1 and C2 for now.
           </p>
-          <button
+          <Link
             className="px-4 py-2 rounded bg-slate-800 text-white"
-            onClick={() => router.push('/levels/a1')}
+            href="/levels/a1"
           >
             Go to A1 page
-          </button>
+          </Link>
         </div>
       </div>
     );
   }
-
-  const topic = topics.find((t) => t.slug === topicParam);
 
   if (!topic) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <p className="mb-4">This topic does not exist for level {levelLabel}.</p>
-          <button
+          <Link
             className="px-4 py-2 rounded bg-slate-800 text-white"
-            onClick={() => router.push(`/levels/${levelKey}`)}
+            href={`/levels/${levelKey}`}
           >
             Back to {levelLabel} topics
-          </button>
+          </Link>
         </div>
       </div>
     );
   }
-
-  const questions = allQuestions.filter((q) => q.topic === topicParam);
-
-  const [answers, setAnswers] = useState<(number | null)[]>(
-    Array(questions.length).fill(null)
-  );
-  const [showResult, setShowResult] = useState(false);
-
-  const handleChange = (qIndex: number, optionIndex: number) => {
-    const next = [...answers];
-    next[qIndex] = optionIndex;
-    setAnswers(next);
-  };
-
-  const handleSubmit = () => {
-    setShowResult(true);
-  };
-
-  const correctCount = questions.reduce((acc, q, index) => {
-    if (answers[index] === q.correctIndex) return acc + 1;
-    return acc;
-  }, 0);
 
   const backHref = `/levels/${levelKey}`;
 
@@ -132,64 +164,13 @@ export default function LevelTopicPage() {
           Level {levelLabel} • {questions.length} questions
         </p>
 
-        <div className="space-y-6 mb-6">
-          {questions.map((q, qIndex) => (
-            <div
-              key={q.id}
-              className="em-card rounded-lg p-4"
-            >
-              <p className="font-medium mb-3">
-                {qIndex + 1}. {q.question}
-              </p>
-              <div className="space-y-2">
-                {q.options.map((opt: string, optIndex: number) => {
-                  const isSelected = answers[qIndex] === optIndex;
-                  const isCorrect = showResult && optIndex === q.correctIndex;
-                  const isWrongSelected =
-                    showResult && isSelected && optIndex !== q.correctIndex;
-
-                  return (
-                    <label
-                      key={optIndex}
-                      className={`flex items-center gap-2 rounded border px-3 py-2 cursor-pointer text-sm
-                        ${isSelected ? 'border-slate-800 dark:border-slate-200' : 'border-slate-200 dark:border-slate-700'}
-                        ${isCorrect ? 'bg-green-50 border-green-500' : ''}
-                        ${isWrongSelected ? 'bg-red-50 border-red-500' : ''}
-                      `}
-                    >
-                      <input
-                        type="radio"
-                        name={`q-${qIndex}`}
-                        checked={isSelected}
-                        onChange={() => handleChange(qIndex, optIndex)}
-                        className="h-4 w-4"
-                      />
-                      <span>{opt}</span>
-                    </label>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <button
-          className="w-full md:w-auto px-6 py-3 rounded bg-slate-800 text-white font-semibold hover:bg-slate-900"
-          onClick={handleSubmit}
-        >
-          Check my answers
-        </button>
-
-        {showResult && (
-          <div className="mt-4 p-4 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100">
-            <p className="font-semibold">
-              You scored {correctCount} / {questions.length}
-            </p>
-            <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">
-              Review the red answers and try again if you want.
-            </p>
-          </div>
-        )}
+        <LevelTopicQuizClient
+          level={levelKey}
+          levelLabel={levelLabel}
+          topicSlug={topicParam}
+          topic={topic}
+          questions={questions}
+        />
       </div>
     </div>
   );
