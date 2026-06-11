@@ -1,4 +1,11 @@
+import type { Metadata } from 'next';
 import React from 'react';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | EnglishMeter',
+  description:
+    'Read the EnglishMeter privacy policy to learn how we handle data, cookies, analytics, and third-party services.',
+};
 
 export default function PrivacyPage() {
   return (

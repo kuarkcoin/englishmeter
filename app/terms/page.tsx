@@ -1,4 +1,11 @@
+import type { Metadata } from 'next';
 import React from 'react';
+
+export const metadata: Metadata = {
+  title: 'Terms of Service | EnglishMeter',
+  description:
+    'Review the usage terms, rules, and conditions for accessing and using EnglishMeter.',
+};
 
 export default function TermsPage() {
   return (
