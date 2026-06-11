@@ -51,8 +51,8 @@ export function generateMetadata({ params, searchParams }: PageProps): Metadata 
     title: data?.title ? `${data.title} | EnglishMeter` : 'Test | EnglishMeter',
     description:
       qCount > 0
-        ? `${qCount} soruluk ${data.title} testini çöz. Ücretsiz online İngilizce testi.`
-        : 'Ücretsiz online İngilizce testleri.',
+        ? `${qCount}-question ${data.title} test. Practice online with instant scoring.`
+        : 'Free online English tests with instant scoring.',
     alternates: { canonical: `/tests/${params.slug}` },
   };
 }
