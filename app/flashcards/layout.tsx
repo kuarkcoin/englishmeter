@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/og-flashcards.jpg', // public/og-flashcards.jpg adında bir resim eklemelisin
+        url: '/flashcards/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'EnglishMeter AI Flashcards',
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'İngilizce Kelime Ezberlemede Yapay Zeka Devrimi',
     description: 'Kelimeyi gör, AI cümleyi kursun, sesli dinle ve kalıcı öğren!',
-    images: ['/og-flashcards.jpg'],
+    images: ['/flashcards/opengraph-image'],
   },
 };
 
