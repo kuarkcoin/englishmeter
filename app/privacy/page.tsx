@@ -1,4 +1,27 @@
+import type { Metadata } from 'next';
 import React from 'react';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy',
+  description:
+    'Review the EnglishMeter privacy policy and learn how we handle data, cookies, analytics, and advertising.',
+  alternates: {
+    canonical: 'https://englishmeter.net/privacy',
+  },
+  openGraph: {
+    title: 'Privacy Policy',
+    description:
+      'Review the EnglishMeter privacy policy and learn how we handle data, cookies, analytics, and advertising.',
+    url: 'https://englishmeter.net/privacy',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Privacy Policy',
+    description:
+      'Review the EnglishMeter privacy policy and learn how we handle data, cookies, analytics, and advertising.',
+  },
+};
 
 export default function PrivacyPage() {
   return (
