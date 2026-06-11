@@ -1,6 +1,29 @@
+import type { Metadata } from 'next';
 // app/blog/page.tsx
 import Link from 'next/link';
 import { blogPosts } from '@/data/blogPosts';
+
+export const metadata: Metadata = {
+  title: 'EnglishMeter Blog',
+  description:
+    'Read EnglishMeter blog guides for English level testing, CEFR learning, vocabulary practice, and exam preparation.',
+  alternates: {
+    canonical: 'https://englishmeter.net/blog',
+  },
+  openGraph: {
+    title: 'EnglishMeter Blog',
+    description:
+      'Read EnglishMeter blog guides for English level testing, CEFR learning, vocabulary practice, and exam preparation.',
+    url: 'https://englishmeter.net/blog',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'EnglishMeter Blog',
+    description:
+      'Read EnglishMeter blog guides for English level testing, CEFR learning, vocabulary practice, and exam preparation.',
+  },
+};
 
 export default function BlogPage() {
   return (

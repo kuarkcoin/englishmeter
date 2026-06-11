@@ -1,4 +1,27 @@
+import type { Metadata } from 'next';
 import React from 'react';
+
+export const metadata: Metadata = {
+  title: 'Terms of Service',
+  description:
+    'Read the EnglishMeter terms of service for using our English tests, learning tools, and website content.',
+  alternates: {
+    canonical: 'https://englishmeter.net/terms',
+  },
+  openGraph: {
+    title: 'Terms of Service',
+    description:
+      'Read the EnglishMeter terms of service for using our English tests, learning tools, and website content.',
+    url: 'https://englishmeter.net/terms',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Terms of Service',
+    description:
+      'Read the EnglishMeter terms of service for using our English tests, learning tools, and website content.',
+  },
+};
 
 export default function TermsPage() {
   return (
