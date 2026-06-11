@@ -35,6 +35,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/test-perfect-tenses', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/test-relatives', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/yds-3750', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/yds-5000-mini', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/learn', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/ar/vocabulary', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/es/vocabulary', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/privacy', priority: 0.3, changeFrequency: 'yearly' },
+    { path: '/terms', priority: 0.3, changeFrequency: 'yearly' },
+    { path: '/tools/news-impact', priority: 0.7, changeFrequency: 'weekly' },
     { path: '/daily-english', priority: 0.9, changeFrequency: 'daily' },
     { path: '/tests/yds-grammar', priority: 0.8, changeFrequency: 'weekly' },
     { path: '/tests/yds-reading', priority: 0.8, changeFrequency: 'weekly' },
@@ -67,6 +74,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
     changeFrequency: 'weekly' as const,
   }));
+  const yds5000MiniRoutes = Array.from({ length: 100 }, (_, i) => ({
+    path: `/tests/yds-5000-mini-${i + 1}`,
+    priority: 0.7,
+    changeFrequency: 'weekly' as const,
+  }));
   const ydsExamRoutes = Array.from({ length: 32 }, (_, i) => ({
     path: `/tests/yds-exam-test-${i + 1}`,
     priority: 0.8,
@@ -79,7 +91,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'daily' as const,
   }));
 
-  const allRoutes = [...staticRoutes, ...levelRoutes, ...letterRoutes, ...wordRoutes, ...ydsMiniRoutes, ...ydsExamRoutes, ...dailyRoutes];
+  const allRoutes = [...staticRoutes, ...levelRoutes, ...letterRoutes, ...wordRoutes, ...ydsMiniRoutes, ...yds5000MiniRoutes, ...ydsExamRoutes, ...dailyRoutes];
 
   const uniqueRoutes = Array.from(
     new Map(allRoutes.map((route) => [route.path, route])).values()
