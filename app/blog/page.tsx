@@ -1,6 +1,13 @@
 // app/blog/page.tsx
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { blogPosts } from '@/data/blogPosts';
+
+export const metadata: Metadata = {
+  title: 'EnglishMeter Blog | English Learning Tips',
+  description:
+    'English learning tips, English test practice, vocabulary, grammar, and study guides from EnglishMeter.',
+};
 
 export default function BlogPage() {
   return (
