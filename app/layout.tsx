@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: [
       {
-        url: '/og-image.png',
+        url: '/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'EnglishMeter – Free English Level & Vocabulary Test',
