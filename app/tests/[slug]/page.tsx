@@ -14,6 +14,7 @@ type RaceQuestion = {
   option_c: string;
   option_d: string;
   correct_option: 'a' | 'b' | 'c' | 'd';
+  explanation?: string;
 };
 
 function toRaceQuestions(
@@ -39,6 +40,7 @@ function toRaceQuestions(
       option_c: safe(2),
       option_d: safe(3),
       correct_option: correct,
+      explanation: q.explanation,
     };
   });
 }
