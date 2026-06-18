@@ -44,6 +44,7 @@ type QuestionWithShuffle = Question & { shuffledChoices: Choice[] };
 
 interface TestInfo {
   title: string;
+  subtitle?: string;
   duration?: number; // minutes
 }
 
@@ -847,7 +848,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
       {/* Top Bar */}
       <div className="em-card flex items-center justify-between p-4 rounded-xl sticky top-4 z-20 backdrop-blur-sm bg-white/90 dark:bg-slate-900/90">
-        <div className="text-sm font-semibold text-slate-700 truncate max-w-[200px]">{test?.title || 'Test'}</div>
+        <div className="max-w-[220px]">
+          <div className="text-sm font-semibold text-slate-700 truncate">{test?.title || 'Test'}</div>
+          {test?.subtitle && <div className="text-[10px] font-black tracking-wide text-slate-500 truncate">{test.subtitle}</div>}
+        </div>
 
         <div className="flex items-center gap-3">
           {/* Mode toggle */}
