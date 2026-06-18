@@ -255,10 +255,13 @@ const LS_MEANING_LANGUAGE = 'em_yds5000_meaning_language';
 const LS_VOCAB_MAP = 'em_yds5000_map_v1';
 const LS_GLOBAL_VOCAB_MAP = 'em_global_vocab_map_v1';
 const LS_ENGLISH_DEUTSCH_MAP = 'em_english_deutsch_map_v1';
+const LS_TURKISH_GREEK_MAP = 'em_turkish_greek_map_v1';
 const GLOBAL_VOCAB_QUESTIONS_PER_TEST = 25;
 const GLOBAL_VOCAB_DURATION_MIN = 15;
 const EN_DE_QUESTIONS_PER_TEST = 50;
 const EN_DE_DURATION_MIN = 25;
+const TR_GR_QUESTIONS_PER_TEST = 50;
+const TR_GR_DURATION_MIN = 25;
 const DAILY_ENGLISH_QUESTIONS_PER_TEST = 50;
 const DAILY_ENGLISH_DURATION_MIN = 25;
 
@@ -283,9 +286,11 @@ function HomeContent() {
   const [showYds3750Hub, setShowYds3750Hub] = useState(false);
   const [showGlobalVocabHub, setShowGlobalVocabHub] = useState(false);
   const [showEnglishDeutschHub, setShowEnglishDeutschHub] = useState(false);
+  const [showTurkishGreekHub, setShowTurkishGreekHub] = useState(false);
   const [showDailyEnglishHub, setShowDailyEnglishHub] = useState(false);
   const [meaningLanguage, setMeaningLanguage] = useState<MeaningLanguageCode>('tr');
   const [englishDeutschWords, setEnglishDeutschWords] = useState<Array<{ word: string; meaning: string }>>([]);
+  const [turkishGreekWords, setTurkishGreekWords] = useState<Array<{ greek: string; pronunciation: string }>>([]);
   const [lastTest, setLastTest] = useState<{ title: string; slug: string; at: string } | null>(null);
 
   const ydsVocabulary2 = useMemo(() => {
@@ -309,6 +314,13 @@ function HomeContent() {
   const englishDeutschTestCount = useMemo(
     () => Math.floor(validEnglishDeutschWordCount / EN_DE_QUESTIONS_PER_TEST),
     [validEnglishDeutschWordCount]
+  );
+
+  const validTurkishGreekWordCount = turkishGreekWords.length;
+
+  const turkishGreekTestCount = useMemo(
+    () => Math.floor(validTurkishGreekWordCount / TR_GR_QUESTIONS_PER_TEST),
+    [validTurkishGreekWordCount]
   );
 
   const validDailyEnglishWordCount = useMemo(() => {
@@ -404,6 +416,35 @@ function HomeContent() {
     };
   }, []);
 
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadTurkishGreekWords = async () => {
+      try {
+        const res = await fetch('/api/turkish-greek-words');
+        if (!res.ok) return;
+        const data = (await res.json()) as Array<{ greek?: string; pronunciation?: string }>;
+        if (cancelled || !Array.isArray(data)) return;
+
+        const cleaned = data
+          .map((x) => ({
+            greek: String(x?.greek ?? '').trim(),
+            pronunciation: String(x?.pronunciation ?? '').trim(),
+          }))
+          .filter((x) => x.greek && x.pronunciation);
+
+        setTurkishGreekWords(cleaned);
+      } catch {
+        setTurkishGreekWords([]);
+      }
+    };
+
+    loadTurkishGreekWords();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   // --- 100 mini test mapping (stable) ---
   const ensureVocabMap = useCallback(() => {
     const total = (ydsVocabulary as any[])?.length || 0;
@@ -489,6 +530,38 @@ function HomeContent() {
     }
     return map;
   }, [englishDeutschWords]);
+
+  const ensureTurkishGreekMap = useCallback(() => {
+    const total = turkishGreekWords.length;
+    const testCount = Math.floor(total / TR_GR_QUESTIONS_PER_TEST);
+    const map = safeJsonParse<Record<string, number[]>>(
+      typeof window !== 'undefined' ? localStorage.getItem(LS_TURKISH_GREEK_MAP) : null,
+      {}
+    );
+    if (!testCount || !total) return map;
+
+    let changed = false;
+    for (let t = 1; t <= testCount; t++) {
+      const key = String(t);
+      if (!Array.isArray(map[key]) || map[key].length !== TR_GR_QUESTIONS_PER_TEST) {
+        map[key] = seededUniqueIndices(total, TR_GR_QUESTIONS_PER_TEST, 11300 + t * 4211 + total * 23);
+        changed = true;
+      }
+    }
+
+    Object.keys(map).forEach((key) => {
+      const n = Number(key);
+      if (!Number.isFinite(n) || n < 1 || n > testCount) {
+        delete map[key];
+        changed = true;
+      }
+    });
+
+    if (changed && typeof window !== 'undefined') {
+      localStorage.setItem(LS_TURKISH_GREEK_MAP, JSON.stringify(map));
+    }
+    return map;
+  }, [turkishGreekWords]);
 
   // --- TEST BAŞLATMA MANTIĞI ---
   const startTest = useCallback(
@@ -677,6 +750,68 @@ function HomeContent() {
           testSlug,
           test: { title, duration: EN_DE_DURATION_MIN },
           durationSeconds: EN_DE_DURATION_MIN * 60,
+          questions,
+        };
+
+        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
+        saveLast(title, testSlug);
+        router.push(`/quiz/${attemptId}`);
+        return;
+      }
+
+      if (testSlug.startsWith('turkish-greek-mini-')) {
+        const nStr = testSlug.split('-').pop() || '1';
+        const n = Math.max(1, Math.min(turkishGreekTestCount, Number(nStr) || 1));
+        if (!turkishGreekTestCount) {
+          alert('Not enough words to generate a 50-question test yet.');
+          return;
+        }
+
+        const map = ensureTurkishGreekMap();
+        const indices = map[String(n)] || [];
+        const selectedWords = indices.map((i) => turkishGreekWords[i]).filter(Boolean);
+
+        const questions = selectedWords
+          .map((item: { greek: string; pronunciation: string }, idx: number) => {
+            const correctAnswer = item.pronunciation;
+            const uniqueDistractors = Array.from(
+              new Set(
+                turkishGreekWords
+                  .filter((w) => w.pronunciation !== correctAnswer)
+                  .map((w) => w.pronunciation)
+              )
+            );
+            const distractors = shuffle(uniqueDistractors).slice(0, 3);
+            if (distractors.length < 3) return null;
+
+            const allOptions = shuffle([...distractors, correctAnswer]);
+            const idsLower = ['a', 'b', 'c', 'd'];
+
+            return {
+              id: `turkish-greek-mini-${n}-q${idx + 1}`,
+              prompt: `"${item.greek}" ifadesinin Türkçe okunuşu hangisidir?`,
+              choices: allOptions.map((optText: string, i: number) => ({
+                id: idsLower[i],
+                text: optText,
+                isCorrect: optText === correctAnswer,
+              })),
+              explanation: `Türkçe okunuş: ${correctAnswer}. Yunanca yazım: ${item.greek}`,
+            };
+          })
+          .filter(Boolean);
+
+        if (!questions.length) {
+          alert('Not enough words to generate a 50-question test yet.');
+          return;
+        }
+
+        const title = `TÜRKÇE / YUNANCA · KONUŞMA TESTİ ${n}`;
+        const subtitle = '50 SORU · 25 DAKİKA';
+        const payload = {
+          attemptId,
+          testSlug,
+          test: { title, subtitle, duration: TR_GR_DURATION_MIN },
+          durationSeconds: TR_GR_DURATION_MIN * 60,
           questions,
         };
 
@@ -1158,10 +1293,13 @@ function HomeContent() {
       englishDeutschWords,
       ensureEnglishDeutschMap,
       ensureGlobalVocabMap,
+      ensureTurkishGreekMap,
       ensureVocabMap,
       globalVocabTestCount,
       meaningLanguage,
       router,
+      turkishGreekTestCount,
+      turkishGreekWords,
       ydsVocabulary2,
     ]
   );
@@ -1721,6 +1859,46 @@ function HomeContent() {
   <DiamondCard
     as="button"
     onClick={() => {
+      const next = !showTurkishGreekHub;
+      setShowTurkishGreekHub(next);
+      if (!next) return;
+
+      ensureTurkishGreekMap();
+      setTimeout(() => {
+        document.getElementById('turkishGreekHub')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+    }}
+    className={`group relative overflow-hidden rounded-2xl p-6 md:p-7 text-left
+      bg-gradient-to-br from-sky-600 via-blue-700 to-indigo-800 text-white shadow-xl transition-all duration-300
+      transform hover:-translate-y-1 hover:shadow-sky-500/30 ${
+        showTurkishGreekHub ? 'ring-2 ring-sky-200 ring-offset-2 ring-offset-white dark:ring-offset-slate-900' : ''
+      }`}
+  >
+    <div className="absolute -top-10 -right-10 w-40 h-40 bg-sky-200 opacity-20 rounded-full blur-3xl"></div>
+    <div className="relative z-10 flex flex-col justify-between h-full">
+      <div>
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/15 rounded-full text-[10px] font-black uppercase mb-3 border border-white/20">
+          🇹🇷🇬🇷 Seyahat
+        </div>
+        <div className="text-2xl font-black leading-tight">Türkçe / Yunanca</div>
+        <div className="mt-2 text-xs text-white/90 leading-relaxed">
+          Yunanistan seyahati için 1000 günlük kelime ve konuşma kalıbı. Yunan alfabesini öğrenmeden, Türkçe okunuşlarıyla pratik yap.
+        </div>
+      </div>
+      <div className="mt-6 flex items-center justify-between">
+        <div className="text-[11px] font-bold text-white/90">
+          1000 kelime ve konuşma kalıbı · Türkçe okunuşlu 20 test
+        </div>
+        <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-blue-700 text-2xl font-black shadow-lg group-hover:scale-110 transition-transform">
+          {showTurkishGreekHub ? '×' : '▶'}
+        </div>
+      </div>
+    </div>
+  </DiamondCard>
+
+  <DiamondCard
+    as="button"
+    onClick={() => {
       const next = !showEnglishDeutschHub;
       setShowEnglishDeutschHub(next);
       if (!next) return;
@@ -2002,6 +2180,57 @@ function HomeContent() {
   </div>
 )}
 
+{showTurkishGreekHub && (
+  <div
+    id="turkishGreekHub"
+    className="mb-12 bg-sky-50/95 dark:bg-blue-950/30 rounded-3xl p-6 border-2 border-sky-200/80 dark:border-blue-700/60 shadow-xl relative overflow-hidden text-left animate-in slide-in-from-top-4 duration-300"
+  >
+    <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-sky-600 via-blue-700 to-indigo-800"></div>
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
+      <div>
+        <h3 className="text-2xl font-black text-sky-700 dark:text-sky-200 flex items-center gap-2">
+          <span className="text-3xl">🇹🇷🇬🇷</span> Türkçe / Yunanca Mini Tests
+        </h3>
+        <p className="text-sm text-sky-700/80 dark:text-sky-100/80 mt-1">
+          Sorularda Yunanca ifadelerin Türkçe okunuşunu bul. Yunanca yazım, cevaptan sonra ek bilgi olarak gösterilir.
+        </p>
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="text-xs font-bold px-3 py-1 rounded-full bg-white/90 dark:bg-slate-900/70 border border-sky-200/80 dark:border-blue-700/60 text-sky-700 dark:text-sky-200">
+          1000 kelime ve konuşma kalıbı · Türkçe okunuşlu 20 test
+        </span>
+        <button
+          type="button"
+          onClick={() => setShowTurkishGreekHub(false)}
+          className="text-xs font-bold px-4 py-2 rounded-xl bg-white/90 dark:bg-slate-900/70 border border-sky-200/80 dark:border-blue-700/60 text-sky-700 dark:text-sky-200 hover:bg-sky-100 dark:hover:bg-blue-900 transition shadow-sm"
+        >
+          Close Panel
+        </button>
+      </div>
+    </div>
+
+    {turkishGreekTestCount > 0 ? (
+      <div className="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-8 gap-3">
+        {Array.from({ length: turkishGreekTestCount }, (_, i) => i + 1).map((num) => (
+          <button
+            type="button"
+            key={num}
+            onClick={() => startTest(`turkish-greek-mini-${num}`)}
+            className="py-4 rounded-xl font-black text-sm shadow-sm transition-all transform hover:scale-[1.03] active:scale-[0.98] bg-sky-600 text-white hover:bg-sky-700 shadow-sky-200 ring-2 ring-sky-200 dark:ring-blue-700/70 ring-offset-2 dark:ring-offset-slate-900"
+          >
+            Test {num}
+            <span className="block text-[10px] font-semibold opacity-90 mt-1">Start</span>
+          </button>
+        ))}
+      </div>
+    ) : (
+      <DiamondCard className="p-5 text-sm font-semibold text-sky-700 dark:text-sky-200 border-sky-200/80 dark:border-blue-700/60">
+        Not enough words to generate a 50-question test yet.
+      </DiamondCard>
+    )}
+  </div>
+)}
+
 {showDailyEnglishHub && (
   <div
     id="dailyEnglishHub"
@@ -2101,6 +2330,7 @@ function HomeContent() {
               { test: ieltsTest, tint: 'bg-sky-600/12 text-sky-700 dark:text-sky-300 border-sky-200/70 dark:border-sky-700/60' },
               { test: globalVocabHub, tint: 'bg-blue-600/12 text-blue-700 dark:text-cyan-300 border-blue-200/70 dark:border-cyan-700/60' },
               { test: { title: 'English / Deutsch', slug: 'english-deutsch-hub' }, tint: 'bg-emerald-600/12 text-emerald-700 dark:text-emerald-300 border-emerald-200/70 dark:border-emerald-700/60' },
+              { test: { title: 'Türkçe / Yunanca', slug: 'turkish-greek-hub' }, tint: 'bg-sky-600/12 text-sky-700 dark:text-sky-300 border-sky-200/70 dark:border-blue-700/60' },
               { test: { title: 'Daily English', slug: 'daily-english-hub' }, tint: 'bg-violet-600/12 text-violet-700 dark:text-violet-300 border-violet-200/70 dark:border-violet-700/60' },
               { test: vocabTest, tint: 'bg-emerald-600/12 text-emerald-700 dark:text-emerald-300 border-emerald-200/70 dark:border-emerald-700/60' },
             ].map(({ test, tint }) => (
@@ -2137,6 +2367,16 @@ function HomeContent() {
                     }, 80);
                     return;
                   }
+                  if (test.slug === 'turkish-greek-hub') {
+                    const next = !showTurkishGreekHub;
+                    setShowTurkishGreekHub(next);
+                    if (!next) return;
+                    ensureTurkishGreekMap();
+                    setTimeout(() => {
+                      document.getElementById('turkishGreekHub')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 80);
+                    return;
+                  }
                   startTest(test.slug);
                 }}
                 className={`flex items-center justify-center px-6 py-8 text-lg sm:text-xl font-black ${tint}`}
@@ -2156,6 +2396,11 @@ function HomeContent() {
                   {test.slug === 'daily-english-hub' && (
                     <span className="block mt-1 text-xs sm:text-sm font-bold opacity-80">
                       {dailyEnglishTestCount} tests · {validDailyEnglishWordCount} words
+                    </span>
+                  )}
+                  {test.slug === 'turkish-greek-hub' && (
+                    <span className="block mt-1 text-xs sm:text-sm font-bold opacity-80">
+                      1000 kelime ve konuşma kalıbı · Türkçe okunuşlu 20 test
                     </span>
                   )}
                 </span>

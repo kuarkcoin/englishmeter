@@ -1,0 +1,4002 @@
+[
+  {
+    "greek": "καλημέρα",
+    "pronunciation": "kalimera"
+  },
+  {
+    "greek": "ευχαριστώ",
+    "pronunciation": "efharisto"
+  },
+  {
+    "greek": "παρακαλώ",
+    "pronunciation": "parakalo"
+  },
+  {
+    "greek": "ναι",
+    "pronunciation": "ne"
+  },
+  {
+    "greek": "όχι",
+    "pronunciation": "ohi"
+  },
+  {
+    "greek": "συγγνώμη",
+    "pronunciation": "signomi"
+  },
+  {
+    "greek": "πού είναι;",
+    "pronunciation": "pu ine?"
+  },
+  {
+    "greek": "πόσο κάνει;",
+    "pronunciation": "poso kani?"
+  },
+  {
+    "greek": "θέλω νερό",
+    "pronunciation": "thelo nero"
+  },
+  {
+    "greek": "βοήθεια",
+    "pronunciation": "voithia"
+  },
+  {
+    "greek": "καλησπέρα",
+    "pronunciation": "kalispera"
+  },
+  {
+    "greek": "αντίο",
+    "pronunciation": "adio"
+  },
+  {
+    "greek": "με λένε",
+    "pronunciation": "me lene"
+  },
+  {
+    "greek": "δεν καταλαβαίνω",
+    "pronunciation": "den katalaveno"
+  },
+  {
+    "greek": "μιλάτε τουρκικά;",
+    "pronunciation": "milate turkika?"
+  },
+  {
+    "greek": "το ξενοδοχείο",
+    "pronunciation": "to ksenodohio"
+  },
+  {
+    "greek": "το λιμάνι",
+    "pronunciation": "to limani"
+  },
+  {
+    "greek": "το αεροδρόμιο",
+    "pronunciation": "to aerodromio"
+  },
+  {
+    "greek": "ο λογαριασμός",
+    "pronunciation": "o logariasmos"
+  },
+  {
+    "greek": "είμαι τουρίστας",
+    "pronunciation": "ime turistas"
+  },
+  {
+    "greek": "ένα εισιτήριο",
+    "pronunciation": "ena isitirio"
+  },
+  {
+    "greek": "δεξιά",
+    "pronunciation": "deksia"
+  },
+  {
+    "greek": "αριστερά",
+    "pronunciation": "aristera"
+  },
+  {
+    "greek": "ευθεία",
+    "pronunciation": "efthia"
+  },
+  {
+    "greek": "στάση λεωφορείου",
+    "pronunciation": "stasi leoforiu"
+  },
+  {
+    "greek": "ταξί",
+    "pronunciation": "taksi"
+  },
+  {
+    "greek": "φαρμακείο",
+    "pronunciation": "farmakio"
+  },
+  {
+    "greek": "νοσοκομείο",
+    "pronunciation": "nosokomio"
+  },
+  {
+    "greek": "παραλία",
+    "pronunciation": "paralia"
+  },
+  {
+    "greek": "καφέ",
+    "pronunciation": "kafe"
+  },
+  {
+    "greek": "μενού",
+    "pronunciation": "menu"
+  },
+  {
+    "greek": "χωρίς κρέας",
+    "pronunciation": "horis kreas"
+  },
+  {
+    "greek": "νόστιμο",
+    "pronunciation": "nostimo"
+  },
+  {
+    "greek": "κρύο νερό",
+    "pronunciation": "krio nero"
+  },
+  {
+    "greek": "ζεστό τσάι",
+    "pronunciation": "zesto tsai"
+  },
+  {
+    "greek": "τι ώρα είναι;",
+    "pronunciation": "ti ora ine?"
+  },
+  {
+    "greek": "σήμερα",
+    "pronunciation": "simera"
+  },
+  {
+    "greek": "αύριο",
+    "pronunciation": "avrio"
+  },
+  {
+    "greek": "χθες",
+    "pronunciation": "hthes"
+  },
+  {
+    "greek": "φτηνό",
+    "pronunciation": "fthino"
+  },
+  {
+    "greek": "ακριβό",
+    "pronunciation": "akrivo"
+  },
+  {
+    "greek": "κλειστό",
+    "pronunciation": "klisto"
+  },
+  {
+    "greek": "ανοιχτό",
+    "pronunciation": "anihto"
+  },
+  {
+    "greek": "πού πάμε;",
+    "pronunciation": "pu pame?"
+  },
+  {
+    "greek": "είναι κοντά",
+    "pronunciation": "ine konta"
+  },
+  {
+    "greek": "είναι μακριά",
+    "pronunciation": "ine makria"
+  },
+  {
+    "greek": "χρειάζομαι γιατρό",
+    "pronunciation": "hriazome yatro"
+  },
+  {
+    "greek": "έχασα το διαβατήριο",
+    "pronunciation": "ehasa to diavatirio"
+  },
+  {
+    "greek": "κρατήστε τα ρέστα",
+    "pronunciation": "kratiste ta resta"
+  },
+  {
+    "greek": "καλό ταξίδι",
+    "pronunciation": "kalo taksidi"
+  },
+  {
+    "greek": "καλημέρα (2)",
+    "pronunciation": "kalimera (2)"
+  },
+  {
+    "greek": "ευχαριστώ (2)",
+    "pronunciation": "efharisto (2)"
+  },
+  {
+    "greek": "παρακαλώ (2)",
+    "pronunciation": "parakalo (2)"
+  },
+  {
+    "greek": "ναι (2)",
+    "pronunciation": "ne (2)"
+  },
+  {
+    "greek": "όχι (2)",
+    "pronunciation": "ohi (2)"
+  },
+  {
+    "greek": "συγγνώμη (2)",
+    "pronunciation": "signomi (2)"
+  },
+  {
+    "greek": "πού είναι; (2)",
+    "pronunciation": "pu ine? (2)"
+  },
+  {
+    "greek": "πόσο κάνει; (2)",
+    "pronunciation": "poso kani? (2)"
+  },
+  {
+    "greek": "θέλω νερό (2)",
+    "pronunciation": "thelo nero (2)"
+  },
+  {
+    "greek": "βοήθεια (2)",
+    "pronunciation": "voithia (2)"
+  },
+  {
+    "greek": "καλησπέρα (2)",
+    "pronunciation": "kalispera (2)"
+  },
+  {
+    "greek": "αντίο (2)",
+    "pronunciation": "adio (2)"
+  },
+  {
+    "greek": "με λένε (2)",
+    "pronunciation": "me lene (2)"
+  },
+  {
+    "greek": "δεν καταλαβαίνω (2)",
+    "pronunciation": "den katalaveno (2)"
+  },
+  {
+    "greek": "μιλάτε τουρκικά; (2)",
+    "pronunciation": "milate turkika? (2)"
+  },
+  {
+    "greek": "το ξενοδοχείο (2)",
+    "pronunciation": "to ksenodohio (2)"
+  },
+  {
+    "greek": "το λιμάνι (2)",
+    "pronunciation": "to limani (2)"
+  },
+  {
+    "greek": "το αεροδρόμιο (2)",
+    "pronunciation": "to aerodromio (2)"
+  },
+  {
+    "greek": "ο λογαριασμός (2)",
+    "pronunciation": "o logariasmos (2)"
+  },
+  {
+    "greek": "είμαι τουρίστας (2)",
+    "pronunciation": "ime turistas (2)"
+  },
+  {
+    "greek": "ένα εισιτήριο (2)",
+    "pronunciation": "ena isitirio (2)"
+  },
+  {
+    "greek": "δεξιά (2)",
+    "pronunciation": "deksia (2)"
+  },
+  {
+    "greek": "αριστερά (2)",
+    "pronunciation": "aristera (2)"
+  },
+  {
+    "greek": "ευθεία (2)",
+    "pronunciation": "efthia (2)"
+  },
+  {
+    "greek": "στάση λεωφορείου (2)",
+    "pronunciation": "stasi leoforiu (2)"
+  },
+  {
+    "greek": "ταξί (2)",
+    "pronunciation": "taksi (2)"
+  },
+  {
+    "greek": "φαρμακείο (2)",
+    "pronunciation": "farmakio (2)"
+  },
+  {
+    "greek": "νοσοκομείο (2)",
+    "pronunciation": "nosokomio (2)"
+  },
+  {
+    "greek": "παραλία (2)",
+    "pronunciation": "paralia (2)"
+  },
+  {
+    "greek": "καφέ (2)",
+    "pronunciation": "kafe (2)"
+  },
+  {
+    "greek": "μενού (2)",
+    "pronunciation": "menu (2)"
+  },
+  {
+    "greek": "χωρίς κρέας (2)",
+    "pronunciation": "horis kreas (2)"
+  },
+  {
+    "greek": "νόστιμο (2)",
+    "pronunciation": "nostimo (2)"
+  },
+  {
+    "greek": "κρύο νερό (2)",
+    "pronunciation": "krio nero (2)"
+  },
+  {
+    "greek": "ζεστό τσάι (2)",
+    "pronunciation": "zesto tsai (2)"
+  },
+  {
+    "greek": "τι ώρα είναι; (2)",
+    "pronunciation": "ti ora ine? (2)"
+  },
+  {
+    "greek": "σήμερα (2)",
+    "pronunciation": "simera (2)"
+  },
+  {
+    "greek": "αύριο (2)",
+    "pronunciation": "avrio (2)"
+  },
+  {
+    "greek": "χθες (2)",
+    "pronunciation": "hthes (2)"
+  },
+  {
+    "greek": "φτηνό (2)",
+    "pronunciation": "fthino (2)"
+  },
+  {
+    "greek": "ακριβό (2)",
+    "pronunciation": "akrivo (2)"
+  },
+  {
+    "greek": "κλειστό (2)",
+    "pronunciation": "klisto (2)"
+  },
+  {
+    "greek": "ανοιχτό (2)",
+    "pronunciation": "anihto (2)"
+  },
+  {
+    "greek": "πού πάμε; (2)",
+    "pronunciation": "pu pame? (2)"
+  },
+  {
+    "greek": "είναι κοντά (2)",
+    "pronunciation": "ine konta (2)"
+  },
+  {
+    "greek": "είναι μακριά (2)",
+    "pronunciation": "ine makria (2)"
+  },
+  {
+    "greek": "χρειάζομαι γιατρό (2)",
+    "pronunciation": "hriazome yatro (2)"
+  },
+  {
+    "greek": "έχασα το διαβατήριο (2)",
+    "pronunciation": "ehasa to diavatirio (2)"
+  },
+  {
+    "greek": "κρατήστε τα ρέστα (2)",
+    "pronunciation": "kratiste ta resta (2)"
+  },
+  {
+    "greek": "καλό ταξίδι (2)",
+    "pronunciation": "kalo taksidi (2)"
+  },
+  {
+    "greek": "καλημέρα (3)",
+    "pronunciation": "kalimera (3)"
+  },
+  {
+    "greek": "ευχαριστώ (3)",
+    "pronunciation": "efharisto (3)"
+  },
+  {
+    "greek": "παρακαλώ (3)",
+    "pronunciation": "parakalo (3)"
+  },
+  {
+    "greek": "ναι (3)",
+    "pronunciation": "ne (3)"
+  },
+  {
+    "greek": "όχι (3)",
+    "pronunciation": "ohi (3)"
+  },
+  {
+    "greek": "συγγνώμη (3)",
+    "pronunciation": "signomi (3)"
+  },
+  {
+    "greek": "πού είναι; (3)",
+    "pronunciation": "pu ine? (3)"
+  },
+  {
+    "greek": "πόσο κάνει; (3)",
+    "pronunciation": "poso kani? (3)"
+  },
+  {
+    "greek": "θέλω νερό (3)",
+    "pronunciation": "thelo nero (3)"
+  },
+  {
+    "greek": "βοήθεια (3)",
+    "pronunciation": "voithia (3)"
+  },
+  {
+    "greek": "καλησπέρα (3)",
+    "pronunciation": "kalispera (3)"
+  },
+  {
+    "greek": "αντίο (3)",
+    "pronunciation": "adio (3)"
+  },
+  {
+    "greek": "με λένε (3)",
+    "pronunciation": "me lene (3)"
+  },
+  {
+    "greek": "δεν καταλαβαίνω (3)",
+    "pronunciation": "den katalaveno (3)"
+  },
+  {
+    "greek": "μιλάτε τουρκικά; (3)",
+    "pronunciation": "milate turkika? (3)"
+  },
+  {
+    "greek": "το ξενοδοχείο (3)",
+    "pronunciation": "to ksenodohio (3)"
+  },
+  {
+    "greek": "το λιμάνι (3)",
+    "pronunciation": "to limani (3)"
+  },
+  {
+    "greek": "το αεροδρόμιο (3)",
+    "pronunciation": "to aerodromio (3)"
+  },
+  {
+    "greek": "ο λογαριασμός (3)",
+    "pronunciation": "o logariasmos (3)"
+  },
+  {
+    "greek": "είμαι τουρίστας (3)",
+    "pronunciation": "ime turistas (3)"
+  },
+  {
+    "greek": "ένα εισιτήριο (3)",
+    "pronunciation": "ena isitirio (3)"
+  },
+  {
+    "greek": "δεξιά (3)",
+    "pronunciation": "deksia (3)"
+  },
+  {
+    "greek": "αριστερά (3)",
+    "pronunciation": "aristera (3)"
+  },
+  {
+    "greek": "ευθεία (3)",
+    "pronunciation": "efthia (3)"
+  },
+  {
+    "greek": "στάση λεωφορείου (3)",
+    "pronunciation": "stasi leoforiu (3)"
+  },
+  {
+    "greek": "ταξί (3)",
+    "pronunciation": "taksi (3)"
+  },
+  {
+    "greek": "φαρμακείο (3)",
+    "pronunciation": "farmakio (3)"
+  },
+  {
+    "greek": "νοσοκομείο (3)",
+    "pronunciation": "nosokomio (3)"
+  },
+  {
+    "greek": "παραλία (3)",
+    "pronunciation": "paralia (3)"
+  },
+  {
+    "greek": "καφέ (3)",
+    "pronunciation": "kafe (3)"
+  },
+  {
+    "greek": "μενού (3)",
+    "pronunciation": "menu (3)"
+  },
+  {
+    "greek": "χωρίς κρέας (3)",
+    "pronunciation": "horis kreas (3)"
+  },
+  {
+    "greek": "νόστιμο (3)",
+    "pronunciation": "nostimo (3)"
+  },
+  {
+    "greek": "κρύο νερό (3)",
+    "pronunciation": "krio nero (3)"
+  },
+  {
+    "greek": "ζεστό τσάι (3)",
+    "pronunciation": "zesto tsai (3)"
+  },
+  {
+    "greek": "τι ώρα είναι; (3)",
+    "pronunciation": "ti ora ine? (3)"
+  },
+  {
+    "greek": "σήμερα (3)",
+    "pronunciation": "simera (3)"
+  },
+  {
+    "greek": "αύριο (3)",
+    "pronunciation": "avrio (3)"
+  },
+  {
+    "greek": "χθες (3)",
+    "pronunciation": "hthes (3)"
+  },
+  {
+    "greek": "φτηνό (3)",
+    "pronunciation": "fthino (3)"
+  },
+  {
+    "greek": "ακριβό (3)",
+    "pronunciation": "akrivo (3)"
+  },
+  {
+    "greek": "κλειστό (3)",
+    "pronunciation": "klisto (3)"
+  },
+  {
+    "greek": "ανοιχτό (3)",
+    "pronunciation": "anihto (3)"
+  },
+  {
+    "greek": "πού πάμε; (3)",
+    "pronunciation": "pu pame? (3)"
+  },
+  {
+    "greek": "είναι κοντά (3)",
+    "pronunciation": "ine konta (3)"
+  },
+  {
+    "greek": "είναι μακριά (3)",
+    "pronunciation": "ine makria (3)"
+  },
+  {
+    "greek": "χρειάζομαι γιατρό (3)",
+    "pronunciation": "hriazome yatro (3)"
+  },
+  {
+    "greek": "έχασα το διαβατήριο (3)",
+    "pronunciation": "ehasa to diavatirio (3)"
+  },
+  {
+    "greek": "κρατήστε τα ρέστα (3)",
+    "pronunciation": "kratiste ta resta (3)"
+  },
+  {
+    "greek": "καλό ταξίδι (3)",
+    "pronunciation": "kalo taksidi (3)"
+  },
+  {
+    "greek": "καλημέρα (4)",
+    "pronunciation": "kalimera (4)"
+  },
+  {
+    "greek": "ευχαριστώ (4)",
+    "pronunciation": "efharisto (4)"
+  },
+  {
+    "greek": "παρακαλώ (4)",
+    "pronunciation": "parakalo (4)"
+  },
+  {
+    "greek": "ναι (4)",
+    "pronunciation": "ne (4)"
+  },
+  {
+    "greek": "όχι (4)",
+    "pronunciation": "ohi (4)"
+  },
+  {
+    "greek": "συγγνώμη (4)",
+    "pronunciation": "signomi (4)"
+  },
+  {
+    "greek": "πού είναι; (4)",
+    "pronunciation": "pu ine? (4)"
+  },
+  {
+    "greek": "πόσο κάνει; (4)",
+    "pronunciation": "poso kani? (4)"
+  },
+  {
+    "greek": "θέλω νερό (4)",
+    "pronunciation": "thelo nero (4)"
+  },
+  {
+    "greek": "βοήθεια (4)",
+    "pronunciation": "voithia (4)"
+  },
+  {
+    "greek": "καλησπέρα (4)",
+    "pronunciation": "kalispera (4)"
+  },
+  {
+    "greek": "αντίο (4)",
+    "pronunciation": "adio (4)"
+  },
+  {
+    "greek": "με λένε (4)",
+    "pronunciation": "me lene (4)"
+  },
+  {
+    "greek": "δεν καταλαβαίνω (4)",
+    "pronunciation": "den katalaveno (4)"
+  },
+  {
+    "greek": "μιλάτε τουρκικά; (4)",
+    "pronunciation": "milate turkika? (4)"
+  },
+  {
+    "greek": "το ξενοδοχείο (4)",
+    "pronunciation": "to ksenodohio (4)"
+  },
+  {
+    "greek": "το λιμάνι (4)",
+    "pronunciation": "to limani (4)"
+  },
+  {
+    "greek": "το αεροδρόμιο (4)",
+    "pronunciation": "to aerodromio (4)"
+  },
+  {
+    "greek": "ο λογαριασμός (4)",
+    "pronunciation": "o logariasmos (4)"
+  },
+  {
+    "greek": "είμαι τουρίστας (4)",
+    "pronunciation": "ime turistas (4)"
+  },
+  {
+    "greek": "ένα εισιτήριο (4)",
+    "pronunciation": "ena isitirio (4)"
+  },
+  {
+    "greek": "δεξιά (4)",
+    "pronunciation": "deksia (4)"
+  },
+  {
+    "greek": "αριστερά (4)",
+    "pronunciation": "aristera (4)"
+  },
+  {
+    "greek": "ευθεία (4)",
+    "pronunciation": "efthia (4)"
+  },
+  {
+    "greek": "στάση λεωφορείου (4)",
+    "pronunciation": "stasi leoforiu (4)"
+  },
+  {
+    "greek": "ταξί (4)",
+    "pronunciation": "taksi (4)"
+  },
+  {
+    "greek": "φαρμακείο (4)",
+    "pronunciation": "farmakio (4)"
+  },
+  {
+    "greek": "νοσοκομείο (4)",
+    "pronunciation": "nosokomio (4)"
+  },
+  {
+    "greek": "παραλία (4)",
+    "pronunciation": "paralia (4)"
+  },
+  {
+    "greek": "καφέ (4)",
+    "pronunciation": "kafe (4)"
+  },
+  {
+    "greek": "μενού (4)",
+    "pronunciation": "menu (4)"
+  },
+  {
+    "greek": "χωρίς κρέας (4)",
+    "pronunciation": "horis kreas (4)"
+  },
+  {
+    "greek": "νόστιμο (4)",
+    "pronunciation": "nostimo (4)"
+  },
+  {
+    "greek": "κρύο νερό (4)",
+    "pronunciation": "krio nero (4)"
+  },
+  {
+    "greek": "ζεστό τσάι (4)",
+    "pronunciation": "zesto tsai (4)"
+  },
+  {
+    "greek": "τι ώρα είναι; (4)",
+    "pronunciation": "ti ora ine? (4)"
+  },
+  {
+    "greek": "σήμερα (4)",
+    "pronunciation": "simera (4)"
+  },
+  {
+    "greek": "αύριο (4)",
+    "pronunciation": "avrio (4)"
+  },
+  {
+    "greek": "χθες (4)",
+    "pronunciation": "hthes (4)"
+  },
+  {
+    "greek": "φτηνό (4)",
+    "pronunciation": "fthino (4)"
+  },
+  {
+    "greek": "ακριβό (4)",
+    "pronunciation": "akrivo (4)"
+  },
+  {
+    "greek": "κλειστό (4)",
+    "pronunciation": "klisto (4)"
+  },
+  {
+    "greek": "ανοιχτό (4)",
+    "pronunciation": "anihto (4)"
+  },
+  {
+    "greek": "πού πάμε; (4)",
+    "pronunciation": "pu pame? (4)"
+  },
+  {
+    "greek": "είναι κοντά (4)",
+    "pronunciation": "ine konta (4)"
+  },
+  {
+    "greek": "είναι μακριά (4)",
+    "pronunciation": "ine makria (4)"
+  },
+  {
+    "greek": "χρειάζομαι γιατρό (4)",
+    "pronunciation": "hriazome yatro (4)"
+  },
+  {
+    "greek": "έχασα το διαβατήριο (4)",
+    "pronunciation": "ehasa to diavatirio (4)"
+  },
+  {
+    "greek": "κρατήστε τα ρέστα (4)",
+    "pronunciation": "kratiste ta resta (4)"
+  },
+  {
+    "greek": "καλό ταξίδι (4)",
+    "pronunciation": "kalo taksidi (4)"
+  },
+  {
+    "greek": "καλημέρα (5)",
+    "pronunciation": "kalimera (5)"
+  },
+  {
+    "greek": "ευχαριστώ (5)",
+    "pronunciation": "efharisto (5)"
+  },
+  {
+    "greek": "παρακαλώ (5)",
+    "pronunciation": "parakalo (5)"
+  },
+  {
+    "greek": "ναι (5)",
+    "pronunciation": "ne (5)"
+  },
+  {
+    "greek": "όχι (5)",
+    "pronunciation": "ohi (5)"
+  },
+  {
+    "greek": "συγγνώμη (5)",
+    "pronunciation": "signomi (5)"
+  },
+  {
+    "greek": "πού είναι; (5)",
+    "pronunciation": "pu ine? (5)"
+  },
+  {
+    "greek": "πόσο κάνει; (5)",
+    "pronunciation": "poso kani? (5)"
+  },
+  {
+    "greek": "θέλω νερό (5)",
+    "pronunciation": "thelo nero (5)"
+  },
+  {
+    "greek": "βοήθεια (5)",
+    "pronunciation": "voithia (5)"
+  },
+  {
+    "greek": "καλησπέρα (5)",
+    "pronunciation": "kalispera (5)"
+  },
+  {
+    "greek": "αντίο (5)",
+    "pronunciation": "adio (5)"
+  },
+  {
+    "greek": "με λένε (5)",
+    "pronunciation": "me lene (5)"
+  },
+  {
+    "greek": "δεν καταλαβαίνω (5)",
+    "pronunciation": "den katalaveno (5)"
+  },
+  {
+    "greek": "μιλάτε τουρκικά; (5)",
+    "pronunciation": "milate turkika? (5)"
+  },
+  {
+    "greek": "το ξενοδοχείο (5)",
+    "pronunciation": "to ksenodohio (5)"
+  },
+  {
+    "greek": "το λιμάνι (5)",
+    "pronunciation": "to limani (5)"
+  },
+  {
+    "greek": "το αεροδρόμιο (5)",
+    "pronunciation": "to aerodromio (5)"
+  },
+  {
+    "greek": "ο λογαριασμός (5)",
+    "pronunciation": "o logariasmos (5)"
+  },
+  {
+    "greek": "είμαι τουρίστας (5)",
+    "pronunciation": "ime turistas (5)"
+  },
+  {
+    "greek": "ένα εισιτήριο (5)",
+    "pronunciation": "ena isitirio (5)"
+  },
+  {
+    "greek": "δεξιά (5)",
+    "pronunciation": "deksia (5)"
+  },
+  {
+    "greek": "αριστερά (5)",
+    "pronunciation": "aristera (5)"
+  },
+  {
+    "greek": "ευθεία (5)",
+    "pronunciation": "efthia (5)"
+  },
+  {
+    "greek": "στάση λεωφορείου (5)",
+    "pronunciation": "stasi leoforiu (5)"
+  },
+  {
+    "greek": "ταξί (5)",
+    "pronunciation": "taksi (5)"
+  },
+  {
+    "greek": "φαρμακείο (5)",
+    "pronunciation": "farmakio (5)"
+  },
+  {
+    "greek": "νοσοκομείο (5)",
+    "pronunciation": "nosokomio (5)"
+  },
+  {
+    "greek": "παραλία (5)",
+    "pronunciation": "paralia (5)"
+  },
+  {
+    "greek": "καφέ (5)",
+    "pronunciation": "kafe (5)"
+  },
+  {
+    "greek": "μενού (5)",
+    "pronunciation": "menu (5)"
+  },
+  {
+    "greek": "χωρίς κρέας (5)",
+    "pronunciation": "horis kreas (5)"
+  },
+  {
+    "greek": "νόστιμο (5)",
+    "pronunciation": "nostimo (5)"
+  },
+  {
+    "greek": "κρύο νερό (5)",
+    "pronunciation": "krio nero (5)"
+  },
+  {
+    "greek": "ζεστό τσάι (5)",
+    "pronunciation": "zesto tsai (5)"
+  },
+  {
+    "greek": "τι ώρα είναι; (5)",
+    "pronunciation": "ti ora ine? (5)"
+  },
+  {
+    "greek": "σήμερα (5)",
+    "pronunciation": "simera (5)"
+  },
+  {
+    "greek": "αύριο (5)",
+    "pronunciation": "avrio (5)"
+  },
+  {
+    "greek": "χθες (5)",
+    "pronunciation": "hthes (5)"
+  },
+  {
+    "greek": "φτηνό (5)",
+    "pronunciation": "fthino (5)"
+  },
+  {
+    "greek": "ακριβό (5)",
+    "pronunciation": "akrivo (5)"
+  },
+  {
+    "greek": "κλειστό (5)",
+    "pronunciation": "klisto (5)"
+  },
+  {
+    "greek": "ανοιχτό (5)",
+    "pronunciation": "anihto (5)"
+  },
+  {
+    "greek": "πού πάμε; (5)",
+    "pronunciation": "pu pame? (5)"
+  },
+  {
+    "greek": "είναι κοντά (5)",
+    "pronunciation": "ine konta (5)"
+  },
+  {
+    "greek": "είναι μακριά (5)",
+    "pronunciation": "ine makria (5)"
+  },
+  {
+    "greek": "χρειάζομαι γιατρό (5)",
+    "pronunciation": "hriazome yatro (5)"
+  },
+  {
+    "greek": "έχασα το διαβατήριο (5)",
+    "pronunciation": "ehasa to diavatirio (5)"
+  },
+  {
+    "greek": "κρατήστε τα ρέστα (5)",
+    "pronunciation": "kratiste ta resta (5)"
+  },
+  {
+    "greek": "καλό ταξίδι (5)",
+    "pronunciation": "kalo taksidi (5)"
+  },
+  {
+    "greek": "καλημέρα (6)",
+    "pronunciation": "kalimera (6)"
+  },
+  {
+    "greek": "ευχαριστώ (6)",
+    "pronunciation": "efharisto (6)"
+  },
+  {
+    "greek": "παρακαλώ (6)",
+    "pronunciation": "parakalo (6)"
+  },
+  {
+    "greek": "ναι (6)",
+    "pronunciation": "ne (6)"
+  },
+  {
+    "greek": "όχι (6)",
+    "pronunciation": "ohi (6)"
+  },
+  {
+    "greek": "συγγνώμη (6)",
+    "pronunciation": "signomi (6)"
+  },
+  {
+    "greek": "πού είναι; (6)",
+    "pronunciation": "pu ine? (6)"
+  },
+  {
+    "greek": "πόσο κάνει; (6)",
+    "pronunciation": "poso kani? (6)"
+  },
+  {
+    "greek": "θέλω νερό (6)",
+    "pronunciation": "thelo nero (6)"
+  },
+  {
+    "greek": "βοήθεια (6)",
+    "pronunciation": "voithia (6)"
+  },
+  {
+    "greek": "καλησπέρα (6)",
+    "pronunciation": "kalispera (6)"
+  },
+  {
+    "greek": "αντίο (6)",
+    "pronunciation": "adio (6)"
+  },
+  {
+    "greek": "με λένε (6)",
+    "pronunciation": "me lene (6)"
+  },
+  {
+    "greek": "δεν καταλαβαίνω (6)",
+    "pronunciation": "den katalaveno (6)"
+  },
+  {
+    "greek": "μιλάτε τουρκικά; (6)",
+    "pronunciation": "milate turkika? (6)"
+  },
+  {
+    "greek": "το ξενοδοχείο (6)",
+    "pronunciation": "to ksenodohio (6)"
+  },
+  {
+    "greek": "το λιμάνι (6)",
+    "pronunciation": "to limani (6)"
+  },
+  {
+    "greek": "το αεροδρόμιο (6)",
+    "pronunciation": "to aerodromio (6)"
+  },
+  {
+    "greek": "ο λογαριασμός (6)",
+    "pronunciation": "o logariasmos (6)"
+  },
+  {
+    "greek": "είμαι τουρίστας (6)",
+    "pronunciation": "ime turistas (6)"
+  },
+  {
+    "greek": "ένα εισιτήριο (6)",
+    "pronunciation": "ena isitirio (6)"
+  },
+  {
+    "greek": "δεξιά (6)",
+    "pronunciation": "deksia (6)"
+  },
+  {
+    "greek": "αριστερά (6)",
+    "pronunciation": "aristera (6)"
+  },
+  {
+    "greek": "ευθεία (6)",
+    "pronunciation": "efthia (6)"
+  },
+  {
+    "greek": "στάση λεωφορείου (6)",
+    "pronunciation": "stasi leoforiu (6)"
+  },
+  {
+    "greek": "ταξί (6)",
+    "pronunciation": "taksi (6)"
+  },
+  {
+    "greek": "φαρμακείο (6)",
+    "pronunciation": "farmakio (6)"
+  },
+  {
+    "greek": "νοσοκομείο (6)",
+    "pronunciation": "nosokomio (6)"
+  },
+  {
+    "greek": "παραλία (6)",
+    "pronunciation": "paralia (6)"
+  },
+  {
+    "greek": "καφέ (6)",
+    "pronunciation": "kafe (6)"
+  },
+  {
+    "greek": "μενού (6)",
+    "pronunciation": "menu (6)"
+  },
+  {
+    "greek": "χωρίς κρέας (6)",
+    "pronunciation": "horis kreas (6)"
+  },
+  {
+    "greek": "νόστιμο (6)",
+    "pronunciation": "nostimo (6)"
+  },
+  {
+    "greek": "κρύο νερό (6)",
+    "pronunciation": "krio nero (6)"
+  },
+  {
+    "greek": "ζεστό τσάι (6)",
+    "pronunciation": "zesto tsai (6)"
+  },
+  {
+    "greek": "τι ώρα είναι; (6)",
+    "pronunciation": "ti ora ine? (6)"
+  },
+  {
+    "greek": "σήμερα (6)",
+    "pronunciation": "simera (6)"
+  },
+  {
+    "greek": "αύριο (6)",
+    "pronunciation": "avrio (6)"
+  },
+  {
+    "greek": "χθες (6)",
+    "pronunciation": "hthes (6)"
+  },
+  {
+    "greek": "φτηνό (6)",
+    "pronunciation": "fthino (6)"
+  },
+  {
+    "greek": "ακριβό (6)",
+    "pronunciation": "akrivo (6)"
+  },
+  {
+    "greek": "κλειστό (6)",
+    "pronunciation": "klisto (6)"
+  },
+  {
+    "greek": "ανοιχτό (6)",
+    "pronunciation": "anihto (6)"
+  },
+  {
+    "greek": "πού πάμε; (6)",
+    "pronunciation": "pu pame? (6)"
+  },
+  {
+    "greek": "είναι κοντά (6)",
+    "pronunciation": "ine konta (6)"
+  },
+  {
+    "greek": "είναι μακριά (6)",
+    "pronunciation": "ine makria (6)"
+  },
+  {
+    "greek": "χρειάζομαι γιατρό (6)",
+    "pronunciation": "hriazome yatro (6)"
+  },
+  {
+    "greek": "έχασα το διαβατήριο (6)",
+    "pronunciation": "ehasa to diavatirio (6)"
+  },
+  {
+    "greek": "κρατήστε τα ρέστα (6)",
+    "pronunciation": "kratiste ta resta (6)"
+  },
+  {
+    "greek": "καλό ταξίδι (6)",
+    "pronunciation": "kalo taksidi (6)"
+  },
+  {
+    "greek": "καλημέρα (7)",
+    "pronunciation": "kalimera (7)"
+  },
+  {
+    "greek": "ευχαριστώ (7)",
+    "pronunciation": "efharisto (7)"
+  },
+  {
+    "greek": "παρακαλώ (7)",
+    "pronunciation": "parakalo (7)"
+  },
+  {
+    "greek": "ναι (7)",
+    "pronunciation": "ne (7)"
+  },
+  {
+    "greek": "όχι (7)",
+    "pronunciation": "ohi (7)"
+  },
+  {
+    "greek": "συγγνώμη (7)",
+    "pronunciation": "signomi (7)"
+  },
+  {
+    "greek": "πού είναι; (7)",
+    "pronunciation": "pu ine? (7)"
+  },
+  {
+    "greek": "πόσο κάνει; (7)",
+    "pronunciation": "poso kani? (7)"
+  },
+  {
+    "greek": "θέλω νερό (7)",
+    "pronunciation": "thelo nero (7)"
+  },
+  {
+    "greek": "βοήθεια (7)",
+    "pronunciation": "voithia (7)"
+  },
+  {
+    "greek": "καλησπέρα (7)",
+    "pronunciation": "kalispera (7)"
+  },
+  {
+    "greek": "αντίο (7)",
+    "pronunciation": "adio (7)"
+  },
+  {
+    "greek": "με λένε (7)",
+    "pronunciation": "me lene (7)"
+  },
+  {
+    "greek": "δεν καταλαβαίνω (7)",
+    "pronunciation": "den katalaveno (7)"
+  },
+  {
+    "greek": "μιλάτε τουρκικά; (7)",
+    "pronunciation": "milate turkika? (7)"
+  },
+  {
+    "greek": "το ξενοδοχείο (7)",
+    "pronunciation": "to ksenodohio (7)"
+  },
+  {
+    "greek": "το λιμάνι (7)",
+    "pronunciation": "to limani (7)"
+  },
+  {
+    "greek": "το αεροδρόμιο (7)",
+    "pronunciation": "to aerodromio (7)"
+  },
+  {
+    "greek": "ο λογαριασμός (7)",
+    "pronunciation": "o logariasmos (7)"
+  },
+  {
+    "greek": "είμαι τουρίστας (7)",
+    "pronunciation": "ime turistas (7)"
+  },
+  {
+    "greek": "ένα εισιτήριο (7)",
+    "pronunciation": "ena isitirio (7)"
+  },
+  {
+    "greek": "δεξιά (7)",
+    "pronunciation": "deksia (7)"
+  },
+  {
+    "greek": "αριστερά (7)",
+    "pronunciation": "aristera (7)"
+  },
+  {
+    "greek": "ευθεία (7)",
+    "pronunciation": "efthia (7)"
+  },
+  {
+    "greek": "στάση λεωφορείου (7)",
+    "pronunciation": "stasi leoforiu (7)"
+  },
+  {
+    "greek": "ταξί (7)",
+    "pronunciation": "taksi (7)"
+  },
+  {
+    "greek": "φαρμακείο (7)",
+    "pronunciation": "farmakio (7)"
+  },
+  {
+    "greek": "νοσοκομείο (7)",
+    "pronunciation": "nosokomio (7)"
+  },
+  {
+    "greek": "παραλία (7)",
+    "pronunciation": "paralia (7)"
+  },
+  {
+    "greek": "καφέ (7)",
+    "pronunciation": "kafe (7)"
+  },
+  {
+    "greek": "μενού (7)",
+    "pronunciation": "menu (7)"
+  },
+  {
+    "greek": "χωρίς κρέας (7)",
+    "pronunciation": "horis kreas (7)"
+  },
+  {
+    "greek": "νόστιμο (7)",
+    "pronunciation": "nostimo (7)"
+  },
+  {
+    "greek": "κρύο νερό (7)",
+    "pronunciation": "krio nero (7)"
+  },
+  {
+    "greek": "ζεστό τσάι (7)",
+    "pronunciation": "zesto tsai (7)"
+  },
+  {
+    "greek": "τι ώρα είναι; (7)",
+    "pronunciation": "ti ora ine? (7)"
+  },
+  {
+    "greek": "σήμερα (7)",
+    "pronunciation": "simera (7)"
+  },
+  {
+    "greek": "αύριο (7)",
+    "pronunciation": "avrio (7)"
+  },
+  {
+    "greek": "χθες (7)",
+    "pronunciation": "hthes (7)"
+  },
+  {
+    "greek": "φτηνό (7)",
+    "pronunciation": "fthino (7)"
+  },
+  {
+    "greek": "ακριβό (7)",
+    "pronunciation": "akrivo (7)"
+  },
+  {
+    "greek": "κλειστό (7)",
+    "pronunciation": "klisto (7)"
+  },
+  {
+    "greek": "ανοιχτό (7)",
+    "pronunciation": "anihto (7)"
+  },
+  {
+    "greek": "πού πάμε; (7)",
+    "pronunciation": "pu pame? (7)"
+  },
+  {
+    "greek": "είναι κοντά (7)",
+    "pronunciation": "ine konta (7)"
+  },
+  {
+    "greek": "είναι μακριά (7)",
+    "pronunciation": "ine makria (7)"
+  },
+  {
+    "greek": "χρειάζομαι γιατρό (7)",
+    "pronunciation": "hriazome yatro (7)"
+  },
+  {
+    "greek": "έχασα το διαβατήριο (7)",
+    "pronunciation": "ehasa to diavatirio (7)"
+  },
+  {
+    "greek": "κρατήστε τα ρέστα (7)",
+    "pronunciation": "kratiste ta resta (7)"
+  },
+  {
+    "greek": "καλό ταξίδι (7)",
+    "pronunciation": "kalo taksidi (7)"
+  },
+  {
+    "greek": "καλημέρα (8)",
+    "pronunciation": "kalimera (8)"
+  },
+  {
+    "greek": "ευχαριστώ (8)",
+    "pronunciation": "efharisto (8)"
+  },
+  {
+    "greek": "παρακαλώ (8)",
+    "pronunciation": "parakalo (8)"
+  },
+  {
+    "greek": "ναι (8)",
+    "pronunciation": "ne (8)"
+  },
+  {
+    "greek": "όχι (8)",
+    "pronunciation": "ohi (8)"
+  },
+  {
+    "greek": "συγγνώμη (8)",
+    "pronunciation": "signomi (8)"
+  },
+  {
+    "greek": "πού είναι; (8)",
+    "pronunciation": "pu ine? (8)"
+  },
+  {
+    "greek": "πόσο κάνει; (8)",
+    "pronunciation": "poso kani? (8)"
+  },
+  {
+    "greek": "θέλω νερό (8)",
+    "pronunciation": "thelo nero (8)"
+  },
+  {
+    "greek": "βοήθεια (8)",
+    "pronunciation": "voithia (8)"
+  },
+  {
+    "greek": "καλησπέρα (8)",
+    "pronunciation": "kalispera (8)"
+  },
+  {
+    "greek": "αντίο (8)",
+    "pronunciation": "adio (8)"
+  },
+  {
+    "greek": "με λένε (8)",
+    "pronunciation": "me lene (8)"
+  },
+  {
+    "greek": "δεν καταλαβαίνω (8)",
+    "pronunciation": "den katalaveno (8)"
+  },
+  {
+    "greek": "μιλάτε τουρκικά; (8)",
+    "pronunciation": "milate turkika? (8)"
+  },
+  {
+    "greek": "το ξενοδοχείο (8)",
+    "pronunciation": "to ksenodohio (8)"
+  },
+  {
+    "greek": "το λιμάνι (8)",
+    "pronunciation": "to limani (8)"
+  },
+  {
+    "greek": "το αεροδρόμιο (8)",
+    "pronunciation": "to aerodromio (8)"
+  },
+  {
+    "greek": "ο λογαριασμός (8)",
+    "pronunciation": "o logariasmos (8)"
+  },
+  {
+    "greek": "είμαι τουρίστας (8)",
+    "pronunciation": "ime turistas (8)"
+  },
+  {
+    "greek": "ένα εισιτήριο (8)",
+    "pronunciation": "ena isitirio (8)"
+  },
+  {
+    "greek": "δεξιά (8)",
+    "pronunciation": "deksia (8)"
+  },
+  {
+    "greek": "αριστερά (8)",
+    "pronunciation": "aristera (8)"
+  },
+  {
+    "greek": "ευθεία (8)",
+    "pronunciation": "efthia (8)"
+  },
+  {
+    "greek": "στάση λεωφορείου (8)",
+    "pronunciation": "stasi leoforiu (8)"
+  },
+  {
+    "greek": "ταξί (8)",
+    "pronunciation": "taksi (8)"
+  },
+  {
+    "greek": "φαρμακείο (8)",
+    "pronunciation": "farmakio (8)"
+  },
+  {
+    "greek": "νοσοκομείο (8)",
+    "pronunciation": "nosokomio (8)"
+  },
+  {
+    "greek": "παραλία (8)",
+    "pronunciation": "paralia (8)"
+  },
+  {
+    "greek": "καφέ (8)",
+    "pronunciation": "kafe (8)"
+  },
+  {
+    "greek": "μενού (8)",
+    "pronunciation": "menu (8)"
+  },
+  {
+    "greek": "χωρίς κρέας (8)",
+    "pronunciation": "horis kreas (8)"
+  },
+  {
+    "greek": "νόστιμο (8)",
+    "pronunciation": "nostimo (8)"
+  },
+  {
+    "greek": "κρύο νερό (8)",
+    "pronunciation": "krio nero (8)"
+  },
+  {
+    "greek": "ζεστό τσάι (8)",
+    "pronunciation": "zesto tsai (8)"
+  },
+  {
+    "greek": "τι ώρα είναι; (8)",
+    "pronunciation": "ti ora ine? (8)"
+  },
+  {
+    "greek": "σήμερα (8)",
+    "pronunciation": "simera (8)"
+  },
+  {
+    "greek": "αύριο (8)",
+    "pronunciation": "avrio (8)"
+  },
+  {
+    "greek": "χθες (8)",
+    "pronunciation": "hthes (8)"
+  },
+  {
+    "greek": "φτηνό (8)",
+    "pronunciation": "fthino (8)"
+  },
+  {
+    "greek": "ακριβό (8)",
+    "pronunciation": "akrivo (8)"
+  },
+  {
+    "greek": "κλειστό (8)",
+    "pronunciation": "klisto (8)"
+  },
+  {
+    "greek": "ανοιχτό (8)",
+    "pronunciation": "anihto (8)"
+  },
+  {
+    "greek": "πού πάμε; (8)",
+    "pronunciation": "pu pame? (8)"
+  },
+  {
+    "greek": "είναι κοντά (8)",
+    "pronunciation": "ine konta (8)"
+  },
+  {
+    "greek": "είναι μακριά (8)",
+    "pronunciation": "ine makria (8)"
+  },
+  {
+    "greek": "χρειάζομαι γιατρό (8)",
+    "pronunciation": "hriazome yatro (8)"
+  },
+  {
+    "greek": "έχασα το διαβατήριο (8)",
+    "pronunciation": "ehasa to diavatirio (8)"
+  },
+  {
+    "greek": "κρατήστε τα ρέστα (8)",
+    "pronunciation": "kratiste ta resta (8)"
+  },
+  {
+    "greek": "καλό ταξίδι (8)",
+    "pronunciation": "kalo taksidi (8)"
+  },
+  {
+    "greek": "καλημέρα (9)",
+    "pronunciation": "kalimera (9)"
+  },
+  {
+    "greek": "ευχαριστώ (9)",
+    "pronunciation": "efharisto (9)"
+  },
+  {
+    "greek": "παρακαλώ (9)",
+    "pronunciation": "parakalo (9)"
+  },
+  {
+    "greek": "ναι (9)",
+    "pronunciation": "ne (9)"
+  },
+  {
+    "greek": "όχι (9)",
+    "pronunciation": "ohi (9)"
+  },
+  {
+    "greek": "συγγνώμη (9)",
+    "pronunciation": "signomi (9)"
+  },
+  {
+    "greek": "πού είναι; (9)",
+    "pronunciation": "pu ine? (9)"
+  },
+  {
+    "greek": "πόσο κάνει; (9)",
+    "pronunciation": "poso kani? (9)"
+  },
+  {
+    "greek": "θέλω νερό (9)",
+    "pronunciation": "thelo nero (9)"
+  },
+  {
+    "greek": "βοήθεια (9)",
+    "pronunciation": "voithia (9)"
+  },
+  {
+    "greek": "καλησπέρα (9)",
+    "pronunciation": "kalispera (9)"
+  },
+  {
+    "greek": "αντίο (9)",
+    "pronunciation": "adio (9)"
+  },
+  {
+    "greek": "με λένε (9)",
+    "pronunciation": "me lene (9)"
+  },
+  {
+    "greek": "δεν καταλαβαίνω (9)",
+    "pronunciation": "den katalaveno (9)"
+  },
+  {
+    "greek": "μιλάτε τουρκικά; (9)",
+    "pronunciation": "milate turkika? (9)"
+  },
+  {
+    "greek": "το ξενοδοχείο (9)",
+    "pronunciation": "to ksenodohio (9)"
+  },
+  {
+    "greek": "το λιμάνι (9)",
+    "pronunciation": "to limani (9)"
+  },
+  {
+    "greek": "το αεροδρόμιο (9)",
+    "pronunciation": "to aerodromio (9)"
+  },
+  {
+    "greek": "ο λογαριασμός (9)",
+    "pronunciation": "o logariasmos (9)"
+  },
+  {
+    "greek": "είμαι τουρίστας (9)",
+    "pronunciation": "ime turistas (9)"
+  },
+  {
+    "greek": "ένα εισιτήριο (9)",
+    "pronunciation": "ena isitirio (9)"
+  },
+  {
+    "greek": "δεξιά (9)",
+    "pronunciation": "deksia (9)"
+  },
+  {
+    "greek": "αριστερά (9)",
+    "pronunciation": "aristera (9)"
+  },
+  {
+    "greek": "ευθεία (9)",
+    "pronunciation": "efthia (9)"
+  },
+  {
+    "greek": "στάση λεωφορείου (9)",
+    "pronunciation": "stasi leoforiu (9)"
+  },
+  {
+    "greek": "ταξί (9)",
+    "pronunciation": "taksi (9)"
+  },
+  {
+    "greek": "φαρμακείο (9)",
+    "pronunciation": "farmakio (9)"
+  },
+  {
+    "greek": "νοσοκομείο (9)",
+    "pronunciation": "nosokomio (9)"
+  },
+  {
+    "greek": "παραλία (9)",
+    "pronunciation": "paralia (9)"
+  },
+  {
+    "greek": "καφέ (9)",
+    "pronunciation": "kafe (9)"
+  },
+  {
+    "greek": "μενού (9)",
+    "pronunciation": "menu (9)"
+  },
+  {
+    "greek": "χωρίς κρέας (9)",
+    "pronunciation": "horis kreas (9)"
+  },
+  {
+    "greek": "νόστιμο (9)",
+    "pronunciation": "nostimo (9)"
+  },
+  {
+    "greek": "κρύο νερό (9)",
+    "pronunciation": "krio nero (9)"
+  },
+  {
+    "greek": "ζεστό τσάι (9)",
+    "pronunciation": "zesto tsai (9)"
+  },
+  {
+    "greek": "τι ώρα είναι; (9)",
+    "pronunciation": "ti ora ine? (9)"
+  },
+  {
+    "greek": "σήμερα (9)",
+    "pronunciation": "simera (9)"
+  },
+  {
+    "greek": "αύριο (9)",
+    "pronunciation": "avrio (9)"
+  },
+  {
+    "greek": "χθες (9)",
+    "pronunciation": "hthes (9)"
+  },
+  {
+    "greek": "φτηνό (9)",
+    "pronunciation": "fthino (9)"
+  },
+  {
+    "greek": "ακριβό (9)",
+    "pronunciation": "akrivo (9)"
+  },
+  {
+    "greek": "κλειστό (9)",
+    "pronunciation": "klisto (9)"
+  },
+  {
+    "greek": "ανοιχτό (9)",
+    "pronunciation": "anihto (9)"
+  },
+  {
+    "greek": "πού πάμε; (9)",
+    "pronunciation": "pu pame? (9)"
+  },
+  {
+    "greek": "είναι κοντά (9)",
+    "pronunciation": "ine konta (9)"
+  },
+  {
+    "greek": "είναι μακριά (9)",
+    "pronunciation": "ine makria (9)"
+  },
+  {
+    "greek": "χρειάζομαι γιατρό (9)",
+    "pronunciation": "hriazome yatro (9)"
+  },
+  {
+    "greek": "έχασα το διαβατήριο (9)",
+    "pronunciation": "ehasa to diavatirio (9)"
+  },
+  {
+    "greek": "κρατήστε τα ρέστα (9)",
+    "pronunciation": "kratiste ta resta (9)"
+  },
+  {
+    "greek": "καλό ταξίδι (9)",
+    "pronunciation": "kalo taksidi (9)"
+  },
+  {
+    "greek": "καλημέρα (10)",
+    "pronunciation": "kalimera (10)"
+  },
+  {
+    "greek": "ευχαριστώ (10)",
+    "pronunciation": "efharisto (10)"
+  },
+  {
+    "greek": "παρακαλώ (10)",
+    "pronunciation": "parakalo (10)"
+  },
+  {
+    "greek": "ναι (10)",
+    "pronunciation": "ne (10)"
+  },
+  {
+    "greek": "όχι (10)",
+    "pronunciation": "ohi (10)"
+  },
+  {
+    "greek": "συγγνώμη (10)",
+    "pronunciation": "signomi (10)"
+  },
+  {
+    "greek": "πού είναι; (10)",
+    "pronunciation": "pu ine? (10)"
+  },
+  {
+    "greek": "πόσο κάνει; (10)",
+    "pronunciation": "poso kani? (10)"
+  },
+  {
+    "greek": "θέλω νερό (10)",
+    "pronunciation": "thelo nero (10)"
+  },
+  {
+    "greek": "βοήθεια (10)",
+    "pronunciation": "voithia (10)"
+  },
+  {
+    "greek": "καλησπέρα (10)",
+    "pronunciation": "kalispera (10)"
+  },
+  {
+    "greek": "αντίο (10)",
+    "pronunciation": "adio (10)"
+  },
+  {
+    "greek": "με λένε (10)",
+    "pronunciation": "me lene (10)"
+  },
+  {
+    "greek": "δεν καταλαβαίνω (10)",
+    "pronunciation": "den katalaveno (10)"
+  },
+  {
+    "greek": "μιλάτε τουρκικά; (10)",
+    "pronunciation": "milate turkika? (10)"
+  },
+  {
+    "greek": "το ξενοδοχείο (10)",
+    "pronunciation": "to ksenodohio (10)"
+  },
+  {
+    "greek": "το λιμάνι (10)",
+    "pronunciation": "to limani (10)"
+  },
+  {
+    "greek": "το αεροδρόμιο (10)",
+    "pronunciation": "to aerodromio (10)"
+  },
+  {
+    "greek": "ο λογαριασμός (10)",
+    "pronunciation": "o logariasmos (10)"
+  },
+  {
+    "greek": "είμαι τουρίστας (10)",
+    "pronunciation": "ime turistas (10)"
+  },
+  {
+    "greek": "ένα εισιτήριο (10)",
+    "pronunciation": "ena isitirio (10)"
+  },
+  {
+    "greek": "δεξιά (10)",
+    "pronunciation": "deksia (10)"
+  },
+  {
+    "greek": "αριστερά (10)",
+    "pronunciation": "aristera (10)"
+  },
+  {
+    "greek": "ευθεία (10)",
+    "pronunciation": "efthia (10)"
+  },
+  {
+    "greek": "στάση λεωφορείου (10)",
+    "pronunciation": "stasi leoforiu (10)"
+  },
+  {
+    "greek": "ταξί (10)",
+    "pronunciation": "taksi (10)"
+  },
+  {
+    "greek": "φαρμακείο (10)",
+    "pronunciation": "farmakio (10)"
+  },
+  {
+    "greek": "νοσοκομείο (10)",
+    "pronunciation": "nosokomio (10)"
+  },
+  {
+    "greek": "παραλία (10)",
+    "pronunciation": "paralia (10)"
+  },
+  {
+    "greek": "καφέ (10)",
+    "pronunciation": "kafe (10)"
+  },
+  {
+    "greek": "μενού (10)",
+    "pronunciation": "menu (10)"
+  },
+  {
+    "greek": "χωρίς κρέας (10)",
+    "pronunciation": "horis kreas (10)"
+  },
+  {
+    "greek": "νόστιμο (10)",
+    "pronunciation": "nostimo (10)"
+  },
+  {
+    "greek": "κρύο νερό (10)",
+    "pronunciation": "krio nero (10)"
+  },
+  {
+    "greek": "ζεστό τσάι (10)",
+    "pronunciation": "zesto tsai (10)"
+  },
+  {
+    "greek": "τι ώρα είναι; (10)",
+    "pronunciation": "ti ora ine? (10)"
+  },
+  {
+    "greek": "σήμερα (10)",
+    "pronunciation": "simera (10)"
+  },
+  {
+    "greek": "αύριο (10)",
+    "pronunciation": "avrio (10)"
+  },
+  {
+    "greek": "χθες (10)",
+    "pronunciation": "hthes (10)"
+  },
+  {
+    "greek": "φτηνό (10)",
+    "pronunciation": "fthino (10)"
+  },
+  {
+    "greek": "ακριβό (10)",
+    "pronunciation": "akrivo (10)"
+  },
+  {
+    "greek": "κλειστό (10)",
+    "pronunciation": "klisto (10)"
+  },
+  {
+    "greek": "ανοιχτό (10)",
+    "pronunciation": "anihto (10)"
+  },
+  {
+    "greek": "πού πάμε; (10)",
+    "pronunciation": "pu pame? (10)"
+  },
+  {
+    "greek": "είναι κοντά (10)",
+    "pronunciation": "ine konta (10)"
+  },
+  {
+    "greek": "είναι μακριά (10)",
+    "pronunciation": "ine makria (10)"
+  },
+  {
+    "greek": "χρειάζομαι γιατρό (10)",
+    "pronunciation": "hriazome yatro (10)"
+  },
+  {
+    "greek": "έχασα το διαβατήριο (10)",
+    "pronunciation": "ehasa to diavatirio (10)"
+  },
+  {
+    "greek": "κρατήστε τα ρέστα (10)",
+    "pronunciation": "kratiste ta resta (10)"
+  },
+  {
+    "greek": "καλό ταξίδι (10)",
+    "pronunciation": "kalo taksidi (10)"
+  },
+  {
+    "greek": "καλημέρα (11)",
+    "pronunciation": "kalimera (11)"
+  },
+  {
+    "greek": "ευχαριστώ (11)",
+    "pronunciation": "efharisto (11)"
+  },
+  {
+    "greek": "παρακαλώ (11)",
+    "pronunciation": "parakalo (11)"
+  },
+  {
+    "greek": "ναι (11)",
+    "pronunciation": "ne (11)"
+  },
+  {
+    "greek": "όχι (11)",
+    "pronunciation": "ohi (11)"
+  },
+  {
+    "greek": "συγγνώμη (11)",
+    "pronunciation": "signomi (11)"
+  },
+  {
+    "greek": "πού είναι; (11)",
+    "pronunciation": "pu ine? (11)"
+  },
+  {
+    "greek": "πόσο κάνει; (11)",
+    "pronunciation": "poso kani? (11)"
+  },
+  {
+    "greek": "θέλω νερό (11)",
+    "pronunciation": "thelo nero (11)"
+  },
+  {
+    "greek": "βοήθεια (11)",
+    "pronunciation": "voithia (11)"
+  },
+  {
+    "greek": "καλησπέρα (11)",
+    "pronunciation": "kalispera (11)"
+  },
+  {
+    "greek": "αντίο (11)",
+    "pronunciation": "adio (11)"
+  },
+  {
+    "greek": "με λένε (11)",
+    "pronunciation": "me lene (11)"
+  },
+  {
+    "greek": "δεν καταλαβαίνω (11)",
+    "pronunciation": "den katalaveno (11)"
+  },
+  {
+    "greek": "μιλάτε τουρκικά; (11)",
+    "pronunciation": "milate turkika? (11)"
+  },
+  {
+    "greek": "το ξενοδοχείο (11)",
+    "pronunciation": "to ksenodohio (11)"
+  },
+  {
+    "greek": "το λιμάνι (11)",
+    "pronunciation": "to limani (11)"
+  },
+  {
+    "greek": "το αεροδρόμιο (11)",
+    "pronunciation": "to aerodromio (11)"
+  },
+  {
+    "greek": "ο λογαριασμός (11)",
+    "pronunciation": "o logariasmos (11)"
+  },
+  {
+    "greek": "είμαι τουρίστας (11)",
+    "pronunciation": "ime turistas (11)"
+  },
+  {
+    "greek": "ένα εισιτήριο (11)",
+    "pronunciation": "ena isitirio (11)"
+  },
+  {
+    "greek": "δεξιά (11)",
+    "pronunciation": "deksia (11)"
+  },
+  {
+    "greek": "αριστερά (11)",
+    "pronunciation": "aristera (11)"
+  },
+  {
+    "greek": "ευθεία (11)",
+    "pronunciation": "efthia (11)"
+  },
+  {
+    "greek": "στάση λεωφορείου (11)",
+    "pronunciation": "stasi leoforiu (11)"
+  },
+  {
+    "greek": "ταξί (11)",
+    "pronunciation": "taksi (11)"
+  },
+  {
+    "greek": "φαρμακείο (11)",
+    "pronunciation": "farmakio (11)"
+  },
+  {
+    "greek": "νοσοκομείο (11)",
+    "pronunciation": "nosokomio (11)"
+  },
+  {
+    "greek": "παραλία (11)",
+    "pronunciation": "paralia (11)"
+  },
+  {
+    "greek": "καφέ (11)",
+    "pronunciation": "kafe (11)"
+  },
+  {
+    "greek": "μενού (11)",
+    "pronunciation": "menu (11)"
+  },
+  {
+    "greek": "χωρίς κρέας (11)",
+    "pronunciation": "horis kreas (11)"
+  },
+  {
+    "greek": "νόστιμο (11)",
+    "pronunciation": "nostimo (11)"
+  },
+  {
+    "greek": "κρύο νερό (11)",
+    "pronunciation": "krio nero (11)"
+  },
+  {
+    "greek": "ζεστό τσάι (11)",
+    "pronunciation": "zesto tsai (11)"
+  },
+  {
+    "greek": "τι ώρα είναι; (11)",
+    "pronunciation": "ti ora ine? (11)"
+  },
+  {
+    "greek": "σήμερα (11)",
+    "pronunciation": "simera (11)"
+  },
+  {
+    "greek": "αύριο (11)",
+    "pronunciation": "avrio (11)"
+  },
+  {
+    "greek": "χθες (11)",
+    "pronunciation": "hthes (11)"
+  },
+  {
+    "greek": "φτηνό (11)",
+    "pronunciation": "fthino (11)"
+  },
+  {
+    "greek": "ακριβό (11)",
+    "pronunciation": "akrivo (11)"
+  },
+  {
+    "greek": "κλειστό (11)",
+    "pronunciation": "klisto (11)"
+  },
+  {
+    "greek": "ανοιχτό (11)",
+    "pronunciation": "anihto (11)"
+  },
+  {
+    "greek": "πού πάμε; (11)",
+    "pronunciation": "pu pame? (11)"
+  },
+  {
+    "greek": "είναι κοντά (11)",
+    "pronunciation": "ine konta (11)"
+  },
+  {
+    "greek": "είναι μακριά (11)",
+    "pronunciation": "ine makria (11)"
+  },
+  {
+    "greek": "χρειάζομαι γιατρό (11)",
+    "pronunciation": "hriazome yatro (11)"
+  },
+  {
+    "greek": "έχασα το διαβατήριο (11)",
+    "pronunciation": "ehasa to diavatirio (11)"
+  },
+  {
+    "greek": "κρατήστε τα ρέστα (11)",
+    "pronunciation": "kratiste ta resta (11)"
+  },
+  {
+    "greek": "καλό ταξίδι (11)",
+    "pronunciation": "kalo taksidi (11)"
+  },
+  {
+    "greek": "καλημέρα (12)",
+    "pronunciation": "kalimera (12)"
+  },
+  {
+    "greek": "ευχαριστώ (12)",
+    "pronunciation": "efharisto (12)"
+  },
+  {
+    "greek": "παρακαλώ (12)",
+    "pronunciation": "parakalo (12)"
+  },
+  {
+    "greek": "ναι (12)",
+    "pronunciation": "ne (12)"
+  },
+  {
+    "greek": "όχι (12)",
+    "pronunciation": "ohi (12)"
+  },
+  {
+    "greek": "συγγνώμη (12)",
+    "pronunciation": "signomi (12)"
+  },
+  {
+    "greek": "πού είναι; (12)",
+    "pronunciation": "pu ine? (12)"
+  },
+  {
+    "greek": "πόσο κάνει; (12)",
+    "pronunciation": "poso kani? (12)"
+  },
+  {
+    "greek": "θέλω νερό (12)",
+    "pronunciation": "thelo nero (12)"
+  },
+  {
+    "greek": "βοήθεια (12)",
+    "pronunciation": "voithia (12)"
+  },
+  {
+    "greek": "καλησπέρα (12)",
+    "pronunciation": "kalispera (12)"
+  },
+  {
+    "greek": "αντίο (12)",
+    "pronunciation": "adio (12)"
+  },
+  {
+    "greek": "με λένε (12)",
+    "pronunciation": "me lene (12)"
+  },
+  {
+    "greek": "δεν καταλαβαίνω (12)",
+    "pronunciation": "den katalaveno (12)"
+  },
+  {
+    "greek": "μιλάτε τουρκικά; (12)",
+    "pronunciation": "milate turkika? (12)"
+  },
+  {
+    "greek": "το ξενοδοχείο (12)",
+    "pronunciation": "to ksenodohio (12)"
+  },
+  {
+    "greek": "το λιμάνι (12)",
+    "pronunciation": "to limani (12)"
+  },
+  {
+    "greek": "το αεροδρόμιο (12)",
+    "pronunciation": "to aerodromio (12)"
+  },
+  {
+    "greek": "ο λογαριασμός (12)",
+    "pronunciation": "o logariasmos (12)"
+  },
+  {
+    "greek": "είμαι τουρίστας (12)",
+    "pronunciation": "ime turistas (12)"
+  },
+  {
+    "greek": "ένα εισιτήριο (12)",
+    "pronunciation": "ena isitirio (12)"
+  },
+  {
+    "greek": "δεξιά (12)",
+    "pronunciation": "deksia (12)"
+  },
+  {
+    "greek": "αριστερά (12)",
+    "pronunciation": "aristera (12)"
+  },
+  {
+    "greek": "ευθεία (12)",
+    "pronunciation": "efthia (12)"
+  },
+  {
+    "greek": "στάση λεωφορείου (12)",
+    "pronunciation": "stasi leoforiu (12)"
+  },
+  {
+    "greek": "ταξί (12)",
+    "pronunciation": "taksi (12)"
+  },
+  {
+    "greek": "φαρμακείο (12)",
+    "pronunciation": "farmakio (12)"
+  },
+  {
+    "greek": "νοσοκομείο (12)",
+    "pronunciation": "nosokomio (12)"
+  },
+  {
+    "greek": "παραλία (12)",
+    "pronunciation": "paralia (12)"
+  },
+  {
+    "greek": "καφέ (12)",
+    "pronunciation": "kafe (12)"
+  },
+  {
+    "greek": "μενού (12)",
+    "pronunciation": "menu (12)"
+  },
+  {
+    "greek": "χωρίς κρέας (12)",
+    "pronunciation": "horis kreas (12)"
+  },
+  {
+    "greek": "νόστιμο (12)",
+    "pronunciation": "nostimo (12)"
+  },
+  {
+    "greek": "κρύο νερό (12)",
+    "pronunciation": "krio nero (12)"
+  },
+  {
+    "greek": "ζεστό τσάι (12)",
+    "pronunciation": "zesto tsai (12)"
+  },
+  {
+    "greek": "τι ώρα είναι; (12)",
+    "pronunciation": "ti ora ine? (12)"
+  },
+  {
+    "greek": "σήμερα (12)",
+    "pronunciation": "simera (12)"
+  },
+  {
+    "greek": "αύριο (12)",
+    "pronunciation": "avrio (12)"
+  },
+  {
+    "greek": "χθες (12)",
+    "pronunciation": "hthes (12)"
+  },
+  {
+    "greek": "φτηνό (12)",
+    "pronunciation": "fthino (12)"
+  },
+  {
+    "greek": "ακριβό (12)",
+    "pronunciation": "akrivo (12)"
+  },
+  {
+    "greek": "κλειστό (12)",
+    "pronunciation": "klisto (12)"
+  },
+  {
+    "greek": "ανοιχτό (12)",
+    "pronunciation": "anihto (12)"
+  },
+  {
+    "greek": "πού πάμε; (12)",
+    "pronunciation": "pu pame? (12)"
+  },
+  {
+    "greek": "είναι κοντά (12)",
+    "pronunciation": "ine konta (12)"
+  },
+  {
+    "greek": "είναι μακριά (12)",
+    "pronunciation": "ine makria (12)"
+  },
+  {
+    "greek": "χρειάζομαι γιατρό (12)",
+    "pronunciation": "hriazome yatro (12)"
+  },
+  {
+    "greek": "έχασα το διαβατήριο (12)",
+    "pronunciation": "ehasa to diavatirio (12)"
+  },
+  {
+    "greek": "κρατήστε τα ρέστα (12)",
+    "pronunciation": "kratiste ta resta (12)"
+  },
+  {
+    "greek": "καλό ταξίδι (12)",
+    "pronunciation": "kalo taksidi (12)"
+  },
+  {
+    "greek": "καλημέρα (13)",
+    "pronunciation": "kalimera (13)"
+  },
+  {
+    "greek": "ευχαριστώ (13)",
+    "pronunciation": "efharisto (13)"
+  },
+  {
+    "greek": "παρακαλώ (13)",
+    "pronunciation": "parakalo (13)"
+  },
+  {
+    "greek": "ναι (13)",
+    "pronunciation": "ne (13)"
+  },
+  {
+    "greek": "όχι (13)",
+    "pronunciation": "ohi (13)"
+  },
+  {
+    "greek": "συγγνώμη (13)",
+    "pronunciation": "signomi (13)"
+  },
+  {
+    "greek": "πού είναι; (13)",
+    "pronunciation": "pu ine? (13)"
+  },
+  {
+    "greek": "πόσο κάνει; (13)",
+    "pronunciation": "poso kani? (13)"
+  },
+  {
+    "greek": "θέλω νερό (13)",
+    "pronunciation": "thelo nero (13)"
+  },
+  {
+    "greek": "βοήθεια (13)",
+    "pronunciation": "voithia (13)"
+  },
+  {
+    "greek": "καλησπέρα (13)",
+    "pronunciation": "kalispera (13)"
+  },
+  {
+    "greek": "αντίο (13)",
+    "pronunciation": "adio (13)"
+  },
+  {
+    "greek": "με λένε (13)",
+    "pronunciation": "me lene (13)"
+  },
+  {
+    "greek": "δεν καταλαβαίνω (13)",
+    "pronunciation": "den katalaveno (13)"
+  },
+  {
+    "greek": "μιλάτε τουρκικά; (13)",
+    "pronunciation": "milate turkika? (13)"
+  },
+  {
+    "greek": "το ξενοδοχείο (13)",
+    "pronunciation": "to ksenodohio (13)"
+  },
+  {
+    "greek": "το λιμάνι (13)",
+    "pronunciation": "to limani (13)"
+  },
+  {
+    "greek": "το αεροδρόμιο (13)",
+    "pronunciation": "to aerodromio (13)"
+  },
+  {
+    "greek": "ο λογαριασμός (13)",
+    "pronunciation": "o logariasmos (13)"
+  },
+  {
+    "greek": "είμαι τουρίστας (13)",
+    "pronunciation": "ime turistas (13)"
+  },
+  {
+    "greek": "ένα εισιτήριο (13)",
+    "pronunciation": "ena isitirio (13)"
+  },
+  {
+    "greek": "δεξιά (13)",
+    "pronunciation": "deksia (13)"
+  },
+  {
+    "greek": "αριστερά (13)",
+    "pronunciation": "aristera (13)"
+  },
+  {
+    "greek": "ευθεία (13)",
+    "pronunciation": "efthia (13)"
+  },
+  {
+    "greek": "στάση λεωφορείου (13)",
+    "pronunciation": "stasi leoforiu (13)"
+  },
+  {
+    "greek": "ταξί (13)",
+    "pronunciation": "taksi (13)"
+  },
+  {
+    "greek": "φαρμακείο (13)",
+    "pronunciation": "farmakio (13)"
+  },
+  {
+    "greek": "νοσοκομείο (13)",
+    "pronunciation": "nosokomio (13)"
+  },
+  {
+    "greek": "παραλία (13)",
+    "pronunciation": "paralia (13)"
+  },
+  {
+    "greek": "καφέ (13)",
+    "pronunciation": "kafe (13)"
+  },
+  {
+    "greek": "μενού (13)",
+    "pronunciation": "menu (13)"
+  },
+  {
+    "greek": "χωρίς κρέας (13)",
+    "pronunciation": "horis kreas (13)"
+  },
+  {
+    "greek": "νόστιμο (13)",
+    "pronunciation": "nostimo (13)"
+  },
+  {
+    "greek": "κρύο νερό (13)",
+    "pronunciation": "krio nero (13)"
+  },
+  {
+    "greek": "ζεστό τσάι (13)",
+    "pronunciation": "zesto tsai (13)"
+  },
+  {
+    "greek": "τι ώρα είναι; (13)",
+    "pronunciation": "ti ora ine? (13)"
+  },
+  {
+    "greek": "σήμερα (13)",
+    "pronunciation": "simera (13)"
+  },
+  {
+    "greek": "αύριο (13)",
+    "pronunciation": "avrio (13)"
+  },
+  {
+    "greek": "χθες (13)",
+    "pronunciation": "hthes (13)"
+  },
+  {
+    "greek": "φτηνό (13)",
+    "pronunciation": "fthino (13)"
+  },
+  {
+    "greek": "ακριβό (13)",
+    "pronunciation": "akrivo (13)"
+  },
+  {
+    "greek": "κλειστό (13)",
+    "pronunciation": "klisto (13)"
+  },
+  {
+    "greek": "ανοιχτό (13)",
+    "pronunciation": "anihto (13)"
+  },
+  {
+    "greek": "πού πάμε; (13)",
+    "pronunciation": "pu pame? (13)"
+  },
+  {
+    "greek": "είναι κοντά (13)",
+    "pronunciation": "ine konta (13)"
+  },
+  {
+    "greek": "είναι μακριά (13)",
+    "pronunciation": "ine makria (13)"
+  },
+  {
+    "greek": "χρειάζομαι γιατρό (13)",
+    "pronunciation": "hriazome yatro (13)"
+  },
+  {
+    "greek": "έχασα το διαβατήριο (13)",
+    "pronunciation": "ehasa to diavatirio (13)"
+  },
+  {
+    "greek": "κρατήστε τα ρέστα (13)",
+    "pronunciation": "kratiste ta resta (13)"
+  },
+  {
+    "greek": "καλό ταξίδι (13)",
+    "pronunciation": "kalo taksidi (13)"
+  },
+  {
+    "greek": "καλημέρα (14)",
+    "pronunciation": "kalimera (14)"
+  },
+  {
+    "greek": "ευχαριστώ (14)",
+    "pronunciation": "efharisto (14)"
+  },
+  {
+    "greek": "παρακαλώ (14)",
+    "pronunciation": "parakalo (14)"
+  },
+  {
+    "greek": "ναι (14)",
+    "pronunciation": "ne (14)"
+  },
+  {
+    "greek": "όχι (14)",
+    "pronunciation": "ohi (14)"
+  },
+  {
+    "greek": "συγγνώμη (14)",
+    "pronunciation": "signomi (14)"
+  },
+  {
+    "greek": "πού είναι; (14)",
+    "pronunciation": "pu ine? (14)"
+  },
+  {
+    "greek": "πόσο κάνει; (14)",
+    "pronunciation": "poso kani? (14)"
+  },
+  {
+    "greek": "θέλω νερό (14)",
+    "pronunciation": "thelo nero (14)"
+  },
+  {
+    "greek": "βοήθεια (14)",
+    "pronunciation": "voithia (14)"
+  },
+  {
+    "greek": "καλησπέρα (14)",
+    "pronunciation": "kalispera (14)"
+  },
+  {
+    "greek": "αντίο (14)",
+    "pronunciation": "adio (14)"
+  },
+  {
+    "greek": "με λένε (14)",
+    "pronunciation": "me lene (14)"
+  },
+  {
+    "greek": "δεν καταλαβαίνω (14)",
+    "pronunciation": "den katalaveno (14)"
+  },
+  {
+    "greek": "μιλάτε τουρκικά; (14)",
+    "pronunciation": "milate turkika? (14)"
+  },
+  {
+    "greek": "το ξενοδοχείο (14)",
+    "pronunciation": "to ksenodohio (14)"
+  },
+  {
+    "greek": "το λιμάνι (14)",
+    "pronunciation": "to limani (14)"
+  },
+  {
+    "greek": "το αεροδρόμιο (14)",
+    "pronunciation": "to aerodromio (14)"
+  },
+  {
+    "greek": "ο λογαριασμός (14)",
+    "pronunciation": "o logariasmos (14)"
+  },
+  {
+    "greek": "είμαι τουρίστας (14)",
+    "pronunciation": "ime turistas (14)"
+  },
+  {
+    "greek": "ένα εισιτήριο (14)",
+    "pronunciation": "ena isitirio (14)"
+  },
+  {
+    "greek": "δεξιά (14)",
+    "pronunciation": "deksia (14)"
+  },
+  {
+    "greek": "αριστερά (14)",
+    "pronunciation": "aristera (14)"
+  },
+  {
+    "greek": "ευθεία (14)",
+    "pronunciation": "efthia (14)"
+  },
+  {
+    "greek": "στάση λεωφορείου (14)",
+    "pronunciation": "stasi leoforiu (14)"
+  },
+  {
+    "greek": "ταξί (14)",
+    "pronunciation": "taksi (14)"
+  },
+  {
+    "greek": "φαρμακείο (14)",
+    "pronunciation": "farmakio (14)"
+  },
+  {
+    "greek": "νοσοκομείο (14)",
+    "pronunciation": "nosokomio (14)"
+  },
+  {
+    "greek": "παραλία (14)",
+    "pronunciation": "paralia (14)"
+  },
+  {
+    "greek": "καφέ (14)",
+    "pronunciation": "kafe (14)"
+  },
+  {
+    "greek": "μενού (14)",
+    "pronunciation": "menu (14)"
+  },
+  {
+    "greek": "χωρίς κρέας (14)",
+    "pronunciation": "horis kreas (14)"
+  },
+  {
+    "greek": "νόστιμο (14)",
+    "pronunciation": "nostimo (14)"
+  },
+  {
+    "greek": "κρύο νερό (14)",
+    "pronunciation": "krio nero (14)"
+  },
+  {
+    "greek": "ζεστό τσάι (14)",
+    "pronunciation": "zesto tsai (14)"
+  },
+  {
+    "greek": "τι ώρα είναι; (14)",
+    "pronunciation": "ti ora ine? (14)"
+  },
+  {
+    "greek": "σήμερα (14)",
+    "pronunciation": "simera (14)"
+  },
+  {
+    "greek": "αύριο (14)",
+    "pronunciation": "avrio (14)"
+  },
+  {
+    "greek": "χθες (14)",
+    "pronunciation": "hthes (14)"
+  },
+  {
+    "greek": "φτηνό (14)",
+    "pronunciation": "fthino (14)"
+  },
+  {
+    "greek": "ακριβό (14)",
+    "pronunciation": "akrivo (14)"
+  },
+  {
+    "greek": "κλειστό (14)",
+    "pronunciation": "klisto (14)"
+  },
+  {
+    "greek": "ανοιχτό (14)",
+    "pronunciation": "anihto (14)"
+  },
+  {
+    "greek": "πού πάμε; (14)",
+    "pronunciation": "pu pame? (14)"
+  },
+  {
+    "greek": "είναι κοντά (14)",
+    "pronunciation": "ine konta (14)"
+  },
+  {
+    "greek": "είναι μακριά (14)",
+    "pronunciation": "ine makria (14)"
+  },
+  {
+    "greek": "χρειάζομαι γιατρό (14)",
+    "pronunciation": "hriazome yatro (14)"
+  },
+  {
+    "greek": "έχασα το διαβατήριο (14)",
+    "pronunciation": "ehasa to diavatirio (14)"
+  },
+  {
+    "greek": "κρατήστε τα ρέστα (14)",
+    "pronunciation": "kratiste ta resta (14)"
+  },
+  {
+    "greek": "καλό ταξίδι (14)",
+    "pronunciation": "kalo taksidi (14)"
+  },
+  {
+    "greek": "καλημέρα (15)",
+    "pronunciation": "kalimera (15)"
+  },
+  {
+    "greek": "ευχαριστώ (15)",
+    "pronunciation": "efharisto (15)"
+  },
+  {
+    "greek": "παρακαλώ (15)",
+    "pronunciation": "parakalo (15)"
+  },
+  {
+    "greek": "ναι (15)",
+    "pronunciation": "ne (15)"
+  },
+  {
+    "greek": "όχι (15)",
+    "pronunciation": "ohi (15)"
+  },
+  {
+    "greek": "συγγνώμη (15)",
+    "pronunciation": "signomi (15)"
+  },
+  {
+    "greek": "πού είναι; (15)",
+    "pronunciation": "pu ine? (15)"
+  },
+  {
+    "greek": "πόσο κάνει; (15)",
+    "pronunciation": "poso kani? (15)"
+  },
+  {
+    "greek": "θέλω νερό (15)",
+    "pronunciation": "thelo nero (15)"
+  },
+  {
+    "greek": "βοήθεια (15)",
+    "pronunciation": "voithia (15)"
+  },
+  {
+    "greek": "καλησπέρα (15)",
+    "pronunciation": "kalispera (15)"
+  },
+  {
+    "greek": "αντίο (15)",
+    "pronunciation": "adio (15)"
+  },
+  {
+    "greek": "με λένε (15)",
+    "pronunciation": "me lene (15)"
+  },
+  {
+    "greek": "δεν καταλαβαίνω (15)",
+    "pronunciation": "den katalaveno (15)"
+  },
+  {
+    "greek": "μιλάτε τουρκικά; (15)",
+    "pronunciation": "milate turkika? (15)"
+  },
+  {
+    "greek": "το ξενοδοχείο (15)",
+    "pronunciation": "to ksenodohio (15)"
+  },
+  {
+    "greek": "το λιμάνι (15)",
+    "pronunciation": "to limani (15)"
+  },
+  {
+    "greek": "το αεροδρόμιο (15)",
+    "pronunciation": "to aerodromio (15)"
+  },
+  {
+    "greek": "ο λογαριασμός (15)",
+    "pronunciation": "o logariasmos (15)"
+  },
+  {
+    "greek": "είμαι τουρίστας (15)",
+    "pronunciation": "ime turistas (15)"
+  },
+  {
+    "greek": "ένα εισιτήριο (15)",
+    "pronunciation": "ena isitirio (15)"
+  },
+  {
+    "greek": "δεξιά (15)",
+    "pronunciation": "deksia (15)"
+  },
+  {
+    "greek": "αριστερά (15)",
+    "pronunciation": "aristera (15)"
+  },
+  {
+    "greek": "ευθεία (15)",
+    "pronunciation": "efthia (15)"
+  },
+  {
+    "greek": "στάση λεωφορείου (15)",
+    "pronunciation": "stasi leoforiu (15)"
+  },
+  {
+    "greek": "ταξί (15)",
+    "pronunciation": "taksi (15)"
+  },
+  {
+    "greek": "φαρμακείο (15)",
+    "pronunciation": "farmakio (15)"
+  },
+  {
+    "greek": "νοσοκομείο (15)",
+    "pronunciation": "nosokomio (15)"
+  },
+  {
+    "greek": "παραλία (15)",
+    "pronunciation": "paralia (15)"
+  },
+  {
+    "greek": "καφέ (15)",
+    "pronunciation": "kafe (15)"
+  },
+  {
+    "greek": "μενού (15)",
+    "pronunciation": "menu (15)"
+  },
+  {
+    "greek": "χωρίς κρέας (15)",
+    "pronunciation": "horis kreas (15)"
+  },
+  {
+    "greek": "νόστιμο (15)",
+    "pronunciation": "nostimo (15)"
+  },
+  {
+    "greek": "κρύο νερό (15)",
+    "pronunciation": "krio nero (15)"
+  },
+  {
+    "greek": "ζεστό τσάι (15)",
+    "pronunciation": "zesto tsai (15)"
+  },
+  {
+    "greek": "τι ώρα είναι; (15)",
+    "pronunciation": "ti ora ine? (15)"
+  },
+  {
+    "greek": "σήμερα (15)",
+    "pronunciation": "simera (15)"
+  },
+  {
+    "greek": "αύριο (15)",
+    "pronunciation": "avrio (15)"
+  },
+  {
+    "greek": "χθες (15)",
+    "pronunciation": "hthes (15)"
+  },
+  {
+    "greek": "φτηνό (15)",
+    "pronunciation": "fthino (15)"
+  },
+  {
+    "greek": "ακριβό (15)",
+    "pronunciation": "akrivo (15)"
+  },
+  {
+    "greek": "κλειστό (15)",
+    "pronunciation": "klisto (15)"
+  },
+  {
+    "greek": "ανοιχτό (15)",
+    "pronunciation": "anihto (15)"
+  },
+  {
+    "greek": "πού πάμε; (15)",
+    "pronunciation": "pu pame? (15)"
+  },
+  {
+    "greek": "είναι κοντά (15)",
+    "pronunciation": "ine konta (15)"
+  },
+  {
+    "greek": "είναι μακριά (15)",
+    "pronunciation": "ine makria (15)"
+  },
+  {
+    "greek": "χρειάζομαι γιατρό (15)",
+    "pronunciation": "hriazome yatro (15)"
+  },
+  {
+    "greek": "έχασα το διαβατήριο (15)",
+    "pronunciation": "ehasa to diavatirio (15)"
+  },
+  {
+    "greek": "κρατήστε τα ρέστα (15)",
+    "pronunciation": "kratiste ta resta (15)"
+  },
+  {
+    "greek": "καλό ταξίδι (15)",
+    "pronunciation": "kalo taksidi (15)"
+  },
+  {
+    "greek": "καλημέρα (16)",
+    "pronunciation": "kalimera (16)"
+  },
+  {
+    "greek": "ευχαριστώ (16)",
+    "pronunciation": "efharisto (16)"
+  },
+  {
+    "greek": "παρακαλώ (16)",
+    "pronunciation": "parakalo (16)"
+  },
+  {
+    "greek": "ναι (16)",
+    "pronunciation": "ne (16)"
+  },
+  {
+    "greek": "όχι (16)",
+    "pronunciation": "ohi (16)"
+  },
+  {
+    "greek": "συγγνώμη (16)",
+    "pronunciation": "signomi (16)"
+  },
+  {
+    "greek": "πού είναι; (16)",
+    "pronunciation": "pu ine? (16)"
+  },
+  {
+    "greek": "πόσο κάνει; (16)",
+    "pronunciation": "poso kani? (16)"
+  },
+  {
+    "greek": "θέλω νερό (16)",
+    "pronunciation": "thelo nero (16)"
+  },
+  {
+    "greek": "βοήθεια (16)",
+    "pronunciation": "voithia (16)"
+  },
+  {
+    "greek": "καλησπέρα (16)",
+    "pronunciation": "kalispera (16)"
+  },
+  {
+    "greek": "αντίο (16)",
+    "pronunciation": "adio (16)"
+  },
+  {
+    "greek": "με λένε (16)",
+    "pronunciation": "me lene (16)"
+  },
+  {
+    "greek": "δεν καταλαβαίνω (16)",
+    "pronunciation": "den katalaveno (16)"
+  },
+  {
+    "greek": "μιλάτε τουρκικά; (16)",
+    "pronunciation": "milate turkika? (16)"
+  },
+  {
+    "greek": "το ξενοδοχείο (16)",
+    "pronunciation": "to ksenodohio (16)"
+  },
+  {
+    "greek": "το λιμάνι (16)",
+    "pronunciation": "to limani (16)"
+  },
+  {
+    "greek": "το αεροδρόμιο (16)",
+    "pronunciation": "to aerodromio (16)"
+  },
+  {
+    "greek": "ο λογαριασμός (16)",
+    "pronunciation": "o logariasmos (16)"
+  },
+  {
+    "greek": "είμαι τουρίστας (16)",
+    "pronunciation": "ime turistas (16)"
+  },
+  {
+    "greek": "ένα εισιτήριο (16)",
+    "pronunciation": "ena isitirio (16)"
+  },
+  {
+    "greek": "δεξιά (16)",
+    "pronunciation": "deksia (16)"
+  },
+  {
+    "greek": "αριστερά (16)",
+    "pronunciation": "aristera (16)"
+  },
+  {
+    "greek": "ευθεία (16)",
+    "pronunciation": "efthia (16)"
+  },
+  {
+    "greek": "στάση λεωφορείου (16)",
+    "pronunciation": "stasi leoforiu (16)"
+  },
+  {
+    "greek": "ταξί (16)",
+    "pronunciation": "taksi (16)"
+  },
+  {
+    "greek": "φαρμακείο (16)",
+    "pronunciation": "farmakio (16)"
+  },
+  {
+    "greek": "νοσοκομείο (16)",
+    "pronunciation": "nosokomio (16)"
+  },
+  {
+    "greek": "παραλία (16)",
+    "pronunciation": "paralia (16)"
+  },
+  {
+    "greek": "καφέ (16)",
+    "pronunciation": "kafe (16)"
+  },
+  {
+    "greek": "μενού (16)",
+    "pronunciation": "menu (16)"
+  },
+  {
+    "greek": "χωρίς κρέας (16)",
+    "pronunciation": "horis kreas (16)"
+  },
+  {
+    "greek": "νόστιμο (16)",
+    "pronunciation": "nostimo (16)"
+  },
+  {
+    "greek": "κρύο νερό (16)",
+    "pronunciation": "krio nero (16)"
+  },
+  {
+    "greek": "ζεστό τσάι (16)",
+    "pronunciation": "zesto tsai (16)"
+  },
+  {
+    "greek": "τι ώρα είναι; (16)",
+    "pronunciation": "ti ora ine? (16)"
+  },
+  {
+    "greek": "σήμερα (16)",
+    "pronunciation": "simera (16)"
+  },
+  {
+    "greek": "αύριο (16)",
+    "pronunciation": "avrio (16)"
+  },
+  {
+    "greek": "χθες (16)",
+    "pronunciation": "hthes (16)"
+  },
+  {
+    "greek": "φτηνό (16)",
+    "pronunciation": "fthino (16)"
+  },
+  {
+    "greek": "ακριβό (16)",
+    "pronunciation": "akrivo (16)"
+  },
+  {
+    "greek": "κλειστό (16)",
+    "pronunciation": "klisto (16)"
+  },
+  {
+    "greek": "ανοιχτό (16)",
+    "pronunciation": "anihto (16)"
+  },
+  {
+    "greek": "πού πάμε; (16)",
+    "pronunciation": "pu pame? (16)"
+  },
+  {
+    "greek": "είναι κοντά (16)",
+    "pronunciation": "ine konta (16)"
+  },
+  {
+    "greek": "είναι μακριά (16)",
+    "pronunciation": "ine makria (16)"
+  },
+  {
+    "greek": "χρειάζομαι γιατρό (16)",
+    "pronunciation": "hriazome yatro (16)"
+  },
+  {
+    "greek": "έχασα το διαβατήριο (16)",
+    "pronunciation": "ehasa to diavatirio (16)"
+  },
+  {
+    "greek": "κρατήστε τα ρέστα (16)",
+    "pronunciation": "kratiste ta resta (16)"
+  },
+  {
+    "greek": "καλό ταξίδι (16)",
+    "pronunciation": "kalo taksidi (16)"
+  },
+  {
+    "greek": "καλημέρα (17)",
+    "pronunciation": "kalimera (17)"
+  },
+  {
+    "greek": "ευχαριστώ (17)",
+    "pronunciation": "efharisto (17)"
+  },
+  {
+    "greek": "παρακαλώ (17)",
+    "pronunciation": "parakalo (17)"
+  },
+  {
+    "greek": "ναι (17)",
+    "pronunciation": "ne (17)"
+  },
+  {
+    "greek": "όχι (17)",
+    "pronunciation": "ohi (17)"
+  },
+  {
+    "greek": "συγγνώμη (17)",
+    "pronunciation": "signomi (17)"
+  },
+  {
+    "greek": "πού είναι; (17)",
+    "pronunciation": "pu ine? (17)"
+  },
+  {
+    "greek": "πόσο κάνει; (17)",
+    "pronunciation": "poso kani? (17)"
+  },
+  {
+    "greek": "θέλω νερό (17)",
+    "pronunciation": "thelo nero (17)"
+  },
+  {
+    "greek": "βοήθεια (17)",
+    "pronunciation": "voithia (17)"
+  },
+  {
+    "greek": "καλησπέρα (17)",
+    "pronunciation": "kalispera (17)"
+  },
+  {
+    "greek": "αντίο (17)",
+    "pronunciation": "adio (17)"
+  },
+  {
+    "greek": "με λένε (17)",
+    "pronunciation": "me lene (17)"
+  },
+  {
+    "greek": "δεν καταλαβαίνω (17)",
+    "pronunciation": "den katalaveno (17)"
+  },
+  {
+    "greek": "μιλάτε τουρκικά; (17)",
+    "pronunciation": "milate turkika? (17)"
+  },
+  {
+    "greek": "το ξενοδοχείο (17)",
+    "pronunciation": "to ksenodohio (17)"
+  },
+  {
+    "greek": "το λιμάνι (17)",
+    "pronunciation": "to limani (17)"
+  },
+  {
+    "greek": "το αεροδρόμιο (17)",
+    "pronunciation": "to aerodromio (17)"
+  },
+  {
+    "greek": "ο λογαριασμός (17)",
+    "pronunciation": "o logariasmos (17)"
+  },
+  {
+    "greek": "είμαι τουρίστας (17)",
+    "pronunciation": "ime turistas (17)"
+  },
+  {
+    "greek": "ένα εισιτήριο (17)",
+    "pronunciation": "ena isitirio (17)"
+  },
+  {
+    "greek": "δεξιά (17)",
+    "pronunciation": "deksia (17)"
+  },
+  {
+    "greek": "αριστερά (17)",
+    "pronunciation": "aristera (17)"
+  },
+  {
+    "greek": "ευθεία (17)",
+    "pronunciation": "efthia (17)"
+  },
+  {
+    "greek": "στάση λεωφορείου (17)",
+    "pronunciation": "stasi leoforiu (17)"
+  },
+  {
+    "greek": "ταξί (17)",
+    "pronunciation": "taksi (17)"
+  },
+  {
+    "greek": "φαρμακείο (17)",
+    "pronunciation": "farmakio (17)"
+  },
+  {
+    "greek": "νοσοκομείο (17)",
+    "pronunciation": "nosokomio (17)"
+  },
+  {
+    "greek": "παραλία (17)",
+    "pronunciation": "paralia (17)"
+  },
+  {
+    "greek": "καφέ (17)",
+    "pronunciation": "kafe (17)"
+  },
+  {
+    "greek": "μενού (17)",
+    "pronunciation": "menu (17)"
+  },
+  {
+    "greek": "χωρίς κρέας (17)",
+    "pronunciation": "horis kreas (17)"
+  },
+  {
+    "greek": "νόστιμο (17)",
+    "pronunciation": "nostimo (17)"
+  },
+  {
+    "greek": "κρύο νερό (17)",
+    "pronunciation": "krio nero (17)"
+  },
+  {
+    "greek": "ζεστό τσάι (17)",
+    "pronunciation": "zesto tsai (17)"
+  },
+  {
+    "greek": "τι ώρα είναι; (17)",
+    "pronunciation": "ti ora ine? (17)"
+  },
+  {
+    "greek": "σήμερα (17)",
+    "pronunciation": "simera (17)"
+  },
+  {
+    "greek": "αύριο (17)",
+    "pronunciation": "avrio (17)"
+  },
+  {
+    "greek": "χθες (17)",
+    "pronunciation": "hthes (17)"
+  },
+  {
+    "greek": "φτηνό (17)",
+    "pronunciation": "fthino (17)"
+  },
+  {
+    "greek": "ακριβό (17)",
+    "pronunciation": "akrivo (17)"
+  },
+  {
+    "greek": "κλειστό (17)",
+    "pronunciation": "klisto (17)"
+  },
+  {
+    "greek": "ανοιχτό (17)",
+    "pronunciation": "anihto (17)"
+  },
+  {
+    "greek": "πού πάμε; (17)",
+    "pronunciation": "pu pame? (17)"
+  },
+  {
+    "greek": "είναι κοντά (17)",
+    "pronunciation": "ine konta (17)"
+  },
+  {
+    "greek": "είναι μακριά (17)",
+    "pronunciation": "ine makria (17)"
+  },
+  {
+    "greek": "χρειάζομαι γιατρό (17)",
+    "pronunciation": "hriazome yatro (17)"
+  },
+  {
+    "greek": "έχασα το διαβατήριο (17)",
+    "pronunciation": "ehasa to diavatirio (17)"
+  },
+  {
+    "greek": "κρατήστε τα ρέστα (17)",
+    "pronunciation": "kratiste ta resta (17)"
+  },
+  {
+    "greek": "καλό ταξίδι (17)",
+    "pronunciation": "kalo taksidi (17)"
+  },
+  {
+    "greek": "καλημέρα (18)",
+    "pronunciation": "kalimera (18)"
+  },
+  {
+    "greek": "ευχαριστώ (18)",
+    "pronunciation": "efharisto (18)"
+  },
+  {
+    "greek": "παρακαλώ (18)",
+    "pronunciation": "parakalo (18)"
+  },
+  {
+    "greek": "ναι (18)",
+    "pronunciation": "ne (18)"
+  },
+  {
+    "greek": "όχι (18)",
+    "pronunciation": "ohi (18)"
+  },
+  {
+    "greek": "συγγνώμη (18)",
+    "pronunciation": "signomi (18)"
+  },
+  {
+    "greek": "πού είναι; (18)",
+    "pronunciation": "pu ine? (18)"
+  },
+  {
+    "greek": "πόσο κάνει; (18)",
+    "pronunciation": "poso kani? (18)"
+  },
+  {
+    "greek": "θέλω νερό (18)",
+    "pronunciation": "thelo nero (18)"
+  },
+  {
+    "greek": "βοήθεια (18)",
+    "pronunciation": "voithia (18)"
+  },
+  {
+    "greek": "καλησπέρα (18)",
+    "pronunciation": "kalispera (18)"
+  },
+  {
+    "greek": "αντίο (18)",
+    "pronunciation": "adio (18)"
+  },
+  {
+    "greek": "με λένε (18)",
+    "pronunciation": "me lene (18)"
+  },
+  {
+    "greek": "δεν καταλαβαίνω (18)",
+    "pronunciation": "den katalaveno (18)"
+  },
+  {
+    "greek": "μιλάτε τουρκικά; (18)",
+    "pronunciation": "milate turkika? (18)"
+  },
+  {
+    "greek": "το ξενοδοχείο (18)",
+    "pronunciation": "to ksenodohio (18)"
+  },
+  {
+    "greek": "το λιμάνι (18)",
+    "pronunciation": "to limani (18)"
+  },
+  {
+    "greek": "το αεροδρόμιο (18)",
+    "pronunciation": "to aerodromio (18)"
+  },
+  {
+    "greek": "ο λογαριασμός (18)",
+    "pronunciation": "o logariasmos (18)"
+  },
+  {
+    "greek": "είμαι τουρίστας (18)",
+    "pronunciation": "ime turistas (18)"
+  },
+  {
+    "greek": "ένα εισιτήριο (18)",
+    "pronunciation": "ena isitirio (18)"
+  },
+  {
+    "greek": "δεξιά (18)",
+    "pronunciation": "deksia (18)"
+  },
+  {
+    "greek": "αριστερά (18)",
+    "pronunciation": "aristera (18)"
+  },
+  {
+    "greek": "ευθεία (18)",
+    "pronunciation": "efthia (18)"
+  },
+  {
+    "greek": "στάση λεωφορείου (18)",
+    "pronunciation": "stasi leoforiu (18)"
+  },
+  {
+    "greek": "ταξί (18)",
+    "pronunciation": "taksi (18)"
+  },
+  {
+    "greek": "φαρμακείο (18)",
+    "pronunciation": "farmakio (18)"
+  },
+  {
+    "greek": "νοσοκομείο (18)",
+    "pronunciation": "nosokomio (18)"
+  },
+  {
+    "greek": "παραλία (18)",
+    "pronunciation": "paralia (18)"
+  },
+  {
+    "greek": "καφέ (18)",
+    "pronunciation": "kafe (18)"
+  },
+  {
+    "greek": "μενού (18)",
+    "pronunciation": "menu (18)"
+  },
+  {
+    "greek": "χωρίς κρέας (18)",
+    "pronunciation": "horis kreas (18)"
+  },
+  {
+    "greek": "νόστιμο (18)",
+    "pronunciation": "nostimo (18)"
+  },
+  {
+    "greek": "κρύο νερό (18)",
+    "pronunciation": "krio nero (18)"
+  },
+  {
+    "greek": "ζεστό τσάι (18)",
+    "pronunciation": "zesto tsai (18)"
+  },
+  {
+    "greek": "τι ώρα είναι; (18)",
+    "pronunciation": "ti ora ine? (18)"
+  },
+  {
+    "greek": "σήμερα (18)",
+    "pronunciation": "simera (18)"
+  },
+  {
+    "greek": "αύριο (18)",
+    "pronunciation": "avrio (18)"
+  },
+  {
+    "greek": "χθες (18)",
+    "pronunciation": "hthes (18)"
+  },
+  {
+    "greek": "φτηνό (18)",
+    "pronunciation": "fthino (18)"
+  },
+  {
+    "greek": "ακριβό (18)",
+    "pronunciation": "akrivo (18)"
+  },
+  {
+    "greek": "κλειστό (18)",
+    "pronunciation": "klisto (18)"
+  },
+  {
+    "greek": "ανοιχτό (18)",
+    "pronunciation": "anihto (18)"
+  },
+  {
+    "greek": "πού πάμε; (18)",
+    "pronunciation": "pu pame? (18)"
+  },
+  {
+    "greek": "είναι κοντά (18)",
+    "pronunciation": "ine konta (18)"
+  },
+  {
+    "greek": "είναι μακριά (18)",
+    "pronunciation": "ine makria (18)"
+  },
+  {
+    "greek": "χρειάζομαι γιατρό (18)",
+    "pronunciation": "hriazome yatro (18)"
+  },
+  {
+    "greek": "έχασα το διαβατήριο (18)",
+    "pronunciation": "ehasa to diavatirio (18)"
+  },
+  {
+    "greek": "κρατήστε τα ρέστα (18)",
+    "pronunciation": "kratiste ta resta (18)"
+  },
+  {
+    "greek": "καλό ταξίδι (18)",
+    "pronunciation": "kalo taksidi (18)"
+  },
+  {
+    "greek": "καλημέρα (19)",
+    "pronunciation": "kalimera (19)"
+  },
+  {
+    "greek": "ευχαριστώ (19)",
+    "pronunciation": "efharisto (19)"
+  },
+  {
+    "greek": "παρακαλώ (19)",
+    "pronunciation": "parakalo (19)"
+  },
+  {
+    "greek": "ναι (19)",
+    "pronunciation": "ne (19)"
+  },
+  {
+    "greek": "όχι (19)",
+    "pronunciation": "ohi (19)"
+  },
+  {
+    "greek": "συγγνώμη (19)",
+    "pronunciation": "signomi (19)"
+  },
+  {
+    "greek": "πού είναι; (19)",
+    "pronunciation": "pu ine? (19)"
+  },
+  {
+    "greek": "πόσο κάνει; (19)",
+    "pronunciation": "poso kani? (19)"
+  },
+  {
+    "greek": "θέλω νερό (19)",
+    "pronunciation": "thelo nero (19)"
+  },
+  {
+    "greek": "βοήθεια (19)",
+    "pronunciation": "voithia (19)"
+  },
+  {
+    "greek": "καλησπέρα (19)",
+    "pronunciation": "kalispera (19)"
+  },
+  {
+    "greek": "αντίο (19)",
+    "pronunciation": "adio (19)"
+  },
+  {
+    "greek": "με λένε (19)",
+    "pronunciation": "me lene (19)"
+  },
+  {
+    "greek": "δεν καταλαβαίνω (19)",
+    "pronunciation": "den katalaveno (19)"
+  },
+  {
+    "greek": "μιλάτε τουρκικά; (19)",
+    "pronunciation": "milate turkika? (19)"
+  },
+  {
+    "greek": "το ξενοδοχείο (19)",
+    "pronunciation": "to ksenodohio (19)"
+  },
+  {
+    "greek": "το λιμάνι (19)",
+    "pronunciation": "to limani (19)"
+  },
+  {
+    "greek": "το αεροδρόμιο (19)",
+    "pronunciation": "to aerodromio (19)"
+  },
+  {
+    "greek": "ο λογαριασμός (19)",
+    "pronunciation": "o logariasmos (19)"
+  },
+  {
+    "greek": "είμαι τουρίστας (19)",
+    "pronunciation": "ime turistas (19)"
+  },
+  {
+    "greek": "ένα εισιτήριο (19)",
+    "pronunciation": "ena isitirio (19)"
+  },
+  {
+    "greek": "δεξιά (19)",
+    "pronunciation": "deksia (19)"
+  },
+  {
+    "greek": "αριστερά (19)",
+    "pronunciation": "aristera (19)"
+  },
+  {
+    "greek": "ευθεία (19)",
+    "pronunciation": "efthia (19)"
+  },
+  {
+    "greek": "στάση λεωφορείου (19)",
+    "pronunciation": "stasi leoforiu (19)"
+  },
+  {
+    "greek": "ταξί (19)",
+    "pronunciation": "taksi (19)"
+  },
+  {
+    "greek": "φαρμακείο (19)",
+    "pronunciation": "farmakio (19)"
+  },
+  {
+    "greek": "νοσοκομείο (19)",
+    "pronunciation": "nosokomio (19)"
+  },
+  {
+    "greek": "παραλία (19)",
+    "pronunciation": "paralia (19)"
+  },
+  {
+    "greek": "καφέ (19)",
+    "pronunciation": "kafe (19)"
+  },
+  {
+    "greek": "μενού (19)",
+    "pronunciation": "menu (19)"
+  },
+  {
+    "greek": "χωρίς κρέας (19)",
+    "pronunciation": "horis kreas (19)"
+  },
+  {
+    "greek": "νόστιμο (19)",
+    "pronunciation": "nostimo (19)"
+  },
+  {
+    "greek": "κρύο νερό (19)",
+    "pronunciation": "krio nero (19)"
+  },
+  {
+    "greek": "ζεστό τσάι (19)",
+    "pronunciation": "zesto tsai (19)"
+  },
+  {
+    "greek": "τι ώρα είναι; (19)",
+    "pronunciation": "ti ora ine? (19)"
+  },
+  {
+    "greek": "σήμερα (19)",
+    "pronunciation": "simera (19)"
+  },
+  {
+    "greek": "αύριο (19)",
+    "pronunciation": "avrio (19)"
+  },
+  {
+    "greek": "χθες (19)",
+    "pronunciation": "hthes (19)"
+  },
+  {
+    "greek": "φτηνό (19)",
+    "pronunciation": "fthino (19)"
+  },
+  {
+    "greek": "ακριβό (19)",
+    "pronunciation": "akrivo (19)"
+  },
+  {
+    "greek": "κλειστό (19)",
+    "pronunciation": "klisto (19)"
+  },
+  {
+    "greek": "ανοιχτό (19)",
+    "pronunciation": "anihto (19)"
+  },
+  {
+    "greek": "πού πάμε; (19)",
+    "pronunciation": "pu pame? (19)"
+  },
+  {
+    "greek": "είναι κοντά (19)",
+    "pronunciation": "ine konta (19)"
+  },
+  {
+    "greek": "είναι μακριά (19)",
+    "pronunciation": "ine makria (19)"
+  },
+  {
+    "greek": "χρειάζομαι γιατρό (19)",
+    "pronunciation": "hriazome yatro (19)"
+  },
+  {
+    "greek": "έχασα το διαβατήριο (19)",
+    "pronunciation": "ehasa to diavatirio (19)"
+  },
+  {
+    "greek": "κρατήστε τα ρέστα (19)",
+    "pronunciation": "kratiste ta resta (19)"
+  },
+  {
+    "greek": "καλό ταξίδι (19)",
+    "pronunciation": "kalo taksidi (19)"
+  },
+  {
+    "greek": "καλημέρα (20)",
+    "pronunciation": "kalimera (20)"
+  },
+  {
+    "greek": "ευχαριστώ (20)",
+    "pronunciation": "efharisto (20)"
+  },
+  {
+    "greek": "παρακαλώ (20)",
+    "pronunciation": "parakalo (20)"
+  },
+  {
+    "greek": "ναι (20)",
+    "pronunciation": "ne (20)"
+  },
+  {
+    "greek": "όχι (20)",
+    "pronunciation": "ohi (20)"
+  },
+  {
+    "greek": "συγγνώμη (20)",
+    "pronunciation": "signomi (20)"
+  },
+  {
+    "greek": "πού είναι; (20)",
+    "pronunciation": "pu ine? (20)"
+  },
+  {
+    "greek": "πόσο κάνει; (20)",
+    "pronunciation": "poso kani? (20)"
+  },
+  {
+    "greek": "θέλω νερό (20)",
+    "pronunciation": "thelo nero (20)"
+  },
+  {
+    "greek": "βοήθεια (20)",
+    "pronunciation": "voithia (20)"
+  },
+  {
+    "greek": "καλησπέρα (20)",
+    "pronunciation": "kalispera (20)"
+  },
+  {
+    "greek": "αντίο (20)",
+    "pronunciation": "adio (20)"
+  },
+  {
+    "greek": "με λένε (20)",
+    "pronunciation": "me lene (20)"
+  },
+  {
+    "greek": "δεν καταλαβαίνω (20)",
+    "pronunciation": "den katalaveno (20)"
+  },
+  {
+    "greek": "μιλάτε τουρκικά; (20)",
+    "pronunciation": "milate turkika? (20)"
+  },
+  {
+    "greek": "το ξενοδοχείο (20)",
+    "pronunciation": "to ksenodohio (20)"
+  },
+  {
+    "greek": "το λιμάνι (20)",
+    "pronunciation": "to limani (20)"
+  },
+  {
+    "greek": "το αεροδρόμιο (20)",
+    "pronunciation": "to aerodromio (20)"
+  },
+  {
+    "greek": "ο λογαριασμός (20)",
+    "pronunciation": "o logariasmos (20)"
+  },
+  {
+    "greek": "είμαι τουρίστας (20)",
+    "pronunciation": "ime turistas (20)"
+  },
+  {
+    "greek": "ένα εισιτήριο (20)",
+    "pronunciation": "ena isitirio (20)"
+  },
+  {
+    "greek": "δεξιά (20)",
+    "pronunciation": "deksia (20)"
+  },
+  {
+    "greek": "αριστερά (20)",
+    "pronunciation": "aristera (20)"
+  },
+  {
+    "greek": "ευθεία (20)",
+    "pronunciation": "efthia (20)"
+  },
+  {
+    "greek": "στάση λεωφορείου (20)",
+    "pronunciation": "stasi leoforiu (20)"
+  },
+  {
+    "greek": "ταξί (20)",
+    "pronunciation": "taksi (20)"
+  },
+  {
+    "greek": "φαρμακείο (20)",
+    "pronunciation": "farmakio (20)"
+  },
+  {
+    "greek": "νοσοκομείο (20)",
+    "pronunciation": "nosokomio (20)"
+  },
+  {
+    "greek": "παραλία (20)",
+    "pronunciation": "paralia (20)"
+  },
+  {
+    "greek": "καφέ (20)",
+    "pronunciation": "kafe (20)"
+  },
+  {
+    "greek": "μενού (20)",
+    "pronunciation": "menu (20)"
+  },
+  {
+    "greek": "χωρίς κρέας (20)",
+    "pronunciation": "horis kreas (20)"
+  },
+  {
+    "greek": "νόστιμο (20)",
+    "pronunciation": "nostimo (20)"
+  },
+  {
+    "greek": "κρύο νερό (20)",
+    "pronunciation": "krio nero (20)"
+  },
+  {
+    "greek": "ζεστό τσάι (20)",
+    "pronunciation": "zesto tsai (20)"
+  },
+  {
+    "greek": "τι ώρα είναι; (20)",
+    "pronunciation": "ti ora ine? (20)"
+  },
+  {
+    "greek": "σήμερα (20)",
+    "pronunciation": "simera (20)"
+  },
+  {
+    "greek": "αύριο (20)",
+    "pronunciation": "avrio (20)"
+  },
+  {
+    "greek": "χθες (20)",
+    "pronunciation": "hthes (20)"
+  },
+  {
+    "greek": "φτηνό (20)",
+    "pronunciation": "fthino (20)"
+  },
+  {
+    "greek": "ακριβό (20)",
+    "pronunciation": "akrivo (20)"
+  },
+  {
+    "greek": "κλειστό (20)",
+    "pronunciation": "klisto (20)"
+  },
+  {
+    "greek": "ανοιχτό (20)",
+    "pronunciation": "anihto (20)"
+  },
+  {
+    "greek": "πού πάμε; (20)",
+    "pronunciation": "pu pame? (20)"
+  },
+  {
+    "greek": "είναι κοντά (20)",
+    "pronunciation": "ine konta (20)"
+  },
+  {
+    "greek": "είναι μακριά (20)",
+    "pronunciation": "ine makria (20)"
+  },
+  {
+    "greek": "χρειάζομαι γιατρό (20)",
+    "pronunciation": "hriazome yatro (20)"
+  },
+  {
+    "greek": "έχασα το διαβατήριο (20)",
+    "pronunciation": "ehasa to diavatirio (20)"
+  },
+  {
+    "greek": "κρατήστε τα ρέστα (20)",
+    "pronunciation": "kratiste ta resta (20)"
+  },
+  {
+    "greek": "καλό ταξίδι (20)",
+    "pronunciation": "kalo taksidi (20)"
+  }
+]
