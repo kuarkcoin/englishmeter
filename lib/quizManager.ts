@@ -47,6 +47,7 @@ import ydsExam30 from '@/data/yds_exam_questions_30.json';
 import ydsExam31 from '@/data/yds_exam_questions_31.json';
 import ydsExam32 from '@/data/yds_exam_questions_32.json';
 import dailyEnglish from '@/data/dailyenglish.json';
+import turkishGreek from '@/data/turkish_greek.json';
 
 const YDS_EXAM_MAP: Record<string, any[]> = {
   '1': ydsExam1,
@@ -66,6 +67,14 @@ export interface StandardQuestion {
   explanation?: string;
 }
 
+type TurkishGreekItem = {
+  id: string | number;
+  word: string;
+  meaning: string;
+  pronunciation: string;
+  category: string;
+  type: string;
+};
 
 type MeaningLanguageCode = 'tr' | 'de' | 'es' | 'it' | 'fr';
 
@@ -88,6 +97,35 @@ function getLocalizedMeaning(item: any, language: MeaningLanguageCode): string {
 
   const fallback = item?.meaning;
   return typeof fallback === 'string' ? fallback.trim() : '';
+}
+
+function normalizePronunciation(value: string): string {
+  return value.toLocaleLowerCase('tr-TR').replace(/\s+/g, ' ').trim();
+}
+
+function uniquePronunciationOptions(values: string[], exclude?: string): string[] {
+  const seen = new Set<string>();
+  const normalizedExclude = exclude ? normalizePronunciation(exclude) : '';
+
+  return values.reduce<string[]>((options, value) => {
+    const pronunciation = typeof value === 'string' ? value.trim() : '';
+    if (!pronunciation) return options;
+
+    const normalized = normalizePronunciation(pronunciation);
+    if (!normalized || normalized === normalizedExclude || seen.has(normalized)) return options;
+
+    seen.add(normalized);
+    options.push(pronunciation);
+    return options;
+  }, []);
+}
+
+function hasRequiredTurkishGreekFields(item: Partial<TurkishGreekItem>): item is TurkishGreekItem {
+  return (
+    typeof item?.word === 'string' && item.word.trim() !== '' &&
+    typeof item?.meaning === 'string' && item.meaning.trim() !== '' &&
+    typeof item?.pronunciation === 'string' && item.pronunciation.trim() !== ''
+  );
 }
 
 // --- HELPERS ---
@@ -232,6 +270,53 @@ export const getQuestionsBySlug = (
     title = `YDS Real Exam - Mock Test ${num}`;
     duration = 150;
   }
+  else if (slug.startsWith('turkish-greek-')) {
+    const nRaw = parseInt(slug.split('-').pop() || '1', 10);
+    const n = Number.isFinite(nRaw) ? nRaw : 1;
+    const pool = (turkishGreek as TurkishGreekItem[]).filter(hasRequiredTurkishGreekFields);
+    const start = (n - 1) * 50;
+
+    rawQuestions = pool.slice(start, start + 50).reduce<StandardQuestion[]>((questions, item, idx) => {
+      const correctAnswer = item.pronunciation.trim();
+      const sameCategoryDistractors = uniquePronunciationOptions(
+        pool
+          .filter((candidate) => candidate.id !== item.id && candidate.category === item.category)
+          .map((candidate) => candidate.pronunciation),
+        correctAnswer
+      );
+      const allDistractors = uniquePronunciationOptions(
+        pool
+          .filter((candidate) => candidate.id !== item.id)
+          .map((candidate) => candidate.pronunciation),
+        correctAnswer
+      );
+      const distractors = uniquePronunciationOptions([...sameCategoryDistractors, ...allDistractors], correctAnswer);
+
+      if (distractors.length < 3) return questions;
+
+      const choices = seededShuffle([correctAnswer, ...distractors.slice(0, 3)], 47000 + n * 131 + idx);
+      const uniqueChoices = uniquePronunciationOptions(choices);
+      if (uniqueChoices.length !== 4) return questions;
+
+      questions.push({
+        id: `turkish-greek-${n}-${idx + 1}`,
+        prompt: `"${item.word}" ifadesi Yunancada nasıl söylenir?`,
+        choices: uniqueChoices.map((text, i) => ({
+          id: ['a', 'b', 'c', 'd'][i],
+          text,
+          isCorrect: normalizePronunciation(text) === normalizePronunciation(correctAnswer),
+        })),
+        explanation: `${item.word} = ${item.pronunciation.trim()}
+Yunanca yazımı: ${item.meaning.trim()}
+Kategori: ${item.category}`,
+      });
+
+      return questions;
+    }, []);
+    title = `Turkish Greek Test ${n}`;
+    duration = 25;
+  }
+
   else if (slug.startsWith('daily-english-')) {
     const nRaw = parseInt(slug.split('-').pop() || '1', 10);
     const n = Number.isFinite(nRaw) ? nRaw : 1;
