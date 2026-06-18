@@ -12,6 +12,43 @@ interface Question {
   option_c: string;
   option_d: string;
   correct_option: string; // 'a' | 'b' | 'c' | 'd'
+  explanation?: string;
+}
+
+function ExplanationBox({ explanation }: { explanation?: string }) {
+  if (!explanation) return null;
+
+  const lines = explanation.split('\n').filter((line) => line.trim().length > 0);
+
+  return (
+    <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-left shadow-sm dark:border-amber-500/30 dark:bg-amber-500/10">
+      <div className="mb-2 text-sm font-bold uppercase tracking-wide text-amber-700 dark:text-amber-300">
+        Explanation
+      </div>
+      <div className="space-y-2 text-gray-700 dark:text-slate-200">
+        {lines.map((line, index) => {
+          const trimmedLine = line.trim();
+          const isGreekSpelling = /^Yunanca yazımı:/i.test(trimmedLine);
+          const isPronunciation = /^pronunciation:/i.test(trimmedLine);
+
+          return (
+            <p
+              key={`${trimmedLine}-${index}`}
+              className={
+                isGreekSpelling
+                  ? 'text-sm text-gray-500 dark:text-slate-400'
+                  : isPronunciation
+                    ? 'text-base font-semibold text-gray-900 dark:text-slate-50'
+                    : 'text-base leading-relaxed'
+              }
+            >
+              {trimmedLine}
+            </p>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
 interface RaceQuizProps {
@@ -193,6 +230,8 @@ export default function RaceQuiz({ questions, raceId, totalTime }: RaceQuizProps
             </button>
           ))}
         </div>
+
+        {answers[currentIndex] && <ExplanationBox explanation={currentQuestion.explanation} />}
       </div>
 
       {/* Alt Butonlar */}
