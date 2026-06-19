@@ -323,14 +323,35 @@ function HomeContent() {
   );
 
   const turkishGreekWords = useMemo<TurkishGreekWord[]>(() => {
-    return ((turkishGreekData as TurkishGreekWord[]) || [])
-      .map((item) => ({
-        word: String(item?.word ?? '').trim(),
-        meaning: String(item?.meaning ?? '').trim(),
-        pronunciation: String(item?.pronunciation ?? '').trim(),
-      }))
-      .filter((item) => item.word && item.meaning && item.pronunciation);
-  }, []);
+  const rawData: unknown = turkishGreekData;
+
+  const source: unknown[] = Array.isArray(rawData)
+    ? rawData
+    : rawData && typeof rawData === 'object'
+      ? [rawData]
+      : [];
+
+  return source
+    .map((item) => {
+      const record = item as Partial<TurkishGreekWord>;
+
+      return {
+        word: String(record.word ?? '').trim(),
+        meaning: String(record.meaning ?? '').trim(),
+        pronunciation: String(
+          record.pronunciation ?? ''
+        ).trim(),
+      };
+    })
+    .filter(
+      (item): item is TurkishGreekWord =>
+        Boolean(
+          item.word &&
+          item.meaning &&
+          item.pronunciation
+        )
+    );
+}, []);
 
   const validTurkishGreekWordCount = turkishGreekWords.length;
 
