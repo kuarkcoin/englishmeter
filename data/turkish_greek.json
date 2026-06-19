@@ -1,252 +1,962 @@
 [
   {
-    "word": "Merhaba",
-    "meaning": "Γεια σας",
-    "pronunciation": "Ya sas"
+    "word": "Nasılsınız? (Resmi/Çoğul)",
+    "meaning": "Τι κάνετε;",
+    "pronunciation": "Ti kanete?"
   },
   {
-    "word": "Selam",
-    "meaning": "Γεια σου",
-    "pronunciation": "Ya su"
+    "word": "Nasılsın? (Samimi)",
+    "meaning": "Τι κάνεις;",
+    "pronunciation": "Ti kanis?"
   },
   {
-    "word": "Günaydın",
-    "meaning": "Καλημέρα",
-    "pronunciation": "Kalimera"
+    "word": "İyiyim, teşekkürler.",
+    "meaning": "Καλά, ευχαριστώ.",
+    "pronunciation": "Kala, efharisto."
   },
   {
-    "word": "İyi akşamlar",
-    "meaning": "Καλησπέρα",
-    "pronunciation": "Kalispera"
+    "word": "Ya siz?",
+    "meaning": "Κι εσείς;",
+    "pronunciation": "Ki esis?"
   },
   {
-    "word": "İyi geceler",
-    "meaning": "Καληνύχτα",
-    "pronunciation": "Kalinihta"
+    "word": "Ya sen?",
+    "meaning": "Κι εσύ;",
+    "pronunciation": "Ki esi?"
   },
   {
-    "word": "Hoşça kal",
-    "meaning": "Αντίο",
+    "word": "Şöyle böyle / İdare eder.",
+    "meaning": "Έτσι κι έτσι.",
+    "pronunciation": "Etsi ki etsi."
+  },
+  {
+    "word": "Adınız ne?",
+    "meaning": "Πώς ονομάζεστε;",
+    "pronunciation": "Pos onomazeste?"
+  },
+  {
+    "word": "Adın ne?",
+    "meaning": "Πώς σε λένε;",
+    "pronunciation": "Pos se lene?"
+  },
+  {
+    "word": "Benim adım...",
+    "meaning": "Με λένε...",
+    "pronunciation": "Me lene..."
+  },
+  {
+    "word": "Tanıştığımıza memnun oldum.",
+    "meaning": "Χάρηκα πολύ.",
+    "pronunciation": "Harika poli."
+  },
+  {
+    "word": "Nerelisiniz?",
+    "meaning": "Από πού είστε;",
+    "pronunciation": "Apo pu iste?"
+  },
+  {
+    "word": "Türkiye'den geliyorum.",
+    "meaning": "Είμαι από την Τουρκία.",
+    "pronunciation": "Ime apo tin Turkia."
+  },
+  {
+    "word": "Kaç yaşındasınız?",
+    "meaning": "Πόσο χρονών είστε;",
+    "pronunciation": "Pos hronon iste?"
+  },
+  {
+    "word": "Hoş geldiniz.",
+    "meaning": "Καλώς ορίσατε.",
+    "pronunciation": "Kalos orisate."
+  },
+  {
+    "word": "Hoş bulduk.",
+    "meaning": "Καλώς σας βρήκαμε.",
+    "pronunciation": "Kalos sas vrikame."
+  },
+  {
+    "word": "Rica ederim / Bir şey değil.",
+    "meaning": "Παρακαλώ. / Τίποτα.",
+    "pronunciation": "Parakalo. / Tipota."
+  },
+  {
+    "word": "Kusura bakmayın / Afedersiniz.",
+    "meaning": "Συγγνώμη.",
+    "pronunciation": "Signomi."
+  },
+  {
+    "word": "Önemli değil.",
+    "meaning": "Δεν πειράζει.",
+    "pronunciation": "Den pirazi."
+  },
+  {
+    "word": "Tabii ki / Elbette.",
+    "meaning": "Φυσικά.",
+    "pronunciation": "Fisika."
+  },
+  {
+    "word": "Tebrikler!",
+    "meaning": "Συγχαρητήρια!",
+    "pronunciation": "Sinharitiria!"
+  },
+  {
+    "word": "Doğum günün kutlu olsun!",
+    "meaning": "Χρόνια πολλά!",
+    "pronunciation": "Hronia pola!"
+  },
+  {
+    "word": "Şerefe!",
+    "meaning": "Στην υγειά μας! / Γεια μας!",
+    "pronunciation": "Stin iyia mas! / Ya mas!"
+  },
+  {
+    "word": "İyi şanslar!",
+    "meaning": "Καλή τύχη!",
+    "pronunciation": "Kali tihi!"
+  },
+  {
+    "word": "Boş masa var mı?",
+    "meaning": "Υπάρχει ελεύθερο τραπέζι;",
+    "pronunciation": "Iparhi elefthero trapezi?"
+  },
+  {
+    "word": "İki kişilik bir masa lütfen.",
+    "meaning": "Ένα τραπέζι για δύο άτομα, παρακαλώ.",
+    "pronunciation": "Ena trapezi ya dio atoma, parakalo."
+  },
+  {
+    "word": "Ne tavsiye edersiniz?",
+    "meaning": "Τι μας προτείνετε;",
+    "pronunciation": "Ti mas protinete?"
+  },
+  {
+    "word": "Günün çorbası nedir?",
+    "meaning": "Ποια είναι η σούπα της ημέρας;",
+    "pronunciation": "Pia ine i supa tis imeras?"
+  },
+  {
+    "word": "Vejetaryen yemekleriniz var mı?",
+    "meaning": "Έχετε πιάτα για χορτοφάγους;",
+    "pronunciation": "Ehete piata ya hortofagus?"
+  },
+  {
+    "word": "Bu yemekte domuz eti var mı?",
+    "meaning": "Αυτό έχει χοιρινό;",
+    "pronunciation": "Afto ehi hirino?"
+  },
+  {
+    "word": "Gluten alerjim var.",
+    "meaning": "Έχω αλλεργία στη γλουτένη.",
+    "pronunciation": "Eho alerjia sti gluteni."
+  },
+  {
+    "word": "Kuruyemiş alerjim var.",
+    "meaning": "Έχω αλλεργία στους ξηρούς καρπούς.",
+    "pronunciation": "Eho alerjia stus ksirus karpus."
+  },
+  {
+    "word": "Çok lezzetli!",
+    "meaning": "Είναι πολύ νόστιμο!",
+    "pronunciation": "Ine poli nostimo!"
+  },
+  {
+    "word": "Afiyet olsun!",
+    "meaning": "Καλή όρεξη!",
+    "pronunciation": "Kali oreksi!"
+  },
+  {
+    "word": "Bahşiş",
+    "meaning": "Φιλοδώρημα",
+    "pronunciation": "Filodorima"
+  },
+  {
+    "word": "Kartla ödeyebilir miyim?",
+    "meaning": "Μπορώ να πληρώσω με κάρτα;",
+    "pronunciation": "Boro na kliroso me karta?"
+  },
+  {
+    "word": "Nakit ödeyeceğim.",
+    "meaning": "Θα πληρώσω με μετρητά.",
+    "pronunciation": "Tha kliroso me metrita."
+  },
+  {
+    "word": "Kahvaltı",
+    "meaning": "Πρωινό",
+    "pronunciation": "Proino"
+  },
+  {
+    "word": "Öğle yemeği",
+    "meaning": "Μεσημεριανό",
+    "pronunciation": "Mesimeriano"
+  },
+  {
+    "word": "Akşam yemeği",
+    "meaning": "Βραδινό",
+    "pronunciation": "Vradino"
+  },
+  {
+    "word": "Maden suyu",
+    "meaning": "Ανθρακούχο νερό",
+    "pronunciation": "Anthrakuho nero"
+  },
+  {
+    "word": "Kırmızı şarap",
+    "meaning": "Κόκκινο κρασί",
+    "pronunciation": "Kokino krasi"
+  },
+  {
+    "word": "Beyaz şarap",
+    "meaning": "Λευκό κρασί",
+    "pronunciation": "Lefko krasi"
+  },
+  {
+    "word": "Ekmek",
+    "meaning": "Ψωμί",
+    "pronunciation": "Psomi"
+  },
+  {
+    "word": "Zeytin",
+    "meaning": "Ελιές",
+    "pronunciation": "Elies"
+  },
+  {
+    "word": "Zeytinyağı",
+    "meaning": "Ελαιόλαδο",
+    "pronunciation": "Eleolado"
+  },
+  {
+    "word": "Tuz",
+    "meaning": "Αλάτι",
+    "pronunciation": "Alati"
+  },
+  {
+    "word": "Karabiber",
+    "meaning": "Πιπέρι",
+    "pronunciation": "Piperi"
+  },
+  {
+    "word": "Şeker",
+    "meaning": "Ζάχαρη",
+    "pronunciation": "Zahari"
+  },
+  {
+    "word": "Hesapta bir hata var.",
+    "meaning": "Υπάρχει ένα λάθος στο λογαριασμό.",
+    "pronunciation": "Iparhi ena lathos sto logaryasmo."
+  },
+  {
+    "word": "Paket yapabilir misiniz?",
+    "meaning": "Μπορείτε να το βάλετε σε πακέτο;",
+    "pronunciation": "Borite na to valete se paketo?"
+  },
+  {
+    "word": "Sadece bakıyorum, teşekkürler.",
+    "meaning": "Απλά κοιτάζω, ευχαριστώ.",
+    "pronunciation": "Apla kitazo, efharisto."
+  },
+  {
+    "word": "Başka renkleri var mı?",
+    "meaning": "Υπάρχει σε άλλο χρώμα;",
+    "pronunciation": "Iparhi se alo hroma?"
+  },
+  {
+    "word": "Bunu deneyebilir miyim?",
+    "meaning": "Μπορώ να το δοκιμάσω;",
+    "pronunciation": "Boro na to dokimaso?"
+  },
+  {
+    "word": "Soyunma kabini nerede?",
+    "meaning": "Πού είναι το δοκιμαστήριο;",
+    "pronunciation": "Pu ine to dokimastirio?"
+  },
+  {
+    "word": "Bu çok büyük.",
+    "meaning": "Αυτό είναι πολύ μεγάλο.",
+    "pronunciation": "Afto ine poli megalo."
+  },
+  {
+    "word": "Bu çok küçük.",
+    "meaning": "Αυτό είναι πολύ μικρό.",
+    "pronunciation": "Afto ine poli mikro."
+  },
+  {
+    "word": "Bunun bir beden küçüğü var mı?",
+    "meaning": "Υπάρχει ένα νούμερο μικρότερο;",
+    "pronunciation": "Iparhi ena numero mikrotero?"
+  },
+  {
+    "word": "Bunun bir beden büyüğü var mı?",
+    "meaning": "Υπάρχει ένα νούμερο μεγαλύτερο;",
+    "pronunciation": "Iparhi ena numero megalitero?"
+  },
+  {
+    "word": "Ayakkabı",
+    "meaning": "Παπούτσια",
+    "pronunciation": "Paputsia"
+  },
+  {
+    "word": "Kıyafet",
+    "meaning": "Ρούχα",
+    "pronunciation": "Ruha"
+  },
+  {
+    "word": "Çanta",
+    "meaning": "Τσάντα",
+    "pronunciation": "Tsanda"
+  },
+  {
+    "word": "Fiyatı nedir?",
+    "meaning": "Ποια είναι η τιμή;",
+    "pronunciation": "Pia ine i timi?"
+  },
+  {
+    "word": "İndirim var mı?",
+    "meaning": "Έχει έκπτωση;",
+    "pronunciation": "Ehi ekptosi?"
+  },
+  {
+    "word": "Biraz ikram yapar mısınız? (Pazarlık)",
+    "meaning": "Μπορείτε να κάνετε καλύτερη τιμή;",
+    "pronunciation": "Borite na kanete kaliteri timi?"
+  },
+  {
+    "word": "Bunu alıyorum.",
+    "meaning": "Θα το πάρω.",
+    "pronunciation": "Tha to paro."
+  },
+  {
+    "word": "Fiş/Fatura alabilir miyim?",
+    "meaning": "Μπορώ να έχω μια απόδειξη;",
+    "pronunciation": "Boro na eho mia apodiksi?"
+  },
+  {
+    "word": "Değişim yapabilir miyim?",
+    "meaning": "Μπορώ να το αλλάξω;",
+    "pronunciation": "Boro na to alakso?"
+  },
+  {
+    "word": "İade etmek istiyorum.",
+    "meaning": "Θέλω να το επιστρέψω.",
+    "pronunciation": "Thelo na to epistrepso."
+  },
+  {
+    "word": "Poşet lütfen.",
+    "meaning": "Μια σακούλα, παρακαλώ.",
+    "pronunciation": "Mia sakula, parakalo."
+  },
+  {
+    "word": "Açık",
+    "meaning": "Ανοιχτό",
+    "pronunciation": "Anihto"
+  },
+  {
+    "word": "Kapalı",
+    "meaning": "Κλειστό",
+    "pronunciation": "Klisto"
+  },
+  {
+    "word": "...'a nasıl gidebilirim?",
+    "meaning": "Πώς μπορώ να πάω στο...;",
+    "pronunciation": "Pos boro na pao στο...?"
+  },
+  {
+    "word": "Yakınlarda bir metro istasyonu var mı?",
+    "meaning": "Υπάρχει σταθμός μετρό εδώ κοντά;",
+    "pronunciation": "Iparhi stathmos metro edo konda?"
+  },
+  {
+    "word": "Otobüs durağı nerede?",
+    "meaning": "Πού είναι η στάση του λεωφορείου;",
+    "pronunciation": "Pu ine i stasi tu leoforiu?"
+  },
+  {
+    "word": "Bu otobüs merkeze gider mi?",
+    "meaning": "Αυτό το λεωφορείο πάει στο κέντρο;",
+    "pronunciation": "Afto to leoforio pai sto kendro?"
+  },
+  {
+    "word": "Bir sonraki durak hangisi?",
+    "meaning": "Ποια είναι η επόμενη στάση;",
+    "pronunciation": "Pia ine i epomeni stasi?"
+  },
+  {
+    "word": "Burada inmek istiyorum.",
+    "meaning": "Θέλω να κατεβώ εδώ.",
+    "pronunciation": "Thelo na katevo edo."
+  },
+  {
+    "word": "Uzak mı?",
+    "meaning": "Είναι μακριά;",
+    "pronunciation": "Ine makria?"
+  },
+  {
+    "word": "Yakın mı?",
+    "meaning": "Είναι κοντά;",
+    "pronunciation": "Ine konda?"
+  },
+  {
+    "word": "Yürüyerek gidebilir miyim?",
+    "meaning": "Μπορώ να πάω με τα πόδια;",
+    "pronunciation": "Boro na pao me ta podia?"
+  },
+  {
+    "word": "Haritada gösterebilir misiniz?",
+    "meaning": "Μπορείτε να μου το δείξετε στο χάρτη;",
+    "pronunciation": "Borite na mu to diksete sto harti?"
+  },
+  {
+    "word": "Giriş",
+    "meaning": "Είσοδος",
+    "pronunciation": "Isodos"
+  },
+  {
+    "word": "Çıkış",
+    "meaning": "Έξοδος",
+    "pronunciation": "Eksodos"
+  },
+  {
+    "word": "Kuzey",
+    "meaning": "Βορράς",
+    "pronunciation": "Voras"
+  },
+  {
+    "word": "Güney",
+    "meaning": "Νότος",
+    "pronunciation": "Notos"
+  },
+  {
+    "word": "Doğu",
+    "meaning": "Ανατολή",
+    "pronunciation": "Anatoli"
+  },
+  {
+    "word": "Batı",
+    "meaning": "Δύση",
+    "pronunciation": "Disi"
+  },
+  {
+    "word": "Trafik ışıkları",
+    "meaning": "Φανάρια",
+    "pronunciation": "Fanaria"
+  },
+  {
+    "word": "Kavşak",
+    "meaning": "Διασταύρωση",
+    "pronunciation": "Diastavrosi"
+  },
+  {
+    "word": "Şehir merkezi",
+    "meaning": "Κέντρο της πόλης",
+    "pronunciation": "Kendro tis polis"
+  },
+  {
+    "word": "Gidiş-dönüş bileti lütfen.",
+    "meaning": "Ένα εισιτήριο με επιστροφή, παρακαλώ.",
+    "pronunciation": "Ena isitirio me epistrofi, parakalo."
+  },
+  {
+    "word": "Rezervasyonum var.",
+    "meaning": "Έχω μια κράτηση.",
+    "pronunciation": "Eho mia kratisi."
+  },
+  {
+    "word": "Adıma rezervasyon yapılmıştı.",
+    "meaning": "Έχω κάνει κράτηση στο όνομά μου.",
+    "pronunciation": "Eho kani kratisi sto onoma mu."
+  },
+  {
+    "word": "Boş odanız var mı?",
+    "meaning": "Έχετε διαθέσιμα δωμάτια;",
+    "pronunciation": "Ehete diathesima domatia?"
+  },
+  {
+    "word": "Oda fiyatına kahvaltı dahil mi?",
+    "meaning": "Στην τιμή περιλαμβάνεται το πρωινό;",
+    "pronunciation": "Stin timi perilamvanete to proino?"
+  },
+  {
+    "word": "Deniz manzaralı bir oda istiyorum.",
+    "meaning": "Θέλω ένα δωμάτιο με θέα στη θάλασσα.",
+    "pronunciation": "Thelo ena domatio me thea sti thalassa."
+  },
+  {
+    "word": "Wi-Fi şifresi nedir?",
+    "meaning": "Ποιος είναι ο κωδικός του Wi-Fi;",
+    "pronunciation": "Pios ine o kodikos tu Wi-Fi?"
+  },
+  {
+    "word": "Klima çalışmıyor.",
+    "meaning": "Το κλιματιστικό δεν λειτουργεί.",
+    "pronunciation": "To klimalistiko den liturgi."
+  },
+  {
+    "word": "Sıcak su yok.",
+    "meaning": "Δεν υπάρχει ζεστό νερό.",
+    "pronunciation": "Den iparhi zesto nero."
+  },
+  {
+    "word": "Havlu",
+    "meaning": "Πετσέτα",
+    "pronunciation": "Petseta"
+  },
+  {
+    "word": "Çarşaf",
+    "meaning": "Σεντόνι",
+    "pronunciation": "Sentoni"
+  },
+  {
+    "word": "Yastık",
+    "meaning": "Μαξιλάρι",
+    "pronunciation": "Maksilari"
+  },
+  {
+    "word": "Odamı temizleyebilir misiniz?",
+    "meaning": "Μπορείτε να καθαρίσετε το δωμάτιό μου;",
+    "pronunciation": "Borite na katharisete to domatio mu?"
+  },
+  {
+    "word": "Anahtar / Kart",
+    "meaning": "Κλειδί / Κάρτα",
+    "pronunciation": "Klidi / Karta"
+  },
+  {
+    "word": "Giriş saati (Check-in) nedir?",
+    "meaning": "Τι ώρα είναι το check-in;",
+    "pronunciation": "Ti ora ine to check-in?"
+  },
+  {
+    "word": "Çıkış yapmak istiyorum (Check-out).",
+    "meaning": "Θέλω να κάνω check-out.",
+    "pronunciation": "Thelo na kano check-out."
+  },
+  {
+    "word": "Bagajımı burada bırakabilir miyim?",
+    "meaning": "Μπορώ να αφήσω τις αποσκευές μου εδώ;",
+    "pronunciation": "Boro na afiso tis aposkeves mu edo?"
+  },
+  {
+    "word": "Bana bir taksi çağırabilir misiniz?",
+    "meaning": "Μπορείτε να μου καλέσετε ένα ταξί;",
+    "pronunciation": "Borite na mu kalesete ena taksi?"
+  },
+  {
+    "word": "Kendimi iyi hissetmiyorum.",
+    "meaning": "Δεν νιώθω καλά.",
+    "pronunciation": "Den niotho kala."
+  },
+  {
+    "word": "Canım acıyor / Ağrım var.",
+    "meaning": "Πονάω.",
+    "pronunciation": "Ponao."
+  },
+  {
+    "word": "Başım ağrıyor.",
+    "meaning": "Πονάει το κεφάλι μου.",
+    "pronunciation": "Ponai to kefali mu."
+  },
+  {
+    "word": "Karnım ağrıyor.",
+    "meaning": "Πονάει η κοιλιά μου.",
+    "pronunciation": "Ponai i kilia mu."
+  },
+  {
+    "word": "Dişim ağrıyor.",
+    "meaning": "Πονάει το δόντι μου.",
+    "pronunciation": "Ponai to dondi mu."
+  },
+  {
+    "word": "Ateşim var.",
+    "meaning": "Έχω πυρετό.",
+    "pronunciation": "Eho pireto."
+  },
+  {
+    "word": "Reçetesiz ilaç alabilir miyim?",
+    "meaning": "Μπορώ να πάρω φάρμακο χωρίς συνταγή;",
+    "pronunciation": "Boro na paro farmako horis sintayi?"
+  },
+  {
+    "word": "Ağrı kesici",
+    "meaning": "Παυσίπονο",
+    "pronunciation": "Pafsipono"
+  },
+  {
+    "word": "Mide ilacı",
+    "meaning": "Φάρμακο για το στομάχι",
+    "pronunciation": "Farmako ya to stomahi"
+  },
+  {
+    "word": "Ambulans çağırın!",
+    "meaning": "Καλέστε ένα ασθενοφόρο!",
+    "pronunciation": "Kaleste ena asthenoforo!"
+  },
+  {
+    "word": "Cüzdanımı kaybettim.",
+    "meaning": "Έχασα το πορτοφόλι μου.",
+    "pronunciation": "Ehasa to portofoli mu."
+  },
+  {
+    "word": "Pasaportumu kaybettim.",
+    "meaning": "Έχασα το διαβατήριό μου.",
+    "pronunciation": "Ehasa to diavatirio mu."
+  },
+  {
+    "word": "Paramı çaldılar.",
+    "meaning": "Μου έκλεψαν τα χρήματα.",
+    "pronunciation": "Mu eklepsan ta hrimata."
+  },
+  {
+    "word": "Yangın var!",
+    "meaning": "Φωτιά!",
+    "pronunciation": "Fotia!"
+  },
+  {
+    "word": "Dikkat et!",
+    "meaning": "Πρόσεχε!",
+    "pronunciation": "Prosehe!"
+  },
+  {
+    "word": "Beni yalnız bırakın!",
+    "meaning": "Αφήστε με ήσυχο!",
+    "pronunciation": "Afiste me isího!"
+  },
+  {
+    "word": "Konsolosluk nerede?",
+    "meaning": "Πού είναι το προξενείο;",
+    "pronunciation": "Pu ine to proksenio?"
+  },
+  {
+    "word": "0",
+    "meaning": "Μηδέν",
+    "pronunciation": "Miden"
+  },
+  {
+    "word": "1",
+    "meaning": "Ένα",
+    "pronunciation": "Ena"
+  },
+  {
+    "word": "2",
+    "meaning": "Δύο",
+    "pronunciation": "Dio"
+  },
+  {
+    "word": "3",
+    "meaning": "Τρία",
+    "pronunciation": "Tria"
+  },
+  {
+    "word": "4",
+    "meaning": "Τέσσερα",
+    "pronunciation": "Tessera"
+  },
+  {
+    "word": "5",
+    "meaning": "Πέντε",
+    "pronunciation": "Pende"
+  },
+  {
+    "word": "6",
+    "meaning": "Έξι",
+    "pronunciation": "Eksi"
+  },
+  {
+    "word": "7",
+    "meaning": "Επτά",
+    "pronunciation": "Epta"
+  },
+  {
+    "word": "8",
+    "meaning": "Οκτώ",
+    "pronunciation": "Okto"
+  },
+  {
+    "word": "9",
+    "meaning": "Εννέα",
+    "pronunciation": "Ennea"
+  },
+  {
+    "word": "10",
+    "meaning": "Δέκα",
+    "pronunciation": "Deka"
+  },
+  {
+    "word": "20",
+    "meaning": "Είκοσι",
+    "pronunciation": "Ikosi"
+  },
+  {
+    "word": "30",
+    "meaning": "Τριάντα",
+    "pronunciation": "Trianda"
+  },
+  {
+    "word": "40",
+    "meaning": "Σαράντα",
+    "pronunciation": "Saranda"
+  },
+  {
+    "word": "50",
+    "meaning": "Πενήντα",
+    "pronunciation": "Peninda"
+  },
+  {
+    "word": "60",
+    "meaning": "Εξήντα",
+    "pronunciation": "Eksinda"
+  },
+  {
+    "word": "70",
+    "meaning": "Εβδομήντα",
+    "pronunciation": "Evdominda"
+  },
+  {
+    "word": "80",
+    "meaning": "Ογδόντα",
+    "pronunciation": "Ogdonda"
+  },
+  {
+    "word": "90",
+    "meaning": "Ενενήντα",
+    "pronunciation": "Eneninda"
+  },
+  {
+    "word": "100",
+    "meaning": "Εκατό",
+    "pronunciation": "Ekato"
+  },
+  {
+    "word": "500",
+    "meaning": "Πεντακόσια",
+    "pronunciation": "Pendakosia"
+  },
+  {
+    "word": "1000",
+    "meaning": "Χίλια",
+    "pronunciation": "Hilia"
+  },
+  {
+    "word": "Pazartesi",
+    "meaning": "Δευτέρα",
+    "pronunciation": "Deftera"
+  },
+  {
+    "word": "Salı",
+    "meaning": "Τρίτη",
+    "pronunciation": "Triti"
+  },
+  {
+    "word": "Çarşamba",
+    "meaning": "Τετάρτη",
+    "pronunciation": "Tetarti"
+  },
+  {
+    "word": "Perşembe",
+    "meaning": "Πέμπτη",
+    "pronunciation": "Pempti"
+  },
+  {
+    "word": "Cuma",
+    "meaning": "Παρασκευή",
+    "pronunciation": "Paraskevi"
+  },
+  {
+    "word": "Cumartesi",
+    "meaning": "Σάββατο",
+    "pronunciation": "Savvato"
+  },
+  {
+    "word": "Pazar",
+    "meaning": "Κυριακή",
+    "pronunciation": "Kiriaki"
+  },
+  {
+    "word": "Hafta sonu",
+    "meaning": "Σαββατοκύριακο",
+    "pronunciation": "Savvatokiriako"
+  },
+  {
+    "word": "Dün",
+    "meaning": "Χθες",
+    "pronunciation": "Hthes"
+  },
+  {
+    "word": "Şimdi",
+    "meaning": "Τώρα",
+    "pronunciation": "Tora"
+  },
+  {
+    "word": "Sonra",
+    "meaning": "Μετά",
+    "pronunciation": "Meta"
+  },
+  {
+    "word": "Haftaya / Gelecek hafta",
+    "meaning": "Επόμενη εβδομάδα",
+    "pronunciation": "Epomeni evdomada"
+  },
+  {
+    "word": "Sabah",
+    "meaning": "Πρωί",
+    "pronunciation": "Proi"
+  },
+  {
+    "word": "Öğleden sonra",
+    "meaning": "Απόγευμα",
+    "pronunciation": "Apoyevma"
+  },
+  {
+    "word": "Erken",
+    "meaning": "Νωρίς",
+    "pronunciation": "Noris"
+  },
+  {
+    "word": "Geç",
+    "meaning": "Αργά",
+    "pronunciation": "Arga"
+  },
+  {
+    "word": "Büyük",
+    "meaning": "Μεγάλο",
+    "pronunciation": "Megalo"
+  },
+  {
+    "word": "Küçük",
+    "meaning": "Μικρό",
+    "pronunciation": "Mikro"
+  },
+  {
+    "word": "Güzel",
+    "meaning": "Όμορφο",
+    "pronunciation": "Omorfo"
+  },
+  {
+    "word": "Çirkin",
+    "meaning": "Άσχημο",
+    "pronunciation": "Ashimo"
+  },
+  {
+    "word": "İyi",
+    "meaning": "Καλό",
+    "pronunciation": "Kalo"
+  },
+  {
+    "word": "Kötü",
+    "meaning": "Κακό",
+    "pronunciation": "Kako"
+  },
+  {
+    "word": "Sıcak",
+    "meaning": "Ζεστό",
+    "pronunciation": "Zesto"
+  },
+  {
+    "word": "Soğuk",
+    "meaning": "Κρύο",
+    "pronunciation": "Krio"
+  },
+  {
+    "word": "Yeni",
+    "meaning": "Καινούριο",
+    "pronunciation": "Kenurio"
+  },
+  {
+    "word": "Eski",
+    "meaning": "Παλιό",
+    "pronunciation": "Palio"
+  },
+  {
+    "word": "Hızlı",
+    "meaning": "Γρήγορο",
+    "pronunciation": "Grihoro"
+  },
+  {
+    "word": "Yavaş",
+    "meaning": "Αργό",
+    "pronunciation": "Argo"
+  },
+  {
+    "word": "Kolay",
+    "meaning": "Εύκολο",
+    "pronunciation": "Efkolo"
+  },
+  {
+    "word": "Zor",
+    "meaning": "Δύσκολο",
+    "pronunciation": "Diskolo"
+  },
+  {
+    "word": "Temiz",
+    "meaning": "Καθαρό",
+    "pronunciation": "Katharo"
+  },
+  {
+    "word": "Kirli",
+    "meaning": "Βρώμικο",
+    "pronunciation": "Vromiko"
+  },
+  {
+    "word": "Dolu",
+    "meaning": "Γεμάτο",
+    "pronunciation": "Yemato"
+  },
+  {
+    "word": "Boş",
+    "meaning": "Άδειο",
     "pronunciation": "Adio"
   },
   {
-    "word": "Görüşürüz",
-    "meaning": "Τα λέμε",
-    "pronunciation": "Ta leme"
+    "word": "Arkadaş",
+    "meaning": "Φίλος",
+    "pronunciation": "Filos"
   },
   {
-    "word": "Lütfen",
-    "meaning": "Παρακαλώ",
-    "pronunciation": "Parakalo"
+    "word": "Aile",
+    "meaning": "Οικογένεια",
+    "pronunciation": "Ikoyenia"
   },
   {
-    "word": "Teşekkür ederim",
-    "meaning": "Ευχαριστώ",
-    "pronunciation": "Efharisto"
+    "word": "Deniz",
+    "meaning": "Θάλασσα",
+    "pronunciation": "Thalassa"
   },
   {
-    "word": "Çok teşekkür ederim",
-    "meaning": "Ευχαριστώ πολύ",
-    "pronunciation": "Efharisto poli"
+    "word": "Hava durumu",
+    "meaning": "Καιρός",
+    "pronunciation": "Keros"
   },
   {
-    "word": "Evet",
-    "meaning": "Ναι",
-    "pronunciation": "Ne"
+    "word": "Güneş",
+    "meaning": "Ήλιος",
+    "pronunciation": "Ilios"
   },
   {
-    "word": "Hayır",
-    "meaning": "Όχι",
-    "pronunciation": "Ohi"
+    "word": "Yağmur",
+    "meaning": "Βροχή",
+    "pronunciation": "Vrohi"
   },
   {
-    "word": "Tamam",
-    "meaning": "Εντάξει",
-    "pronunciation": "Endaksi"
+    "word": "Para",
+    "meaning": "Χρήματα / Λεφτά",
+    "pronunciation": "Hrimata / Lefta"
   },
   {
-    "word": "Anlamıyorum",
-    "meaning": "Δεν καταλαβαίνω",
-    "pronunciation": "Den katalaveno"
+    "word": "Anahtar",
+    "meaning": "Κλειδί",
+    "pronunciation": "Klidi"
   },
   {
-    "word": "İngilizce biliyor musunuz?",
-    "meaning": "Μιλάτε αγγλικά;",
-    "pronunciation": "Milate anglika?"
+    "word": "Araba",
+    "meaning": "Αυτόκίνητο",
+    "pronunciation": "Aftokinito"
   },
   {
-    "word": "Yavaş konuşun lütfen",
-    "meaning": "Μιλήστε πιο αργά, παρακαλώ",
-    "pronunciation": "Miliste pio arga, parakalo"
+    "word": "Uçak",
+    "meaning": "Αεροπλάνο",
+    "pronunciation": "Aeroplano"
   },
   {
-    "word": "Tekrar eder misiniz?",
-    "meaning": "Μπορείτε να το επαναλάβετε;",
-    "pronunciation": "Borite na to epanalavete?"
-  },
-  {
-    "word": "Bu ne kadar?",
-    "meaning": "Πόσο κάνει αυτό;",
-    "pronunciation": "Poso kani afto?"
-  },
-  {
-    "word": "Pahalı",
-    "meaning": "Ακριβό",
-    "pronunciation": "Akrivo"
-  },
-  {
-    "word": "Ucuz",
-    "meaning": "Φθηνό",
-    "pronunciation": "Ftino"
-  },
-  {
-    "word": "Nerede?",
-    "meaning": "Πού είναι;",
-    "pronunciation": "Pu ine?"
-  },
-  {
-    "word": "Tuvalet nerede?",
-    "meaning": "Πού είναι η τουαλέτα;",
-    "pronunciation": "Pu ine i tualeta?"
-  },
-  {
-    "word": "Otel nerede?",
-    "meaning": "Πού είναι το ξενοδοχείο;",
-    "pronunciation": "Pu ine to ksenodohio?"
-  },
-  {
-    "word": "Plaj nerede?",
-    "meaning": "Πού είναι η παραλία;",
-    "pronunciation": "Pu ine i paralia?"
-  },
-  {
-    "word": "Restoran nerede?",
-    "meaning": "Πού είναι το εστιατόριο;",
-    "pronunciation": "Pu ine to estiatorio?"
-  },
-  {
-    "word": "Hesap lütfen",
-    "meaning": "Τον λογαριασμό, παρακαλώ",
-    "pronunciation": "Ton logaryasmo, parakalo"
-  },
-  {
-    "word": "Bir su lütfen",
-    "meaning": "Ένα νερό, παρακαλώ",
-    "pronunciation": "Ena nero, parakalo"
-  },
-  {
-    "word": "Bir kahve lütfen",
-    "meaning": "Έναν καφέ, παρακαλώ",
-    "pronunciation": "Enan kafe, parakalo"
-  },
-  {
-    "word": "Bir bira lütfen",
-    "meaning": "Μία μπύρα, παρακαλώ",
-    "pronunciation": "Mia bira, parakalo"
-  },
-  {
-    "word": "Menü lütfen",
-    "meaning": "Το μενού, παρακαλώ",
-    "pronunciation": "To menu, parakalo"
-  },
-  {
-    "word": "Et yemiyorum",
-    "meaning": "Δεν τρώω κρέας",
-    "pronunciation": "Den troo kreas"
-  },
-  {
-    "word": "Alerjim var",
-    "meaning": "Έχω αλλεργία",
-    "pronunciation": "Eho alerjia"
-  },
-  {
-    "word": "Yardım edin!",
-    "meaning": "Βοήθεια!",
-    "pronunciation": "Voithia!"
-  },
-  {
-    "word": "Polis",
-    "meaning": "Αστυνομία",
-    "pronunciation": "Astinomia"
-  },
-  {
-    "word": "Hastane",
-    "meaning": "Νοσοκομείο",
-    "pronunciation": "Nosokomio"
-  },
-  {
-    "word": "Doktor",
-    "meaning": "Γιατρός",
-    "pronunciation": "Yatros"
-  },
-  {
-    "word": "Eczane",
-    "meaning": "Φαρμακείο",
-    "pronunciation": "Farmakio"
-  },
-  {
-    "word": "Kayboldum",
-    "meaning": "Χάθηκα",
-    "pronunciation": "Hathika"
-  },
-  {
-    "word": "Taksi",
-    "meaning": "Ταξί",
-    "pronunciation": "Taksi"
-  },
-  {
-    "word": "Otobüs",
-    "meaning": "Λεωφορείο",
-    "pronunciation": "Leoforio"
-  },
-  {
-    "word": "Bilet",
-    "meaning": "Εισιτήριο",
-    "pronunciation": "Isitirio"
-  },
-  {
-    "word": "Havaalanı",
-    "meaning": "Αεροδρόμιο",
-    "pronunciation": "Aerodromio"
-  },
-  {
-    "word": "Liman",
-    "meaning": "Λιμάνι",
-    "pronunciation": "Limani"
-  },
-  {
-    "word": "Sağ",
-    "meaning": "Δεξιά",
-    "pronunciation": "Deksia"
-  },
-  {
-    "word": "Sol",
-    "meaning": "Αριστερά",
-    "pronunciation": "Aristera"
-  },
-  {
-    "word": "Düz gidin",
-    "meaning": "Πηγαίνετε ευθεία",
-    "pronunciation": "Piyenete efthia"
-  },
-  {
-    "word": "Bugün",
-    "meaning": "Σήμερα",
-    "pronunciation": "Simera"
-  },
-  {
-    "word": "Yarın",
-    "meaning": "Αύριο",
-    "pronunciation": "Avrio"
-  },
-  {
-    "word": "Saat kaç?",
-    "meaning": "Τι ώρα είναι;",
-    "pronunciation": "Ti ora ine?"
-  },
-  {
-    "word": "Bilmiyorum",
-    "meaning": "Δεν ξέρω",
-    "pronunciation": "Den ksero"
+    "word": "Gemi / Feribot",
+    "meaning": "Πλοίο / Φέρι μποτ",
+    "pronunciation": "Plio / Feri bot"
   }
 ]
