@@ -10,6 +10,7 @@ export default function Contact() {
   const [website, setWebsite] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [feedback, setFeedback] = useState('');
+  const [errorCode, setErrorCode] = useState('');
 
   const resetForm = () => {
     setName('');
@@ -22,6 +23,7 @@ export default function Contact() {
     e.preventDefault();
 
     if (status === 'loading') return;
+    setErrorCode('');
 
     if (!name.trim() || !email.trim() || !message.trim()) {
       setStatus('error');
@@ -46,6 +48,9 @@ export default function Contact() {
 
       const data = await res.json().catch(() => null);
       if (!res.ok || data?.ok !== true) {
+        if (typeof data?.code === 'string' && /^CONTACT_[A-Z_]{1,50}$/.test(data.code)) {
+          setErrorCode(data.code);
+        }
         throw new Error(
           typeof data?.error === 'string'
             ? data.error
@@ -201,7 +206,12 @@ export default function Contact() {
                   ) : (
                     <AlertCircle className="w-7 h-7 flex-shrink-0" />
                   )}
-                  <p className="font-semibold text-lg">{feedback}</p>
+                  <div className="min-w-0">
+                    <p className="font-semibold text-lg">{feedback}</p>
+                    {status === 'error' && errorCode && (
+                      <p className="mt-2 break-words text-sm">Support reference: {errorCode}</p>
+                    )}
+                  </div>
                 </div>
               )}
             </form>

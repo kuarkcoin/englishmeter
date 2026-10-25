@@ -3,9 +3,65 @@ import { Resend } from "resend";
 import { archiveContactMessage } from "@/lib/contact-archive";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 const recipient = "muratot79@gmail.com";
 const unavailable = `Message delivery is currently unavailable. Please email ${recipient} directly.`;
+
+function deploymentEnvironment() {
+  const environment = process.env.VERCEL_ENV;
+  return environment === "production" || environment === "preview" || environment === "development"
+    ? environment
+    : "unknown";
+}
+
+function emailConfiguration() {
+  const apiKey = process.env.RESEND_API_KEY?.trim() ?? "";
+  const from = process.env.CONTACT_FROM_EMAIL?.trim() ?? "";
+  const missing = [!apiKey && "RESEND_API_KEY", !from && "CONTACT_FROM_EMAIL"].filter(Boolean) as string[];
+  return { apiKey, from, missing };
+}
+
+// Read-only configuration check: never returns key/sender values or sends mail.
+// This only confirms settings are present, not provider authorization or delivery.
+export async function GET() {
+  const { missing } = emailConfiguration();
+  return NextResponse.json({
+    configured: missing.length === 0,
+    missing,
+    environment: deploymentEnvironment(),
+  }, {
+    status: missing.length ? 503 : 200,
+    headers: { "Cache-Control": "no-store" },
+  });
+}
+
+function providerFailure(error: { name: string; message: string } | null) {
+  switch (error?.name.toLowerCase()) {
+    case "missing_api_key":
+    case "invalid_api_key":
+    case "restricted_api_key":
+      return "CONTACT_AUTH_FAILED";
+    case "invalid_from_address":
+      return "CONTACT_INVALID_SENDER";
+    case "validation_error":
+      if (/domain.*not verified/i.test(error.message)) return "CONTACT_SENDER_NOT_VERIFIED";
+      if (/only send testing emails/i.test(error.message)) return "CONTACT_TESTING_RESTRICTION";
+      return "CONTACT_PROVIDER_VALIDATION";
+    case "rate_limit_exceeded":
+    case "daily_quota_exceeded":
+    case "monthly_quota_exceeded":
+      return "CONTACT_PROVIDER_LIMIT";
+    default:
+      return "CONTACT_PROVIDER_UNAVAILABLE";
+  }
+}
+
+function deliveryFailure(code: string, status: number, missing?: string[]) {
+  // Fixed codes and variable names only; raw provider errors can contain private data.
+  console.error("contact_email_error", { code, environment: deploymentEnvironment(), ...(missing ? { missing } : {}) });
+  return NextResponse.json({ error: unavailable, code }, { status });
+}
 
 export async function POST(req: Request) {
   const body: unknown = await req.json().catch(() => null);
@@ -35,10 +91,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Please enter a valid name and email address." }, { status: 400 });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.CONTACT_FROM_EMAIL;
-  if (!apiKey || !from) {
-    return NextResponse.json({ error: unavailable }, { status: 503 });
+  const { apiKey, from, missing } = emailConfiguration();
+  if (missing.length) {
+    return deliveryFailure("CONTACT_NOT_CONFIGURED", 503, missing);
   }
 
   try {
@@ -52,12 +107,10 @@ export async function POST(req: Request) {
     });
 
     if (error || !data?.id) {
-      console.error("Contact email was not accepted by the provider.");
-      return NextResponse.json({ error: unavailable }, { status: 502 });
+      return deliveryFailure(providerFailure(error), 502);
     }
   } catch {
-    console.error("Contact email request failed.");
-    return NextResponse.json({ error: unavailable }, { status: 502 });
+    return deliveryFailure("CONTACT_PROVIDER_UNAVAILABLE", 502);
   }
 
   // Keep the admin inbox when configured, but a database outage must not prevent email.

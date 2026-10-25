@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { afterEach, beforeEach, test } from 'node:test';
-import { POST } from '../app/api/contact/route';
+import { GET, POST } from '../app/api/contact/route';
 import { archiveContactMessage } from '../lib/contact-archive';
 
 const originalFetch = globalThis.fetch;
@@ -8,6 +8,7 @@ const originalEnv = {
   RESEND_API_KEY: process.env.RESEND_API_KEY,
   CONTACT_FROM_EMAIL: process.env.CONTACT_FROM_EMAIL,
   DATABASE_URL: process.env.DATABASE_URL,
+  VERCEL_ENV: process.env.VERCEL_ENV,
 };
 const valid = { name: 'Test Visitor', email: 'visitor@example.com', message: 'A question about vocabulary.' };
 const request = (body: unknown) => new Request('http://localhost/api/contact', {
@@ -18,6 +19,7 @@ beforeEach(() => {
   delete process.env.RESEND_API_KEY;
   delete process.env.CONTACT_FROM_EMAIL;
   delete process.env.DATABASE_URL;
+  delete process.env.VERCEL_ENV;
   globalThis.fetch = async () => { throw new Error('Unexpected external request in test'); };
 });
 afterEach(() => {
@@ -122,4 +124,74 @@ test('optional archive failure does not throw after an email was accepted', asyn
 test('optional archive stops waiting for a stalled database', { timeout: 1000 }, async () => {
   const result = await archiveContactMessage(valid, () => new Promise(() => {}), 10);
   assert.equal(result, false);
+});
+
+test('configuration check reports missing names and preview scope without sending mail', async () => {
+  process.env.VERCEL_ENV = 'preview';
+  const res = await GET();
+  assert.equal(res.status, 503);
+  assert.equal(res.headers.get('cache-control'), 'no-store');
+  assert.deepEqual(await res.json(), {
+    configured: false,
+    missing: ['RESEND_API_KEY', 'CONTACT_FROM_EMAIL'],
+    environment: 'preview',
+  });
+});
+
+test('configuration check reads current settings and never exposes values', async () => {
+  assert.equal((await GET()).status, 503);
+  configureMail();
+  process.env.VERCEL_ENV = 'production';
+  const res = await GET();
+  assert.equal(res.status, 200);
+  assert.deepEqual(await res.json(), { configured: true, missing: [], environment: 'production' });
+});
+
+test('whitespace-only configuration is treated as missing before calling the provider', async () => {
+  process.env.RESEND_API_KEY = ' \n ';
+  process.env.CONTACT_FROM_EMAIL = '\t ';
+  assert.equal((await GET()).status, 503);
+  const res = await POST(request(valid));
+  assert.equal(res.status, 503);
+  assert.equal((await res.json()).code, 'CONTACT_NOT_CONFIGURED');
+});
+
+test('trims pasted whitespace from both email settings', async () => {
+  process.env.RESEND_API_KEY = ' test-only-placeholder\n';
+  process.env.CONTACT_FROM_EMAIL = ' EnglishMeter <contact@example.com>\n';
+  globalThis.fetch = async (_url, init) => {
+    assert.equal(new Headers(init?.headers).get('authorization'), 'Bearer test-only-placeholder');
+    assert.equal(JSON.parse(init?.body as string).from, 'EnglishMeter <contact@example.com>');
+    return Response.json({ id: 'local-test-id' });
+  };
+  assert.equal((await POST(request(valid))).status, 200);
+});
+
+test('provider failures have fixed diagnostic codes without private data in logs', async (t) => {
+  configureMail();
+  const log = t.mock.method(console, 'error', () => {});
+  const cases = [
+    ['invalid_api_Key', 'private key detail', 'CONTACT_AUTH_FAILED'],
+    ['invalid_api_key', 'private key detail', 'CONTACT_AUTH_FAILED'],
+    ['invalid_from_address', 'private sender detail', 'CONTACT_INVALID_SENDER'],
+    ['validation_error', 'The example.com domain is not verified.', 'CONTACT_SENDER_NOT_VERIFIED'],
+    ['validation_error', 'You can only send testing emails to your own email address.', 'CONTACT_TESTING_RESTRICTION'],
+    ['validation_error', 'private unrelated validation detail', 'CONTACT_PROVIDER_VALIDATION'],
+    ['rate_limit_exceeded', 'private rate detail', 'CONTACT_PROVIDER_LIMIT'],
+    ['application_error', 'private network detail', 'CONTACT_PROVIDER_UNAVAILABLE'],
+    ['unexpected-private-error-name', 'private response detail', 'CONTACT_PROVIDER_UNAVAILABLE'],
+  ];
+  for (const [name, message, code] of cases) {
+    globalThis.fetch = async () => Response.json({ name, message }, { status: 403 });
+    const res = await POST(request(valid));
+    assert.equal(res.status, 502);
+    const body = await res.json();
+    assert.equal(body.code, code);
+    assert.equal(body.ok, undefined);
+    assert.equal(JSON.stringify(body).includes(message), false);
+  }
+  const logged = JSON.stringify(log.mock.calls.map((call) => call.arguments));
+  assert.doesNotMatch(logged, /private|example\.com|test-only-placeholder|Test Visitor/);
+  assert.match(logged, /CONTACT_AUTH_FAILED/);
+  assert.match(logged, /CONTACT_SENDER_NOT_VERIFIED/);
 });

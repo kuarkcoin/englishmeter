@@ -56,3 +56,34 @@ or a challenge at the hosting edge before sustained public traffic.
 Run the contact tests with `npx tsx --test tests/contact.test.ts`. Provider requests
 are intercepted locally; this suite does not send real email. Full live delivery
 verification requires the production credentials and verified sender above.
+
+### If the contact form says delivery is unavailable
+
+Open `/api/contact` on the **same deployment** that showed the error. This GET
+request never sends email and returns only configuration presence, missing variable
+names and the Vercel environment (`preview`, `production`, or `unknown`). It is
+not cached. `configured: true` confirms values are present, not that the key or
+sender is authorized by Resend.
+
+If `missing` contains `RESEND_API_KEY` or `CONTACT_FROM_EMAIL`, add those variables
+to that Vercel environment and redeploy. Variables configured only for Production
+are not available to Preview deployments. Copy values without surrounding quotes;
+leading/trailing whitespace is trimmed by the application.
+
+If the settings are present but sending fails, inspect the failed POST request in
+Vercel's runtime logs. Search for `contact_email_error`. Logs contain a fixed code
+and deployment scope, never the API key, sender value or message contents:
+
+| Code | Action |
+| --- | --- |
+| `CONTACT_NOT_CONFIGURED` | Set the missing variables in the reported environment and redeploy. |
+| `CONTACT_AUTH_FAILED` | Check the Resend API key is active and permitted to send from the intended domain. |
+| `CONTACT_INVALID_SENDER` | Use a valid sender address on your verified domain in `CONTACT_FROM_EMAIL`. |
+| `CONTACT_SENDER_NOT_VERIFIED` | Finish verifying the sender domain in the Resend account that owns the key. |
+| `CONTACT_TESTING_RESTRICTION` | Use a verified domain sender; Resend's testing sender restricts recipients. |
+| `CONTACT_PROVIDER_LIMIT` | Check the Resend rate limit/quota before retrying. |
+| `CONTACT_PROVIDER_VALIDATION` | Review the Resend account's sending configuration. |
+| `CONTACT_PROVIDER_UNAVAILABLE` | Check Resend service availability and outbound connectivity. |
+
+Never paste API keys into chat or commit them to the repository. Cloud environment
+bindings and Vercel environment variables are separate settings.
