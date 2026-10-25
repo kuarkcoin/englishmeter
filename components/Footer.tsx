@@ -88,7 +88,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="mailto:admin@englishmeter.net"
+                href="mailto:muratot79@gmail.com"
                 aria-label="Email"
                 className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 text-slate-500 hover:border-slate-400 hover:text-slate-900 transition-colors"
               >

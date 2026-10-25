@@ -7,6 +7,7 @@ export default function Contact() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [website, setWebsite] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [feedback, setFeedback] = useState('');
 
@@ -14,10 +15,13 @@ export default function Contact() {
     setName('');
     setEmail('');
     setMessage('');
+    setWebsite('');
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (status === 'loading') return;
 
     if (!name.trim() || !email.trim() || !message.trim()) {
       setStatus('error');
@@ -36,31 +40,25 @@ export default function Contact() {
           name: name.trim(),
           email: email.trim().toLowerCase(),
           message: message.trim(),
+          website,
         }),
       });
 
-      // API yoksa → SADECE development'ta demo
-      if (res.status === 404) {
-        if (process.env.NODE_ENV === 'development') {
-          await new Promise((r) => setTimeout(r, 1300));
-          setStatus('success');
-          setFeedback('Message sent successfully! (Demo mode – no API)');
-          resetForm();
-          return;
-        }
-        throw new Error('Contact API not found.');
+      const data = await res.json().catch(() => null);
+      if (!res.ok || data?.ok !== true) {
+        throw new Error(
+          typeof data?.error === 'string'
+            ? data.error
+            : 'Your message could not be sent. Please try again or email us directly.'
+        );
       }
 
-      const data = await res.json().catch(() => ({} as any));
-      if (!res.ok) throw new Error(data?.error || 'Failed to send message');
-
       setStatus('success');
-      setFeedback('Thank you! We’ve received your message and will reply soon');
+      setFeedback('Thank you! Your message has been sent. We’ll reply to your email.');
       resetForm();
-    } catch (err: any) {
+    } catch (err: unknown) {
       setStatus('error');
-      setFeedback(err?.message || 'Connection error. Please try again.');
-      console.error('Contact form:', err);
+      setFeedback(err instanceof Error ? err.message : 'Connection error. Please try again.');
     }
   };
 
@@ -76,12 +74,12 @@ export default function Contact() {
             Have a question, suggestion, or just want to say hello? We’d love to hear from you!
           </p>
 
-          <div className="inline-flex items-center gap-3 bg-blue-50 px-6 py-4 rounded-2xl shadow-sm">
+          <div className="inline-flex flex-wrap items-center justify-center gap-3 bg-blue-50 px-6 py-4 rounded-2xl shadow-sm">
             <Mail className="w-6 h-6 text-blue-600" />
             <span className="text-gray-700">Email us directly:</span>
             <a
-              href="mailto: muratot79@gmail.com"
-              className="font-bold text-blue-600 hover:text-blue-800 underline transition"
+              href="mailto:muratot79@gmail.com"
+              className="break-all font-bold text-blue-600 hover:text-blue-800 underline transition"
             >
               muratot79@gmail.com
             </a>
@@ -90,7 +88,19 @@ export default function Contact() {
 
         <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-white/50 overflow-hidden">
           <div className="p-8 sm:p-12">
-            <form onSubmit={handleSubmit} className="space-y-7" noValidate>
+            <form onSubmit={handleSubmit} className="space-y-7" aria-busy={isLoading}>
+              <div className="hidden" aria-hidden="true">
+                <label htmlFor="website">Leave this field blank</label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                />
+              </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
                 <div>
                   <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
@@ -99,6 +109,9 @@ export default function Contact() {
                   <input
                     type="text"
                     id="name"
+                    name="name"
+                    autoComplete="name"
+                    maxLength={100}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
@@ -115,6 +128,9 @@ export default function Contact() {
                   <input
                     type="email"
                     id="email"
+                    name="email"
+                    autoComplete="email"
+                    maxLength={254}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -131,6 +147,8 @@ export default function Contact() {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
+                  maxLength={5000}
                   rows={7}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
@@ -170,6 +188,8 @@ export default function Contact() {
 
               {feedback && (
                 <div
+                  role={status === 'error' ? 'alert' : 'status'}
+                  aria-atomic="true"
                   className={`mt-6 p-5 rounded-2xl border flex gap-4 animate-in fade-in slide-in-from-bottom duration-500
                   ${status === 'success'
                       ? 'bg-green-50 border-green-200 text-green-800'

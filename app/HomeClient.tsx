@@ -3,6 +3,7 @@
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
+import { Mail } from 'lucide-react';
 import DarkToggle from '@/components/DarkToggle';
 import DiamondCard from '@/components/DiamondCard';
  
@@ -1381,14 +1382,21 @@ function HomeContent() {
   return (
     <div className="min-h-screen bg-[rgb(var(--bg))] text-[rgb(var(--text))]">
       <div className="sticky top-0 z-30 border-b border-[rgb(var(--border))] bg-[rgb(var(--bg))/0.82] backdrop-blur">
-        <div className="w-full max-w-6xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
-          <div className="font-black tracking-tight text-lg sm:text-xl">EnglishMeter</div>
-          <div className="flex items-center gap-3">
+        <div className="w-full max-w-6xl mx-auto px-4 py-4 grid grid-cols-[1fr_auto] items-center gap-3 sm:flex sm:justify-between">
+          <div className="order-1 shrink-0 font-black tracking-tight text-lg sm:text-xl">EnglishMeter</div>
+          <div className="order-3 col-span-2 flex items-center justify-end gap-3 sm:order-2 sm:ml-auto">
             <DarkToggle />
             <button onClick={() => startTest(quickTest.slug)} className="diamond-btn">
               Start Test
             </button>
           </div>
+          <Link
+            href="/contact"
+            className="order-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-blue-600 px-5 py-3 text-base font-bold text-white shadow-md shadow-blue-600/20 transition hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 sm:order-3 sm:px-6"
+          >
+            <Mail className="h-5 w-5" aria-hidden="true" />
+            Contact
+          </Link>
         </div>
       </div>
 
