@@ -1,15 +1,11 @@
+import { buildSeoMetadata } from '@/lib/seo';
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "SpeedRun Vocabulary Challenge | EnglishMeter",
-  description: "Race against the clock! You have 120 seconds to guess as many English words as possible. Test your reflexes and vocabulary size.",
-  keywords: ["Speedrun game", "English vocabulary test", "Fast paced word game", "YDS speed test", "EnglishMeter game"],
-  openGraph: {
-    title: "English Vocabulary SpeedRun ⚡",
-    description: "Can you beat the clock? Test your English speed now.",
-    type: "website",
-  },
-};
+export const metadata: Metadata = buildSeoMetadata({
+  "title": "English Vocabulary Speedrun",
+  "description": "Test your English vocabulary against the clock. Choose word meanings and review your score in the speedrun challenge.",
+  "path": "/speedrun"
+});
 
 export default function SpeedRunLayout({
   children,

@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useEffect, useMemo, useState, useCallback } from 'react';
+import React, { useEffect, useMemo, useState, useCallback, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Mail } from 'lucide-react';
+import { HOME_FAQ } from '@/lib/home-faq';
 import DarkToggle from '@/components/DarkToggle';
 import DiamondCard from '@/components/DiamondCard';
  
@@ -284,9 +285,21 @@ function safeJsonParse<T>(raw: string | null, fallback: T): T {
 }
 
 // --- ANA BİLEŞEN İÇERİĞİ ---
+function HomeQuerySync({ onChange }: { onChange: (query: string) => void }) {
+  const query = useSearchParams().toString();
+  useEffect(() => { onChange(query); }, [query, onChange]);
+  return null;
+}
+
 function HomeContent() {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const [query, setQuery] = useState('');
+  const [queryReady, setQueryReady] = useState(false);
+  const searchParams = useMemo(() => new URLSearchParams(query), [query]);
+  const syncQuery = useCallback((nextQuery: string) => {
+    setQuery(nextQuery);
+    setQueryReady(true);
+  }, []);
   const restartSlug = searchParams.get('restart');
 
   const [isRestarting, setIsRestarting] = useState(false);
@@ -384,7 +397,7 @@ function HomeContent() {
   }, []);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (!queryReady || typeof window === 'undefined') return;
 
     const urlLang = normalizeMeaningLanguage(searchParams.get('lang'));
     const storedLang = normalizeMeaningLanguage(localStorage.getItem(LS_MEANING_LANGUAGE));
@@ -398,7 +411,7 @@ function HomeContent() {
       params.set('lang', nextLanguage);
       router.replace(`?${params.toString()}`, { scroll: false });
     }
-  }, [router, searchParams]);
+  }, [router, searchParams, queryReady]);
 
   const handleMeaningLanguageChange = useCallback(
     (language: MeaningLanguageCode) => {
@@ -1381,6 +1394,7 @@ function HomeContent() {
 
   return (
     <div className="min-h-screen bg-[rgb(var(--bg))] text-[rgb(var(--text))]">
+      <Suspense fallback={null}><HomeQuerySync onChange={syncQuery} /></Suspense>
       <div className="sticky top-0 z-30 border-b border-[rgb(var(--border))] bg-[rgb(var(--bg))/0.82] backdrop-blur">
         <div className="w-full max-w-6xl mx-auto px-4 py-4 grid grid-cols-[1fr_auto] items-center gap-3 sm:flex sm:justify-between">
           <div className="order-1 shrink-0 font-black tracking-tight text-lg sm:text-xl">EnglishMeter</div>
@@ -2591,7 +2605,7 @@ function HomeContent() {
               <Link href="/flashcards" className="diamond-card p-4 hover:text-blue-600">English flashcards for YDS & TOEFL</Link>
               <Link href="/advanced-tests" className="diamond-card p-4 hover:text-blue-600">Advanced English tests (B2-C1)</Link>
               <Link href="/mistakes" className="diamond-card p-4 hover:text-blue-600">Mistake bank and weak-topic review</Link>
-              <Link href="/levels/B1" className="diamond-card p-4 hover:text-blue-600">B1 English grammar and vocabulary tests</Link>
+              <Link href="/levels/b1" className="diamond-card p-4 hover:text-blue-600">B1 English grammar and vocabulary tests</Link>
               <Link href="/speedrun" className="diamond-card p-4 hover:text-blue-600">Speedrun English challenge mode</Link>
               <Link href="/speaking" className="diamond-card p-4 hover:text-blue-600">AI speaking practice in English</Link>
             </div>
@@ -2600,22 +2614,12 @@ function HomeContent() {
           <section className="text-left w-full border-t border-[rgb(var(--border))] pt-12 mt-10">
             <h2 className="text-2xl font-black mb-5">FAQ</h2>
             <div className="space-y-4 text-sm">
-              <details className="diamond-card p-4" open>
-                <summary className="font-bold cursor-pointer">How accurate is the placement test?</summary>
-                <p className="mt-2 text-[rgb(var(--muted))]">It gives a practical CEFR estimate based on grammar and vocabulary performance, with instant feedback for each question.</p>
-              </details>
-              <details className="diamond-card p-4">
-                <summary className="font-bold cursor-pointer">What does the YDS pack include?</summary>
-                <p className="mt-2 text-[rgb(var(--muted))]">You can practice with full exam simulations and separate modules for reading, grammar, phrasal verbs, synonyms, and conjunctions.</p>
-              </details>
-              <details className="diamond-card p-4">
-                <summary className="font-bold cursor-pointer">How do mini tests help?</summary>
-                <p className="mt-2 text-[rgb(var(--muted))]">Mini tests keep your routine consistent with shorter timed sessions that focus on retention and repetition.</p>
-              </details>
-              <details className="diamond-card p-4">
-                <summary className="font-bold cursor-pointer">What is Mistake Bank used for?</summary>
-                <p className="mt-2 text-[rgb(var(--muted))]">It collects the questions you missed so you can review weak grammar and vocabulary points in one place.</p>
-              </details>
+              {HOME_FAQ.map(({ question, answer }, index) => (
+                <details key={question} className="diamond-card p-4" open={index === 0}>
+                  <summary className="font-bold cursor-pointer">{question}</summary>
+                  <p className="mt-2 text-[rgb(var(--muted))]">{answer}</p>
+                </details>
+              ))}
             </div>
           </section>
 
@@ -2630,16 +2634,7 @@ function HomeContent() {
             </div>
           </footer>
 
-          {/* Tiny SEO-friendly link list (optional, crawler sees) */}
-          <div className="sr-only">
-            <Link href="/mistakes">Mistake Bank</Link>
-            <Link href="/race">Race</Link>
-            <Link href="/speedrun">SpeedRun</Link>
-            <Link href="/flashcards">Flashcards</Link>
-            <Link href="/matching">Matching</Link>
-            <Link href="/verbsense">VerbSense</Link>
-            <Link href="/speaking">Speaking</Link>
-          </div>
+
         </div>
       </div>
     </div>

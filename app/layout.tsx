@@ -3,12 +3,13 @@ import './globals.css';
 import Footer from '@/components/Footer';
 import Script from 'next/script';
 import { Toaster } from 'sonner';
+import { SITE_URL } from '@/lib/seo';
 
 const siteName = 'EnglishMeter';
-const siteUrl = 'https://englishmeter.net';
+const siteUrl = SITE_URL;
 
 const siteDescription =
-  'Take our free English level test (A1–C2) and practice for YDS/YÖKDİL with our 3000 essential vocabulary words. Instant grammar & vocab results, no sign-up required.';
+  'Take our free English level test (A1–C2) and practice for YDS/YÖKDİL with academic vocabulary practice. Instant grammar & vocab results, no sign-up required.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -39,10 +40,6 @@ export const metadata: Metadata = {
     'online vocabulary quiz',
   ],
 
-  alternates: {
-    canonical: siteUrl,
-  },
-
   openGraph: {
     type: 'website',
     url: siteUrl,
@@ -66,10 +63,10 @@ export const metadata: Metadata = {
   },
 
   robots: {
-    index: true,
+    index: process.env.VERCEL_ENV !== 'preview',
     follow: true,
     googleBot: {
-      index: true,
+      index: process.env.VERCEL_ENV !== 'preview',
       follow: true,
       'max-image-preview': 'large',
       'max-snippet': -1,
@@ -101,44 +98,6 @@ export default function RootLayout({
     })();
   `;
 
-  const jsonLd = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: siteName,
-      url: siteUrl,
-      description: siteDescription,
-      inLanguage: 'en',
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: `${siteUrl}/?q={search_term_string}`,
-        'query-input': 'required name=search_term_string',
-      },
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'EducationalApplication',
-      name: 'EnglishMeter Level & Vocabulary Test',
-      url: siteUrl,
-      applicationCategory: 'EducationalApplication',
-      description: siteDescription,
-      inLanguage: 'en',
-      offers: {
-        '@type': 'Offer',
-        price: '0',
-        priceCurrency: 'USD',
-      },
-      about: [
-        'English placement test',
-        'CEFR level assessment',
-        'Grammar quizzes',
-        'Vocabulary testing',
-        'YDS Exam Preparation',
-        'YÖKDİL Vocabulary List',
-      ],
-      operatingSystem: 'Any',
-    },
-  ];
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -168,12 +127,6 @@ export default function RootLayout({
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1700979325865596"
           crossOrigin="anonymous"
           strategy="afterInteractive"
-        />
-
-        {/* --- JSON-LD SCHEMA --- */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
 
         <div className="flex-1">{children}</div>

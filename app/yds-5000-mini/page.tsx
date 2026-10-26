@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { buildSeoMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import ydsVocabulary from '@/data/yds_vocabulary.json';
 
@@ -33,31 +34,12 @@ export function generateMetadata({ searchParams }: PageProps): Metadata {
   const lang = normalizeLanguage(searchParams?.lang);
   const label = LANGUAGE_LABELS[lang];
 
-  return {
-    title: `YDS 5000 Mini Tests (${label} Meanings) | EnglishMeter`,
+  return buildSeoMetadata({
+    title: `YDS Vocabulary Mini Tests (${label} Meanings)`,
     description: LANGUAGE_DESCRIPTIONS[lang],
-    alternates: {
-      canonical: `/yds-5000-mini?lang=${lang}`,
-      languages: {
-        'tr-TR': '/yds-5000-mini?lang=tr',
-        'de-DE': '/yds-5000-mini?lang=de',
-        'es-ES': '/yds-5000-mini?lang=es',
-        'it-IT': '/yds-5000-mini?lang=it',
-        'fr-FR': '/yds-5000-mini?lang=fr',
-      },
-    },
-    openGraph: {
-      title: `YDS 5000 Mini Tests (${label} Meanings)`,
-      description: LANGUAGE_DESCRIPTIONS[lang],
-      url: `/yds-5000-mini?lang=${lang}`,
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `YDS 5000 Mini Tests (${label} Meanings)`,
-      description: LANGUAGE_DESCRIPTIONS[lang],
-    },
-  };
+    // Language selection changes quiz preferences; the hub itself is in English.
+    path: '/yds-5000-mini',
+  });
 }
 
 export default function Yds5000MiniPage({ searchParams }: PageProps) {
@@ -70,7 +52,7 @@ export default function Yds5000MiniPage({ searchParams }: PageProps) {
       <section className="mx-auto max-w-6xl px-4 py-10 md:py-14">
         <div className="rounded-3xl border border-orange-200 bg-white p-6 shadow-xl md:p-10">
           <div className="inline-flex rounded-full bg-orange-50 px-3 py-1 text-xs font-black uppercase tracking-wide text-orange-700">
-            SEO-friendly YDS vocabulary hub
+            Academic English vocabulary practice
           </div>
 
           <div className="mt-4 grid gap-8 lg:grid-cols-[1fr_280px] lg:items-end">

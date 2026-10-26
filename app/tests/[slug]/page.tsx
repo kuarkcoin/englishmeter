@@ -1,5 +1,8 @@
 // app/tests/[slug]/page.tsx
 import type { Metadata } from 'next';
+import { notFound, permanentRedirect } from 'next/navigation';
+import { buildSeoMetadata } from '@/lib/seo';
+import { getCanonicalTestSlug } from '../catalog';
 import { getQuestionsBySlug } from '@/lib/quizManager';
 import RaceQuiz from '@/components/RaceQuiz';
 
@@ -43,35 +46,32 @@ function toRaceQuestions(
   });
 }
 
-export function generateMetadata({ params, searchParams }: PageProps): Metadata {
-  const data = getQuestionsBySlug(params.slug, searchParams?.lang);
-  const qCount = data?.questions?.length ?? 0;
-
-  return {
-    title: data?.title ? `${data.title} | EnglishMeter` : 'Test | EnglishMeter',
-    description:
-      qCount > 0
-        ? `${qCount} soruluk ${data.title} testini çöz. Ücretsiz online İngilizce testi.`
-        : 'Ücretsiz online İngilizce testleri.',
-    alternates: { canonical: `/tests/${params.slug}` },
-  };
+function getTest({ params, searchParams }: PageProps) {
+  const canonicalSlug = getCanonicalTestSlug(params.slug);
+  if (!canonicalSlug) notFound();
+  if (canonicalSlug !== params.slug) {
+    const query = searchParams?.lang
+      ? `?${new URLSearchParams({ lang: searchParams.lang })}`
+      : '';
+    permanentRedirect(`/tests/${canonicalSlug}${query}`);
+  }
+  const data = getQuestionsBySlug(canonicalSlug, searchParams?.lang);
+  if (!data.questions.length) notFound();
+  return data;
 }
 
-export default function TestPage({ params, searchParams }: PageProps) {
-  const testData = getQuestionsBySlug(params.slug, searchParams?.lang);
+export function generateMetadata(props: PageProps): Metadata {
+  const data = getTest(props);
+  return buildSeoMetadata({
+    title: data.title,
+    description: `Practise with ${data.questions.length} questions in ${data.title}. Take the free timed English test and review your answers.`,
+    path: `/tests/${props.params.slug}`,
+  });
+}
 
-  if (!testData?.questions?.length) {
-    return (
-      <div className="em-page flex items-center justify-center p-6">
-        <div className="max-w-md w-full em-card rounded-xl p-6 text-center">
-          <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-50">Test bulunamadı</h1>
-          <p className="mt-2 text-slate-600 dark:text-slate-300">
-            Bu slug ile eşleşen bir test yok: <span className="font-mono">{params.slug}</span>
-          </p>
-        </div>
-      </div>
-    );
-  }
+export default function TestPage(props: PageProps) {
+  const { params } = props;
+  const testData = getTest(props);
 
   const raceQuestions = toRaceQuestions(testData);
 
@@ -80,18 +80,15 @@ export default function TestPage({ params, searchParams }: PageProps) {
 
   return (
     <div className="em-page">
-      {/* ✅ Google bot için görünür metin */}
-      <div className="sr-only">
-        <h1>{testData.title}</h1>
-        <p>
-          {raceQuestions.length} soruluk {testData.title} testini çözün. Süre {testData.duration} dakikadır.
-        </p>
-      </div>
-
       <div className="max-w-3xl mx-auto p-4 md:p-8">
         <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-slate-50 mb-4">
           {testData.title}
         </h1>
+
+        <p className="mb-6 text-slate-600 dark:text-slate-300">
+          Practise with {raceQuestions.length} questions. You have {testData.duration} minutes
+          to complete this test and check your answers.
+        </p>
 
         <RaceQuiz
           questions={raceQuestions}

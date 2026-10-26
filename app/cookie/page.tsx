@@ -1,11 +1,13 @@
+import { buildSeoMetadata } from '@/lib/seo';
 // app/cookie/page.tsx
 import React from 'react';
 import { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Cookie Policy | EnglishMeter',
-  description: 'Learn how EnglishMeter uses cookies to improve your experience.',
-};
+export const metadata: Metadata = buildSeoMetadata({
+  "title": "Cookie Policy",
+  "description": "Learn how EnglishMeter uses cookies for website preferences, analytics and advertising.",
+  "path": "/cookie"
+});
 
 export default function CookiePolicyPage() {
   return (

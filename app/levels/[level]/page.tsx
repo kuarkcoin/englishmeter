@@ -1,7 +1,6 @@
-'use client';
-
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
+import { buildSeoMetadata } from '@/lib/seo';
 
 import { a1Topics } from '@/data/levels/a1_topics';
 import { a2Topics } from '@/data/levels/a2_topics';
@@ -10,14 +9,30 @@ import { b2Topics } from '@/data/levels/b2_topics';
 import { c1Topics } from '@/data/levels/c1_topics';
 import { c2Topics } from '@/data/levels/c2_topics';
 
-type RouteParams = {
-  level?: string | string[];
-};
+type PageProps = { params: { level: string } };
 
-export default function LevelPage() {
-  const params = useParams() as RouteParams;
-  const levelParam = Array.isArray(params.level) ? params.level[0] : params.level || '';
-  const level = levelParam.toUpperCase(); // "A1", "A2", ..., "C2"
+function getLevel(value: string) {
+  const level = value.toLowerCase();
+  if (!/^(?:a1|a2|b1|b2|c1|c2)$/.test(level)) notFound();
+  if (value !== level) permanentRedirect(`/levels/${level}`);
+  return level.toUpperCase();
+}
+
+export function generateStaticParams() {
+  return ['a1', 'a2', 'b1', 'b2', 'c1', 'c2'].map((level) => ({ level }));
+}
+
+export function generateMetadata({ params }: PageProps) {
+  const level = getLevel(params.level);
+  return buildSeoMetadata({
+    title: `${level} English Grammar Tests and Practice`,
+    description: `Practise ${level} English grammar with a mixed level test and topic quizzes. Choose a grammar point, answer questions and check your progress.`,
+    path: `/levels/${level.toLowerCase()}`,
+  });
+}
+
+export default function LevelPage({ params }: PageProps) {
+  const level = getLevel(params.level);
 
   const isA1 = level === 'A1';
   const isA2 = level === 'A2';
@@ -89,12 +104,12 @@ export default function LevelPage() {
         )}
 
         <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
-          <h2 className="text-lg font-bold mb-3 text-slate-900 dark:text-slate-100">CEFR Level Cluster</h2>
+          <h2 className="text-lg font-bold mb-3 text-slate-900 dark:text-slate-100">Explore other CEFR levels</h2>
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 text-sm mb-4">
             {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((lvl) => (
               <Link
                 key={lvl}
-                href={`/levels/${lvl}`}
+                href={`/levels/${lvl.toLowerCase()}`}
                 className="text-center py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-blue-400"
               >
                 {lvl}

@@ -10,7 +10,7 @@ export type VocabItem = {
   translation?: string;
 };
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ?? 'https://englishmeter.net';
+export { SITE_URL } from '@/lib/seo';
 
 export function slugifyWord(word: string): string {
   return word

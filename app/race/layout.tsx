@@ -1,15 +1,11 @@
+import { buildSeoMetadata } from '@/lib/seo';
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Global English Race Arena | Live Competition",
-  description: "Compete with other English learners in real-time. Answer grammar and vocabulary questions correctly to win the race.",
-  keywords: ["Multiplayer English game", "Live quiz race", "Grammar competition", "EnglishMeter race", "Online exam battle"],
-  openGraph: {
-    title: "Global English Race 🏆",
-    description: "Join the arena and race against others with your English skills.",
-    type: "website",
-  },
-};
+export const metadata: Metadata = buildSeoMetadata({
+  "title": "English Quiz Race",
+  "description": "Practise English grammar and vocabulary in a quiz race. Answer questions, track progress and challenge your knowledge.",
+  "path": "/race"
+});
 
 export default function RaceLayout({
   children,

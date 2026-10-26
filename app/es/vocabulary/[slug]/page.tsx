@@ -1,44 +1,32 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import dailyData from '@/data/daily_en_es.json';
 import Link from 'next/link';
+import { buildSeoMetadata } from '@/lib/seo';
+import { spanishVocabulary } from '../data';
 
-// Slug oluşturma yardımcı fonksiyonu (Sitemap ile aynı mantıkta olmalı)
-const getSlug = (word: string) => 
-  word.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
-
-// SEO Ayarları (Metadata)
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const item = dailyData.find(v => getSlug(v.word) === params.slug);
-  if (!item) return { title: 'Palabra no encontrada' };
-
-  return {
-    title: `¿Qué significa ${item.word}? - Definición y Ejemplos`,
-    description: `Aprende el significado de "${item.word}" en español con frases de ejemplo. Mejora tu vocabulario en inglés con EnglishMeter.`,
-    alternates: {
-      languages: {
-        'es-ES': `https://englishmeter.net/es/vocabulary/${params.slug}`,
-        // Eğer bu kelime Türkçe setinde de varsa hreflang bağını burada kurabiliriz
-      },
-    },
-  };
+  const item = spanishVocabulary.find((entry) => entry.slug === params.slug);
+  if (!item) notFound();
+  return buildSeoMetadata({
+    title: `${item.word}: significado en español y ejemplos`,
+    description: `Aprende el significado de "${item.word}" en español: ${item.meaning}. Consulta una frase de ejemplo en inglés con su traducción.`,
+    path: `/es/vocabulary/${item.slug}`,
+    locale: 'es_ES',
+  });
 }
 
-// Tüm sayfaların build anında (Static Generation) oluşturulmasını sağlar
 export async function generateStaticParams() {
-  return dailyData.map((item) => ({
-    slug: getSlug(item.word),
-  }));
+  return spanishVocabulary.map(({ slug }) => ({ slug }));
 }
 
 export default function SpanishWordPage({ params }: { params: { slug: string } }) {
-  const item = dailyData.find(v => getSlug(v.word) === params.slug);
+  const item = spanishVocabulary.find((entry) => entry.slug === params.slug);
 
   if (!item) notFound();
 
   return (
-    <main className="min-h-screen bg-white py-12 px-4">
+    <main lang="es" className="min-h-screen bg-white py-12 px-4">
       <div className="max-w-3xl mx-auto">
         {/* Navigasyon */}
         <nav className="mb-8">
@@ -49,7 +37,7 @@ export default function SpanishWordPage({ params }: { params: { slug: string } }
 
         {/* Kelime Kartı */}
         <article className="bg-slate-50 rounded-3xl p-8 border border-slate-200 shadow-sm">
-          <h1 className="text-6xl font-black text-slate-900 mb-6">{item.word}</h1>
+          <h1 lang="en" className="text-6xl font-black text-slate-900 mb-6">{item.word}</h1>
           
           <div className="space-y-8">
             {/* Anlam Bölümü */}
@@ -65,7 +53,7 @@ export default function SpanishWordPage({ params }: { params: { slug: string } }
               <h2 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-4">
                 Ejemplo de uso
               </h2>
-              <p className="text-xl text-slate-800 font-medium italic mb-4 leading-relaxed">
+              <p lang="en" className="text-xl text-slate-800 font-medium italic mb-4 leading-relaxed">
                 "{item.s}"
               </p>
               <div className="pt-4 border-t border-slate-100">

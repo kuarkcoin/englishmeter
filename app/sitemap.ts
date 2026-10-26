@@ -1,93 +1,75 @@
 import type { MetadataRoute } from 'next';
-import { SITE_URL, getAllVocabulary, slugifyWord } from '@/lib/vocabulary';
-import dailyEnglishData from '@/data/dailyenglish.json';
+import { SITE_URL } from '@/lib/seo';
+import { getAllVocabulary, slugifyWord } from '@/lib/vocabulary';
+import { blogPosts } from '@/data/blogPosts';
+import { dailyTestCount } from '@/app/daily-english/data';
+import { spanishVocabulary } from '@/app/es/vocabulary/data';
+import { arabicVocabulary } from '@/app/ar/vocabulary/data';
+import { getCanonicalTestSlug } from '@/app/tests/catalog';
+import { a1Topics } from '@/data/levels/a1_topics';
+import { a2Topics } from '@/data/levels/a2_topics';
+import { b1Topics } from '@/data/levels/b1_topics';
+import { b2Topics } from '@/data/levels/b2_topics';
+import { c1Topics } from '@/data/levels/c1_topics';
+import { c2Topics } from '@/data/levels/c2_topics';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes: Array<{
-    path: string;
-    priority: number;
-    changeFrequency:
-      | 'always'
-      | 'hourly'
-      | 'daily'
-      | 'weekly'
-      | 'monthly'
-      | 'yearly'
-      | 'never';
-  }> = [
-    { path: '/', priority: 1.0, changeFrequency: 'daily' },
-    { path: '/about', priority: 0.5, changeFrequency: 'monthly' },
-    { path: '/blog', priority: 0.9, changeFrequency: 'weekly' },
-    { path: '/contact', priority: 0.4, changeFrequency: 'yearly' },
-    { path: '/flashcards', priority: 0.8, changeFrequency: 'weekly' },
-    { path: '/race', priority: 0.7, changeFrequency: 'weekly' },
-    { path: '/speedrun', priority: 0.7, changeFrequency: 'weekly' },
-    { path: '/speaking', priority: 0.7, changeFrequency: 'weekly' },
-    { path: '/matching', priority: 0.7, changeFrequency: 'weekly' },
-    { path: '/verbsense', priority: 0.7, changeFrequency: 'weekly' },
-    { path: '/mistakes', priority: 0.7, changeFrequency: 'weekly' },
-    { path: '/advanced-tests', priority: 0.8, changeFrequency: 'weekly' },
-    { path: '/phrasal-puzzle', priority: 0.7, changeFrequency: 'weekly' },
-    { path: '/vocabulary', priority: 0.9, changeFrequency: 'weekly' },
-    { path: '/vocabulary-tests', priority: 0.9, changeFrequency: 'weekly' },
-    { path: '/grammar', priority: 0.9, changeFrequency: 'weekly' },
-    { path: '/test-conditionals', priority: 0.8, changeFrequency: 'monthly' },
-    { path: '/test-perfect-tenses', priority: 0.8, changeFrequency: 'monthly' },
-    { path: '/test-relatives', priority: 0.8, changeFrequency: 'monthly' },
-    { path: '/yds-3750', priority: 0.8, changeFrequency: 'weekly' },
-    { path: '/daily-english', priority: 0.9, changeFrequency: 'daily' },
-    { path: '/tests/yds-grammar', priority: 0.8, changeFrequency: 'weekly' },
-    { path: '/tests/yds-reading', priority: 0.8, changeFrequency: 'weekly' },
-    { path: '/tests/yds-synonyms', priority: 0.8, changeFrequency: 'weekly' },
-    { path: '/tests/yds-phrasal-verbs', priority: 0.8, changeFrequency: 'weekly' },
-    { path: '/tests/yds-conjunctions', priority: 0.8, changeFrequency: 'weekly' },
-    { path: '/tests/ielts-grammar', priority: 0.8, changeFrequency: 'weekly' },
-    { path: '/tests/grammar-mega-test-100', priority: 0.8, changeFrequency: 'weekly' },
+  // Only canonical, public learning pages belong here. Session results, account
+  // pages, query-string filters and alternate URLs for the same test are omitted.
+  const staticPaths = [
+    '/', '/about', '/blog', '/contact', '/privacy', '/terms', '/cookie',
+    '/flashcards', '/race', '/speedrun', '/speaking', '/matching', '/verbsense',
+    '/advanced-tests', '/phrasal-puzzle', '/vocabulary', '/vocabulary-tests',
+    '/grammar', '/test-conditionals', '/test-perfect-tenses', '/test-relatives',
+    '/yds-3750', '/yds-5000-mini', '/daily-english',
+    '/vocab-finish', '/vocab-finish-ar', '/vocab-es',
+    '/ar/vocabulary', '/es/vocabulary',
   ];
 
-  const levelRoutes = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((level) => ({
-    path: `/levels/${level}`,
-    priority: 0.8,
-    changeFrequency: 'weekly' as const,
-  }));
+  const topicsByLevel = {
+    a1: a1Topics, a2: a2Topics, b1: b1Topics,
+    b2: b2Topics, c1: c1Topics, c2: c2Topics,
+  };
+  const levelPaths = Object.entries(topicsByLevel).flatMap(([level, topics]) => [
+    `/levels/${level}`,
+    ...topics.map((topic) => `/levels/${level}/${topic.slug}`),
+  ]);
 
-  const letterRoutes = 'abcdefghijklmnopqrstuvwxyz'.split('').map((letter) => ({
-    path: `/vocabulary/letter/${letter}`,
-    priority: 0.7,
-    changeFrequency: 'weekly' as const,
-  }));
+  const vocabulary = getAllVocabulary();
+  const letterPaths = 'abcdefghijklmnopqrstuvwxyz'.split('')
+    .filter((letter) => vocabulary.some((item) => item.word.toLowerCase().startsWith(letter)))
+    .map((letter) => `/vocabulary/letter/${letter}`);
+  const wordPaths = vocabulary.map((item) => `/vocabulary/${slugifyWord(item.word)}`);
+  const localizedWordPaths = [
+    ...spanishVocabulary.map((item) => `/es/vocabulary/${item.slug}`),
+    ...arabicVocabulary.map((item) => `/ar/vocabulary/${item.slug}`),
+  ];
 
-  const wordRoutes = getAllVocabulary().map((item) => ({
-    path: `/vocabulary/${slugifyWord(item.word)}`,
-    priority: 0.7,
-    changeFrequency: 'monthly' as const,
-  }));
-  const ydsMiniRoutes = Array.from({ length: 77 }, (_, i) => ({
-    path: `/tests/yds-3850-mini-${i + 1}`,
-    priority: 0.7,
-    changeFrequency: 'weekly' as const,
-  }));
-  const ydsExamRoutes = Array.from({ length: 32 }, (_, i) => ({
-    path: `/tests/yds-exam-test-${i + 1}`,
-    priority: 0.8,
-    changeFrequency: 'weekly' as const,
-  }));
-  const dailyCount = Math.ceil((dailyEnglishData as Array<unknown>).length / 50);
-  const dailyRoutes = Array.from({ length: dailyCount }, (_, i) => ({
-    path: `/daily-english/test-${i + 1}`,
-    priority: 0.8,
-    changeFrequency: 'daily' as const,
-  }));
+  const testSlugs = [
+    'yds-grammar', 'yds-reading', 'yds-synonyms', 'yds-phrasal-verbs',
+    'yds-conjunctions', 'ielts-grammar', 'grammar-mega-test-100',
+    'vocab-b1-c1-50', 'quick-placement',
+    'test-perfect-past', 'test-conditionals', 'test-relatives', 'test-articles',
+    'test-tenses-mixed', 'test-passive-voice', 'test-reported-speech',
+    'test-gerunds-infinitives', 'test-clauses-advanced', 'test-modals-advanced',
+    'test-prepositions-advanced',
+    ...Object.keys(topicsByLevel).map((level) => `level-${level}`),
+    // These first 77 tests also have 3750/5000 aliases using identical seeds.
+    // Keep the established 3850 URLs canonical; only 78–100 add distinct sets.
+    ...Array.from({ length: 77 }, (_, i) => `yds-3850-mini-${i + 1}`),
+    ...Array.from({ length: 23 }, (_, i) => `yds-5000-mini-${i + 78}`),
+    ...Array.from({ length: 32 }, (_, i) => `yds-exam-test-${i + 1}`),
+  ];
+  const dailyPaths = Array.from({ length: dailyTestCount }, (_, i) => `/daily-english/test-${i + 1}`);
 
-  const allRoutes = [...staticRoutes, ...levelRoutes, ...letterRoutes, ...wordRoutes, ...ydsMiniRoutes, ...ydsExamRoutes, ...dailyRoutes];
+  const paths = [
+    ...staticPaths, ...levelPaths, ...letterPaths, ...wordPaths, ...localizedWordPaths,
+    ...testSlugs.map(getCanonicalTestSlug).filter((slug): slug is string => slug !== null)
+      .map((slug) => `/tests/${slug}`), ...dailyPaths,
+    ...blogPosts.map((post) => `/blog/${post.slug}`),
+  ];
 
-  const uniqueRoutes = Array.from(
-    new Map(allRoutes.map((route) => [route.path, route])).values()
-  );
-
-  return uniqueRoutes.map((route) => ({
-    url: `${SITE_URL}${route.path}`,
-    changeFrequency: route.changeFrequency,
-    priority: route.priority,
-  }));
+  // Do not invent last-modified dates: only publish a timestamp when the source
+  // records a real content update. The URL list stays stable between builds.
+  return Array.from(new Set(paths)).map((path) => ({ url: `${SITE_URL}${path}` }));
 }

@@ -1,15 +1,11 @@
+import { buildSeoMetadata } from '@/lib/seo';
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Phrasal Verbs Puzzle Game | Match & Learn",
-  description: "A fun way to learn phrasal verbs. Match the verbs with their correct particles and meanings. Essential for mastering advanced English.",
-  keywords: ["Phrasal verbs game", "English puzzle", "Verb particles", "YDS phrasal verbs", "Fun English learning"],
-  openGraph: {
-    title: "Phrasal Verbs Puzzle 🧩",
-    description: "Crack the code of English phrasal verbs with this puzzle game.",
-    type: "website",
-  },
-};
+export const metadata: Metadata = buildSeoMetadata({
+  "title": "English Phrasal Verb Puzzle",
+  "description": "Match English verbs with their particles and meanings. Practise common phrasal verbs in an interactive puzzle.",
+  "path": "/phrasal-puzzle"
+});
 
 export default function PhrasalPuzzleLayout({
   children,

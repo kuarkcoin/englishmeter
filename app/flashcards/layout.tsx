@@ -1,69 +1,12 @@
+import { buildSeoMetadata } from '@/lib/seo';
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  // Temel URL (Canonical yapısı için gerekli)
-  metadataBase: new URL('https://englishmeter.net'),
-
-  // Tarayıcı sekme başlığı
-  title: "YDS & IELTS Yapay Zeka Destekli Kelime Kartları | EnglishMeter",
-  
-  // Google arama sonuçlarındaki açıklama
-  description: "3850 akademik kelimeyi Gemini AI destekli örnek cümleler ve sesli telaffuzla öğrenin. YDS, YÖKDİL ve IELTS hazırlığı için en gelişmiş interaktif flaş kartlar.",
-  
-  // Anahtar kelimeler
-  keywords: [
-    "YDS kelime kartları", 
-    "IELTS vocabulary flashcards", 
-    "İngilizce kelime ezberleme", 
-    "AI English learning", 
-    "YÖKDİL kelime listesi",
-    "akademik ingilizce kelimeler"
-  ],
-
-  // Google botlarına talimatlar
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-
-  // Kopya içerik koruması
-  alternates: {
-    canonical: '/flashcards',
-  },
-
-  // Sosyal Medya Paylaşım Görünümü (Facebook, WhatsApp, LinkedIn)
-  openGraph: {
-    title: "AI Destekli İngilizce Kelime Ezberleme 🧠",
-    description: "Gemini AI ile her kelimeye özel örnek cümleler ve Türkçe çeviriler. EnglishMeter ile kelime hazineni uçur!",
-    url: 'https://englishmeter.net/flashcards',
-    siteName: 'EnglishMeter',
-    locale: 'tr_TR',
-    type: 'website',
-    images: [
-      {
-        url: '/flashcards/opengraph-image',
-        width: 1200,
-        height: 630,
-        alt: 'EnglishMeter AI Flashcards',
-      },
-    ],
-  },
-
-  // Twitter / X Kart Görünümü
-  twitter: {
-    card: 'summary_large_image',
-    title: 'İngilizce Kelime Ezberlemede Yapay Zeka Devrimi',
-    description: 'Kelimeyi gör, AI cümleyi kursun, sesli dinle ve kalıcı öğren!',
-    images: ['/flashcards/opengraph-image'],
-  },
-};
+export const metadata: Metadata = buildSeoMetadata({
+  "title": "English Vocabulary Flashcards",
+  "description": "Study English vocabulary with meanings, pronunciation and example sentences. Review academic words for YDS, YÖKDİL and IELTS practice.",
+  "path": "/flashcards",
+  "image": "/flashcards/opengraph-image"
+});
 
 export default function FlashcardsLayout({
   children,
@@ -73,6 +16,16 @@ export default function FlashcardsLayout({
   // Göz yormayan, odaklanmayı artıran çalışma ortamı rengi (Emerald/Slate)
   return (
     <section className="min-h-screen bg-emerald-50 text-slate-800 selection:bg-emerald-200">
+      <header className="mx-auto max-w-2xl px-4 pt-8 pb-4 text-center">
+        <h1 className="text-2xl sm:text-3xl font-bold">English Vocabulary Flashcards</h1>
+        <p className="mt-3 text-slate-600">
+          Review English words and their Turkish meanings. Tap a card to reveal its
+          meaning, listen to pronunciation and continue through your saved deck.
+        </p>
+        <a href="/vocabulary" className="mt-3 inline-block font-semibold text-emerald-700 underline">
+          Browse the vocabulary dictionary
+        </a>
+      </header>
       {/* Buraya Header veya Navigasyon eklemek istersen ekleyebilirsin.
          Şu an sadece içeriği render ediyor.
       */}

@@ -1,11 +1,13 @@
+import { buildSeoMetadata } from '@/lib/seo';
 // app/about/page.tsx
 import React from 'react';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'About Us | EnglishMeter',
-  description: 'Learn about EnglishMeter’s mission to provide free, high-quality English level tests and vocabulary practice.',
-};
+export const metadata: Metadata = buildSeoMetadata({
+  "title": "About EnglishMeter",
+  "description": "Learn about EnglishMeter’s free English level practice, academic vocabulary exercises and grammar learning tools.",
+  "path": "/about"
+});
 
 export default function AboutPage() {
   return (
@@ -36,7 +38,7 @@ export default function AboutPage() {
               </div>
               <h2 className="text-3xl font-bold mb-4">Global Standard</h2>
               <p className="text-blue-100 text-lg leading-relaxed">
-                We strictly follow the CEFR (Common European Framework of Reference for Languages) standards. Whether you are A1 or C2, our metrics are designed to be accurate and recognized worldwide.
+                Our practice is organized around CEFR levels from A1 to C2. Results offer a study guide based on your answers; they are not an official language certificate or a substitute for a full proficiency assessment.
               </p>
             </div>
 
@@ -95,7 +97,7 @@ export default function AboutPage() {
           <p className="text-slate-300 mb-8 max-w-xl mx-auto">
             We are always open to feedback and collaboration opportunities.
           </p>
-          <a href="mailto:support@englishmeter.net" className="inline-flex items-center justify-center px-8 py-3 text-base font-semibold text-slate-900 bg-white rounded-full hover:bg-blue-50 transition-colors">
+          <a href="mailto:muratot79@gmail.com" className="inline-flex items-center justify-center px-8 py-3 text-base font-semibold text-slate-900 bg-white rounded-full hover:bg-blue-50 transition-colors">
             Contact Support
           </a>
         </div>

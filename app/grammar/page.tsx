@@ -1,12 +1,13 @@
+import { buildSeoMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SITE_URL } from '@/lib/vocabulary';
 
-export const metadata: Metadata = {
-  title: 'English Grammar Practice Hub | Tests by topic',
-  description: 'Practice English grammar by topic including conditionals, perfect tenses, and relative clauses.',
-  alternates: { canonical: `${SITE_URL}/grammar` },
-};
+export const metadata: Metadata = buildSeoMetadata({
+  "title": "English Grammar Tests by Topic",
+  "description": "Practise English conditionals, perfect tenses and relative clauses. Choose a grammar topic, take a test and review your answers.",
+  "path": "/grammar"
+});
 
 export default function GrammarHubPage() {
   return (

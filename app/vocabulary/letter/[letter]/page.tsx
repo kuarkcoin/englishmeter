@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { SITE_URL, getAllVocabulary, slugifyWord } from '@/lib/vocabulary';
+import { notFound, permanentRedirect } from 'next/navigation';
+import { buildSeoMetadata } from '@/lib/seo';
+import { getAllVocabulary, slugifyWord } from '@/lib/vocabulary';
 
 type PageProps = { params: { letter: string } };
 
@@ -8,17 +10,23 @@ export function generateStaticParams() {
   return 'abcdefghijklmnopqrstuvwxyz'.split('').map((letter) => ({ letter }));
 }
 
+function normalizedLetter(value: string) {
+  if (!/^[a-z]$/i.test(value)) notFound();
+  if (value !== value.toLowerCase()) permanentRedirect(`/vocabulary/letter/${value.toLowerCase()}`);
+  return value;
+}
+
 export function generateMetadata({ params }: PageProps): Metadata {
-  const letter = params.letter.toLowerCase();
-  return {
-    title: `Words starting with ${letter.toUpperCase()} | English Vocabulary Index`,
-    description: `Browse English words that start with ${letter.toUpperCase()} and open each word page for meaning, examples, and synonyms.`,
-    alternates: { canonical: `${SITE_URL}/vocabulary/letter/${letter}` },
-  };
+  const letter = normalizedLetter(params.letter);
+  return buildSeoMetadata({
+    title: `English Words Starting with ${letter.toUpperCase()}`,
+    description: `Browse English words beginning with ${letter.toUpperCase()}. Find Turkish meanings, example sentences and vocabulary practice.`,
+    path: `/vocabulary/letter/${letter}`,
+  });
 }
 
 export default function LetterDetailPage({ params }: PageProps) {
-  const letter = params.letter.toLowerCase();
+  const letter = normalizedLetter(params.letter);
   const filteredWords = getAllVocabulary()
     .filter((v) => v.word.toLowerCase().startsWith(letter))
     .sort((a, b) => a.word.localeCompare(b.word));

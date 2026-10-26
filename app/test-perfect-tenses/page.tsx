@@ -1,12 +1,13 @@
+import { buildSeoMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SITE_URL } from '@/lib/vocabulary';
 
-export const metadata: Metadata = {
-  title: 'Perfect Tenses Test | English grammar practice',
-  description: 'Practice present, past, and future perfect tense usage with focused grammar drills.',
-  alternates: { canonical: `${SITE_URL}/test-perfect-tenses` },
-};
+export const metadata: Metadata = buildSeoMetadata({
+  "title": "English Perfect Tenses Practice",
+  "description": "Review present perfect, past perfect and future perfect forms, then practise choosing the correct English tense.",
+  "path": "/test-perfect-tenses"
+});
 
 export default function TestPerfectTensesPage() {
   return (

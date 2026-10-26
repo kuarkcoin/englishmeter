@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "English Practice Test | EnglishMeter",
-  description: "Taking an online English test. Focus on your questions and get your instant score.",
-  robots: {
-    index: false, // Test çözme ekranının kendisinin Google'da çıkmasına gerek yok, sonuçlar çıksın.
-    follow: false,
-  },
+  title: "English Practice Test",
+  description: "Take an English practice test and review your answers.",
+  robots: { index: false, follow: true },
 };
 
 export default function QuizLayout({

@@ -1,7 +1,7 @@
 # Üretim incelemesi
 
 İncelenen temel: `0f7a6e0c97233902c00533f9a5693e8d6c2df06f`.
-Bu not, iletişim düzeltmesi dışındaki bulguları kaydeder; aşağıdaki sorunlar bu değişiklikte düzeltilmedi.
+Bu not, iletişim düzeltmesi dışındaki bulguları kaydeder. Sonraki SEO çalışmasıyla günlük test yönlendirmesi ve İspanyolca sözlük dizini düzeltildi; ilk iki güvenlik bulgusu ayrı çalışma gerektiriyor.
 
 ## Öncelikli sorunlar
 
@@ -15,13 +15,12 @@ Bu not, iletişim düzeltmesi dışındaki bulguları kaydeder; aşağıdaki sor
    kullanıldığından, kimlik doğrulaması, giriş denetimi, sunucuda puan hesaplama
    ve aynı denemenin tekrar kaydedilmesini engelleme eklenmeli.
    Gerçek veritabanına istek veya kayıt yapılmadı.
-3. **Daily English bağlantıları bozuk.** Yerel uygulamada
-   `/daily-english/test-2` HTTP 404 döndü. `app/daily-english/test-[id]/page.tsx`
-   desteklenen bir Next.js dinamik segment biçimi değil. `[slug]` segmentiyle
-   `test-<numara>` ayrıştırılmalı veya bağlantılar `/daily-english/[id]` düzenine taşınmalı.
-4. **İspanyolca sözlük dizini eksik.** `/es/vocabulary` yerel uygulamada HTTP 404
-   döndü; kelime detayları bu adrese geri bağlantı veriyor. Dizin sayfası eklenmeli
-   veya mevcut İspanyolca çalışma sayfasına yönlendirilmeli.
+3. **Düzeltildi — Daily English bağlantıları.** Önceki sürümde
+   `/daily-english/test-2` HTTP 404 dönüyordu. `app/daily-english/test-[id]/page.tsx`
+   desteklenen bir Next.js dinamik segment biçimi değildi. Artık `[slug]` segmenti
+   `test-<numara>` değerini doğruluyor; son kısmi set dahil 43 test mevcut.
+4. **Düzeltildi — İspanyolca sözlük dizini.** `/es/vocabulary` eklendi;
+   kelime detayları, dizin bağlantıları ve sitemap aynı adresleri kullanıyor.
 
 ## Sonraki eklemeler
 

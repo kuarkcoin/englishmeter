@@ -404,7 +404,7 @@ export default function MatchingPage() {
               ← Home
             </Link>
             <div>
-              <div className="text-lg font-black text-slate-900">Matching Game</div>
+              <h1 className="text-lg font-black text-slate-900">Matching Game</h1>
               <div className="text-xs text-slate-500">
                 Sol EN • Sağ TR • Tap veya Swipe (EN seç → TR kartı sağa kaydır)
               </div>

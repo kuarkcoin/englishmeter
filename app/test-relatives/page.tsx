@@ -1,12 +1,13 @@
+import { buildSeoMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SITE_URL } from '@/lib/vocabulary';
 
-export const metadata: Metadata = {
-  title: 'Relative Clauses Test | English grammar practice',
-  description: 'Practice defining and non-defining relative clauses with structured English grammar questions.',
-  alternates: { canonical: `${SITE_URL}/test-relatives` },
-};
+export const metadata: Metadata = buildSeoMetadata({
+  "title": "English Relative Clauses Practice",
+  "description": "Review defining and non-defining relative clauses and practise choosing relative pronouns in English sentences.",
+  "path": "/test-relatives"
+});
 
 export default function TestRelativesPage() {
   return (

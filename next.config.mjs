@@ -13,6 +13,13 @@ const nextConfig = {
     cpus: 1 
   },
 
+  async headers() {
+    if (process.env.VERCEL_ENV === 'preview') {
+      return [{ source: '/:path*', headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }] }];
+    }
+    return [{ source: '/api/:path*', headers: [{ key: 'X-Robots-Tag', value: 'noindex' }] }];
+  },
+
   // 2. YÖNLENDİRME MANTIĞI
   async redirects() {
     return [
@@ -35,4 +42,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;

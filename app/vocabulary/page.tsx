@@ -1,37 +1,24 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { SITE_URL, getAllVocabulary, slugifyWord } from '@/lib/vocabulary';
+import { buildSeoMetadata } from '@/lib/seo';
+import { getAllVocabulary, slugifyWord } from '@/lib/vocabulary';
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: 'English Vocabulary Hub | Meanings, examples and exam-focused word practice',
-  description:
-    'Explore English vocabulary with A-Z word pages, meanings, examples, synonyms, and links to flashcards and vocabulary tests.',
-  alternates: { canonical: `${SITE_URL}/vocabulary` },
-  openGraph: {
-    title: 'English Vocabulary Hub | EnglishMeter',
-    description:
-      'Discover vocabulary pages with definitions, examples, related words, and practice links for long-term retention.',
-    url: `${SITE_URL}/vocabulary`,
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary',
-    title: 'English Vocabulary Hub | EnglishMeter',
-    description: 'A-Z vocabulary hub with definitions, examples, synonyms, and practice pathways.',
-  },
-};
+export const metadata: Metadata = buildSeoMetadata({
+  title: 'English Vocabulary: Turkish Meanings and Examples',
+  description: 'Browse the A–Z English vocabulary index with Turkish meanings, example sentences and links to flashcards and vocabulary tests.',
+  path: '/vocabulary',
+});
 
 export default function VocabularyHubPage() {
   const words = getAllVocabulary();
   const popularWords = words.slice(0, 18);
 
   const categoryGroups = {
-    'YDS Academic Focus': words.slice(0, 8),
-    'High-Frequency Academic Words': words.slice(8, 16),
-    'Advanced Exam Vocabulary': words.slice(16, 24),
+    'Word selection 1': words.slice(0, 8),
+    'Word selection 2': words.slice(8, 16),
+    'Word selection 3': words.slice(16, 24),
   };
 
   return (
@@ -39,7 +26,7 @@ export default function VocabularyHubPage() {
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-black text-slate-900 mb-4">English Vocabulary Hub</h1>
         <p className="text-slate-700 mb-8 max-w-3xl">
-          Build your vocabulary with a hub-and-spoke structure: start from this hub, open individual word pages, and continue through related words for deeper retention. Each vocabulary page includes meaning, examples, synonyms, and practice routes.
+          Choose a letter to find English words with Turkish meanings. Open a word page to review examples, then use flashcards or a vocabulary test to practise what you have learned.
         </p>
 
         <section className="bg-white border border-slate-200 rounded-2xl p-6 mb-8">
@@ -75,7 +62,7 @@ export default function VocabularyHubPage() {
         </section>
 
         <section className="bg-white border border-slate-200 rounded-2xl p-6 mb-8">
-          <h2 className="text-2xl font-bold mb-4">Popular vocabulary pages</h2>
+          <h2 className="text-2xl font-bold mb-4">Vocabulary to get you started</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {popularWords.map((item) => (
               <Link
@@ -91,8 +78,8 @@ export default function VocabularyHubPage() {
         </section>
 
         <section className="bg-gradient-to-r from-blue-50 to-emerald-50 border border-blue-100 rounded-2xl p-6">
-          <h2 className="text-2xl font-bold mb-3">Vocabulary cluster links</h2>
-          <p className="text-slate-700 mb-4">Move through this cluster to strengthen topical authority and user pathways.</p>
+          <h2 className="text-2xl font-bold mb-3">Keep practising</h2>
+          <p className="text-slate-700 mb-4">Review words with flashcards or test your recall with a vocabulary quiz.</p>
           <div className="flex flex-wrap gap-3">
             <Link href="/vocabulary" className="px-4 py-2 rounded-xl bg-white border border-slate-300 font-semibold">Vocabulary Hub</Link>
             <Link href="/flashcards" className="px-4 py-2 rounded-xl bg-emerald-600 text-white font-semibold">Flashcards</Link>

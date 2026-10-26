@@ -1,12 +1,13 @@
+import { buildSeoMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SITE_URL } from '@/lib/vocabulary';
 
-export const metadata: Metadata = {
-  title: 'Vocabulary Tests | Timed English word practice',
-  description: 'Practice vocabulary with timed tests, flashcards, and exam-focused drills on EnglishMeter.',
-  alternates: { canonical: `${SITE_URL}/vocabulary-tests` },
-};
+export const metadata: Metadata = buildSeoMetadata({
+  "title": "English Vocabulary Tests",
+  "description": "Choose academic vocabulary practice tests, build word knowledge and review your English vocabulary answers.",
+  "path": "/vocabulary-tests"
+});
 
 export default function VocabularyTestsPage() {
   return (

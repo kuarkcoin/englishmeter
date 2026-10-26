@@ -1,12 +1,13 @@
+import { buildSeoMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SITE_URL } from '@/lib/vocabulary';
 
-export const metadata: Metadata = {
-  title: 'Conditionals Test | English grammar practice',
-  description: 'Practice English conditionals with a focused grammar test and internal learning links.',
-  alternates: { canonical: `${SITE_URL}/test-conditionals` },
-};
+export const metadata: Metadata = buildSeoMetadata({
+  "title": "English Conditionals Practice",
+  "description": "Practise zero, first, second and third conditional sentences. Review grammar examples and take an English conditionals test.",
+  "path": "/test-conditionals"
+});
 
 export default function TestConditionalsPage() {
   return (

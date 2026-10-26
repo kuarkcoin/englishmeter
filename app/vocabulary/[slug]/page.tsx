@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { buildSeoMetadata, serializeJsonLd } from '@/lib/seo';
 import { notFound } from 'next/navigation';
 import {
   SITE_URL,
   getAllVocabulary,
   getRelatedWords,
-  getSentenceVariants,
   getSynonyms,
   getVocabularyMap,
   slugifyWord,
@@ -20,33 +20,13 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: PageProps): Metadata {
   const item = getVocabularyMap().get(params.slug);
 
-  if (!item) {
-    return {
-      title: 'Word not found | EnglishMeter',
-      robots: { index: false, follow: false },
-    };
-  }
-
-  const canonical = `${SITE_URL}/vocabulary/${params.slug}`;
-
-  return {
-    metadataBase: new URL(SITE_URL),
-    title: `${item.word} meaning | English definition, synonyms & examples`,
-    description: `Learn the meaning of ${item.word}, example sentences, synonyms and how to use it in English.`,
-    alternates: { canonical },
-    openGraph: {
-      type: 'article',
-      url: canonical,
-      title: `${item.word} meaning | English definition, synonyms & examples`,
-      description: `Learn the meaning of ${item.word}, example sentences, synonyms and how to use it in English.`,
-      siteName: 'EnglishMeter',
-    },
-    twitter: {
-      card: 'summary',
-      title: `${item.word} meaning | English definition, synonyms & examples`,
-      description: `Learn the meaning of ${item.word}, example sentences, synonyms and how to use it in English.`,
-    },
-  };
+  if (!item) notFound();
+  const hasExample = Boolean(item.s || item.sentence);
+  return buildSeoMetadata({
+    title: `${item.word}: Turkish meaning${hasExample ? ' and English examples' : ''}`,
+    description: `${item.word}: ${item.meaning}. Review the Turkish meaning${hasExample ? ' and an English example sentence' : ''}, explore related vocabulary and practise with flashcards.`,
+    path: `/vocabulary/${params.slug}`,
+  });
 }
 
 export default function VocabularyWordPage({ params }: PageProps) {
@@ -56,7 +36,8 @@ export default function VocabularyWordPage({ params }: PageProps) {
   if (!item) notFound();
 
   const pool = getAllVocabulary();
-  const examples = getSentenceVariants(item).slice(0, 3);
+  const example = item.s || item.sentence;
+  const translation = item.t || item.translation;
   const synonyms = getSynonyms(item, pool);
   const relatedWords = getRelatedWords(item, pool);
   const canonical = `${SITE_URL}/vocabulary/${params.slug}`;
@@ -76,7 +57,7 @@ export default function VocabularyWordPage({ params }: PageProps) {
 
   return (
     <main className="min-h-screen bg-slate-50 py-10 px-4">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
 
       <article className="max-w-4xl mx-auto">
         <nav className="mb-6 text-sm flex flex-wrap gap-2 text-slate-600">
@@ -88,30 +69,34 @@ export default function VocabularyWordPage({ params }: PageProps) {
         </nav>
 
         <h1 className="text-3xl sm:text-4xl font-black text-slate-900 mb-3">
-          {item.word} meaning and example sentences
+          {item.word}: Turkish meaning
         </h1>
 
         <p className="text-slate-700 leading-relaxed mb-8">
-          Learning <strong>{item.word}</strong> in context helps you remember meaning, use natural sentence patterns, and improve academic English performance. On this page, you will find a clear definition, practical examples, synonyms, and related words so you can build stronger vocabulary connections for exams and daily communication.
+          Learning <strong>{item.word}</strong> in context helps you remember meaning, use natural sentence patterns, and improve academic English performance. On this page, you will find the Turkish meaning and vocabulary practice links so you can build stronger vocabulary connections for exams and daily communication.
         </p>
 
         <div className="grid gap-6">
           <section className="bg-white rounded-2xl border border-slate-200 p-6">
-            <h2 className="text-xl font-bold mb-2">Definition</h2>
+            <h2 className="text-xl font-bold mb-2">Turkish meaning</h2>
             <p className="text-lg text-slate-800"><strong>{item.word}</strong>: {item.meaning}</p>
           </section>
 
           <section className="bg-white rounded-2xl border border-slate-200 p-6">
-            <h2 className="text-xl font-bold mb-3">Example sentences</h2>
-            <ul className="list-disc pl-5 space-y-2 text-slate-700">
-              {examples.map((line) => (
-                <li key={line}>{line}</li>
-              ))}
-            </ul>
+            <h2 className="text-xl font-bold mb-3">{example ? 'Example sentence' : 'Writing practice'}</h2>
+            {example ? (
+              <>
+                <p className="text-slate-700">{example}</p>
+                {translation && <p lang="tr" className="mt-2 text-slate-600">{translation}</p>}
+              </>
+            ) : (
+              <p className="text-slate-700">Write a sentence using <strong>{item.word}</strong>, then check that its meaning matches the Turkish translation above.</p>
+            )}
           </section>
 
           <section className="bg-white rounded-2xl border border-slate-200 p-6">
-            <h2 className="text-xl font-bold mb-3">Synonyms</h2>
+            <h2 className="text-xl font-bold mb-3">More vocabulary to explore</h2>
+            <p className="mb-3 text-sm text-slate-600">These study links share spelling or translation features. They are not necessarily synonyms.</p>
             <div className="flex flex-wrap gap-2">
               {synonyms.length ? (
                 synonyms.map((syn) => (
@@ -124,7 +109,7 @@ export default function VocabularyWordPage({ params }: PageProps) {
                   </Link>
                 ))
               ) : (
-                <span className="text-slate-600 text-sm">Synonym suggestions will expand as the dataset grows.</span>
+                <span className="text-slate-600 text-sm">Explore more words through the vocabulary index.</span>
               )}
             </div>
           </section>
