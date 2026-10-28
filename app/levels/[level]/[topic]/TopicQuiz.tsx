@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import React, { useMemo, useState } from 'react';
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import { prepareTopicQuestions, type TopicQuestion } from '@/lib/topic-quiz';
 
 import { a1Topics } from '@/data/levels/a1_topics';
 import { a2Topics } from '@/data/levels/a2_topics';
@@ -23,33 +24,32 @@ type RouteParams = {
   topic?: string | string[];
 };
 
-export default function LevelTopicPage() {
-  const params = useParams() as RouteParams;
-  const router = useRouter();
-
-  const levelParam = Array.isArray(params.level) ? params.level[0] : params.level || '';
-  const topicParam = Array.isArray(params.topic) ? params.topic[0] : params.topic || '';
-
-  const levelKey = levelParam.toLowerCase(); // 'a1', 'a2', 'b1', 'b2', 'c1', 'c2'
-  const levelLabel = levelKey.toUpperCase(); // 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'
-
-  const topicsByLevel: Record<string, any[]> = {
+type Topic = { slug: string; title: string; description: string };
+type QuestionWithTopic = TopicQuestion & { topic: string };
+const topicsByLevel: Record<string, Topic[]> = {
     a1: a1Topics,
     a2: a2Topics,
     b1: b1Topics,
     b2: b2Topics,
     c1: c1Topics,
     c2: c2Topics,
-  };
+};
 
-  const questionsByLevel: Record<string, any[]> = {
+const questionsByLevel: Record<string, QuestionWithTopic[]> = {
     a1: a1Questions,
     a2: a2Questions,
     b1: b1Questions,
     b2: b2Questions,
     c1: c1Questions,
     c2: c2Questions,
-  };
+};
+
+export default function LevelTopicPage() {
+  const params = useParams() as RouteParams;
+  const levelParam = Array.isArray(params.level) ? params.level[0] : params.level || '';
+  const topicParam = Array.isArray(params.topic) ? params.topic[0] : params.topic || '';
+  const levelKey = levelParam.toLowerCase();
+  const levelLabel = levelKey.toUpperCase();
 
   const topics = topicsByLevel[levelKey];
   const allQuestions = questionsByLevel[levelKey];
@@ -61,12 +61,12 @@ export default function LevelTopicPage() {
           <p className="mb-4">
             Topic quizzes are only available for A1, A2, B1, B2, C1 and C2 for now.
           </p>
-          <button
+          <Link
             className="px-4 py-2 rounded bg-slate-800 text-white"
-            onClick={() => router.push('/levels/a1')}
+            href="/levels/a1"
           >
             Go to A1 page
-          </button>
+          </Link>
         </div>
       </div>
     );
@@ -79,18 +79,35 @@ export default function LevelTopicPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <p className="mb-4">This topic does not exist for level {levelLabel}.</p>
-          <button
+          <Link
             className="px-4 py-2 rounded bg-slate-800 text-white"
-            onClick={() => router.push(`/levels/${levelKey}`)}
+            href={`/levels/${levelKey}`}
           >
             Back to {levelLabel} topics
-          </button>
+          </Link>
         </div>
       </div>
     );
   }
 
-  const questions = allQuestions.filter((q) => q.topic === topicParam);
+  return (
+    <TopicQuiz
+      key={`${levelKey}:${topicParam}`}
+      levelKey={levelKey}
+      topic={topic}
+      sourceQuestions={allQuestions.filter((q) => q.topic === topicParam)}
+    />
+  );
+}
+
+function TopicQuiz({ levelKey, topic, sourceQuestions }: {
+  levelKey: string;
+  topic: Topic;
+  sourceQuestions: QuestionWithTopic[];
+}) {
+  const levelLabel = levelKey.toUpperCase();
+  const [attempt, setAttempt] = useState(0);
+  const questions = useMemo(() => prepareTopicQuestions(sourceQuestions, attempt), [sourceQuestions, attempt]);
 
   const [answers, setAnswers] = useState<(number | null)[]>(
     Array(questions.length).fill(null)
@@ -98,6 +115,7 @@ export default function LevelTopicPage() {
   const [showResult, setShowResult] = useState(false);
 
   const handleChange = (qIndex: number, optionIndex: number) => {
+    if (showResult) return;
     const next = [...answers];
     next[qIndex] = optionIndex;
     setAnswers(next);
@@ -105,6 +123,12 @@ export default function LevelTopicPage() {
 
   const handleSubmit = () => {
     setShowResult(true);
+  };
+
+  const handleRetry = () => {
+    setAnswers(Array(questions.length).fill(null));
+    setShowResult(false);
+    setAttempt((value) => value + 1);
   };
 
   const correctCount = questions.reduce((acc, q, index) => {
@@ -134,13 +158,13 @@ export default function LevelTopicPage() {
 
         <div className="space-y-6 mb-6">
           {questions.map((q, qIndex) => (
-            <div
+            <fieldset
               key={q.id}
-              className="em-card rounded-lg p-4"
+              className="em-card min-w-0 rounded-lg p-4"
             >
-              <p className="font-medium mb-3">
+              <legend className="max-w-full font-medium mb-3 px-1">
                 {qIndex + 1}. {q.question}
-              </p>
+              </legend>
               <div className="space-y-2">
                 {q.options.map((opt: string, optIndex: number) => {
                   const isSelected = answers[qIndex] === optIndex;
@@ -153,41 +177,54 @@ export default function LevelTopicPage() {
                       key={optIndex}
                       className={`flex items-center gap-2 rounded border px-3 py-2 cursor-pointer text-sm
                         ${isSelected ? 'border-slate-800 dark:border-slate-200' : 'border-slate-200 dark:border-slate-700'}
-                        ${isCorrect ? 'bg-green-50 border-green-500' : ''}
-                        ${isWrongSelected ? 'bg-red-50 border-red-500' : ''}
+                        ${isCorrect ? 'bg-green-50 text-green-950 border-green-500 dark:bg-green-950 dark:text-green-100' : ''}
+                        ${isWrongSelected ? 'bg-red-50 text-red-950 border-red-500 dark:bg-red-950 dark:text-red-100' : ''}
                       `}
                     >
                       <input
                         type="radio"
                         name={`q-${qIndex}`}
                         checked={isSelected}
+                        disabled={showResult}
                         onChange={() => handleChange(qIndex, optIndex)}
                         className="h-4 w-4"
                       />
-                      <span>{opt}</span>
+                      <span>{opt}{isCorrect && <span className="ml-2 font-semibold">✓ Correct answer</span>}{isWrongSelected && <span className="ml-2 font-semibold">— Your answer</span>}</span>
                     </label>
                   );
                 })}
               </div>
-            </div>
+              {showResult && (
+                <div className="mt-4 border-t border-slate-200 pt-3 text-sm dark:border-slate-700">
+                  <p className="font-semibold text-slate-800 dark:text-slate-100">
+                    {answers[qIndex] === null ? 'Not answered.' : answers[qIndex] === q.correctIndex ? 'Correct.' : 'Review this answer.'}
+                    {' '}Correct answer: {q.options[q.correctIndex]}
+                  </p>
+                  <p className="mt-1 text-slate-600 dark:text-slate-300">{q.explanation}</p>
+                </div>
+              )}
+            </fieldset>
           ))}
         </div>
 
-        <button
+        {!showResult && <button
           className="w-full md:w-auto px-6 py-3 rounded bg-slate-800 text-white font-semibold hover:bg-slate-900"
           onClick={handleSubmit}
         >
           Check my answers
-        </button>
+        </button>}
 
         {showResult && (
-          <div className="mt-4 p-4 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100">
+          <div role="status" className="mt-4 p-4 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100">
             <p className="font-semibold">
               You scored {correctCount} / {questions.length}
             </p>
             <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">
-              Review the red answers and try again if you want.
+              {answers.filter((answer) => answer === null).length} unanswered. Read the explanations above, then try again with the choices in a new order.
             </p>
+            <button onClick={handleRetry} className="mt-3 rounded bg-slate-800 px-5 py-3 font-semibold text-white hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-900">
+              Try again
+            </button>
           </div>
         )}
       </div>

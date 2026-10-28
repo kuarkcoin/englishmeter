@@ -36,6 +36,7 @@ type Choice = {
 type QPayload = {
   id: string;
   prompt: string;
+  level?: string;
   explanation?: string;
   choices: Choice[];
   correctChoiceId?: string; // ✅ IMPORTANT: shuffle sonrası doğru şık id'si
@@ -157,6 +158,7 @@ function StartQuizLogic() {
 
   // basit progress hissi (gerçek veriyle bağlı değil, UX için)
   const [progress, setProgress] = useState(12);
+  const [error, setError] = useState('');
 
   const tips = useMemo(
     () => [
@@ -190,7 +192,6 @@ function StartQuizLogic() {
   useEffect(() => {
     const initQuiz = async () => {
       const slug = searchParams.get('testSlug') || 'quick-placement';
-      console.log('STARTING TEST:', slug);
 
       // ✅ 1) Raw questions kaynak seçimi
       let title = '';
@@ -205,7 +206,7 @@ function StartQuizLogic() {
         const r = getQuestionsBySlug(slug, searchParams.get('lang'));
         title = r.title;
         rawQuestions = (r.questions || []) as any[];
-        durationMinutes = 0; // Quiz.tsx: 0 ise soru sayısına göre otomatik süre
+        durationMinutes = r.duration;
       }
 
       const safeQuestions = (rawQuestions || []) as any[];
@@ -255,17 +256,6 @@ function StartQuizLogic() {
               }));
           }
 
-          // CASE 3: word + definition (placeholder)
-          if (!choices && item.word && item.definition) {
-            const baseChoices: Choice[] = [
-              { id: 'A', _origId: 'A', text: item.definition, isCorrect: true },
-              { id: 'B', _origId: 'B', text: 'Incorrect definition example 1', isCorrect: false },
-              { id: 'C', _origId: 'C', text: 'Incorrect definition example 2', isCorrect: false },
-              { id: 'D', _origId: 'D', text: 'Incorrect definition example 3', isCorrect: false },
-            ];
-            choices = baseChoices;
-          }
-
           // CASE 4: already choices[]
           if (!choices && Array.isArray(item.choices)) {
             choices = item.choices.map((c: any, i: number) => {
@@ -279,9 +269,12 @@ function StartQuizLogic() {
             });
           }
 
-          if (!choices || choices.length === 0) {
-            console.warn('Unknown question format, skipping item:', item);
-            return null as any;
+          if (
+            !prompt.trim() || !choices || choices.length < 2 ||
+            choices.some((choice) => !String(choice.text).trim()) ||
+            choices.filter((choice) => choice.isCorrect).length !== 1
+          ) {
+            throw new Error('Invalid test question.');
           }
 
           // ✅ Shuffle + normalize ids A/B/C/D/E...
@@ -305,6 +298,7 @@ function StartQuizLogic() {
           return {
             id: item.id || `q-${index}`,
             prompt,
+            level: typeof item.level === 'string' ? item.level : undefined,
             explanation: item.explanation,
             choices: normalizedChoices,
             correctChoiceId,
@@ -314,14 +308,14 @@ function StartQuizLogic() {
         })
         .filter(Boolean);
 
-      console.log('FORMATTED QUESTIONS (AFTER SHUFFLE):', formattedQuestions);
+      if (!formattedQuestions.length) throw new Error('No questions available.');
 
       const attemptData = {
         attemptId: `session-${Date.now()}`,
         testSlug: slug, // ✅ restart için
         test: {
           title,
-          duration: durationMinutes, // ✅ cloze: 40, diğerleri: 0
+          duration: durationMinutes,
         },
         questions: formattedQuestions,
       };
@@ -329,15 +323,25 @@ function StartQuizLogic() {
       // UX: %100’e çekiyormuş gibi yap
       setProgress(100);
 
-      try {
-        sessionStorage.setItem('em_attempt_payload', JSON.stringify(attemptData));
-      } catch {}
+      sessionStorage.setItem('em_attempt_payload', JSON.stringify(attemptData));
 
       router.push(`/quiz/${attemptData.attemptId}`);
     };
 
-    initQuiz();
+    initQuiz().catch(() => setError('This test could not be prepared. Please return home and try another test.'));
   }, [searchParams, router]);
+
+  if (error) {
+    return (
+      <main className="em-page flex items-center justify-center p-4">
+        <div className="em-card max-w-md rounded-3xl p-8">
+          <h1 className="text-2xl font-bold">Test unavailable</h1>
+          <p role="alert" className="mt-3">{error}</p>
+          <a href="/" className="mt-5 inline-block rounded-xl bg-blue-600 px-5 py-3 font-bold text-white">Back to home</a>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <motion.div

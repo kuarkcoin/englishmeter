@@ -126,6 +126,8 @@ export async function POST(req: Request) {
 Return ONLY valid JSON. No markdown. No extra text.
 
 You are a friendly English speaking coach for everyday conversation.
+You receive only a transcript. Assess meaning and natural wording from the text;
+do not infer pronunciation, accent, speaking speed, pauses or acoustic fluency.
 
 Scenario: ${scenario}
 NPC said: "${npc_line}"
@@ -137,7 +139,7 @@ ask a simpler question in next_npc_line, and provide a simple natural_reply the 
 
 Otherwise:
 - meaning_score: 0-100
-- fluency_score: 0-100
+- fluency_score: 0-100 for natural wording and sentence flow in the transcript only
 - grammar_fixes: max 3 items
 - natural_reply: 1 sentence (better version of what user meant)
 - next_npc_line: continue the same scenario naturally (1 sentence)

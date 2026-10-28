@@ -8,6 +8,7 @@ export type A2Question = {
   question: string;
   options: string[];
   correctIndex: number;
+  explanation: string;
 };
 
 export const a2Questions: A2Question[] = [
@@ -19,6 +20,7 @@ export const a2Questions: A2Question[] = [
     question: 'Yesterday I ___ to the cinema with my friends.',
     options: ['go', 'went', 'gone', 'was going'],
     correctIndex: 1,
+    explanation: "The completed trip happened yesterday. Go has the irregular past simple form went.",
   },
   {
     id: 'a2-past-2',
@@ -27,14 +29,16 @@ export const a2Questions: A2Question[] = [
     question: 'She ___ her homework before dinner.',
     options: ['finish', 'finishes', 'finished', 'was finishing'],
     correctIndex: 2,
+    explanation: "Finished is the past simple of finish. It describes completing the homework before dinner.",
   },
   {
     id: 'a2-past-3',
     level: 'A2',
     topic: 'past-simple',
-    question: 'We ___ in London for two years.',
+    question: "We ___ in London for two years, then moved to Rome.",
     options: ['lived', 'live', 'were living', 'have lived'],
     correctIndex: 0,
+    explanation: "The stay in London is a finished period because the speakers then moved away. Use the past simple lived.",
   },
   {
     id: 'a2-past-4',
@@ -43,6 +47,7 @@ export const a2Questions: A2Question[] = [
     question: 'They ___ late for the meeting last Monday.',
     options: ['are', 'were', 'was', 'be'],
     correctIndex: 1,
+    explanation: "Last Monday is a finished past time. The past form of be with they is were.",
   },
   {
     id: 'a2-past-5',
@@ -50,7 +55,8 @@ export const a2Questions: A2Question[] = [
     topic: 'past-simple',
     question: 'I ___ a great book last weekend.',
     options: ['read', 'reads', 'was reading', 'readed'],
-    correctIndex: 0, // read (past form, telaffuz farklı ama yazım aynı)
+    correctIndex: 0,
+    explanation: "The past tense of read is also written read, but pronounced /red/. The book was completed last weekend.",
   },
   {
     id: 'a2-past-6',
@@ -59,14 +65,16 @@ export const a2Questions: A2Question[] = [
     question: 'She ___ breakfast at 7 a.m. yesterday.',
     options: ['have', 'had', 'has', 'was having'],
     correctIndex: 1,
+    explanation: "Had is the irregular past simple of have. The sentence describes yesterday’s breakfast as a completed event.",
   },
   {
     id: 'a2-past-7',
     level: 'A2',
     topic: 'past-simple',
-    question: 'They ___ football when it started to rain.',
+    question: "They ___ football in the park yesterday.",
     options: ['played', 'play', 'were played', 'was playing'],
     correctIndex: 0,
+    explanation: "Played is the regular past simple of play. Yesterday places this completed activity in the past.",
   },
   {
     id: 'a2-past-8',
@@ -75,6 +83,7 @@ export const a2Questions: A2Question[] = [
     question: 'My parents ___ to Italy last summer.',
     options: ['travel', 'traveled', 'were traveling', 'have traveled'],
     correctIndex: 1,
+    explanation: "Last summer is a finished past period, so use the past simple traveled.",
   },
   {
     id: 'a2-past-9',
@@ -83,6 +92,7 @@ export const a2Questions: A2Question[] = [
     question: 'He ___ his keys and couldn’t open the door.',
     options: ['lose', 'loses', 'lost', 'was losing'],
     correctIndex: 2,
+    explanation: "Lost is the irregular past simple of lose. Losing the keys explains why he could not open the door.",
   },
   {
     id: 'a2-past-10',
@@ -91,6 +101,7 @@ export const a2Questions: A2Question[] = [
     question: 'We ___ a lot of photos on our trip.',
     options: ['take', 'took', 'taken', 'were taking'],
     correctIndex: 1,
+    explanation: "Took is the irregular past simple of take. Take photos means to photograph something.",
   },
 
   // PRESENT CONTINUOUS (10 soru)
@@ -101,6 +112,7 @@ export const a2Questions: A2Question[] = [
     question: 'Listen! The birds ___ in the garden.',
     options: ['sing', 'sings', 'are singing', 'is singing'],
     correctIndex: 2,
+    explanation: "Listen signals something happening now. Birds is plural, so use are + singing.",
   },
   {
     id: 'a2-pc-2',
@@ -109,6 +121,7 @@ export const a2Questions: A2Question[] = [
     question: 'She can’t talk now. She ___ a shower.',
     options: ['has', 'is having', 'have', 'having'],
     correctIndex: 1,
+    explanation: "The shower is happening now, so use is having with she.",
   },
   {
     id: 'a2-pc-3',
@@ -117,6 +130,7 @@ export const a2Questions: A2Question[] = [
     question: 'We ___ for our exams this week.',
     options: ['study', 'studies', 'are studying', 'are study'],
     correctIndex: 2,
+    explanation: "This week describes a temporary activity around the present. The subject “We” takes are + studying.",
   },
   {
     id: 'a2-pc-4',
@@ -125,6 +139,7 @@ export const a2Questions: A2Question[] = [
     question: 'What ___ you doing right now?',
     options: ['are', 'is', 'do', 'are you'],
     correctIndex: 0,
+    explanation: "The question uses be + subject + verb-ing: What are you doing? Do is not used with doing here.",
   },
   {
     id: 'a2-pc-5',
@@ -133,14 +148,16 @@ export const a2Questions: A2Question[] = [
     question: 'They ___ TV in the living room at the moment.',
     options: ['watch', 'are watching', 'watches', 'watching'],
     correctIndex: 1,
+    explanation: "At the moment signals an action happening now. The subject “They” takes are watching.",
   },
   {
     id: 'a2-pc-6',
     level: 'A2',
     topic: 'present-continuous',
-    question: 'I ___ to music while I am working.',
+    question: "Right now, I ___ to music while I am working.",
     options: ['am listening', 'listen', 'listening', 'is listening'],
     correctIndex: 0,
+    explanation: "Both actions are happening now. With I, the present continuous is am + listening.",
   },
   {
     id: 'a2-pc-7',
@@ -149,6 +166,7 @@ export const a2Questions: A2Question[] = [
     question: 'My brother ___ his room now.',
     options: ['clean', 'cleans', 'is cleaning', 'are cleaning'],
     correctIndex: 2,
+    explanation: "Now signals an action in progress. My brother is singular, so use is cleaning.",
   },
   {
     id: 'a2-pc-8',
@@ -157,6 +175,7 @@ export const a2Questions: A2Question[] = [
     question: 'They can’t come out; they ___ dinner.',
     options: ['are having', 'have', 'has', 'having'],
     correctIndex: 0,
+    explanation: "Dinner is in progress and prevents them from coming out. Use are having with they.",
   },
   {
     id: 'a2-pc-9',
@@ -165,6 +184,7 @@ export const a2Questions: A2Question[] = [
     question: 'The weather is bad. It ___ again.',
     options: ['rains', 'is raining', 'rain', 'are raining'],
     correctIndex: 1,
+    explanation: "The rain is happening now. Weather expressions use it + is + verb-ing.",
   },
   {
     id: 'a2-pc-10',
@@ -173,6 +193,7 @@ export const a2Questions: A2Question[] = [
     question: 'We ___ for a new apartment these days.',
     options: ['look', 'are looking', 'looks', 'looking'],
     correctIndex: 1,
+    explanation: "These days describes a temporary ongoing search. The subject “We” takes are looking.",
   },
 
   // COUNTABLE & UNCOUNTABLE (10 soru)
@@ -183,6 +204,7 @@ export const a2Questions: A2Question[] = [
     question: 'How ___ apples are there in the basket?',
     options: ['much', 'many', 'a lot', 'few'],
     correctIndex: 1,
+    explanation: "Apples is a plural countable noun. Use how many to ask about the number.",
   },
   {
     id: 'a2-cu-2',
@@ -191,6 +213,7 @@ export const a2Questions: A2Question[] = [
     question: 'There isn’t ___ milk in the fridge.',
     options: ['many', 'a few', 'much', 'few'],
     correctIndex: 2,
+    explanation: "Milk is uncountable. Use much, rather than many or a few, in this negative sentence.",
   },
   {
     id: 'a2-cu-3',
@@ -199,6 +222,7 @@ export const a2Questions: A2Question[] = [
     question: 'We have ___ bread but not much cheese.',
     options: ['a few', 'a little', 'many', 'few'],
     correctIndex: 1,
+    explanation: "Bread is uncountable. A little means a small amount and can modify bread.",
   },
   {
     id: 'a2-cu-4',
@@ -207,6 +231,7 @@ export const a2Questions: A2Question[] = [
     question: 'There are ___ chairs in the room.',
     options: ['much', 'a little', 'a few', 'little'],
     correctIndex: 2,
+    explanation: "Chairs is plural and countable. A few means a small number of chairs.",
   },
   {
     id: 'a2-cu-5',
@@ -215,6 +240,7 @@ export const a2Questions: A2Question[] = [
     question: 'He doesn’t eat ___ sugar.',
     options: ['many', 'much', 'a few', 'some'],
     correctIndex: 1,
+    explanation: "Sugar is uncountable. Much is used to talk about its quantity in a negative sentence.",
   },
   {
     id: 'a2-cu-6',
@@ -223,6 +249,7 @@ export const a2Questions: A2Question[] = [
     question: 'We need ___ eggs to make this cake.',
     options: ['a little', 'a few', 'little', 'much'],
     correctIndex: 1,
+    explanation: "Eggs is plural and countable, so a few describes a small number of eggs.",
   },
   {
     id: 'a2-cu-7',
@@ -231,6 +258,7 @@ export const a2Questions: A2Question[] = [
     question: 'There are very ___ people in the park today.',
     options: ['little', 'few', 'a little', 'much'],
     correctIndex: 1,
+    explanation: "People is plural and countable. Very few means not many people.",
   },
   {
     id: 'a2-cu-8',
@@ -239,6 +267,7 @@ export const a2Questions: A2Question[] = [
     question: 'We have ___ homework this weekend.',
     options: ['a few', 'many', 'a lot of', 'few'],
     correctIndex: 2,
+    explanation: "Homework is uncountable. A lot of works with uncountable nouns; many and a few do not.",
   },
   {
     id: 'a2-cu-9',
@@ -247,6 +276,7 @@ export const a2Questions: A2Question[] = [
     question: 'There is ___ water in the bottle.',
     options: ['a few', 'a little', 'few', 'many'],
     correctIndex: 1,
+    explanation: "Water is uncountable. A little describes a small amount of water.",
   },
   {
     id: 'a2-cu-10',
@@ -255,6 +285,7 @@ export const a2Questions: A2Question[] = [
     question: 'How ___ time do we have?',
     options: ['many', 'much', 'few', 'little'],
     correctIndex: 1,
+    explanation: "Time is uncountable here. Ask how much time, rather than how many time.",
   },
 
   // COMPARATIVES & SUPERLATIVES (10 soru)
@@ -265,6 +296,7 @@ export const a2Questions: A2Question[] = [
     question: 'This book is ___ than that one.',
     options: ['interesting', 'more interesting', 'most interesting', 'the more interesting'],
     correctIndex: 1,
+    explanation: "Than compares two books. Use more + interesting for the comparative of this longer adjective.",
   },
   {
     id: 'a2-comp-2',
@@ -273,6 +305,7 @@ export const a2Questions: A2Question[] = [
     question: 'My sister is the ___ person in my family.',
     options: ['tall', 'taller', 'tallest', 'more tall'],
     correctIndex: 2,
+    explanation: "The sentence compares one person with the whole family. Tall becomes the superlative tallest.",
   },
   {
     id: 'a2-comp-3',
@@ -281,6 +314,7 @@ export const a2Questions: A2Question[] = [
     question: 'London is ___ than our town.',
     options: ['big', 'bigger', 'biggest', 'the bigger'],
     correctIndex: 1,
+    explanation: "Than requires a comparative. Big doubles the final consonant before -er: bigger.",
   },
   {
     id: 'a2-comp-4',
@@ -289,6 +323,7 @@ export const a2Questions: A2Question[] = [
     question: 'Maths is ___ for me than history.',
     options: ['difficult', 'more difficult', 'the most difficult', 'difficulter'],
     correctIndex: 1,
+    explanation: "Use more difficult to compare the difficulty of two subjects. Difficult does not take -er.",
   },
   {
     id: 'a2-comp-5',
@@ -297,6 +332,7 @@ export const a2Questions: A2Question[] = [
     question: 'This is the ___ movie I have ever seen.',
     options: ['good', 'better', 'best', 'the better'],
     correctIndex: 2,
+    explanation: "The superlative of good is best. Ever seen compares this movie with all the others.",
   },
   {
     id: 'a2-comp-6',
@@ -305,6 +341,7 @@ export const a2Questions: A2Question[] = [
     question: 'My car is ___ than yours.',
     options: ['fast', 'faster', 'fastest', 'the most fast'],
     correctIndex: 1,
+    explanation: "Fast is a short adjective, so add -er to compare two cars: faster.",
   },
   {
     id: 'a2-comp-7',
@@ -313,6 +350,7 @@ export const a2Questions: A2Question[] = [
     question: 'January is usually the ___ month of the year here.',
     options: ['cold', 'colder', 'coldest', 'more cold'],
     correctIndex: 2,
+    explanation: "The month is compared with every other month of the year. Cold becomes coldest.",
   },
   {
     id: 'a2-comp-8',
@@ -321,6 +359,7 @@ export const a2Questions: A2Question[] = [
     question: 'This exercise is ___ than the last one.',
     options: ['easy', 'easier', 'easiest', 'more easy'],
     correctIndex: 1,
+    explanation: "For an adjective ending in consonant + y, change y to i before -er: easy → easier.",
   },
   {
     id: 'a2-comp-9',
@@ -329,6 +368,7 @@ export const a2Questions: A2Question[] = [
     question: 'Of the three, Tom is the ___.',
     options: ['young', 'younger', 'youngest', 'more young'],
     correctIndex: 2,
+    explanation: "Of the three compares Tom with a group, so use the superlative youngest.",
   },
   {
     id: 'a2-comp-10',
@@ -337,6 +377,7 @@ export const a2Questions: A2Question[] = [
     question: 'A bike is usually ___ than a car.',
     options: ['cheap', 'cheaper', 'cheapest', 'more cheap'],
     correctIndex: 1,
+    explanation: "Than signals a comparison. Cheap takes -er: cheaper.",
   },
 
   // SOME / ANY / A LOT OF (10 soru)
@@ -347,78 +388,88 @@ export const a2Questions: A2Question[] = [
     question: 'There are ___ students in the classroom.',
     options: ['some', 'any', 'a lot', 'much'],
     correctIndex: 0,
+    explanation: "Some describes an unspecified number in this affirmative sentence. A lot needs of before students.",
   },
   {
     id: 'a2-some-2',
     level: 'A2',
     topic: 'some-any-a-lot-of',
-    question: 'Are there ___ questions?',
+    question: "Use some or any in this neutral question: Are there ___ questions?",
     options: ['some', 'any', 'a lot', 'much'],
     correctIndex: 1,
+    explanation: "Any is the usual choice in a neutral question asking whether there are questions at all.",
   },
   {
     id: 'a2-some-3',
     level: 'A2',
     topic: 'some-any-a-lot-of',
-    question: 'We don’t have ___ time.',
+    question: "Use some or any to mean none: We don’t have ___ time.",
     options: ['some', 'any', 'a lot of', 'many'],
     correctIndex: 1,
+    explanation: "Not any means none. Time is uncountable, so many cannot be used here.",
   },
   {
     id: 'a2-some-4',
     level: 'A2',
     topic: 'some-any-a-lot-of',
-    question: 'He drinks ___ coffee every day.',
+    question: "He drinks ___ coffee every day. (a large amount)",
     options: ['some', 'any', 'a lot of', 'a few'],
     correctIndex: 2,
+    explanation: "A lot of expresses the large amount of coffee specified in the question. Coffee is uncountable.",
   },
   {
     id: 'a2-some-5',
     level: 'A2',
     topic: 'some-any-a-lot-of',
-    question: 'There aren’t ___ shops near here.',
+    question: "Use some or any to mean none: There aren’t ___ shops near here.",
     options: ['some', 'any', 'a lot of', 'much'],
     correctIndex: 1,
+    explanation: "Not any shops means there are no shops. Any works with plural countable nouns in negatives.",
   },
   {
     id: 'a2-some-6',
     level: 'A2',
     topic: 'some-any-a-lot-of',
-    question: 'I need ___ help with this exercise.',
+    question: "I need ___ help with this exercise. (an unspecified amount)",
     options: ['some', 'any', 'a lot of', 'many'],
     correctIndex: 0,
+    explanation: "Some help means an unspecified amount of help. Help is uncountable, so many is unsuitable.",
   },
   {
     id: 'a2-some-7',
     level: 'A2',
     topic: 'some-any-a-lot-of',
-    question: 'They have ___ friends in England.',
+    question: "They have ___ friends in England. (a large number)",
     options: ['some', 'any', 'a lot of', 'much'],
     correctIndex: 2,
+    explanation: "A lot of means a large number. It can be used with the plural noun friends.",
   },
   {
     id: 'a2-some-8',
     level: 'A2',
     topic: 'some-any-a-lot-of',
-    question: 'We don’t need ___ more bread.',
+    question: "Use some or any to mean no more: We don’t need ___ more bread.",
     options: ['some', 'any', 'a lot of', 'many'],
     correctIndex: 1,
+    explanation: "Not any more bread means no additional bread is needed. Bread is uncountable.",
   },
   {
     id: 'a2-some-9',
     level: 'A2',
     topic: 'some-any-a-lot-of',
-    question: 'There is ___ noise in this street.',
+    question: "There is ___ noise in this street. (a large amount)",
     options: ['some', 'any', 'a lot of', 'many'],
     correctIndex: 2,
+    explanation: "A lot of means a large amount and can modify the uncountable noun noise.",
   },
   {
     id: 'a2-some-10',
     level: 'A2',
     topic: 'some-any-a-lot-of',
-    question: 'Did you buy ___ apples?',
+    question: "Use some or any in this neutral question: Did you buy ___ apples?",
     options: ['some', 'any', 'a lot', 'much'],
     correctIndex: 1,
+    explanation: "Use any in a neutral question about whether apples were bought. A lot would need of.",
   },
 
   // ADVERBS OF FREQUENCY (10 soru)
@@ -426,17 +477,19 @@ export const a2Questions: A2Question[] = [
     id: 'a2-adv-1',
     level: 'A2',
     topic: 'adverbs-of-frequency',
-    question: 'I ___ get up at 7 a.m. on weekdays.',
+    question: "I ___ get up at 7 a.m. on weekdays. (every weekday, without exception)",
     options: ['always', 'never', 'sometimes', 'rarely'],
     correctIndex: 0,
+    explanation: "Always means every time without exception, matching the frequency given in the sentence.",
   },
   {
     id: 'a2-adv-2',
     level: 'A2',
     topic: 'adverbs-of-frequency',
-    question: 'She is ___ late for work.',
+    question: "She is ___ late for work. (not even once)",
     options: ['always', 'often', 'never', 'usually'],
     correctIndex: 2,
+    explanation: "Never means not on any occasion, so it matches a record of no late arrivals.",
   },
   {
     id: 'a2-adv-3',
@@ -445,54 +498,61 @@ export const a2Questions: A2Question[] = [
     question: 'We ___ go to the gym, maybe once a month.',
     options: ['always', 'often', 'hardly ever', 'usually'],
     correctIndex: 2,
+    explanation: "Hardly ever means very rarely. Going only once a month is infrequent here.",
   },
   {
     id: 'a2-adv-4',
     level: 'A2',
     topic: 'adverbs-of-frequency',
-    question: 'They ___ eat dinner together at the table.',
+    question: "They ___ eat dinner together at the table. (most evenings, but not all)",
     options: ['never', 'rarely', 'usually', 'sometimes'],
     correctIndex: 2,
+    explanation: "Usually means on most occasions, matching most evenings rather than every evening.",
   },
   {
     id: 'a2-adv-5',
     level: 'A2',
     topic: 'adverbs-of-frequency',
-    question: 'He ___ drinks coffee, maybe two or three times a week.',
+    question: "He ___ drinks coffee. (frequently, but less than most days)",
     options: ['always', 'usually', 'often', 'hardly ever'],
     correctIndex: 2,
+    explanation: "Often means frequently. It does not mean every time, as always does.",
   },
   {
     id: 'a2-adv-6',
     level: 'A2',
     topic: 'adverbs-of-frequency',
-    question: 'We ___ watch TV in the evening, but not every day.',
+    question: "We ___ watch TV in the evening. (now and then)",
     options: ['never', 'sometimes', 'always', 'rarely'],
     correctIndex: 1,
+    explanation: "Sometimes means on some occasions. It fits an activity that happens now and then.",
   },
   {
     id: 'a2-adv-7',
     level: 'A2',
     topic: 'adverbs-of-frequency',
-    question: 'The students are ___ noisy in class.',
+    question: "The students are ___ noisy in class. (every lesson, without exception)",
     options: ['always', 'never', 'sometimes', 'rarely'],
     correctIndex: 0,
+    explanation: "Always means every time. Frequency adverbs normally come after be: are always noisy.",
   },
   {
     id: 'a2-adv-8',
     level: 'A2',
     topic: 'adverbs-of-frequency',
-    question: 'I am ___ tired on Monday mornings.',
+    question: "I am ___ tired on Monday mornings. (on some occasions, now and then)",
     options: ['always', 'never', 'often', 'sometimes'],
     correctIndex: 3,
+    explanation: "Sometimes means on some occasions but not regularly. With be, place it after am.",
   },
   {
     id: 'a2-adv-9',
     level: 'A2',
     topic: 'adverbs-of-frequency',
-    question: 'She ___ goes to bed before midnight.',
+    question: "She ___ goes to bed before midnight. (most nights, but not all)",
     options: ['usually', 'never', 'always', 'hardly ever'],
     correctIndex: 0,
+    explanation: "Usually means most of the time. It goes before the main verb goes.",
   },
   {
     id: 'a2-adv-10',
@@ -501,5 +561,6 @@ export const a2Questions: A2Question[] = [
     question: 'They ___ visit their grandparents, only on special days.',
     options: ['often', 'never', 'hardly ever', 'always'],
     correctIndex: 2,
+    explanation: "Hardly ever means very rarely. Visiting only on special days supports that meaning.",
   },
 ];

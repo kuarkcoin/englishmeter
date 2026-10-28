@@ -8,6 +8,7 @@ export type A1Question = {
   question: string;
   options: string[];
   correctIndex: number;
+  explanation: string;
 };
 
 export const a1Questions: A1Question[] = [
@@ -19,6 +20,7 @@ export const a1Questions: A1Question[] = [
     question: 'She ___ to school every day.',
     options: ['go', 'goes', 'is go', 'going'],
     correctIndex: 1,
+    explanation: "She is third-person singular, so the present simple verb takes -s or an irregular singular form: goes. The sentence describes a regular habit or schedule.",
   },
   {
     id: 'a1-present-2',
@@ -27,6 +29,7 @@ export const a1Questions: A1Question[] = [
     question: 'I ___ coffee in the morning.',
     options: ['drink', 'drinks', 'is drink', 'drinking'],
     correctIndex: 0,
+    explanation: "The subject “I” takes the base form in the present simple: drink. The sentence describes a regular habit or schedule.",
   },
   {
     id: 'a1-present-3',
@@ -35,6 +38,7 @@ export const a1Questions: A1Question[] = [
     question: 'They ___ TV in the evening.',
     options: ['watch', 'watches', 'is watch', 'watching'],
     correctIndex: 0,
+    explanation: "The subject “They” takes the base form in the present simple: watch. The sentence describes a regular habit or schedule.",
   },
   {
     id: 'a1-present-4',
@@ -43,6 +47,7 @@ export const a1Questions: A1Question[] = [
     question: 'He ___ football on Sundays.',
     options: ['play', 'plays', 'is play', 'playing'],
     correctIndex: 1,
+    explanation: "He is third-person singular, so the present simple verb takes -s or an irregular singular form: plays. The sentence describes a regular habit or schedule.",
   },
   {
     id: 'a1-present-5',
@@ -51,6 +56,7 @@ export const a1Questions: A1Question[] = [
     question: 'We ___ English at school.',
     options: ['study', 'studies', 'is study', 'studying'],
     correctIndex: 0,
+    explanation: "The subject “We” takes the base form in the present simple: study. The sentence describes a regular habit or schedule.",
   },
   {
     id: 'a1-present-6',
@@ -59,6 +65,7 @@ export const a1Questions: A1Question[] = [
     question: 'My brother ___ in a bank.',
     options: ['work', 'works', 'is work', 'working'],
     correctIndex: 1,
+    explanation: "My brother is third-person singular, so the present simple verb takes -s or an irregular singular form: works. The sentence describes a regular habit or schedule.",
   },
   {
     id: 'a1-present-7',
@@ -67,6 +74,7 @@ export const a1Questions: A1Question[] = [
     question: 'The train ___ at 9 o’clock.',
     options: ['leave', 'leaves', 'is leave', 'leaving'],
     correctIndex: 1,
+    explanation: "The train is third-person singular, so the present simple verb takes -s or an irregular singular form: leaves. The sentence describes a regular habit or schedule.",
   },
   {
     id: 'a1-present-8',
@@ -75,6 +83,7 @@ export const a1Questions: A1Question[] = [
     question: 'I ___ in a small house.',
     options: ['live', 'lives', 'is live', 'living'],
     correctIndex: 0,
+    explanation: "The subject “I” takes the base form in the present simple: live. The sentence describes a regular habit or schedule.",
   },
   {
     id: 'a1-present-9',
@@ -83,6 +92,7 @@ export const a1Questions: A1Question[] = [
     question: 'My parents ___ in the evening.',
     options: ['read', 'reads', 'is read', 'reading'],
     correctIndex: 0,
+    explanation: "The subject “My parents” takes the base form in the present simple: read. The sentence describes a regular habit or schedule.",
   },
   {
     id: 'a1-present-10',
@@ -91,6 +101,7 @@ export const a1Questions: A1Question[] = [
     question: 'She ___ breakfast at 8 a.m.',
     options: ['have', 'has', 'is have', 'having'],
     correctIndex: 1,
+    explanation: "She is third-person singular, so the present simple verb takes -s or an irregular singular form: has. The sentence describes a regular habit or schedule.",
   },
 
   // VERB TO BE (10 soru)
@@ -101,6 +112,7 @@ export const a1Questions: A1Question[] = [
     question: 'I ___ a student.',
     options: ['am', 'is', 'are', 'be'],
     correctIndex: 0,
+    explanation: "Use am with I. In the present tense, be changes to am with I, is with a singular third-person subject, and are with you or a plural subject.",
   },
   {
     id: 'a1-be-2',
@@ -109,6 +121,7 @@ export const a1Questions: A1Question[] = [
     question: 'She ___ my sister.',
     options: ['am', 'is', 'are', 'be'],
     correctIndex: 1,
+    explanation: "Use is with She. In the present tense, be changes to am with I, is with a singular third-person subject, and are with you or a plural subject.",
   },
   {
     id: 'a1-be-3',
@@ -117,6 +130,7 @@ export const a1Questions: A1Question[] = [
     question: 'They ___ from Spain.',
     options: ['am', 'is', 'are', 'be'],
     correctIndex: 2,
+    explanation: "Use are with They. In the present tense, be changes to am with I, is with a singular third-person subject, and are with you or a plural subject.",
   },
   {
     id: 'a1-be-4',
@@ -125,6 +139,7 @@ export const a1Questions: A1Question[] = [
     question: 'We ___ in the classroom.',
     options: ['am', 'is', 'are', 'be'],
     correctIndex: 2,
+    explanation: "Use are with We. In the present tense, be changes to am with I, is with a singular third-person subject, and are with you or a plural subject.",
   },
   {
     id: 'a1-be-5',
@@ -133,6 +148,7 @@ export const a1Questions: A1Question[] = [
     question: 'It ___ a nice day.',
     options: ['am', 'is', 'are', 'be'],
     correctIndex: 1,
+    explanation: "Use is with It. In the present tense, be changes to am with I, is with a singular third-person subject, and are with you or a plural subject.",
   },
   {
     id: 'a1-be-6',
@@ -141,6 +157,7 @@ export const a1Questions: A1Question[] = [
     question: 'You ___ my friend.',
     options: ['am', 'is', 'are', 'be'],
     correctIndex: 2,
+    explanation: "Use are with You. In the present tense, be changes to am with I, is with a singular third-person subject, and are with you or a plural subject.",
   },
   {
     id: 'a1-be-7',
@@ -149,6 +166,7 @@ export const a1Questions: A1Question[] = [
     question: 'My name ___ John.',
     options: ['am', 'is', 'are', 'be'],
     correctIndex: 1,
+    explanation: "Use is with My name. In the present tense, be changes to am with I, is with a singular third-person subject, and are with you or a plural subject.",
   },
   {
     id: 'a1-be-8',
@@ -157,6 +175,7 @@ export const a1Questions: A1Question[] = [
     question: 'He ___ at home.',
     options: ['am', 'is', 'are', 'be'],
     correctIndex: 1,
+    explanation: "Use is with He. In the present tense, be changes to am with I, is with a singular third-person subject, and are with you or a plural subject.",
   },
   {
     id: 'a1-be-9',
@@ -165,6 +184,7 @@ export const a1Questions: A1Question[] = [
     question: 'They ___ not here.',
     options: ['am', 'is', 'are', 'be'],
     correctIndex: 2,
+    explanation: "Use are with They. In the present tense, be changes to am with I, is with a singular third-person subject, and are with you or a plural subject.",
   },
   {
     id: 'a1-be-10',
@@ -173,6 +193,7 @@ export const a1Questions: A1Question[] = [
     question: 'We ___ happy.',
     options: ['am', 'is', 'are', 'be'],
     correctIndex: 2,
+    explanation: "Use are with We. In the present tense, be changes to am with I, is with a singular third-person subject, and are with you or a plural subject.",
   },
 
   // A / AN (10 soru)
@@ -180,81 +201,91 @@ export const a1Questions: A1Question[] = [
     id: 'a1-a-an-1',
     level: 'A1',
     topic: 'a-an',
-    question: 'She has ___ apple in her bag.',
+    question: "Use a or an: She has ___ apple in her bag.",
     options: ['a', 'an', 'the', '—'],
     correctIndex: 1,
+    explanation: "Apple begins with a vowel sound, so use an. Choose a or an by sound, not just by the first letter.",
   },
   {
     id: 'a1-a-an-2',
     level: 'A1',
     topic: 'a-an',
-    question: 'He is ___ teacher.',
+    question: "Use a or an: He is ___ teacher.",
     options: ['a', 'an', 'the', '—'],
     correctIndex: 0,
+    explanation: "Teacher begins with a consonant sound, so use a. Choose a or an by sound, not just by the first letter.",
   },
   {
     id: 'a1-a-an-3',
     level: 'A1',
     topic: 'a-an',
-    question: 'It is ___ orange.',
+    question: "Use a or an: It is ___ orange.",
     options: ['a', 'an', 'the', '—'],
     correctIndex: 1,
+    explanation: "Orange begins with a vowel sound, so use an. Choose a or an by sound, not just by the first letter.",
   },
   {
     id: 'a1-a-an-4',
     level: 'A1',
     topic: 'a-an',
-    question: 'This is ___ book.',
+    question: "Use a or an: This is ___ book.",
     options: ['a', 'an', 'the', '—'],
     correctIndex: 0,
+    explanation: "Book begins with a consonant sound, so use a. Choose a or an by sound, not just by the first letter.",
   },
   {
     id: 'a1-a-an-5',
     level: 'A1',
     topic: 'a-an',
-    question: 'He has ___ old car.',
+    question: "Use a or an: He has ___ old car.",
     options: ['a', 'an', 'the', '—'],
     correctIndex: 1,
+    explanation: "Old begins with a vowel sound, so use an. Choose a or an by sound, not just by the first letter.",
   },
   {
     id: 'a1-a-an-6',
     level: 'A1',
     topic: 'a-an',
-    question: 'She is ___ engineer.',
+    question: "Use a or an: She is ___ engineer.",
     options: ['a', 'an', 'the', '—'],
     correctIndex: 1,
+    explanation: "Engineer begins with a vowel sound, so use an. Choose a or an by sound, not just by the first letter.",
   },
   {
     id: 'a1-a-an-7',
     level: 'A1',
     topic: 'a-an',
-    question: 'This is ___ umbrella.',
+    question: "Use a or an: This is ___ umbrella.",
     options: ['a', 'an', 'the', '—'],
     correctIndex: 1,
+    explanation: "Umbrella begins with a vowel sound, so use an. Choose a or an by sound, not just by the first letter.",
   },
   {
     id: 'a1-a-an-8',
     level: 'A1',
     topic: 'a-an',
-    question: 'He wants ___ cup of tea.',
+    question: "Use a or an: He wants ___ cup of tea.",
     options: ['a', 'an', 'the', '—'],
     correctIndex: 0,
+    explanation: "Cup begins with a consonant sound, so use a. Choose a or an by sound, not just by the first letter.",
   },
   {
     id: 'a1-a-an-9',
     level: 'A1',
     topic: 'a-an',
-    question: 'She is eating ___ egg.',
+    question: "Use a or an: She is eating ___ egg.",
     options: ['a', 'an', 'the', '—'],
     correctIndex: 1,
+    explanation: "Egg begins with a vowel sound, so use an. Choose a or an by sound, not just by the first letter.",
   },
   {
     id: 'a1-a-an-10',
     level: 'A1',
     topic: 'a-an',
-    question: 'I have ___ idea.',
+    question: "Use a or an: I have ___ idea.",
     options: ['a', 'an', 'the', '—'],
     correctIndex: 1,
+    explanation: "Idea begins with a vowel sound, so use an. Choose a or an by sound, not just by the first letter.",
   },
 
   // THIS / THAT / THESE / THOSE (10 soru)
@@ -265,6 +296,7 @@ export const a1Questions: A1Question[] = [
     question: '___ is my bag. (near me, singular)',
     options: ['This', 'That', 'These', 'Those'],
     correctIndex: 0,
+    explanation: "This refers to one person or thing near the speaker. Match both number and distance.",
   },
   {
     id: 'a1-dem-2',
@@ -273,6 +305,7 @@ export const a1Questions: A1Question[] = [
     question: '___ are my friends. (near me, plural)',
     options: ['This', 'That', 'These', 'Those'],
     correctIndex: 2,
+    explanation: "These refers to more than one person or thing near the speaker. Match both number and distance.",
   },
   {
     id: 'a1-dem-3',
@@ -281,6 +314,7 @@ export const a1Questions: A1Question[] = [
     question: '___ is my house. (far away, singular)',
     options: ['This', 'That', 'These', 'Those'],
     correctIndex: 1,
+    explanation: "That refers to one person or thing farther away. Match both number and distance.",
   },
   {
     id: 'a1-dem-4',
@@ -289,6 +323,7 @@ export const a1Questions: A1Question[] = [
     question: '___ are our books. (far away, plural)',
     options: ['This', 'That', 'These', 'Those'],
     correctIndex: 3,
+    explanation: "Those refers to more than one person or thing farther away. Match both number and distance.",
   },
   {
     id: 'a1-dem-5',
@@ -297,14 +332,16 @@ export const a1Questions: A1Question[] = [
     question: '___ is my brother. (near me)',
     options: ['This', 'That', 'These', 'Those'],
     correctIndex: 0,
+    explanation: "This refers to one person or thing near the speaker. Match both number and distance.",
   },
   {
     id: 'a1-dem-6',
     level: 'A1',
     topic: 'this-that-these-those',
-    question: '___ are your shoes. (near you, plural)',
+    question: "___ are your shoes. (near the speaker, plural)",
     options: ['This', 'That', 'These', 'Those'],
     correctIndex: 2,
+    explanation: "These refers to more than one person or thing near the speaker. Match both number and distance.",
   },
   {
     id: 'a1-dem-7',
@@ -313,6 +350,7 @@ export const a1Questions: A1Question[] = [
     question: '___ is our school. (far away)',
     options: ['This', 'That', 'These', 'Those'],
     correctIndex: 1,
+    explanation: "That refers to one person or thing farther away. Match both number and distance.",
   },
   {
     id: 'a1-dem-8',
@@ -321,6 +359,7 @@ export const a1Questions: A1Question[] = [
     question: '___ are my keys. (far away, plural)',
     options: ['This', 'That', 'These', 'Those'],
     correctIndex: 3,
+    explanation: "Those refers to more than one person or thing farther away. Match both number and distance.",
   },
   {
     id: 'a1-dem-9',
@@ -329,6 +368,7 @@ export const a1Questions: A1Question[] = [
     question: 'What are ___? (near me, plural)',
     options: ['This', 'That', 'These', 'Those'],
     correctIndex: 2,
+    explanation: "These refers to more than one person or thing near the speaker. Match both number and distance.",
   },
   {
     id: 'a1-dem-10',
@@ -337,6 +377,7 @@ export const a1Questions: A1Question[] = [
     question: 'Who is ___ man? (far away)',
     options: ['This', 'That', 'These', 'Those'],
     correctIndex: 1,
+    explanation: "That refers to one person or thing farther away. Match both number and distance.",
   },
 
   // PREPOSITIONS OF PLACE (10 soru)
@@ -344,81 +385,91 @@ export const a1Questions: A1Question[] = [
     id: 'a1-prep-1',
     level: 'A1',
     topic: 'prepositions-of-place',
-    question: 'The cat is ___ the box.',
+    question: "The cat is ___ the box. (inside it)",
     options: ['on', 'in', 'under', 'next to'],
     correctIndex: 1,
+    explanation: "In means inside an enclosed space.",
   },
   {
     id: 'a1-prep-2',
     level: 'A1',
     topic: 'prepositions-of-place',
-    question: 'The book is ___ the table.',
+    question: "The book is ___ the table. (resting on its top surface)",
     options: ['on', 'in', 'under', 'behind'],
     correctIndex: 0,
+    explanation: "On describes contact with a surface, such as the top of a table or the face of a wall.",
   },
   {
     id: 'a1-prep-3',
     level: 'A1',
     topic: 'prepositions-of-place',
-    question: 'The dog is ___ the bed.',
+    question: "The dog is ___ the bed. (below it)",
     options: ['on', 'in', 'under', 'between'],
     correctIndex: 2,
+    explanation: "Under means below something.",
   },
   {
     id: 'a1-prep-4',
     level: 'A1',
     topic: 'prepositions-of-place',
-    question: 'The chair is ___ the desk.',
+    question: "The chair is ___ the desk. (beside it)",
     options: ['in', 'under', 'next to', 'behind'],
     correctIndex: 2,
+    explanation: "Next to means immediately beside something.",
   },
   {
     id: 'a1-prep-5',
     level: 'A1',
     topic: 'prepositions-of-place',
-    question: 'The ball is ___ the two boxes.',
+    question: "The ball is ___ the two boxes. (in the space separating them)",
     options: ['between', 'under', 'on', 'behind'],
     correctIndex: 0,
+    explanation: "Between describes the space separating the two boxes.",
   },
   {
     id: 'a1-prep-6',
     level: 'A1',
     topic: 'prepositions-of-place',
-    question: 'The picture is ___ the wall.',
+    question: "The picture is ___ the wall. (attached to its surface)",
     options: ['in', 'on', 'under', 'next to'],
     correctIndex: 1,
+    explanation: "On describes contact with a surface, such as the top of a table or the face of a wall.",
   },
   {
     id: 'a1-prep-7',
     level: 'A1',
     topic: 'prepositions-of-place',
-    question: 'The shop is ___ the bank.',
+    question: "The shop is ___ the bank. (beside it)",
     options: ['behind', 'between', 'next to', 'in'],
     correctIndex: 2,
+    explanation: "Next to means immediately beside something.",
   },
   {
     id: 'a1-prep-8',
     level: 'A1',
     topic: 'prepositions-of-place',
-    question: 'The cat is ___ the table.',
+    question: "The cat is ___ the table. (at its back, hidden from view)",
     options: ['on', 'in', 'under', 'behind'],
     correctIndex: 3,
+    explanation: "Behind means at the back of something.",
   },
   {
     id: 'a1-prep-9',
     level: 'A1',
     topic: 'prepositions-of-place',
-    question: 'The car is ___ the garage.',
+    question: "The car is ___ the garage. (inside it)",
     options: ['in', 'on', 'under', 'next to'],
     correctIndex: 0,
+    explanation: "In means inside an enclosed space.",
   },
   {
     id: 'a1-prep-10',
     level: 'A1',
     topic: 'prepositions-of-place',
-    question: 'The teacher is standing ___ the students.',
+    question: "The teacher is standing ___ the students. (ahead of them, facing them)",
     options: ['in front of', 'behind', 'between', 'under'],
     correctIndex: 0,
+    explanation: "In front of means ahead of something, on its front side.",
   },
 
   // POSSESSIVE ADJECTIVES (10 soru)
@@ -429,6 +480,7 @@ export const a1Questions: A1Question[] = [
     question: 'This is ___ book. (I)',
     options: ['my', 'mine', 'me', 'I'],
     correctIndex: 0,
+    explanation: "Use my before the noun to show possession. A possessive adjective modifies a noun; a form such as mine, yours or ours normally stands without one.",
   },
   {
     id: 'a1-poss-2',
@@ -437,6 +489,7 @@ export const a1Questions: A1Question[] = [
     question: 'That is ___ car. (he)',
     options: ['her', 'his', 'him', 'he'],
     correctIndex: 1,
+    explanation: "Use his before the noun to show possession. A possessive adjective modifies a noun; a form such as mine, yours or ours normally stands without one.",
   },
   {
     id: 'a1-poss-3',
@@ -445,6 +498,7 @@ export const a1Questions: A1Question[] = [
     question: 'Is this ___ bag? (you)',
     options: ['your', 'you', 'yours', 'our'],
     correctIndex: 0,
+    explanation: "Use your before the noun to show possession. A possessive adjective modifies a noun; a form such as mine, yours or ours normally stands without one.",
   },
   {
     id: 'a1-poss-4',
@@ -453,6 +507,7 @@ export const a1Questions: A1Question[] = [
     question: 'These are ___ shoes. (she)',
     options: ['her', 'hers', 'she', 'him'],
     correctIndex: 0,
+    explanation: "Use her before the noun to show possession. A possessive adjective modifies a noun; a form such as mine, yours or ours normally stands without one.",
   },
   {
     id: 'a1-poss-5',
@@ -461,6 +516,7 @@ export const a1Questions: A1Question[] = [
     question: 'We love ___ teacher.',
     options: ['our', 'ours', 'us', 'we'],
     correctIndex: 0,
+    explanation: "Use our before the noun to show possession. A possessive adjective modifies a noun; a form such as mine, yours or ours normally stands without one.",
   },
   {
     id: 'a1-poss-6',
@@ -469,6 +525,7 @@ export const a1Questions: A1Question[] = [
     question: 'They are doing ___ homework.',
     options: ['their', 'theirs', 'them', 'they'],
     correctIndex: 0,
+    explanation: "Use their before the noun to show possession. A possessive adjective modifies a noun; a form such as mine, yours or ours normally stands without one.",
   },
   {
     id: 'a1-poss-7',
@@ -477,6 +534,7 @@ export const a1Questions: A1Question[] = [
     question: 'I can’t find ___ keys.',
     options: ['my', 'mine', 'me', 'I'],
     correctIndex: 0,
+    explanation: "Use my before the noun to show possession. A possessive adjective modifies a noun; a form such as mine, yours or ours normally stands without one.",
   },
   {
     id: 'a1-poss-8',
@@ -485,6 +543,7 @@ export const a1Questions: A1Question[] = [
     question: 'She likes ___ new phone.',
     options: ['her', 'hers', 'she', 'him'],
     correctIndex: 0,
+    explanation: "Use her before the noun to show possession. A possessive adjective modifies a noun; a form such as mine, yours or ours normally stands without one.",
   },
   {
     id: 'a1-poss-9',
@@ -493,6 +552,7 @@ export const a1Questions: A1Question[] = [
     question: 'This is ___ house. (we)',
     options: ['our', 'ours', 'us', 'we'],
     correctIndex: 0,
+    explanation: "Use our before the noun to show possession. A possessive adjective modifies a noun; a form such as mine, yours or ours normally stands without one.",
   },
   {
     id: 'a1-poss-10',
@@ -501,6 +561,7 @@ export const a1Questions: A1Question[] = [
     question: 'They are playing with ___ dog.',
     options: ['their', 'theirs', 'them', 'they'],
     correctIndex: 0,
+    explanation: "Use their before the noun to show possession. A possessive adjective modifies a noun; a form such as mine, yours or ours normally stands without one.",
   },
 ];
 

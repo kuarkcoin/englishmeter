@@ -5,6 +5,7 @@ import React, { useEffect, useMemo, useState, useCallback, useRef } from 'react'
 import Link from 'next/link';
 import DOMPurify from 'dompurify';
 import { useRouter } from 'next/navigation';
+import { PLACEMENT_METHOD, scorePlacement } from '@/lib/placement';
 
 // ✅ choices shuffle (sadece görüntü sırası)
 function shuffleArray<T>(array: T[]): T[] {
@@ -26,6 +27,7 @@ interface Choice {
 interface Question {
   id: string;
   prompt: string;
+  level?: string;
   choices: Choice[];
   explanation?: string;
 
@@ -268,6 +270,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
+  const answersRef = useRef<Record<string, string>>({});
+  const deadlineRef = useRef<number | null>(null);
+  const remainingMsRef = useRef<number | null>(null);
+  const finishedRef = useRef(false);
 
   // ✅ PRACTICE MODE STATE
   const [mode, setMode] = useState<'exam' | 'practice'>('exam');
@@ -417,24 +423,32 @@ export default function Quiz({ params }: { params: { id: string } }) {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const raw = sessionStorage.getItem('em_attempt_payload');
-    if (!raw) {
-      router.replace('/?toast=attempt-expired');
-      return;
-    }
-
     try {
+      const raw = sessionStorage.getItem('em_attempt_payload');
+      if (!raw) {
+        router.replace('/?toast=attempt-expired');
+        return;
+      }
       const parsed: QuizData = JSON.parse(raw);
       setData(parsed);
+      setMode('exam');
 
       const qCount = parsed.questions?.length || 0;
 
       let seconds = 0;
       if (parsed.test?.duration && Number.isFinite(parsed.test.duration) && parsed.test.duration! > 0) {
-        seconds = Math.round(parsed.test.duration! * 60);
+        seconds = Math.max(1, Math.round(parsed.test.duration! * 60));
       } else {
         seconds = qCount > 0 ? qCount * 30 : 25 * 60;
       }
+      answersRef.current = {};
+      finishedRef.current = false;
+      remainingMsRef.current = seconds * 1000;
+      deadlineRef.current = Date.now() + remainingMsRef.current;
+      setAnswers({});
+      setScore(0);
+      setShowResult(false);
+      setActiveIndex(0);
       setTimeLeft(seconds);
     } catch {
       router.replace('/?toast=attempt-corrupted');
@@ -453,28 +467,38 @@ export default function Quiz({ params }: { params: { id: string } }) {
   // ✅ remove session payload ONLY after result is visible
   useEffect(() => {
     if (showResult) {
-      sessionStorage.removeItem('em_attempt_payload');
+      try { sessionStorage.removeItem('em_attempt_payload'); } catch {}
     }
   }, [showResult]);
 
   // 3) SUBMIT & SAVE MISTAKES
-  const handleSubmit = useCallback(() => {
-    if (!data) return;
+  const handleSubmit = useCallback((timedOut = false) => {
+    if (!data || finishedRef.current) return;
+    const deadlinePassed = () => mode === 'exam' && deadlineRef.current !== null && Date.now() >= deadlineRef.current;
 
-    if (mode === 'exam') {
-      const unanswered = data.questions.filter((q) => !answers[q.id]).length;
+    if (mode === 'exam' && !timedOut && !deadlinePassed()) {
+      const unanswered = data.questions.filter((q) => !answersRef.current[q.id]).length;
       if (unanswered > 0) {
         const ok = window.confirm(`${unanswered} unanswered question(s) var.\n\nYine de bitireyim mi? (Finish anyway)`);
-        if (!ok) return;
+        if (!ok && !deadlinePassed()) return;
       }
     }
+
+    finishedRef.current = true;
+    const submittedAnswers = { ...answersRef.current };
+    if (deadlineRef.current !== null) {
+      remainingMsRef.current = Math.max(0, deadlineRef.current - Date.now());
+      setTimeLeft(Math.ceil(remainingMsRef.current / 1000));
+    }
+    deadlineRef.current = null;
+    setAnswers(submittedAnswers);
 
     const { questions } = data;
     let correctCount = 0;
 
-    const existingMistakesRaw = localStorage.getItem('my_mistakes');
     let mistakeList: any[] = [];
     try {
+      const existingMistakesRaw = localStorage.getItem('my_mistakes');
       mistakeList = existingMistakesRaw ? JSON.parse(existingMistakesRaw) : [];
       if (!Array.isArray(mistakeList)) mistakeList = [];
     } catch {
@@ -482,7 +506,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
     }
 
     questions.forEach((q) => {
-      const userAnswerId = answers[q.id];
+      const userAnswerId = submittedAnswers[q.id];
       const correctChoiceId = getCorrectChoiceId(q);
       const isCorrect = idsEqual(userAnswerId, correctChoiceId);
       if (isCorrect) correctCount++;
@@ -511,7 +535,11 @@ export default function Quiz({ params }: { params: { id: string } }) {
       }
     });
 
-    localStorage.setItem('my_mistakes', JSON.stringify(mistakeList));
+    try {
+      localStorage.setItem('my_mistakes', JSON.stringify(mistakeList));
+    } catch {
+      // The result remains available when browser storage is full or disabled.
+    }
 
     if (data.testSlug?.startsWith('adv-test-')) {
       const testNumber = data.testSlug.split('-').pop() || '1';
@@ -537,29 +565,62 @@ export default function Quiz({ params }: { params: { id: string } }) {
     setScore(correctCount);
     setShowResult(true);
     window.scrollTo(0, 0);
-  }, [data, answers, mode]);
+  }, [data, mode]);
+
+  // Update the answer snapshot immediately, including before a timer callback can run.
+  const updateAnswer = useCallback((questionId: string, choiceId?: string) => {
+    if (finishedRef.current) return false;
+    if (mode === 'exam' && deadlineRef.current !== null && Date.now() >= deadlineRef.current) {
+      handleSubmit(true);
+      return false;
+    }
+    const nextAnswers = { ...answersRef.current };
+    if (choiceId === undefined) delete nextAnswers[questionId];
+    else nextAnswers[questionId] = choiceId;
+    answersRef.current = nextAnswers;
+    setAnswers(nextAnswers);
+    return true;
+  }, [mode, handleSubmit]);
+
+  const changeMode = useCallback((nextMode: 'exam' | 'practice') => {
+    if (finishedRef.current || nextMode === mode) return;
+    if (data?.testSlug === 'quick-placement' && nextMode === 'practice') return;
+    if (deadlineRef.current !== null) {
+      remainingMsRef.current = Math.max(0, deadlineRef.current - Date.now());
+      if (remainingMsRef.current === 0) {
+        handleSubmit(true);
+        return;
+      }
+      setTimeLeft(Math.ceil(remainingMsRef.current / 1000));
+    }
+    // Practice pauses the clock. Resuming keeps the exact remaining milliseconds.
+    deadlineRef.current = nextMode === 'exam' && remainingMsRef.current !== null
+      ? Date.now() + remainingMsRef.current
+      : null;
+    setMode(nextMode);
+  }, [data?.testSlug, mode, handleSubmit]);
 
   // 2) TIMER (EXAM ONLY)
   useEffect(() => {
-    if (mode !== 'exam') return;
-    if (timeLeft === null || showResult) return;
-    if (timeLeft <= 0) {
-      handleSubmit();
-      return;
-    }
-    const timerId = setInterval(() => {
-      setTimeLeft((p) => (p !== null && p > 0 ? p - 1 : 0));
-    }, 1000);
-    return () => clearInterval(timerId);
-  }, [timeLeft, showResult, handleSubmit, mode]);
-
-  // 5) OPTIONAL: 10 seconds warning (EXAM only)
-  useEffect(() => {
-    if (mode !== 'exam') return;
-    if (timeLeft === 10 && !showResult) {
-      alert('⏳ 10 seconds left!');
-    }
-  }, [timeLeft, showResult, mode]);
+    if (!data || mode !== 'exam' || showResult || remainingMsRef.current === null) return;
+    if (deadlineRef.current === null) deadlineRef.current = Date.now() + remainingMsRef.current;
+    const tick = () => {
+      if (finishedRef.current || deadlineRef.current === null) return;
+      const remaining = Math.max(0, deadlineRef.current - Date.now());
+      remainingMsRef.current = remaining;
+      setTimeLeft(Math.ceil(remaining / 1000));
+      if (remaining === 0) handleSubmit(true);
+    };
+    tick();
+    const timerId = window.setInterval(tick, 1000);
+    document.addEventListener('visibilitychange', tick);
+    window.addEventListener('focus', tick);
+    return () => {
+      window.clearInterval(timerId);
+      document.removeEventListener('visibilitychange', tick);
+      window.removeEventListener('focus', tick);
+    };
+  }, [data, showResult, handleSubmit, mode]);
 
   // Practice/Exam mode change: feedback + streak temizle
   useEffect(() => {
@@ -571,7 +632,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
     setPendingScrollMode(null);
   }, [mode]);
 
-  // ✅ Keyboard shortcuts: 1-4 / A-D (shuffled choices üzerinden)
+  // Keyboard shortcuts match the displayed choices, including five-option exams.
   useEffect(() => {
     if (!mounted) return;
     if (!data) return;
@@ -587,14 +648,14 @@ export default function Quiz({ params }: { params: { id: string } }) {
       if (mode === 'practice' && locked[q.id]) return;
 
       const k = e.key.toLowerCase();
-      const map: Record<string, number> = { '1': 0, '2': 1, '3': 2, '4': 3, a: 0, b: 1, c: 2, d: 3 };
+      const map: Record<string, number> = { '1': 0, '2': 1, '3': 2, '4': 3, '5': 4, a: 0, b: 1, c: 2, d: 3, e: 4 };
       if (!(k in map)) return;
 
       const ci = map[k];
       const choice = q.shuffledChoices?.[ci];
       if (!choice) return;
 
-      setAnswers((prev) => ({ ...prev, [q.id]: choice.id }));
+      if (!updateAnswer(q.id, choice.id)) return;
 
       if (mode === 'practice') {
         const realCorrectId = getCorrectChoiceId(q);
@@ -648,6 +709,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
     autoScroll,
     autoSpeak,
     beep,
+    updateAnswer,
   ]);
 
   if (!mounted) return <div className="p-10 text-center animate-pulse">Loading...</div>;
@@ -656,6 +718,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
   const questions = questionsWithShuffledChoices;
   const { test } = data;
+  const isPlacement = data.testSlug === 'quick-placement';
 
   // ✅ Progress metrics
   const totalQ = questions.length || 1;
@@ -666,6 +729,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
   if (showResult) {
     const total = questions.length || 1;
     const percentage = Math.round((score / total) * 100);
+    const placement = isPlacement ? scorePlacement(questions, answers) : null;
 
     return (
       <div className="em-page max-w-4xl mx-auto px-4 py-12 space-y-8">
@@ -703,7 +767,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center gap-2"
                 type="button"
               >
-                New Test (New Questions)
+                {isPlacement ? 'Retake Placement Test' : 'Try Again'}
               </button>
             )}
 
@@ -722,6 +786,32 @@ export default function Quiz({ params }: { params: { id: string } }) {
             </Link>
           </div>
         </div>
+
+        {placement && (
+          <section className="em-card rounded-3xl p-6 sm:p-8" aria-labelledby="placement-result-heading">
+            <h2 id="placement-result-heading" className="text-2xl font-bold">Grammar and vocabulary practice estimate</h2>
+            <p className="mt-3 text-xl font-bold text-blue-700 dark:text-blue-300">
+              {!placement.isComplete
+                ? 'Complete all 30 questions to receive a level estimate.'
+                : placement.estimatedLevel
+                  ? `Estimated practice level: ${placement.estimatedLevel}`
+                  : 'Start with A1 foundations.'}
+            </p>
+            <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">{PLACEMENT_METHOD}</p>
+            <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {placement.levelScores.map((level) => (
+                <div key={level.level} className="rounded-xl border border-slate-200 p-3 dark:border-slate-700">
+                  <h3 className="font-bold">{level.level}</h3>
+                  <p>{level.correct}/{level.total} correct</p>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">{level.answered}/{level.total} answered</p>
+                </div>
+              ))}
+            </div>
+            <Link href={`/levels/${placement.recommendedLevel.toLowerCase()}`} className="mt-5 inline-flex rounded-xl bg-blue-600 px-5 py-3 font-bold text-white">
+              Practise {placement.recommendedLevel} topics
+            </Link>
+          </section>
+        )}
 
         <div className="space-y-6">
           <h2 className="text-xl font-bold text-slate-700 ml-2 border-l-4 border-blue-500 pl-3">Detailed Analysis</h2>
@@ -768,7 +858,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       )}
                     </div>
 
-                    <div className="text-lg font-medium text-slate-900 dark:text-slate-50 opacity-100 dark:opacity-100 mb-5 leading-loose [&_a]:text-blue-600 dark:[&_a]:text-blue-300 [&_strong]:text-slate-900 dark:[&_strong]:text-slate-50 [&_em]:text-slate-800 dark:[&_em]:text-slate-100">{formatText(q.prompt)}</div>
+                    <div className="whitespace-pre-line text-lg font-medium text-slate-900 dark:text-slate-50 opacity-100 dark:opacity-100 mb-5 leading-loose [&_a]:text-blue-600 dark:[&_a]:text-blue-300 [&_strong]:text-slate-900 dark:[&_strong]:text-slate-50 [&_em]:text-slate-800 dark:[&_em]:text-slate-100">{formatText(q.prompt)}</div>
 
                     <div className="grid gap-2">
                       {(q.shuffledChoices || q.choices || []).map((c, choiceIdx) => {
@@ -819,7 +909,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       />
                     )}
 
-                    {showPracticeExtras && q.explanation && (
+                    {q.explanation && (
                       <div className="mt-5 p-4 bg-blue-50 rounded-xl border border-blue-100 text-sm text-blue-800 flex gap-3 items-start">
                         <span className="text-xl">💡</span>
                         <div>
@@ -851,11 +941,11 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
         <div className="flex items-center gap-3">
           {/* Mode toggle */}
-          <div className="flex items-center gap-1 px-2 py-1 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+          {!isPlacement && <div className="flex items-center gap-1 px-2 py-1 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
             <button
               onClick={() => {
                 void ensureAudio();
-                setMode('exam');
+                changeMode('exam');
               }}
               className={`px-3 py-1 text-xs font-black rounded-lg transition ${
                 mode === 'exam' ? 'bg-blue-600 text-white' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'
@@ -868,7 +958,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
             <button
               onClick={() => {
                 void ensureAudio();
-                setMode('practice');
+                changeMode('practice');
               }}
               className={`px-3 py-1 text-xs font-black rounded-lg transition ${
                 mode === 'practice' ? 'bg-green-600 text-white' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'
@@ -877,7 +967,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
             >
               PRACTICE
             </button>
-          </div>
+          </div>}
 
           {/* Practice toggles */}
           {mode === 'practice' && (
@@ -1024,7 +1114,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                 )}
               </div>
 
-              <div className="text-xl font-medium text-slate-900 dark:text-slate-50 opacity-100 dark:opacity-100 mb-6 leading-loose [&_a]:text-blue-600 dark:[&_a]:text-blue-300 [&_strong]:text-slate-900 dark:[&_strong]:text-slate-50 [&_em]:text-slate-800 dark:[&_em]:text-slate-100">{formatText(q.prompt)}</div>
+              <div className="whitespace-pre-line text-xl font-medium text-slate-900 dark:text-slate-50 opacity-100 dark:opacity-100 mb-6 leading-loose [&_a]:text-blue-600 dark:[&_a]:text-blue-300 [&_strong]:text-slate-900 dark:[&_strong]:text-slate-50 [&_em]:text-slate-800 dark:[&_em]:text-slate-100">{formatText(q.prompt)}</div>
 
               <div className="grid gap-3">
                 {(q.shuffledChoices || q.choices || []).map((c, choiceIdx) => {
@@ -1072,7 +1162,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                         onChange={() => {
                           if (mode === 'practice' && locked[q.id]) return;
 
-                          setAnswers((prev) => ({ ...prev, [q.id]: c.id }));
+                          if (!updateAnswer(q.id, c.id)) return;
 
                           if (mode === 'practice') {
                             const realCorrectId = getCorrectChoiceId(q);
@@ -1167,11 +1257,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
               <div className="mt-5 flex items-center justify-between">
                 <button
                   onClick={() => {
-                    setAnswers((prev) => {
-                      const copy = { ...prev };
-                      delete copy[q.id];
-                      return copy;
-                    });
+                    if (!updateAnswer(q.id)) return;
                     setLocked((p) => {
                       const copy = { ...p };
                       delete copy[q.id];
@@ -1201,7 +1287,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
               {idx === 0 && (
                 <div className="mt-4 text-xs text-slate-400">
-                  ⌨️ Keyboard: Use <b>1-4</b> or <b>A-D</b> to answer the active question.
+                  ⌨️ Keyboard: Use <b>1–5</b> or <b>A–E</b> to answer the active question.
                 </div>
               )}
             </div>
@@ -1211,7 +1297,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
       <div className="pt-2 pb-12">
         <button
-          onClick={handleSubmit}
+          onClick={() => handleSubmit()}
           className="w-full py-4 rounded-xl text-white text-xl font-bold shadow-lg transition-all transform active:scale-[0.98] bg-blue-600 hover:bg-blue-700 hover:shadow-blue-200"
           type="button"
         >

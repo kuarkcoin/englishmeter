@@ -8,6 +8,7 @@ export type C2Question = {
   question: string;
   options: string[];
   correctIndex: number;
+  explanation: string;
 };
 
 export const c2Questions: C2Question[] = [
@@ -19,6 +20,7 @@ export const c2Questions: C2Question[] = [
     question: 'Rarely ___ such a breathtaking performance.',
     options: ['I saw', 'have I seen', 'I have seen', 'did I saw'],
     correctIndex: 1,
+    explanation: "Initial 'Rarely' requires subject-auxiliary inversion. 'Have I seen' also expresses experience up to the present.",
   },
   {
     id: 'c2-inv-2',
@@ -27,14 +29,16 @@ export const c2Questions: C2Question[] = [
     question: 'Not until later ___ the truth.',
     options: ['he realized', 'did he realize', 'he did realize', 'was he realizing'],
     correctIndex: 1,
+    explanation: "An initial 'Not until' phrase triggers inversion in the main clause. Use did + subject + base verb: 'did he realize'.",
   },
   {
     id: 'c2-inv-3',
     level: 'C2',
     topic: 'inversion-advanced',
     question: 'Hardly had we arrived ___ the storm started.',
-    options: ['when', 'than', 'that', 'before'],
+    options: ['when', 'than', 'that', 'then'],
     correctIndex: 0,
+    explanation: "The paired construction is hardly ... when. It indicates that the storm started immediately after the arrival.",
   },
   {
     id: 'c2-inv-4',
@@ -43,6 +47,7 @@ export const c2Questions: C2Question[] = [
     question: 'Under no circumstances ___ the door to strangers.',
     options: ['you should open', 'should you open', 'open you should', 'you open should'],
     correctIndex: 1,
+    explanation: "The negative opener requires inversion, placing should before you: 'should you open'.",
   },
   {
     id: 'c2-inv-5',
@@ -51,6 +56,7 @@ export const c2Questions: C2Question[] = [
     question: 'Seldom ___ a statement so misleading.',
     options: ['he makes', 'does he make', 'he made', 'did he made'],
     correctIndex: 1,
+    explanation: "Initial 'Seldom' triggers inversion. With a present-simple verb and singular subject, use does + he + make.",
   },
   {
     id: 'c2-inv-6',
@@ -59,6 +65,7 @@ export const c2Questions: C2Question[] = [
     question: 'Only after the meeting ___ how serious the issue was.',
     options: ['she understood', 'did she understand', 'she did understand', 'was she understand'],
     correctIndex: 1,
+    explanation: "'Only after' at the beginning requires inversion in the following main clause. The past-simple form is 'did she understand'.",
   },
   {
     id: 'c2-inv-7',
@@ -67,6 +74,7 @@ export const c2Questions: C2Question[] = [
     question: 'Little ___ that he was being deceived.',
     options: ['did he know', 'he knew', 'was knowing', 'he did know'],
     correctIndex: 0,
+    explanation: "'Little' means 'not at all' here and triggers inversion. Use 'did he know', with the base verb after did.",
   },
   {
     id: 'c2-inv-8',
@@ -75,6 +83,7 @@ export const c2Questions: C2Question[] = [
     question: 'No sooner had the show begun ___ the lights went out.',
     options: ['when', 'than', 'before', 'after'],
     correctIndex: 1,
+    explanation: "The standard pairing is no sooner ... than. The earlier action is expressed with inverted past perfect, 'had the show begun'.",
   },
   {
     id: 'c2-inv-9',
@@ -83,6 +92,7 @@ export const c2Questions: C2Question[] = [
     question: 'In no way ___ responsible for the outcome.',
     options: ['he is', 'is he', 'he was', 'was he being'],
     correctIndex: 1,
+    explanation: "'In no way' is negative, so put the verb be before the subject: 'is he responsible'.",
   },
   {
     id: 'c2-inv-10',
@@ -91,6 +101,7 @@ export const c2Questions: C2Question[] = [
     question: 'Barely ___ the announcement when people started reacting.',
     options: ['they had made', 'had they made', 'did they made', 'they made'],
     correctIndex: 1,
+    explanation: "Barely introduces the earlier of two closely connected past events. Use past-perfect inversion: 'had they made'.",
   },
 
   // 2) CLEFT SENTENCES (10 soru)
@@ -101,6 +112,7 @@ export const c2Questions: C2Question[] = [
     question: 'It was John ___ broke the window.',
     options: ['who', 'which', 'whom', 'what'],
     correctIndex: 0,
+    explanation: "The cleft focuses on John, a person who performs the action. Who is the subject of broke in the following clause.",
   },
   {
     id: 'c2-cleft-2',
@@ -109,6 +121,7 @@ export const c2Questions: C2Question[] = [
     question: 'What I need most ___ a moment of silence.',
     options: ['is', 'are', 'was', 'has been'],
     correctIndex: 0,
+    explanation: "The whole what-clause is a singular subject. Use the present linking verb is to identify what the speaker needs.",
   },
   {
     id: 'c2-cleft-3',
@@ -117,6 +130,7 @@ export const c2Questions: C2Question[] = [
     question: 'It was not until 2010 ___ the law was changed.',
     options: ['that', 'when', 'which', 'what'],
     correctIndex: 0,
+    explanation: "The cleft pattern is 'It was not until + time + that + clause'. That connects the time focus to the event.",
   },
   {
     id: 'c2-cleft-4',
@@ -125,14 +139,16 @@ export const c2Questions: C2Question[] = [
     question: 'All I want ___ for this problem to be solved.',
     options: ['is', 'are', 'was', 'were'],
     correctIndex: 0,
+    explanation: "'All I want' acts as one subject describing the speaker's wish. Use is before the for-clause that identifies the wish.",
   },
   {
     id: 'c2-cleft-5',
     level: 'C2',
     topic: 'cleft-sentences',
-    question: 'The reason why he left ___ still unclear.',
+    question: 'The reason why he left ___ still unclear today.',
     options: ['is', 'are', 'was', 'were'],
     correctIndex: 0,
+    explanation: "The head of the subject is the singular noun reason. 'Is' gives its current state; the why-clause only modifies reason.",
   },
   {
     id: 'c2-cleft-6',
@@ -141,6 +157,7 @@ export const c2Questions: C2Question[] = [
     question: 'What surprised me most ___ his reaction.',
     options: ['was', 'were', 'has been', 'is being'],
     correctIndex: 0,
+    explanation: "'What surprised me most' refers to a past reaction and acts as a singular subject. Was links it to his reaction.",
   },
   {
     id: 'c2-cleft-7',
@@ -149,6 +166,7 @@ export const c2Questions: C2Question[] = [
     question: 'It was because of her attitude ___ they refused.',
     options: ['that', 'why', 'which', 'when'],
     correctIndex: 0,
+    explanation: "An it-cleft can emphasise a reason phrase: 'It was because of ... that ...'. Use that after the focus.",
   },
   {
     id: 'c2-cleft-8',
@@ -157,14 +175,16 @@ export const c2Questions: C2Question[] = [
     question: 'What they’re asking for ___ completely unreasonable.',
     options: ['is', 'are', 'was', 'were'],
     correctIndex: 0,
+    explanation: "The what-clause describes one request or set of demands as a whole. The singular present verb is links it to unreasonable.",
   },
   {
     id: 'c2-cleft-9',
     level: 'C2',
     topic: 'cleft-sentences',
     question: 'It wasn’t the plan ___ failed, but the execution.',
-    options: ['that', 'which', 'who', 'whom'],
+    options: ['that', 'where', 'who', 'whom'],
     correctIndex: 0,
+    explanation: "The cleft contrasts the plan with the execution. That connects the focused noun phrase to the clause describing what failed.",
   },
   {
     id: 'c2-cleft-10',
@@ -173,6 +193,7 @@ export const c2Questions: C2Question[] = [
     question: 'What matters most ___ that we stay united.',
     options: ['is', 'are', 'was', 'were'],
     correctIndex: 0,
+    explanation: "The what-clause is a singular subject. Use is before the that-clause explaining the thing that matters most.",
   },
 
   // 3) ELLIPTICAL STRUCTURES (10 soru)
@@ -181,8 +202,9 @@ export const c2Questions: C2Question[] = [
     level: 'C2',
     topic: 'elliptical-structures',
     question: 'She left early, as ___ everyone else.',
-    options: ['did', 'had', 'was', 'does'],
+    options: ['did', 'has', 'was', 'does'],
     correctIndex: 0,
+    explanation: "Did replaces the repeated past-simple phrase 'left early'. After as, the auxiliary comes before the subject everyone else.",
   },
   {
     id: 'c2-ellip-2',
@@ -191,6 +213,7 @@ export const c2Questions: C2Question[] = [
     question: 'He likes jazz, and so ___ his brother.',
     options: ['does', 'do', 'did', 'has'],
     correctIndex: 0,
+    explanation: "'So does his brother' means his brother likes jazz too. Does matches the present-simple tense and singular subject.",
   },
   {
     id: 'c2-ellip-3',
@@ -199,6 +222,7 @@ export const c2Questions: C2Question[] = [
     question: 'I may join later, but only if ___ time.',
     options: ['I have', 'have', 'I will have', 'I had'],
     correctIndex: 0,
+    explanation: "The if-clause needs its own subject and a present-simple verb for a future condition: 'if I have time'.",
   },
   {
     id: 'c2-ellip-4',
@@ -207,22 +231,25 @@ export const c2Questions: C2Question[] = [
     question: 'Though tired, ___ kept working.',
     options: ['she', 'her', 'she has', 'hers'],
     correctIndex: 0,
+    explanation: "'Though tired' is reduced from 'though she was tired'. The main clause still needs the subject pronoun she before kept.",
   },
   {
     id: 'c2-ellip-5',
     level: 'C2',
     topic: 'elliptical-structures',
     question: 'If necessary, ___ additional staff.',
-    options: ['we will hire', 'will hire', 'hire', 'we hire'],
-    correctIndex: 1,
+    options: ['we will hire', 'will hire', 'hiring', 'we hiring'],
+    correctIndex: 0,
+    explanation: "'If necessary' is reduced from 'if it is necessary'. The main clause still needs a subject and verb: 'we will hire'.",
   },
   {
     id: 'c2-ellip-6',
     level: 'C2',
     topic: 'elliptical-structures',
-    question: 'He spoke confidently, as ___ a leader.',
+    question: 'He spoke confidently, as a leader ___ if she were in his position.',
     options: ['would', 'will', 'did', 'does'],
     correctIndex: 0,
+    explanation: "Would stands in for 'would speak', avoiding repetition. The unreal condition 'if she were in his position' calls for a hypothetical result with would.",
   },
   {
     id: 'c2-ellip-7',
@@ -231,30 +258,34 @@ export const c2Questions: C2Question[] = [
     question: 'She won’t attend, nor ___ her team.',
     options: ['will', 'won’t', 'does', 'did'],
     correctIndex: 0,
+    explanation: "After the negative clause, nor introduces a matching negative addition with inversion: 'nor will her team'.",
   },
   {
     id: 'c2-ellip-8',
     level: 'C2',
     topic: 'elliptical-structures',
     question: 'He left the room without ___ goodbye.',
-    options: ['saying', 'say', 'having said', 'to say'],
+    options: ['saying', 'say', 'having say', 'to say'],
     correctIndex: 0,
+    explanation: "Without is a preposition, so an immediately following verb takes the -ing form. 'Without saying goodbye' describes what he did not do.",
   },
   {
     id: 'c2-ellip-9',
     level: 'C2',
     topic: 'elliptical-structures',
     question: 'If in doubt, ___ a specialist.',
-    options: ['consult', 'you consult', 'consulting', 'to consult'],
+    options: ['consult', 'you consulting', 'consulting', 'to consult'],
     correctIndex: 0,
+    explanation: "'If in doubt' is reduced from 'if you are in doubt'. The instruction uses the imperative base form consult.",
   },
   {
     id: 'c2-ellip-10',
     level: 'C2',
     topic: 'elliptical-structures',
-    question: 'She behaved as though ___ nothing had happened.',
+    question: 'She behaved as though nothing ___ happened.',
     options: ['had', 'has', 'would', 'will'],
     correctIndex: 0,
+    explanation: "As though introduces an imagined situation. The past perfect 'nothing had happened' refers to an event earlier than her behaviour.",
   },
 
   // 4) ADVANCED CONDITIONALS (10 soru)
@@ -265,6 +296,7 @@ export const c2Questions: C2Question[] = [
     question: 'If he had listened, he ___ in trouble now.',
     options: ['wouldn’t be', 'wouldn’t have been', 'isn’t', 'weren’t'],
     correctIndex: 0,
+    explanation: "The past condition uses 'had listened', but now makes the result present. Use 'wouldn't be' in this mixed conditional.",
   },
   {
     id: 'c2-cond-2',
@@ -273,14 +305,16 @@ export const c2Questions: C2Question[] = [
     question: 'Had I known, I ___ you earlier.',
     options: ['would have called', 'would call', 'called', 'call'],
     correctIndex: 0,
+    explanation: "'Had I known' is an inverted third-conditional if-clause. Its unreal past result uses would have + past participle.",
   },
   {
     id: 'c2-cond-3',
     level: 'C2',
     topic: 'advanced-conditionals',
     question: 'If it weren’t for his help, I ___ succeed.',
-    options: ['wouldn’t be able to', 'couldn’t', 'can’t', 'didn’t'],
+    options: ['wouldn’t be able to', 'couldn’t to', 'can’t', 'didn’t'],
     correctIndex: 0,
+    explanation: "'If it weren't for' imagines the absence of present help. 'Wouldn't be able to' expresses the resulting lack of ability.",
   },
   {
     id: 'c2-cond-4',
@@ -289,22 +323,25 @@ export const c2Questions: C2Question[] = [
     question: 'Should you need assistance, ___ hesitate to ask.',
     options: ['don’t', 'didn’t', 'won’t', 'aren’t'],
     correctIndex: 0,
+    explanation: "'Should you need' is a formal conditional meaning 'if you need'. The main clause is a negative imperative: 'don't hesitate'.",
   },
   {
     id: 'c2-cond-5',
     level: 'C2',
     topic: 'advanced-conditionals',
-    question: 'If only he ___ more patient.',
+    question: 'Use formal hypothetical English: If only he ___ more patient.',
     options: ['were', 'was', 'would be', 'is'],
     correctIndex: 0,
+    explanation: "Formal unreal wishes use were with every subject. 'If only he were' imagines a different present characteristic.",
   },
   {
     id: 'c2-cond-6',
     level: 'C2',
     topic: 'advanced-conditionals',
     question: 'Provided (that) he ___, we’ll start without him.',
-    options: ['doesn’t come', 'didn’t come', 'won’t come', 'hasn’t come'],
+    options: ['doesn’t come', 'didn’t come', 'won’t come', 'hasn’t came'],
     correctIndex: 0,
+    explanation: "Provided that introduces a condition. Present simple 'doesn't come' can refer to the future condition for starting without him.",
   },
   {
     id: 'c2-cond-7',
@@ -313,14 +350,16 @@ export const c2Questions: C2Question[] = [
     question: 'If she hadn’t left early, she ___ the announcement.',
     options: ['would have heard', 'would hear', 'heard', 'will hear'],
     correctIndex: 0,
+    explanation: "The condition is contrary to a completed past event. Use would have + past participle for the unreal past result: 'would have heard'.",
   },
   {
     id: 'c2-cond-8',
     level: 'C2',
     topic: 'advanced-conditionals',
-    question: 'But for your advice, I ___ a huge mistake.',
+    question: 'But for your advice, I ___ a huge mistake yesterday.',
     options: ['would have made', 'made', 'would make', 'make'],
     correctIndex: 0,
+    explanation: "'But for your advice' means 'if it had not been for your advice' here. The unreal past consequence is 'would have made'.",
   },
   {
     id: 'c2-cond-9',
@@ -329,6 +368,7 @@ export const c2Questions: C2Question[] = [
     question: 'Were he to ask, I ___ him immediately.',
     options: ['would help', 'help', 'will help', 'helped'],
     correctIndex: 0,
+    explanation: "'Were he to ask' is a formal inverted condition about a hypothetical request. Use would + base verb for the result.",
   },
   {
     id: 'c2-cond-10',
@@ -337,6 +377,7 @@ export const c2Questions: C2Question[] = [
     question: 'Had they tried harder, they ___ successful.',
     options: ['might have been', 'might be', 'are', 'were'],
     correctIndex: 0,
+    explanation: "'Had they tried harder' introduces an unreal past condition. Might have been expresses a possible, rather than certain, past result.",
   },
 
   // 5) COMPLEX PASSIVES (10 soru)
@@ -345,8 +386,9 @@ export const c2Questions: C2Question[] = [
     level: 'C2',
     topic: 'complex-passives',
     question: 'He is said ___ the best surgeon in the city.',
-    options: ['to be', 'being', 'been', 'to have been'],
+    options: ['to be', 'being', 'been', 'to been'],
     correctIndex: 0,
+    explanation: "A personal reporting passive can take an infinitive. 'Is said to be' reports a present description of him.",
   },
   {
     id: 'c2-pass-2',
@@ -355,6 +397,7 @@ export const c2Questions: C2Question[] = [
     question: 'The project is expected ___ by next month.',
     options: ['to be completed', 'being completed', 'completed', 'to complete'],
     correctIndex: 0,
+    explanation: "The project receives the action of completing. After is expected, use the passive infinitive 'to be completed'.",
   },
   {
     id: 'c2-pass-3',
@@ -363,14 +406,16 @@ export const c2Questions: C2Question[] = [
     question: 'They are believed ___ the problem already.',
     options: ['to have solved', 'to solve', 'solving', 'to be solving'],
     correctIndex: 0,
+    explanation: "Already indicates that the solving happened before the present belief. Use the perfect infinitive 'to have solved'.",
   },
   {
     id: 'c2-pass-4',
     level: 'C2',
     topic: 'complex-passives',
     question: 'The suspect is reported ___ in hiding.',
-    options: ['to be', 'being', 'been', 'to have been'],
+    options: ['to be', 'being', 'been', 'to being'],
     correctIndex: 0,
+    explanation: "'Is reported to be' uses a reporting passive followed by an infinitive to describe his current situation.",
   },
   {
     id: 'c2-pass-5',
@@ -379,6 +424,7 @@ export const c2Questions: C2Question[] = [
     question: 'He was made ___ the truth.',
     options: ['to admit', 'admit', 'admitting', 'to admitted'],
     correctIndex: 0,
+    explanation: "Active make takes a bare infinitive, but passive be made takes to + infinitive. The correct passive pattern is 'was made to admit'.",
   },
   {
     id: 'c2-pass-6',
@@ -387,14 +433,16 @@ export const c2Questions: C2Question[] = [
     question: 'The company is thought ___ bankrupt soon.',
     options: ['to go', 'going', 'gone', 'to have gone'],
     correctIndex: 0,
+    explanation: "Soon refers to a future event, so the reporting passive takes the simple infinitive 'to go', not the perfect infinitive.",
   },
   {
     id: 'c2-pass-7',
     level: 'C2',
     topic: 'complex-passives',
     question: 'She was seen ___ the building.',
-    options: ['to leave', 'leaving', 'left', 'to be leaving'],
+    options: ['to leaving', 'leaving', 'left', 'to be leave'],
     correctIndex: 1,
+    explanation: "'Was seen leaving' presents the departure as an action in progress when it was observed. The -ing form expresses that perspective.",
   },
   {
     id: 'c2-pass-8',
@@ -403,6 +451,7 @@ export const c2Questions: C2Question[] = [
     question: 'He is rumoured ___ the CEO position.',
     options: ['to be offered', 'to offer', 'offering', 'been offered'],
     correctIndex: 0,
+    explanation: "He receives the offer, so the infinitive must be passive: 'to be offered'. It follows the reporting passive is rumoured.",
   },
   {
     id: 'c2-pass-9',
@@ -411,6 +460,7 @@ export const c2Questions: C2Question[] = [
     question: 'The meeting is scheduled ___ at noon.',
     options: ['to begin', 'beginning', 'begun', 'to have begun'],
     correctIndex: 0,
+    explanation: "Scheduled is followed by a to-infinitive for the planned action. 'To begin' fits the meeting's planned start at noon.",
   },
   {
     id: 'c2-pass-10',
@@ -419,6 +469,7 @@ export const c2Questions: C2Question[] = [
     question: 'The children were allowed ___ outside.',
     options: ['to play', 'play', 'playing', 'to playing'],
     correctIndex: 0,
+    explanation: "The passive permission pattern is be allowed + to-infinitive. Use 'to play' to state what the children had permission to do.",
   },
 
   // 6) MODAL PERFECT (COMPLEX) (10 soru)
@@ -429,6 +480,7 @@ export const c2Questions: C2Question[] = [
     question: 'He must have forgotten, or he ___ by now.',
     options: ['would have called', 'would call', 'called', 'was calling'],
     correctIndex: 0,
+    explanation: "'Would have called' describes the past result expected if he had remembered. By now indicates that the call should already have happened.",
   },
   {
     id: 'c2-modal-2',
@@ -437,14 +489,16 @@ export const c2Questions: C2Question[] = [
     question: 'You shouldn’t have done that; you ___ hurt yourself.',
     options: ['could have', 'should', 'might', 'will have'],
     correctIndex: 0,
+    explanation: "Could have + past participle expresses a past possibility that did not happen. Here the speaker warns about the risk of getting hurt.",
   },
   {
     id: 'c2-modal-3',
     level: 'C2',
     topic: 'modal-perfect-complex',
-    question: 'She can’t have seen him; he ___ abroad yesterday.',
-    options: ['left', 'had left', 'was leaving', 'has been leaving'],
+    question: 'She can’t have seen him here; he ___ for Spain yesterday.',
+    options: ['left', 'had leave', 'was leave', 'has been leaving'],
     correctIndex: 0,
+    explanation: "Yesterday identifies a finished past time, so the intended explanation uses the past simple left. 'Can't have seen' expresses a negative deduction about the past.",
   },
   {
     id: 'c2-modal-4',
@@ -453,6 +507,7 @@ export const c2Questions: C2Question[] = [
     question: 'He needn’t have rushed; the meeting ___.',
     options: ['had been postponed', 'postponed', 'was postpone', 'has postponed'],
     correctIndex: 0,
+    explanation: "The meeting received the action of postponing before he rushed. Use the past-perfect passive 'had been postponed'.",
   },
   {
     id: 'c2-modal-5',
@@ -461,45 +516,51 @@ export const c2Questions: C2Question[] = [
     question: 'You might have told me — I ___ differently.',
     options: ['would have acted', 'acted', 'act', 'will act'],
     correctIndex: 0,
+    explanation: "The speaker imagines a different past response if they had been told. Use would have + past participle: 'would have acted'.",
   },
   {
     id: 'c2-modal-6',
     level: 'C2',
     topic: 'modal-perfect-complex',
-    question: 'He could not have been serious — he ___!',
+    question: 'He could not have been serious — he ___ at that moment!',
     options: ['must have been joking', 'must joke', 'must be joked', 'must be joking'],
     correctIndex: 0,
+    explanation: "The speaker makes a strong deduction about his past behaviour. Use must have been + -ing: 'must have been joking'.",
   },
   {
     id: 'c2-modal-7',
     level: 'C2',
     topic: 'modal-perfect-complex',
     question: 'She should have been working, but she ___ around instead.',
-    options: ['was wandering', 'wandered', 'would wander', 'has wandered'],
+    options: ['was wandering', 'was wandered', 'would wander', 'has wandered'],
     correctIndex: 0,
+    explanation: "'Was wandering' describes what she was doing during the period when she should have been working. Both activities are viewed in progress in the past.",
   },
   {
     id: 'c2-modal-8',
     level: 'C2',
     topic: 'modal-perfect-complex',
-    question: 'They must have been waiting — I ___ them outside.',
+    question: 'They must have been waiting — I ___ them outside at ten o’clock yesterday.',
     options: ['saw', 'see', 'was seeing', 'have seen'],
     correctIndex: 0,
+    explanation: "'Saw' states a completed past observation supporting the deduction 'must have been waiting'. The ordinary past of see is saw.",
   },
   {
     id: 'c2-modal-9',
     level: 'C2',
     topic: 'modal-perfect-complex',
-    question: 'You shouldn’t have called him; he ___ asleep.',
-    options: ['might have been', 'might be', 'was', 'is'],
+    question: 'You shouldn’t have called him; he ___ asleep at that time.',
+    options: ['might have been', 'might be', 'were', 'is'],
     correctIndex: 0,
+    explanation: "The possible sleep is at the time of the past call. Might have been expresses uncertainty about that past state.",
   },
   {
     id: 'c2-modal-10',
     level: 'C2',
     topic: 'modal-perfect-complex',
-    question: 'She may have been joking, but she ___ very upset.',
+    question: 'Express uncertainty about both past states: She may have been joking, but she ___ very upset.',
     options: ['might also have been', 'also might be', 'also was', 'might also be'],
     correctIndex: 0,
+    explanation: "Both possible interpretations concern the past. 'Might also have been' keeps that past reference and adds the possibility that she was upset.",
   },
 ];

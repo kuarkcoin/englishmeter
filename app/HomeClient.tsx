@@ -5,17 +5,13 @@ import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Mail } from 'lucide-react';
 import { HOME_FAQ } from '@/lib/home-faq';
+import { getQuestionsBySlug } from '@/lib/quizManager';
 import DarkToggle from '@/components/DarkToggle';
 import DiamondCard from '@/components/DiamondCard';
  
 // --- DATA IMPORTS ---
 import topicQuestions from '@/data/grammar_topic_tests.json';
 import ydsVocabulary from '@/data/yds_vocabulary.json';
-import ydsGrammarQuestions from '@/data/yds_grammar.json';
-import ydsPhrasals from '@/data/yds_phrasal_verbs.json';
-import ydsReadingPassages from '@/data/yds_reading.json';
-import ydsSynonyms from '@/data/yds_synonyms.json';
-import ydsConjunctions from '@/data/yds_conjunctions.json';
 import ydsVocabulary2Raw from '@/data/data/yds_vocabulary2.json';
 import dailyEnglishData from '@/data/dailyenglish.json';
 import turkishGreekData from '@/data/turkish_greek.json';
@@ -53,16 +49,7 @@ import ydsExamQuestions29 from '@/data/yds_exam_questions_29.json';
 import ydsExamQuestions30 from '@/data/yds_exam_questions_30.json';
 import ydsExamQuestions31 from '@/data/yds_exam_questions_31.json';
 import ydsExamQuestions32 from '@/data/yds_exam_questions_32.json';
-import advTest1 from '@/data/advanced_english_test_1.json';
-import advTest2 from '@/data/advanced_english_test_2.json';
-import advTest3 from '@/data/advanced_english_test_3.json';
-import advTest4 from '@/data/advanced_english_test_4.json';
-import advTest5 from '@/data/advanced_english_test_5.json';
-import advTest6 from '@/data/advanced_english_test_6.json';
-import advTest7 from '@/data/advanced_english_test_7.json';
-import advTest8 from '@/data/advanced_english_test_8.json';
-import advTest9 from '@/data/advanced_english_test_9.json';
-import advTest10 from '@/data/advanced_english_test_10.json';
+import { ADV_TEST_MAP, ADVANCED_QUESTION_RANGE } from '@/lib/advanced-tests';
 // --- TEST DATA MAP ---
 const YDS_EXAM_MAP: Record<string, any[]> = {
   '1': ydsExamQuestions1,
@@ -98,20 +85,6 @@ const YDS_EXAM_MAP: Record<string, any[]> = {
   '31': ydsExamQuestions31,
   '32': ydsExamQuestions32,
 };
-
-const ADV_TEST_MAP: Record<string, any[]> = {
-  '1': advTest1,
-  '2': advTest2,
-  '3': advTest3,
-  '4': advTest4,
-  '5': advTest5,
-  '6': advTest6,
-  '7': advTest7,
-  '8': advTest8,
-  '9': advTest9,
-  '10': advTest10,
-};
-
 
 const MEANING_LANGUAGE_OPTIONS = [
   { code: 'tr', label: 'Turkish' },
@@ -953,60 +926,13 @@ function HomeContent() {
           return;
         }
 
-        const title = `DAILY ENGLISH · TEST ${n} (50Q · ${DAILY_ENGLISH_DURATION_MIN} min)`;
+        const title = `DAILY ENGLISH · TEST ${n} (${questions.length}Q · ${DAILY_ENGLISH_DURATION_MIN} min)`;
         const payload = {
           attemptId,
           testSlug,
           test: { title, duration: DAILY_ENGLISH_DURATION_MIN },
           durationSeconds: DAILY_ENGLISH_DURATION_MIN * 60,
           questions,
-        };
-
-        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
-        saveLast(title, testSlug);
-        router.push(`/quiz/${attemptId}`);
-        return;
-      }
-
-      // --- YDS EXAM PACK ---
-      if (testSlug.startsWith('yds-exam-test-')) {
-        const testNumber = testSlug.split('-').pop() || '1';
-        const selectedQuestions = YDS_EXAM_MAP[testNumber];
-
-        if (!selectedQuestions || selectedQuestions.length === 0) {
-          alert(`Test ${testNumber} is coming soon! Please complete existing tests first.`);
-          return;
-        }
-
-        const mappedQuestions = [...selectedQuestions].map((q: any, idx: number) => {
-          const correctLetter = String(q.correct || 'A').trim().toUpperCase();
-          const letters = ['A', 'B', 'C', 'D', 'E'];
-          const idsLower = ['a', 'b', 'c', 'd', 'e'];
-
-          const choices = letters
-            .map((L, i) => ({
-              id: idsLower[i],
-              text: q[L],
-              isCorrect: correctLetter === L,
-            }))
-            .filter((c: any) => c.text);
-
-          return {
-            id: `yds-exam${testNumber}-q${idx + 1}`,
-            prompt: q.prompt,
-            choices,
-            explanation: q.explanation || '',
-          };
-        });
-
-        const title = `YDS REAL EXAM · TEST ${testNumber} (80Q · 150 min)`;
-
-        const payload = {
-          attemptId,
-          testSlug,
-          test: { title, duration: 150 },
-          durationSeconds: 150 * 60,
-          questions: mappedQuestions,
         };
 
         sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
@@ -1040,7 +966,7 @@ function HomeContent() {
           };
         });
 
-        const title = `ADVANCED ENGLISH · TEST ${testNumber} (50Q · 45 min)`;
+        const title = `ADVANCED ENGLISH · TEST ${testNumber} (${mappedQuestions.length}Q · 45 min)`;
 
         const payload = {
           attemptId,
@@ -1056,299 +982,21 @@ function HomeContent() {
         return;
       }
 
-      // 1) YDS READING
-      if (testSlug === 'yds-reading') {
-        const selectedPassages = shuffle(ydsReadingPassages as any[]).slice(0, 10);
-        const questions: any[] = [];
-
-        selectedPassages.forEach((passage, pIndex) => {
-          passage.questions.forEach((q: any, qIndex: number) => {
-            const letters = ['A', 'B', 'C', 'D', 'E'];
-            const idsLower = ['a', 'b', 'c', 'd', 'e'];
-
-            const choices = letters.map((L, i) => ({
-              id: idsLower[i],
-              text: q[L],
-              isCorrect: L === q.correct,
-            }));
-
-            questions.push({
-              id: `yds-read-p${passage.passageId}-q${qIndex + 1}`,
-              prompt: `
-                <div class="mb-4 p-4 bg-white/70 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700/60 rounded-lg text-sm leading-relaxed text-slate-700 dark:text-slate-200">
-                  <strong>Passage ${pIndex + 1}:</strong><br/>
-                  ${passage.text}
-                </div>
-                <div class="font-bold text-slate-900 dark:text-slate-50">
-                  ${q.prompt}
-                </div>
-              `,
-              choices,
-              explanation: q.explanation,
-            });
-          });
-        });
-
-        const title = 'YDS READING COMPREHENSION (40Q · 80 min)';
-
+      // All shared tests use the same questions, answer keys and duration on every entry route.
+      const sharedSlug = testSlug === 'yds-grammar-practice' ? 'yds-grammar' : testSlug;
+      const testData = getQuestionsBySlug(sharedSlug, meaningLanguage);
+      if (testData.questions.length) {
+        const title = `${testData.title} (${testData.questions.length}Q · ${testData.duration} min)`;
         const payload = {
           attemptId,
-          testSlug,
-          test: { title, duration: 80 },
-          durationSeconds: 80 * 60,
-          questions,
+          testSlug: sharedSlug,
+          test: { title, duration: testData.duration },
+          durationSeconds: testData.duration * 60,
+          questions: testData.questions,
         };
-
         sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
-        saveLast(title, testSlug);
-        router.push(`/quiz/${attemptId}`);
-        return;
-      }
-
-      // 2) YDS GRAMMAR
-      if (testSlug === 'yds-grammar-practice') {
-        const selectedQuestions = shuffle(ydsGrammarQuestions as any[]).slice(0, 100);
-
-        const mappedQuestions = selectedQuestions.map((q: any, idx: number) => {
-          const correctLetter = String(q.correct || 'A').trim().toUpperCase();
-          const letters = ['A', 'B', 'C', 'D'];
-          const idsLower = ['a', 'b', 'c', 'd'];
-
-          return {
-            id: `yds-grammar-q${idx + 1}`,
-            prompt: q.prompt,
-            choices: letters.map((L, i) => ({
-              id: idsLower[i],
-              text: q[L] || `Option ${L}`,
-              isCorrect: correctLetter === L,
-            })),
-            explanation: q.explanation || '',
-          };
-        });
-
-        const title = 'YDS GRAMMAR PRACTICE (100Q · 90 min)';
-
-        const payload = {
-          attemptId,
-          testSlug,
-          test: { title, duration: 90 },
-          durationSeconds: 90 * 60,
-          questions: mappedQuestions,
-        };
-
-        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
-        saveLast(title, testSlug);
-        router.push(`/quiz/${attemptId}`);
-        return;
-      }
-
-      // 3) YDS PHRASAL VERBS
-      if (testSlug === 'yds-phrasal-verbs') {
-        const selectedWords = shuffle(ydsPhrasals as any[]).slice(0, 100);
-
-        const questions = selectedWords.map((item: any, idx: number) => {
-          const correctAnswer = item.meaning;
-
-          const distractors = shuffle(
-            (ydsPhrasals as any[])
-              .filter((w: any) => w.meaning !== correctAnswer)
-              .map((w: any) => w.meaning)
-          ).slice(0, 3);
-
-          const allOptions = shuffle([...distractors, correctAnswer]);
-          const idsLower = ['a', 'b', 'c', 'd'];
-
-          return {
-            id: `yds-phrasal-q${idx + 1}`,
-            prompt: `What is the meaning of the phrasal verb **"${item.word}"**?`,
-            choices: allOptions.map((optText: string, i: number) => ({
-              id: idsLower[i],
-              text: optText,
-              isCorrect: optText === correctAnswer,
-            })),
-            explanation: `**${item.word}**: ${correctAnswer}`,
-          };
-        });
-
-        const title = 'YDS PHRASAL VERBS (100Q · 75 min)';
-
-        const payload = {
-          attemptId,
-          testSlug,
-          test: { title, duration: 75 },
-          durationSeconds: 75 * 60,
-          questions,
-        };
-
-        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
-        saveLast(title, testSlug);
-        router.push(`/quiz/${attemptId}`);
-        return;
-      }
-
-      // 5) YDS SYNONYMS
-      if (testSlug === 'yds-synonyms') {
-        const selectedWords = shuffle(ydsSynonyms as any[]).slice(0, 50);
-
-        const questions = selectedWords.map((item: any, idx: number) => {
-          const correctAnswer = item.synonym;
-
-          let distractors = item.distractors;
-          if (!distractors || distractors.length === 0) {
-            distractors = shuffle(
-              (ydsSynonyms as any[])
-                .filter((w: any) => w.synonym !== correctAnswer)
-                .map((w: any) => w.synonym)
-            ).slice(0, 3);
-          } else {
-            distractors = shuffle(distractors).slice(0, 3);
-          }
-
-          const allOptions = shuffle([...distractors, correctAnswer]);
-          const letters = ['A', 'B', 'C', 'D'];
-          const idsLower = ['a', 'b', 'c', 'd'];
-
-          return {
-            id: `yds-syn-q${idx + 1}`,
-            prompt: `Select the word that is closest in meaning to: <br/> <strong class="text-xl text-blue-700 dark:text-blue-300">"${item.word}"</strong> <span class="text-sm text-[rgb(var(--muted))] dark:text-slate-300">(${item.meaning})</span>`,
-            choices: letters.map((L, i) => ({
-              id: idsLower[i],
-              text: allOptions[i],
-              isCorrect: allOptions[i] === correctAnswer,
-            })),
-            explanation: `**${item.word}** means "${item.meaning}". <br/> Synonym: **${correctAnswer}**.`,
-          };
-        });
-
-        const title = 'YDS SYNONYMS PRACTICE (50Q · 40 min)';
-
-        const payload = {
-          attemptId,
-          testSlug,
-          test: { title, duration: 40 },
-          durationSeconds: 40 * 60,
-          questions,
-        };
-
-        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
-        saveLast(title, testSlug);
-        router.push(`/quiz/${attemptId}`);
-        return;
-      }
-
-      // 6) YDS CONJUNCTIONS
-      if (testSlug === 'yds-conjunctions') {
-        const selectedQuestions = shuffle(ydsConjunctions as any[]).slice(0, 50);
-
-        const mappedQuestions = selectedQuestions.map((q: any, idx: number) => {
-          const correctLetter = String(q.correct || 'A').trim().toUpperCase();
-          const letters = ['A', 'B', 'C', 'D', 'E'];
-          const idsLower = ['a', 'b', 'c', 'd', 'e'];
-
-          return {
-            id: `yds-conj-q${idx + 1}`,
-            prompt: q.prompt,
-            choices: letters
-              .map((L, i) => ({
-                id: idsLower[i],
-                text: q[L],
-                isCorrect: correctLetter === L,
-              }))
-              .filter((c: any) => c.text),
-            explanation: q.explanation || '',
-          };
-        });
-
-        const title = 'YDS CONJUNCTIONS (50Q · 35 min)';
-
-        const payload = {
-          attemptId,
-          testSlug,
-          test: { title, duration: 35 },
-          durationSeconds: 35 * 60,
-          questions: mappedQuestions,
-        };
-
-        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
-        saveLast(title, testSlug);
-        router.push(`/quiz/${attemptId}`);
-        return;
-      }
-
-      // 7) QUICK PLACEMENT
-      if (testSlug === 'quick-placement') {
-        const selectedQuestions = shuffle(topicQuestions as any[]).slice(0, 50);
-
-        const mappedQuestions = selectedQuestions.map((q: any, idx: number) => {
-          const correctLetter = String(q.correct || 'A').trim().toUpperCase();
-          const letters = ['A', 'B', 'C', 'D'];
-          const idsLower = ['a', 'b', 'c', 'd'];
-
-          return {
-            id: `quick-q${idx + 1}`,
-            prompt: q.prompt,
-            choices: letters.map((L, i) => ({
-              id: idsLower[i],
-              text: q[L] || `Option ${L}`,
-              isCorrect: correctLetter === L,
-            })),
-            explanation: q.explanation || '',
-          };
-        });
-
-        const title = 'COMPREHENSIVE PLACEMENT TEST (50Q · 25 min)';
-
-        const payload = {
-          attemptId,
-          testSlug,
-          test: { title, duration: 25 },
-          durationSeconds: 25 * 60,
-          questions: mappedQuestions,
-        };
-
-        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
-        saveLast(title, testSlug);
-        router.push(`/quiz/${attemptId}`);
-        return;
-      }
-
-      // 8) GRAMMAR FOCUS (tag tabanlı)
-      if (slugToTag[testSlug]) {
-        const tag = slugToTag[testSlug];
-        const grammarTitle = grammarTests.find((t) => t.slug === testSlug)?.title;
-
-        const rawQuestions = shuffle((topicQuestions as any[]).filter((q: any) => q.tags?.includes(tag))).slice(0, 20);
-
-        const mappedQuestions = rawQuestions.map((q: any, idx: number) => {
-          const correctLetter = String(q.correct || 'A').trim().toUpperCase();
-          const letters = ['A', 'B', 'C', 'D'];
-          const idsLower = ['a', 'b', 'c', 'd'];
-
-          return {
-            id: `${testSlug}-q${idx + 1}`,
-            prompt: q.prompt,
-            choices: letters.map((L, i) => ({
-              id: idsLower[i],
-              text: q[L] || `Option ${L}`,
-              isCorrect: correctLetter === L,
-            })),
-            explanation: q.explanation || '',
-          };
-        });
-
-        const title = `${(grammarTitle || 'Practice Test').toUpperCase()} (20Q · 30 min)`;
-
-        const payload: any = {
-          attemptId,
-          testSlug,
-          test: { title, duration: 30 },
-          durationSeconds: 30 * 60,
-          questions: mappedQuestions,
-        };
-
-        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
-        saveLast(title, testSlug);
-        router.push(`/quiz/${attemptId}`);
+        saveLast(title, sharedSlug);
+        router.push(`/quiz/${attemptId}?lang=${meaningLanguage}`);
         return;
       }
 
@@ -1385,7 +1033,7 @@ function HomeContent() {
       <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-950">
         <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-6"></div>
         <h2 className="text-2xl font-bold text-[rgb(var(--text))] dark:text-slate-100 animate-pulse">Starting New Test...</h2>
-        <p className="text-[rgb(var(--muted))] dark:text-slate-400 mt-2">Preparing fresh questions from the pool</p>
+        <p className="text-[rgb(var(--muted))] dark:text-slate-400 mt-2">Preparing your test</p>
       </div>
     );
   }
@@ -1503,7 +1151,7 @@ function HomeContent() {
                   <div className="h-full w-3/4 bg-white/90 rounded-full" />
                 </div>
                 <p className="text-xs opacity-90">
-                  Take a 20–50 question test and instantly see your estimated CEFR level, score and explanations.
+                  Take the 30-question placement test for an estimated grammar and vocabulary level, or choose a topic test with answer review.
                 </p>
               </div>
             </div>
@@ -1777,13 +1425,8 @@ function HomeContent() {
     className="flex flex-col items-center justify-center px-6 py-8 rounded-2xl bg-blue-600 text-white text-xl font-black shadow-xl hover:bg-blue-700 transition-all"
   >
     <div>{quickTest.title}</div>
-    <div className="mt-2 text-xs font-semibold opacity-90">50Q · 25 min · Instant results</div>
-    <Link
-      href="/start?testSlug=quick-placement"
-      className="mt-3 text-[11px] underline opacity-90 hover:opacity-100"
-    >
-      Learn more →
-    </Link>
+    <div className="mt-2 text-xs font-semibold opacity-90">30Q · 20 min · Estimated level</div>
+
   </button>
 
   <button
@@ -1792,12 +1435,7 @@ function HomeContent() {
   >
     <div>{megaTest.title}</div>
     <div className="mt-2 text-xs font-semibold opacity-90">100Q · Timed · Deep review</div>
-    <Link
-      href="/start?testSlug=grammar-mega-test-100"
-      className="mt-3 text-[11px] underline opacity-90 hover:opacity-100"
-    >
-      Learn more →
-    </Link>
+
   </button>
 
   <Link
@@ -1808,10 +1446,10 @@ function HomeContent() {
     <div className="relative z-10 flex flex-col justify-between h-full min-h-[160px]">
       <div>
         <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/15 rounded-full text-[10px] font-black uppercase mb-3 border border-white/20">
-          ✨ Premium Track
+          ✨ Advanced Practice
         </div>
         <div className="text-2xl font-black leading-tight">Advanced English Tests</div>
-        <div className="mt-2 text-xs text-white/90 leading-relaxed">10 tests · 50 questions each · 45 min · B2–C1</div>
+        <div className="mt-2 text-xs text-white/90 leading-relaxed">10 tests · {ADVANCED_QUESTION_RANGE} questions · 45 min · B2–C1</div>
       </div>
       <div className="mt-6 w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-indigo-700 text-2xl font-black shadow-lg group-hover:scale-110 transition-transform">
         ▶
@@ -2379,7 +2017,7 @@ function HomeContent() {
                   <span className="text-3xl">🇹🇷</span> YDS EXAM PACK
                 </h3>
                 <span className="text-pink-600 dark:text-pink-200 text-sm font-bold bg-white/80 dark:bg-slate-900/70 px-3 py-1 rounded-full border border-pink-200/80 dark:border-pink-700/60">
-                  Real Exam Mode (80Q)
+                  Timed Practice · 150 min
                 </span>
               </div>
 
@@ -2398,7 +2036,7 @@ function HomeContent() {
                         }`}
                     >
                       Test {num}
-                      {isActive && <span className="block text-xs font-semibold opacity-90 mt-1">Start Now</span>}
+                      {isActive && <span className="block text-xs font-semibold opacity-90 mt-1">{YDS_EXAM_MAP[String(num)].length} questions · Start</span>}
                       {!isActive && <span className="block text-[10px] opacity-60 mt-1">Locked</span>}
                     </button>
                   );
@@ -2511,7 +2149,7 @@ function HomeContent() {
                   className="px-4 py-5 text-indigo-700 dark:text-indigo-300 font-black"
                 >
                   <span className="block group-hover:scale-105 transition-transform">{test.title}</span>
-                  <span className="block mt-1 text-[11px] font-semibold text-[rgb(var(--muted))]">20Q · timed</span>
+                  <span className="block mt-1 text-[11px] font-semibold text-[rgb(var(--muted))]">{Math.min(20, topicQuestions.filter((q) => q.tags?.includes(slugToTag[test.slug])).length)}Q · 30 min</span>
                 </DiamondCard>
               ))}
             </div>
@@ -2539,7 +2177,7 @@ function HomeContent() {
             </div>
 
             <div className="mt-4 text-xs text-[rgb(var(--muted))]">
-              Tip: Levels pages can be SEO landing pages. Add “20Q · 10 min · instant review” there.
+              Choose your level to practise individual grammar topics or take a mixed assessment.
             </div>
           </div>
 
@@ -2554,7 +2192,7 @@ function HomeContent() {
                   </h2>
                   <p className="text-[rgb(var(--muted))] mb-4 text-sm leading-relaxed">
                     Preparing for the <strong>Foreign Language Exam (YDS)</strong> or <strong>YÖKDİL</strong> in Turkey? EnglishMeter offers comprehensive online practice tests designed to simulate the real exam experience.
-                    Our <strong>YDS Exam Pack</strong> includes full-length practice tests with 80 questions covering reading comprehension, vocabulary, grammar, and translation skills.
+                    Our <strong>YDS Exam Pack</strong> includes timed practice sets with 79–80 questions covering reading comprehension, vocabulary, grammar, and translation skills.
                   </p>
                   <ul className="list-disc pl-4 text-sm text-[rgb(var(--muted))] space-y-1">
                     <li><strong>YDS Vocabulary:</strong> Master the most common 3750 academic words.</li>
@@ -2570,8 +2208,8 @@ function HomeContent() {
                     Global English Placement Tests
                   </h2>
                   <p className="text-[rgb(var(--muted))] mb-4 text-sm leading-relaxed">
-                    Test your English proficiency level with our free online placement tests. Based on the <strong>Common European Framework of Reference (CEFR)</strong>, our quizzes determine whether you are A1 (Beginner), B2 (Upper-Intermediate), or C2 (Advanced).
-                    Whether you are preparing for IELTS, TOEFL, or just want to know your level, our <strong>Quick Placement Test</strong> gives you an instant score in under 20 minutes.
+                    Test your English proficiency level with our free online placement tests. Based on the <strong>Common European Framework of Reference (CEFR)</strong>, our placement practice estimates your grammar and vocabulary level from A1 to C2 using questions from every level.
+                    Whether you are preparing for IELTS, TOEFL, or just want to know your level, our <strong>Quick Placement Test</strong> gives you a score and a practice level estimate after a 20-minute test.
                   </p>
                   <p className="text-sm text-[rgb(var(--muted))]">
                     Join thousands of users improving their English daily with our grammar focus tests and vocabulary builders.
@@ -2584,7 +2222,7 @@ function HomeContent() {
                 <div className="grid sm:grid-cols-3 gap-6 text-sm text-[rgb(var(--muted))]">
                   <div>
                     <h4 className="font-semibold text-[rgb(var(--text))] mb-1">Instant Results</h4>
-                    <p>No waiting. Get your score, CEFR level, and detailed answer explanations immediately after finishing a test.</p>
+                    <p>No waiting. Get your score and answer review immediately. The placement test also provides an approximate grammar and vocabulary level.</p>
                   </div>
                   <div>
                     <h4 className="font-semibold text-[rgb(var(--text))] mb-1">Mobile Friendly</h4>

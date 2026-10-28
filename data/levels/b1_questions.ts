@@ -8,6 +8,7 @@ export type B1Question = {
   question: string;
   options: string[];
   correctIndex: number;
+  explanation: string;
 };
 
 export const b1Questions: B1Question[] = [
@@ -19,6 +20,7 @@ export const b1Questions: B1Question[] = [
     question: 'I ___ my homework already.',
     options: ['did', 'have done', 'do', 'was doing'],
     correctIndex: 1,
+    explanation: "Already describes completion before now. Use have + past participle: have done.",
   },
   {
     id: 'b1-pp-2',
@@ -27,6 +29,7 @@ export const b1Questions: B1Question[] = [
     question: 'She ___ in Paris since 2019.',
     options: ['lived', 'has lived', 'is living', 'was living'],
     correctIndex: 1,
+    explanation: "Since 2019 gives a starting point continuing to the present. She takes has lived.",
   },
   {
     id: 'b1-pp-3',
@@ -35,6 +38,7 @@ export const b1Questions: B1Question[] = [
     question: 'We ___ this film before.',
     options: ['saw', 'have seen', 'see', 'were seeing'],
     correctIndex: 1,
+    explanation: "Before refers to experience up to now, without a finished past date. Use have seen.",
   },
   {
     id: 'b1-pp-4',
@@ -43,14 +47,16 @@ export const b1Questions: B1Question[] = [
     question: 'They ___ just ___ the meeting.',
     options: ['have / finished', 'had / finished', 'finish / now', 'finished / now'],
     correctIndex: 0,
+    explanation: "Just describes a very recent completed action. The subject “They” takes have + finished.",
   },
   {
     id: 'b1-pp-5',
     level: 'B1',
     topic: 'present-perfect',
-    question: 'He ___ his keys again. He often does this!',
+    question: "He ___ his keys again and cannot get into his home now.",
     options: ['lost', 'has lost', 'is losing', 'loses'],
     correctIndex: 1,
+    explanation: "Has lost connects the past loss with its present result: he does not have his keys now.",
   },
   {
     id: 'b1-pp-6',
@@ -59,6 +65,7 @@ export const b1Questions: B1Question[] = [
     question: '___ you ever ___ to London?',
     options: ['Did / go', 'Are / going', 'Have / been', 'Do / go'],
     correctIndex: 2,
+    explanation: "Ask about life experience with Have you ever been? Been means visited and returned.",
   },
   {
     id: 'b1-pp-7',
@@ -67,6 +74,7 @@ export const b1Questions: B1Question[] = [
     question: 'We haven’t seen them ___ last summer.',
     options: ['for', 'since', 'from', 'by'],
     correctIndex: 1,
+    explanation: "Since introduces a starting point, last summer. For would introduce a length of time.",
   },
   {
     id: 'b1-pp-8',
@@ -75,6 +83,7 @@ export const b1Questions: B1Question[] = [
     question: 'She has worked here ___ three years.',
     options: ['since', 'for', 'from', 'by'],
     correctIndex: 1,
+    explanation: "Three years is a duration. Use for with a period, and since with its starting point.",
   },
   {
     id: 'b1-pp-9',
@@ -83,6 +92,7 @@ export const b1Questions: B1Question[] = [
     question: 'I have ___ finished my project.',
     options: ['yet', 'just', 'since', 'for'],
     correctIndex: 1,
+    explanation: "Just goes between have and the past participle to mean a very short time ago.",
   },
   {
     id: 'b1-pp-10',
@@ -91,6 +101,7 @@ export const b1Questions: B1Question[] = [
     question: 'They haven’t called us ___.',
     options: ['just', 'ever', 'yet', 'already'],
     correctIndex: 2,
+    explanation: "Yet is normally used at the end of negative present perfect sentences to mean up to now.",
   },
 
   // PAST CONTINUOUS (10 soru)
@@ -101,6 +112,7 @@ export const b1Questions: B1Question[] = [
     question: 'I ___ TV when the phone rang.',
     options: ['watched', 'was watching', 'am watching', 'have watched'],
     correctIndex: 1,
+    explanation: "Watching was already in progress when the phone rang. Use was + watching for the background action.",
   },
   {
     id: 'b1-pc-2',
@@ -109,6 +121,7 @@ export const b1Questions: B1Question[] = [
     question: 'They ___ dinner at 8 p.m. yesterday.',
     options: ['have', 'were having', 'had', 'are having'],
     correctIndex: 1,
+    explanation: "The dinner was in progress at the stated time. The subject “They” takes were + having.",
   },
   {
     id: 'b1-pc-3',
@@ -117,6 +130,7 @@ export const b1Questions: B1Question[] = [
     question: 'What ___ you doing when I called?',
     options: ['was', 'did', 'were', 'are'],
     correctIndex: 2,
+    explanation: "Form a past continuous question with were + you + doing. Was does not agree with you.",
   },
   {
     id: 'b1-pc-4',
@@ -125,6 +139,7 @@ export const b1Questions: B1Question[] = [
     question: 'She ___ to music while she was studying.',
     options: ['listened', 'was listening', 'listens', 'has listened'],
     correctIndex: 1,
+    explanation: "The two activities were in progress together. She takes was listening.",
   },
   {
     id: 'b1-pc-5',
@@ -133,6 +148,7 @@ export const b1Questions: B1Question[] = [
     question: 'It ___ when we left the house.',
     options: ['rained', 'was raining', 'is raining', 'has rained'],
     correctIndex: 1,
+    explanation: "The rain was already falling when they left. Use was raining for the background condition.",
   },
   {
     id: 'b1-pc-6',
@@ -141,6 +157,7 @@ export const b1Questions: B1Question[] = [
     question: 'They ___ not paying attention during the lesson.',
     options: ['were', 'was', 'are', 'did'],
     correctIndex: 0,
+    explanation: "The subject “They” takes were in the past continuous. Put not between were and paying.",
   },
   {
     id: 'b1-pc-7',
@@ -149,6 +166,7 @@ export const b1Questions: B1Question[] = [
     question: 'While I ___, my sister was cooking.',
     options: ['cleaned', 'was cleaning', 'clean', 'have cleaned'],
     correctIndex: 1,
+    explanation: "While links two simultaneous actions in progress. With I, use was cleaning.",
   },
   {
     id: 'b1-pc-8',
@@ -157,6 +175,7 @@ export const b1Questions: B1Question[] = [
     question: 'The children ___ in the garden when it got dark.',
     options: ['were playing', 'played', 'are playing', 'have played'],
     correctIndex: 0,
+    explanation: "The playing was already in progress when it got dark. Children takes were playing.",
   },
   {
     id: 'b1-pc-9',
@@ -165,6 +184,7 @@ export const b1Questions: B1Question[] = [
     question: 'I hurt my leg while I ___ football.',
     options: ['played', 'was playing', 'am playing', 'have played'],
     correctIndex: 1,
+    explanation: "Playing football was in progress when the injury happened. Use was playing for that background activity.",
   },
   {
     id: 'b1-pc-10',
@@ -173,6 +193,7 @@ export const b1Questions: B1Question[] = [
     question: 'He ___ when the teacher entered the room.',
     options: ['talked', 'was talking', 'is talking', 'has talked'],
     correctIndex: 1,
+    explanation: "The talking was in progress when the teacher entered. Use was talking with he.",
   },
 
   // PRESENT PERFECT vs PAST SIMPLE (10 soru)
@@ -183,6 +204,7 @@ export const b1Questions: B1Question[] = [
     question: 'I ___ to Spain three times.',
     options: ['went', 'have been', 'was going', 'have gone yesterday'],
     correctIndex: 1,
+    explanation: "This counts visits up to now without a finished past time. Use have been for that experience.",
   },
   {
     id: 'b1-ppps-2',
@@ -191,6 +213,7 @@ export const b1Questions: B1Question[] = [
     question: 'We ___ to that restaurant last night.',
     options: ['have gone', 'have been', 'went', 'have gone often'],
     correctIndex: 2,
+    explanation: "Last night is a finished past time. Go becomes went in the past simple.",
   },
   {
     id: 'b1-ppps-3',
@@ -199,6 +222,7 @@ export const b1Questions: B1Question[] = [
     question: 'She ___ her keys yesterday.',
     options: ['has lost', 'lost', 'has been losing', 'has been lost'],
     correctIndex: 1,
+    explanation: "Yesterday identifies a finished past time, so use lost rather than has lost.",
   },
   {
     id: 'b1-ppps-4',
@@ -207,6 +231,7 @@ export const b1Questions: B1Question[] = [
     question: 'I ___ him since we were at school together.',
     options: ['didn’t see', 'haven’t seen', 'don’t see', 'wasn’t seeing'],
     correctIndex: 1,
+    explanation: "Since school describes a period continuing to now. The negative present perfect is haven’t seen.",
   },
   {
     id: 'b1-ppps-5',
@@ -215,6 +240,7 @@ export const b1Questions: B1Question[] = [
     question: 'They ___ here in 2010.',
     options: ['have moved', 'moved', 'have been moving', 'move'],
     correctIndex: 1,
+    explanation: "In 2010 is a finished past date. Use moved in the past simple.",
   },
   {
     id: 'b1-ppps-6',
@@ -223,6 +249,7 @@ export const b1Questions: B1Question[] = [
     question: 'We ___ this movie before, so let’s watch something else.',
     options: ['saw', 'have seen', 'were seeing', 'see'],
     correctIndex: 1,
+    explanation: "The experience matters to the present choice of movie. Have seen refers to experience up to now.",
   },
   {
     id: 'b1-ppps-7',
@@ -231,6 +258,7 @@ export const b1Questions: B1Question[] = [
     question: 'He ___ his job last month.',
     options: ['has left', 'left', 'has been leaving', 'leaves'],
     correctIndex: 1,
+    explanation: "Last month is a finished time period. Use the past simple left.",
   },
   {
     id: 'b1-ppps-8',
@@ -239,14 +267,16 @@ export const b1Questions: B1Question[] = [
     question: 'I ___ my homework. Can I go out now?',
     options: ['have finished', 'finished yesterday', 'am finishing', 'finish'],
     correctIndex: 0,
+    explanation: "Have finished shows a completed action with a present result: the speaker is free to go out.",
   },
   {
     id: 'b1-ppps-9',
     level: 'B1',
     topic: 'present-perfect-vs-past-simple',
-    question: 'We ___ in this city for ten years.',
+    question: "We ___ in this city for ten years, and we still live here.",
     options: ['lived', 'have lived', 'were living', 'live'],
     correctIndex: 1,
+    explanation: "The speakers still live here, so the ten-year period continues to now. Use have lived.",
   },
   {
     id: 'b1-ppps-10',
@@ -255,6 +285,7 @@ export const b1Questions: B1Question[] = [
     question: 'She ___ to the dentist last week.',
     options: ['has gone', 'went', 'has been', 'goes'],
     correctIndex: 1,
+    explanation: "Last week is a finished past period. The correct past simple form is went.",
   },
 
   // FIRST CONDITIONAL (10 soru)
@@ -265,6 +296,7 @@ export const b1Questions: B1Question[] = [
     question: 'If it ___ tomorrow, we will stay at home.',
     options: ['rains', 'will rain', 'rain', 'is raining'],
     correctIndex: 0,
+    explanation: "In the first conditional, use present simple in the if-clause even when the situation is future: if it rains.",
   },
   {
     id: 'b1-cond-2',
@@ -273,6 +305,7 @@ export const b1Questions: B1Question[] = [
     question: 'If I see her, I ___ her the news.',
     options: ['tell', 'will tell', 'told', 'am telling'],
     correctIndex: 1,
+    explanation: "Use will + base verb for the predicted result of a possible future condition: will tell.",
   },
   {
     id: 'b1-cond-3',
@@ -281,6 +314,7 @@ export const b1Questions: B1Question[] = [
     question: 'You will be late if you ___ now.',
     options: ['don’t leave', 'won’t leave', 'didn’t leave', 'not leave'],
     correctIndex: 0,
+    explanation: "Use present simple after if. With you, the negative is don’t + leave.",
   },
   {
     id: 'b1-cond-4',
@@ -289,6 +323,7 @@ export const b1Questions: B1Question[] = [
     question: 'If we ___ enough money, we will go on holiday.',
     options: ['have', 'had', 'will have', 'are having'],
     correctIndex: 0,
+    explanation: "The if-clause takes present simple: if we have. Will belongs in the result clause.",
   },
   {
     id: 'b1-cond-5',
@@ -297,6 +332,7 @@ export const b1Questions: B1Question[] = [
     question: 'If he studies hard, he ___ the exam.',
     options: ['passes', 'will pass', 'passed', 'is passing'],
     correctIndex: 1,
+    explanation: "The possible result uses will + base verb: will pass.",
   },
   {
     id: 'b1-cond-6',
@@ -305,6 +341,7 @@ export const b1Questions: B1Question[] = [
     question: 'If you don’t hurry, you ___ the bus.',
     options: ['miss', 'will miss', 'missed', 'are missing'],
     correctIndex: 1,
+    explanation: "Will miss predicts the result of not hurrying. Use will before the base form miss.",
   },
   {
     id: 'b1-cond-7',
@@ -313,6 +350,7 @@ export const b1Questions: B1Question[] = [
     question: 'If they invite us, we ___ to the party.',
     options: ['come', 'will come', 'came', 'are coming'],
     correctIndex: 1,
+    explanation: "Will come expresses the future result of receiving an invitation.",
   },
   {
     id: 'b1-cond-8',
@@ -321,6 +359,7 @@ export const b1Questions: B1Question[] = [
     question: 'I will be angry if you ___ late again.',
     options: ['are', 'will be', 'were', 'be'],
     correctIndex: 0,
+    explanation: "Use present simple after if. The form of be with you is are.",
   },
   {
     id: 'b1-cond-9',
@@ -329,6 +368,7 @@ export const b1Questions: B1Question[] = [
     question: 'If she doesn’t call, I ___ her an email.',
     options: ['send', 'will send', 'sent', 'am sending'],
     correctIndex: 1,
+    explanation: "The result clause uses will + send. The condition already uses present simple: doesn’t call.",
   },
   {
     id: 'b1-cond-10',
@@ -337,6 +377,7 @@ export const b1Questions: B1Question[] = [
     question: 'If we ___ now, we won’t catch the train.',
     options: ['don’t leave', 'won’t leave', 'didn’t leave', 'not leave'],
     correctIndex: 0,
+    explanation: "The condition is present simple negative: if we don’t leave. Won’t belongs in the future result clause.",
   },
 
   // MODAL VERBS (10 soru)
@@ -347,14 +388,16 @@ export const b1Questions: B1Question[] = [
     question: 'You ___ speak Japanese very well. That’s impressive!',
     options: ['can', 'could', 'should', 'may'],
     correctIndex: 0,
+    explanation: "Can expresses present ability. The speaker is praising someone’s ability to speak Japanese.",
   },
   {
     id: 'b1-mod-2',
     level: 'B1',
     topic: 'modals-ability-permission-advice',
-    question: '___ I open the window? It’s very hot in here.',
-    options: ['Must', 'Should', 'May', 'Can'],
+    question: "Make an informal request for permission: ___ I open the window? It’s very hot in here.",
+    options: ["Must","Do","Am","Can"],
     correctIndex: 3,
+    explanation: "Can I …? is a common informal request for permission. The verb after can remains in its base form.",
   },
   {
     id: 'b1-mod-3',
@@ -363,6 +406,7 @@ export const b1Questions: B1Question[] = [
     question: 'You look tired. You ___ go to bed earlier.',
     options: ['may', 'should', 'can', 'mustn’t'],
     correctIndex: 1,
+    explanation: "Should expresses advice. Going to bed earlier is a recommendation, not a prohibition.",
   },
   {
     id: 'b1-mod-4',
@@ -371,22 +415,25 @@ export const b1Questions: B1Question[] = [
     question: 'When I was a child, I ___ swim very well.',
     options: ['can', 'could', 'may', 'should'],
     correctIndex: 1,
+    explanation: "Could expresses general ability in the past. When I was a child supplies the past context.",
   },
   {
     id: 'b1-mod-5',
     level: 'B1',
     topic: 'modals-ability-permission-advice',
-    question: 'Students ___ use their phones in the exam.',
+    question: "The exam rules prohibit phones: Students ___ use their phones in the exam.",
     options: ['must', 'can', 'mustn’t', 'should'],
     correctIndex: 2,
+    explanation: "Mustn’t means something is prohibited. The exam rule bans the use of phones.",
   },
   {
     id: 'b1-mod-6',
     level: 'B1',
     topic: 'modals-ability-permission-advice',
-    question: 'You ___ park your car here. It’s for staff only.',
+    question: "You are a visitor. You ___ park your car here. It’s for staff only.",
     options: ['must', 'mustn’t', 'can', 'could'],
     correctIndex: 1,
+    explanation: "Mustn’t expresses prohibition. A visitor is not allowed to use this staff-only parking space.",
   },
   {
     id: 'b1-mod-7',
@@ -395,6 +442,7 @@ export const b1Questions: B1Question[] = [
     question: 'I ___ help you if you want.',
     options: ['should', 'must', 'can', 'have to'],
     correctIndex: 2,
+    explanation: "Can is used to offer help that the speaker is able to give.",
   },
   {
     id: 'b1-mod-8',
@@ -403,6 +451,7 @@ export const b1Questions: B1Question[] = [
     question: 'It ___ rain later, so take an umbrella.',
     options: ['may', 'must', 'can', 'should'],
     correctIndex: 0,
+    explanation: "May expresses a possibility. Rain is possible, so taking an umbrella is sensible.",
   },
   {
     id: 'b1-mod-9',
@@ -411,6 +460,7 @@ export const b1Questions: B1Question[] = [
     question: 'You ___ smoke here. It’s forbidden.',
     options: ['may', 'should', 'mustn’t', 'could'],
     correctIndex: 2,
+    explanation: "Mustn’t means not allowed. It matches the explicit statement that smoking is forbidden.",
   },
   {
     id: 'b1-mod-10',
@@ -419,6 +469,7 @@ export const b1Questions: B1Question[] = [
     question: 'You ___ see a doctor if you don’t feel better.',
     options: ['may', 'should', 'can', 'mustn’t'],
     correctIndex: 1,
+    explanation: "Should gives advice about what is a good idea if the illness continues.",
   },
 
   // RELATIVE CLAUSES BASIC (10 soru)
@@ -429,6 +480,7 @@ export const b1Questions: B1Question[] = [
     question: 'The man ___ lives next door is a doctor.',
     options: ['which', 'who', 'where', 'whose'],
     correctIndex: 1,
+    explanation: "Who refers to a person and is the subject of lives. Which normally refers to things.",
   },
   {
     id: 'b1-rel-2',
@@ -437,6 +489,7 @@ export const b1Questions: B1Question[] = [
     question: 'This is the book ___ I told you about.',
     options: ['who', 'where', 'which', 'when'],
     correctIndex: 2,
+    explanation: "Which refers to the book, a thing, and is the object of told you about.",
   },
   {
     id: 'b1-rel-3',
@@ -445,6 +498,7 @@ export const b1Questions: B1Question[] = [
     question: 'That’s the girl ___ brother is in my class.',
     options: ['who', 'whose', 'which', 'where'],
     correctIndex: 1,
+    explanation: "Whose shows possession: the brother belongs to the girl mentioned.",
   },
   {
     id: 'b1-rel-4',
@@ -453,6 +507,7 @@ export const b1Questions: B1Question[] = [
     question: 'The restaurant ___ we had dinner was very expensive.',
     options: ['who', 'whose', 'where', 'which'],
     correctIndex: 2,
+    explanation: "Where refers to the restaurant as the place in which dinner happened.",
   },
   {
     id: 'b1-rel-5',
@@ -461,6 +516,7 @@ export const b1Questions: B1Question[] = [
     question: 'I met a woman ___ speaks four languages.',
     options: ['who', 'which', 'where', 'when'],
     correctIndex: 0,
+    explanation: "Who refers to the woman and is the subject of speaks.",
   },
   {
     id: 'b1-rel-6',
@@ -469,6 +525,7 @@ export const b1Questions: B1Question[] = [
     question: 'This is the place ___ we first met.',
     options: ['who', 'where', 'which', 'whose'],
     correctIndex: 1,
+    explanation: "Where introduces a relative clause describing the place at which they first met.",
   },
   {
     id: 'b1-rel-7',
@@ -477,6 +534,7 @@ export const b1Questions: B1Question[] = [
     question: 'Do you remember the day ___ we moved here?',
     options: ['who', 'which', 'when', 'where'],
     correctIndex: 2,
+    explanation: "When introduces a relative clause about the time: the day on which they moved.",
   },
   {
     id: 'b1-rel-8',
@@ -485,6 +543,7 @@ export const b1Questions: B1Question[] = [
     question: 'The car ___ he drives is very old.',
     options: ['who', 'which', 'when', 'where'],
     correctIndex: 1,
+    explanation: "Which refers to the car, a thing, and is the object of drives.",
   },
   {
     id: 'b1-rel-9',
@@ -493,6 +552,7 @@ export const b1Questions: B1Question[] = [
     question: 'The people ___ live upstairs are very noisy.',
     options: ['who', 'which', 'whose', 'where'],
     correctIndex: 0,
+    explanation: "Who refers to people and is the subject of live.",
   },
   {
     id: 'b1-rel-10',
@@ -501,6 +561,7 @@ export const b1Questions: B1Question[] = [
     question: 'Is that the shop ___ you bought your jacket?',
     options: ['who', 'which', 'when', 'where'],
     correctIndex: 3,
+    explanation: "Where means at which place. The shop is the location of the purchase.",
   },
 ];
 

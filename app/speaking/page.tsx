@@ -561,6 +561,7 @@ export default function SpeakingPage() {
           {!coach ? (
             <div className="mt-4 text-slate-500 font-semibold">
               Speak and press <b>Evaluate</b> to get instant feedback.
+              <p className="mt-2 text-sm">Feedback covers the meaning and wording of your transcript. Pronunciation and spoken fluency are not scored.</p>
             </div>
           ) : (
             <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -573,12 +574,13 @@ export default function SpeakingPage() {
                 </div>
 
                 <div className="mt-2 flex items-center justify-between">
-                  <div className="text-sm text-slate-700 font-extrabold">Fluency</div>
+                  <div className="text-sm text-slate-700 font-extrabold">Natural wording</div>
                   <div className={`text-2xl font-black ${scoreColor(coach.fluency_score)}`}>{coach.fluency_score}</div>
                 </div>
 
                 <div className="mt-3 text-xs text-slate-500 font-semibold">
                   {coach.understood ? '✅ Understood' : '⚠️ Not understood'}
+                  <p className="mt-2">Scores describe your transcript, including meaning and natural wording.</p>
                 </div>
               </div>
 

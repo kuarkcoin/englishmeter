@@ -47,6 +47,7 @@ import ydsExam30 from '@/data/yds_exam_questions_30.json';
 import ydsExam31 from '@/data/yds_exam_questions_31.json';
 import ydsExam32 from '@/data/yds_exam_questions_32.json';
 import dailyEnglish from '@/data/dailyenglish.json';
+import { selectPlacementQuestions } from '@/lib/placement';
 
 const YDS_EXAM_MAP: Record<string, any[]> = {
   '1': ydsExam1,
@@ -64,6 +65,7 @@ export interface StandardQuestion {
   prompt: string;
   choices: { id: string; text: string; isCorrect: boolean }[];
   explanation?: string;
+  level?: string;
 }
 
 
@@ -90,13 +92,8 @@ function getLocalizedMeaning(item: any, language: MeaningLanguageCode): string {
   return typeof fallback === 'string' ? fallback.trim() : '';
 }
 
-// --- HELPERS ---
-function shuffleArray<T>(arr: T[]): T[] {
-  // (Genel kullanım için random kalabilir; SEO kritik yerlerde seeded kullanıyoruz)
-  return [...arr].sort(() => Math.random() - 0.5);
-}
-
-// SEO İçin Kritik: Google botu her geldiğinde aynı soruları görsün diye Sabit Rastgelelik (LCG)
+// Stable selection keeps a public test consistent across server rendering,
+// metadata generation and the start-page flow.
 function lcg(seed: number) {
   let s = seed >>> 0;
   return () => {
@@ -125,8 +122,99 @@ function seededShuffle<T>(arr: T[], seed: number): T[] {
   return a;
 }
 
-function clampInt(n: number, min: number, max: number) {
-  return Math.max(min, Math.min(max, n));
+function hashSeed(value: string) {
+  let seed = 2166136261;
+  for (const char of value) seed = Math.imul(seed ^ char.charCodeAt(0), 16777619);
+  return seed >>> 0;
+}
+
+function textValue(value: unknown): string {
+  return typeof value === 'string' ? value.trim() : '';
+}
+
+/** Reject incomplete or ambiguous single-answer items instead of inventing an answer. */
+export function normalizeQuestion(raw: any, fallbackId: string, seed: number): StandardQuestion | null {
+  if (!raw || typeof raw !== 'object') return null;
+  const prompt = textValue(raw.prompt) || textValue(raw.question) || textValue(raw.text);
+  if (!prompt) return null;
+
+  let choices: Array<{ text: string; isCorrect: boolean }> = [];
+  const rawAnswer = raw.correct_option ?? raw.correct ?? raw.answer;
+
+  if (Array.isArray(raw.choices)) {
+    choices = raw.choices.map((choice: any) => ({
+      text: textValue(choice?.text),
+      isCorrect: choice?.isCorrect === true,
+    }));
+  } else if (Array.isArray(raw.options)) {
+    const answerIndex = typeof rawAnswer === 'number'
+      ? rawAnswer
+      : typeof rawAnswer === 'string' && /^[A-Z]$/i.test(rawAnswer.trim())
+        ? rawAnswer.trim().toUpperCase().charCodeAt(0) - 65
+        : raw.options.findIndex((option: unknown) => option === rawAnswer);
+    choices = raw.options.map((option: unknown, index: number) => ({
+      text: textValue(option),
+      isCorrect: index === answerIndex,
+    }));
+  } else if (raw.options && typeof raw.options === 'object') {
+    const correctKey = String(rawAnswer ?? '').trim().toUpperCase();
+    choices = Object.entries(raw.options).map(([key, value]) => ({
+      text: textValue(value),
+      isCorrect: key.toUpperCase() === correctKey,
+    }));
+  } else {
+    const correctKey = String(rawAnswer ?? '').trim().toUpperCase();
+    choices = ['A', 'B', 'C', 'D', 'E']
+      .filter((letter) => raw[letter] !== undefined)
+      .map((letter) => ({ text: textValue(raw[letter]), isCorrect: letter === correctKey }));
+  }
+
+  // An empty answer must not quietly turn into a scored distractor.
+  if (choices.some((choice) => !choice.text)) return null;
+  const unique = new Map<string, { text: string; isCorrect: boolean }>();
+  for (const choice of choices) {
+    const previous = unique.get(choice.text);
+    unique.set(choice.text, { ...choice, isCorrect: choice.isCorrect || previous?.isCorrect === true });
+  }
+  const validChoices = [...unique.values()];
+  if (validChoices.length < 2 || validChoices.filter((choice) => choice.isCorrect).length !== 1) return null;
+
+  return {
+    id: raw.id === undefined ? fallbackId : String(raw.id),
+    prompt,
+    choices: seededShuffle(validChoices, seed).map((choice, index) => ({
+      ...choice,
+      id: String.fromCharCode(97 + index),
+    })),
+    ...(textValue(raw.explanation) ? { explanation: textValue(raw.explanation) } : {}),
+    ...(textValue(raw.level) ? { level: textValue(raw.level) } : {}),
+  };
+}
+
+function usableQuestions<T>(questions: T[]): T[] {
+  return questions.filter((question, index) => normalizeQuestion(question, String(index), index) !== null);
+}
+
+function meaningQuestions(
+  items: any[],
+  pool: any[],
+  slug: string,
+  prompt: (word: string) => string,
+) {
+  return items.map((item, index) => {
+    const correct = textValue(item.meaning);
+    const meanings = [...new Set(pool
+      .filter((candidate) => textValue(candidate.word) !== textValue(item.word))
+      .map((candidate) => textValue(candidate.meaning))
+      .filter((meaning) => meaning && meaning !== correct))];
+    const distractors = seededShuffle(meanings, hashSeed(`${slug}:distractors:${index}`)).slice(0, 3);
+    return {
+      id: `${slug}-${index + 1}`,
+      prompt: prompt(textValue(item.word)),
+      choices: [correct, ...distractors].map((text, choiceIndex) => ({ text, isCorrect: choiceIndex === 0 })),
+      explanation: `${textValue(item.word)}: ${correct}`,
+    };
+  });
 }
 
 // --- MAPPINGS ---
@@ -168,12 +256,11 @@ export const getQuestionsBySlug = (
   let duration = 30; // Varsayılan süre (dakika)
   const meaningLanguage = normalizeMeaningLanguage(meaningLanguageInput);
 
-  // 1) YDS 3850 MINI VOCAB TESTS (yds-3850-mini-1 .. 77)
-  // Geriye dönük: yds-3750-mini-... slug’larını da kabul ediyoruz.
-  if (slug.startsWith('yds-5000-mini-') || slug.startsWith('yds-3850-mini-') || slug.startsWith('yds-3750-mini-')) {
-    const nRaw = parseInt(slug.split('-').pop() || '1', 10);
-    const maxMiniTest = slug.startsWith('yds-5000-mini-') ? 100 : 77;
-    const n = Number.isFinite(nRaw) ? clampInt(nRaw, 1, maxMiniTest) : 1;
+  const miniMatch = /^yds-(5000|3850|3750)-mini-([1-9]\d*)$/.exec(slug);
+  if (miniMatch) {
+    const n = Number(miniMatch[2]);
+    const maxMiniTest = miniMatch[1] === '5000' ? 100 : 77;
+    if (n > maxMiniTest) return { title, duration, questions: [] };
 
     const pool = ydsVocabulary as any[];
     const indices = seededUniqueIndices(pool.length, 50, 1000 + n * 9991); // Sabit seed
@@ -225,28 +312,22 @@ export const getQuestionsBySlug = (
     return { title, duration, questions: rawQuestions as StandardQuestion[] };
   }
 
-  // 2) YDS REAL EXAM PACK (yds-exam-test-1 .. 15)
-  else if (slug.startsWith('yds-exam-test-')) {
-    const num = slug.split('-').pop() || '1';
+  // 2) Full YDS mock exams.
+  else if (/^yds-exam-test-[1-9]\d*$/.test(slug)) {
+    const num = slug.split('-').pop()!;
     rawQuestions = YDS_EXAM_MAP[num] || [];
     title = `YDS Real Exam - Mock Test ${num}`;
     duration = 150;
   }
-  else if (slug.startsWith('daily-english-')) {
-    const nRaw = parseInt(slug.split('-').pop() || '1', 10);
-    const n = Number.isFinite(nRaw) ? nRaw : 1;
+  else if (/^daily-english-[1-9]\d*$/.test(slug)) {
+    const n = Number(slug.split('-').pop());
     const start = (n - 1) * 50;
-    rawQuestions = (dailyEnglish as any[]).slice(start, start + 50).map((item, idx, arr) => {
-      const choices = seededShuffle(
-        [item.meaning, ...arr.filter((_, i) => i !== idx).slice(0, 3).map((x) => x.meaning)],
-        45000 + n * 121 + idx
-      );
-      return {
-        id: `daily-english-${n}-${idx + 1}`,
-        prompt: `What is the Turkish meaning of "${item.word}"?`,
-        choices: choices.map((text, i) => ({ id: ['a', 'b', 'c', 'd'][i], text, isCorrect: text === item.meaning })),
-      };
-    });
+    rawQuestions = meaningQuestions(
+      dailyEnglish.slice(start, start + 50),
+      dailyEnglish,
+      slug,
+      (word) => `What is the Turkish meaning of "${word}"?`,
+    );
     title = `Daily English Test ${n}`;
     duration = 25;
   }
@@ -260,9 +341,9 @@ export const getQuestionsBySlug = (
   }
 
   // 4) CEFR LEVEL TESTLERİ (level-a1 .. level-c2)
-  else if (slug.startsWith('level-')) {
+  else if (/^level-(a1|a2|b1|b2|c1|c2)$/.test(slug)) {
     const targetLevel = slug.replace('level-', '').toUpperCase();
-    rawQuestions = (levelTests as any[]).filter((q) => q.level === targetLevel).slice(0, 20);
+    rawQuestions = usableQuestions(levelTests.filter((q) => q.level === targetLevel)).slice(0, 20);
     title = `${targetLevel} Level Assessment`;
     duration = 20;
   }
@@ -273,107 +354,67 @@ export const getQuestionsBySlug = (
     title = 'IELTS Grammar (Advanced)';
     duration = 45;
   } else if (slug === 'grammar-mega-test-100') {
-    rawQuestions = shuffleArray(grammarTopicTests).slice(0, 100);
+    rawQuestions = seededShuffle(usableQuestions(grammarTopicTests), hashSeed(slug)).slice(0, 100);
     title = 'Grammar Mega Test (100Q)';
     duration = 90;
   } else if (slug === 'vocab-b1-c1-50') {
-    rawQuestions = shuffleArray(vocabTests).slice(0, 50);
+    rawQuestions = seededShuffle(usableQuestions(vocabTests), hashSeed(slug)).slice(0, 50);
     title = 'Vocabulary Challenge (B1-C1)';
     duration = 40;
   } else if (slug === 'quick-placement') {
-    rawQuestions = shuffleArray(levelTests).slice(0, 25);
+    rawQuestions = selectPlacementQuestions(usableQuestions(levelTests));
     title = 'Quick Placement Test';
-    duration = 15;
+    duration = 20;
   } else if (slug === 'yds-reading') {
-    rawQuestions = ydsReadingPassages; // Not: Reading için özel render gerekebilir
+    rawQuestions = ydsReadingPassages.flatMap((passage) => passage.questions.map((question, index) => ({
+      ...question,
+      id: `yds-reading-${passage.passageId}-${index + 1}`,
+      prompt: `${passage.title}\n\n${passage.text}\n\n${question.prompt}`,
+    })));
     title = 'YDS Reading Comprehension';
     duration = 80;
   } else if (slug === 'yds-phrasal-verbs') {
-    rawQuestions = shuffleArray(ydsPhrasals).slice(0, 50);
+    rawQuestions = meaningQuestions(
+      seededShuffle(ydsPhrasals, hashSeed(slug)).slice(0, 100),
+      ydsPhrasals,
+      slug,
+      (word) => `What is the Turkish meaning of the phrasal verb "${word}"?`,
+    );
     title = 'YDS Phrasal Verbs Practice';
-    duration = 40;
+    duration = 75;
   } else if (slug === 'yds-synonyms') {
-    rawQuestions = shuffleArray(ydsSynonyms).slice(0, 50);
+    rawQuestions = seededShuffle(ydsSynonyms, hashSeed(slug)).slice(0, 50).map((item, index) => {
+      const correct = textValue(item.synonym);
+      const distractors = [...new Set(item.distractors.map(textValue))].filter((value) => value && value !== correct);
+      const meaning = textValue(item.meaning_tr) || textValue(item.meaning);
+      return {
+        id: `yds-synonyms-${index + 1}`,
+        prompt: `Which word or phrase is closest in meaning to "${item.word}"?`,
+        choices: [correct, ...distractors].map((text, choiceIndex) => ({ text, isCorrect: choiceIndex === 0 })),
+        explanation: `A synonym of "${item.word}" is "${correct}".${meaning ? ` Turkish: ${meaning}.` : ''}`,
+      };
+    });
     title = 'YDS Synonyms Practice';
     duration = 40;
   } else if (slug === 'yds-conjunctions') {
-    rawQuestions = shuffleArray(ydsConjunctions).slice(0, 50);
+    rawQuestions = seededShuffle(ydsConjunctions, hashSeed(slug)).slice(0, 50);
     title = 'YDS Conjunctions (Bağlaçlar)';
     duration = 35;
-  } else if (slug === 'yds-grammar') {
-    rawQuestions = shuffleArray(ydsGrammarQuestions).slice(0, 50);
+  } else if (slug === 'yds-grammar' || slug === 'yds-grammar-practice') {
+    rawQuestions = seededShuffle(ydsGrammarQuestions, hashSeed('yds-grammar')).slice(0, 100);
     title = 'YDS Grammar Practice';
-    duration = 45;
-  } else {
-    // Fallback
-    rawQuestions = (levelTests as any[]).slice(0, 10);
-    title = 'English Practice';
-    duration = 15;
+    duration = 90;
   }
 
-  // --- FORMATLAMA: TÜM VERİLERİ STANDART StandardQuestion FORMATINA ÇEVİR ---
-  const formattedQuestions: StandardQuestion[] = rawQuestions.map((q, index) => {
-    const prompt = q.prompt || q.question || q.text || 'Question missing?';
-    let choices: any[] = [];
-
-    // Format 1: A, B, C, D, E alanları varsa (Grammar/Exam)
-    if (q.A !== undefined) {
-      const letters = ['A', 'B', 'C', 'D', 'E'];
-      const correctLetter = String(q.correct || q.answer || 'A').trim().toUpperCase();
-      choices = letters
-        .map((L) => ({
-          id: L.toLowerCase(),
-          text: q[L],
-          isCorrect: correctLetter === L,
-        }))
-        .filter((c) => !!c.text);
-    }
-    // Format 2: options nesnesi varsa (IELTS)
-    else if (q.options && !Array.isArray(q.options)) {
-      const correctKey = String(q.correct_option || q.answer || 'A').trim().toUpperCase();
-      choices = Object.keys(q.options).map((key) => ({
-        id: String(key).toLowerCase(),
-        text: q.options[key],
-        isCorrect: String(key).toUpperCase() === correctKey,
-      }));
-    }
-    // Format 3: choices array ise
-    else if (Array.isArray(q.choices)) {
-      choices = q.choices.map((c: any, i: number) => ({
-        id: c.id || ['a', 'b', 'c', 'd'][i],
-        text: c.text,
-        isCorrect: !!c.isCorrect,
-      }));
-    }
-    // Format 4: options array ise (levelTests gibi)
-    else if (Array.isArray(q.options)) {
-      const labels = ['a', 'b', 'c', 'd'];
-      const opts = q.options.slice(0, 4);
-      const rawAnswer = q.answer ?? q.correct_option ?? q.correct;
-
-      let correctIndex = -1;
-      if (typeof rawAnswer === 'number') {
-        correctIndex = rawAnswer;
-      } else if (typeof rawAnswer === 'string') {
-        const byLetter = ['A', 'B', 'C', 'D'].indexOf(rawAnswer.toUpperCase());
-        if (byLetter !== -1) correctIndex = byLetter;
-        else correctIndex = opts.findIndex((o: any) => String(o) === rawAnswer);
-      }
-
-      choices = opts.map((opt: any, i: number) => ({
-        id: labels[i],
-        text: String(opt),
-        isCorrect: i === correctIndex,
-      }));
-    }
-
-    return {
-      id: q.id || `${slug}-${index}`,
-      prompt,
-      choices,
-      explanation: q.explanation,
-    };
-  });
+  const canonicalSlug = slug === 'yds-grammar-practice' ? 'yds-grammar' : slug;
+  const formattedQuestions = rawQuestions
+    .map((question, index) => normalizeQuestion(
+      // Some source files repeat IDs. An attempt must have one answer slot per question.
+      { ...question, id: `${canonicalSlug}-${index}` },
+      `${canonicalSlug}-${index}`,
+      hashSeed(`${canonicalSlug}:${index}`),
+    ))
+    .filter((question): question is StandardQuestion => question !== null);
 
   return { title, duration, questions: formattedQuestions };
 };

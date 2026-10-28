@@ -90,7 +90,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "He ____ not like coffee.",
+    "prompt": "He ____ like coffee.",
     "choices": [
       {"text": "doesn't", "isCorrect": true},
       {"text": "don’t", "isCorrect": false},
@@ -156,7 +156,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "The dog is ____ the table.",
+    "prompt": "The dog is lying on the floor, directly ____ the table.",
     "choices": [
       {"text": "under", "isCorrect": true},
       {"text": "on", "isCorrect": false},
@@ -244,7 +244,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "____ is my car. It's blue.",
+    "prompt": "Choose the demonstrative for one thing near you: ____ is my car.",
     "choices": [
       {"text": "This", "isCorrect": true},
       {"text": "These", "isCorrect": false},
@@ -255,7 +255,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "____ are my keys. They are on the table.",
+    "prompt": "Choose the demonstrative for several things near you: ____ are my keys.",
     "choices": [
       {"text": "This", "isCorrect": false},
       {"text": "Those", "isCorrect": false},
@@ -698,10 +698,10 @@
     "prompt": "My cat is ____ the chair.",
     "choices": [
       {"text": "on", "isCorrect": true},
-      {"text": "at", "isCorrect": false},
-      {"text": "in", "isCorrect": false}
+      {"text": "onto", "isCorrect": false},
+      {"text": "through", "isCorrect": false}
     ],
-    "explanation": "'on' is used for surfaces."
+    "explanation": "'On' describes a position on a surface; 'onto' describes movement towards it."
   },
   {
     "type": "MCQ",
@@ -761,7 +761,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "I like ____ dog.",
+    "prompt": "Dogs are my favourite animals. I like ____.",
     "choices": [
       {"text": "a", "isCorrect": false},
       {"text": "an", "isCorrect": false},
@@ -904,7 +904,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "He ____ the film.",
+    "prompt": "He ____ the film last night.",
     "choices": [
       {"text": "didn't see", "isCorrect": true},
       {"text": "doesn't see", "isCorrect": false},
@@ -1062,7 +1062,7 @@
     "choices": [
       {"text": "fast", "isCorrect": true},
       {"text": "fastly", "isCorrect": false},
-      {"text": "faster", "isCorrect": false}
+      {"text": "fastness", "isCorrect": false}
     ],
     "explanation": "'fast' is both an adjective and an adverb."
   },
@@ -1102,7 +1102,7 @@
   {
     "type": "MCQ",
     "level": "A1",
-    "prompt": "We ____ a party next Saturday.",
+    "prompt": "Use the present continuous for an arrangement: We ____ a party next Saturday.",
     "choices": [
       {"text": "are having", "isCorrect": true},
       {"text": "will have", "isCorrect": false},
@@ -1113,7 +1113,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "I ____ you. Can you say that again?",
+    "prompt": "Use the past simple: I ____ what you just said. Can you say that again?",
     "choices": [
       {"text": "didn't hear", "isCorrect": true},
       {"text": "don't hear", "isCorrect": false},
@@ -1135,7 +1135,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "____ the film?",
+    "prompt": "Use the past simple: ____ the film you watched last night?",
     "choices": [
       {"text": "Did you like", "isCorrect": true},
       {"text": "Do you like", "isCorrect": false},
@@ -1150,7 +1150,7 @@
     "choices": [
       {"text": "quick", "isCorrect": false},
       {"text": "quickly", "isCorrect": true},
-      {"text": "quicker", "isCorrect": false}
+      {"text": "quickness", "isCorrect": false}
     ],
     "explanation": "Use the adverb 'quickly' to describe the verb 'ran'."
   },
@@ -1161,20 +1161,20 @@
     "choices": [
       {"text": "terrible", "isCorrect": true},
       {"text": "terribly", "isCorrect": false},
-      {"text": "more terrible", "isCorrect": false}
+      {"text": "terribleness", "isCorrect": false}
     ],
     "explanation": "Use the adjective 'terrible' to describe the noun 'meal'."
   },
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "I don't have ____ to do.",
+    "prompt": "My work is finished. I don't have ____ else to do.",
     "choices": [
       {"text": "nothing", "isCorrect": false},
       {"text": "anything", "isCorrect": true},
-      {"text": "something", "isCorrect": false}
+      {"text": "anythings", "isCorrect": false}
     ],
-    "explanation": "Use 'anything' in negative sentences (double negatives like 'don't ... nothing' are incorrect)."
+    "explanation": "'Anything else' means any additional thing. In this negative sentence it expresses that no work remains."
   },
   {
     "type": "MCQ",
@@ -1190,7 +1190,7 @@
   {
     "type": "MCQ",
     "level": "A2",
-    "prompt": "I went to the party, but I didn't know ____.",
+    "prompt": "Everyone at the party was a stranger to me. I didn't know ____.",
     "choices": [
       {"text": "anybody", "isCorrect": true},
       {"text": "somebody", "isCorrect": false},
@@ -1291,11 +1291,11 @@
     "level": "A2",
     "prompt": "I ____ 15 on my next birthday.",
     "choices": [
-      {"text": "am", "isCorrect": false},
+      {"text": "will", "isCorrect": false},
       {"text": "will be", "isCorrect": true},
-      {"text": "am going to be", "isCorrect": false}
+      {"text": "going to be", "isCorrect": false}
     ],
-    "explanation": "Use 'will be' for facts about the future (like age)."
+    "explanation": "'Will' needs the base verb 'be': 'I will be 15'. 'Going to be' would need an auxiliary such as 'am'."
   },
   {
     "type": "MCQ",
@@ -1357,7 +1357,7 @@
     "level": "B1",
     "prompt": "If I ____ rich, I would travel the world.",
     "choices": [
-      {"text": "was", "isCorrect": false},
+      {"text": "would be", "isCorrect": false},
       {"text": "were", "isCorrect": true},
       {"text": "am", "isCorrect": false}
     ],
@@ -1377,7 +1377,7 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "He asked me ____ was.",
+    "prompt": "He asked me ____.",
     "choices": [
       {"text": "what was my name", "isCorrect": false},
       {"text": "what my name was", "isCorrect": true},
@@ -1410,7 +1410,7 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "You ____ have shouted at him. It wasn't his fault.",
+    "prompt": "You ____ shouted at him. It wasn't his fault.",
     "choices": [
       {"text": "shouldn't have", "isCorrect": true},
       {"text": "mustn't have", "isCorrect": false},
@@ -1487,13 +1487,13 @@
   {
     "type": "MCQ",
     "level": "B1",
-    "prompt": "He ____ as a teacher for five years before he became a writer.",
+    "prompt": "Use the past perfect: He ____ as a teacher for five years before he became a writer.",
     "choices": [
-      {"text": "worked", "isCorrect": true},
+      {"text": "worked", "isCorrect": false},
       {"text": "had worked", "isCorrect": true},
       {"text": "was working", "isCorrect": false}
     ],
-    "explanation": "Both 'worked' (simple past) and 'had worked' (past perfect) are acceptable here, but 'had worked' better emphasizes the sequence."
+    "explanation": "The past perfect is 'had + past participle': 'had worked'. It highlights the period of teaching before the later career change."
   },
   {
     "type": "MCQ",
@@ -1564,13 +1564,13 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "He ____ the money. He was with me all day.",
+    "prompt": "Choose the modal expressing an impossible past event: He ____ the money; he was with me all day.",
     "choices": [
       {"text": "can't have stolen", "isCorrect": true},
-      {"text": "mustn't have stolen", "isCorrect": false},
-      {"text": "didn't steal", "isCorrect": false}
+      {"text": "must have stolen", "isCorrect": false},
+      {"text": "should have stolen", "isCorrect": false}
     ],
-    "explanation": "'Can't have + past participle' for a logical impossibility in the past."
+    "explanation": "'Can't have + past participle' expresses a deduction that a past event was impossible."
   },
   {
     "type": "MCQ",
@@ -1645,14 +1645,14 @@
     "choices": [
       {"text": "would rather you don't call", "isCorrect": false},
       {"text": "would rather you didn't call", "isCorrect": true},
-      {"text": "would rather you not call", "isCorrect": false}
+      {"text": "would rather you not called", "isCorrect": false}
     ],
     "explanation": "'I'd rather + [subject] + past tense' ('didn't call') for a present preference."
   },
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "He ____ (suggest) going for a walk.",
+    "prompt": "He ____ for a walk.",
     "choices": [
       {"text": "suggested to go", "isCorrect": false},
       {"text": "suggested going", "isCorrect": true},
@@ -1663,9 +1663,9 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "She ____ that I try the new restaurant.",
+    "prompt": "She ____ the new restaurant.",
     "choices": [
-      {"text": "recommended me to try", "isCorrect": false},
+      {"text": "recommended me try", "isCorrect": false},
       {"text": "recommended that I try", "isCorrect": true},
       {"text": "recommended me trying", "isCorrect": false}
     ],
@@ -1674,7 +1674,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "He ____ knowing anything about the crime.",
+    "prompt": "He ____ anything about the crime.",
     "choices": [
       {"text": "denied knowing", "isCorrect": true},
       {"text": "denied to know", "isCorrect": false},
@@ -1685,7 +1685,7 @@
   {
     "type": "MCQ",
     "level": "B2",
-    "prompt": "He ____to answer any questions.",
+    "prompt": "He ____ any questions.",
     "choices": [
       {"text": "refused answering", "isCorrect": false},
       {"text": "refused to answer", "isCorrect": true},
@@ -1850,7 +1850,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "I wish I ____ .",
+    "prompt": "I wish I ____ so much at dinner last night.",
     "choices": [
       {"text": "didn't eat", "isCorrect": false},
       {"text": "hadn't eaten", "isCorrect": true},
@@ -1898,7 +1898,7 @@
     "choices": [
       {"text": "help", "isCorrect": false},
       {"text": "to help", "isCorrect": true},
-      {"text": "helping", "isCorrect": false}
+      {"text": "helped", "isCorrect": false}
     ],
     "explanation": "Causative structure: 'get + person + to infinitive' ('to help')."
   },
@@ -1916,13 +1916,13 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "I ____ my kids watch TV.",
+    "prompt": "I allow my children to watch TV. In other words, I ____ them watch TV.",
     "choices": [
       {"text": "let", "isCorrect": true},
       {"text": "allowed", "isCorrect": false},
       {"text": "made", "isCorrect": false}
     ],
-    "explanation": "'let + person + base verb' ('let my kids watch')."
+    "explanation": "'Let someone do something' means to allow it. 'Make someone do something' means to require it."
   },
   {
     "type": "MCQ",
@@ -1949,13 +1949,13 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "I ____ to lock the door.",
+    "prompt": "I ____ to lock the door, so it was safely locked when I left.",
     "choices": [
       {"text": "remembered", "isCorrect": true},
       {"text": "reminded", "isCorrect": false},
       {"text": "forgot", "isCorrect": false}
     ],
-    "explanation": "'Remembered' means 'I didn't forget'."
+    "explanation": "'Remembered to lock' means I did not forget and performed the action. The locked door confirms this."
   },
   {
     "type": "MCQ",
@@ -1964,7 +1964,7 @@
     "choices": [
       {"text": "advised", "isCorrect": true},
       {"text": "suggested", "isCorrect": false},
-      {"text": "warned", "isCorrect": false}
+      {"text": "advising", "isCorrect": false}
     ],
     "explanation": "'Advised me against' is a correct structure."
   },
@@ -1974,7 +1974,7 @@
     "prompt": "She ____ me not to touch the hot plate.",
     "choices": [
       {"text": "warned", "isCorrect": true},
-      {"text": "advised", "isCorrect": false},
+      {"text": "warn", "isCorrect": false},
       {"text": "suggested", "isCorrect": false}
     ],
     "explanation": "'Warned + object + not + to infinitive'."
@@ -1985,10 +1985,10 @@
     "prompt": "I am ____ of the risks involved.",
     "choices": [
       {"text": "aware", "isCorrect": true},
-      {"text": "conscious", "isCorrect": true},
+      {"text": "awareness", "isCorrect": false},
       {"text": "knowing", "isCorrect": false}
     ],
-    "explanation": "Both 'aware of' and 'conscious of' mean 'knowing about'."
+    "explanation": "'Aware of' means knowing about something. 'Awareness' is a noun and cannot replace the adjective here."
   },
   {
     "type": "MCQ",
@@ -1996,10 +1996,10 @@
     "prompt": "This book is ____ of three parts.",
     "choices": [
       {"text": "consisted", "isCorrect": false},
-      {"text": "comprised", "isCorrect": false},
+      {"text": "composing", "isCorrect": false},
       {"text": "composed", "isCorrect": true}
     ],
-    "explanation": "'is composed of' (passive) is correct. 'Consists of' (active) is also correct, but not 'is consisted of'."
+    "explanation": "'Is composed of' is the passive expression meaning 'is made up of'. 'Consists of' is active, without 'is'."
   },
   {
     "type": "MCQ",
@@ -2030,14 +2030,14 @@
     "choices": [
       {"text": "live", "isCorrect": true},
       {"text": "go", "isCorrect": false},
-      {"text": "come", "isCorrect": false}
+      {"text": "put", "isCorrect": false}
     ],
     "explanation": "The phrasal verb 'live up to' means 'to meet expectations'."
   },
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "You need to ____ up on your French before the trip.",
+    "prompt": "You need to ____ on your French before the trip.",
     "choices": [
       {"text": "brush up", "isCorrect": true},
       {"text": "brush off", "isCorrect": false},
@@ -2048,7 +2048,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "I ____ across an old friend yesterday.",
+    "prompt": "I ____ an old friend by chance yesterday.",
     "choices": [
       {"text": "came across", "isCorrect": true},
       {"text": "came into", "isCorrect": false},
@@ -2059,7 +2059,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "It's difficult to ____ without a car in the countryside.",
+    "prompt": "There is no public transport in the countryside, so it is difficult to ____ a car.",
     "choices": [
       {"text": "do up", "isCorrect": false},
       {"text": "do without", "isCorrect": true},
@@ -2081,7 +2081,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "He ____ down on people who are less successful.",
+    "prompt": "He thinks he is superior to others and ____ people who are less successful.",
     "choices": [
       {"text": "looks down on", "isCorrect": true},
       {"text": "looks up to", "isCorrect": false},
@@ -2092,7 +2092,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "I really ____ up to my grandfather.",
+    "prompt": "My grandfather is my role model. I really ____ him.",
     "choices": [
       {"text": "look up to", "isCorrect": true},
       {"text": "look down on", "isCorrect": false},
@@ -2103,10 +2103,10 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "The negotiations ____ down with no agreement.",
+    "prompt": "The negotiations ____ with no agreement.",
     "choices": [
       {"text": "broke down", "isCorrect": true},
-      {"text": "broke up", "isCorrect": false},
+      {"text": "broke in", "isCorrect": false},
       {"text": "broke out", "isCorrect": false}
     ],
     "explanation": "The phrasal verb 'break down' means 'to fail or collapse'."
@@ -2114,7 +2114,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "A fire ____ out in the building last night.",
+    "prompt": "A fire ____ in the building last night.",
     "choices": [
       {"text": "broke out", "isCorrect": true},
       {"text": "broke down", "isCorrect": false},
@@ -2125,7 +2125,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "He ____ up golf when he retired.",
+    "prompt": "He ____ golf as a new hobby when he retired.",
     "choices": [
       {"text": "took up", "isCorrect": true},
       {"text": "took over", "isCorrect": false},
@@ -2136,7 +2136,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "She ____ down the job offer.",
+    "prompt": "She rejected the position and ____ the job offer.",
     "choices": [
       {"text": "turned down", "isCorrect": true},
       {"text": "turned up", "isCorrect": false},
@@ -2147,7 +2147,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "He finally ____ up at the party at midnight.",
+    "prompt": "He finally ____ at the party at midnight.",
     "choices": [
       {"text": "turned up", "isCorrect": true},
       {"text": "turned down", "isCorrect": false},
@@ -2158,7 +2158,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "I can't ____ out the solution to this problem.",
+    "prompt": "Choose the phrasal verb meaning 'solve': I can't ____ this problem.",
     "choices": [
       {"text": "work out", "isCorrect": true},
       {"text": "work on", "isCorrect": false},
@@ -2169,7 +2169,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "I ____ living here for 10 years by next June.",
+    "prompt": "I ____ here for 10 years by next June.",
     "choices": [
       {"text": "will be living", "isCorrect": false},
       {"text": "will have been living", "isCorrect": true},
@@ -2184,7 +2184,7 @@
     "choices": [
       {"text": "advised", "isCorrect": true},
       {"text": "told", "isCorrect": false},
-      {"text": "said", "isCorrect": false}
+      {"text": "advising", "isCorrect": false}
     ],
     "explanation": "'Advised + that + clause' is a correct reporting structure."
   },
@@ -2312,7 +2312,7 @@
   {
     "type": "MCQ",
     "level": "C2",
-    "prompt": "The new evidence ____ the detective's theory.",
+    "prompt": "The new evidence supported and strengthened the detective's theory. It ____ the theory.",
     "choices": [
       {"text": "bolstered", "isCorrect": true},
       {"text": "refuted", "isCorrect": false},
@@ -2323,7 +2323,7 @@
   {
     "type": "MCQ",
     "level": "C2",
-    "prompt": "She was ____ in her support for the cause.",
+    "prompt": "She never wavered and remained ____ in her support for the cause.",
     "choices": [
       {"text": "steadfast", "isCorrect": true},
       {"text": "wavering", "isCorrect": false},
@@ -2334,7 +2334,7 @@
   {
     "type": "MCQ",
     "level": "C2",
-    "prompt": "The treaty was ____ by both countries.",
+    "prompt": "Both countries formally approved the treaty. It was ____ by their parliaments.",
     "choices": [
       {"text": "ratified", "isCorrect": true},
       {"text": "abrogated", "isCorrect": false},
@@ -2345,7 +2345,7 @@
   {
     "type": "MCQ",
     "level": "C2",
-    "prompt": "He's ____ at handling difficult customers.",
+    "prompt": "He handles difficult customers with great skill. He is ____ at dealing with complaints.",
     "choices": [
       {"text": "adept", "isCorrect": true},
       {"text": "inept", "isCorrect": false},
@@ -2389,7 +2389,7 @@
   {
     "type": "MCQ",
     "level": "C2",
-    "prompt": "He was ____ by the beautiful scenery.",
+    "prompt": "The beautiful scenery delighted him; he was ____ by it.",
     "choices": [
       {"text": "captivated", "isCorrect": true},
       {"text": "repelled", "isCorrect": false},
@@ -2400,7 +2400,7 @@
   {
     "type": "MCQ",
     "level": "C2",
-    "prompt": "Her ____ remarks were a welcome change from the usual boring speeches.",
+    "prompt": "Her brief, forceful remarks were admirably ____ and made the main point memorable.",
     "choices": [
       {"text": "pithy", "isCorrect": true},
       {"text": "verbose", "isCorrect": false},
@@ -2422,7 +2422,7 @@
   {
     "type": "MCQ",
     "level": "C2",
-    "prompt": "The army was unable to ____ the rebellion.",
+    "prompt": "The army tried to end the rebellion but was unable to ____ it.",
     "choices": [
       {"text": "quell", "isCorrect": true},
       {"text": "incite", "isCorrect": false},
@@ -2444,7 +2444,7 @@
   {
     "type": "MCQ",
     "level": "C2",
-    "prompt": "The investigation revealed a ____ of corruption.",
+    "prompt": "The investigation revealed a ____ of corruption: officials throughout the department were taking bribes.",
     "choices": [
       {"text": "hotbed", "isCorrect": true},
       {"text": "lack", "isCorrect": false},
@@ -2466,7 +2466,7 @@
   {
     "type": "MCQ",
     "level": "C2",
-    "prompt": "It's difficult to ____ (tell) the twins apart.",
+    "prompt": "It's difficult to ____ the twins apart.",
     "choices": [
       {"text": "tell", "isCorrect": true},
       {"text": "say", "isCorrect": false},
@@ -2477,7 +2477,7 @@
   {
     "type": "MCQ",
     "level": "C2",
-    "prompt": "He ____ on too much work and is now stressed.",
+    "prompt": "Use the present perfect: He ____ on too much work and is now stressed.",
     "choices": [
       {"text": "has taken", "isCorrect": true},
       {"text": "took", "isCorrect": false},
@@ -2488,7 +2488,7 @@
   {
     "type": "MCQ",
     "level": "C2",
-    "prompt": "The business finally ____ off after years of struggle.",
+    "prompt": "The business finally ____ off in 2018 after years of struggle.",
     "choices": [
       {"text": "took", "isCorrect": true},
       {"text": "has taken", "isCorrect": false},
@@ -2502,8 +2502,8 @@
     "prompt": "I can't ____ out how to solve this puzzle.",
     "choices": [
       {"text": "figure", "isCorrect": true},
-      {"text": "work", "isCorrect": false},
-      {"text": "make", "isCorrect": false}
+      {"text": "put", "isCorrect": false},
+      {"text": "take", "isCorrect": false}
     ],
     "explanation": "The phrasal verb 'figure out' means 'to solve or understand'."
   },
@@ -2519,7 +2519,7 @@
     "type": "MCQ"
   },
   {
-    "prompt": "If he ____ harder, he would pass the exam.",
+    "prompt": "Use the second conditional: If he ____ harder, he would pass the exam.",
     "choices": [
       {"text": "studied", "isCorrect": true},
       {"text": "studies", "isCorrect": false},
@@ -2530,13 +2530,13 @@
     "type": "MCQ"
   },
   {
-    "prompt": "She asked me where I ____ from.",
+    "prompt": "Report the question using past-tense backshift: She asked me where I ____ from.",
     "choices": [
       {"text": "was", "isCorrect": true},
       {"text": "am", "isCorrect": false},
       {"text": "were", "isCorrect": false}
     ],
-    "explanation": "Reported speech requires backshift: 'am' → 'was'.",
+    "explanation": "When using backshift after 'asked', the original 'Where are you from?' becomes 'where I was from'.",
     "level": "B1",
     "type": "MCQ"
   },
@@ -2574,7 +2574,7 @@
     "type": "MCQ"
   },
   {
-    "prompt": "I wish I ____ more time to study.",
+    "prompt": "I wish I ____ more time to study at the moment.",
     "choices": [
       {"text": "had", "isCorrect": true},
       {"text": "have", "isCorrect": false},
@@ -2629,13 +2629,13 @@
     "type": "MCQ"
   },
   {
-    "prompt": "He said he ____ finish the job.",
+    "prompt": "Report 'I can finish the job' using backshift: He said he ____ finish the job.",
     "choices": [
       {"text": "could", "isCorrect": true},
       {"text": "can", "isCorrect": false},
       {"text": "will", "isCorrect": false}
     ],
-    "explanation": "Reported speech: 'can' → 'could'.",
+    "explanation": "With backshift, 'can' changes to 'could'.",
     "level": "B1",
     "type": "MCQ"
   },
@@ -2739,7 +2739,7 @@
     "type": "MCQ"
   },
   {
-    "prompt": "She ____ to New York twice.",
+    "prompt": "She ____ to New York twice and is back home now.",
     "choices": [
       {"text": "has been", "isCorrect": true},
       {"text": "was", "isCorrect": false},
@@ -2794,7 +2794,7 @@
     "type": "MCQ"
   },
   {
-    "prompt": "I regret ____ him the truth.",
+    "prompt": "I told him the truth yesterday, and now I regret ____ him.",
     "choices": [
       {"text": "telling", "isCorrect": true},
       {"text": "to tell", "isCorrect": false},
@@ -2805,7 +2805,7 @@
     "type": "MCQ"
   },
   {
-    "prompt": "I forgot ____ the lights before leaving.",
+    "prompt": "The lights were still on when I returned. I had forgotten ____ them before leaving.",
     "choices": [
       {"text": "to turn off", "isCorrect": true},
       {"text": "turning off", "isCorrect": false},
@@ -2831,7 +2831,7 @@
     "choices": [
       {"text": "to", "isCorrect": true},
       {"text": "than", "isCorrect": false},
-      {"text": "over", "isCorrect": false}
+      {"text": "as", "isCorrect": false}
     ],
     "explanation": "Prefer A to B.",
     "level": "A2",
@@ -2849,7 +2849,7 @@
     "type": "MCQ"
   },
   {
-    "prompt": "By this time next year, I ____ university.",
+    "prompt": "Use the future perfect: By this time next year, I ____ university.",
     "choices": [
       {"text": "will have finished", "isCorrect": true},
       {"text": "finish", "isCorrect": false},
@@ -2937,13 +2937,13 @@
     "type": "MCQ"
   },
   {
-    "prompt": "He suggested that we ____ earlier.",
+    "prompt": "Use the mandative subjunctive: He suggested that we ____ earlier.",
     "choices": [
       {"text": "leave", "isCorrect": true},
       {"text": "left", "isCorrect": false},
       {"text": "to leave", "isCorrect": false}
     ],
-    "explanation": "Subjunctive: suggest + that + subject + base verb.",
+    "explanation": "The mandative subjunctive uses the base form 'leave' after a suggestion.",
     "level": "C1",
     "type": "MCQ"
   },
@@ -2959,18 +2959,18 @@
     "type": "MCQ"
   },
   {
-    "prompt": "He promised that he ____ call me.",
+    "prompt": "Report 'I will call you' using backshift: He promised that he ____ call me.",
     "choices": [
       {"text": "would", "isCorrect": true},
       {"text": "will", "isCorrect": false},
       {"text": "can", "isCorrect": false}
     ],
-    "explanation": "Reported speech future: will → would.",
+    "explanation": "With past-tense backshift, 'will' becomes 'would'.",
     "level": "B1",
     "type": "MCQ"
   },
   {
-    "prompt": "They ____ dinner when the phone rang.",
+    "prompt": "Use the past continuous: They ____ dinner when the phone rang.",
     "choices": [
       {"text": "were having", "isCorrect": true},
       {"text": "had", "isCorrect": false},
@@ -3036,7 +3036,7 @@
     "type": "MCQ"
   },
   {
-    "prompt": "By the time we arrived, the movie ____.",
+    "prompt": "Use the past perfect: By the time we arrived, the movie ____.",
     "choices": [
       {"text": "had started", "isCorrect": true},
       {"text": "started", "isCorrect": false},
@@ -3168,7 +3168,7 @@
     "type": "MCQ"
   },
   {
-    "prompt": "He stopped ____ a rest.",
+    "prompt": "He stopped working ____ a rest.",
     "choices": [
       {"text": "to take", "isCorrect": true},
       {"text": "taking", "isCorrect": false},
@@ -3179,13 +3179,13 @@
     "type": "MCQ"
   },
   {
-    "prompt": "It was the first time I ____ sushi.",
+    "prompt": "Use the past perfect: It was the first time I ____ sushi.",
     "choices": [
       {"text": "had tried", "isCorrect": true},
       {"text": "tried", "isCorrect": false},
       {"text": "have tried", "isCorrect": false}
     ],
-    "explanation": "First-time experiences use past perfect.",
+    "explanation": "'Had tried' is the past perfect form, placing the experience before the past reference point.",
     "level": "B2",
     "type": "MCQ"
   },
@@ -3216,7 +3216,7 @@
     "choices": [
       {"text": "to", "isCorrect": true},
       {"text": "than", "isCorrect": false},
-      {"text": "over", "isCorrect": false}
+      {"text": "as", "isCorrect": false}
     ],
     "explanation": "'Prefer A to B.'",
     "level": "B1",
@@ -3245,18 +3245,18 @@
     "type": "MCQ"
   },
   {
-    "prompt": "He said he ____ the work already.",
+    "prompt": "Report 'I have finished the work already' using backshift: He said he ____ the work already.",
     "choices": [
       {"text": "had finished", "isCorrect": true},
       {"text": "finished", "isCorrect": false},
       {"text": "has finished", "isCorrect": false}
     ],
-    "explanation": "Reported speech requires past perfect for earlier completed actions.",
+    "explanation": "With backshift, the present perfect 'have finished' becomes 'had finished'.",
     "level": "B2",
     "type": "MCQ"
   },
   {
-    "prompt": "She ____ be at home; I saw her at the mall.",
+    "prompt": "She ____ be at home right now: I'm standing beside her at the mall.",
     "choices": [
       {"text": "can't", "isCorrect": true},
       {"text": "must", "isCorrect": false},
@@ -3289,13 +3289,13 @@
     "type": "MCQ"
   },
   {
-    "prompt": "He suggested that she ____ earlier next time.",
+    "prompt": "Use the mandative subjunctive: He suggested that she ____ earlier next time.",
     "choices": [
       {"text": "arrive", "isCorrect": true},
       {"text": "arrived", "isCorrect": false},
       {"text": "arrives", "isCorrect": false}
     ],
-    "explanation": "Subjunctive: base verb.",
+    "explanation": "The mandative subjunctive uses the base form 'arrive', regardless of the subject.",
     "level": "C1",
     "type": "MCQ"
   },
@@ -3322,7 +3322,7 @@
     "type": "MCQ"
   },
   {
-    "prompt": "If you heat ice, it ____.",
+    "prompt": "Use the zero conditional for a general fact: If you heat ice, it ____.",
     "choices": [
       {"text": "melts", "isCorrect": true},
       {"text": "will melt", "isCorrect": false},
@@ -3410,7 +3410,7 @@
     "type": "MCQ"
   },
   {
-    "prompt": "I regret ____ her the truth.",
+    "prompt": "I told her the truth yesterday, and now I regret ____ her.",
     "choices": [
       {"text": "telling", "isCorrect": true},
       {"text": "to tell", "isCorrect": false},
@@ -3509,7 +3509,7 @@
     "type": "MCQ"
   },
   {
-    "prompt": "She forgot ____ her laptop at home.",
+    "prompt": "She left her laptop at home because she forgot ____ it to work.",
     "choices": [
       {"text": "to bring", "isCorrect": true},
       {"text": "bringing", "isCorrect": false},
@@ -3558,7 +3558,7 @@
   {
     "type": "MCQ",
     "level": "C2",
-    "prompt": "____ the team had been warned about the risks involved.",
+    "prompt": "____ the team been warned about the risks involved.",
     "choices": [
       {"text": "Under no circumstances should", "isCorrect": false},
       {"text": "On no account should", "isCorrect": false},
@@ -3573,7 +3573,7 @@
     "prompt": "The professor’s lecture was so convoluted that only a few students ____ what he was getting at.",
     "choices": [
       {"text": "could make out", "isCorrect": true},
-      {"text": "were able to make out", "isCorrect": false},
+      {"text": "were able make out", "isCorrect": false},
       {"text": "managed making out", "isCorrect": false},
       {"text": "succeeded to make out", "isCorrect": false}
     ],
@@ -3582,7 +3582,7 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "____ the economic climate, the company has outperformed all expectations.",
+    "prompt": "Choose the preposition meaning 'considering': ____ the economic climate, the company has performed well.",
     "choices": [
       {"text": "Given", "isCorrect": true},
       {"text": "In spite of", "isCorrect": false},
@@ -3601,24 +3601,24 @@
       {"text": "Should", "isCorrect": false},
       {"text": "If", "isCorrect": false}
     ],
-    "explanation": "Inverted mixed conditional (3rd + 2nd)."
+    "explanation": "'Had he not been promoted' means 'If he had not been promoted'. Both the condition and result refer to an unreal past situation."
   },
   {
     "type": "MCQ",
     "level": "C2",
-    "prompt": "The minister ____ to comment on the allegations until the investigation is complete.",
+    "prompt": "Use the present perfect simple: The minister ____ to comment on the allegations until the investigation is complete.",
     "choices": [
-      {"text": "has declined", "isCorrect": false},
+      {"text": "has declined", "isCorrect": true},
       {"text": "declined", "isCorrect": false},
       {"text": "has been declining", "isCorrect": false},
-      {"text": "is declining", "isCorrect": true}
+      {"text": "is declining", "isCorrect": false}
     ],
-    "explanation": "Present continuous for official refusal (more formal)."
+    "explanation": "'Has declined' is present perfect simple: 'has + past participle'."
   },
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "Rarely ____ such a finely crafted piece of legislation.",
+    "prompt": "Use the present perfect with inversion: Rarely ____ such a finely crafted piece of legislation.",
     "choices": [
       {"text": "have we seen", "isCorrect": true},
       {"text": "we have seen", "isCorrect": false},
@@ -3630,26 +3630,26 @@
   {
     "type": "MCQ",
     "level": "C2",
-    "prompt": "No sooner ____ the news than the press began speculating.",
+    "prompt": "Use the past perfect with inversion: No sooner ____ than the press began speculating.",
     "choices": [
       {"text": "had the story broken", "isCorrect": true},
       {"text": "the story had broken", "isCorrect": false},
       {"text": "did the story break", "isCorrect": false},
       {"text": "the story broke", "isCorrect": false}
     ],
-    "explanation": "No sooner + past perfect + than + past perfect."
+    "explanation": "'No sooner had the story broken than...' places one past event immediately before another; the second clause uses the past simple."
   },
     {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "____ his criticism be taken seriously, he would need to provide concrete evidence.",
+    "prompt": "____ his criticism to be taken seriously, he would need to provide concrete evidence.",
     "choices": [
       {"text": "Were", "isCorrect": true},
       {"text": "Should", "isCorrect": false},
       {"text": "Had", "isCorrect": false},
       {"text": "If", "isCorrect": false}
     ],
-    "explanation": "Inverted subjunctive for hypothetical present/future (formal)."
+    "explanation": "'Were his criticism to be taken seriously' is the inverted form of 'If his criticism were to be taken seriously'."
   },
   {
     "type": "MCQ",
@@ -3668,24 +3668,24 @@
     "level": "C2",
     "prompt": "The data ____ been misinterpreted had the researchers not double-checked their sources.",
     "choices": [
-      {"text": "might well", "isCorrect": true},
-      {"text": "would certainly", "isCorrect": false},
-      {"text": "must have", "isCorrect": false},
-      {"text": "should have", "isCorrect": false}
+      {"text": "might well have", "isCorrect": true},
+      {"text": "might well", "isCorrect": false},
+      {"text": "might had", "isCorrect": false},
+      {"text": "might have be", "isCorrect": false}
     ],
-    "explanation": "'Might well have' = very probable in the past (speculation)."
+    "explanation": "'Might well have been' expresses a plausible unreal past possibility. The complete structure is modal + have + been + past participle."
   },
   {
     "type": "MCQ",
     "level": "C1",
     "prompt": "So ____ was the silence that you could have heard a pin drop.",
     "choices": [
-      {"text": "absolute", "isCorrect": false},
-      {"text": "utter", "isCorrect": false},
-      {"text": "complete", "isCorrect": false},
+      {"text": "profoundly", "isCorrect": false},
+      {"text": "profundity", "isCorrect": false},
+      {"text": "deafeningly", "isCorrect": false},
       {"text": "profound", "isCorrect": true}
     ],
-    "explanation": "Collocation: 'profound silence' is the most idiomatic at C1-C2 level."
+    "explanation": "'Profound' is the adjective meaning deep or intense. The blank requires an adjective, not a noun or adverb."
   },
   {
     "type": "MCQ",
@@ -3702,12 +3702,12 @@
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "The politician’s speech was so ____ that even his supporters struggled to follow his argument.",
+    "prompt": "The speech relied on specialist legal terms and was so ____ that listeners without legal training struggled to follow.",
     "choices": [
-      {"text": "obtuse", "isCorrect": false},
-      {"text": "arcane", "isCorrect": false},
+      {"text": "accessible", "isCorrect": false},
+      {"text": "straightforward", "isCorrect": false},
       {"text": "esoteric", "isCorrect": true},
-      {"text": "recondite", "isCorrect": false}
+      {"text": "mundane", "isCorrect": false}
     ],
     "explanation": "'Esoteric' = understood by only a small number of people with special knowledge."
   },
@@ -3728,24 +3728,24 @@
     "level": "C2",
     "prompt": "____ the outcome, the experiment was deemed a success by the scientific community.",
     "choices": [
-      {"text": "Regardless of", "isCorrect": false},
-      {"text": "Irrespective of", "isCorrect": false},
+      {"text": "Although", "isCorrect": false},
+      {"text": "Despite of", "isCorrect": false},
       {"text": "Notwithstanding", "isCorrect": true},
-      {"text": "In spite of", "isCorrect": false}
+      {"text": "Even though", "isCorrect": false}
     ],
-    "explanation": "'Notwithstanding' = formal equivalent of 'despite' (preposition)."
+    "explanation": "'Notwithstanding' means 'despite' and can be followed directly by a noun phrase. 'Although' and 'even though' require clauses; 'despite of' is incorrect."
   },
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "The author’s latest work has been met with ____ reviews from critics.",
+    "prompt": "Critics split into two opposing camps, with some praising the book and others condemning it. The reviews were ____.",
     "choices": [
       {"text": "polarized", "isCorrect": true},
-      {"text": "divergent", "isCorrect": false},
-      {"text": "disparate", "isCorrect": false},
-      {"text": "contradictory", "isCorrect": false}
+      {"text": "unanimous", "isCorrect": false},
+      {"text": "uniform", "isCorrect": false},
+      {"text": "identical", "isCorrect": false}
     ],
-    "explanation": "'Polarized reviews' = sharply divided opinions."
+    "explanation": "'Polarized' describes opinions divided into sharply opposed groups."
   },
   {
     "type": "MCQ",
@@ -3755,9 +3755,9 @@
       {"text": "Were the team to read", "isCorrect": false},
       {"text": "Had the team read", "isCorrect": true},
       {"text": "Should the team read", "isCorrect": false},
-      {"text": "If the team had read", "isCorrect": false}
+      {"text": "If the team would read", "isCorrect": false}
     ],
-    "explanation": "Inverted mixed conditional (past condition, present result)."
+    "explanation": "'Had the team read' is an inverted past-perfect condition; 'there would have been' gives the unreal past result."
   },
   {
     "type": "MCQ",
@@ -3765,9 +3765,9 @@
     "prompt": "His argument was so ____ that it left even the most skeptical listeners convinced.",
     "choices": [
       {"text": "cogent", "isCorrect": true},
-      {"text": "plausible", "isCorrect": false},
-      {"text": "tenable", "isCorrect": false},
-      {"text": "credible", "isCorrect": false}
+      {"text": "specious", "isCorrect": false},
+      {"text": "incoherent", "isCorrect": false},
+      {"text": "irrelevant", "isCorrect": false}
     ],
     "explanation": "'Cogent' = clear, logical, and convincing (C2 level)."
   },
@@ -3777,9 +3777,9 @@
     "prompt": "The company’s decision to downsize was ____ by the sudden drop in demand.",
     "choices": [
       {"text": "precipitated", "isCorrect": true},
-      {"text": "instigated", "isCorrect": false},
-      {"text": "provoked", "isCorrect": false},
-      {"text": "induced", "isCorrect": false}
+      {"text": "prevented", "isCorrect": false},
+      {"text": "averted", "isCorrect": false},
+      {"text": "delayed", "isCorrect": false}
     ],
     "explanation": "'Precipitated' = caused to happen suddenly."
   },
@@ -3788,29 +3788,29 @@
     "level": "C2",
     "prompt": "Only by ____ the underlying assumptions can we hope to resolve the paradox.",
     "choices": [
-      {"text": "questioning", "isCorrect": false},
-      {"text": "challenging", "isCorrect": false},
+      {"text": "interrogate", "isCorrect": false},
+      {"text": "interrogated", "isCorrect": false},
       {"text": "interrogating", "isCorrect": true},
-      {"text": "probing", "isCorrect": false}
+      {"text": "interrogation", "isCorrect": false}
     ],
-    "explanation": "'Interrogating assumptions' = formal academic collocation."
+    "explanation": "After the preposition 'by', a verb takes the -ing form. 'Interrogating assumptions' means examining them critically."
   },
   {
     "type": "MCQ",
     "level": "C2",
     "prompt": "The speaker’s ____ use of rhetorical devices captivated the audience.",
     "choices": [
-      {"text": "judicious", "isCorrect": false},
+      {"text": "clumsy", "isCorrect": false},
       {"text": "consummate", "isCorrect": true},
-      {"text": "proficient", "isCorrect": false},
-      {"text": "adept", "isCorrect": false}
+      {"text": "haphazard", "isCorrect": false},
+      {"text": "careless", "isCorrect": false}
     ],
     "explanation": "'Consummate' = showing supreme skill."
   },
   {
     "type": "MCQ",
     "level": "C1",
-    "prompt": "Far ____ I to criticize your efforts; I merely suggest an alternative approach.",
+    "prompt": "Far ____ me to criticize your efforts; I merely suggest an alternative approach.",
     "choices": [
       {"text": "be it from", "isCorrect": true},
       {"text": "is it from", "isCorrect": false},
@@ -3824,36 +3824,36 @@
     "level": "C2",
     "prompt": "The treaty was signed ____ great secrecy to avoid media speculation.",
     "choices": [
-      {"text": "under", "isCorrect": false},
-      {"text": "in", "isCorrect": false},
-      {"text": "with", "isCorrect": false},
-      {"text": "amid", "isCorrect": true}
+      {"text": "for", "isCorrect": false},
+      {"text": "in", "isCorrect": true},
+      {"text": "on", "isCorrect": false},
+      {"text": "by", "isCorrect": false}
     ],
-    "explanation": "'Amid great secrecy' = formal, slightly literary."
+    "explanation": "The idiomatic phrase is 'in great secrecy', meaning without others knowing."
   },
   {
     "type": "MCQ",
     "level": "C2",
-    "prompt": "____ the hypothesis withstand rigorous testing, it will remain merely conjectural.",
+    "prompt": "____ the hypothesis withstands rigorous testing, it will remain merely conjectural.",
     "choices": [
       {"text": "Should", "isCorrect": false},
-      {"text": "Unless", "isCorrect": false},
+      {"text": "Unless", "isCorrect": true},
       {"text": "Were", "isCorrect": false},
       {"text": "Ought", "isCorrect": false}
     ],
-    "explanation": "Inverted 'Should the hypothesis withstand...' = If the hypothesis should withstand..."
+    "explanation": "'Unless' means 'if ... not': without withstanding rigorous tests, the hypothesis remains conjectural. The other options cannot be followed by 'the hypothesis withstands'."
   },
   {
     "type": "MCQ",
     "level": "C2",
-    "prompt": "His ____ of the situation was nothing short of prescient.",
+    "prompt": "His ____ of the situation showed that he understood it deeply.",
     "choices": [
-      {"text": "grasp", "isCorrect": false},
-      {"text": "appraisal", "isCorrect": false},
+      {"text": "obfuscation", "isCorrect": false},
+      {"text": "distortion", "isCorrect": false},
       {"text": "apprehension", "isCorrect": true},
-      {"text": "perception", "isCorrect": false}
+      {"text": "misrepresentation", "isCorrect": false}
     ],
-    "explanation": "'Apprehension of the situation' = deep understanding (C2 nuance)."
+    "explanation": "In formal usage, 'apprehension' can mean understanding. The other options describe obscuring or misrepresenting information."
   },
   {
     "type": "MCQ",
@@ -3873,9 +3873,9 @@
     "prompt": "Such was the ____ of the performance that even seasoned critics were moved to tears.",
     "choices": [
       {"text": "poignancy", "isCorrect": true},
-      {"text": "pathos", "isCorrect": false},
-      {"text": "sentiment", "isCorrect": false},
-      {"text": "melodrama", "isCorrect": false}
+      {"text": "indifference", "isCorrect": false},
+      {"text": "banality", "isCorrect": false},
+      {"text": "detachment", "isCorrect": false}
     ],
     "explanation": "'Poignancy' = deeply affecting quality."
   }
