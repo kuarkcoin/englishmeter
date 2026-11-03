@@ -47,8 +47,9 @@ mevcut `/quiz` ekranından çalışır. Soru sayısı eksik veya seçenekleri ge
 bir set başka teste yönlendirilmez.
 
 Konu sayfaları sunucuda oluşturulur; kendi canonical adresleri, metadata ve
-sitemap kayıtları vardır. Konu başlangıç sayfasında üç soru önizlemesi bulunur;
-cevaplar ve açıklamalar test akışında gösterilir.
+sitemap kayıtları vardır. Konu başlangıç sayfasında konuya özel çalışma rehberi,
+üç öğrenme hedefi ve bir ipucu bulunur. Üç örnek sorunun seçenekleri, cevapları ve
+açıklamaları JavaScript gerektirmeden okunabilir; tam test ortak akıştan başlatılır.
 
 ## Kontroller
 
@@ -63,11 +64,14 @@ ve canonical/sitemap eşleşmesini doğrular. Tarayıcı kontrolleri ana sayfa
 butonlarını, konu seçimini, 20 soruluk denemeyi, sonuçları, açıklamaları ve
 yanlışların kaydını kapsar.
 
-Son doğrulama (3 Kasım 2026): 71 otomatik test geçti; TypeScript kontrolü ve
+Son doğrulama (3 Kasım 2026): 79 otomatik test geçti; TypeScript kontrolü ve
 production derlemesi başarılı oldu (9.082 statik sayfa). Derlenmiş sürümde
 375 px mobil görünüm, beş seviyeden test başlatma, 20/20 puanlama, cevap
 açıklamaları, tekrar deneme, Practice geri bildirimi ve yanlışlar bankası
 tarayıcıda doğrulandı. C2 dahil 70 konu adresi, canonical bağlantılar ve
 geçersiz adreslerin 404 yanıtı kontrol edildi.
+SEO güncellemesinde altı seviye ve 70 konu sayfasının Production çıktısı,
+JavaScript kapalıyken başlık, canonical, yapılandırılmış veri, çalışma rehberi,
+açıklamalı örnekler ve mobil görünüm açısından ayrıca doğrulandı.
 
 Vercel'de yeni commit Production ortamında yeniden derlenip yayımlanmalıdır.

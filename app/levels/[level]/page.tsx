@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { notFound, permanentRedirect } from 'next/navigation';
-import { buildSeoMetadata } from '@/lib/seo';
+import { serializeJsonLd } from '@/lib/seo';
 import { LEVEL_CATALOG, getLevelDefinition } from '@/lib/level-catalog';
+import { getLevelBreadcrumbs, getLevelMetadata, getLevelStructuredData } from '@/lib/level-seo';
+import LevelBreadcrumbs from '@/components/LevelBreadcrumbs';
 
 type PageProps = { params: { level: string } };
 
@@ -18,23 +20,21 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: PageProps) {
   const level = getLevel(params.level);
-  return buildSeoMetadata({
-    title: `${level.label} English Tests – ${level.name}`,
-    description: `${level.description} Choose from ${level.topics.length} topic tests with answer explanations, or take a mixed ${level.label} test.`,
-    path: `/levels/${level.key}`,
-  });
+  return getLevelMetadata(level);
 }
 
 export default function LevelPage({ params }: PageProps) {
   const level = getLevel(params.level);
   return (
     <main className="em-page py-8 sm:py-12 px-4">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(getLevelStructuredData(level)) }} />
       <div className="max-w-5xl mx-auto">
-        <Link href="/#level-tests" className="inline-flex mb-6 text-sm font-semibold text-blue-700 dark:text-blue-300 hover:underline">← All levels</Link>
+        <LevelBreadcrumbs items={getLevelBreadcrumbs(level)} />
         <header className="em-card rounded-3xl p-6 sm:p-8 mb-8">
-          <p className="text-sm font-bold uppercase tracking-wide text-blue-700 dark:text-blue-300">English practice by topic</p>
-          <h1 className="mt-3 text-3xl sm:text-4xl font-black text-slate-900 dark:text-slate-50">{level.label} Level — {level.name}</h1>
+          <p className="text-sm font-bold uppercase tracking-wide text-blue-700 dark:text-blue-300">Free English practice by topic</p>
+          <h1 className="mt-3 text-3xl sm:text-4xl font-black text-slate-900 dark:text-slate-50">{level.label} English Tests — {level.name}</h1>
           <p className="mt-4 max-w-3xl text-slate-600 dark:text-slate-300 leading-relaxed">{level.description}</p>
+          <p className="mt-3 max-w-3xl text-slate-600 dark:text-slate-300 leading-relaxed">Choose a topic to read a short study guide and worked examples, then check your understanding with a free test. Review your answers and explanations after finishing, or use Practice mode for feedback as you go.</p>
           <p className="mt-3 text-sm font-semibold text-slate-700 dark:text-slate-200">{level.topics.length} topic tests · {level.duration} minutes per test · Answer explanations</p>
           <Link href={`/start?testSlug=level-${level.key}`} className="mt-5 inline-flex min-h-12 items-center justify-center rounded-xl border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-950 px-5 py-3 font-bold text-blue-800 dark:text-blue-200 hover:border-blue-400">
             Take a mixed {level.label} test

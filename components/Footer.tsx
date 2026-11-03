@@ -41,7 +41,7 @@ export default function Footer() {
               Global Race
             </Link>
             
-            <Link href="/levels/A1" className="hover:text-slate-900 transition-colors">
+            <Link href="/levels/a1" className="hover:text-slate-900 transition-colors">
               Level Tests
             </Link>
             

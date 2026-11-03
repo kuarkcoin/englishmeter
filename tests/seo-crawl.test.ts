@@ -11,6 +11,7 @@ import { arabicVocabulary } from '../app/ar/vocabulary/data';
 import dailyData from '../data/dailyenglish.json';
 import { getQuestionsBySlug } from '../lib/quizManager';
 import { getCanonicalTestSlug } from '../app/tests/catalog';
+import { LEVEL_CONTENT_UPDATED_AT } from '../lib/level-catalog';
 
 const entries = sitemap();
 const paths = new Set(entries.map((entry) => new URL(entry.url).pathname));
@@ -23,7 +24,7 @@ test('sitemap publishes unique canonical URLs without query filters or fake modi
     assert.equal(url.origin, SITE_URL);
     assert.equal(url.search, '');
     assert.equal(url.hash, '');
-    assert.equal(entry.lastModified, undefined);
+    assert.equal(entry.lastModified, url.pathname.startsWith('/levels/') ? LEVEL_CONTENT_UPDATED_AT : undefined);
     assert.equal(url.pathname.includes('//'), false);
   }
 });

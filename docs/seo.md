@@ -29,6 +29,19 @@ its build-time noindex directives.
   missing examples are labelled writing practice, not manufactured sample sentences.
 - Social metadata uses the page's content. Language preference query strings are
   not advertised as translated-page hreflang alternatives.
+- All six level hubs and 70 topic pages have deliberate search titles, concise
+  descriptions and matching canonical/social URLs. Hubs use CollectionPage and
+  ItemList; topic pages describe the actual free practice Quiz. BreadcrumbList
+  uses the same source as the visible navigation. This markup describes content;
+  it does not promise a Google rich result.
+- Topic pages provide a distinct study guide, three learning goals, a tip and
+  three complete examples with answer explanations in native HTML details.
+  The guides, examples and topic navigation are usable without JavaScript;
+  interactive tests use the shared JavaScript quiz flow.
+  The grammar hub links directly to all A1–C1 hubs using canonical lowercase paths.
+- Curriculum sitemap entries record the actual editorial update in
+  `LEVEL_CONTENT_UPDATED_AT`; advance it only after a substantive curriculum-page
+  change. Other entries still omit unknown modification dates.
 
 ## Checks
 
@@ -36,6 +49,14 @@ Run `npx tsx --test tests/*.test.ts`, then `npm run build` from the repository r
 Stop the development server before building because both use `.next`. The suite
 covers contact regressions as well as sitemap/catalogue, metadata, structured-data
 escaping, locale routing and content behavior.
+
+Local verification on 2026-11-03: all 79 automated tests passed, followed by a
+Production-mode build of 9,082 static pages. A browser checked all six level hubs
+and 70 topic pages with JavaScript disabled at 375 px width: distinct metadata,
+canonical/social parity, crawl directives, schema/visible-content agreement,
+study guides, answer examples, sibling links and sitemap editorial dates passed.
+The standard 20-question quiz still starts correctly. These checks used the local
+Production build; they do not establish live Google indexing or deployment status.
 
 After deployment, check:
 
@@ -54,3 +75,26 @@ After deployment, check:
 For future content, add useful explanations and examples rather than repeating
 keyword templates. Update article dates only when there is an actual publication
 or substantive revision; do not generate new timestamps on every deployment.
+
+## Yeni seviye testlerini Google'a bildirme
+
+1. Bu değişiklikleri içeren commit'i Vercel'de **Production** ortamında yeniden
+   derleyip yayımlayın. Preview derlemesini doğrudan taşımak, derleme sırasında
+   üretilen `noindex` ayarlarını koruyabilir.
+2. [Google Search Console](https://search.google.com/search-console) içinde
+   `englishmeter.net` için doğrulanmış mülkü açın. **Site Haritaları** bölümüne
+   `https://englishmeter.net/sitemap.xml` gönderin. Aynı site haritası zaten
+   kayıtlıysa yeniden kaydetmek gerekmez; güncel dosyanın okunmasını takip edin.
+3. **URL Denetimi** bölümünde önce `https://englishmeter.net/levels/a1`, ardından
+   A2, B1, B2 ve C1 seviye adreslerini kontrol edin. **Canlı URL'yi test et**
+   sonucunda dizine eklemeye uygun görünüyorlarsa **Dizine eklenmesini iste** seçeneğini
+   kullanın. Birkaç yeni konu adresini de kontrol edin; örneğin
+   `https://englishmeter.net/levels/b2/causatives` ve
+   `https://englishmeter.net/levels/c1/subjunctive`.
+4. **Dizine ekleme → Sayfalar** raporunda Google'ın seçtiği canonical adresi ve
+   hariç bırakma nedenlerini izleyin. **Performans → Arama sonuçları** raporunda
+   `/levels/` sayfa filtresiyle gösterim ve tıklamaları takip edin.
+
+Search Console mülkiyeti veya dizine ekleme isteği kod değişikliğiyle oluşturulmaz.
+Google'ın bir sayfayı ne zaman dizine ekleyeceği ve hangi sırada göstereceği garanti
+edilemez. Bu kontroller canlı Production sürümü yayımlandıktan sonra yapılmalıdır.

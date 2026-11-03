@@ -7,6 +7,9 @@ import { c2Topics } from '@/data/levels/c2_topics';
 
 export type LevelKey = 'a1' | 'a2' | 'b1' | 'b2' | 'c1' | 'c2';
 
+// Actual editorial update to the level pages and study guides, never a build date.
+export const LEVEL_CONTENT_UPDATED_AT = '2026-11-03';
+
 export type LevelTopic = {
   slug: string;
   title: string;

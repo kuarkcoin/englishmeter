@@ -6,7 +6,7 @@ import { dailyTestCount } from '@/app/daily-english/data';
 import { spanishVocabulary } from '@/app/es/vocabulary/data';
 import { arabicVocabulary } from '@/app/ar/vocabulary/data';
 import { getCanonicalTestSlug } from '@/app/tests/catalog';
-import { LEVEL_CATALOG } from '@/lib/level-catalog';
+import { LEVEL_CATALOG, LEVEL_CONTENT_UPDATED_AT } from '@/lib/level-catalog';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Only canonical, public learning pages belong here. Session results, account
@@ -62,5 +62,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Do not invent last-modified dates: only publish a timestamp when the source
   // records a real content update. The URL list stays stable between builds.
-  return Array.from(new Set(paths)).map((path) => ({ url: `${SITE_URL}${path}` }));
+  const updatedLevelPaths = new Set(levelPaths);
+  return Array.from(new Set(paths)).map((path) => ({
+    url: `${SITE_URL}${path}`,
+    ...(updatedLevelPaths.has(path) ? { lastModified: LEVEL_CONTENT_UPDATED_AT } : {}),
+  }));
 }

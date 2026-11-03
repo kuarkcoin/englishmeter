@@ -1,28 +1,48 @@
 import { buildSeoMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { SITE_URL } from '@/lib/vocabulary';
+import { LEVEL_CATALOG } from '@/lib/level-catalog';
 
 export const metadata: Metadata = buildSeoMetadata({
   "title": "English Grammar Tests by Topic",
-  "description": "Practise English conditionals, perfect tenses and relative clauses. Choose a grammar topic, take a test and review your answers.",
+  "description": "Practise English grammar from A1 to C1 with free topic tests and answer explanations. Review tenses, conditionals, relative clauses and more.",
   "path": "/grammar"
 });
 
 export default function GrammarHubPage() {
+  const levels = LEVEL_CATALOG.filter((level) => level.key !== 'c2');
+
   return (
-    <main className="min-h-screen bg-slate-50 py-12 px-4">
+    <main className="em-page py-12 px-4">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-black mb-4">Grammar Cluster Hub</h1>
-        <p className="mb-8 text-slate-700">Use these grammar landing pages, then jump into each test flow.</p>
-        <div className="grid sm:grid-cols-3 gap-4 mb-8">
-          <Link href="/test-conditionals" className="bg-white border rounded-2xl p-5 hover:border-blue-400">Conditionals</Link>
-          <Link href="/test-perfect-tenses" className="bg-white border rounded-2xl p-5 hover:border-blue-400">Perfect Tenses</Link>
-          <Link href="/test-relatives" className="bg-white border rounded-2xl p-5 hover:border-blue-400">Relative Clauses</Link>
-        </div>
+        <h1 className="text-4xl font-black mb-4">English Grammar Tests by Level and Topic</h1>
+        <p className="mb-8 text-slate-700 dark:text-slate-300">Choose your English level, practise a grammar topic and review the explanation for each answer. Each A1–C1 topic test has 20 questions, with timed Exam mode or untimed Practice mode.</p>
+
+        <section aria-labelledby="grammar-levels-heading" className="mb-10">
+          <h2 id="grammar-levels-heading" className="text-2xl font-bold mb-4">Choose your English level</h2>
+          <nav aria-label="Grammar tests by level" className="grid sm:grid-cols-2 gap-4">
+            {levels.map((level) => (
+              <Link key={level.key} href={`/levels/${level.key}`} className="em-card border border-[rgb(var(--border))] rounded-2xl p-5 hover:border-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-slate-50">{level.label} English tests — {level.name}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-700 dark:text-slate-300">{level.description}</p>
+                <p className="mt-3 text-sm font-semibold text-blue-700 dark:text-blue-300">{level.topics.length} topic tests · 20 questions each →</p>
+              </Link>
+            ))}
+          </nav>
+        </section>
+
+        <section aria-labelledby="grammar-topics-heading" className="mb-8">
+          <h2 id="grammar-topics-heading" className="text-2xl font-bold mb-4">Review a grammar topic</h2>
+          <div className="grid sm:grid-cols-3 gap-4">
+            <Link href="/test-conditionals" className="em-card border border-[rgb(var(--border))] rounded-2xl p-5 hover:border-blue-400">Conditionals</Link>
+            <Link href="/test-perfect-tenses" className="em-card border border-[rgb(var(--border))] rounded-2xl p-5 hover:border-blue-400">Perfect Tenses</Link>
+            <Link href="/test-relatives" className="em-card border border-[rgb(var(--border))] rounded-2xl p-5 hover:border-blue-400">Relative Clauses</Link>
+          </div>
+        </section>
+
         <div className="flex gap-3 flex-wrap">
-          <Link href="/" className="px-4 py-2 rounded-xl border bg-white">Homepage Tests</Link>
-          <Link href="/levels/B1" className="px-4 py-2 rounded-xl border bg-white">Level Pages</Link>
+          <Link href="/" className="em-card px-4 py-2 rounded-xl border border-[rgb(var(--border))]">All English tests</Link>
+          <Link href="/levels/c2" className="em-card px-4 py-2 rounded-xl border border-[rgb(var(--border))]">C2 proficiency practice</Link>
         </div>
       </div>
     </main>

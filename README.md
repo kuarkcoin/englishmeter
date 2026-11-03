@@ -87,3 +87,11 @@ and deployment scope, never the API key, sender value or message contents:
 
 Never paste API keys into chat or commit them to the repository. Cloud environment
 bindings and Vercel environment variables are separate settings.
+
+## Publishing level tests and SEO
+
+See [the level-test catalogue](docs/level-tests.md) for the A1–C1 topic coverage
+and [the SEO guide](docs/seo.md#yeni-seviye-testlerini-googlea-bildirme) for Production
+deployment and Google Search Console steps. Publish a fresh Production build,
+then submit or monitor `https://englishmeter.net/sitemap.xml` in the verified
+Search Console property. Indexing and search placement are decided by Google.
