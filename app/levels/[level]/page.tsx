@@ -1,130 +1,76 @@
 import Link from 'next/link';
 import { notFound, permanentRedirect } from 'next/navigation';
 import { buildSeoMetadata } from '@/lib/seo';
-
-import { a1Topics } from '@/data/levels/a1_topics';
-import { a2Topics } from '@/data/levels/a2_topics';
-import { b1Topics } from '@/data/levels/b1_topics';
-import { b2Topics } from '@/data/levels/b2_topics';
-import { c1Topics } from '@/data/levels/c1_topics';
-import { c2Topics } from '@/data/levels/c2_topics';
+import { LEVEL_CATALOG, getLevelDefinition } from '@/lib/level-catalog';
 
 type PageProps = { params: { level: string } };
 
 function getLevel(value: string) {
-  const level = value.toLowerCase();
-  if (!/^(?:a1|a2|b1|b2|c1|c2)$/.test(level)) notFound();
-  if (value !== level) permanentRedirect(`/levels/${level}`);
-  return level.toUpperCase();
+  const level = getLevelDefinition(value);
+  if (!level) notFound();
+  if (value !== level.key) permanentRedirect(`/levels/${level.key}`);
+  return level;
 }
 
 export function generateStaticParams() {
-  return ['a1', 'a2', 'b1', 'b2', 'c1', 'c2'].map((level) => ({ level }));
+  return LEVEL_CATALOG.map((level) => ({ level: level.key }));
 }
 
 export function generateMetadata({ params }: PageProps) {
   const level = getLevel(params.level);
   return buildSeoMetadata({
-    title: `${level} English Grammar Tests and Practice`,
-    description: `Practise ${level} English grammar with a mixed level test and topic quizzes. Choose a grammar point, answer questions and check your progress.`,
-    path: `/levels/${level.toLowerCase()}`,
+    title: `${level.label} English Tests – ${level.name}`,
+    description: `${level.description} Choose from ${level.topics.length} topic tests with answer explanations, or take a mixed ${level.label} test.`,
+    path: `/levels/${level.key}`,
   });
 }
 
 export default function LevelPage({ params }: PageProps) {
   const level = getLevel(params.level);
-
-  const isA1 = level === 'A1';
-  const isA2 = level === 'A2';
-  const isB1 = level === 'B1';
-  const isB2 = level === 'B2';
-  const isC1 = level === 'C1';
-  const isC2 = level === 'C2';
-
-  // hangi levele hangi topic listesi
-  const topics =
-    isA1 ? a1Topics :
-    isA2 ? a2Topics :
-    isB1 ? b1Topics :
-    isB2 ? b2Topics :
-    isC1 ? c1Topics :
-    isC2 ? c2Topics :
-    [];
-
-  const hasTopics = topics.length > 0;
-
-  const mixedTestSlug = `level-${level.toLowerCase()}`; // level-a1, level-c2 vs.
-
   return (
-    <div className="em-page py-10 px-4">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-extrabold text-slate-900 dark:text-slate-50 mb-4">
-          {level} Level Grammar Tests
-        </h1>
-
-        <p className="text-slate-600 dark:text-slate-300 mb-6">
-          Practise key grammar structures for level {level}. Start a complete mixed test
-          or choose a specific topic.
-        </p>
-
-        {/* Mixed Test butonu */}
-        <div className="mb-8">
-          <Link
-            href={`/start?testSlug=${mixedTestSlug}`}
-            className="block w-full text-center bg-slate-900 text-white font-semibold py-4 rounded-2xl shadow-lg hover:bg-slate-800"
-          >
-            {isA1 && '⭐ Start A1 Mixed Test'}
-            {isA2 && '⭐ Start A2 Mixed Test'}
-            {isB1 && '⭐ Start B1 Mixed Test'}
-            {isB2 && '⭐ Start B2 Mixed Test'}
-            {isC1 && '⭐ Start C1 Mixed Test'}
-            {isC2 && '⭐ Start C2 Mixed Test'}
-            {!isA1 && !isA2 && !isB1 && !isB2 && !isC1 && !isC2 && `Start ${level} Mixed Test`}
+    <main className="em-page py-8 sm:py-12 px-4">
+      <div className="max-w-5xl mx-auto">
+        <Link href="/#level-tests" className="inline-flex mb-6 text-sm font-semibold text-blue-700 dark:text-blue-300 hover:underline">← All levels</Link>
+        <header className="em-card rounded-3xl p-6 sm:p-8 mb-8">
+          <p className="text-sm font-bold uppercase tracking-wide text-blue-700 dark:text-blue-300">English practice by topic</p>
+          <h1 className="mt-3 text-3xl sm:text-4xl font-black text-slate-900 dark:text-slate-50">{level.label} Level — {level.name}</h1>
+          <p className="mt-4 max-w-3xl text-slate-600 dark:text-slate-300 leading-relaxed">{level.description}</p>
+          <p className="mt-3 text-sm font-semibold text-slate-700 dark:text-slate-200">{level.topics.length} topic tests · {level.duration} minutes per test · Answer explanations</p>
+          <Link href={`/start?testSlug=level-${level.key}`} className="mt-5 inline-flex min-h-12 items-center justify-center rounded-xl border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-950 px-5 py-3 font-bold text-blue-800 dark:text-blue-200 hover:border-blue-400">
+            Take a mixed {level.label} test
           </Link>
-        </div>
+        </header>
 
-        {/* Topic-based tests */}
-        {hasTopics && (
-          <>
-            <h2 className="text-xl font-bold text-slate-900 dark:text-slate-50 mb-3">
-              Topic-Based Tests ({level})
-            </h2>
-            <div className="space-y-3 mb-8">
-              {topics.map((topic) => (
-                <Link
-                  key={topic.slug}
-                  href={`/levels/${level.toLowerCase()}/${topic.slug}`}
-                  className="block w-full text-center py-4 rounded-2xl border font-semibold bg-blue-50 dark:bg-blue-950/40 border-blue-100 dark:border-blue-800 text-blue-800 dark:text-blue-200"
-                >
-                  {topic.title}
-                </Link>
-              ))}
-            </div>
-          </>
-        )}
-
-        <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
-          <h2 className="text-lg font-bold mb-3 text-slate-900 dark:text-slate-100">Explore other CEFR levels</h2>
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 text-sm mb-4">
-            {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((lvl) => (
+        <section aria-labelledby="topics-heading">
+          <h2 id="topics-heading" className="mb-4 text-2xl font-bold text-slate-900 dark:text-slate-50">Choose a topic</h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {level.topics.map((topic, index) => (
               <Link
-                key={lvl}
-                href={`/levels/${lvl.toLowerCase()}`}
-                className="text-center py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-blue-400"
+                key={topic.slug}
+                href={`/levels/${level.key}/${topic.slug}`}
+                className="em-card group rounded-2xl border border-[rgb(var(--border))] p-5 transition hover:border-blue-400 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
               >
-                {lvl}
+                <span className="text-xs font-bold uppercase tracking-wider text-blue-700 dark:text-blue-300">Topic {index + 1}</span>
+                <h3 className="mt-2 text-lg font-bold text-slate-900 dark:text-slate-50">{topic.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">{topic.description}</p>
+                <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-sm">
+                  <span className="text-slate-600 dark:text-slate-300">{topic.questionCount} questions · {level.duration} min</span>
+                  <span className="font-bold text-blue-700 dark:text-blue-300">View test →</span>
+                </div>
               </Link>
             ))}
           </div>
-        </div>
+        </section>
 
-        <Link
-          href="/"
-          className="text-sm text-slate-600 dark:text-slate-300 hover:underline inline-flex items-center"
-        >
-          ← Back to Home
-        </Link>
+        <nav aria-label="Other English levels" className="mt-10 border-t border-[rgb(var(--border))] pt-6">
+          <p className="mb-3 font-bold text-slate-900 dark:text-slate-50">Explore other levels</p>
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+            {LEVEL_CATALOG.map((other) => (
+              <Link key={other.key} href={`/levels/${other.key}`} aria-current={other.key === level.key ? 'page' : undefined} className={`rounded-xl border px-4 py-3 text-center font-bold ${other.key === level.key ? 'bg-blue-700 border-blue-700 text-white' : 'border-[rgb(var(--border))] text-slate-800 dark:text-slate-100 hover:border-blue-400'}`}>{other.label}</Link>
+            ))}
+          </div>
+        </nav>
       </div>
-    </div>
+    </main>
   );
 }

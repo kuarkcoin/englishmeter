@@ -7,13 +7,15 @@ import { b2Questions } from '../data/levels/b2_questions';
 import { c1Questions } from '../data/levels/c1_questions';
 import { c2Questions } from '../data/levels/c2_questions';
 import { prepareTopicQuestions } from '../lib/topic-quiz';
+import { LEVEL_CATALOG } from '../lib/level-catalog';
 
 const allQuestions = [...a1Questions, ...a2Questions, ...b1Questions, ...b2Questions, ...c1Questions, ...c2Questions];
 
-test('all 36 topic tests have ten valid questions with explanatory feedback', () => {
+test('all curriculum topics have complete question sets with explanatory feedback', () => {
   const groups = new Map<string, number>();
-  assert.equal(allQuestions.length, 360);
-  assert.equal(new Set(allQuestions.map((question) => question.id)).size, 360);
+  const expectedCount = LEVEL_CATALOG.reduce((sum, level) => sum + level.topics.reduce((count, topic) => count + topic.questionCount, 0), 0);
+  assert.equal(allQuestions.length, expectedCount);
+  assert.equal(new Set(allQuestions.map((question) => question.id)).size, expectedCount);
   for (const question of allQuestions) {
     const group = `${question.level}:${question.topic}`;
     groups.set(group, (groups.get(group) ?? 0) + 1);
@@ -23,8 +25,12 @@ test('all 36 topic tests have ten valid questions with explanatory feedback', ()
     assert.ok(Number.isInteger(question.correctIndex) && question.correctIndex >= 0 && question.correctIndex < question.options.length, question.id);
     assert.ok(question.explanation.trim().length >= 20, question.id);
   }
-  assert.equal(groups.size, 36);
-  assert.ok([...groups.values()].every((count) => count === 10));
+  assert.equal(groups.size, LEVEL_CATALOG.reduce((sum, level) => sum + level.topics.length, 0));
+  for (const level of LEVEL_CATALOG) {
+    for (const topic of level.topics) {
+      assert.equal(groups.get(`${level.label}:${topic.slug}`), level.key === 'c2' ? 10 : 20);
+    }
+  }
 });
 
 test('shuffling keeps each correct answer and explanation without mutating the bank', () => {

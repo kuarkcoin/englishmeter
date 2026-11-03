@@ -8,6 +8,7 @@ import { HOME_FAQ } from '@/lib/home-faq';
 import { getQuestionsBySlug } from '@/lib/quizManager';
 import DarkToggle from '@/components/DarkToggle';
 import DiamondCard from '@/components/DiamondCard';
+import LevelNavigation from '@/components/LevelNavigation';
  
 // --- DATA IMPORTS ---
 import topicQuestions from '@/data/grammar_topic_tests.json';
@@ -171,7 +172,6 @@ const grammarTests = [
   { title: 'Prepositions (Adv)', slug: 'test-prepositions-advanced' },
 ];
 
-const levelTests = [{ level: 'A1' }, { level: 'A2' }, { level: 'B1' }, { level: 'B2' }, { level: 'C1' }, { level: 'C2' }];
 
 const slugToTag: Record<string, string> = {
   'test-perfect-past': 'perfect_tenses',
@@ -1047,6 +1047,7 @@ function HomeContent() {
         <div className="w-full max-w-6xl mx-auto px-4 py-4 grid grid-cols-[1fr_auto] items-center gap-3 sm:flex sm:justify-between">
           <div className="order-1 shrink-0 font-black tracking-tight text-lg sm:text-xl">EnglishMeter</div>
           <div className="order-3 col-span-2 flex items-center justify-end gap-3 sm:order-2 sm:ml-auto">
+            <a href="#level-tests" className="px-2 py-2 text-sm font-bold text-blue-700 dark:text-blue-300 hover:underline">Levels</a>
             <DarkToggle />
             <button onClick={() => startTest(quickTest.slug)} className="diamond-btn">
               Start Test
@@ -1158,6 +1159,8 @@ function HomeContent() {
           </div>
         </div>
       </section>
+
+      <LevelNavigation />
 
       {/* MAIN */}
       <div className="flex flex-col items-center justify-center px-4 pb-20 pt-4">
@@ -2152,32 +2155,6 @@ function HomeContent() {
                   <span className="block mt-1 text-[11px] font-semibold text-[rgb(var(--muted))]">{Math.min(20, topicQuestions.filter((q) => q.tags?.includes(slugToTag[test.slug])).length)}Q · 30 min</span>
                 </DiamondCard>
               ))}
-            </div>
-          </div>
-
-          {/* All Levels */}
-          <div className="mb-20">
-            <div className="flex items-center justify-center mb-8">
-              <h2 className="diamond-card px-8 py-3 text-[rgb(var(--muted))] font-bold text-sm uppercase tracking-wider">
-                All Levels
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {levelTests.map((test) => (
-                <DiamondCard
-                  as="a"
-                  key={test.level}
-                  href={`/levels/${test.level}`}
-                  className="px-4 py-10 text-slate-700 dark:text-slate-100 font-black text-3xl hover:text-blue-600 dark:hover:text-blue-300"
-                >
-                  {test.level}
-                </DiamondCard>
-              ))}
-            </div>
-
-            <div className="mt-4 text-xs text-[rgb(var(--muted))]">
-              Choose your level to practise individual grammar topics or take a mixed assessment.
             </div>
           </div>
 

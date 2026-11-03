@@ -6,12 +6,7 @@ import { dailyTestCount } from '@/app/daily-english/data';
 import { spanishVocabulary } from '@/app/es/vocabulary/data';
 import { arabicVocabulary } from '@/app/ar/vocabulary/data';
 import { getCanonicalTestSlug } from '@/app/tests/catalog';
-import { a1Topics } from '@/data/levels/a1_topics';
-import { a2Topics } from '@/data/levels/a2_topics';
-import { b1Topics } from '@/data/levels/b1_topics';
-import { b2Topics } from '@/data/levels/b2_topics';
-import { c1Topics } from '@/data/levels/c1_topics';
-import { c2Topics } from '@/data/levels/c2_topics';
+import { LEVEL_CATALOG } from '@/lib/level-catalog';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Only canonical, public learning pages belong here. Session results, account
@@ -26,13 +21,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/ar/vocabulary', '/es/vocabulary',
   ];
 
-  const topicsByLevel = {
-    a1: a1Topics, a2: a2Topics, b1: b1Topics,
-    b2: b2Topics, c1: c1Topics, c2: c2Topics,
-  };
-  const levelPaths = Object.entries(topicsByLevel).flatMap(([level, topics]) => [
-    `/levels/${level}`,
-    ...topics.map((topic) => `/levels/${level}/${topic.slug}`),
+  const levelPaths = LEVEL_CATALOG.flatMap((level) => [
+    `/levels/${level.key}`,
+    ...level.topics.map((topic) => `/levels/${level.key}/${topic.slug}`),
   ]);
 
   const vocabulary = getAllVocabulary();
@@ -53,7 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'test-tenses-mixed', 'test-passive-voice', 'test-reported-speech',
     'test-gerunds-infinitives', 'test-clauses-advanced', 'test-modals-advanced',
     'test-prepositions-advanced',
-    ...Object.keys(topicsByLevel).map((level) => `level-${level}`),
+    ...LEVEL_CATALOG.map((level) => `level-${level.key}`),
     // These first 77 tests also have 3750/5000 aliases using identical seeds.
     // Keep the established 3850 URLs canonical; only 78–100 add distinct sets.
     ...Array.from({ length: 77 }, (_, i) => `yds-3850-mini-${i + 1}`),

@@ -48,6 +48,7 @@ import ydsExam31 from '@/data/yds_exam_questions_31.json';
 import ydsExam32 from '@/data/yds_exam_questions_32.json';
 import dailyEnglish from '@/data/dailyenglish.json';
 import { selectPlacementQuestions } from '@/lib/placement';
+import { getTopicTestBySlug } from '@/lib/level-tests';
 
 const YDS_EXAM_MAP: Record<string, any[]> = {
   '1': ydsExam1,
@@ -251,6 +252,9 @@ export const getQuestionsBySlug = (
   slug: string,
   meaningLanguageInput?: string | null
 ): { title: string; duration: number; questions: StandardQuestion[] } => {
+  if (slug.startsWith('topic-')) {
+    return getTopicTestBySlug(slug) ?? { title: 'Topic Test', duration: 20, questions: [] };
+  }
   let rawQuestions: any[] = [];
   let title = 'English Practice Test';
   let duration = 30; // Varsayılan süre (dakika)
