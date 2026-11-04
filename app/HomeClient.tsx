@@ -9,6 +9,7 @@ import { getQuestionsBySlug } from '@/lib/quizManager';
 import DarkToggle from '@/components/DarkToggle';
 import DiamondCard from '@/components/DiamondCard';
 import LevelNavigation from '@/components/LevelNavigation';
+import PracticeNavigation from '@/components/PracticeNavigation';
  
 // --- DATA IMPORTS ---
 import topicQuestions from '@/data/grammar_topic_tests.json';
@@ -1161,6 +1162,7 @@ function HomeContent() {
       </section>
 
       <LevelNavigation />
+      <PracticeNavigation />
 
       {/* MAIN */}
       <div className="flex flex-col items-center justify-center px-4 pb-20 pt-4">

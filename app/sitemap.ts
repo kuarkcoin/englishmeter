@@ -7,6 +7,8 @@ import { spanishVocabulary } from '@/app/es/vocabulary/data';
 import { arabicVocabulary } from '@/app/ar/vocabulary/data';
 import { getCanonicalTestSlug } from '@/app/tests/catalog';
 import { LEVEL_CATALOG, LEVEL_CONTENT_UPDATED_AT } from '@/lib/level-catalog';
+import { PRACTICE_CATEGORIES } from '@/lib/practice-categories';
+import { PRACTICE_TESTS, getPracticeTestPath } from '@/lib/practice-catalog';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Only canonical, public learning pages belong here. Session results, account
@@ -55,6 +57,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const paths = [
     ...staticPaths, ...levelPaths, ...letterPaths, ...wordPaths, ...localizedWordPaths,
+    ...PRACTICE_CATEGORIES.map((category) => category.path),
+    ...PRACTICE_TESTS.map(getPracticeTestPath),
     ...testSlugs.map(getCanonicalTestSlug).filter((slug): slug is string => slug !== null)
       .map((slug) => `/tests/${slug}`), ...dailyPaths,
     ...blogPosts.map((post) => `/blog/${post.slug}`),

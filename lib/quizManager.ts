@@ -49,6 +49,7 @@ import ydsExam32 from '@/data/yds_exam_questions_32.json';
 import dailyEnglish from '@/data/dailyenglish.json';
 import { selectPlacementQuestions } from '@/lib/placement';
 import { getTopicTestBySlug } from '@/lib/level-tests';
+import { getPracticeQuiz } from '@/lib/practice-tests';
 
 const YDS_EXAM_MAP: Record<string, any[]> = {
   '1': ydsExam1,
@@ -252,6 +253,9 @@ export const getQuestionsBySlug = (
   slug: string,
   meaningLanguageInput?: string | null
 ): { title: string; duration: number; questions: StandardQuestion[] } => {
+  if (slug.startsWith('practice-')) {
+    return getPracticeQuiz(slug) ?? { title: 'English Practice', duration: 20, questions: [] };
+  }
   if (slug.startsWith('topic-')) {
     return getTopicTestBySlug(slug) ?? { title: 'Topic Test', duration: 20, questions: [] };
   }
@@ -362,7 +366,8 @@ export const getQuestionsBySlug = (
     title = 'Grammar Mega Test (100Q)';
     duration = 90;
   } else if (slug === 'vocab-b1-c1-50') {
-    rawQuestions = seededShuffle(usableQuestions(vocabTests), hashSeed(slug)).slice(0, 50);
+    const levelMatchedVocabulary = vocabTests.filter((question) => ['B1', 'B2', 'C1'].includes(question.level));
+    rawQuestions = seededShuffle(usableQuestions(levelMatchedVocabulary), hashSeed(slug)).slice(0, 50);
     title = 'Vocabulary Challenge (B1-C1)';
     duration = 40;
   } else if (slug === 'quick-placement') {

@@ -44,6 +44,12 @@ export default function Footer() {
             <Link href="/levels/a1" className="hover:text-slate-900 transition-colors">
               Level Tests
             </Link>
+            <Link href="/practice/reading" className="hover:text-slate-900 transition-colors">
+              Reading
+            </Link>
+            <Link href="/kids" className="hover:text-slate-900 transition-colors">
+              Kids English
+            </Link>
             
             <Link href="/contact" className="hover:text-slate-900 transition-colors">
               Contact

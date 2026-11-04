@@ -41,6 +41,17 @@ export default function LevelPage({ params }: PageProps) {
           </Link>
         </header>
 
+        {level.key !== 'c2' && (
+          <nav aria-label="More practice at this level" className="mb-8 flex flex-wrap gap-3">
+            <Link href={`/practice/reading/${level.key}-reading`} className="em-card rounded-xl border border-[rgb(var(--border))] px-4 py-3 font-bold text-blue-700 dark:text-blue-300">{level.label} Reading →</Link>
+            {['b1', 'b2', 'c1'].includes(level.key) ? (
+              <Link href={`/practice/word-formation/${level.key}-word-formation`} className="em-card rounded-xl border border-[rgb(var(--border))] px-4 py-3 font-bold text-blue-700 dark:text-blue-300">{level.label} Word Formation →</Link>
+            ) : (
+              <Link href="/practice/vocabulary" className="em-card rounded-xl border border-[rgb(var(--border))] px-4 py-3 font-bold text-blue-700 dark:text-blue-300">Everyday vocabulary →</Link>
+            )}
+          </nav>
+        )}
+
         <section aria-labelledby="topics-heading">
           <h2 id="topics-heading" className="mb-4 text-2xl font-bold text-slate-900 dark:text-slate-50">Choose a topic</h2>
           <div className="grid gap-4 sm:grid-cols-2">

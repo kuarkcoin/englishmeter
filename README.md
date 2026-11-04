@@ -95,3 +95,6 @@ and [the SEO guide](docs/seo.md#yeni-seviye-testlerini-googlea-bildirme) for Pro
 deployment and Google Search Console steps. Publish a fresh Production build,
 then submit or monitor `https://englishmeter.net/sitemap.xml` in the verified
 Search Console property. Indexing and search placement are decided by Google.
+
+The [Reading, vocabulary and Kids English guide](docs/practice-tests.md) describes
+the 20 additional tests, their content structure and assessment without an AI service.
