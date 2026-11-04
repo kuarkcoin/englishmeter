@@ -7,6 +7,8 @@
     "dev": "next dev",
     "postinstall": "prisma generate",
     "build": "next build",
+    "db:challenge": "prisma db execute --file prisma/challenge.sql --schema prisma/schema.prisma",
+    "test:challenge": "tsx --test tests/challenge-*.test.ts",
     "translate:yds": "tsx scripts/translate-yds-vocabulary.ts",
     "start": "next start"
   },

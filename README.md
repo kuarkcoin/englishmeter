@@ -98,3 +98,11 @@ Search Console property. Indexing and search placement are decided by Google.
 
 The [Reading, vocabulary and Kids English guide](docs/practice-tests.md) describes
 the 20 additional tests, their content structure and assessment without an AI service.
+
+## Global English Challenge
+
+The daily 50-question challenge at `/challenge` uses a shared PostgreSQL leaderboard,
+server-side scoring and a new question set at midnight in Europe/Istanbul. Production
+requires `DATABASE_URL` and the additive `prisma/challenge.sql` installation before
+publishing. See [the setup and competition rules](docs/global-challenge.md) for Vercel
+steps, database safety, daily rotation and tests. No AI API key is needed.

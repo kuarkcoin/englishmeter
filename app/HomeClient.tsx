@@ -10,6 +10,7 @@ import DarkToggle from '@/components/DarkToggle';
 import DiamondCard from '@/components/DiamondCard';
 import LevelNavigation from '@/components/LevelNavigation';
 import PracticeNavigation from '@/components/PracticeNavigation';
+import ChallengeNavigation from '@/components/ChallengeNavigation';
  
 // --- DATA IMPORTS ---
 import topicQuestions from '@/data/grammar_topic_tests.json';
@@ -1161,6 +1162,7 @@ function HomeContent() {
         </div>
       </section>
 
+      <ChallengeNavigation />
       <LevelNavigation />
       <PracticeNavigation />
 

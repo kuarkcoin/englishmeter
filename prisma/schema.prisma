@@ -16,3 +16,45 @@ model ContactMessage {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model ChallengeDay {
+  day         String   @id @db.VarChar(10)
+  bankVersion String
+  questions   Json
+  createdAt   DateTime @default(now())
+  attempts    ChallengeAttempt[]
+}
+
+model ChallengeAttempt {
+  id              String   @id @default(uuid())
+  participantHash String   @db.VarChar(64)
+  day             String   @db.VarChar(10)
+  paper           ChallengeDay @relation(fields: [day], references: [day], onDelete: Restrict)
+  startedAt       DateTime @default(now())
+  deadlineAt      DateTime
+  answers         Json
+  revision        Int      @default(0)
+  finishedAt      DateTime?
+  correct         Int?
+  incorrect       Int?
+  unanswered      Int?
+  netQuarter      Int?
+  durationSeconds Int?
+  entry           ChallengeEntry?
+
+  @@index([participantHash, startedAt])
+  @@index([day])
+}
+
+model ChallengeEntry {
+  id              String @id @default(uuid())
+  day             String @db.VarChar(10)
+  participantHash String @db.VarChar(64)
+  attemptId       String @unique
+  attempt         ChallengeAttempt @relation(fields: [attemptId], references: [id], onDelete: Restrict)
+  nickname        String? @db.VarChar(40)
+  nicknameKey     String?
+
+  @@unique([day, participantHash])
+  @@unique([day, nicknameKey])
+}

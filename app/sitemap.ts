@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Only canonical, public learning pages belong here. Session results, account
   // pages, query-string filters and alternate URLs for the same test are omitted.
   const staticPaths = [
-    '/', '/about', '/blog', '/contact', '/privacy', '/terms', '/cookie',
+    '/', '/about', '/blog', '/contact', '/privacy', '/terms', '/cookie', '/challenge',
     '/flashcards', '/race', '/speedrun', '/speaking', '/matching', '/verbsense',
     '/advanced-tests', '/phrasal-puzzle', '/vocabulary', '/vocabulary-tests',
     '/grammar', '/test-conditionals', '/test-perfect-tenses', '/test-relatives',
