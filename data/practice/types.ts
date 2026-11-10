@@ -1,4 +1,4 @@
-export type PracticeCategory = 'reading' | 'vocabulary' | 'word-formation' | 'kids' | 'ielts-grammar';
+export type PracticeCategory = 'reading' | 'vocabulary' | 'word-formation' | 'kids' | 'ielts-grammar' | 'business-english' | 'toeic-reading' | 'cambridge-use-of-english';
 export type PracticeLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'Starter';
 
 export type PracticeQuestion = {
@@ -24,6 +24,7 @@ export type PracticeTest = {
   description: string;
   duration: number;
   learningGoals: readonly string[];
+  guide?: readonly { heading: string; body: string; example: string }[];
   passages?: readonly PracticePassage[];
   questions: readonly PracticeQuestion[];
 };

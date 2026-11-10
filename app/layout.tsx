@@ -9,13 +9,13 @@ const siteName = 'EnglishMeter';
 const siteUrl = SITE_URL;
 
 const siteDescription =
-  'Take our free English level test (A1–C2) and practice for YDS/YÖKDİL with academic vocabulary practice. Instant grammar & vocab results, no sign-up required.';
+  'Take free English tests with answers and explanations. Explore grammar, vocabulary, reading, IELTS, TOEIC, Business English and an A1–C2 practice level estimate.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default: 'Free English Level Test & YDS Vocabulary Quiz',
+    default: 'Free English Tests – Grammar, Vocabulary & Level Practice',
     template: `%s | ${siteName}`,
   },
 
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: siteUrl,
-    title: 'Test Your English Level & YDS Vocabulary Online',
+    title: 'Free English Tests with Answers – EnglishMeter',
     siteName,
     description: siteDescription,
     images: [
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'How Good is Your English? Take the Free Test',
-    description: 'Get your CEFR level and test your YDS vocabulary in minutes.',
+    description: 'Estimate your English practice level and improve grammar, vocabulary and reading with free tests and explanations.',
   },
 
   robots: {

@@ -12,6 +12,7 @@ type PageProps = { params: { slug: string }; searchParams?: { lang?: string } };
 function getTest({ params, searchParams }: PageProps) {
   const canonicalSlug = getCanonicalTestSlug(params.slug);
   if (!canonicalSlug) notFound();
+  if (canonicalSlug === 'quick-placement') permanentRedirect('/english-level-test');
   if (canonicalSlug !== params.slug) {
     const query = searchParams?.lang
       ? `?${new URLSearchParams({ lang: searchParams.lang })}`

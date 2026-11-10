@@ -1,11 +1,17 @@
 # EnglishMeter SEO
 
-Canonical site origin defaults to `https://englishmeter.net`. If `NEXT_PUBLIC_SITE_URL`
-is configured, set it to the public production origin, not a Vercel preview URL.
+Canonical site origin defaults to `https://www.englishmeter.net`, matching the live
+apex-to-www redirect. Both known EnglishMeter hosts normalize to this final HTTPS
+origin, including older `NEXT_PUBLIC_SITE_URL` settings that use the apex host.
+For other configured domains, use the public production origin, not a Vercel preview URL.
 `lib/seo.ts` keeps canonicals and social URLs consistent. Preview deployments have
 both noindex response headers and a restrictive robots policy. Use a fresh Production
 build for the live site; promoting a build created with Preview settings retains
 its build-time noindex directives.
+
+See [the search coverage expansion](search-visibility.md) for the Business English,
+TOEIC and Cambridge practice sets, the English level landing page, keyword evidence
+limits and post-publication checks.
 
 ## Changes
 
@@ -65,7 +71,7 @@ After deployment, check:
 2. `/`, a blog article, a vocabulary entry and a daily test return their own
    canonical links and accurate titles. The homepage heading is present with
    JavaScript disabled. Invalid test/word URLs return 404.
-3. Submit `https://englishmeter.net/sitemap.xml` in Google Search Console for the
+3. Submit `https://www.englishmeter.net/sitemap.xml` in Google Search Console for the
    verified property. Inspect representative canonical URLs and request indexing
    after the production deployment is live. Repository changes cannot establish
    Search Console ownership or guarantee that Google will index or rank a page.
@@ -83,14 +89,14 @@ or substantive revision; do not generate new timestamps on every deployment.
    üretilen `noindex` ayarlarını koruyabilir.
 2. [Google Search Console](https://search.google.com/search-console) içinde
    `englishmeter.net` için doğrulanmış mülkü açın. **Site Haritaları** bölümüne
-   `https://englishmeter.net/sitemap.xml` gönderin. Aynı site haritası zaten
+   `https://www.englishmeter.net/sitemap.xml` gönderin. Aynı site haritası zaten
    kayıtlıysa yeniden kaydetmek gerekmez; güncel dosyanın okunmasını takip edin.
-3. **URL Denetimi** bölümünde önce `https://englishmeter.net/levels/a1`, ardından
+3. **URL Denetimi** bölümünde önce `https://www.englishmeter.net/levels/a1`, ardından
    A2, B1, B2 ve C1 seviye adreslerini kontrol edin. **Canlı URL'yi test et**
    sonucunda dizine eklemeye uygun görünüyorlarsa **Dizine eklenmesini iste** seçeneğini
    kullanın. Birkaç yeni konu adresini de kontrol edin; örneğin
-   `https://englishmeter.net/levels/b2/causatives` ve
-   `https://englishmeter.net/levels/c1/subjunctive`.
+   `https://www.englishmeter.net/levels/b2/causatives` ve
+   `https://www.englishmeter.net/levels/c1/subjunctive`.
 4. **Dizine ekleme → Sayfalar** raporunda Google'ın seçtiği canonical adresi ve
    hariç bırakma nedenlerini izleyin. **Performans → Arama sonuçları** raporunda
    `/levels/` sayfa filtresiyle gösterim ve tıklamaları takip edin.

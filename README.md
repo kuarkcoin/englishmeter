@@ -93,7 +93,7 @@ bindings and Vercel environment variables are separate settings.
 See [the level-test catalogue](docs/level-tests.md) for the A1–C1 topic coverage
 and [the SEO guide](docs/seo.md#yeni-seviye-testlerini-googlea-bildirme) for Production
 deployment and Google Search Console steps. Publish a fresh Production build,
-then submit or monitor `https://englishmeter.net/sitemap.xml` in the verified
+then submit or monitor `https://www.englishmeter.net/sitemap.xml` in the verified
 Search Console property. Indexing and search placement are decided by Google.
 
 The [Reading, vocabulary and Kids English guide](docs/practice-tests.md) describes
@@ -104,6 +104,13 @@ the 20 additional tests, their content structure and assessment without an AI se
 `/ielts-grammar-tests` offers ten 15-question tests with English explanations,
 topic guides and individual SEO pages. See the [IELTS grammar guide](docs/ielts-grammar-tests.md)
 for content, quiz integration, validation and Search Console follow-up.
+
+## Business English, TOEIC and Cambridge practice
+
+The `/english-tests` directory links to all practice categories.
+Ten additional workplace and exam preparation tests contain 184 original questions,
+with English explanations and public study guides. See [the search visibility guide](docs/search-visibility.md)
+for coverage, canonical-host alignment, validation and publication checks.
 
 ## Global English Challenge
 

@@ -52,7 +52,7 @@ Changes to the shared quiz UI are conditional on the new IELTS selector.
 
 Publish a fresh **Production** build so the pages use production crawl settings.
 After deployment, check the hub and a test URL in Google Search Console. If
-`https://englishmeter.net/sitemap.xml` is already submitted, monitor its updated
+`https://www.englishmeter.net/sitemap.xml` is already submitted, monitor its updated
 processing; a separate sitemap is unnecessary. Use a page filter containing
 `/ielts-grammar-tests` to track indexing, queries, impressions and clicks.
 Repository checks do not establish Google indexing or traffic growth.

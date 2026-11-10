@@ -31,6 +31,9 @@ export default function Footer() {
             <Link href="/" className="hover:text-slate-900 transition-colors">
               Home
             </Link>
+            <Link href="/english-tests" className="hover:text-slate-900 transition-colors">All English Tests</Link>
+            <Link href="/english-level-test" className="hover:text-slate-900 transition-colors">English Level Test</Link>
+            <Link href="/ielts-grammar-tests" className="hover:text-slate-900 transition-colors">IELTS Grammar</Link>
             
             {/* EKLENDİ: About Sayfası */}
             <Link href="/about" className="hover:text-slate-900 transition-colors">

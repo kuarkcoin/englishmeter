@@ -6,10 +6,28 @@ import { HOME_FAQ } from '../lib/home-faq';
 const { default: nextConfig } = await import(new URL('../next.config.mjs', import.meta.url).href);
 
 test('canonical origin excludes paths, query strings, credentials and malformed configuration', () => {
-  assert.equal(canonicalOrigin(' https://englishmeter.net/path?lang=de '), 'https://englishmeter.net');
-  for (const invalid of ['', 'not-a-url', 'javascript:alert(1)', 'https://user:secret@example.com']) {
-    assert.equal(canonicalOrigin(invalid), 'https://englishmeter.net');
+  assert.equal(canonicalOrigin(undefined), 'https://www.englishmeter.net');
+  for (const invalid of ['', 'not-a-url', 'javascript:alert(1)', 'ftp://example.com', 'https://user:secret@example.com', 'https://user:secret@englishmeter.net']) {
+    assert.equal(canonicalOrigin(invalid), 'https://www.englishmeter.net');
   }
+});
+
+test('both EnglishMeter host spellings resolve to the HTTPS host that serves production', () => {
+  for (const origin of [
+    ' https://englishmeter.net/path?lang=de#question ',
+    'http://englishmeter.net',
+    'https://www.englishmeter.net',
+    'http://www.englishmeter.net/tests',
+    'https://ENGLISHMETER.NET:8443/grammar',
+  ]) assert.equal(canonicalOrigin(origin), 'https://www.englishmeter.net', origin);
+});
+
+test('valid custom origins retain their scheme and port without URL paths or query strings', () => {
+  for (const [configured, expected] of [
+    ['https://example.org:8443/path?lang=en#test', 'https://example.org:8443'],
+    ['http://localhost:3000/grammar', 'http://localhost:3000'],
+    ['https://preview.englishmeter.net/grammar', 'https://preview.englishmeter.net'],
+  ]) assert.equal(canonicalOrigin(configured), expected);
 });
 
 test('page metadata uses its own canonical and matching social preview instead of the homepage', () => {

@@ -1,11 +1,14 @@
 import type { Metadata } from 'next';
 
-const DEFAULT_SITE_URL = 'https://englishmeter.net';
+const DEFAULT_SITE_URL = 'https://www.englishmeter.net';
 
 export function canonicalOrigin(value?: string): string {
   try {
     const url = new URL(value?.trim() || DEFAULT_SITE_URL);
     if (!['https:', 'http:'].includes(url.protocol) || url.username || url.password) return DEFAULT_SITE_URL;
+    // Production redirects the apex host to www. Keep canonical, sitemap and
+    // social URLs on that final host even when an older environment uses apex.
+    if (url.hostname === 'englishmeter.net' || url.hostname === 'www.englishmeter.net') return DEFAULT_SITE_URL;
     return url.origin;
   } catch {
     return DEFAULT_SITE_URL;

@@ -3,8 +3,8 @@ import { buildSeoMetadata, serializeJsonLd, SITE_URL } from '@/lib/seo';
 import { HOME_FAQ } from '@/lib/home-faq';
 
 export const metadata = buildSeoMetadata({
-  title: 'Free English Level Test & YDS Vocabulary Practice',
-  description: 'Estimate your English level from A1 to C2. Practice grammar, YDS vocabulary, daily English tests and flashcards with instant results and answer review.',
+  title: 'Free English Tests – Level, Grammar & Exam Practice',
+  description: 'Check your English level and practise grammar, vocabulary, reading, IELTS, TOEIC and Business English. Free online tests with answers and explanations.',
   path: '/',
 });
 

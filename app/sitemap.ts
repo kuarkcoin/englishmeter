@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // pages, query-string filters and alternate URLs for the same test are omitted.
   const staticPaths = [
     '/', '/about', '/blog', '/contact', '/privacy', '/terms', '/cookie', '/challenge',
+    '/english-tests', '/english-level-test',
     '/flashcards', '/race', '/speedrun', '/speaking', '/matching', '/verbsense',
     '/advanced-tests', '/phrasal-puzzle', '/vocabulary', '/vocabulary-tests',
     '/grammar', '/test-conditionals', '/test-perfect-tenses', '/test-relatives',
@@ -41,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const testSlugs = [
     'yds-grammar', 'yds-reading', 'yds-synonyms', 'yds-phrasal-verbs',
     'yds-conjunctions', 'ielts-grammar', 'grammar-mega-test-100',
-    'vocab-b1-c1-50', 'quick-placement',
+    'vocab-b1-c1-50',
     'test-perfect-past', 'test-conditionals', 'test-relatives', 'test-articles',
     'test-tenses-mixed', 'test-passive-voice', 'test-reported-speech',
     'test-gerunds-infinitives', 'test-clauses-advanced', 'test-modals-advanced',

@@ -4,6 +4,9 @@ import { thematicVocabularyTests } from '@/data/practice/thematic-vocabulary';
 import { wordFormationTests } from '@/data/practice/word-formation';
 import { kidsTests } from '@/data/practice/kids';
 import { IELTS_GRAMMAR_TESTS } from '@/data/ielts';
+import { businessEnglishTests } from '@/data/practice/business-english';
+import { toeicReadingTests } from '@/data/practice/toeic-reading';
+import { cambridgeUseOfEnglishTests } from '@/data/practice/cambridge-use-of-english';
 import type { PracticeTest } from '@/data/practice/types';
 import { getPracticeCategory, type PracticeCategoryDefinition } from '@/lib/practice-categories';
 import { buildSeoMetadata, SITE_URL } from '@/lib/seo';
@@ -11,6 +14,7 @@ import { buildSeoMetadata, SITE_URL } from '@/lib/seo';
 export const PRACTICE_TESTS: readonly PracticeTest[] = [
   ...readingBeginnerTests, ...readingAdvancedTests, ...thematicVocabularyTests,
   ...wordFormationTests, ...kidsTests, ...IELTS_GRAMMAR_TESTS,
+  ...businessEnglishTests, ...toeicReadingTests, ...cambridgeUseOfEnglishTests,
 ];
 
 export function getPracticeTests(category: string): readonly PracticeTest[] {
@@ -26,8 +30,7 @@ export function getPracticeTestSlug(test: PracticeTest): string {
 }
 
 export function getPracticeTestPath(test: PracticeTest): string {
-  if (test.category === 'ielts-grammar') return `/ielts-grammar-tests/${test.slug}`;
-  return test.category === 'kids' ? `/kids/${test.slug}` : `/practice/${test.category}/${test.slug}`;
+  return `${getPracticeCategory(test.category)!.path}/${test.slug}`;
 }
 
 export type PracticeBreadcrumb = { name: string; path: string };
@@ -62,7 +65,7 @@ export function getPracticeTestMetadata(test: PracticeTest) {
   return buildSeoMetadata({
     title: test.category === 'kids'
       ? `${test.title} – Kids English Quiz`
-      : test.category === 'ielts-grammar'
+      : ['ielts-grammar', 'business-english', 'toeic-reading', 'cambridge-use-of-english'].includes(test.category)
         ? test.title
         : `${test.title} – ${test.questions.length} Questions`,
     description: test.description,

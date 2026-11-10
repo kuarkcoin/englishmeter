@@ -11,6 +11,7 @@ import DiamondCard from '@/components/DiamondCard';
 import LevelNavigation from '@/components/LevelNavigation';
 import PracticeNavigation from '@/components/PracticeNavigation';
 import IeltsGrammarNavigation from '@/components/IeltsGrammarNavigation';
+import ExamPracticeNavigation from '@/components/ExamPracticeNavigation';
 import ChallengeNavigation from '@/components/ChallengeNavigation';
  
 // --- DATA IMPORTS ---
@@ -1084,19 +1085,19 @@ function HomeContent() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">
-              <button
-                onClick={() => startTest(quickTest.slug)}
+              <Link
+                href="/english-level-test"
                 className="diamond-btn px-6 py-3 text-sm sm:text-base"
               >
-                Start placement test
-              </button>
+                Check your English level
+              </Link>
 
-              <a
-                href="#all-tests"
+              <Link
+                href="/english-tests"
                 className="diamond-card inline-flex items-center justify-center px-6 py-3 font-semibold text-sm sm:text-base hover:bg-white/70 dark:hover:bg-slate-900/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--ring))] focus-visible:ring-offset-2"
               >
                 Browse all tests
-              </a>
+              </Link>
             </div>
 
             {/* Continue last */}
@@ -1166,6 +1167,7 @@ function HomeContent() {
       <ChallengeNavigation />
       <LevelNavigation />
       <IeltsGrammarNavigation />
+      <ExamPracticeNavigation />
       <PracticeNavigation />
 
       {/* MAIN */}
