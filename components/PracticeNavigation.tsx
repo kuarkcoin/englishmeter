@@ -14,7 +14,7 @@ export default function PracticeNavigation() {
       <h2 id="skill-tests-heading" className="text-2xl font-black sm:text-3xl">Explore more English practice</h2>
       <p className="mt-2 text-sm text-[rgb(var(--muted))]">Read, build vocabulary and learn new word forms. Young learners have their own short quizzes.</p>
       <nav aria-label="English practice categories" className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {PRACTICE_CATEGORIES.map((category) => {
+        {PRACTICE_CATEGORIES.filter((category) => category.id !== 'ielts-grammar').map((category) => {
           const style = cardStyles[category.id];
           return (
             <Link key={category.id} href={category.path} className={`flex flex-col rounded-2xl bg-gradient-to-br ${style.colour} p-5 text-white shadow-md transition hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-300`}>

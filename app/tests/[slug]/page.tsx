@@ -1,5 +1,6 @@
 // app/tests/[slug]/page.tsx
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound, permanentRedirect } from 'next/navigation';
 import { buildSeoMetadata } from '@/lib/seo';
 import { getCanonicalTestSlug } from '../catalog';
@@ -48,6 +49,14 @@ export default function TestPage(props: PageProps) {
           Practise with {testData.questions.length} questions. You have {testData.duration} minutes
           to complete this test and check your answers.
         </p>
+
+        {params.slug === 'ielts-grammar' && (
+          <p className="mb-6 rounded-xl border border-sky-200 bg-sky-50 p-4 text-slate-800 dark:border-sky-800 dark:bg-sky-950 dark:text-slate-100">
+            Prefer shorter topic practice? Explore{' '}
+            <Link href="/ielts-grammar-tests" className="font-bold text-blue-700 underline underline-offset-4 dark:text-blue-300">10 IELTS grammar tests with answers</Link>,
+            each with 15 questions and clear explanations.
+          </p>
+        )}
 
         <RaceQuiz
           key={`${params.slug}:${props.searchParams?.lang ?? 'tr'}`}

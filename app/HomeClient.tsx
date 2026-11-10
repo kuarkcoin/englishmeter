@@ -10,6 +10,7 @@ import DarkToggle from '@/components/DarkToggle';
 import DiamondCard from '@/components/DiamondCard';
 import LevelNavigation from '@/components/LevelNavigation';
 import PracticeNavigation from '@/components/PracticeNavigation';
+import IeltsGrammarNavigation from '@/components/IeltsGrammarNavigation';
 import ChallengeNavigation from '@/components/ChallengeNavigation';
  
 // --- DATA IMPORTS ---
@@ -1164,6 +1165,7 @@ function HomeContent() {
 
       <ChallengeNavigation />
       <LevelNavigation />
+      <IeltsGrammarNavigation />
       <PracticeNavigation />
 
       {/* MAIN */}

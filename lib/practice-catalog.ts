@@ -3,13 +3,14 @@ import { readingAdvancedTests } from '@/data/practice/reading-advanced';
 import { thematicVocabularyTests } from '@/data/practice/thematic-vocabulary';
 import { wordFormationTests } from '@/data/practice/word-formation';
 import { kidsTests } from '@/data/practice/kids';
+import { IELTS_GRAMMAR_TESTS } from '@/data/ielts';
 import type { PracticeTest } from '@/data/practice/types';
 import { getPracticeCategory, type PracticeCategoryDefinition } from '@/lib/practice-categories';
 import { buildSeoMetadata, SITE_URL } from '@/lib/seo';
 
 export const PRACTICE_TESTS: readonly PracticeTest[] = [
   ...readingBeginnerTests, ...readingAdvancedTests, ...thematicVocabularyTests,
-  ...wordFormationTests, ...kidsTests,
+  ...wordFormationTests, ...kidsTests, ...IELTS_GRAMMAR_TESTS,
 ];
 
 export function getPracticeTests(category: string): readonly PracticeTest[] {
@@ -25,6 +26,7 @@ export function getPracticeTestSlug(test: PracticeTest): string {
 }
 
 export function getPracticeTestPath(test: PracticeTest): string {
+  if (test.category === 'ielts-grammar') return `/ielts-grammar-tests/${test.slug}`;
   return test.category === 'kids' ? `/kids/${test.slug}` : `/practice/${test.category}/${test.slug}`;
 }
 
@@ -60,7 +62,9 @@ export function getPracticeTestMetadata(test: PracticeTest) {
   return buildSeoMetadata({
     title: test.category === 'kids'
       ? `${test.title} – Kids English Quiz`
-      : `${test.title} – ${test.questions.length} Questions`,
+      : test.category === 'ielts-grammar'
+        ? test.title
+        : `${test.title} – ${test.questions.length} Questions`,
     description: test.description,
     path: getPracticeTestPath(test),
   });

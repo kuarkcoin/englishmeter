@@ -99,6 +99,12 @@ Search Console property. Indexing and search placement are decided by Google.
 The [Reading, vocabulary and Kids English guide](docs/practice-tests.md) describes
 the 20 additional tests, their content structure and assessment without an AI service.
 
+## IELTS Grammar Tests
+
+`/ielts-grammar-tests` offers ten 15-question tests with English explanations,
+topic guides and individual SEO pages. See the [IELTS grammar guide](docs/ielts-grammar-tests.md)
+for content, quiz integration, validation and Search Console follow-up.
+
 ## Global English Challenge
 
 The daily 50-question challenge at `/challenge` uses a shared PostgreSQL leaderboard,

@@ -479,7 +479,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
     if (mode === 'exam' && !timedOut && !deadlinePassed()) {
       const unanswered = data.questions.filter((q) => !answersRef.current[q.id]).length;
       if (unanswered > 0) {
-        const ok = window.confirm(`${unanswered} unanswered question(s) var.\n\nYine de bitireyim mi? (Finish anyway)`);
+        const message = data.testSlug?.startsWith('practice-ielts-grammar-')
+          ? `You have ${unanswered} unanswered question(s).\n\nFinish anyway?`
+          : `${unanswered} unanswered question(s) var.\n\nYine de bitireyim mi? (Finish anyway)`;
+        const ok = window.confirm(message);
         if (!ok && !deadlinePassed()) return;
       }
     }
@@ -719,6 +722,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
   const questions = questionsWithShuffledChoices;
   const { test } = data;
   const isPlacement = data.testSlug === 'quick-placement';
+  const isIeltsGrammar = data.testSlug?.startsWith('practice-ielts-grammar-') === true;
 
   // ✅ Progress metrics
   const totalQ = questions.length || 1;
@@ -760,10 +764,19 @@ export default function Quiz({ params }: { params: { id: string } }) {
             </div>
           </div>
 
+          {isIeltsGrammar && (
+            <div className="mb-6 space-y-2 text-sm text-slate-600 dark:text-slate-300">
+              <p><strong>Incorrect:</strong> {answeredCount - score} · <strong>Unanswered:</strong> {questions.length - answeredCount}</p>
+              <p>This is a grammar practice score, not an IELTS band score. Review the explanations below to plan your next practice.</p>
+            </div>
+          )}
+
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             {data.testSlug && (
               <button
-                onClick={() => (window.location.href = `/?restart=${data.testSlug}`)}
+                onClick={() => (window.location.href = isIeltsGrammar
+                  ? `/start?${new URLSearchParams({ testSlug: data.testSlug! })}`
+                  : `/?restart=${data.testSlug}`)}
                 className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center gap-2"
                 type="button"
               >
@@ -772,10 +785,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
             )}
 
             <a
-              href="/"
+              href={isIeltsGrammar ? '/ielts-grammar-tests' : '/'}
               className="px-6 py-3 bg-slate-100 text-slate-700 font-bold rounded-xl hover:bg-slate-200 transition-colors"
             >
-              Back to Home
+              {isIeltsGrammar ? 'More IELTS Grammar Tests' : 'Back to Home'}
             </a>
 
             <Link
@@ -936,8 +949,8 @@ export default function Quiz({ params }: { params: { id: string } }) {
       <MiniConfetti burst={burst} />
 
       {/* Top Bar */}
-      <div className="em-card flex items-center justify-between p-4 rounded-xl sticky top-4 z-20 backdrop-blur-sm bg-white/90 dark:bg-slate-900/90">
-        <div className="text-sm font-semibold text-slate-700 truncate max-w-[200px]">{test?.title || 'Test'}</div>
+      <div className={`em-card flex items-center justify-between p-4 rounded-xl sticky top-4 z-20 backdrop-blur-sm bg-white/90 dark:bg-slate-900/90 ${isIeltsGrammar ? 'flex-wrap gap-3' : ''}`}>
+        <div className={`text-sm font-semibold text-slate-700 ${isIeltsGrammar ? 'w-full break-words dark:text-slate-200' : 'truncate max-w-[200px]'}`}>{test?.title || 'Test'}</div>
 
         <div className="flex items-center gap-3">
           {/* Mode toggle */}

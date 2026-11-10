@@ -14,14 +14,14 @@ function resolveTest(params: PageProps['params']) {
   const category = getPracticeCategory(params.category);
   const test = category && getPracticeTest(category.id, params.slug.toLowerCase());
   if (!category || !test) notFound();
-  if (category.id === 'kids' || params.category !== category.id || params.slug !== test.slug) {
+  if (getPracticeTestPath(test) !== `/practice/${params.category}/${params.slug}`) {
     permanentRedirect(getPracticeTestPath(test));
   }
   return { category, test };
 }
 
 export function generateStaticParams() {
-  return PRACTICE_TESTS.filter((test) => test.category !== 'kids')
+  return PRACTICE_TESTS.filter((test) => getPracticeTestPath(test) === `/practice/${test.category}/${test.slug}`)
     .map((test) => ({ category: test.category, slug: test.slug }));
 }
 

@@ -23,6 +23,9 @@ import {
 import {
   generateMetadata as kidsMetadata, generateStaticParams as kidsParams,
 } from '../app/kids/[slug]/page';
+import {
+  generateMetadata as ieltsMetadata, generateStaticParams as ieltsParams,
+} from '../app/ielts-grammar-tests/[slug]/page';
 
 const isNotFound = (error: unknown) => error instanceof Error && 'digest' in error && error.digest === 'NEXT_NOT_FOUND';
 const redirectsTo = (path: string) => (error: unknown) => error instanceof Error && 'digest' in error && String(error.digest).includes(`;${path};308;`);
@@ -33,19 +36,22 @@ const findNode = (graph: { '@graph': SchemaNode[] }, type: string) => {
   return nodes[0];
 };
 
-test('the new catalogue contains twenty complete tests and 340 distinct questions', () => {
+test('the practice catalogue contains thirty complete tests and 490 distinct questions', () => {
   assert.deepEqual(Object.fromEntries(PRACTICE_CATEGORIES.map((category) => [category.id, getPracticeTests(category.id).length])), {
-    reading: 5, vocabulary: 6, 'word-formation': 3, kids: 6,
+    reading: 5, vocabulary: 6, 'word-formation': 3, kids: 6, 'ielts-grammar': 10,
   });
   assert.deepEqual(getPracticeTests('reading').map((item) => item.level), ['A1', 'A2', 'B1', 'B2', 'C1']);
   assert.deepEqual(getPracticeTests('word-formation').map((item) => item.level), ['B1', 'B2', 'C1']);
-  assert.equal(PRACTICE_TESTS.length, 20);
-  assert.equal(new Set(PRACTICE_TESTS.map(getPracticeTestSlug)).size, 20);
+  assert.equal(PRACTICE_TESTS.length, 30);
+  const originalTests = PRACTICE_TESTS.filter((item) => item.category !== 'ielts-grammar');
+  assert.equal(originalTests.length, 20);
+  assert.equal(originalTests.reduce((total, item) => total + item.questions.length, 0), 340);
+  assert.equal(new Set(PRACTICE_TESTS.map(getPracticeTestSlug)).size, 30);
   const ids = new Set<string>();
   let total = 0;
   for (const item of PRACTICE_TESTS) {
     assert.ok(validatePracticeTest(item), item.slug);
-    assert.equal(item.questions.length, item.category === 'kids' ? 10 : 20, item.slug);
+    assert.equal(item.questions.length, item.category === 'kids' ? 10 : item.category === 'ielts-grammar' ? 15 : 20, item.slug);
     const prompts = new Set<string>();
     for (const question of item.questions) {
       assert.equal(ids.has(question.id), false, `${item.slug}: global duplicate ID ${question.id}`);
@@ -58,7 +64,7 @@ test('the new catalogue contains twenty complete tests and 340 distinct question
       total++;
     }
   }
-  assert.equal(total, 340);
+  assert.equal(total, 490);
   assert.equal(ids.size, total);
 });
 
@@ -135,16 +141,17 @@ test('incomplete or malformed reading data cannot start a quiz', () => {
   assert.equal(getPracticeQuestionPrompt(source, { ...source.questions[0], passageId: 'missing-passage' }), '');
 });
 
-test('all 24 canonical practice URLs have unique metadata, generated routes and sitemap entries', () => {
+test('all 35 canonical practice URLs have unique metadata, generated routes and sitemap entries', () => {
   const entries = sitemap();
   const titles = new Set<string>();
   const descriptions = new Set<string>();
   const expected = new Set([...PRACTICE_CATEGORIES.map((category) => category.path), ...PRACTICE_TESTS.map(getPracticeTestPath)]);
-  assert.equal(expected.size, 24);
+  assert.equal(expected.size, 35);
   const generated = new Set([
     ...categoryParams().map(({ category }) => `/practice/${category}`), '/kids',
     ...practiceParams().map(({ category, slug }) => `/practice/${category}/${slug}`),
     ...kidsParams().map(({ slug }) => `/kids/${slug}`),
+    '/ielts-grammar-tests', ...ieltsParams().map(({ slug }) => `/ielts-grammar-tests/${slug}`),
   ]);
   assert.deepEqual(generated, expected);
   const pages = [
@@ -153,7 +160,9 @@ test('all 24 canonical practice URLs have unique metadata, generated routes and 
       path: getPracticeTestPath(item),
       metadata: item.category === 'kids'
         ? kidsMetadata({ params: { slug: item.slug } })
-        : practiceMetadata({ params: { category: item.category, slug: item.slug } }),
+        : item.category === 'ielts-grammar'
+          ? ieltsMetadata({ params: { slug: item.slug } })
+          : practiceMetadata({ params: { category: item.category, slug: item.slug } }),
     })),
   ];
   for (const { path, metadata } of pages) {

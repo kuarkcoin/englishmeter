@@ -11,6 +11,11 @@ export type PracticeCategoryDefinition = {
 // Homepage navigation can use this module without importing any question banks.
 export const PRACTICE_CATEGORIES: readonly PracticeCategoryDefinition[] = [
   {
+    id: 'ielts-grammar', category: 'ielts-grammar', name: 'IELTS Grammar',
+    description: 'Practise IELTS grammar with 10 free tests of 15 questions. Review tenses, articles, complex sentences and more with answers and clear explanations.',
+    path: '/ielts-grammar-tests',
+  },
+  {
     id: 'reading', category: 'reading', name: 'Reading Comprehension',
     description: 'Read original English texts from A1 to C1 and practise understanding details, main ideas and meaning in context.',
     path: '/practice/reading',

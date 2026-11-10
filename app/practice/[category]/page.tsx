@@ -13,12 +13,12 @@ type PageProps = { params: { category: string } };
 function resolveCategory(value: string) {
   const category = getPracticeCategory(value);
   if (!category) notFound();
-  if (category.id === 'kids' || value !== category.id) permanentRedirect(category.path);
+  if (category.path !== `/practice/${value}`) permanentRedirect(category.path);
   return category;
 }
 
 export function generateStaticParams() {
-  return PRACTICE_CATEGORIES.filter((category) => category.id !== 'kids')
+  return PRACTICE_CATEGORIES.filter((category) => category.path === `/practice/${category.id}`)
     .map((category) => ({ category: category.id }));
 }
 

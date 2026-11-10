@@ -10,7 +10,7 @@ export function getPracticeQuestionPrompt(test: PracticeTest, question: Practice
 }
 
 export function validatePracticeTest(test: PracticeTest): boolean {
-  const expected = test.category === 'kids' ? 10 : 20;
+  const expected = test.category === 'kids' ? 10 : test.category === 'ielts-grammar' ? 15 : 20;
   if (
     test.questions.length !== expected ||
     new Set(test.questions.map((question) => question.id)).size !== expected ||

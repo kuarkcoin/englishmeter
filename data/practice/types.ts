@@ -1,4 +1,4 @@
-export type PracticeCategory = 'reading' | 'vocabulary' | 'word-formation' | 'kids';
+export type PracticeCategory = 'reading' | 'vocabulary' | 'word-formation' | 'kids' | 'ielts-grammar';
 export type PracticeLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'Starter';
 
 export type PracticeQuestion = {
