@@ -29,7 +29,7 @@ export default function PrivacyPage() {
             We use third-party services such as <strong>Google Analytics</strong> and <strong>Google AdSense</strong>.
           </p>
           <p>
-            Google Analytics loads only after you allow usage analytics. You can decline or change this choice using “Analytics preferences” in the footer. Our test events contain the test category, question count, aggregate result and time used; they do not contain your answers, question text, nickname or email address. Page measurements omit query strings and unique quiz attempt IDs. Local test progress and the daily challenge work independently of this optional analytics choice. Advertising preferences are separate; the analytics control does not manage AdSense settings.
+            Google Analytics measures visits by default. You can turn it off or on using “Analytics preferences” in the footer; an explicit choice is saved in this browser. A saved “No thanks” choice is respected. If no choice is saved, your browser’s Do Not Track or Global Privacy Control signal keeps analytics off. Our test events contain the test category, question count, aggregate result and time used; they do not contain your answers, question text, nickname or email address. Page measurements omit query strings and unique quiz attempt IDs. Local test progress and the daily challenge work independently of analytics. Advertising preferences are separate; the analytics control does not manage AdSense settings.
           </p>
           <ul className="list-disc pl-5 space-y-2">
             <li>Google AdSense uses cookies to serve ads based on a user&apos;s prior visits to this website or other websites.</li>

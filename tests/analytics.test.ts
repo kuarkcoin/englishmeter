@@ -2,11 +2,40 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import {
   analyticsPath, analyticsReferrer, buildCompletionParameters, buildTestEventParameters, categoryForAnalyticsPath,
-  configureAnalytics, getAnalyticsCategory, initializeAnalytics, setAnalyticsConsent, isAnalyticsHost,
+  configureAnalytics, effectiveAnalyticsConsent, getAnalyticsCategory, initializeAnalytics, setAnalyticsConsent, isAnalyticsHost,
   trackCategoryClick, trackPageView, trackTestComplete, trackTestStart,
 } from '../lib/analytics';
 
 const attempt = { testId: 'practice-ielts-grammar-test-1', category: 'ielts-grammar', questionCount: 15, mode: 'exam' as const, attemptId: 'local-attempt-never-sent' };
+
+test('first visits count by default without fabricating a saved choice, while explicit and browser opt-outs remain effective', () => {
+  const values = new Map<string, string>();
+  const oldWindow = Object.getOwnPropertyDescriptor(globalThis, 'window');
+  const oldNavigator = Object.getOwnPropertyDescriptor(globalThis, 'navigator');
+  const privacy = { doNotTrack: '0', globalPrivacyControl: false };
+  Object.defineProperty(globalThis, 'window', { configurable: true, value: { localStorage: { getItem: (key: string) => values.get(key) ?? null } } });
+  Object.defineProperty(globalThis, 'navigator', { configurable: true, value: privacy });
+  try {
+    assert.equal(effectiveAnalyticsConsent(), 'granted');
+    assert.equal(values.size, 0, 'automatic counting is not a stored consent choice');
+    privacy.doNotTrack = '1';
+    assert.equal(effectiveAnalyticsConsent(), 'denied');
+    assert.equal(values.size, 0, 'browser signals must not create a permanent opt-out');
+    privacy.doNotTrack = '0';
+    privacy.globalPrivacyControl = true;
+    assert.equal(effectiveAnalyticsConsent(), 'denied');
+    privacy.globalPrivacyControl = false;
+    assert.equal(effectiveAnalyticsConsent(), 'granted');
+    values.set('em_analytics_consent_v1', 'denied');
+    assert.equal(effectiveAnalyticsConsent(), 'denied', 'existing opt-outs are never overwritten');
+    values.set('em_analytics_consent_v1', 'granted');
+    privacy.doNotTrack = '1';
+    assert.equal(effectiveAnalyticsConsent(), 'granted', 'an explicit visitor choice takes precedence');
+  } finally {
+    if (oldWindow) Object.defineProperty(globalThis, 'window', oldWindow); else Reflect.deleteProperty(globalThis, 'window');
+    if (oldNavigator) Object.defineProperty(globalThis, 'navigator', oldNavigator); else Reflect.deleteProperty(globalThis, 'navigator');
+  }
+});
 
 test('test event parameters are a small explicit allowlist and contain no identity or answer data', () => {
   const input = { ...attempt, nickname: 'private-name', email: 'private@example.org', answers: ['A'], question: 'private prompt' };
@@ -55,7 +84,7 @@ test('analytics respects deployment and consent gates, deduplicates attempts and
   try {
     configureAnalytics(false);
     setAnalyticsConsent('granted');
-    assert.equal(trackTestStart(attempt), false, 'local and Preview builds never send usage events');
+    assert.equal(trackTestStart(attempt), false, 'disabled development builds never send usage events');
     configureAnalytics(true);
     setAnalyticsConsent('denied');
     assert.equal(trackTestStart(attempt), false, 'denied analytics never sends usage events');

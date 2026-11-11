@@ -107,7 +107,8 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-50">
         
-        <Analytics enabled={process.env.VERCEL_ENV === 'production'} />
+        {/* Preview artifacts can be promoted; the client also checks the actual hostname. */}
+        <Analytics enabled={process.env.NODE_ENV === 'production'} />
 
         {/* --- GOOGLE ADSENSE --- */}
         {/* AdSense Next.js'de en iyi 'afterInteractive' stratejisiyle çalışır */}

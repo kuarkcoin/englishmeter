@@ -32,11 +32,11 @@ export default function CookiePolicyPage() {
           </p>
           <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-2">How can I control cookies?</h3>
           <p>
-            Google Analytics is optional. Choose “Allow analytics” or “No thanks” in the usage analytics panel. You can change this choice using “Analytics preferences” in the footer. Declining analytics does not prevent you from taking tests. Your choice is saved in this browser.
+            Google Analytics measures visits by default. You can turn it off or on using “Analytics preferences” in the footer. Choosing “No thanks” stops analytics and does not prevent you from taking tests. Explicit choices are saved in this browser. If you have not saved a choice, a Do Not Track or Global Privacy Control signal from your browser keeps analytics off.
           </p>
           <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-2">What is measured?</h3>
           <p>
-            If you allow analytics, we measure page visits, category clicks, test starts, resumed tests and completions, including aggregate scores and time used. We do not send your answers, question text, nickname or email address in these test events. Page measurements exclude URL query strings and random quiz attempt IDs.
+            When analytics is enabled, we measure page visits, category clicks, test starts, resumed tests and completions, including aggregate scores and time used. We do not send your answers, question text, nickname or email address in these test events. Page measurements exclude URL query strings and random quiz attempt IDs.
           </p>
           <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-2">Test progress and advertising</h3>
           <p>

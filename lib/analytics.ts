@@ -102,6 +102,17 @@ export function readAnalyticsConsent(): AnalyticsConsent | null {
   } catch { return inMemoryConsent; }
 }
 
+/** An automatic default is not an explicit saved choice. Keep opt-outs intact. */
+export function effectiveAnalyticsConsent(): AnalyticsConsent {
+  const saved = readAnalyticsConsent();
+  if (saved) return saved;
+  if (typeof navigator !== 'undefined' && (
+    (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl ||
+    navigator.doNotTrack === '1'
+  )) return 'denied';
+  return 'granted';
+}
+
 export function configureAnalytics(active: boolean) {
   enabled = active && typeof window !== 'undefined' && isAnalyticsHost(window.location.hostname);
   if (!enabled || typeof window === 'undefined') {
@@ -133,7 +144,7 @@ export function setAnalyticsConsent(consent: AnalyticsConsent) {
 }
 
 export function initializeAnalytics(): void {
-  if (!enabled || typeof window === 'undefined') return;
+  if (!enabled || typeof window === 'undefined' || effectiveAnalyticsConsent() !== 'granted') return;
   const target = window as AnalyticsWindow;
   Reflect.set(target, `ga-disable-${GA_MEASUREMENT_ID}`, false);
   target.dataLayer = target.dataLayer || [];
@@ -153,7 +164,7 @@ export function initializeAnalytics(): void {
 }
 
 function send(name: string, parameters: EventParameters, dedupKey?: string): boolean {
-  if (!enabled || typeof window === 'undefined' || readAnalyticsConsent() !== 'granted') return false;
+  if (!enabled || typeof window === 'undefined' || effectiveAnalyticsConsent() !== 'granted') return false;
   const target = window as AnalyticsWindow;
   if (!target.gtag || Reflect.get(target, `ga-disable-${GA_MEASUREMENT_ID}`)) return false;
   if (dedupKey && emitted.has(dedupKey)) return false;
@@ -188,7 +199,7 @@ export function trackPageView(path: string) {
   const pathname = analyticsPath(path);
   const location = `${window.location.origin}${pathname}`;
   const referrer = previousPageLocation ?? analyticsReferrer(document.referrer);
-  if (enabled && readAnalyticsConsent() === 'granted') (window as AnalyticsWindow).gtag?.('set', { page_location: location, page_referrer: referrer });
+  if (enabled && effectiveAnalyticsConsent() === 'granted') (window as AnalyticsWindow).gtag?.('set', { page_location: location, page_referrer: referrer });
   const sent = send('page_view', { page_location: location, page_path: pathname, page_title: document.title, page_referrer: referrer });
   if (sent) previousPageLocation = location;
   return sent;

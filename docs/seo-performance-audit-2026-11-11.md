@@ -2,6 +2,8 @@
 
 Scope: improve the existing platform without changing question banks, answer keys or public URL structures. No Production deployment is part of this work. The owner's approximately 5,000 monthly visits is an estimate, not a verified Analytics measurement. Search Console and GA account reports were unavailable; no rankings, search volumes or traffic gains are asserted.
 
+> Analytics follow-up: this document records the original `83e1c64` audit. After the owner reported missing visits, live HTML inspection confirmed that Analytics was enabled but the newly introduced mandatory opt-in excluded visits without a saved grant. A subsequent correction restores automatic visit counting while respecting explicit opt-outs and browser privacy signals, avoids persisting an automatic grant, and uses the actual hostname rather than the Vercel build label. The original opt-in descriptions and measurements below are historical. See [analytics-measurement.md](analytics-measurement.md) for current behaviour, verification steps and comparison limits; Google account-side receipt has not been verified.
+
 ## 1. Technical SEO and indexing
 
 The live homepage, robots file, sitemap and sampled category pages returned HTTP 200. The apex redirects to `www`, matching the existing canonical configuration. The live sitemap contained 9,270 unique URLs. Existing Preview and private-session noindex protections were retained.
