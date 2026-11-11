@@ -114,7 +114,7 @@ useEffect(() => {
   }, 60); // 🔑 kritik gecikme
 
   return () => clearTimeout(t);
-}, [index, accent]);
+}, [index, accent, card?.word]);
   const next = useCallback(() => {
     if (!total || lock.current) return;
     lock.current = true;

@@ -2,6 +2,7 @@
 'use client';
 
 import Link from 'next/link';
+import { ANALYTICS_PREFERENCES_EVENT } from '@/lib/analytics';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -27,7 +28,7 @@ export default function Footer() {
           </div>
 
           {/* Orta Kısım: Linkler (DÜZELTİLDİ) */}
-          <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-600">
+          <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-600 [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center">
             <Link href="/" className="hover:text-slate-900 transition-colors">
               Home
             </Link>
@@ -40,8 +41,8 @@ export default function Footer() {
               About Us
             </Link>
 
-            <Link href="/race" className="hover:text-slate-900 transition-colors">
-              Global Race
+            <Link href="/challenge" className="hover:text-slate-900 transition-colors">
+              Global English Challenge
             </Link>
             
             <Link href="/levels/a1" className="hover:text-slate-900 transition-colors">
@@ -70,52 +71,32 @@ export default function Footer() {
 
           {/* Sağ Kısım: Sosyal Medya */}
           <div className="flex flex-col items-start md:items-end gap-2">
-            <span className="text-xs font-semibold tracking-wide text-slate-400 uppercase">
-              Follow
+            <span className="text-xs font-semibold tracking-wide text-slate-600 uppercase">
+              Contact
             </span>
             <div className="flex items-center gap-3">
-              <a
-                href="https://x.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="X (Twitter)"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 text-slate-500 hover:border-slate-400 hover:text-slate-900 transition-colors"
-              >
-                <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
-                  <path fill="currentColor" d="M18.9 3H21l-4.6 5.2L21.8 21h-4.7l-3.3-7.1L9.5 21H3.2l4.9-5.7L2.2 3h4.9l3 6.6L18.9 3zM8.3 5.1H6.6l9.2 13.8h1.8L8.3 5.1z" />
-                </svg>
-              </a>
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Facebook"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 text-slate-500 hover:border-slate-400 hover:text-slate-900 transition-colors"
-              >
-                <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
-                  <path fill="currentColor" d="M13 22v-8h3l.5-4H13V7.2C13 6.1 13.3 5.5 15 5.5h1.7V2.1C16.3 2 15.3 2 14.3 2 11.6 2 9.7 3.7 9.7 6.9V10H7v4h2.7v8H13z" />
-                </svg>
-              </a>
+              <Link href="/contact" className="min-h-11 inline-flex items-center text-sm underline hover:text-slate-900">Contact form</Link>
               <a
                 href="mailto:muratot79@gmail.com"
                 aria-label="Email"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 text-slate-500 hover:border-slate-400 hover:text-slate-900 transition-colors"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 text-slate-500 hover:border-slate-400 hover:text-slate-900 transition-colors"
               >
                 <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
                   <path fill="currentColor" d="M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zm0 2v.2l8 4.6 8-4.6V8l-8 4.6L4 8z" />
                 </svg>
               </a>
             </div>
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-slate-600">
               © {year} EnglishMeter. All rights reserved.
             </p>
           </div>
         </div>
 
         {/* Alt Bilgi */}
-        <div className="mt-6 border-t border-slate-100 pt-4 text-[11px] text-slate-400 text-left md:text-center">
-          This site uses cookies for basic analytics and performance. By using EnglishMeter
-          you agree to the use of cookies.
+        <div className="mt-6 border-t border-slate-100 pt-4 text-[11px] text-slate-600 text-left md:text-center">
+          Optional usage analytics helps us improve our tests.{' '}
+          <button type="button" onClick={() => window.dispatchEvent(new Event(ANALYTICS_PREFERENCES_EVENT))} className="min-h-11 px-2 underline hover:text-slate-700">Analytics preferences</button>
+          {' '}<Link href="/cookie" className="underline">Cookies and advertising details</Link>
         </div>
       </div>
     </footer>

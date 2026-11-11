@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import Script from 'next/script';
 import { Toaster } from 'sonner';
 import { SITE_URL } from '@/lib/seo';
+import Analytics from '@/components/Analytics';
 
 const siteName = 'EnglishMeter';
 const siteUrl = SITE_URL;
@@ -106,19 +107,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-50">
         
-        {/* --- GOOGLE ANALYTICS --- */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-Z4658W17W5"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-Z4658W17W5');
-          `}
-        </Script>
+        <Analytics enabled={process.env.VERCEL_ENV === 'production'} />
 
         {/* --- GOOGLE ADSENSE --- */}
         {/* AdSense Next.js'de en iyi 'afterInteractive' stratejisiyle çalışır */}
@@ -126,7 +115,7 @@ export default function RootLayout({
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1700979325865596"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
 
         <div className="flex-1">{children}</div>

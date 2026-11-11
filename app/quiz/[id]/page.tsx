@@ -7,6 +7,11 @@ import Link from 'next/link';
 import DOMPurify from 'dompurify';
 import { useRouter } from 'next/navigation';
 import { PLACEMENT_METHOD, scorePlacement } from '@/lib/placement';
+import StudyProgress from '@/components/StudyProgress';
+import StudyRecommendations from '@/components/StudyRecommendations';
+import { applyQuizSnapshotPatch, isQuizPayload, QUIZ_SESSIONS_KEY, quizDurationMs, readQuizSnapshots, snapshotRemainingMs, writeQuizSnapshot, type QuizSnapshot } from '@/lib/quiz-session';
+import { recordStudyResult } from '@/lib/study-progress';
+import { getAnalyticsCategory, trackTestComplete, trackTestResume, trackTestStart } from '@/lib/analytics';
 
 // ✅ choices shuffle (sadece görüntü sırası)
 function shuffleArray<T>(array: T[]): T[] {
@@ -275,6 +280,24 @@ export default function Quiz({ params }: { params: { id: string } }) {
   const deadlineRef = useRef<number | null>(null);
   const remainingMsRef = useRef<number | null>(null);
   const finishedRef = useRef(false);
+  const snapshotRef = useRef<QuizSnapshot | null>(null);
+  const loadedAttemptRef = useRef<string | null>(null);
+  const [restored, setRestored] = useState(false);
+  const [storageUnavailable, setStorageUnavailable] = useState(false);
+  const saveSnapshot = useCallback((patch: Partial<QuizSnapshot>) => {
+    if (!snapshotRef.current) return;
+    const next = applyQuizSnapshotPatch(snapshotRef.current, patch);
+    if (next === snapshotRef.current) return;
+    snapshotRef.current = next;
+    if (!writeQuizSnapshot(next)) {
+      const latest = readQuizSnapshots().find((s) => s.payload.attemptId === next.payload.attemptId);
+      if (latest && (latest.status === 'completed' || latest.revision >= next.revision)) {
+        window.location.reload();
+        return;
+      }
+      setStorageUnavailable(true);
+    }
+  }, []);
 
   // ✅ PRACTICE MODE STATE
   const [mode, setMode] = useState<'exam' | 'practice'>('exam');
@@ -423,47 +446,77 @@ export default function Quiz({ params }: { params: { id: string } }) {
   // 1) LOAD DATA
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    if (loadedAttemptRef.current === params.id) return;
+    loadedAttemptRef.current = params.id;
 
     try {
-      const raw = sessionStorage.getItem('em_attempt_payload');
-      if (!raw) {
+      const saved = readQuizSnapshots().find((item) => item.payload.attemptId === params.id);
+      let parsed: QuizData | undefined = saved?.payload;
+      if (!parsed) {
+        let candidate: unknown;
+        try { candidate = JSON.parse(sessionStorage.getItem('em_attempt_payload') || 'null'); } catch { candidate = null; }
+        if (isQuizPayload(candidate) && candidate.attemptId === params.id) parsed = candidate;
+      }
+      if (!parsed) {
         router.replace('/?toast=attempt-expired');
         return;
       }
-      const parsed: QuizData = JSON.parse(raw);
+      const now = Date.now();
+      const duration = quizDurationMs(parsed);
+      const snapshot: QuizSnapshot = saved ?? {
+        version: 1, revision: 0, payload: parsed, status: 'active', startedAt: now, updatedAt: now,
+        mode: 'exam', deadline: now + duration, remainingMs: duration, answers: {}, locked: {}, activeIndex: 0,
+        choiceOrder: Object.fromEntries(parsed.questions.map((q) => [q.id, shuffleArray(q.choices).map((c) => c.id)])),
+      };
+      snapshotRef.current = snapshot;
+      answersRef.current = snapshot.answers;
+      finishedRef.current = snapshot.status === 'completed';
+      remainingMsRef.current = snapshotRemainingMs(snapshot, now);
+      deadlineRef.current = snapshot.status === 'active' && snapshot.mode === 'exam' ? snapshot.deadline : null;
       setData(parsed);
-      setMode('exam');
-
-      const qCount = parsed.questions?.length || 0;
-
-      let seconds = 0;
-      if (parsed.test?.duration && Number.isFinite(parsed.test.duration) && parsed.test.duration! > 0) {
-        seconds = Math.max(1, Math.round(parsed.test.duration! * 60));
-      } else {
-        seconds = qCount > 0 ? qCount * 30 : 25 * 60;
+      setMode(snapshot.mode);
+      setAnswers(snapshot.answers);
+      setLocked(snapshot.locked);
+      setScore(snapshot.status === 'completed' ? parsed.questions.filter((q) => idsEqual(snapshot.answers[q.id], getCorrectChoiceId(q))).length : 0);
+      setShowResult(snapshot.status === 'completed');
+      setActiveIndex(snapshot.activeIndex);
+      setTimeLeft(Math.ceil(remainingMsRef.current / 1000));
+      setRestored(!!saved);
+      if (!writeQuizSnapshot(snapshot)) setStorageUnavailable(true);
+      if (snapshot.status === 'active') {
+        const event = { testId: parsed.testSlug ?? 'general', category: getAnalyticsCategory(parsed.testSlug ?? ''), questionCount: parsed.questions.length, mode: snapshot.mode, attemptId: parsed.attemptId };
+        if (saved) trackTestResume(event);
+        else trackTestStart(event);
       }
-      answersRef.current = {};
-      finishedRef.current = false;
-      remainingMsRef.current = seconds * 1000;
-      deadlineRef.current = Date.now() + remainingMsRef.current;
-      setAnswers({});
-      setScore(0);
-      setShowResult(false);
-      setActiveIndex(0);
-      setTimeLeft(seconds);
     } catch {
       router.replace('/?toast=attempt-corrupted');
     }
   }, [params.id, router]);
+
+  useEffect(() => {
+    const syncOtherTab = (event: StorageEvent) => {
+      if (event.key !== QUIZ_SESSIONS_KEY || !snapshotRef.current) return;
+      const current = snapshotRef.current;
+      const latest = readQuizSnapshots().find((s) => s.payload.attemptId === current.payload.attemptId);
+      if (latest && (latest.revision > current.revision || (latest.status === 'completed' && current.status !== 'completed'))) window.location.reload();
+    };
+    window.addEventListener('storage', syncOtherTab);
+    return () => window.removeEventListener('storage', syncOtherTab);
+  }, []);
 
   // ✅ data geldiğinde choices’ları 1 kez karıştır
   const questionsWithShuffledChoices: QuestionWithShuffle[] = useMemo(() => {
     if (!data?.questions) return [];
     return data.questions.map((q) => ({
       ...q,
-      shuffledChoices: shuffleArray(q.choices || []),
+      shuffledChoices: (snapshotRef.current?.choiceOrder[q.id] ?? q.choices.map((c) => c.id))
+        .map((id) => q.choices.find((c) => c.id === id)!).filter(Boolean),
     }));
   }, [data]);
+
+  useEffect(() => {
+    if (data && snapshotRef.current?.payload.attemptId === data.attemptId && !finishedRef.current) saveSnapshot({ activeIndex });
+  }, [activeIndex, data, saveSnapshot]);
 
   // ✅ remove session payload ONLY after result is visible
   useEffect(() => {
@@ -480,9 +533,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
     if (mode === 'exam' && !timedOut && !deadlinePassed()) {
       const unanswered = data.questions.filter((q) => !answersRef.current[q.id]).length;
       if (unanswered > 0) {
-        const message = getFeaturedPracticeCategory(data.testSlug)
-          ? `You have ${unanswered} unanswered question(s).\n\nFinish anyway?`
-          : `${unanswered} unanswered question(s) var.\n\nYine de bitireyim mi? (Finish anyway)`;
+        const message = `You have ${unanswered} unanswered question(s).\n\nFinish anyway?`;
         const ok = window.confirm(message);
         if (!ok && !deadlinePassed()) return;
       }
@@ -566,10 +617,24 @@ export default function Quiz({ params }: { params: { id: string } }) {
       }
     }
 
+    saveSnapshot({ status: 'completed', answers: submittedAnswers, deadline: null, remainingMs: remainingMsRef.current ?? 0 });
+    if (!recordStudyResult({
+      attemptId: data.attemptId, testSlug: data.testSlug ?? '', title: data.test.title,
+      completedAt: Date.now(), mode, correct: correctCount,
+      answered: questions.filter((q) => !!submittedAnswers[q.id]).length, total: questions.length,
+    })) setStorageUnavailable(true);
+    const answered = questions.filter((q) => !!submittedAnswers[q.id]).length;
+    trackTestComplete({
+      testId: data.testSlug ?? 'general', category: getAnalyticsCategory(data.testSlug ?? ''),
+      questionCount: questions.length, mode, attemptId: data.attemptId,
+      correct: correctCount, incorrect: answered - correctCount, unanswered: questions.length - answered,
+      durationSeconds: Math.max(0, (Date.now() - (snapshotRef.current?.startedAt ?? Date.now())) / 1000),
+      timedOut: timedOut || (mode === 'exam' && remainingMsRef.current === 0),
+    });
     setScore(correctCount);
     setShowResult(true);
     window.scrollTo(0, 0);
-  }, [data, mode]);
+  }, [data, mode, saveSnapshot]);
 
   // Update the answer snapshot immediately, including before a timer callback can run.
   const updateAnswer = useCallback((questionId: string, choiceId?: string) => {
@@ -582,9 +647,13 @@ export default function Quiz({ params }: { params: { id: string } }) {
     if (choiceId === undefined) delete nextAnswers[questionId];
     else nextAnswers[questionId] = choiceId;
     answersRef.current = nextAnswers;
+    const nextLocked = { ...(snapshotRef.current?.locked ?? {}) };
+    if (choiceId === undefined) delete nextLocked[questionId];
+    else if (mode === 'practice') nextLocked[questionId] = true;
+    saveSnapshot({ answers: nextAnswers, locked: nextLocked });
     setAnswers(nextAnswers);
     return true;
-  }, [mode, handleSubmit]);
+  }, [mode, handleSubmit, saveSnapshot]);
 
   const changeMode = useCallback((nextMode: 'exam' | 'practice') => {
     if (finishedRef.current || nextMode === mode) return;
@@ -601,8 +670,10 @@ export default function Quiz({ params }: { params: { id: string } }) {
     deadlineRef.current = nextMode === 'exam' && remainingMsRef.current !== null
       ? Date.now() + remainingMsRef.current
       : null;
+    saveSnapshot({ mode: nextMode, deadline: deadlineRef.current, remainingMs: remainingMsRef.current ?? 0, locked: {} });
+    setLocked({});
     setMode(nextMode);
-  }, [data?.testSlug, mode, handleSubmit]);
+  }, [data?.testSlug, mode, handleSubmit, saveSnapshot]);
 
   // 2) TIMER (EXAM ONLY)
   useEffect(() => {
@@ -631,7 +702,6 @@ export default function Quiz({ params }: { params: { id: string } }) {
     setFeedback(null);
     setStreak(0);
     setBurst(null);
-    setLocked({});
     setPendingScrollIndex(null);
     setPendingScrollMode(null);
   }, [mode]);
@@ -738,6 +808,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
 
     return (
       <div className="em-page max-w-4xl mx-auto px-4 py-12 space-y-8">
+        {storageUnavailable && <p role="status" className="rounded-xl bg-amber-50 p-4 text-sm text-amber-900">Your result is available below, but this browser could not save your progress.</p>}
         <div className="em-card p-8 rounded-3xl shadow-xl text-center relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-purple-600" />
           <h1 className="text-3xl font-black text-slate-800 mb-2">Test Completed!</h1>
@@ -828,6 +899,9 @@ export default function Quiz({ params }: { params: { id: string } }) {
             </Link>
           </section>
         )}
+
+        <StudyRecommendations testSlug={data.testSlug} levels={questions.map((q) => q.level)} percentage={percentage} answered={answeredCount} total={questions.length} />
+        <StudyProgress expanded />
 
         <div className="space-y-6">
           <h2 className="text-xl font-bold text-slate-700 ml-2 border-l-4 border-blue-500 pl-3">Detailed Analysis</h2>
@@ -951,9 +1025,15 @@ export default function Quiz({ params }: { params: { id: string } }) {
     <div className="em-page max-w-3xl mx-auto px-4 py-8 space-y-6">
       <MiniConfetti burst={burst} />
 
+      <div className="rounded-xl border border-blue-100 bg-blue-50 p-3 text-sm text-blue-900" role="status">
+        {storageUnavailable ? 'This browser could not save your test. Keep this tab open until you finish.' : restored ? 'Saved test restored. Your answers and choice order are unchanged.' : 'Your answers are saved on this browser as you work.'}
+        {' '}{mode === 'exam' ? 'The exam timer keeps running if you leave.' : 'Practice mode pauses the timer.'}
+        <Link prefetch={false} href="/" className="ml-2 font-semibold underline">Back to home</Link>
+      </div>
+
       {/* Top Bar */}
-      <div className={`em-card flex items-center justify-between p-4 rounded-xl sticky top-4 z-20 backdrop-blur-sm bg-white/90 dark:bg-slate-900/90 ${featuredPractice ? 'flex-wrap gap-3' : ''}`}>
-        <div className={`text-sm font-semibold text-slate-700 ${featuredPractice ? 'w-full break-words dark:text-slate-200' : 'truncate max-w-[200px]'}`}>{test?.title || 'Test'}</div>
+      <div className="em-card flex flex-wrap items-center justify-between gap-3 p-4 rounded-xl sticky top-4 z-20 backdrop-blur-sm bg-white/90 dark:bg-slate-900/90">
+        <div className="w-full break-words text-sm font-semibold text-slate-700 dark:text-slate-200">{test?.title || 'Test'}</div>
 
         <div className="flex items-center gap-3">
           {/* Mode toggle */}
@@ -1066,7 +1146,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
           <div className="text-xs text-slate-500 dark:text-slate-400">Blue = answered · White = empty</div>
         </div>
 
-        <div className="grid grid-cols-10 gap-2">
+        <div className="grid grid-cols-6 gap-2 sm:grid-cols-10">
           {questions.map((q, i) => {
             const done = !!answers[q.id];
             const isActive = i === activeIndex;
@@ -1078,7 +1158,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                   setPendingScrollIndex(i);
                   setPendingScrollMode('question');
                 }}
-                className={`h-8 rounded-lg text-xs font-black border transition active:scale-[0.98]
+                className={`min-h-11 rounded-lg text-xs font-black border transition active:scale-[0.98]
                   ${
                     done
                       ? 'bg-blue-600 text-white border-blue-600'
@@ -1154,7 +1234,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                   return (
                     <label
                       key={c.id}
-                      className={`group flex items-center p-4 rounded-xl border-2 transition-all duration-200 active:scale-[0.99]
+                      className={`group flex items-center p-4 rounded-xl border-2 transition-all duration-200 active:scale-[0.99] focus-within:ring-2 focus-within:ring-blue-500
                         ${practiceRing} ${isLocked ? 'cursor-not-allowed opacity-80' : 'cursor-pointer'}`}
                       onClick={() => void ensureAudio()}
                     >
@@ -1173,7 +1253,7 @@ export default function Quiz({ params }: { params: { id: string } }) {
                       <input
                         type="radio"
                         name={q.id}
-                        className="hidden"
+                        className="sr-only"
                         checked={selected}
                         onChange={() => {
                           if (mode === 'practice' && locked[q.id]) return;

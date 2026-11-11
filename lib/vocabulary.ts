@@ -24,7 +24,13 @@ export function slugifyWord(word: string): string {
     .replace(/^-|-$/g, '');
 }
 
+// The source dictionaries are static. Build their merged index once per worker,
+// rather than repeating normalization and sorting for every generated word page.
+let vocabularyCache: VocabItem[] | undefined;
+let vocabularyMapCache: Map<string, VocabItem> | undefined;
+
 export function getAllVocabulary(): VocabItem[] {
+  if (vocabularyCache) return vocabularyCache.slice();
   const map = new Map<string, VocabItem>();
   [...(vocabA as VocabItem[]), ...(vocabB as VocabItem[])].forEach((item) => {
     if (!item?.word || !item?.meaning) return;
@@ -46,13 +52,15 @@ export function getAllVocabulary(): VocabItem[] {
     });
   });
 
-  return Array.from(map.values()).sort((a, b) => a.word.localeCompare(b.word));
+  vocabularyCache = Array.from(map.values()).sort((a, b) => a.word.localeCompare(b.word));
+  vocabularyMapCache = new Map(vocabularyCache.map((item) => [slugifyWord(item.word), item]));
+  return vocabularyCache.slice();
 }
 
 export function getVocabularyMap() {
-  const map = new Map<string, VocabItem>();
-  getAllVocabulary().forEach((item) => map.set(slugifyWord(item.word), item));
-  return map;
+  if (!vocabularyMapCache) getAllVocabulary();
+  // Callers can change their collection without corrupting the shared index.
+  return new Map(vocabularyMapCache);
 }
 
 export function getSentenceVariants(item: VocabItem): string[] {
@@ -101,10 +109,10 @@ export function getRelatedWords(item: VocabItem, pool: VocabItem[]): string[] {
   const currentSlug = slugifyWord(item.word);
 
   return pool
+    .filter((p) => p.word[0]?.toLowerCase() === item.word[0]?.toLowerCase())
     .map((p) => ({ ...p, slug: slugifyWord(p.word) }))
     .filter((p) => p.slug !== currentSlug)
     .sort((a, b) => a.word.localeCompare(b.word))
-    .filter((p) => p.word[0]?.toLowerCase() === item.word[0]?.toLowerCase())
     .slice(0, 5)
     .map((p) => p.word);
 }

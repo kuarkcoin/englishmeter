@@ -2,6 +2,7 @@
 import { notFound } from 'next/navigation';
 import { blogPosts } from '@/data/blogPosts';
 import Link from 'next/link';
+import Image from 'next/image';
 import { SITE_URL, buildSeoMetadata, serializeJsonLd } from '@/lib/seo';
 
 export function generateStaticParams() {
@@ -64,11 +65,13 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       <nav aria-label="Breadcrumb" className="mb-6 text-sm text-blue-700">
         <Link href="/">Home</Link> / <Link href="/blog">Blog</Link> / <span>{post.title}</span>
       </nav>
-      <img
+      <Image
         src={post.image}
         width={1024}
         height={1536}
         alt={post.title}
+        sizes="(max-width: 768px) calc(100vw - 32px), 736px"
+        priority
         className="rounded-xl w-full h-64 object-cover mb-6"
       />
 

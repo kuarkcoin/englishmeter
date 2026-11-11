@@ -22,7 +22,9 @@ export default function VocabularyQuiz({ word, correctMeaning, allMeanings }: Qu
     // Doğru cevapla karıştır
     const shuffled = [...distractors, correctMeaning].sort(() => 0.5 - Math.random());
     setOptions(shuffled);
-  }, [word]);
+    setSelected(null);
+    setIsCorrect(null);
+  }, [word, correctMeaning, allMeanings]);
 
   const handleCheck = (option: string) => {
     if (selected) return; // Zaten seçilmişse durdur
@@ -38,7 +40,7 @@ export default function VocabularyQuiz({ word, correctMeaning, allMeanings }: Qu
       </h3>
       
       <p className="text-slate-600 dark:text-slate-300 mb-6">
-        <strong className="text-blue-600">"{word}"</strong> kelimesinin doğru Türkçe karşılığı hangisidir?
+        <strong className="text-blue-600">&quot;{word}&quot;</strong> kelimesinin doğru Türkçe karşılığı hangisidir?
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">

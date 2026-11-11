@@ -18,7 +18,7 @@ export function canonicalOrigin(value?: string): string {
 export const SITE_URL = canonicalOrigin(process.env.NEXT_PUBLIC_SITE_URL);
 
 export function buildSeoMetadata({
-  title, description, path, locale = 'en_US', noindex = false, image = '/opengraph-image',
+  title, description, path, locale = 'en_US', noindex = false, image = '/opengraph-image', languages,
 }: {
   title: string;
   description: string;
@@ -26,13 +26,15 @@ export function buildSeoMetadata({
   locale?: string;
   noindex?: boolean;
   image?: string;
+  /** Only provide reciprocal links to real translated versions of this page. */
+  languages?: Record<string, string>;
 }): Metadata {
   const url = new URL(path, `${SITE_URL}/`).href;
   const index = !noindex && process.env.VERCEL_ENV !== 'preview';
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: { canonical: url, ...(languages ? { languages } : {}) },
     robots: { index, follow: true },
     openGraph: {
       title: `${title} | EnglishMeter`, description, url, type: 'website',

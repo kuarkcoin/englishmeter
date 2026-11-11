@@ -17,10 +17,16 @@ export default function EnglishTestsPage() {
   const entries = [
     { name: 'English level test', path: '/english-level-test', description: 'Start with 30 grammar and vocabulary questions for an A1–C2 practice level estimate.', detail: '30 questions · 20 minutes' },
     { name: 'Grammar tests by topic', path: '/grammar', description: 'Choose a specific grammar point, from present simple and articles to advanced sentence structures.', detail: 'A1–C1 topic practice · Answer explanations' },
-    ...PRACTICE_CATEGORIES.map((category) => ({
+    { name: 'Vocabulary practice', path: '/vocabulary-tests', description: 'Choose vocabulary in context, word formation or word-meaning practice with a translation language.', detail: 'Everyday, academic and exam vocabulary' },
+    { name: 'IELTS grammar preparation', path: '/ielts-grammar-tests', description: 'Practise grammar accuracy in ten focused sets. This is independent preparation, not an IELTS band assessment.', detail: '10 tests · 15 questions each' },
+    { name: 'YDS preparation', path: '/yds-preparation', description: 'Choose existing practice mock tests, reading, grammar, connectors, synonyms and vocabulary mini tests.', detail: '32 practice mock tests · Focused skill practice' },
+    ...PRACTICE_CATEGORIES.filter((category) => category.id !== 'ielts-grammar').map((category) => ({
       name: category.name, path: category.path, description: category.description,
       detail: `${getPracticeTests(category.id).length} tests · ${category.questionCount} questions per test`,
     })),
+    { name: 'Daily English vocabulary', path: '/daily-english', description: 'Study everyday English word lists with Turkish meanings, then take the matching timed vocabulary quiz.', detail: 'Word lists and recall practice' },
+    { name: 'Common phrasal verbs', path: '/levels/b1/common-phrasal-verbs', description: 'Practise phrasal verbs in sentence contexts and learn where object pronouns belong.', detail: 'B1 · 20 questions · Worked examples' },
+    { name: 'Advanced English tests', path: '/advanced-tests', description: 'Try longer mixed grammar and vocabulary sets and review your best and latest results on this browser.', detail: '10 tests · B2–C1 mixed practice' },
     { name: 'Global English Challenge', path: '/challenge', description: 'Try the daily mix of grammar, vocabulary and reading, then compare your published result with other participants.', detail: '50 questions · Daily challenge' },
   ];
   const breadcrumbs = [{ name: 'Home', path: '/' }, { name: 'English tests', path: '/english-tests' }];

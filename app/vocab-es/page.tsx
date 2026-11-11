@@ -99,7 +99,7 @@ async function speakSequence(
 }
 
 export default function VocabFinishSpanishPage() {
-  const pool = (dailyEnEs as any[] as VocabItem[]).filter((x) => x?.word && x?.meaning);
+  const pool = useMemo(() => (dailyEnEs as any[] as VocabItem[]).filter((x) => x?.word && x?.meaning), []);
 
   const [count, setCount] = useState(20);
 
@@ -175,7 +175,7 @@ export default function VocabFinishSpanishPage() {
     setCurrentIndex(0);
     setAnswers({});
     setIsFinished(false);
-  }, [sessionId, count, pool.length]);
+  }, [sessionId, count, pool]);
 
   const current = questions[currentIndex];
 

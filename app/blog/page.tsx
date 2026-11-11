@@ -1,5 +1,6 @@
 // app/blog/page.tsx
 import Link from 'next/link';
+import Image from 'next/image';
 import { blogPosts } from '@/data/blogPosts';
 import { buildSeoMetadata } from '@/lib/seo';
 
@@ -17,14 +18,15 @@ export default function BlogPage() {
       <p className="mb-8 text-slate-600">Read practical grammar explanations, try the exercises and follow the links to continue practising.</p>
       <div className="space-y-8">
         {blogPosts.map((post) => (
-          <Link key={post.slug} href={`/blog/${post.slug}`}>
+          <Link key={post.slug} href={`/blog/${post.slug}`} className="block">
             <div className="border rounded-xl p-4 hover:shadow-md transition">
-              <img
+              <Image
                 src={post.image}
                 width={1024}
                 height={1536}
                 alt={post.title}
                 loading="lazy"
+                sizes="(max-width: 896px) calc(100vw - 64px), 832px"
                 className="rounded-lg w-full h-48 object-cover mb-4"
               />
 

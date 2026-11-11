@@ -36,7 +36,7 @@ export default function LetterDetailPage({ params }: PageProps) {
       <div className="max-w-5xl mx-auto">
         <div className="mb-8">
           <Link href="/vocabulary" className="text-blue-600 font-bold hover:underline">← Vocabulary Hub</Link>
-          <h1 className="text-4xl font-black text-slate-900 mt-4 uppercase">Words starting with "{letter}"</h1>
+          <h1 className="text-4xl font-black text-slate-900 mt-4 uppercase">Words starting with &quot;{letter}&quot;</h1>
           <p className="text-slate-500 mt-2">{filteredWords.length} words found.</p>
         </div>
 

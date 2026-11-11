@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { ChallengeLeaderboard, ChallengeResult, ChallengeSession } from '@/lib/challenge/types';
+import { trackTestStart, trackTestResume, trackTestComplete } from '@/lib/analytics';
+import { recordStudyResult } from '@/lib/study-progress';
 
 class ChallengeRequestError extends Error {
   constructor(message: string, readonly status: number) { super(message); }
@@ -30,6 +32,7 @@ const backupKey = (id: string) => `englishmeter-challenge:${id}`;
 const formatTime = (seconds: number) => `${Math.floor(Math.max(0, seconds) / 60).toString().padStart(2, '0')}:${(Math.max(0, seconds) % 60).toString().padStart(2, '0')}`;
 const dayInIstanbul = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Istanbul', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
 function clearBackup(id: string) { try { localStorage.removeItem(backupKey(id)); } catch { /* Storage can be disabled. Server saves still work. */ } }
+const challengeAnalytics = (session: ChallengeSession) => ({ testId: 'global-english-challenge', category: 'daily-challenge', questionCount: session.questions.length, mode: 'exam' as const, attemptId: session.attemptId });
 
 export default function ChallengeClient() {
   const [session, setSession] = useState<ChallengeSession | null>(null);
@@ -109,7 +112,11 @@ export default function ChallengeClient() {
   const restore = useCallback(async (restoreBackup = true) => {
     setInitializing(true);
     setError(null);
-    try { installSession(await request<ChallengeSession | null>('/api/challenge'), restoreBackup); }
+    try {
+      const value = await request<ChallengeSession | null>('/api/challenge');
+      installSession(value, restoreBackup);
+      if (value && !value.result) trackTestResume(challengeAnalytics(value));
+    }
     catch (err) { setError(err instanceof Error ? err.message : 'The challenge is temporarily unavailable.'); }
     finally { setInitializing(false); }
   }, [installSession]);
@@ -124,7 +131,7 @@ export default function ChallengeClient() {
     if (!session || initializing) return;
     const heading = result ? playHeadingRef.current : questionHeadingRef.current;
     heading?.focus();
-  }, [session?.attemptId, result?.attemptId, initializing]);
+  }, [session, result, initializing]);
 
   const saveNow = useCallback(async (): Promise<boolean> => {
     if (saveFlightRef.current) return saveFlightRef.current;
@@ -169,7 +176,7 @@ export default function ChallengeClient() {
     if (!session || result || syncConflict || revisionRef.current <= savedRevisionRef.current) return;
     const timeout = window.setTimeout(() => { void saveNow(); }, 300);
     return () => window.clearTimeout(timeout);
-  }, [answers, session?.attemptId, result, syncConflict, saveNow]);
+  }, [answers, session, result, syncConflict, saveNow]);
 
   useEffect(() => {
     const onOnline = () => { if (!resultRef.current) void saveNow(); };
@@ -191,6 +198,8 @@ export default function ChallengeClient() {
       if (saveFlightRef.current) await saveFlightRef.current;
       if (conflictRef.current) return;
       const value = await request<ChallengeResult>('/api/challenge/finish', 'POST', { attemptId: active.attemptId, answers: answersRef.current, revision: revisionRef.current });
+      trackTestComplete({ ...challengeAnalytics(active), correct: value.correct, incorrect: value.incorrect, unanswered: value.unanswered, durationSeconds: value.durationSeconds, timedOut: Date.now() + serverOffsetRef.current >= Date.parse(active.deadlineAt) });
+      recordStudyResult({ attemptId: active.attemptId, testSlug: 'global-english-challenge', title: 'Global English Challenge', completedAt: Date.now(), mode: 'exam', correct: value.correct, answered: value.correct + value.incorrect, total: active.questions.length });
       resultRef.current = value;
       setResult(value);
       setNickname(value.nickname ?? '');
@@ -209,7 +218,7 @@ export default function ChallengeClient() {
     tick();
     const timer = window.setInterval(tick, 500);
     return () => window.clearInterval(timer);
-  }, [session?.attemptId, result]);
+  }, [session, result]);
 
   useEffect(() => {
     if (!session || result || remaining > 0 || syncConflict || autoFinishedRef.current === session.attemptId || Date.now() + serverOffsetRef.current < Date.parse(session.deadlineAt)) return;
@@ -222,7 +231,11 @@ export default function ChallengeClient() {
     busyRef.current = true;
     setBusy('start');
     setError(null);
-    try { installSession(await request<ChallengeSession>('/api/challenge/start', 'POST', { practice })); }
+    try {
+      const value = await request<ChallengeSession>('/api/challenge/start', 'POST', { practice });
+      installSession(value);
+      if (!value.result) trackTestStart(challengeAnalytics(value));
+    }
     catch (err) { setError(err instanceof Error ? err.message : 'We could not start your challenge. Please try again.'); }
     finally { busyRef.current = false; setBusy(null); }
   }

@@ -35,7 +35,7 @@ function uniqStrings(arr: string[]) {
 }
 
 export default function VocabFinishPage() {
-  const pool = (ydsVocabulary as any[] as VocabItem[]).filter((x) => x?.word && x?.meaning);
+  const pool = useMemo(() => (ydsVocabulary as any[] as VocabItem[]).filter((x) => x?.word && x?.meaning), []);
 
   const [count, setCount] = useState(20);
 
@@ -106,7 +106,7 @@ export default function VocabFinishPage() {
     setCurrentIndex(0);
     setAnswers({});
     setIsFinished(false);
-  }, [sessionId, count, pool.length]);
+  }, [sessionId, count, pool]);
 
   const current = questions[currentIndex];
 

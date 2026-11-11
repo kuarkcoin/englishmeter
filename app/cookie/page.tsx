@@ -19,7 +19,7 @@ export default function CookiePolicyPage() {
              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><path d="M8.5 8.5v.01"/><path d="M16 15.5v.01"/><path d="M12 12v.01"/><path d="M11 17v.01"/><path d="M7 14v.01"/></svg>
           </div>
           <h1 className="text-3xl font-bold text-gray-900">Cookie Policy</h1>
-          <p className="text-gray-500 mt-2">Last updated: November 2025</p>
+          <p className="text-gray-500 mt-2">Last updated: November 11, 2026</p>
         </div>
         
         <div className="prose prose-blue max-w-none text-gray-600">
@@ -32,12 +32,20 @@ export default function CookiePolicyPage() {
           </p>
           <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-2">How can I control cookies?</h3>
           <p>
-            You have the right to decide whether to accept or reject cookies. You can exercise your cookie rights by setting your browser controls to accept or refuse cookies.
+            Google Analytics is optional. Choose “Allow analytics” or “No thanks” in the usage analytics panel. You can change this choice using “Analytics preferences” in the footer. Declining analytics does not prevent you from taking tests. Your choice is saved in this browser.
+          </p>
+          <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-2">What is measured?</h3>
+          <p>
+            If you allow analytics, we measure page visits, category clicks, test starts, resumed tests and completions, including aggregate scores and time used. We do not send your answers, question text, nickname or email address in these test events. Page measurements exclude URL query strings and random quiz attempt IDs.
+          </p>
+          <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-2">Test progress and advertising</h3>
+          <p>
+            Test progress, settings and unfinished practice attempts may be stored locally so you can continue in this browser. The daily challenge also uses a first-party cookie to recognise your attempt. These features work separately from optional usage analytics. Advertising is provided by Google AdSense; the analytics preference controls Google Analytics and does not manage advertising preferences. See our <a href="/privacy" className="text-blue-700 underline">privacy policy</a> for advertising information. You can also manage cookies using your browser controls.
           </p>
           
           <div className="mt-8 p-4 bg-blue-50 rounded-xl border border-blue-100">
              <p className="text-sm text-blue-800 font-medium">Contact us</p>
-             <p className="text-sm text-blue-600">support@englishmeter.net</p>
+             <a href="/contact" className="text-sm text-blue-600 underline">Contact EnglishMeter</a>
           </div>
         </div>
       </div>

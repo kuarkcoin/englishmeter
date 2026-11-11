@@ -88,7 +88,6 @@ function speak(text: string, lang: 'en-US' | 'en-GB', rate = 0.95) {
 
 function vibrate(ms: number) {
   if (typeof navigator === 'undefined') return;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const n: any = navigator;
   if ('vibrate' in n) n.vibrate(ms);
 }

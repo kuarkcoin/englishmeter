@@ -5,6 +5,9 @@ import Link from 'next/link';
 import type { StandardQuestion } from '@/lib/quizManager';
 import { scoreQuiz, type QuizAnswers } from '@/lib/quiz-result';
 import { scorePlacement, PLACEMENT_METHOD } from '@/lib/placement';
+import { getAnalyticsCategory, trackTestStart, trackTestComplete } from '@/lib/analytics';
+import { recordStudyResult } from '@/lib/study-progress';
+import StudyRecommendations from '@/components/StudyRecommendations';
 
 interface RaceQuizProps {
   questions: StandardQuestion[];
@@ -32,6 +35,7 @@ function QuizAttempt({ questions, raceId, totalTime, onRetry }: RaceQuizProps & 
   const deadlineRef = useRef<number | null>(null);
   const finishedRef = useRef(false);
   const resultHeadingRef = useRef<HTMLHeadingElement>(null);
+  const analyticsAttemptRef = useRef('');
 
   const finish = useCallback((timedOut = false) => {
     if (finishedRef.current) return;
@@ -40,15 +44,21 @@ function QuizAttempt({ questions, raceId, totalTime, onRetry }: RaceQuizProps & 
       ? duration
       : Math.max(0, Math.ceil((deadlineRef.current - Date.now()) / 1000));
     setTimeLeft(remaining);
+    const timeSpent = Math.max(0, Math.min(duration, duration - remaining));
+    const score = scoreQuiz(questions, answersRef.current);
+    recordStudyResult({ attemptId: analyticsAttemptRef.current, testSlug: raceId, title: document.title.replace(/\s*\|\s*EnglishMeter$/, ''), completedAt: Date.now(), mode: 'exam', correct: score.correct, answered: score.correct + score.incorrect, total: score.total });
+    trackTestComplete({ testId: raceId, category: getAnalyticsCategory(raceId), questionCount: questions.length, mode: 'exam', attemptId: analyticsAttemptRef.current, correct: score.correct, incorrect: score.incorrect, unanswered: score.unanswered, durationSeconds: timeSpent, timedOut: timedOut || remaining === 0 });
     setFinished({
       answers: { ...answersRef.current },
-      timeSpent: Math.max(0, Math.min(duration, duration - remaining)),
+      timeSpent,
       timedOut: timedOut || remaining === 0,
     });
-  }, [duration]);
+  }, [duration, questions, raceId]);
 
   useEffect(() => {
     if (finished || !questions.length) return;
+    if (!analyticsAttemptRef.current) analyticsAttemptRef.current = crypto.randomUUID();
+    trackTestStart({ testId: raceId, category: getAnalyticsCategory(raceId), questionCount: questions.length, mode: 'exam', attemptId: analyticsAttemptRef.current });
     // A deadline also accounts for time spent in a background browser tab.
     if (deadlineRef.current === null) deadlineRef.current = Date.now() + duration * 1000;
     const tick = () => {
@@ -62,7 +72,7 @@ function QuizAttempt({ questions, raceId, totalTime, onRetry }: RaceQuizProps & 
       window.clearInterval(interval);
       document.removeEventListener('visibilitychange', tick);
     };
-  }, [duration, finish, finished, questions.length]);
+  }, [duration, finish, finished, questions.length, raceId]);
 
   useEffect(() => {
     if (finished) resultHeadingRef.current?.focus();
@@ -108,6 +118,8 @@ function QuizAttempt({ questions, raceId, totalTime, onRetry }: RaceQuizProps & 
           <button type="button" onClick={onRetry} className="rounded-xl bg-blue-700 hover:bg-blue-800 px-5 py-3 font-bold text-white">Retake test</button>
           <Link href="/" className="rounded-xl border border-slate-300 dark:border-slate-600 px-5 py-3 font-bold text-slate-800 dark:text-slate-100">Choose another test</Link>
         </div>
+
+        <StudyRecommendations testSlug={raceId} levels={questions.map((question) => question.level)} percentage={result.percentage} answered={result.correct + result.incorrect} total={result.total} />
 
         <section aria-labelledby="answer-review-heading">
           <h3 id="answer-review-heading" className="text-xl font-bold text-slate-900 dark:text-slate-50 mb-3">Answer review</h3>

@@ -9,13 +9,14 @@ import { getCanonicalTestSlug } from '@/app/tests/catalog';
 import { LEVEL_CATALOG, LEVEL_CONTENT_UPDATED_AT } from '@/lib/level-catalog';
 import { PRACTICE_CATEGORIES } from '@/lib/practice-categories';
 import { PRACTICE_TESTS, getPracticeTestPath } from '@/lib/practice-catalog';
+import { getVocabularyLanguageAlternates } from '@/lib/vocabulary-locales';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Only canonical, public learning pages belong here. Session results, account
   // pages, query-string filters and alternate URLs for the same test are omitted.
   const staticPaths = [
     '/', '/about', '/blog', '/contact', '/privacy', '/terms', '/cookie', '/challenge',
-    '/english-tests', '/english-level-test',
+    '/english-tests', '/english-level-test', '/yds-preparation',
     '/flashcards', '/race', '/speedrun', '/speaking', '/matching', '/verbsense',
     '/advanced-tests', '/phrasal-puzzle', '/vocabulary', '/vocabulary-tests',
     '/grammar', '/test-conditionals', '/test-perfect-tenses', '/test-relatives',
@@ -68,8 +69,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Do not invent last-modified dates: only publish a timestamp when the source
   // records a real content update. The URL list stays stable between builds.
   const updatedLevelPaths = new Set(levelPaths);
-  return Array.from(new Set(paths)).map((path) => ({
-    url: `${SITE_URL}${path}`,
-    ...(updatedLevelPaths.has(path) ? { lastModified: LEVEL_CONTENT_UPDATED_AT } : {}),
-  }));
+  return Array.from(new Set(paths)).map((path) => {
+    const localizedWord = /^\/(es|ar)\/vocabulary\/([^/]+)$/.exec(path);
+    const languages = localizedWord
+      ? getVocabularyLanguageAlternates(localizedWord[1] as 'es' | 'ar', localizedWord[2])
+      : undefined;
+    return {
+      url: `${SITE_URL}${path}`,
+      ...(updatedLevelPaths.has(path) ? { lastModified: LEVEL_CONTENT_UPDATED_AT } : {}),
+      ...(languages ? { alternates: { languages } } : {}),
+    };
+  });
 }

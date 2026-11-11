@@ -31,14 +31,11 @@ const nextConfig = {
     ];
   },
 
-  // Opsiyonel: Eğer görsel optimizasyonunda (Image component) dış kaynak kullanıyorsan ekleyebilirsin.
+  // Only the local, reviewed JPEG blog images use the optimizer. Do not let
+  // arbitrary remote hosts or application/API routes become image sources.
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
+    remotePatterns: [],
+    localPatterns: [{ pathname: '/images/blog/*.jpg', search: '' }],
   },
 };
 

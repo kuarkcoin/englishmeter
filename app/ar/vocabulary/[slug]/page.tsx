@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { buildSeoMetadata } from '@/lib/seo';
+import { buildSeoMetadata, serializeJsonLd } from '@/lib/seo';
+import { getVocabularyLanguageAlternates, getVocabularyWordStructuredData } from '@/lib/vocabulary-locales';
 import { arabicVocabulary } from '../data';
 
 export async function generateStaticParams() {
@@ -16,6 +17,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     description: `تعرّف على معنى كلمة ${item.word} بالعربية: ${item.meaning}. اقرأ مثالًا باللغة الإنجليزية مع ترجمته العربية.`,
     path: `/ar/vocabulary/${item.slug}`,
     locale: 'ar_AR',
+    languages: getVocabularyLanguageAlternates('ar', item.slug),
   });
 }
 
@@ -26,13 +28,20 @@ export default function ArabicWordPage({ params }: { params: { slug: string } })
   if (!item) {
     notFound();
   }
+  const languages = getVocabularyLanguageAlternates('ar', item.slug);
 
   return (
     <main lang="ar" dir="rtl" className="max-w-4xl mx-auto p-6">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(getVocabularyWordStructuredData('ar', item)) }} />
       <Link href="/ar/vocabulary" className="mb-5 inline-block font-bold text-blue-600 hover:underline">العودة إلى القاموس ←</Link>
+      {languages?.es && (
+        <nav aria-label="لغات هذه الكلمة" className="mb-6 text-sm">
+          <a href={languages.es} hrefLang="es" lang="es" dir="ltr" className="font-semibold text-blue-600 hover:underline">Español</a>
+        </nav>
+      )}
       <div className="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-100">
         <div className="bg-blue-600 p-8 text-white text-center">
-          <h1 lang="en" dir="ltr" className="text-5xl font-bold mb-2">{item.word}</h1>
+          <h1 lang="en" dir="ltr" className="break-words text-4xl sm:text-5xl font-bold mb-2">{item.word}</h1>
           <p className="text-xl opacity-90">مفردات إنجليزية مع المعاني العربية</p>
         </div>
 
@@ -51,8 +60,8 @@ export default function ArabicWordPage({ params }: { params: { slug: string } })
 
           <div className="space-y-6">
             <h3 className="text-xl font-bold text-gray-700 border-l-4 border-blue-500 pl-3">مثال على الاستخدام</h3>
-            <div lang="en" dir="ltr" className="bg-gray-50 p-6 rounded-lg italic text-gray-700 text-lg">"{item.s}"</div>
-            <div className="bg-blue-50 p-6 rounded-lg text-right text-blue-900 text-xl font-medium" dir="rtl">"{item.t}"</div>
+            <div lang="en" dir="ltr" className="bg-gray-50 p-6 rounded-lg italic text-gray-700 text-lg">&quot;{item.s}&quot;</div>
+            <div className="bg-blue-50 p-6 rounded-lg text-right text-blue-900 text-xl font-medium" dir="rtl">&quot;{item.t}&quot;</div>
           </div>
         </div>
       </div>

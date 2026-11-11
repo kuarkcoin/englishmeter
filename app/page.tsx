@@ -1,4 +1,5 @@
 import HomeClient from './HomeClient';
+import { getHomeTestSummary } from '@/lib/home-test-summary';
 import { buildSeoMetadata, serializeJsonLd, SITE_URL } from '@/lib/seo';
 import { HOME_FAQ } from '@/lib/home-faq';
 
@@ -34,7 +35,7 @@ export default function Page() {
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
-      <HomeClient />
+      <HomeClient summary={getHomeTestSummary()} />
     </main>
   );
 }

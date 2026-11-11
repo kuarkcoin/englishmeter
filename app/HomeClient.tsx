@@ -1,11 +1,14 @@
 'use client';
 
-import React, { useEffect, useMemo, useState, useCallback, Suspense } from 'react';
+import React, { useEffect, useMemo, useState, useCallback, useRef, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Mail } from 'lucide-react';
 import { HOME_FAQ } from '@/lib/home-faq';
-import { getQuestionsBySlug } from '@/lib/quizManager';
+import type { HomeTestSummary } from '@/lib/home-test-types';
+import TestDiscovery from '@/components/TestDiscovery';
+import { PRIMARY_TEST_CATEGORIES } from '@/lib/test-discovery';
+import StudyProgress from '@/components/StudyProgress';
 import DarkToggle from '@/components/DarkToggle';
 import DiamondCard from '@/components/DiamondCard';
 import LevelNavigation from '@/components/LevelNavigation';
@@ -14,83 +17,6 @@ import IeltsGrammarNavigation from '@/components/IeltsGrammarNavigation';
 import ExamPracticeNavigation from '@/components/ExamPracticeNavigation';
 import ChallengeNavigation from '@/components/ChallengeNavigation';
  
-// --- DATA IMPORTS ---
-import topicQuestions from '@/data/grammar_topic_tests.json';
-import ydsVocabulary from '@/data/yds_vocabulary.json';
-import ydsVocabulary2Raw from '@/data/data/yds_vocabulary2.json';
-import dailyEnglishData from '@/data/dailyenglish.json';
-import turkishGreekData from '@/data/turkish_greek.json';
-
-// --- YDS EXAM DENEMELERİ (1..15) ---
-import ydsExamQuestions1 from '@/data/yds_exam_questions.json';
-import ydsExamQuestions2 from '@/data/yds_exam_questions_2.json';
-import ydsExamQuestions3 from '@/data/yds_exam_questions_3.json';
-import ydsExamQuestions4 from '@/data/yds_exam_questions_4.json';
-import ydsExamQuestions5 from '@/data/yds_exam_questions_5.json';
-import ydsExamQuestions6 from '@/data/yds_exam_questions_6.json';
-import ydsExamQuestions7 from '@/data/yds_exam_questions_7.json';
-import ydsExamQuestions8 from '@/data/yds_exam_questions_8.json';
-import ydsExamQuestions9 from '@/data/yds_exam_questions_9.json';
-import ydsExamQuestions10 from '@/data/yds_exam_questions_10.json';
-import ydsExamQuestions11 from '@/data/yds_exam_questions_11.json';
-import ydsExamQuestions12 from '@/data/yds_exam_questions_12.json';
-import ydsExamQuestions13 from '@/data/yds_exam_questions_13.json';
-import ydsExamQuestions14 from '@/data/yds_exam_questions_14.json';
-import ydsExamQuestions15 from '@/data/yds_exam_questions_15.json';
-import ydsExamQuestions16 from '@/data/yds_exam_questions_16.json';
-import ydsExamQuestions17 from '@/data/yds_exam_questions_17.json';
-import ydsExamQuestions18 from '@/data/yds_exam_questions_18.json';
-import ydsExamQuestions19 from '@/data/yds_exam_questions_19.json';
-import ydsExamQuestions20 from '@/data/yds_exam_questions_20.json';
-import ydsExamQuestions21 from '@/data/yds_exam_questions_21.json';
-import ydsExamQuestions22 from '@/data/yds_exam_questions_22.json';
-import ydsExamQuestions23 from '@/data/yds_exam_questions_23.json';
-import ydsExamQuestions24 from '@/data/yds_exam_questions_24.json';
-import ydsExamQuestions25 from '@/data/yds_exam_questions_25.json';
-import ydsExamQuestions26 from '@/data/yds_exam_questions_26.json';
-import ydsExamQuestions27 from '@/data/yds_exam_questions_27.json';
-import ydsExamQuestions28 from '@/data/yds_exam_questions_28.json';
-import ydsExamQuestions29 from '@/data/yds_exam_questions_29.json';
-import ydsExamQuestions30 from '@/data/yds_exam_questions_30.json';
-import ydsExamQuestions31 from '@/data/yds_exam_questions_31.json';
-import ydsExamQuestions32 from '@/data/yds_exam_questions_32.json';
-import { ADV_TEST_MAP, ADVANCED_QUESTION_RANGE } from '@/lib/advanced-tests';
-// --- TEST DATA MAP ---
-const YDS_EXAM_MAP: Record<string, any[]> = {
-  '1': ydsExamQuestions1,
-  '2': ydsExamQuestions2,
-  '3': ydsExamQuestions3,
-  '4': ydsExamQuestions4,
-  '5': ydsExamQuestions5,
-  '6': ydsExamQuestions6,
-  '7': ydsExamQuestions7,
-  '8': ydsExamQuestions8,
-  '9': ydsExamQuestions9,
-  '10': ydsExamQuestions10,
-  '11': ydsExamQuestions11,
-  '12': ydsExamQuestions12,
-  '13': ydsExamQuestions13,
-  '14': ydsExamQuestions14,
-  '15': ydsExamQuestions15,
-  '16': ydsExamQuestions16,
-  '17': ydsExamQuestions17,
-  '18': ydsExamQuestions18,
-  '19': ydsExamQuestions19,
-  '20': ydsExamQuestions20,
-  '21': ydsExamQuestions21,
-  '22': ydsExamQuestions22,
-  '23': ydsExamQuestions23,
-  '24': ydsExamQuestions24,
-  '25': ydsExamQuestions25,
-  '26': ydsExamQuestions26,
-  '27': ydsExamQuestions27,
-  '28': ydsExamQuestions28,
-  '29': ydsExamQuestions29,
-  '30': ydsExamQuestions30,
-  '31': ydsExamQuestions31,
-  '32': ydsExamQuestions32,
-};
-
 const MEANING_LANGUAGE_OPTIONS = [
   { code: 'tr', label: 'Turkish' },
   { code: 'de', label: 'German' },
@@ -100,20 +26,6 @@ const MEANING_LANGUAGE_OPTIONS = [
 ] as const;
 
 type MeaningLanguageCode = (typeof MEANING_LANGUAGE_OPTIONS)[number]['code'];
-
-type TurkishGreekWord = {
-  word: string;
-  meaning: string;
-  pronunciation: string;
-};
-
-const MEANING_LANGUAGE_LABELS: Record<MeaningLanguageCode, string> = {
-  tr: 'Turkish',
-  de: 'German',
-  es: 'Spanish',
-  it: 'Italian',
-  fr: 'French',
-};
 
 function normalizeMeaningLanguage(value: string | null | undefined): MeaningLanguageCode | null {
   if (value === 'tr' || value === 'de' || value === 'es' || value === 'it' || value === 'fr') return value;
@@ -135,14 +47,6 @@ function detectBrowserMeaningLanguage(): MeaningLanguageCode {
   }
 
   return 'tr';
-}
-
-function getLocalizedMeaning(item: any, language: MeaningLanguageCode): string {
-  const localized = item?.meanings?.[language];
-  if (typeof localized === 'string' && localized.trim()) return localized.trim();
-
-  const fallback = item?.meaning;
-  return typeof fallback === 'string' ? fallback.trim() : '';
 }
 
 // --- TEST TANIMLARI ---
@@ -177,71 +81,10 @@ const grammarTests = [
 ];
 
 
-const slugToTag: Record<string, string> = {
-  'test-perfect-past': 'perfect_tenses',
-  'test-conditionals': 'conditionals',
-  'test-relatives': 'relative_clauses',
-  'test-articles': 'articles',
-  'test-tenses-mixed': 'mixed_tenses',
-  'test-passive-voice': 'passive_voice_adv',
-  'test-reported-speech': 'reported_speech',
-  'test-gerunds-infinitives': 'gerunds_infinitives',
-  'test-clauses-advanced': 'clauses_advanced',
-  'test-modals-advanced': 'modals_advanced',
-  'test-prepositions-advanced': 'prepositions_advanced',
-};
-
-// --- HELPERS ---
-function shuffle<T>(arr: T[]) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-function makeAttemptId() {
-  return `session-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
-}
-
-// Deterministic RNG (LCG) for stable mini-tests
-function lcg(seed: number) {
-  let s = seed >>> 0;
-  return () => {
-    s = (1664525 * s + 1013904223) >>> 0;
-    return s / 4294967296;
-  };
-}
-
-function seededUniqueIndices(total: number, need: number, seed: number) {
-  const rand = lcg(seed);
-  const picked = new Set<number>();
-  const maxAttempts = total * 10;
-
-  let attempts = 0;
-  while (picked.size < need && attempts < maxAttempts) {
-    const idx = Math.floor(rand() * total);
-    picked.add(idx);
-    attempts++;
-  }
-
-  // fallback if something weird happens
-  if (picked.size < need) {
-    for (let i = 0; i < total && picked.size < need; i++) picked.add(i);
-  }
-
-  return Array.from(picked);
-}
-
 // LocalStorage keys
 const LS_PREMIUM = 'em_is_premium';
 const LS_LAST = 'em_last_test';
 const LS_MEANING_LANGUAGE = 'em_yds5000_meaning_language';
-const LS_VOCAB_MAP = 'em_yds5000_map_v1';
-const LS_GLOBAL_VOCAB_MAP = 'em_global_vocab_map_v1';
-const LS_ENGLISH_DEUTSCH_MAP = 'em_english_deutsch_map_v1';
-const LS_TURKISH_GREEK_MAP = 'em_turkish_greek_map_v1';
 const GLOBAL_VOCAB_QUESTIONS_PER_TEST = 25;
 const GLOBAL_VOCAB_DURATION_MIN = 15;
 const EN_DE_QUESTIONS_PER_TEST = 50;
@@ -268,7 +111,7 @@ function HomeQuerySync({ onChange }: { onChange: (query: string) => void }) {
   return null;
 }
 
-function HomeContent() {
+function HomeContent({ summary }: { summary: HomeTestSummary }) {
   const router = useRouter();
   const [query, setQuery] = useState('');
   const [queryReady, setQueryReady] = useState(false);
@@ -290,88 +133,21 @@ function HomeContent() {
   const [englishDeutschWords, setEnglishDeutschWords] = useState<Array<{ word: string; meaning: string }>>([]);
   const [lastTest, setLastTest] = useState<{ title: string; slug: string; at: string } | null>(null);
 
-  const ydsVocabulary2 = useMemo(() => {
-    return ((ydsVocabulary2Raw as any[]) || [])
-      .map((x: any) => ({
-        word: String(x?.word ?? '').trim(),
-        meaning: String(x?.meaning ?? '').trim(),
-      }))
-      .filter((x) => x.word && x.meaning);
-  }, []);
-
-  const validGlobalVocabWordCount = ydsVocabulary2.length;
-
-  const globalVocabTestCount = useMemo(
-    () => Math.floor(validGlobalVocabWordCount / GLOBAL_VOCAB_QUESTIONS_PER_TEST),
-    [validGlobalVocabWordCount]
-  );
-
+  const validGlobalVocabWordCount = summary.globalVocabularyWords;
+  const globalVocabTestCount = Math.floor(validGlobalVocabWordCount / GLOBAL_VOCAB_QUESTIONS_PER_TEST);
   const validEnglishDeutschWordCount = englishDeutschWords.length;
-
-  const englishDeutschTestCount = useMemo(
-    () => Math.floor(validEnglishDeutschWordCount / EN_DE_QUESTIONS_PER_TEST),
-    [validEnglishDeutschWordCount]
-  );
-
-  const turkishGreekWords = useMemo<TurkishGreekWord[]>(() => {
-  const rawData: unknown = turkishGreekData;
-
-  const source: unknown[] = Array.isArray(rawData)
-    ? rawData
-    : rawData && typeof rawData === 'object'
-      ? [rawData]
-      : [];
-
-  return source
-    .map((item) => {
-      const record = item as Partial<TurkishGreekWord>;
-
-      return {
-        word: String(record.word ?? '').trim(),
-        meaning: String(record.meaning ?? '').trim(),
-        pronunciation: String(
-          record.pronunciation ?? ''
-        ).trim(),
-      };
-    })
-    .filter(
-      (item): item is TurkishGreekWord =>
-        Boolean(
-          item.word &&
-          item.meaning &&
-          item.pronunciation
-        )
-    );
-}, []);
-
-  const validTurkishGreekWordCount = turkishGreekWords.length;
-
-  const turkishGreekTestCount = useMemo(
-    () => Math.floor(validTurkishGreekWordCount / TURKISH_GREEK_QUESTIONS_PER_TEST),
-    [validTurkishGreekWordCount]
-  );
-
-  const validDailyEnglishWordCount = useMemo(() => {
-    return ((dailyEnglishData as any[]) || [])
-      .map((x: any) => ({
-        word: String(x?.word ?? '').trim(),
-        meaning: String(x?.meaning ?? '').trim(),
-      }))
-      .filter((x) => x.word && x.meaning).length;
-  }, []);
-
-  const dailyEnglishTestCount = useMemo(
-    () => Math.floor(validDailyEnglishWordCount / DAILY_ENGLISH_QUESTIONS_PER_TEST),
-    [validDailyEnglishWordCount]
-  );
-
-  // Hangi YDS exam testleri gerçekten var?
-  const availableExamTests = useMemo(() => {
-    return Object.keys(YDS_EXAM_MAP)
-      .map((k) => Number(k))
-      .filter((n) => Number.isFinite(n))
-      .sort((a, b) => a - b);
-  }, []);
+  const englishDeutschTestCount = Math.floor(validEnglishDeutschWordCount / EN_DE_QUESTIONS_PER_TEST);
+  const validTurkishGreekWordCount = summary.turkishGreekWords;
+  const turkishGreekTestCount = Math.floor(validTurkishGreekWordCount / TURKISH_GREEK_QUESTIONS_PER_TEST);
+  const validDailyEnglishWordCount = summary.dailyEnglishWords;
+  const dailyEnglishTestCount = Math.floor(validDailyEnglishWordCount / DAILY_ENGLISH_QUESTIONS_PER_TEST);
+  const availableExamTests = Object.keys(summary.examQuestionCounts).map(Number);
+  const launchInProgress = useRef(false);
+  const [launchError, setLaunchError] = useState('');
+  const [isLaunching, setIsLaunching] = useState(false);
+  const [isLoadingDeutsch, setIsLoadingDeutsch] = useState(false);
+  const [deutschLoadError, setDeutschLoadError] = useState(false);
+  const [deutschLoadVersion, setDeutschLoadVersion] = useState(0);
 
   useEffect(() => {
     if (!queryReady || typeof window === 'undefined') return;
@@ -381,14 +157,11 @@ function HomeContent() {
     const browserLang = detectBrowserMeaningLanguage();
     const nextLanguage = urlLang ?? storedLang ?? browserLang;
 
+    // Infer the initial preference locally. Updating the URL here would trigger
+    // another server navigation and hydration work on every homepage arrival.
+    // Explicit changes below still update the URL so that the choice is shareable.
     setMeaningLanguage(nextLanguage);
-
-    if (!urlLang) {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set('lang', nextLanguage);
-      router.replace(`?${params.toString()}`, { scroll: false });
-    }
-  }, [router, searchParams, queryReady]);
+  }, [searchParams, queryReady]);
 
   const handleMeaningLanguageChange = useCallback(
     (language: MeaningLanguageCode) => {
@@ -416,12 +189,15 @@ function HomeContent() {
   }, []);
 
   useEffect(() => {
+    if ((!showEnglishDeutschHub && !restartSlug?.startsWith('english-deutsch-mini-')) || englishDeutschWords.length) return;
     let cancelled = false;
+    setIsLoadingDeutsch(true);
+    setDeutschLoadError(false);
 
     const loadEnglishDeutschWords = async () => {
       try {
         const res = await fetch('/api/english-deutsch-words');
-        if (!res.ok) return;
+        if (!res.ok) throw new Error('Word list unavailable');
         const data = (await res.json()) as Array<{ word?: string; meaning?: string }>;
         if (cancelled || !Array.isArray(data)) return;
 
@@ -432,9 +208,12 @@ function HomeContent() {
           }))
           .filter((x) => x.word && x.meaning);
 
+        if (!cleaned.length) throw new Error('Word list is empty');
         setEnglishDeutschWords(cleaned);
       } catch {
-        setEnglishDeutschWords([]);
+        if (!cancelled) setDeutschLoadError(true);
+      } finally {
+        if (!cancelled) setIsLoadingDeutsch(false);
       }
     };
 
@@ -442,595 +221,41 @@ function HomeContent() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [showEnglishDeutschHub, restartSlug, englishDeutschWords.length, deutschLoadVersion]);
 
-  // --- 100 mini test mapping (stable) ---
-  const ensureVocabMap = useCallback(() => {
-    const total = (ydsVocabulary as any[])?.length || 0;
-    const map = safeJsonParse<Record<string, number[]>>(typeof window !== 'undefined' ? localStorage.getItem(LS_VOCAB_MAP) : null, {});
-    if (!total) return map;
-
-    // Ensure 1..100 exist
-    let changed = false;
-    for (let t = 1; t <= 100; t++) {
-      const key = String(t);
-      if (!Array.isArray(map[key]) || map[key].length !== 50) {
-        // seed by test number, but also depend on total length (so changes don't break too hard)
-        map[key] = seededUniqueIndices(total, 50, 1000 + t * 99991 + total * 17);
-        changed = true;
-      }
+  const startTest = useCallback(async (testSlug: string) => {
+    if (launchInProgress.current) return;
+    launchInProgress.current = true;
+    setIsLaunching(true);
+    setLaunchError('');
+    try {
+      const { launchHomeTest } = await import('@/lib/home-test-launcher');
+      launchHomeTest({
+        testSlug, meaningLanguage, englishDeutschWords, router,
+        saveLast: (title, slug) => {
+          try {
+            const payload = { title, slug, at: new Date().toISOString() };
+            localStorage.setItem(LS_LAST, JSON.stringify(payload));
+            setLastTest(payload);
+          } catch {}
+        },
+      });
+    } catch {
+      setLaunchError('Your test could not be loaded. Please check your connection and try again.');
+      setIsRestarting(false);
+    } finally {
+      launchInProgress.current = false;
+      setIsLaunching(false);
     }
-    if (changed && typeof window !== 'undefined') {
-      localStorage.setItem(LS_VOCAB_MAP, JSON.stringify(map));
-    }
-    return map;
-  }, []);
-
-  const ensureGlobalVocabMap = useCallback(() => {
-    const total = ydsVocabulary2.length;
-    const testCount = Math.floor(total / GLOBAL_VOCAB_QUESTIONS_PER_TEST);
-    const map = safeJsonParse<Record<string, number[]>>(
-      typeof window !== 'undefined' ? localStorage.getItem(LS_GLOBAL_VOCAB_MAP) : null,
-      {}
-    );
-    if (!testCount || !total) return map;
-
-    let changed = false;
-    for (let t = 1; t <= testCount; t++) {
-      const key = String(t);
-      if (!Array.isArray(map[key]) || map[key].length !== GLOBAL_VOCAB_QUESTIONS_PER_TEST) {
-        map[key] = seededUniqueIndices(total, GLOBAL_VOCAB_QUESTIONS_PER_TEST, 7000 + t * 3571 + total * 13);
-        changed = true;
-      }
-    }
-
-    Object.keys(map).forEach((key) => {
-      const n = Number(key);
-      if (!Number.isFinite(n) || n < 1 || n > testCount) {
-        delete map[key];
-        changed = true;
-      }
-    });
-
-    if (changed && typeof window !== 'undefined') {
-      localStorage.setItem(LS_GLOBAL_VOCAB_MAP, JSON.stringify(map));
-    }
-    return map;
-  }, [ydsVocabulary2]);
-
-  const ensureEnglishDeutschMap = useCallback(() => {
-    const total = englishDeutschWords.length;
-    const testCount = Math.floor(total / EN_DE_QUESTIONS_PER_TEST);
-    const map = safeJsonParse<Record<string, number[]>>(
-      typeof window !== 'undefined' ? localStorage.getItem(LS_ENGLISH_DEUTSCH_MAP) : null,
-      {}
-    );
-    if (!testCount || !total) return map;
-
-    let changed = false;
-    for (let t = 1; t <= testCount; t++) {
-      const key = String(t);
-      if (!Array.isArray(map[key]) || map[key].length !== EN_DE_QUESTIONS_PER_TEST) {
-        map[key] = seededUniqueIndices(total, EN_DE_QUESTIONS_PER_TEST, 9100 + t * 4051 + total * 19);
-        changed = true;
-      }
-    }
-
-    Object.keys(map).forEach((key) => {
-      const n = Number(key);
-      if (!Number.isFinite(n) || n < 1 || n > testCount) {
-        delete map[key];
-        changed = true;
-      }
-    });
-
-    if (changed && typeof window !== 'undefined') {
-      localStorage.setItem(LS_ENGLISH_DEUTSCH_MAP, JSON.stringify(map));
-    }
-    return map;
-  }, [englishDeutschWords]);
-
-  const ensureTurkishGreekMap = useCallback(() => {
-    const total = turkishGreekWords.length;
-    const testCount = Math.floor(total / TURKISH_GREEK_QUESTIONS_PER_TEST);
-    const map = safeJsonParse<Record<string, number[]>>(
-      typeof window !== 'undefined' ? localStorage.getItem(LS_TURKISH_GREEK_MAP) : null,
-      {}
-    );
-
-    if (!total || !testCount) return map;
-
-    let changed = false;
-
-    for (let testNumber = 1; testNumber <= testCount; testNumber++) {
-      const key = String(testNumber);
-      const currentIndices = map[key];
-      const hasInvalidIndex =
-        Array.isArray(currentIndices) &&
-        currentIndices.some(
-          (index) => !Number.isInteger(index) || index < 0 || index >= total
-        );
-
-      if (
-        !Array.isArray(currentIndices) ||
-        currentIndices.length !== TURKISH_GREEK_QUESTIONS_PER_TEST ||
-        hasInvalidIndex
-      ) {
-        map[key] = seededUniqueIndices(
-          total,
-          TURKISH_GREEK_QUESTIONS_PER_TEST,
-          12000 + testNumber * 4051 + total * 23
-        );
-        changed = true;
-      }
-    }
-
-    Object.keys(map).forEach((key) => {
-      const testNumber = Number(key);
-      if (!Number.isInteger(testNumber) || testNumber < 1 || testNumber > testCount) {
-        delete map[key];
-        changed = true;
-      }
-    });
-
-    if (changed && typeof window !== 'undefined') {
-      localStorage.setItem(LS_TURKISH_GREEK_MAP, JSON.stringify(map));
-    }
-
-    return map;
-  }, [turkishGreekWords]);
-
-  // --- TEST BAŞLATMA MANTIĞI ---
-  const startTest = useCallback(
-    (testSlug: string) => {
-      const attemptId = makeAttemptId();
-
-      // Save last test (for "Continue" UX)
-      const saveLast = (title: string, slug: string) => {
-        try {
-          const payload = { title, slug, at: new Date().toISOString() };
-          localStorage.setItem(LS_LAST, JSON.stringify(payload));
-          setLastTest(payload);
-        } catch {}
-      };
-
-      // --- YDS 3750 MINI TESTS (1..75) ---
-      if (testSlug.startsWith('yds-5000-mini-')) {
-        const nStr = testSlug.split('-').pop() || '1';
-        const n = Math.max(1, Math.min(100, Number(nStr) || 1));
-
-        const map = ensureVocabMap();
-        const indices = map[String(n)] || [];
-
-        const pool = ydsVocabulary as any[];
-        const selectedWords = indices.map((i) => pool[i]).filter(Boolean);
-
-        // 50Q, 25min default (user request)
-        const questions = selectedWords.map((item: any, idx: number) => {
-          const correctAnswer = getLocalizedMeaning(item, meaningLanguage);
-          if (!correctAnswer) return null;
-
-          const uniqueDistractors = Array.from(
-            new Set(
-              pool
-                .filter((w: any) => w?.word !== item?.word)
-                .map((w: any) => getLocalizedMeaning(w, meaningLanguage))
-                .filter((meaning: string) => meaning && meaning !== correctAnswer)
-            )
-          );
-
-          const distractors = shuffle(uniqueDistractors).slice(0, 3);
-          if (distractors.length < 3) return null;
-
-          const allOptions = shuffle([...distractors, correctAnswer]);
-          const idsLower = ['a', 'b', 'c', 'd'];
-          const meaningLabel = MEANING_LANGUAGE_LABELS[meaningLanguage];
-
-          return {
-            id: `yds-5000-mini-${n}-q${idx + 1}`,
-            prompt: `What is the ${meaningLabel} meaning of **"${item.word}"**?`,
-            choices: allOptions.map((optText: string, i: number) => ({
-              id: idsLower[i],
-              text: optText,
-              isCorrect: optText === correctAnswer,
-            })),
-            explanation: `**${item.word}** (${meaningLabel}): ${correctAnswer}`,
-          };
-        }).filter(Boolean);
-
-        const title = `YDS 5000 WORDS · MINI TEST ${n} (50Q · 25 min)`;
-
-        const payload = {
-          attemptId,
-          testSlug,
-          test: { title, duration: 25 }, // minutes (we will use in Quiz page later)
-          durationSeconds: 25 * 60,
-          questions,
-        };
-
-        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
-        saveLast(title, testSlug);
-        router.push(`/quiz/${attemptId}?lang=${meaningLanguage}`);
-        return;
-      }
-
-      if (testSlug.startsWith('global-vocab-mini-')) {
-        const nStr = testSlug.split('-').pop() || '1';
-        const n = Math.max(1, Math.min(globalVocabTestCount, Number(nStr) || 1));
-        if (!globalVocabTestCount) {
-          alert('Vocabulary Global data is not enough to create a 25-question mini test yet.');
-          return;
-        }
-
-        const map = ensureGlobalVocabMap();
-        const indices = map[String(n)] || [];
-        const selectedWords = indices.map((i) => ydsVocabulary2[i]).filter(Boolean);
-
-        const questions = selectedWords
-          .map((item: { word: string; meaning: string }, idx: number) => {
-            const correctAnswer = item.meaning;
-            const uniqueDistractors = Array.from(
-              new Set(
-                ydsVocabulary2
-                  .filter((w) => w.meaning !== correctAnswer)
-                  .map((w) => w.meaning)
-              )
-            );
-            const distractors = shuffle(uniqueDistractors).slice(0, 3);
-            if (distractors.length < 3) return null;
-
-            const allOptions = shuffle([...distractors, correctAnswer]);
-            const idsLower = ['a', 'b', 'c', 'd'];
-
-            return {
-              id: `global-vocab-mini-${n}-q${idx + 1}`,
-              prompt: `What is the English meaning of **"${item.word}"**?`,
-              choices: allOptions.map((optText: string, i: number) => ({
-                id: idsLower[i],
-                text: optText,
-                isCorrect: optText === correctAnswer,
-              })),
-              explanation: `**${item.word}**: ${correctAnswer}`,
-            };
-          })
-          .filter(Boolean);
-
-        if (!questions.length) {
-          alert('Not enough distinct meanings found to build this test right now.');
-          return;
-        }
-
-        const title = `VOCABULARY GLOBAL · MINI TEST ${n} (25Q · ${GLOBAL_VOCAB_DURATION_MIN} min)`;
-        const payload = {
-          attemptId,
-          testSlug,
-          test: { title, duration: GLOBAL_VOCAB_DURATION_MIN },
-          durationSeconds: GLOBAL_VOCAB_DURATION_MIN * 60,
-          questions,
-        };
-
-        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
-        saveLast(title, testSlug);
-        router.push(`/quiz/${attemptId}`);
-        return;
-      }
-
-      if (testSlug.startsWith('english-deutsch-mini-')) {
-        const nStr = testSlug.split('-').pop() || '1';
-        const n = Math.max(1, Math.min(englishDeutschTestCount, Number(nStr) || 1));
-        if (!englishDeutschTestCount) {
-          alert('Not enough words to generate a 50-question test yet.');
-          return;
-        }
-
-        const map = ensureEnglishDeutschMap();
-        const indices = map[String(n)] || [];
-        const selectedWords = indices.map((i) => englishDeutschWords[i]).filter(Boolean);
-
-        const questions = selectedWords
-          .map((item: { word: string; meaning: string }, idx: number) => {
-            const correctAnswer = item.meaning;
-            const uniqueDistractors = Array.from(
-              new Set(
-                englishDeutschWords
-                  .filter((w) => w.meaning !== correctAnswer)
-                  .map((w) => w.meaning)
-              )
-            );
-            const distractors = shuffle(uniqueDistractors).slice(0, 3);
-            if (distractors.length < 3) return null;
-
-            const allOptions = shuffle([...distractors, correctAnswer]);
-            const idsLower = ['a', 'b', 'c', 'd'];
-
-            return {
-              id: `english-deutsch-mini-${n}-q${idx + 1}`,
-              prompt: `What is the German meaning of "${item.word}"?`,
-              choices: allOptions.map((optText: string, i: number) => ({
-                id: idsLower[i],
-                text: optText,
-                isCorrect: optText === correctAnswer,
-              })),
-              explanation: `"${item.word}" = ${correctAnswer}`,
-            };
-          })
-          .filter(Boolean);
-
-        if (!questions.length) {
-          alert('Not enough words to generate a 50-question test yet.');
-          return;
-        }
-
-        const title = `ENGLISH / DEUTSCH · MINI TEST ${n} (50Q · ${EN_DE_DURATION_MIN} min)`;
-        const payload = {
-          attemptId,
-          testSlug,
-          test: { title, duration: EN_DE_DURATION_MIN },
-          durationSeconds: EN_DE_DURATION_MIN * 60,
-          questions,
-        };
-
-        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
-        saveLast(title, testSlug);
-        router.push(`/quiz/${attemptId}`);
-        return;
-      }
-
-      if (testSlug.startsWith('turkish-greek-mini-')) {
-        const numberText = testSlug.split('-').pop() || '1';
-        const requestedTestNumber = Number(numberText);
-
-        if (!turkishGreekTestCount) {
-          alert('Türkçe / Yunanca testi oluşturmak için en az 50 geçerli kayıt gereklidir.');
-          return;
-        }
-
-        if (
-          !Number.isInteger(requestedTestNumber) ||
-          requestedTestNumber < 1 ||
-          requestedTestNumber > turkishGreekTestCount
-        ) {
-          alert(`Bu test bulunamadı. Lütfen 1 ile ${turkishGreekTestCount} arasında bir test seçin.`);
-          return;
-        }
-
-        const testNumber = requestedTestNumber;
-        const map = ensureTurkishGreekMap();
-        const indices = map[String(testNumber)] || [];
-        const selectedWords = indices
-          .map((index) => turkishGreekWords[index])
-          .filter((item): item is TurkishGreekWord => Boolean(item));
-
-        if (selectedWords.length < TURKISH_GREEK_QUESTIONS_PER_TEST) {
-          alert('Bu test için yeterli sayıda geçerli Yunanca kayıt bulunamadı.');
-          return;
-        }
-
-        const formatAnswer = (item: TurkishGreekWord) =>
-          `${item.meaning} — ${item.pronunciation}`;
-
-        const questions = selectedWords
-          .map((item, questionIndex) => {
-            const correctAnswer = formatAnswer(item);
-            const uniqueDistractors = Array.from(
-              new Set(
-                turkishGreekWords
-                  .filter(
-                    (otherItem) =>
-                      otherItem.word !== item.word &&
-                      formatAnswer(otherItem) !== correctAnswer
-                  )
-                  .map(formatAnswer)
-              )
-            );
-
-            const distractors = shuffle(uniqueDistractors).slice(0, 3);
-            if (distractors.length < 3) return null;
-
-            const allOptions = shuffle([...distractors, correctAnswer]);
-            const choiceIds = ['a', 'b', 'c', 'd'];
-
-            return {
-              id: `turkish-greek-mini-${testNumber}-q${questionIndex + 1}`,
-              prompt: `**"${item.word}"** ifadesinin Yunancası hangisidir?`,
-              choices: allOptions.map((optionText, optionIndex) => ({
-                id: choiceIds[optionIndex],
-                text: optionText,
-                isCorrect: optionText === correctAnswer,
-              })),
-              explanation: `**${item.word}** = ${item.meaning} — ${item.pronunciation}`,
-            };
-          })
-          .filter(Boolean);
-
-        if (questions.length < TURKISH_GREEK_QUESTIONS_PER_TEST) {
-          alert('Yeterli sayıda farklı cevap seçeneği oluşturulamadı.');
-          return;
-        }
-
-        const title =
-          `TÜRKÇE / YUNANCA · TEST ${testNumber} ` +
-          `(${TURKISH_GREEK_QUESTIONS_PER_TEST} Soru · ${TURKISH_GREEK_DURATION_MIN} Dakika)`;
-
-        const payload = {
-          attemptId,
-          testSlug,
-          test: { title, duration: TURKISH_GREEK_DURATION_MIN },
-          durationSeconds: TURKISH_GREEK_DURATION_MIN * 60,
-          questions,
-        };
-
-        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
-        saveLast(title, testSlug);
-        router.push(`/quiz/${attemptId}`);
-        return;
-      }
-
-      if (testSlug.startsWith('daily-english-mini-')) {
-        const nStr = testSlug.split('-').pop() || '1';
-        const n = Number(nStr);
-
-        if (!dailyEnglishTestCount) {
-          alert('Daily English data is not available right now.');
-          return;
-        }
-
-        if (!Number.isFinite(n) || n < 1 || n > dailyEnglishTestCount) {
-          alert(`This Daily English test does not exist. Please choose a test between 1 and ${dailyEnglishTestCount}.`);
-          return;
-        }
-
-        const cleanDailyEnglishData = ((dailyEnglishData as any[]) || [])
-          .map((x: any) => ({
-            word: String(x?.word ?? '').trim(),
-            meaning: String(x?.meaning ?? '').trim(),
-          }))
-          .filter((x) => x.word && x.meaning);
-
-        const startIndex = (n - 1) * DAILY_ENGLISH_QUESTIONS_PER_TEST;
-        const endIndex = startIndex + DAILY_ENGLISH_QUESTIONS_PER_TEST;
-        const selectedWords = cleanDailyEnglishData.slice(startIndex, endIndex);
-
-        if (selectedWords.length < DAILY_ENGLISH_QUESTIONS_PER_TEST) {
-          alert('This test range does not have enough questions yet.');
-          return;
-        }
-
-        const questions = selectedWords
-          .map((item: { word: string; meaning: string }, idx: number) => {
-            const correctAnswer = item.meaning;
-            const uniqueDistractors = Array.from(
-              new Set(
-                cleanDailyEnglishData
-                  .filter((w) => w.meaning !== correctAnswer)
-                  .map((w) => w.meaning)
-              )
-            );
-            const distractors = shuffle(uniqueDistractors).slice(0, 3);
-            if (distractors.length < 3) return null;
-
-            const allOptions = shuffle([...distractors, correctAnswer]);
-            const idsLower = ['a', 'b', 'c', 'd'];
-
-            return {
-              id: `daily-english-mini-${n}-q${idx + 1}`,
-              prompt: `What is the Turkish meaning of "${item.word}"?`,
-              choices: allOptions.map((optText: string, i: number) => ({
-                id: idsLower[i],
-                text: optText,
-                isCorrect: optText === correctAnswer,
-              })),
-              explanation: `"${item.word}" = ${correctAnswer}`,
-            };
-          })
-          .filter(Boolean);
-
-        if (!questions.length) {
-          alert('Not enough distinct meanings found to build this test right now.');
-          return;
-        }
-
-        const title = `DAILY ENGLISH · TEST ${n} (${questions.length}Q · ${DAILY_ENGLISH_DURATION_MIN} min)`;
-        const payload = {
-          attemptId,
-          testSlug,
-          test: { title, duration: DAILY_ENGLISH_DURATION_MIN },
-          durationSeconds: DAILY_ENGLISH_DURATION_MIN * 60,
-          questions,
-        };
-
-        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
-        saveLast(title, testSlug);
-        router.push(`/quiz/${attemptId}`);
-        return;
-      }
-
-      if (testSlug.startsWith('adv-test-')) {
-        const testNumber = testSlug.split('-').pop() || '1';
-        const selectedQuestions = ADV_TEST_MAP[testNumber];
-        if (!selectedQuestions?.length) {
-          alert('This test is coming soon!');
-          return;
-        }
-
-        const mappedQuestions = [...selectedQuestions].map((q: any, idx: number) => {
-          const correctLetter = String(q.correct || 'A').trim().toUpperCase();
-          const letters = ['A', 'B', 'C', 'D'];
-          const idsLower = ['a', 'b', 'c', 'd'];
-
-          return {
-            id: `adv-${testNumber}-q${idx + 1}`,
-            prompt: q.prompt,
-            choices: letters.map((L, i) => ({
-              id: idsLower[i],
-              text: q[L] || `Option ${L}`,
-              isCorrect: correctLetter === L,
-            })),
-            explanation: q.explanation || '',
-          };
-        });
-
-        const title = `ADVANCED ENGLISH · TEST ${testNumber} (${mappedQuestions.length}Q · 45 min)`;
-
-        const payload = {
-          attemptId,
-          testSlug,
-          test: { title, duration: 45 },
-          durationSeconds: 45 * 60,
-          questions: mappedQuestions,
-        };
-
-        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
-        saveLast(title, testSlug);
-        router.push(`/quiz/${attemptId}`);
-        return;
-      }
-
-      // All shared tests use the same questions, answer keys and duration on every entry route.
-      const sharedSlug = testSlug === 'yds-grammar-practice' ? 'yds-grammar' : testSlug;
-      const testData = getQuestionsBySlug(sharedSlug, meaningLanguage);
-      if (testData.questions.length) {
-        const title = `${testData.title} (${testData.questions.length}Q · ${testData.duration} min)`;
-        const payload = {
-          attemptId,
-          testSlug: sharedSlug,
-          test: { title, duration: testData.duration },
-          durationSeconds: testData.duration * 60,
-          questions: testData.questions,
-        };
-        sessionStorage.setItem('em_attempt_payload', JSON.stringify(payload));
-        saveLast(title, sharedSlug);
-        router.push(`/quiz/${attemptId}?lang=${meaningLanguage}`);
-        return;
-      }
-
-      // default: send to /start
-      router.push(`/start?testSlug=${encodeURIComponent(testSlug)}&lang=${meaningLanguage}`);
-    },
-    [
-      dailyEnglishTestCount,
-      englishDeutschTestCount,
-      englishDeutschWords,
-      ensureEnglishDeutschMap,
-      ensureGlobalVocabMap,
-      ensureTurkishGreekMap,
-      ensureVocabMap,
-      globalVocabTestCount,
-      meaningLanguage,
-      router,
-      turkishGreekTestCount,
-      turkishGreekWords,
-      ydsVocabulary2,
-    ]
-  );
+  }, [meaningLanguage, englishDeutschWords, router]);
 
   // restart parametresi ile otomatik başlat
   useEffect(() => {
-    if (!restartSlug) return;
+    if (!restartSlug || (restartSlug.startsWith('english-deutsch-mini-') && !englishDeutschWords.length)) return;
     setIsRestarting(true);
     const timer = setTimeout(() => startTest(restartSlug), 250);
     return () => clearTimeout(timer);
-  }, [restartSlug, startTest]);
+  }, [restartSlug, startTest, englishDeutschWords.length]);
 
   if (isRestarting) {
     return (
@@ -1050,8 +275,18 @@ function HomeContent() {
       <div className="sticky top-0 z-30 border-b border-[rgb(var(--border))] bg-[rgb(var(--bg))/0.82] backdrop-blur">
         <div className="w-full max-w-6xl mx-auto px-4 py-4 grid grid-cols-[1fr_auto] items-center gap-3 sm:flex sm:justify-between">
           <div className="order-1 shrink-0 font-black tracking-tight text-lg sm:text-xl">EnglishMeter</div>
-          <div className="order-3 col-span-2 flex items-center justify-end gap-3 sm:order-2 sm:ml-auto">
-            <a href="#level-tests" className="px-2 py-2 text-sm font-bold text-blue-700 dark:text-blue-300 hover:underline">Levels</a>
+          <div className="order-3 col-span-2 flex flex-wrap items-center justify-end gap-2 sm:order-2 sm:ml-auto sm:gap-3">
+            <details className="relative sm:hidden">
+              <summary className="cursor-pointer rounded-xl px-3 py-3 text-sm font-bold focus-visible:ring-2 focus-visible:ring-blue-500">Tests</summary>
+              <nav aria-label="Mobile test menu" className="absolute left-0 top-full z-40 mt-2 w-60 rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--card))] p-2 shadow-xl">
+                {PRIMARY_TEST_CATEGORIES.map((category) => (
+                  <Link key={category.href} href={category.href} prefetch={false} data-analytics-category={category.category} data-analytics-placement="mobile-menu"
+                    className="block rounded-xl px-3 py-3 text-sm font-semibold hover:bg-blue-50 dark:hover:bg-slate-800">{category.title}</Link>
+                ))}
+                <Link href="/english-tests" className="block rounded-xl px-3 py-3 text-sm font-semibold">All English tests</Link>
+              </nav>
+            </details>
+            <a href="#level-tests" className="hidden sm:inline-flex px-2 py-2 text-sm font-bold text-blue-700 dark:text-blue-300 hover:underline">Levels</a>
             <DarkToggle />
             <button onClick={() => startTest(quickTest.slug)} className="diamond-btn">
               Start Test
@@ -1067,6 +302,14 @@ function HomeContent() {
         </div>
       </div>
 
+      {restartSlug?.startsWith('english-deutsch-mini-') && deutschLoadError && (
+        <div role="alert" className="mx-auto max-w-6xl px-4 py-3 text-sm">English / Deutsch tests could not be loaded. <button onClick={() => setDeutschLoadVersion((value) => value + 1)} className="min-h-11 font-bold underline">Try again</button></div>
+      )}
+      {(isLaunching || launchError) && (
+        <div className="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-xl rounded-2xl border border-blue-200 bg-white p-4 text-center text-sm font-semibold text-slate-900 shadow-xl dark:border-slate-700 dark:bg-slate-900 dark:text-white" role={launchError ? 'alert' : 'status'} aria-live="polite">
+          {launchError || 'Preparing your test…'}
+        </div>
+      )}
       {/* HERO */}
       <section className="w-full max-w-6xl mx-auto px-4 py-16">
         <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -1100,14 +343,14 @@ function HomeContent() {
               </Link>
             </div>
 
-            {/* Continue last */}
+            {/* Restart the last test; saved attempts are in StudyProgress below. */}
             {lastTest && (
               <div className="mt-5 flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={() => startTest(lastTest.slug)}
                   className="diamond-btn px-6 py-3 text-sm sm:text-base"
                 >
-                  ▶ Continue: {lastTest.title}
+                  ↻ Repeat: {lastTest.title}
                 </button>
                 <Link
                   href="/mistakes"
@@ -1164,6 +407,8 @@ function HomeContent() {
         </div>
       </section>
 
+      <TestDiscovery entries={summary.searchTests} />
+      <div className="mx-auto w-full max-w-6xl px-4 pb-10"><StudyProgress /></div>
       <ChallengeNavigation />
       <LevelNavigation />
       <IeltsGrammarNavigation />
@@ -1436,7 +681,7 @@ function HomeContent() {
     className="flex flex-col items-center justify-center px-6 py-8 rounded-2xl bg-blue-600 text-white text-xl font-black shadow-xl hover:bg-blue-700 transition-all"
   >
     <div>{quickTest.title}</div>
-    <div className="mt-2 text-xs font-semibold opacity-90">30Q · 20 min · Estimated level</div>
+    <div className="mt-2 text-xs font-semibold">30Q · 20 min · Estimated level</div>
 
   </button>
 
@@ -1460,7 +705,7 @@ function HomeContent() {
           ✨ Advanced Practice
         </div>
         <div className="text-2xl font-black leading-tight">Advanced English Tests</div>
-        <div className="mt-2 text-xs text-white/90 leading-relaxed">10 tests · {ADVANCED_QUESTION_RANGE} questions · 45 min · B2–C1</div>
+        <div className="mt-2 text-xs text-white/90 leading-relaxed">10 tests · {summary.advancedQuestionRange} questions · 45 min · B2–C1</div>
       </div>
       <div className="mt-6 w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-indigo-700 text-2xl font-black shadow-lg group-hover:scale-110 transition-transform">
         ▶
@@ -1477,7 +722,6 @@ function HomeContent() {
         setShowYds3750Hub(next);
         if (!next) return;
 
-        ensureVocabMap();
         setTimeout(() => {
           document.getElementById("yds3750hub")?.scrollIntoView({ behavior: "smooth", block: "start" });
         }, 80);
@@ -1533,7 +777,7 @@ function HomeContent() {
           </option>
         ))}
       </select>
-      <span className="mt-2 block text-[11px] font-semibold text-orange-700/75 dark:text-orange-300/80">
+      <span className="mt-2 block text-[11px] font-semibold text-orange-800 dark:text-orange-200">
         Questions and answer choices use this language. Missing translations fall back to Turkish.
       </span>
     </label>
@@ -1546,7 +790,6 @@ function HomeContent() {
       setShowGlobalVocabHub(next);
       if (!next) return;
 
-      ensureGlobalVocabMap();
       setTimeout(() => {
         document.getElementById('globalVocabHub')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 80);
@@ -1567,7 +810,7 @@ function HomeContent() {
         <div className="mt-2 text-xs text-white/90 leading-relaxed">
           25-question mini tests · stable question sets
           <br />
-          Dynamic test count from loaded word pool
+          Practise English words with German meanings
         </div>
       </div>
       <div className="mt-6 flex items-center justify-between">
@@ -1588,7 +831,6 @@ function HomeContent() {
       setShowEnglishDeutschHub(next);
       if (!next) return;
 
-      ensureEnglishDeutschMap();
       setTimeout(() => {
         document.getElementById('englishDeutschHub')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 80);
@@ -1609,12 +851,12 @@ function HomeContent() {
         <div className="mt-2 text-xs text-white/90 leading-relaxed">
           50-question mini tests · stable question sets
           <br />
-          Dynamic test count from loaded word pool
+          Practise English words with German meanings
         </div>
       </div>
       <div className="mt-6 flex items-center justify-between">
         <div className="text-[11px] font-bold text-white/90">
-          {validEnglishDeutschWordCount} words · {englishDeutschTestCount} tests
+          {englishDeutschWords.length ? `${validEnglishDeutschWordCount} words · ${englishDeutschTestCount} tests` : 'Open vocabulary tests'}
         </div>
         <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-teal-700 text-2xl font-black shadow-lg group-hover:scale-110 transition-transform">
           {showEnglishDeutschHub ? '×' : '▶'}
@@ -1626,7 +868,6 @@ function HomeContent() {
   <DiamondCard
     as="button"
     type="button"
-    aria-label="Türkçe / Yunanca seyahat dili testlerini gör"
     onClick={() => {
       const next = !showTurkishGreekHub;
       setShowTurkishGreekHub(next);
@@ -1635,7 +876,7 @@ function HomeContent() {
       setShowEnglishDeutschHub(false);
       setShowGlobalVocabHub(false);
       setShowDailyEnglishHub(false);
-      ensureTurkishGreekMap();
+
       requestAnimationFrame(() => {
         document.getElementById('turkishGreekHub')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
@@ -1906,7 +1147,8 @@ function HomeContent() {
       </div>
     ) : (
       <DiamondCard className="p-5 text-sm font-semibold text-emerald-700 dark:text-emerald-200 border-emerald-200/80 dark:border-teal-700/60">
-        Not enough words to generate a 50-question test yet.
+        {isLoadingDeutsch ? 'Loading English / Deutsch tests…' : deutschLoadError ? 'The vocabulary could not be loaded. Please try again.' : 'No English / Deutsch tests are available right now.'}
+        {!isLoadingDeutsch && <button type="button" onClick={() => setDeutschLoadVersion((value) => value + 1)} className="ml-3 min-h-11 underline">Try again</button>}
       </DiamondCard>
     )}
   </div>
@@ -2017,7 +1259,7 @@ function HomeContent() {
 )}
 
           {/* OTHER MAIN TESTS */}
-          <h2 className="text-2xl sm:text-3xl font-black mb-6 text-left">YDS Exam Pack</h2>
+          <h2 id="yds-exam-pack" className="scroll-mt-40 text-2xl sm:text-3xl font-black mb-6 text-left">YDS Exam Pack</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
             {/* YDS EXAM PACK */}
             <DiamondCard className="col-span-1 md:col-span-2 lg:col-span-3 p-6 relative overflow-hidden bg-pink-50/80 dark:bg-pink-950/20 border-pink-200/70 dark:border-pink-700/50">
@@ -2047,7 +1289,7 @@ function HomeContent() {
                         }`}
                     >
                       Test {num}
-                      {isActive && <span className="block text-xs font-semibold opacity-90 mt-1">{YDS_EXAM_MAP[String(num)].length} questions · Start</span>}
+                      {isActive && <span className="block text-xs font-semibold opacity-90 mt-1">{summary.examQuestionCounts[String(num)]} questions · Start</span>}
                       {!isActive && <span className="block text-[10px] opacity-60 mt-1">Locked</span>}
                     </button>
                   );
@@ -2076,7 +1318,7 @@ function HomeContent() {
                     const next = !showGlobalVocabHub;
                     setShowGlobalVocabHub(next);
                     if (!next) return;
-                    ensureGlobalVocabMap();
+
                     setTimeout(() => {
                       document.getElementById('globalVocabHub')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }, 80);
@@ -2086,7 +1328,7 @@ function HomeContent() {
                     const next = !showEnglishDeutschHub;
                     setShowEnglishDeutschHub(next);
                     if (!next) return;
-                    ensureEnglishDeutschMap();
+
                     setTimeout(() => {
                       document.getElementById('englishDeutschHub')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }, 80);
@@ -2097,7 +1339,7 @@ function HomeContent() {
                     setShowEnglishDeutschHub(false);
                     setShowGlobalVocabHub(false);
                     setShowDailyEnglishHub(false);
-                    ensureTurkishGreekMap();
+
                     requestAnimationFrame(() => {
                       document.getElementById('turkishGreekHub')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     });
@@ -2125,7 +1367,7 @@ function HomeContent() {
                   )}
                   {test.slug === 'english-deutsch-hub' && (
                     <span className="block mt-1 text-xs sm:text-sm font-bold opacity-80">
-                      {englishDeutschTestCount} tests · {validEnglishDeutschWordCount} words
+                      {englishDeutschWords.length ? `${englishDeutschTestCount} tests · ${validEnglishDeutschWordCount} words` : 'Open vocabulary tests'}
                     </span>
                   )}
                   {test.slug === 'turkish-greek-hub' && (
@@ -2160,7 +1402,7 @@ function HomeContent() {
                   className="px-4 py-5 text-indigo-700 dark:text-indigo-300 font-black"
                 >
                   <span className="block group-hover:scale-105 transition-transform">{test.title}</span>
-                  <span className="block mt-1 text-[11px] font-semibold text-[rgb(var(--muted))]">{Math.min(20, topicQuestions.filter((q) => q.tags?.includes(slugToTag[test.slug])).length)}Q · 30 min</span>
+                  <span className="block mt-1 text-[11px] font-semibold text-[rgb(var(--muted))]">{summary.grammarQuestionCounts[test.slug]}Q · 30 min</span>
                 </DiamondCard>
               ))}
             </div>
@@ -2264,6 +1506,6 @@ function HomeContent() {
   );
 }
 
-export default function HomeClient() {
-  return <HomeContent />;
+export default function HomeClient({ summary }: { summary: HomeTestSummary }) {
+  return <HomeContent summary={summary} />;
 }

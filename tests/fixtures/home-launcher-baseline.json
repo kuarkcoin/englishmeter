@@ -1,0 +1,182 @@
+[
+  {
+    "slug": "yds-5000-mini-1",
+    "language": "tr",
+    "questions": 50,
+    "sha256": "705aa1d922c03789a996939a12473d5d117041026d0a7213d7aa18277f3d0563"
+  },
+  {
+    "slug": "yds-5000-mini-77",
+    "language": "de",
+    "questions": 50,
+    "sha256": "b62c9d7359751f1ff6b90d803b46077b7dd2160f39f67731e9eb9627f04c8d36"
+  },
+  {
+    "slug": "yds-5000-mini-100",
+    "language": "fr",
+    "questions": 50,
+    "sha256": "b0cdeb76497bdc51fcf1ea6800013bd0d5533d98fd4482c350df851086fb0bbe"
+  },
+  {
+    "slug": "global-vocab-mini-1",
+    "language": "tr",
+    "questions": 25,
+    "sha256": "4d2701cd3dd3aabef1d7db1f2512ff0321d2b2ce764514694fea5192e5220633"
+  },
+  {
+    "slug": "global-vocab-mini-41",
+    "language": "tr",
+    "questions": 25,
+    "sha256": "5c305f34b2cd3792c7d1bbf568f3ba91cdb1165af25346851e79a24b7c6ab54f"
+  },
+  {
+    "slug": "turkish-greek-mini-1",
+    "language": "tr",
+    "questions": 50,
+    "sha256": "b28cfa8e34e76b7c58adf9e61ca066292d5d4fe6e9acfa5ace0684d9b2dd104c"
+  },
+  {
+    "slug": "turkish-greek-mini-17",
+    "language": "tr",
+    "questions": 50,
+    "sha256": "3d77477778680f6ae701013b64d7b7d6b85f7e1cce9b7d8700734f37b232c186"
+  },
+  {
+    "slug": "daily-english-mini-1",
+    "language": "tr",
+    "questions": 50,
+    "sha256": "6585992c4a02632f3889d2791856dc564e23d1575a584a2305146bd190db2534"
+  },
+  {
+    "slug": "daily-english-mini-42",
+    "language": "tr",
+    "questions": 50,
+    "sha256": "afc8bfef1396f99dea331d03621d802407da48087d7dec6d256a11417299c0cd"
+  },
+  {
+    "slug": "english-deutsch-mini-1",
+    "language": "tr",
+    "questions": 50,
+    "sha256": "0428565bdf645c6bb981afbec37be595c1f79de106cf981d89eadfc138efb985"
+  },
+  {
+    "slug": "english-deutsch-mini-4",
+    "language": "tr",
+    "questions": 50,
+    "sha256": "92f116eb8d7121e0e2634644710477a15123289a97481d8e2660cb7cfecfb37a"
+  },
+  {
+    "slug": "adv-test-1",
+    "language": "tr",
+    "questions": 50,
+    "sha256": "8447cd265d294a3b87a00e14aad0f9e481215166a954cd5245960f58dede2c84"
+  },
+  {
+    "slug": "adv-test-10",
+    "language": "tr",
+    "questions": 50,
+    "sha256": "0a5c135c358ec31717648a94b5943c594bf4cd55cfe15cef92134287c72f1960"
+  },
+  {
+    "slug": "quick-placement",
+    "language": "tr",
+    "questions": 30,
+    "sha256": "6a1b03305dc4dc0db1e6bff404379188e5eef9eff458a9b90e97e19908cd6dff"
+  },
+  {
+    "slug": "grammar-mega-test-100",
+    "language": "tr",
+    "questions": 100,
+    "sha256": "4db89c85055596ac9aa09bd95150adacc4e83198323ef42865f4085e4038b799"
+  },
+  {
+    "slug": "yds-grammar-practice",
+    "language": "tr",
+    "questions": 100,
+    "sha256": "bf76cd1aed07556e6d4469344e6300cb6de8dde76c23c194d22b50f08adf4fa9"
+  },
+  {
+    "slug": "yds-exam-test-1",
+    "language": "tr",
+    "questions": 80,
+    "sha256": "57647382aa35c0a15b9db6954d28b97fda363c256436b94055bc1d65e6998236"
+  },
+  {
+    "slug": "yds-exam-test-32",
+    "language": "tr",
+    "questions": 80,
+    "sha256": "7ad442949768e32d7227e12eb2151f582b6da33cde32303b847ef401949410a3"
+  },
+  {
+    "slug": "test-perfect-past",
+    "language": "tr",
+    "questions": 15,
+    "sha256": "5eae57a3550e7e6e8a0450d6f39e08c9fd7edbaea2c79c645823ce7b7fbadbe8"
+  },
+  {
+    "slug": "test-conditionals",
+    "language": "tr",
+    "questions": 15,
+    "sha256": "20c03c66d222e5de4e7af2521118583e0c04c00cc7b3c4c7bf33f18e666f3c00"
+  },
+  {
+    "slug": "test-relatives",
+    "language": "tr",
+    "questions": 15,
+    "sha256": "af11b0221e592e29b7ff9b07a7073e7077b320474b42a513ca4ebda58309dc37"
+  },
+  {
+    "slug": "test-articles",
+    "language": "tr",
+    "questions": 15,
+    "sha256": "e187c58dbee06f7e0c9214bffcf7aba7965bbfeb2b919f70bc0e8caacbd89457"
+  },
+  {
+    "slug": "test-tenses-mixed",
+    "language": "tr",
+    "questions": 15,
+    "sha256": "aa0be605b0cb2b24907f60d90eba4b8d66caaa24f9e33b819bc5f0a32adc220f"
+  },
+  {
+    "slug": "test-passive-voice",
+    "language": "tr",
+    "questions": 15,
+    "sha256": "bc9b92d301bba3be38ccb1f57a175b7a03e9dfe5c63fc4ae2de639909ba2653d"
+  },
+  {
+    "slug": "test-reported-speech",
+    "language": "tr",
+    "questions": 15,
+    "sha256": "1c8b81c8bdd4e7e79644e961b6123ef1ff08b6c85731fa43ed8471c4ccf87d51"
+  },
+  {
+    "slug": "test-gerunds-infinitives",
+    "language": "tr",
+    "questions": 15,
+    "sha256": "e823256575f2a03cd1aefd801b8292c40c76b6d69295e004ee728104320e7168"
+  },
+  {
+    "slug": "test-clauses-advanced",
+    "language": "tr",
+    "questions": 15,
+    "sha256": "786e519a5cbf7ae10d10f18aa34f95635a6a24ea6f31779235c7b1284803a43f"
+  },
+  {
+    "slug": "test-modals-advanced",
+    "language": "tr",
+    "questions": 15,
+    "sha256": "caffe7e8644978b2509409c2b0937ff23452cf279fcc6289315deabb2e3139cd"
+  },
+  {
+    "slug": "test-prepositions-advanced",
+    "language": "tr",
+    "questions": 15,
+    "sha256": "131201c86ef1082d0cd77db3adff37d8472ebaa4b846872f8618a3f15d505155"
+  },
+  {
+    "slug": "ielts-grammar",
+    "language": "tr",
+    "questions": 50,
+    "sha256": "2245de3ffff9bd09a2d3b001fd7f1c34baf3cb964c793f78f7fffc864b0b830c"
+  }
+]

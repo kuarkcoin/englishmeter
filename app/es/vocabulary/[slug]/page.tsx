@@ -2,7 +2,8 @@ import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { buildSeoMetadata } from '@/lib/seo';
+import { buildSeoMetadata, serializeJsonLd } from '@/lib/seo';
+import { getVocabularyLanguageAlternates, getVocabularyWordStructuredData } from '@/lib/vocabulary-locales';
 import { spanishVocabulary } from '../data';
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
@@ -13,6 +14,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     description: `Aprende el significado de "${item.word}" en español: ${item.meaning}. Consulta una frase de ejemplo en inglés con su traducción.`,
     path: `/es/vocabulary/${item.slug}`,
     locale: 'es_ES',
+    languages: getVocabularyLanguageAlternates('es', item.slug),
   });
 }
 
@@ -24,9 +26,11 @@ export default function SpanishWordPage({ params }: { params: { slug: string } }
   const item = spanishVocabulary.find((entry) => entry.slug === params.slug);
 
   if (!item) notFound();
+  const languages = getVocabularyLanguageAlternates('es', item.slug);
 
   return (
     <main lang="es" className="min-h-screen bg-white py-12 px-4">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(getVocabularyWordStructuredData('es', item)) }} />
       <div className="max-w-3xl mx-auto">
         {/* Navigasyon */}
         <nav className="mb-8">
@@ -34,10 +38,15 @@ export default function SpanishWordPage({ params }: { params: { slug: string } }
             ← Diccionario de Inglés
           </Link>
         </nav>
+        {languages?.ar && (
+          <nav aria-label="Idiomas de esta palabra" className="mb-6 text-sm">
+            <a href={languages.ar} hrefLang="ar" lang="ar" dir="rtl" className="font-semibold text-blue-600 hover:underline">العربية</a>
+          </nav>
+        )}
 
         {/* Kelime Kartı */}
         <article className="bg-slate-50 rounded-3xl p-8 border border-slate-200 shadow-sm">
-          <h1 lang="en" className="text-6xl font-black text-slate-900 mb-6">{item.word}</h1>
+          <h1 lang="en" className="break-words text-4xl sm:text-6xl font-black text-slate-900 mb-6">{item.word}</h1>
           
           <div className="space-y-8">
             {/* Anlam Bölümü */}
@@ -54,7 +63,7 @@ export default function SpanishWordPage({ params }: { params: { slug: string } }
                 Ejemplo de uso
               </h2>
               <p lang="en" className="text-xl text-slate-800 font-medium italic mb-4 leading-relaxed">
-                "{item.s}"
+                &quot;{item.s}&quot;
               </p>
               <div className="pt-4 border-t border-slate-100">
                 <p className="text-slate-600">
